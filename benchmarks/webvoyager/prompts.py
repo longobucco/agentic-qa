@@ -1,5 +1,5 @@
 """Prompt templates for the agent loop(s) and the (subscription-based) judge."""
-from config import MAX_STEPS
+from benchmarks.webvoyager.config import MAX_STEPS
 
 AGENT_PROMPT = """You are an autonomous web agent completing ONE task on a LIVE website.
 
