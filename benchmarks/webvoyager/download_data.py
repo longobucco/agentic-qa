@@ -7,7 +7,7 @@ WV_DATA_BASE to point at the upstream WebVoyager repo instead.
 import os
 import urllib.request
 
-from config import DATA_DIR
+from benchmarks.webvoyager.config import DATA_DIR
 
 BASE = os.environ.get(
     "WV_DATA_BASE",
