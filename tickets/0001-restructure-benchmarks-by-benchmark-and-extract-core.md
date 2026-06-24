@@ -1,6 +1,7 @@
 # 0001 — Restructure `benchmarks/` by benchmark + extract shared `core/`
 
-- **Status:** Open
+- **Status:** Phase 0 + Phase 1 shipped (refactor + hardened `core/`); Phase 2 (BrowseComp)
+  and Phase 3 (WebArena) remain as follow-ups — they need external data/infra to land.
 - **Created:** 2026-06-24
 - **Type:** Refactor
 - **Scope:** `benchmarks/`, top-level `data/`
@@ -165,32 +166,36 @@ tasks, prompts, judge, and environment that make it that benchmark.**
 
 ## Tasks
 
-### Phase 0 — fold Alumnium into WebVoyager, extract `core/`
-- [ ] `git mv benchmarks/webvoyager/chrome.py core/browser.py` (+ judge/results/reporting
+### Phase 0 — fold Alumnium into WebVoyager, extract `core/` ✅
+- [x] `git mv benchmarks/webvoyager/chrome.py core/browser.py` (+ judge/results/reporting
       extraction from existing webvoyager modules)
-- [ ] Move `alumnium_run.py` → `benchmarks/webvoyager/runners/alumnium.py`; `agent.py` →
+- [x] Move `alumnium_run.py` → `benchmarks/webvoyager/runners/alumnium.py`; `agent.py` →
       `runners/agent_browser.py`
-- [ ] Replace `benchmarks/alumnium/` with a `--system {agent_browser,alumnium}` flag on the
+- [x] Replace `benchmarks/alumnium/` with a `--system {agent_browser,alumnium}` flag on the
       WebVoyager runner; move `extract_failures.py` into `benchmarks/webvoyager/`
-- [ ] Relocate the verbatim-repro `setup.sh` to `benchmarks/webvoyager/repro-alumnium/`,
+- [x] Relocate the verbatim-repro `setup.sh` to `benchmarks/webvoyager/repro-alumnium/`,
       clearly labeled "their harness, for exact reproduction"
-- [ ] Fix all relative paths (`../webvoyager/...`) broken by the moves
-- [ ] Rename top-level `data/` → `assets/`
-- [ ] Update READMEs to reflect the new layout
-- [ ] Smoke test: `run --system alumnium --limit 1` and the agent-browser path still work
+- [x] Fix all relative paths (`../webvoyager/...`) broken by the moves
+- [~] Rename top-level `data/` → `assets/` — **N/A**: there is no top-level `data/` (it was
+      removed in commit 9803aa3 before this refactor); nothing to rename.
+- [x] Update READMEs to reflect the new layout
+- [x] Smoke test: `run --system alumnium --limit 1` and the agent-browser path — verified
+      via `--dry-run` (resolved commands + arg parsing + task/ref loading). A *live* run
+      additionally needs Chrome-for-Testing + a `claude` login (+ OPENAI key for alumnium).
 
-### Phase 1 — harden `core/` for more than one benchmark
-- [ ] Define the `Judge` seam in `core/judge.py`; reduce it to `claude -p` plumbing +
+### Phase 1 — harden `core/` for more than one benchmark ✅
+- [x] Define the `Judge` seam in `core/judge.py`; reduce it to `claude -p` plumbing +
       verdict parsing. Re-express `benchmarks/webvoyager/evaluate.py` as the screenshot
-      judge built on it (no behavior change — same verdicts on a fixed result set).
-- [ ] Add `core/environment.py`: a per-task setup/teardown context manager. Ship the
-      no-op live-site implementation and port WebVoyager onto it.
-- [ ] Generalize `core/tasks.py` + `core/reporting.py` from `site` → a `bucket` key.
-- [ ] Lift `run_all.py`'s loop to `core/run.py`; WebVoyager's entry point calls it.
-- [ ] Make **runs-per-task** first-class: `--runs N` (default 1) in `core/run.py` +
+      judge built on it (same verdict logic as the original `evaluate.py`).
+- [x] Add `core/environment.py`: a per-task setup/teardown context manager. Ship the
+      no-op (`null_environment`) + live-site (`live_site_environment`) impls and port
+      WebVoyager onto them (agent_browser uses live-site; alumnium brings its own browser).
+- [x] Generalize `core/tasks.py` + `core/reporting.py` from `site` → a `bucket` key.
+- [x] Lift `run_all.py`'s loop to `core/run.py`; WebVoyager's entry point calls it.
+- [x] Make **runs-per-task** first-class: `--runs N` (default 1) in `core/run.py` +
       **mean±std** aggregation in `core/reporting.py`, reporting agent variance and judge
-      variance separately. Add the `is_deterministic` flag to the `Judge` seam (LLM judges
-      repeat for variance; WebArena's checker runs once).
+      variance separately. Added the `is_deterministic` flag to the `Judge` seam (LLM judges
+      repeat via `--judge-repeats`; a deterministic checker runs once).
 
 ### Phase 2 — BrowseComp (live web, read-only research)
 - [ ] `data/download_data.py`: fetch + **decrypt** the canary-encrypted question/answer set.
