@@ -1,0 +1,21 @@
+# Per-worker browser container: Steel Browser (stealth Chromium + CDP) + agent-browser.
+# Each container has its OWN agent-browser daemon (own filesystem), which is what makes
+# parallel runs safe — the host agent-browser daemon is shared and cannot.
+#
+# Steel runs its Chromium internally; agent-browser attaches via CDP from INSIDE the
+# container (the host daemon can't, because it's single-default-session). We do NOT run
+# `agent-browser install` (no second Chrome needed).
+#
+# STATUS: PARKED. Validated that this image builds and agent-browser drives Steel's
+# Chromium, but the docker-exec daemonization + in-container CDP connect need more
+# plumbing before it's production-ready. See benchmarks/webvoyager/README.md.
+FROM ghcr.io/steel-dev/steel-browser:latest
+
+USER root
+RUN (command -v npm >/dev/null 2>&1 || (apt-get update && apt-get install -y --no-install-recommends npm && rm -rf /var/lib/apt/lists/*)) \
+    && npm install -g agent-browser \
+    && agent-browser --version
+
+# Keep Steel's original entrypoint/CMD. Exec `agent-browser` into the running container
+# from the host orchestrator (start the daemon once with `docker exec -d` to avoid the
+# first-command hang, then issue client commands).
