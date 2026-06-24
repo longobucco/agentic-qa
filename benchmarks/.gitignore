@@ -1,0 +1,7 @@
+# Run outputs, secrets, vendored clones, envs
+**/results/
+**/.env
+**/vendor/
+**/.venv/
+__pycache__/
+*.pyc
