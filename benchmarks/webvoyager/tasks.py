@@ -1,19 +1,30 @@
-"""Load WebVoyager tasks + reference answers, with subset/interleave helpers."""
-import json
+"""WebVoyager task + reference-answer loading. Generic subsetting lives in `core.tasks`.
 
-from config import TASKS_FILE, REF_FILE
+What's WebVoyager-specific and stays here: the bucket key (`web_name`) and the shape of
+`reference_answer.json`. Everything else (filter / per-bucket / interleave) is `core.tasks`.
+"""
+from benchmarks.webvoyager.config import TASKS_FILE, REF_FILE
+from core.tasks import load_jsonl
+
+
+def bucket_of(task):
+    """WebVoyager stratifies by site name."""
+    return task.get("web_name") or task["id"].split("--")[0]
 
 
 def load_tasks():
     if not TASKS_FILE.exists():
-        raise SystemExit(f"Missing {TASKS_FILE}. Run: python download_data.py")
-    tasks = []
-    with open(TASKS_FILE) as f:
-        for line in f:
-            line = line.strip()
-            if line:
-                tasks.append(json.loads(line))
-    return tasks
+        raise SystemExit(
+            f"Missing {TASKS_FILE}. Run: python -m benchmarks.webvoyager.download_data"
+        )
+    return load_jsonl(TASKS_FILE)
+
+
+def get_task(task_id):
+    for t in load_tasks():
+        if t["id"] == task_id:
+            return t
+    raise SystemExit(f"Task id not found: {task_id}")
 
 
 def load_refs():
@@ -24,6 +35,7 @@ def load_refs():
     """
     if not REF_FILE.exists():
         return {}
+    import json
     raw = json.loads(REF_FILE.read_text())
     flat = {}
     if isinstance(raw, dict):
@@ -47,48 +59,3 @@ def _ans_str(val):
                 return str(val[k])
         return ""
     return str(val)
-
-
-def get_task(task_id):
-    for t in load_tasks():
-        if t["id"] == task_id:
-            return t
-    raise SystemExit(f"Task id not found: {task_id}")
-
-
-def filter_tasks(tasks, site=None, ids=None, limit=None, per_site=None, interleave=False):
-    out = tasks
-    if site:
-        sset = {s.lower() for s in site}
-        out = [t for t in out if (t.get("web_name") or t["id"].split("--")[0]).lower() in sset]
-    if ids:
-        idset = set(ids)
-        out = [t for t in out if t["id"] in idset]
-    if per_site:
-        seen = {}
-        keep = []
-        for t in out:
-            s = t.get("web_name") or t["id"].split("--")[0]
-            if seen.get(s, 0) < per_site:
-                seen[s] = seen.get(s, 0) + 1
-                keep.append(t)
-        out = keep
-    if interleave:
-        out = _interleave_by_site(out)
-    if limit:
-        out = out[:limit]
-    return out
-
-
-def _interleave_by_site(tasks):
-    """Round-robin across sites so concurrent workers don't hammer one domain."""
-    buckets = {}
-    for t in tasks:
-        buckets.setdefault(t.get("web_name") or t["id"].split("--")[0], []).append(t)
-    order = list(buckets.values())
-    out = []
-    while any(order):
-        for b in order:
-            if b:
-                out.append(b.pop(0))
-    return out

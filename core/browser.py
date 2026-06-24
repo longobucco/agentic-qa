@@ -1,8 +1,12 @@
 """Launch/stop a local Chrome-for-Testing with a CDP debug port.
 
-agent-browser's auto-launch daemon is unreliable in headless/automation contexts,
-so the harness owns the browser lifecycle and the agent attaches with
-`agent-browser connect <port>`. Each task gets a fresh user-data-dir for isolation.
+agent-browser's auto-launch daemon is unreliable in headless/automation contexts, so the
+harness owns the browser lifecycle and the agent attaches with `agent-browser connect
+<port>`. Each task gets a fresh user-data-dir for isolation.
+
+Benchmark-agnostic: the caller supplies the Chrome binary path and the headless flag (a
+live-site benchmark resolves these from its own config and wires them in via
+`core.environment.live_site_environment`).
 """
 import shutil
 import subprocess
@@ -10,19 +14,18 @@ import tempfile
 import time
 import urllib.request
 
-from config import find_chrome, HEADLESS
-
 
 class Chrome:
-    def __init__(self, port: int, headless: bool = HEADLESS):
+    def __init__(self, port: int, chrome_bin: str, headless: bool = True):
         self.port = port
+        self.chrome_bin = chrome_bin
         self.headless = headless
-        self.profile = tempfile.mkdtemp(prefix=f"wv-chrome-{port}-")
+        self.profile = tempfile.mkdtemp(prefix=f"agentqa-chrome-{port}-")
         self.proc = None
 
     def start(self):
         args = [
-            find_chrome(),
+            self.chrome_bin,
             f"--remote-debugging-port={self.port}",
             f"--user-data-dir={self.profile}",
             "--remote-debugging-address=127.0.0.1",

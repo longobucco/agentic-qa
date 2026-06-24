@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Clone Alumnium + its WebVoyager fork and install dependencies for re-running the benchmark.
-# Credential-independent: this only fetches code and installs tools. The actual run needs
-# a provider key for Alumnium's internal model (see README.md / the key question).
+# Option B: clone Alumnium + its WebVoyager fork for a VERBATIM reproduction (their harness).
+# This only fetches code and installs tools; the run itself needs a provider key for
+# Alumnium's internal model (see ../README.md). Everything lands in ./vendor/ (gitignored).
 set -euo pipefail
 cd "$(dirname "$0")"
 
@@ -38,11 +38,13 @@ cat <<'EOF'
   - Alumnium do/check : needs a provider key (their run used GPT-5 Nano via Azure OpenAI;
                         plain OpenAI works too): export OPENAI_API_KEY=...
   - Judge             : either OpenAI gpt-5-chat (their auto_eval) OR our subscription
-                        Claude judge (../webvoyager/evaluate.py) -> no key
+                        Claude judge (benchmarks/webvoyager/evaluate.py) -> no key
 
-Recommended (single key): use ../webvoyager/alumnium_run.py with OPENAI_API_KEY set, then
-  python extract_failures.py ../webvoyager/results/alumnium
+Recommended (single key) is Option A — our adapted harness, from the repo root:
+  python -m benchmarks.webvoyager.run --system alumnium   # OPENAI_API_KEY set
+  python -m benchmarks.webvoyager.extract_failures benchmarks/webvoyager/results/alumnium
 
-For exact fidelity, run their own scripts under "$WV" (run_claude_code.py + auto_eval.py), then
-  python extract_failures.py "$WV/results/claude-code"
+For exact fidelity (Option B), run their own scripts under "$WV" (run_claude_code.py +
+auto_eval.py), then from the repo root:
+  python -m benchmarks.webvoyager.extract_failures "$WV/results/claude-code"
 EOF
