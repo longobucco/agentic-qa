@@ -150,3 +150,12 @@ vite.config.ts.timestamp-*
 
 # macOS
 .DS_Store
+.alumnium/
+benchmarks/webvoyager/alumnium/vendor/
+**/.env
+benchmarks/browsecomp/data/browsecomp.jsonl
+benchmarks/webarena/data/webarena.jsonl
+
+# WebArena Daytona scratch / runtime artifacts (provisioning capability probes, live sandbox id)
+benchmarks/webarena/env/_probe*.py
+benchmarks/webarena/env/_last_sandbox.txt

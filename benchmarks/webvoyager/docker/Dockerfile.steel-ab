@@ -1,21 +1,26 @@
-# Per-worker browser container: Steel Browser (stealth Chromium + CDP) + agent-browser.
-# Each container has its OWN agent-browser daemon (own filesystem), which is what makes
-# parallel runs safe — the host agent-browser daemon is shared and cannot.
+# Per-worker browser container: Steel Browser (Chromium + CDP) + agent-browser.
+# Each container has its OWN agent-browser daemon (own filesystem) connected to its OWN
+# Chromium, which is what makes parallel runs safe — the host agent-browser daemon is a
+# singleton (one `default` session, no isolated-daemon env) and cannot. This is the only way
+# to run the agent_browser runner at concurrency > 1.
 #
-# Steel runs its Chromium internally; agent-browser attaches via CDP from INSIDE the
-# container (the host daemon can't, because it's single-default-session). We do NOT run
+# Steel runs its Chromium internally and exposes CDP on :9223; agent-browser attaches to it
+# from INSIDE the container (the host daemon can't reach it usefully). We do NOT run
 # `agent-browser install` (no second Chrome needed).
 #
-# STATUS: PARKED. Validated that this image builds and agent-browser drives Steel's
-# Chromium, but the docker-exec daemonization + in-container CDP connect need more
-# plumbing before it's production-ready. See benchmarks/webvoyager/README.md.
+# Driven by `benchmarks/webvoyager/runners/agent_browser.py` under `WV_AGENT_DOCKER=1`: the
+# runner starts one container per task, the orchestrator issues `docker exec <c> agent-browser
+# <cmd>`, and screenshots are `docker cp`-ed out for the canonical judge.
 FROM ghcr.io/steel-dev/steel-browser:latest
+
+# Steel's fingerprint generator fails to launch Chromium on some hosts (notably arm64):
+# "Failed to generate a consistent fingerprint after 10 attempts". We don't need stealth
+# fingerprinting for WebVoyager, so disable it — Chromium then launches cleanly.
+ENV SKIP_FINGERPRINT_INJECTION=true
 
 USER root
 RUN (command -v npm >/dev/null 2>&1 || (apt-get update && apt-get install -y --no-install-recommends npm && rm -rf /var/lib/apt/lists/*)) \
     && npm install -g agent-browser \
     && agent-browser --version
 
-# Keep Steel's original entrypoint/CMD. Exec `agent-browser` into the running container
-# from the host orchestrator (start the daemon once with `docker exec -d` to avoid the
-# first-command hang, then issue client commands).
+# Keep Steel's original entrypoint/CMD (boots the API + Chromium + the :9223 CDP proxy).

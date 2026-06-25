@@ -1,0 +1,32 @@
+# ColorBrowserAgent (MadeAgents/browser-agent) — WebArena third-party comparator (71.2%, SOTA
+# Dec 2025). A self-contained BrowserGym WebArena harness (dual-agent: Summarizer + Operator).
+# We run it pointed at OUR hosted stack (WA_* env) and use its OWN cum_reward verdict.
+#
+# Build:
+#   docker build -f benchmarks/webarena/docker/Dockerfile.colorbrowser -t colorbrowser:latest \
+#       benchmarks/webarena/docker
+#
+# Model: GPT-5 by default (OpenAI); set CBA_MODEL to any OpenAI-compatible model (+ OPENAI_BASE_URL
+# to use a LiteLLM/compatible gateway). NOTE: this is a heavy image (BrowserGym + Chromium + the
+# WebArena task data BrowserGym needs); the live run also needs an OpenAI model with GPT-5-class
+# capability. See benchmarks/webarena/runners/colorbrowser.py.
+FROM python:3.12-slim
+
+ENV PYTHONUNBUFFERED=1
+# git + Chromium's runtime libs installed MANUALLY — `playwright install --with-deps` fails on
+# slim (it apt-installs obsolete font packages ttf-unifont / ttf-ubuntu-font-family). We install
+# the libs here and download only the browser binary below (`playwright install chromium`).
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git ca-certificates \
+    libnss3 libnspr4 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libxkbcommon0 \
+    libxcomposite1 libxdamage1 libxfixes3 libxrandr2 libgbm1 libpango-1.0-0 libcairo2 \
+    libasound2 libatspi2.0-0 fonts-liberation fonts-unifont \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+RUN git clone --depth 1 https://github.com/MadeAgents/browser-agent.git
+WORKDIR /app/browser-agent
+RUN pip install --no-cache-dir -r requirements.txt && playwright install chromium
+
+COPY cba_task.py /app/cba_task.py
+ENTRYPOINT ["python", "/app/cba_task.py"]

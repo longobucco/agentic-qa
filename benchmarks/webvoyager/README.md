@@ -15,7 +15,8 @@ benchmarks/webvoyager/
   data/                 tasks + reference answers (download_data.py)
   runners/
     agent_browser.py    our agent: claude -p drives agent-browser over CDP
-    alumnium.py         re-run via the Alumnium MCP (needs OPENAI_API_KEY)
+    alumnium.py         Option A: re-run via the Alumnium MCP, OUR judge -> comparable
+                        results, same layout as agent_browser (needs OPENAI_API_KEY)
   evaluate.py           WebVoyager screenshot judge (a core.judge.Judge)
   benchmark.py          wires tasks + runners + judge + buckets into a core.Benchmark
   config.py             env-tunable settings + Chrome-for-Testing discovery
@@ -24,7 +25,8 @@ benchmarks/webvoyager/
   run.py                thin entry point -> core.run
   report.py             thin entry point -> core.reporting
   extract_failures.py   list the tasks a run failed (handles run_N/ and flat layouts)
-  repro-alumnium/       Option B: verbatim vendored reproduction (setup.sh)
+  alumnium/             Option B: verbatim vendored reproduction — THEIR harness +
+                        THEIR GPT-5 judge (setup.sh). NOT comparable to our results.
   docker/               Steel + agent-browser image (parked: per-worker daemon isolation)
 ```
 
@@ -87,12 +89,13 @@ Credentials:
 - **Judge** — our subscription Claude screenshot judge (`evaluate.py`) → no key.
 
 ### Option A — adapted, single key (recommended)
-Reuses this harness; the Alumnium MCP is the browser layer, Claude judges.
+Reuses this harness; the Alumnium MCP is the browser layer, Claude judges. `OPENAI_API_KEY`
+auto-loads from the **repo-root `.env`** (shared by all benchmarks) — no manual export needed.
 ```bash
-export OPENAI_API_KEY=sk-...                            # or: set -a; . ./.env; set +a
 python -m benchmarks.webvoyager.run --system alumnium --per-bucket 3 --concurrency 4
 python -m benchmarks.webvoyager.run --system alumnium --concurrency 4   # full (resumable)
 python -m benchmarks.webvoyager.report alumnium
+python -m benchmarks.webvoyager.report --compare agent_browser alumnium  # harness A/B + Δ
 python -m benchmarks.webvoyager.extract_failures benchmarks/webvoyager/results/alumnium
 ```
 
@@ -100,10 +103,10 @@ python -m benchmarks.webvoyager.extract_failures benchmarks/webvoyager/results/a
 For a literal reproduction (their `run_claude_code.py` + GPT-5 `auto_eval.py`, which also
 captures per-step screenshots). Needs OpenAI and matches their Azure-style config.
 ```bash
-benchmarks/webvoyager/repro-alumnium/setup.sh          # clone alumnium + WebVoyager fork
-# run their runner/evaluator under repro-alumnium/vendor/... (see setup.sh output), then:
+benchmarks/webvoyager/alumnium/setup.sh                # clone alumnium + WebVoyager fork
+# run their runner/evaluator under alumnium/vendor/... (see setup.sh output), then:
 python -m benchmarks.webvoyager.extract_failures \
-  benchmarks/webvoyager/repro-alumnium/vendor/alumnium/benchmarks/webvoyager/results/claude-code
+  benchmarks/webvoyager/alumnium/vendor/alumnium/benchmarks/webvoyager/results/claude-code
 ```
 
 **Deviations to note in the paper:** Option A swaps Azure→OpenAI for the do/check model and

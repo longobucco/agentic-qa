@@ -34,6 +34,39 @@ TASK: {ques}
 START_URL: {start_url}
 """
 
+AGENT_DOCKER_PROMPT = """You are an autonomous web agent completing ONE task on a LIVE website.
+
+A headless Chromium is ALREADY running and connected inside a Docker container named
+`{cname}`. Control it ONLY by prefixing every `agent-browser` command with
+`docker exec {cname}`, run via the Bash tool. Core commands:
+  docker exec {cname} agent-browser open <url>            # navigate (https:// auto-added)
+  docker exec {cname} agent-browser snapshot              # accessibility tree, refs like @e5
+  docker exec {cname} agent-browser click @e5             # click element by ref
+  docker exec {cname} agent-browser fill @e5 "text"       # clear + type into a field
+  docker exec {cname} agent-browser type @e5 "text"       # type without clearing
+  docker exec {cname} agent-browser press Enter           # press a key (Enter, Tab, ...)
+  docker exec {cname} agent-browser scroll down 800       # scroll (up/down/left/right)
+  docker exec {cname} agent-browser get text @e5          # read element text
+  docker exec {cname} agent-browser screenshot /shots/step_N.png   # screenshot (see below)
+
+Procedure:
+1. The browser is already connected — start with
+   `docker exec {cname} agent-browser open {start_url}`.
+2. Loop: `snapshot` -> decide ONE next action -> execute -> re-`snapshot` (refs change after
+   navigation/clicks). Dismiss cookie/consent banners if they cover the target.
+3. Save screenshots as you progress to `/shots/step_1.png`, `/shots/step_2.png`, ... and a
+   final `/shots/final.png` when done. These live INSIDE the container at `/shots`; the
+   harness collects them — always write screenshots under `/shots/`.
+4. Keep it under ~{max_steps} browser actions. Do NOT ask for confirmation. Stay on the
+   task's website.
+
+Finish by printing your result on the LAST line, EXACTLY:
+ANSWER: <concise answer to the question, or DONE for action-only tasks>
+
+TASK: {ques}
+START_URL: {start_url}
+"""
+
 ALUMNIUM_PROMPT = """You are an autonomous web agent completing ONE task on a LIVE website,
 using the Alumnium MCP browser tools ONLY:
   mcp__alumnium__start_driver   - start a Chrome browser (call this FIRST)
@@ -58,30 +91,37 @@ TASK: {ques}
 START_URL: {start_url}
 """
 
-JUDGE_PROMPT = """You are evaluating whether a web agent completed a task (WebVoyager-style eval).
+JUDGE_PROMPT = """You are an evaluator scoring whether a web agent accomplished a task. This is
+the canonical WebVoyager auto-evaluation, applied IDENTICALLY to every system under test.
 
-TASK: {ques}
-WEBSITE: {web}
-REFERENCE ANSWER (may be partial or outdated, use as a hint only): {ref}
-AGENT'S FINAL ANSWER: {answer}
-{evidence}
-Judge SUCCESS only if the agent actually achieved the task goal. Be strict: a partial or
-incorrect result is FAILURE; an unsupported/hallucinated answer is FAILURE.
+You are given three things:
+1. TASK — the natural-language instruction the agent was asked to perform.
+2. RESULT RESPONSE — the agent's final textual answer.
+3. RESULT SCREENSHOTS — image files saved in the directory {out}. Use the Read tool to view
+   the LAST few screenshots there (the highest-numbered `step_*` files, and `final.png` if
+   present). They are visual proof of the end state of the agent's actions.
 
-Output ONLY one JSON object as the LAST line, nothing after it:
+Follow WebVoyager's evaluation protocol EXACTLY:
+- Judge ONLY from the screenshots and the response. Do NOT use outside knowledge or assume
+  facts not visible in the screenshots.
+- The screenshot is authentic ground truth. If the RESULT RESPONSE contradicts the
+  screenshot, the SCREENSHOT prevails. If the response states something NOT shown in the
+  screenshot, you may believe the response.
+- If the task has multiple parts, ALL parts must be satisfied or it is a failure.
+- There is NO reference answer; decide from the evidence whether the intent was achieved.
+- The current year is 2026; evaluate against the current web, not prior assumptions.
+- If NO screenshots are present in {out}, you cannot verify the result -> FAILURE.
+
+First Read the relevant screenshots in {out}, reason briefly, then output ONLY one JSON
+object as the LAST line, nothing after it:
 {{"verdict": "SUCCESS", "reason": "<one sentence>"}}
 or
 {{"verdict": "FAILURE", "reason": "<one sentence>"}}
-"""
 
-_EVIDENCE_SHOTS = (
-    "\nThe agent's screenshots are in this directory: {out}\n"
-    "Use the Read tool to view {out}/final.png and any {out}/step_*.png that exist; "
-    "require screenshot evidence for the claimed result.\n"
-)
-_EVIDENCE_TEXT = (
-    "\nNo screenshots are available; judge from the answer text against the reference.\n"
-)
+TASK: {ques}
+RESULT RESPONSE: {answer}
+RESULT SCREENSHOTS: in {out}
+"""
 
 
 def agent_prompt(task, port, out):
@@ -94,16 +134,26 @@ def agent_prompt(task, port, out):
     )
 
 
+def agent_docker_prompt(task, cname):
+    """Containerized agent prompt: drive agent-browser inside Steel container `cname` via
+    `docker exec`. The runner has already started the container and connected the browser."""
+    return AGENT_DOCKER_PROMPT.format(
+        cname=cname,
+        max_steps=MAX_STEPS,
+        ques=task["ques"],
+        start_url=task["web"],
+    )
+
+
 def alumnium_prompt(task, start_url=None):
     return ALUMNIUM_PROMPT.format(ques=task["ques"], start_url=start_url or task["web"])
 
 
-def judge_prompt(task, answer, ref, out, has_screenshots=True):
-    evidence = (_EVIDENCE_SHOTS.format(out=out) if has_screenshots else _EVIDENCE_TEXT)
+def judge_prompt(task, answer, out):
+    """Canonical WebVoyager judge prompt: task + answer + the screenshots under `out`.
+    No reference answer (the benchmark judges from screenshots, not a gold string)."""
     return JUDGE_PROMPT.format(
         ques=task["ques"],
-        web=task.get("web", ""),
-        ref=ref or "(none)",
         answer=answer or "(no answer produced)",
-        evidence=evidence,
+        out=out,
     )
