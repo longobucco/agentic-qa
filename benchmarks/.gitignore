@@ -1,5 +1,4 @@
-# Run outputs, secrets, vendored clones, envs
-**/results/
+# Secrets, vendored clones, envs (results/ are tracked — see .gitkeep in each)
 **/.env
 **/vendor/
 **/.venv/
