@@ -19,6 +19,8 @@ CONCURRENCY: agent-browser uses ONE shared daemon, so its runner is not concurre
 gives each worker its own MCP + browser).
 """
 import argparse
+import json
+import os
 import queue
 import threading
 import time
@@ -29,15 +31,38 @@ from typing import Callable
 from core import results as results_io
 from core import reporting
 from core.agent_loop import preview
+from core.dotenv import load_dotenv
 from core.environment import Env, null_environment
 from core.tasks import default_bucket, filter_tasks
 
 _print_lock = threading.Lock()
 
+# Curated pinning knobs recorded per run so a harness A/B is auditable: the comparison is only
+# "harness, not model" if the model + step/budget knobs match across the two variants.
+_HARNESS_ENV_KEYS = (
+    "WV_MODEL", "WV_MAX_TURNS", "WA_MAX_TURNS", "WA_TASK_TIMEOUT",
+    "BC_MAX_TURNS", "BC_TASK_TIMEOUT", "BU_PROVIDER", "BU_MODEL", "BU_IMAGE",
+)
+
 
 def log(msg):
     with _print_lock:
         print(msg, flush=True)
+
+
+def _write_harness_record(benchmark, runner, args):
+    """Persist the pinned config for this system so `reporting.ab_compare` can audit that two
+    harness variants ran the SAME model/budget (else the delta is confounded)."""
+    rec = {
+        "system": runner.name,
+        "runs": args.runs,
+        "concurrency": args.concurrency,
+        "judge_repeats": args.judge_repeats,
+        "env": {k: os.environ[k] for k in _HARNESS_ENV_KEYS if os.environ.get(k)},
+    }
+    d = benchmark.results_dir / runner.name
+    d.mkdir(parents=True, exist_ok=True)
+    (d / "harness.json").write_text(json.dumps(rec, indent=2))
 
 
 @dataclass
@@ -53,6 +78,10 @@ class Runner:
     needs_browser: bool = False                             # allocate a CDP port?
     concurrency_safe: bool = False                          # ok at --concurrency > 1?
     preflight: Callable[[], None] = None                   # raise SystemExit if unmet
+    self_eval: bool = False                                # runner is a self-contained harness
+                                                            # that writes its OWN eval.json (e.g.
+                                                            # ColorBrowserAgent's cum_reward) ->
+                                                            # core skips the benchmark judge
 
 
 @dataclass
@@ -93,6 +122,7 @@ def _parser(benchmark):
 
 
 def main(benchmark, argv=None):
+    load_dotenv()   # repo-root .env -> every benchmark run shares DAYTONA/OPENAI/... keys
     args = _parser(benchmark).parse_args(argv)
     runner = benchmark.runners[args.system]
     judge = benchmark.judge
@@ -123,6 +153,8 @@ def main(benchmark, argv=None):
             if args.force or not results_io.is_done(out, need_eval=need_eval):
                 units.append((t, k))
 
+    _write_harness_record(benchmark, runner, args)   # pinned-config audit trail for A/B
+
     conc = max(1, args.concurrency)
     if conc > 1 and not runner.concurrency_safe:
         log(f"WARNING: runner '{runner.name}' is not concurrency-safe (agent-browser shares "
@@ -152,7 +184,12 @@ def main(benchmark, argv=None):
             with runner.environment(task, port=port) as env:
                 answer = runner.run(task, env=env, out=out, refs=refs)
             verdict = None
-            if need_eval:
+            if need_eval and runner.self_eval:
+                # self-contained harness: the runner wrote its OWN eval.json (its native
+                # deterministic eval). Don't run the benchmark judge; just surface its verdict.
+                ev = out / "eval.json"
+                verdict = json.loads(ev.read_text()).get("verdict") if ev.exists() else None
+            elif need_eval:
                 ref = refs.get(task["id"])
                 verdicts = [judge(task, answer, ref, out) for _ in range(judge_reps)]
                 rec = results_io.aggregate_judge(verdicts)

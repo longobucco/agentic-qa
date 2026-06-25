@@ -10,7 +10,7 @@ Usage:
   python -m benchmarks.webvoyager.extract_failures <results_dir>
   python -m benchmarks.webvoyager.extract_failures benchmarks/webvoyager/results/alumnium
   python -m benchmarks.webvoyager.extract_failures \
-      benchmarks/webvoyager/repro-alumnium/vendor/alumnium/benchmarks/webvoyager/results/claude-code
+      benchmarks/webvoyager/alumnium/vendor/alumnium/benchmarks/webvoyager/results/claude-code
 """
 import json
 import sys

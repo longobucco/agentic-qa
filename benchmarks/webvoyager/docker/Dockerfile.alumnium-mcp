@@ -1,0 +1,53 @@
+# Alumnium MCP (browser hands) in a container, so its Chrome runs headless-INVISIBLE on the
+# host. The orchestrator (`claude -p`) and our judge stay on the host; only the browser layer
+# crosses into Docker. The runner swaps `uvx alumnium mcp` for `docker run -i ... <this image>`.
+#
+# WHY Xvfb, not --headless: Alumnium 0.21 exposes no headless flag and hides its Selenium
+# driver creation behind a subprocess, so we can't inject `--headless`. Instead we give its
+# *unmodified* headed Chrome a virtual X display (Xvfb) — it renders to a fake screen inside
+# the container, invisible to macOS. No window, no focus-stealing.
+#
+# WHY Chromium (not Google Chrome): on Apple Silicon the container is linux/arm64, and Google
+# ships no Chrome / Chrome-for-Testing for linux-arm64. Debian's `chromium` + `chromium-driver`
+# DO target arm64, so Selenium drives those.
+FROM python:3.12-slim-bookworm
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    # Point Selenium/Alumnium at the distro Chromium + its matching driver (no auto-download,
+    # which would fail for chrome on arm64).
+    CHROME_BIN=/usr/bin/chromium \
+    CHROMEDRIVER_PATH=/usr/bin/chromedriver \
+    SE_CHROMEDRIVER=/usr/bin/chromedriver \
+    PATH="/root/.local/bin:${PATH}"
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        chromium chromium-driver \
+        xvfb xauth \
+        fonts-liberation fonts-noto-core ca-certificates \
+        curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# uv (for `uvx alumnium mcp`), pinned-ish; alumnium itself is fetched by uvx on first run.
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Warm the uvx cache so container start doesn't pay the alumnium download every task.
+RUN /root/.local/bin/uvx alumnium --help >/dev/null 2>&1 || true
+
+WORKDIR /work
+
+# stdio MCP under a virtual display.
+#
+# We deliberately do NOT use `xvfb-run`: it wraps the process in a way that does not cleanly
+# forward stdin/stdout, so the MCP handshake never reaches the host orchestrator (the server
+# shows "still connecting" forever). Instead we start Xvfb ourselves in the background, set
+# DISPLAY, then `exec` the MCP server so it OWNS the container's stdin/stdout directly — the
+# stdio MCP protocol then flows straight to the host `claude -p`.
+RUN printf '%s\n' \
+      '#!/bin/sh' \
+      'Xvfb :99 -screen 0 1280x1024x24 -nolisten tcp >/dev/null 2>&1 &' \
+      'export DISPLAY=:99' \
+      'exec /root/.local/bin/uvx alumnium mcp' \
+      > /usr/local/bin/alumnium-mcp-entrypoint.sh \
+    && chmod +x /usr/local/bin/alumnium-mcp-entrypoint.sh
+
+ENTRYPOINT ["/usr/local/bin/alumnium-mcp-entrypoint.sh"]
