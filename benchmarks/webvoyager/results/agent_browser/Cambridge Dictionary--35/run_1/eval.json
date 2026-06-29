@@ -1,0 +1,5 @@
+{
+  "id": "Cambridge Dictionary--35",
+  "verdict": "FAILURE",
+  "reason": "Both screenshots show only a Cloudflare bot-verification page on dictionary.cambridge.org with no dictionary content reached, and the response concedes the grammar page never loaded, so the prepositions were not actually found on the Cambridge Dictionary."
+}

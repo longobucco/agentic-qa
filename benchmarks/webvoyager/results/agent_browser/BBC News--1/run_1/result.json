@@ -1,0 +1,8 @@
+{
+  "id": "BBC News--1",
+  "bucket": "BBC News",
+  "web_name": "BBC News",
+  "ques": "Read the latest health-related news article published on BBC News and summarize the key points discussed.",
+  "web": "https://www.bbc.com/news/",
+  "answer": "The latest health article, \"'Pregorexia': The hidden struggle of eating disorders facing pregnant women\" (BBC Health, 16 Jun 2026), reports that ~1 in 20 pregnant women (and ~13% postpartum) suffer eating disorders \u2014 a largely hidden, under-screened problem. Pregnancy is a \"perfect storm\" of hormonal change, weight gain and loss of control that can trigger or relapse anorexia/bulimia, nearly doubling complications and endangering both mother (nutrient deficiency, bone/muscle loss) and baby (miscarriage, low birth weight, premature birth, developmental risks). Cases overlap with normal pregnancy symptoms and go undetected amid stigma and judgment. Experts say it's also a pivotal chance to recover, urging non-judgmental, multidisciplinary care, less focus on weight numbers, and patients confiding in trusted people \u2014 \"nobody recovers alone.\""
+}

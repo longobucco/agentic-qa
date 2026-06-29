@@ -1,0 +1,5 @@
+{
+  "id": "Allrecipes--24",
+  "verdict": "FAILURE",
+  "reason": "Both screenshots show only an Allrecipes/people.inc access-block page with no recipe loaded, so no eggplant Parmesan recipe, rating, reviews, prep time, or servings were obtained."
+}

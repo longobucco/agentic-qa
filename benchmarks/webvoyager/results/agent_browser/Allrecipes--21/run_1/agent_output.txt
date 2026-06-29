@@ -1,0 +1,7 @@
+I was unable to complete the task. Allrecipes (allrecipes.com) is returning an IP-level access block from its parent company, People Inc., for every URL I tried — the homepage, the `?q=gluten free brownies` search results, and multiple direct recipe pages. Each one renders only this message instead of any page content:
+
+> "If you are a reader experiencing an access issue, please contact support@people.inc … If you would like to access our content for licensing, please contact contentlicensing@people.inc."
+
+The accessibility tree contained no recipe content, search box, or navigable elements — only the support/licensing contact links — so there was nothing to click through to reach a recipe. I retried after a delay in case it was a transient rate-limit, but the block was consistent across all attempts. Because the container's IP is blocked at the network level, I cannot read any recipe's ingredients or timing, and I won't fabricate an answer.
+
+ANSWER: Unable to complete — allrecipes.com is hard-blocking this container's IP (People Inc. "access issue" page on every URL, including the homepage, search, and direct recipe links), so no gluten-free brownie recipe, ingredients, or total time could be retrieved.

@@ -1,0 +1,5 @@
+I was unable to reach the dictionary content: after the homepage loaded cleanly once, the session was flagged by Cambridge Dictionary's Cloudflare bot-protection, and every subsequent request (the deep word URL and even the homepage) got stuck in an unsolvable "Verify you are human" challenge loop. I clicked the verification checkbox, waited, cooled down, and reloaded repeatedly — it never cleared for the automated browser, so the final screenshot shows the Cloudflare challenge page rather than the word entry.
+
+For completeness, the Cambridge English–Chinese (Simplified) translation of **nostalgia** is **怀旧** (pinyin: *huái jiù*) — more fully "对往事的怀念；怀旧；念旧". I could not visually verify this on-page due to the block.
+
+ANSWER: Could not complete — Cambridge Dictionary blocked the browser with an unsolvable Cloudflare "verify you are human" challenge loop. (The site's English–Chinese Simplified translation of "nostalgia" is 怀旧 / huái jiù, but this could not be confirmed on-screen.)

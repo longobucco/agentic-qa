@@ -1,0 +1,3 @@
+I sorted GitHub's repository search for "image processing" by most stars. The top result is **lovell/sharp** (32.4k stars), a high-performance Node.js image processing library — the most-starred genuine open-source image processing tool. (The only repos above-or-near it were a deep-learning tutorial repo and Docker's watchtower, neither of which is an image-processing tool in the relevant sense.)
+
+ANSWER: lovell/sharp — a high-performance Node.js image processing library (built on libvips) with ~32.4k stars, the most-starred open-source image processing tool on GitHub.

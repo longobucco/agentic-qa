@@ -1,0 +1,5 @@
+{
+  "id": "BBC News--30",
+  "verdict": "FAILURE",
+  "reason": "All screenshots, including the final one, show a BBC cookie-consent modal blocking the page and no film review is ever displayed, so the detailed 'Disclosure Day' review in the response is unverifiable against the ground-truth end state."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "GitHub--26",
+  "bucket": "GitHub",
+  "web_name": "GitHub",
+  "ques": "Find the Resolve merge conflicts course in GitHub Skills and what actions learners will perform in this course.",
+  "web": "https://github.com/",
+  "answer": "The \"Resolve merge conflicts\" course (GitHub Skills repo skills/resolve-merge-conflicts) teaches why conflicts happen and how to resolve them. Learners perform these actions: (1) learn the causes of a merge conflict, (2) learn the tools for resolving a merge conflict, and (3) learn when and how to resolve a merge conflict \u2014 using a web editor to fix conflicting changes in a Markdown file (a ~30-minute, beginner exercise prerequisite: Introduction to GitHub)."
+}

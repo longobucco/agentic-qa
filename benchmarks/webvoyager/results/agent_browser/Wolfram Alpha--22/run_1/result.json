@@ -1,0 +1,8 @@
+{
+  "id": "Wolfram Alpha--22",
+  "bucket": "Wolfram Alpha",
+  "web_name": "Wolfram Alpha",
+  "ques": "Determine the area of a regular hexagon with a side length of 7 cm.",
+  "web": "https://www.wolframalpha.com/",
+  "answer": "The area of a regular hexagon with side length 7 cm is (147\u221a3)/2 cm\u00b2 \u2248 127.306 cm\u00b2 (about 127.31 cm\u00b2)."
+}

@@ -1,0 +1,8 @@
+The final screenshot is captured and clearly shows all evidence needed. The task is complete.
+
+I located **"Introduction to Artificial Intelligence (AI)"** by IBM on Coursera:
+- **Introductory & beginner-suitable**: Titled "Introduction to..." and labeled **Beginner · Course · 1–4 Weeks** in search results (4.7★, 23K reviews).
+- **AI-related**: Covers core AI concepts, machine learning, deep learning, neural networks, and generative AI.
+- **Ethical Considerations module**: **Module 4 — "Issues, Concerns, and Ethical Considerations"** (3 hours), visible in the final screenshot alongside the other 3 modules.
+
+ANSWER: "Introduction to Artificial Intelligence (AI)" by IBM (coursera.org/learn/introduction-to-ai) — a Beginner-level intro AI course whose Module 4 is "Issues, Concerns, and Ethical Considerations."

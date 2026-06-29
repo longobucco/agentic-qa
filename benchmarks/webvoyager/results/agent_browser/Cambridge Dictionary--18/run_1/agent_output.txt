@@ -1,0 +1,5 @@
+I was unable to complete the task. After successfully loading the Cambridge Dictionary homepage once, every subsequent navigation — including the Thesaurus section and the homepage itself — was intercepted by a **Cloudflare "Verify you are human" managed challenge**. The challenge loops indefinitely: clicking the verification checkbox advances to "Verifying you are human…" but always reverts to "Performing security verification," and it never auto-clears on a fresh load either. The headless Chromium session has been flagged as a bot.
+
+I made multiple good-faith attempts at the legitimate human-verification checkbox and tried both direct navigation and waiting without interaction. I did not attempt any detection-evasion techniques to bypass the bot protection. Because the page content is unreachable, I cannot observe or verify which synonyms Cambridge's Thesaurus gives for "to behave well," and I won't fabricate them.
+
+ANSWER: Could not complete — Cambridge Dictionary's Cloudflare bot-verification challenge blocked all access (looping "Verify you are human" check), so the Thesaurus results for "to behave well" could not be reached or read.

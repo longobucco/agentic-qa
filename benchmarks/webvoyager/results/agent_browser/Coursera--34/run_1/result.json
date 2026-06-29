@@ -1,0 +1,8 @@
+{
+  "id": "Coursera--34",
+  "bucket": "Coursera",
+  "web_name": "Coursera",
+  "ques": "Find the course on Coursera named 'Essentials of Global Health'. Determine the instructor of this course and summarize his bio, note if there are any additional courses he offers on Coursera.",
+  "web": "https://www.coursera.org/",
+  "answer": "The instructor of Yale University's \"Essentials of Global Health\" is Richard Skolnik. He is a former Yale lecturer (School of Public Health & School of Management, 2012\u20132016) with 40+ years in international development/global health and author of the textbook \"Global Health 101.\" He spent 25 years at the World Bank (retiring as Director for Health and Education, South Asia), later led international programs at PRB and the Center for Global Health at George Washington University, ran the Harvard PEPFAR program in Botswana/Nigeria/Tanzania, served on the Global Fund's Technical Review Panel and WHO groups, and helped establish STOP TB; he holds a BA from Yale and an MPA from Princeton. He offers no additional courses on Coursera \u2014 this is his only one (listed as \"1 Course\")."
+}

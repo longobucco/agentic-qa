@@ -1,0 +1,9 @@
+I found the latest neural-network paper on ArXiv submitted within the last week. Sorting the "neural networks" search by submission date (newest first), the top result is arXiv:2507.01695, with its most recent version submitted 24 June 2026 (within the last week of today, 26 June 2026).
+
+- **Title:** PERTINENCE: Input-based Opportunistic Neural Network Dynamic Execution
+- **arXiv ID:** 2507.01695
+- **Authors:** Omkar Shende, Gayathri Ananthanarayanan, Marcello Traiola
+- **Subject:** Machine Learning (cs.LG)
+- **Submission:** v1 on 2 Jul 2025, last revised 24 Jun 2026 (v3)
+
+ANSWER: PERTINENCE: Input-based Opportunistic Neural Network Dynamic Execution (arXiv:2507.01695), last submitted 24 June 2026 — a neural network paper on dynamically selecting lightweight DNN models at runtime to improve efficiency.

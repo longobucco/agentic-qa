@@ -1,0 +1,8 @@
+{
+  "id": "ESPN--15",
+  "bucket": "ESPN",
+  "web_name": "ESPN",
+  "ques": "Check the scores of the NBA games played on February 25, 2026.",
+  "web": "https://www.espn.com/",
+  "answer": "11 NBA games were played on Feb 25, 2026 (all FINAL): 76ers 135\u2013114 Pacers; Hawks 119\u201398 Wizards; Mavericks 123\u2013114 Nets; Thunder 116\u2013107 Raptors; Cavaliers 109\u201394 Knicks; Hornets 131\u201399 Bulls; Bucks 128\u2013117 Heat; Pelicans 113\u2013109 Warriors; Celtics 97\u201381 Suns; Timberwolves 124\u2013121 Trail Blazers; Magic 110\u2013109 Lakers."
+}

@@ -1,0 +1,7 @@
+I was unable to complete the task because **Allrecipes is blocking all access from this environment**. Every URL I tried — the homepage (`https://www.allrecipes.com/`), the search results page (`/search?q=baked lemon chicken`), a direct recipe page (`/recipe/8855/baked-lemon-chicken/`), and the non-www host — returned an identical access-block page from the site's parent company:
+
+> "If you are a reader experiencing an access issue, please contact support@people.inc... you may include your IP address."
+
+This is an IP-level block on the container, not a cookie/consent banner I could dismiss. There is no search box, recipe content, ratings, or ingredient list rendered on any page — so there is no way to search for the recipe, filter by prep time/rating/review count, or read the ingredients. I will not fabricate ingredients or recipe details that I could not actually verify on the site.
+
+ANSWER: Unable to complete — Allrecipes blocked all access from this environment (every page, including the homepage, search, and direct recipe URLs, returned a "People Inc." access-issue/IP-block page with no recipe content), so no baked lemon chicken recipe or its ingredients could be retrieved.

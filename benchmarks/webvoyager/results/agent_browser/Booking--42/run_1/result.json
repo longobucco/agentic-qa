@@ -1,0 +1,8 @@
+{
+  "id": "Booking--42",
+  "bucket": "Booking",
+  "web_name": "Booking",
+  "ques": "Search for a hotel in Hokkaido for the period July 1 to July 7, 2026, with a rating of 9+, check out its user reviews, which categories are greater than 9 and which are less than 9?",
+  "web": "https://www.booking.com/",
+  "answer": "For SAPPORO STREAM HOTEL (Sapporo, Hokkaido; overall 9.1 \"Wonderful\", 1,245 reviews), the review categories greater than 9 are Location (9.7), Cleanliness (9.4), Comfort (9.4), Free WiFi (9.4), Facilities (9.3) and Staff (9.1); the only category less than 9 is Value for money (8.6)."
+}

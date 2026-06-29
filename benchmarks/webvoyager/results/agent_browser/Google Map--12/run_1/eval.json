@@ -1,0 +1,5 @@
+{
+  "id": "Google Map--12",
+  "verdict": "SUCCESS",
+  "reason": "The screenshot confirms a Google Maps burger search near 44012 with ratings matching the agent's response (Edacious 4.7, Jake's 4.6, Legacy 4.6, Parker's 4.5), and the agent returned 5 burger places correctly sorted by highest rating."
+}

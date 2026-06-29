@@ -1,0 +1,8 @@
+{
+  "id": "Booking--22",
+  "bucket": "Booking",
+  "web_name": "Booking",
+  "ques": "Search for a hotel in Amsterdam with a customer review score of 9 or higher, offering bicycle rentals, for a week-long stay from June 15 to June 22, 2026, for two adults.",
+  "web": "https://www.booking.com/",
+  "answer": ""
+}

@@ -1,0 +1,8 @@
+{
+  "id": "Cambridge Dictionary--27",
+  "bucket": "Cambridge Dictionary",
+  "web_name": "Cambridge Dictionary",
+  "ques": "Look up the meaning, pronunciation, and an example sentence of the word \"solitude\" using the Cambridge Dictionary.",
+  "web": "https://dictionary.cambridge.org/",
+  "answer": "Could not complete on the live site \u2014 Cambridge Dictionary blocked the automated browser with a Cloudflare \"Verify you are human\" challenge that could not be passed (search, direct URL, and homepage all blocked). For reference, \"solitude\" = the state of being alone, often by choice; pronounced UK /\u02c8s\u0252l.\u026a.t\u0283u\u02d0d/, US /\u02c8s\u0251\u02d0.l\u0259.tu\u02d0d/; example: \"She longed for peace and solitude.\""
+}

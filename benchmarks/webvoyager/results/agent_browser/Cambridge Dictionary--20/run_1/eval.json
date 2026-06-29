@@ -1,0 +1,5 @@
+{
+  "id": "Cambridge Dictionary--20",
+  "verdict": "FAILURE",
+  "reason": "The final screenshot shows only the Cloudflare security-verification challenge page, and the agent never reached the Cambridge Dictionary entry for 'altruism', so none of the requested definition, pronunciations, or example sentence were obtained from the live page."
+}

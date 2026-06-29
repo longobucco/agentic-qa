@@ -1,0 +1,8 @@
+{
+  "id": "Amazon--3",
+  "bucket": "Amazon",
+  "web_name": "Amazon",
+  "ques": "Find climbing gears and sort the results by price high to low. Answer the first 3 results after sorting.",
+  "web": "https://www.amazon.com/",
+  "answer": "Sorted by Price: High to Low, the first 3 results are: (1) Professional Tree Climbing Spikes with Non-Slip Foot Buckles - Heavy-Duty Climbing Equipment for Maximum Stability \u2014 EUR5,284.21; (2) Professional Tree Climbing Spikes with Non-Slip Foot Buckles - Essential Climbing Accessories for Tree Care & Maintenance \u2014 EUR5,105.37; (3) Professional Tree Climbing Spikes with Non-Slip Foot Buckles \u2013 Essential Climbing Accessories for Tree Care & Maintenance \u2014 EUR5,105.37."
+}

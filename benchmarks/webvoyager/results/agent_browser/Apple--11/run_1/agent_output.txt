@@ -1,0 +1,11 @@
+I've gathered all the information from Apple's official website. Here's a summary of what I found:
+
+**Latest iPad model: iPad Air (with M4)**
+- Badged **"New"** in the iPad lineup on apple.com/ipad (the only model with that tag), confirming it's the most recently released iPad.
+- **Release date:** March 11, 2026 — per Apple Newsroom ("MacBook Neo, iPhone 17e, iPad Air with M4, and more are now available," posted March 11, 2026).
+- **Base storage capacity:** 128GB (the entry-level option on the buy page).
+- **Starting price:** $749 (11-inch model, 128GB) on Apple's US store.
+
+Storage tiers for reference: 128GB ($749), 256GB ($849), 512GB ($1,049), 1TB ($1,349); the 13-inch model starts at $949.
+
+ANSWER: The latest iPad model is the iPad Air with M4 chip (marked "New" on apple.com). Release date: March 11, 2026. Base storage capacity: 128GB. Starting price: $749 (11-inch model) on Apple's official US website.

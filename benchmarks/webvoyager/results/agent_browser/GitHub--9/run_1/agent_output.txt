@@ -1,0 +1,10 @@
+I located a qualifying repository and verified its details.
+
+**Repository: `overflowy/make-look-scanned`** — 415 stars, created in the last week (initial commit and core files dated "last week"; v1.1.0 released 4 days ago).
+
+- **Purpose:** A command-line tool that takes a PDF and deliberately degrades it to look like a physical scan of a printout — applying skew, grayscale, warm paper tone, scanner grain, defocus, edge shadow, and JPEG compression artifacts. Each page is rasterized, run through the effect pipeline, and reassembled into a new image-only PDF (selectable text is removed, faithful to a real scanner). Output is deterministic by default. It also runs entirely client-side in the browser via WebAssembly (using PDF.js for rasterization).
+- **Programming language:** Primarily **Go** (67.5%), with the rest being HTML, Python, and Shell.
+
+This was found via GitHub repository search (`created:>2026-06-19 stars:>=50`, sorted by most stars), which returned 167 results meeting the criteria.
+
+ANSWER: overflowy/make-look-scanned — a CLI tool (also runnable in-browser via WebAssembly) that degrades a PDF to look like a physical scan, adding skew, grayscale, warm paper tone, scanner grain, defocus, edge shadow, and JPEG artifacts to produce an image-only PDF. Created in the last week with 415 stars; written primarily in Go (67.5%).

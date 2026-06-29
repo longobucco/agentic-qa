@@ -1,0 +1,8 @@
+{
+  "id": "Coursera--3",
+  "bucket": "Coursera",
+  "web_name": "Coursera",
+  "ques": "Identify a new course or Specialization on Coursera related to Python Data Science, sort the courses by newest, what the first course is and which institution offers it.",
+  "web": "https://www.coursera.org/",
+  "answer": "After sorting the \"Python Data Science\" search results by Newest, the first course is \"Healthcare Finance and Cost Management,\" offered by EDUCBA."
+}

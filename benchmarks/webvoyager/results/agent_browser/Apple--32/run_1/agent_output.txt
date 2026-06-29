@@ -1,0 +1,11 @@
+I investigated the iPhone 13 Pro Max trade-in value on Apple's Trade In page. The summary table only showed the top four current models, so I opened the full "See all iPhone values" overlay (`apple.com/shop/browse/overlay/tradein_landing/iphone_values`) which lists every eligible model.
+
+For context, nearby models in the full list:
+- iPhone 13 Pro Max — **Up to $320**
+- iPhone 13 Pro — Up to $260
+- iPhone 13 — Up to $195
+- iPhone 13 mini — Up to $150
+
+Note: the estimated value varies based on the device's condition, configuration, and the current offer (Apple's footnote ◊). The "Up to" figure represents the maximum trade-in estimate for a device in good working condition.
+
+ANSWER: Apple's estimated trade-in value for an iPhone 13 Pro Max is "Up to $320" (actual amount depends on the device's condition, storage, and configuration).

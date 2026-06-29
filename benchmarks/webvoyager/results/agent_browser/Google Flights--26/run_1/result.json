@@ -1,0 +1,8 @@
+{
+  "id": "Google Flights--26",
+  "bucket": "Google Flights",
+  "web_name": "Google Flights",
+  "ques": "Search for the cheapest round-trip flights from Bangkok to Madrid, leaving on July 26, 2026, and returning on July 28, 2026, and provide options under $1000.",
+  "web": "https://www.google.com/travel/flights/",
+  "answer": "The cheapest round-trip Bangkok\u2192Madrid (Jul 26\u219228, 2026) is $1,041 (Qatar Airways + Iberia, 1 stop in Doha). No options are available under $1,000 \u2014 fares start at $1,041 and the next cheapest are ~$1,120 (Qatar Airways), $1,128 (Condor/Air Europa), and $1,133 (Etihad)."
+}

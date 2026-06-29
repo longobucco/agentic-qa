@@ -1,0 +1,12 @@
+I've completed the task. Here's a summary of what I found on GitHub for the **google-research/bert** repository (the canonical "BERT" repo, now an archived public repository):
+
+**Latest commit:** `eedf571` (authored by jacobdevlin-google on Mar 11, 2020)
+
+**What it is:** A merge commit — `Merge pull request #1027 from iuliaturc-google/master` ("Add links to 24 smaller BERT models").
+
+**What exactly was changed:** 1 file changed — `README.md` — with **71 additions and 0 deletions**. It added a new section titled *"New March 11th, 2020: Smaller BERT Models"* announcing the release of **24 smaller BERT models** (English only, uncased, trained with WordPiece masking) from the paper *"Well-Read Students Learn Better: On the Importance of Pre-training Compact Models."* The addition includes:
+- A description of the smaller models and their intended use (restricted-resource environments / knowledge distillation),
+- A download table of the 24 models across layers L=2/4/6/8/10/12 × hidden sizes H=128/256/512/768 (highlighting BERT-Tiny, BERT-Mini, BERT-Small, BERT-Medium, BERT-Base),
+- A table of corresponding GLUE test-set scores.
+
+ANSWER: First 7 chars of the SHA: **eedf571**. It is the latest commit on google-research/bert (a merge of PR #1027, "Add links to 24 smaller BERT models," by jacobdevlin-google on Mar 11, 2020). The change edited only README.md (+71 lines, −0): it added a "New March 11th, 2020: Smaller BERT Models" section releasing 24 smaller BERT models, with a download-links table (L=2–12 × H=128–768, including BERT-Tiny/Mini/Small/Medium/Base) and a GLUE scores table.

@@ -1,0 +1,8 @@
+I was unable to complete the task. The Cambridge Dictionary website (dictionary.cambridge.org) is protected by Cloudflare's "managed challenge" bot detection, which the headless browser cannot pass. After the initial homepage loaded once, every subsequent navigation — including attempts to reach the present perfect simple grammar page (`/grammar/british-grammar/present-perfect-simple-i-have-worked`) and even reloads of the homepage — was intercepted by a "Performing security verification" / "Verify you are human" Cloudflare challenge.
+
+I tried repeatedly to clear it (clicking the verification checkbox 6+ times, waiting up to 20 seconds for the token to resolve, and reloading the page). Each attempt briefly showed "Verifying you are human…" and then looped back to a brand-new challenge with a fresh Ray ID — the classic signature of the automated browser being detected and blocked. The grammar content was therefore never reachable.
+
+For reference, the target page that contains the present perfect simple grammar (with affirmative, negative, and interrogative example sentences such as "I have worked" / "I have not worked" / "Have you worked?") is at:
+`https://dictionary.cambridge.org/grammar/british-grammar/present-perfect-simple-i-have-worked` — but it is inaccessible to this automated session due to the Cloudflare block.
+
+ANSWER: BLOCKED — Cambridge Dictionary is gated by a Cloudflare bot-detection challenge that the headless browser could not pass, so the present perfect simple grammar page could not be opened or read.

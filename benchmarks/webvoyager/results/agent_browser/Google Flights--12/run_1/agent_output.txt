@@ -1,0 +1,5 @@
+The screenshot confirms the task is complete. The form is set correctly (New York → London, Thu Jun 25 – Sun Jul 5, round trip), the "1 stop or fewer" filter is applied, and results are sorted by price. The "Cheapest" tab also confirms "from €1,026".
+
+The best-priced round-trip flight from New York to London with one stop or fewer is **€1,026** — an Iberia 1-stop itinerary (JFK→LHR), departing 8:40 PM on June 25 and arriving 4:20 PM on June 26, with a 4 hr 40 min layover in Madrid.
+
+ANSWER: The best-priced round-trip NYC→London flight (Jun 25 → Jul 5, 1 stop or fewer) is €1,026 round trip on Iberia — 1 stop via Madrid (JFK→LHR, dep 8:40 PM Jun 25).

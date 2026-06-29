@@ -1,0 +1,5 @@
+{
+  "id": "Google Search--35",
+  "verdict": "SUCCESS",
+  "reason": "Screenshots confirm the agent filtered Nature's search to journal Nature Astronomy, searched 'black hole', sorted newest-first, and correctly identified the latest (08 Jun 2026) black-hole-related paper matching the response."
+}

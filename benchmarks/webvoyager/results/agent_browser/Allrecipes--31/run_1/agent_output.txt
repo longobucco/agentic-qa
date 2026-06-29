@@ -1,0 +1,40 @@
+The final screenshot clearly shows the **Spanish Paella** recipe page with **4.7 stars (178 ratings)**, the description mentioning "shrimp... mussels," and the paella dish image. The task is complete.
+
+I found a qualifying recipe that meets every requirement:
+- **Recipe:** Spanish Paella (Allrecipes)
+- **Rating:** 4.7 stars ✓ (≥ 4.5)
+- **Reviews:** 178 ✓ (≥ 50)
+- **Contains:** shrimp ✓ and mussels ✓
+
+Note: The dedicated "Seafood Paella" listings all had far fewer than 50 reviews (15, 5, 4), so this 4.7★/178-review Spanish Paella—built around shrimp, mussels, and squid—is the seafood-paella result that satisfies the rating and review thresholds.
+
+**Ingredients:**
+- 4 tbsp olive oil
+- 1 onion, chopped
+- 2 cloves garlic, minced
+- 1 red bell pepper, chopped
+- 4 oz Spanish chorizo, diced
+- 2 skinless, boneless chicken breast halves, cubed
+- 1 (12 oz) package Arborio rice
+- 5 cups chicken broth
+- ½ cup white wine
+- 1 sprig fresh thyme
+- 1 pinch saffron
+- Salt and ground black pepper to taste
+- 2 squid, cleaned and cut into pieces
+- 2 tomatoes, seeded and chopped
+- ½ cup frozen green peas
+- 12 large shrimp, peeled and deveined
+- 1 lb mussels, cleaned and debearded
+- ¼ cup chopped Italian flat-leaf parsley
+- 8 lemon slices, for garnish
+
+**Total time:** 1 hour 30 minutes (45 min prep + 45 min cook)
+
+**Preparation overview:**
+1. Sauté onion, garlic, and bell pepper in olive oil; add chorizo, chicken, and rice and cook briefly. Stir in 3½ cups broth, wine, thyme, and saffron; season, then simmer ~15 min.
+2. Check the rice and add more broth as needed (up to 5 cups total), cooking until the rice is done.
+3. Stir in squid, tomatoes, and peas; cook 2 min. Arrange shrimp and mussels on top, cover with foil, and let sit 3–5 min until cooked.
+4. Remove foil, scatter parsley, and serve in the paella pan garnished with lemon wedges.
+
+ANSWER: Spanish Paella (Allrecipes) — 4.7★ with 178 reviews, containing shrimp and mussels. Ingredients: olive oil, onion, garlic, red bell pepper, 4 oz Spanish chorizo, 2 chicken breast halves, 12 oz Arborio rice, 5 cups chicken broth, ½ cup white wine, thyme, saffron, salt & pepper, 2 squid, 2 tomatoes, ½ cup peas, 12 large shrimp, 1 lb mussels, ¼ cup parsley, lemon slices. Total time: 1 hr 30 min (45 min prep + 45 min cook). Steps: (1) sauté onion/garlic/pepper, add chorizo/chicken/rice, then broth, wine, thyme & saffron; simmer 15 min; (2) add more broth as needed and cook until rice is done; (3) stir in squid, tomatoes & peas, arrange shrimp & mussels on top, cover with foil 3–5 min; (4) garnish with parsley and lemon and serve.

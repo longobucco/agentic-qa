@@ -1,0 +1,5 @@
+{
+  "id": "Booking--40",
+  "verdict": "FAILURE",
+  "reason": "The agent never selected the 6\u20138 July 2026 dates, never reached a search-results page, and produced no Chinese Yuan price; the final screenshot is the default Booking.com homepage."
+}

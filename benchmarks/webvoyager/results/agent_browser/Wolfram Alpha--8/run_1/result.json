@@ -1,0 +1,8 @@
+{
+  "id": "Wolfram Alpha--8",
+  "bucket": "Wolfram Alpha",
+  "web_name": "Wolfram Alpha",
+  "ques": "Give 12 lbs of 4-cyanoindole, converted to molar and indicate the percentage of C, H, N.",
+  "web": "https://www.wolframalpha.com/",
+  "answer": "12 lb of 4-cyanoindole (C9H6N2, molar mass 142.16 g/mol) = 38.288 mol. Mass percentages: C 76.04%, H 4.254%, N 19.71%."
+}

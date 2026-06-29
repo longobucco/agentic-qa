@@ -1,0 +1,5 @@
+{
+  "id": "Cambridge Dictionary--15",
+  "verdict": "FAILURE",
+  "reason": "Screenshots show only the Cloudflare bot-verification page; the agent never loaded the Cambridge entry, so no pronunciation or sample sentence for 'pandemic' was actually found or verified."
+}

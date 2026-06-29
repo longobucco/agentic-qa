@@ -1,0 +1,14 @@
+I've completed the task. 
+
+I found a course on Coursera that matches all the criteria:
+
+- **Course:** *Introduction to Project Management* — offered by **IBM**
+- **Level:** Beginner (introductory project management) ✓
+- **Format:** Course, 5 modules
+- **Agile coverage:** "Skills you'll gain" explicitly lists **Agile Methodology** and **Agile Project Management**, and the module learning outcomes cover "different project management methodologies" ✓
+- **Rating:** 4.8 / 5 (2.4K reviews)
+- **URL:** https://www.coursera.org/learn/introduction-to-project-management
+
+This is an introductory-level project management course that includes Agile methodology content, satisfying the task requirements.
+
+ANSWER: "Introduction to Project Management" by IBM (https://www.coursera.org/learn/introduction-to-project-management) — a beginner-level, 5-module introductory project management course whose skills/modules include Agile Methodology and Agile Project Management.

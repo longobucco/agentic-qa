@@ -1,0 +1,3 @@
+The task is complete. I filtered Hugging Face models by Apache-2.0 license and sorted by "Most likes". The top result is the model with the highest number of likes among Apache-2.0 licensed models.
+
+ANSWER: hexgrad/Kokoro-82M — a Text-to-Speech model with the Apache-2.0 license and the highest number of likes (~6.39k) on Hugging Face.

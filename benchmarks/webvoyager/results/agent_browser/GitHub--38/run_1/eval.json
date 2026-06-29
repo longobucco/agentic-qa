@@ -1,0 +1,5 @@
+{
+  "id": "GitHub--38",
+  "verdict": "SUCCESS",
+  "reason": "Screenshots show a GitHub repository search sorted by Most stars with sherlock-project/sherlock as the top cybersecurity-related result, and the repo page confirms 85.6k stars, matching the agent's reported answer."
+}

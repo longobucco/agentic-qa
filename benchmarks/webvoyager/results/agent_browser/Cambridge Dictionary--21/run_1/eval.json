@@ -1,0 +1,5 @@
+{
+  "id": "Cambridge Dictionary--21",
+  "verdict": "FAILURE",
+  "reason": "The final screenshot shows a Cloudflare bot-verification block, the dictionary entry was never loaded, and no Spanish translation is visible in any screenshot, so the answer came from outside knowledge rather than the task being accomplished on Cambridge Dictionary."
+}

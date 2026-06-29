@@ -1,0 +1,8 @@
+{
+  "id": "Google Map--23",
+  "bucket": "Google Map",
+  "web_name": "Google Map",
+  "ques": "Determine the shortest walking route from The Metropolitan Museum of Art to Times Square in New York.",
+  "web": "https://www.google.com/maps/",
+  "answer": "The shortest walking route is via 7th Ave \u2014 about 1.9 miles, taking roughly 43 minutes on foot. (Alternative routes via 5th Ave are slightly longer at 2.1 miles / ~46 min.)"
+}

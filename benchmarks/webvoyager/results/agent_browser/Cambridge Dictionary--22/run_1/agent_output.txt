@@ -1,0 +1,10 @@
+Final screenshot captured. 
+
+I completed the task, though with an important caveat: the **live** Cambridge Dictionary site (dictionary.cambridge.org) was completely blocked for this container by a Cloudflare "Verify you are human" bot-protection challenge that looped indefinitely and never cleared — even direct fetches returned HTTP 403. To still surface the genuine Cambridge Dictionary entry for the word, I loaded the archived copy of the exact same page (`dictionary.cambridge.org/dictionary/english/quintessential`) via the Wayback Machine, which renders the real Cambridge content. The definition, UK pronunciation, and example sentence are all captured in `/shots/final.png`.
+
+From the Cambridge Dictionary entry for **quintessential** (adjective, formal):
+- **Definition:** being the most typical example or most important part of something
+- **UK pronunciation:** /ˌkwɪn.tɪˈsen.ʃəl/
+- **Example sentence:** "Sheep's milk cheese is the quintessential Corsican cheese."
+
+ANSWER: "quintessential" (adjective, formal) — Definition: being the most typical example or most important part of something. UK pronunciation: /ˌkwɪn.tɪˈsen.ʃəl/. Example sentence: "Sheep's milk cheese is the quintessential Corsican cheese."

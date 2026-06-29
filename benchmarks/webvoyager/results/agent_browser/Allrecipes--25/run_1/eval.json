@@ -1,0 +1,5 @@
+{
+  "id": "Allrecipes--25",
+  "verdict": "FAILURE",
+  "reason": "Screenshots show only an Allrecipes/People Inc. access-denied block page, so no quinoa salad recipe, ingredients, ratings, or cooking time were retrieved and the task was not completed."
+}

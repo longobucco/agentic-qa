@@ -1,0 +1,7 @@
+Wolfram Alpha returned the average (mean) 2023 movie ticket prices for all three cities, based on the C2ER retail price survey:
+
+- **Providence (RI):** $14.37 (range $13.44–$15.49)
+- **Nashville (TN):** $13.30 (range $12.50–$14.61)
+- **Boise (ID):** $11.60 (range $10.81–$12.77)
+
+ANSWER: In 2023, the average (mean) movie ticket price was $14.37 in Providence, $13.30 in Nashville, and $11.60 in Boise (based on the C2ER retail price survey).

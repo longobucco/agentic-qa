@@ -1,0 +1,3 @@
+The task is complete. I navigated Google Maps, confirmed the intersection of Main Street and Amherst Street (labeled "Amherst Ave & Main St") in Altavista, Virginia 24517, and used the "Nearby" search for bus stops centered on that intersection. The top (nearest) result is the **"Amherst and 7th"** bus stop, located about 0.2 miles away and served by ACTS buses.
+
+ANSWER: Amherst and 7th (a bus stop in Altavista, VA, served by ACTS, ~0.2 miles from the Amherst Ave & Main St intersection)

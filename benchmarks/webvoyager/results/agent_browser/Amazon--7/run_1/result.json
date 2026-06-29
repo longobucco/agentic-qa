@@ -1,0 +1,8 @@
+{
+  "id": "Amazon--7",
+  "bucket": "Amazon",
+  "web_name": "Amazon",
+  "ques": "Browse the women's hiking boots on Amazon and filter the results to show only those that are waterproof and have a rating of at least 4 stars and size 6.",
+  "web": "https://www.amazon.com/",
+  "answer": "Filtered Amazon's \"women's hiking boots\" results to Waterproof (Special Features) + 4 Stars & Up (Customer Reviews) + Women's Shoe Size 6, narrowing the listing to 210 matching products (e.g., Columbia Newton Ridge Plus Waterproof, Merrell Moab 3 Mid Waterproof, NORTIV 8 Waterproof boots)."
+}

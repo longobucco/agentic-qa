@@ -1,0 +1,5 @@
+{
+  "id": "BBC News--38",
+  "verdict": "SUCCESS",
+  "reason": "The final screenshot shows a BBC storm article (lightning-storm imagery) reached from the Weather section, and the response clearly states where (West of England: Bristol, Somerset, Gloucestershire, Wiltshire) and when (overnight 00:00\u201310:00 BST, ~26 June 2026) the severe weather occurred, with nothing in the screenshot contradicting it."
+}

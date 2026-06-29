@@ -1,0 +1,8 @@
+{
+  "id": "Amazon--33",
+  "bucket": "Amazon",
+  "web_name": "Amazon",
+  "ques": "Search for a portable air conditioner on Amazon suitable for a room size of 300 sq ft, with energy efficiency rating, and compare the prices of the top three search results.",
+  "web": "https://www.amazon.com/",
+  "answer": "Top 3 results for a 300 sq ft energy-efficient portable AC: (1) Grelife 8,000 BTU (up to 400 sq ft) = EUR149.74; (2) Evaporative Air Cooler 60W Energy-Efficient = EUR79.27 (List EUR114.51); (3) Whynter ARC-1230WN 14,000 BTU (up to 600 sq ft) = EUR680.51. Cheapest is the Evaporative Cooler (EUR79.27), most expensive the Whynter (EUR680.51)."
+}

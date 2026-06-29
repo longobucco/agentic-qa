@@ -1,0 +1,5 @@
+{
+  "id": "Allrecipes--7",
+  "verdict": "FAILURE",
+  "reason": "The final and step screenshots show only a People Inc IP-block/access-error page with no recipe content; the agent admits it never loaded the site and reconstructed the ingredients and steps from outside knowledge, so the task was not accomplished."
+}

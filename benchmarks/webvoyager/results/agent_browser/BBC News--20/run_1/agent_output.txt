@@ -1,0 +1,11 @@
+I've completed the task. I navigated to the BBC Green Living section (`bbc.com/future-planet/green-living`), identified the lead/featured article, and opened it to read its full content.
+
+**Latest article in BBC's Green Living section:** *"This machine turns carbon dioxide into fuel"* (Green Living, video by Ellenoor Shameli, dated 19 March 2025).
+
+**Summary of its main points:**
+- Researchers at the **University of Cambridge** have developed a method/machine to capture **carbon dioxide directly from the air**.
+- They convert that captured CO₂ into a fuel called **syngas** (synthesis gas).
+- Because the carbon used in the fuel is pulled from the atmosphere, the process forms a **carbon-neutral energy cycle** — burning the fuel doesn't add net new CO₂.
+- The technology is **still in development**; significant work remains before it becomes publicly/commercially available.
+
+ANSWER: The latest (featured) article in BBC News' Green Living section is "This machine turns carbon dioxide into fuel" (19 March 2025). Main points: University of Cambridge researchers have devised a way to capture CO₂ from the air and convert it into a fuel called syngas, creating a carbon-neutral energy cycle; however, the technology is still being developed and is not yet publicly available.

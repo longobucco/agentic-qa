@@ -1,0 +1,5 @@
+{
+  "id": "Apple--29",
+  "verdict": "SUCCESS",
+  "reason": "The Tech Specs screenshot confirms the MacBook Air's Battery and Power section listing 'Up to 15 hours wireless web' and a 53.8-watt-hour battery, exactly matching the agent's reported web browsing battery life."
+}

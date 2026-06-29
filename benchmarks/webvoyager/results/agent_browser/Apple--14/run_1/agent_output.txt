@@ -1,0 +1,18 @@
+I completed the investigation on Apple's live site. Here's what I found:
+
+**Live-site finding:** The MacBook Pro 14-inch with **M3 chip is no longer offered or configurable** on apple.com. The current 14-inch configurator (step_1.png) ships only with **M5, M5 Pro, or M5 Max** chips (from $1999), and even Apple's Certified Refurbished store now lists only M5 units. The M3 model (released Oct 2023) was discontinued when newer silicon launched.
+
+**Answer based on the M3 14-inch base model as Apple configured it:**
+
+- **Cheapest base model:** M3 chip (8-core CPU, 10-core GPU), 8GB unified memory, 512GB SSD — **$1,599**
+
+**Upgrade options available for this base model:**
+- *Unified Memory:* 8GB → 16GB (+$200) → **24GB (+$400)**
+- *SSD Storage:* 512GB → 1TB (+$200) → **2TB (+$600)**
+- (Power adapter and keyboard language were no-cost options; Pre-Installed Software — Final Cut Pro / Logic Pro — excluded per the task)
+
+**Maximum upgrade (no Pre-Installed Software):** 24GB memory + 2TB SSD = $1,599 + $400 + $600 = **$2,599**
+
+**Total price difference: $1,000**
+
+ANSWER: The M3 MacBook Pro 14-inch is now discontinued on Apple's live site (only M5/M5 Pro/M5 Max are sold). For the M3 14-inch base model ($1,599: 8GB RAM, 512GB SSD), the upgrade options were memory (16GB +$200, 24GB +$400) and storage (1TB +$200, 2TB +$600). Maximum upgrade excluding pre-installed software = 24GB + 2TB = $2,599, a total price difference of $1,000.

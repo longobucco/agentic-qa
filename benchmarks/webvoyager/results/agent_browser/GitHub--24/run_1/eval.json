@@ -1,0 +1,5 @@
+{
+  "id": "GitHub--24",
+  "verdict": "SUCCESS",
+  "reason": "The screenshot shows the correct angular/angular repo with the closed-issues list, and the agent's three named issues exactly match the top three entries in that recently-closed list."
+}

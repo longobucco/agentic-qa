@@ -1,0 +1,5 @@
+I completed the search on Booking.com for London hotels, stay 14–21 February 2027, for a couple (2 adults · 1 room), and applied the "Very Good: 8+" review-score filter so every result has a guest rating of 8 or higher. The top match is a strong choice that satisfies all criteria.
+
+**Hotel: art'otel London Hoxton** — Guest rating **9.2/10 (Wonderful, 5,555 reviews)**, a design-led hotel in Hackney, London. It's conveniently set in the center of London and offers buffet breakfast and free WiFi throughout the property, with rooms suitable for a couple priced from ~$272.91/night for the selected dates.
+
+ANSWER: art'otel London Hoxton — a stylish design hotel in Hackney, central London (guest rating 9.2/10). Conveniently located in the city center, it offers buffet breakfast and free WiFi throughout, and is well suited to a couple for the Feb 14–21, 2027 stay.

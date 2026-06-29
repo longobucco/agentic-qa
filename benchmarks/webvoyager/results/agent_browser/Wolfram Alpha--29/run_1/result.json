@@ -1,0 +1,8 @@
+{
+  "id": "Wolfram Alpha--29",
+  "bucket": "Wolfram Alpha",
+  "web_name": "Wolfram Alpha",
+  "ques": "Create a plot of cat curve using wolfram alpha.",
+  "web": "https://www.wolframalpha.com/",
+  "answer": "Created a plot of the \"cat curve\" on Wolfram|Alpha by entering \"cat curve\" \u2014 it rendered the cat-shaped parametric plot along with its parametric equations (x(t), y(t) as sums of sines/cosines), alternate name \"kitty curve\", and curve properties."
+}

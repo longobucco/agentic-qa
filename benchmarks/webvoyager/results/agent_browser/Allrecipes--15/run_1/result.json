@@ -1,0 +1,8 @@
+{
+  "id": "Allrecipes--15",
+  "bucket": "Allrecipes",
+  "web_name": "Allrecipes",
+  "ques": "Choose a dessert recipe on Allrecipes with a prep time of less than 30 minutes, has chocolate as an ingredient, and has a user rating of 4 stars or higher. Provide the name of the recipe, ingredients list, and step-by-step instructions.",
+  "web": "https://www.allrecipes.com/",
+  "answer": "Unable to complete \u2014 allrecipes.com is returning an HTTP 402 Cloudflare/People Inc access-block page for every request from this environment, so no dessert recipe could be retrieved."
+}

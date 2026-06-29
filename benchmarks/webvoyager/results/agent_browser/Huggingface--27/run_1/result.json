@@ -1,0 +1,8 @@
+{
+  "id": "Huggingface--27",
+  "bucket": "Huggingface",
+  "web_name": "Huggingface",
+  "ques": "Determine the most downloaded dataset related to Text Retrieval in NLP on Hugging Face.",
+  "web": "https://huggingface.co/",
+  "answer": "isaacus/open-australian-legal-corpus \u2014 the most downloaded Text Retrieval dataset on Hugging Face (~176k downloads)."
+}

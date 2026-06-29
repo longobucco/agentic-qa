@@ -1,0 +1,8 @@
+{
+  "id": "ESPN--4",
+  "bucket": "ESPN",
+  "web_name": "ESPN",
+  "ques": "Check ESPN for the final scores of NBA games that were played yesterday.",
+  "web": "https://www.espn.com/",
+  "answer": "No NBA games were played yesterday (Wednesday, June 24, 2026) \u2014 ESPN's scoreboard shows \"No games on this date.\" The NBA season ended on June 14, 2026 (Knicks defeated Spurs 94\u201390 to win the Finals 4\u20131), so there are no final scores to report."
+}

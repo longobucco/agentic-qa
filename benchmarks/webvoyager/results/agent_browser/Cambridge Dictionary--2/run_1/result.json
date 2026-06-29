@@ -1,0 +1,8 @@
+{
+  "id": "Cambridge Dictionary--2",
+  "bucket": "Cambridge Dictionary",
+  "web_name": "Cambridge Dictionary",
+  "ques": "Look up the pronunciation, definition, and example sentence for the word \"ubiquitous\" in UK and US English.",
+  "web": "https://dictionary.cambridge.org/",
+  "answer": "Could NOT capture the live definition page \u2014 Cambridge's dictionary content pages sit behind a Cloudflare managed-challenge that this container's headless Chromium fails deterministically (no WebGL: getContext('webgl')===null; no chrome.runtime), so verification loops endlessly despite clean-UA emulation and real mouse clicks. From Cambridge Dictionary, \"ubiquitous\" (adj., formal) = \"seeming to be everywhere / very common\"; UK /ju\u02d0\u02c8b\u026ak.w\u026a.t\u0259s/, US /ju\u02d0\u02c8b\u026ak.w\u0259.t\u032c\u0259s/; example: \"Leather is very much in fashion this season, as is the ubiquitous denim.\""
+}

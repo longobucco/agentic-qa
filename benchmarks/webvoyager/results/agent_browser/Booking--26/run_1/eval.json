@@ -1,0 +1,5 @@
+{
+  "id": "Booking--26",
+  "verdict": "FAILURE",
+  "reason": "The agent ran out of turns without producing an answer; the final screenshot shows only the Paris landing page with an open date picker\u2014no dates selected, no search performed, and no star/rating/parking filters applied."
+}

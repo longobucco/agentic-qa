@@ -1,0 +1,8 @@
+{
+  "id": "Huggingface--33",
+  "bucket": "Huggingface",
+  "web_name": "Huggingface",
+  "ques": "List three hugging face docs. How many GitHub stars have they earned so far?",
+  "web": "https://huggingface.co/",
+  "answer": "Three Hugging Face docs and their GitHub stars \u2014 Transformers: 161,943; Diffusers: 33,941; Datasets: 21,657 (total \u2248 217,541 stars)."
+}

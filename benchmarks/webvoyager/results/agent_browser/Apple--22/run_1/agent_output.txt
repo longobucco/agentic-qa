@@ -1,0 +1,5 @@
+The final screenshot clearly shows the result: **"Get $490 trade-in credit toward a new iPhone"** (or $490 on an Apple Gift Card) for an iPhone 15 Pro Max in Good condition. The task is complete and the final state is captured at `/shots/final.png`.
+
+I navigated Apple's Trade In estimator, selected Smartphone → Apple → iPhone 15 Pro Max → Good condition, and the tool returned the estimated trade-in value.
+
+ANSWER: The estimated trade-in value for an iPhone 15 Pro Max in good condition is $490 (applied as credit toward a new iPhone, or as an Apple Gift Card). Note: this is an estimate that may change after Apple verifies the device's condition.

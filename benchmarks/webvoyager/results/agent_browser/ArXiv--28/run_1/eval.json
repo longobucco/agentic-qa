@@ -1,0 +1,5 @@
+{
+  "id": "ArXiv--28",
+  "verdict": "SUCCESS",
+  "reason": "Screenshots show a title search for 'Poly encoder' returning 3 results whose format links are only pdf/ps/other with no html link, matching the agent's correct conclusion that none provide HTML access."
+}

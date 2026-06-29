@@ -1,0 +1,7 @@
+The raw memory of a 100.2" × 123.5" true-colour (24-bit) image at 72 ppi is:
+- Pixels: (100.2 × 72) × (123.5 × 72) = 7214.4 × 8892 px
+- Bytes: × 3 (24-bit) = 1.92451 × 10⁸ bytes
+
+WolframAlpha confirms: **192.451 MB (megabytes)** ≈ 183.536 MiB ≈ 1.53961 × 10⁹ bits.
+
+ANSWER: About 1.92451×10⁸ bytes ≈ 192.451 MB (megabytes), equivalently ≈183.536 MiB or ≈1.53961×10⁹ bits.

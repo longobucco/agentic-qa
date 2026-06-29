@@ -1,0 +1,8 @@
+{
+  "id": "Apple--17",
+  "bucket": "Apple",
+  "web_name": "Apple",
+  "ques": "Search Apple for the accessory Smart Folio for iPad and check the closest pickup availability next to zip code 90038.",
+  "web": "https://www.apple.com/",
+  "answer": "The Smart Folio for iPad (A16) \u2013 Sky ($79.00) is in stock and shown as available for pickup at an Apple Store near you (\"In stock and ready to ship. Pick up at an Apple Store near you.\"). The store-specific pickup availability for zip 90038 could not be confirmed because Apple's pickup/checkout availability lookup returned an error page in this environment."
+}

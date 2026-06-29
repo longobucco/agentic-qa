@@ -1,0 +1,5 @@
+{
+  "id": "Booking--16",
+  "verdict": "FAILURE",
+  "reason": "The agent ran out of turns and produced no answer; the final screenshot shows a hotel rated only 8.4 (below the required 9), with no January 2027 5-night stay, price, Wi-Fi, or breakfast confirmed."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "Huggingface--28",
+  "bucket": "Huggingface",
+  "web_name": "Huggingface",
+  "ques": "Retrieve an example of a pre-trained model on Hugging Face that is optimized for question answering tasks and detail the languages it supports.",
+  "web": "https://huggingface.co/",
+  "answer": "An example pre-trained question-answering model on Hugging Face is `deepset/roberta-base-squad2` (RoBERTa-base fine-tuned on SQuAD 2.0 for extractive QA). According to its model card, it supports one language: English."
+}

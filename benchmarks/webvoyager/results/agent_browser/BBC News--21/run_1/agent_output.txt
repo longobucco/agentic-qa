@@ -1,0 +1,5 @@
+The task is complete. I navigated to the BBC News World section and identified the top headline.
+
+The top headline in the World News section is **"Rescuers search rubble for survivors as Venezuela earthquakes kill at least 188."** It is tagged **"Latin America"** and concerns **Venezuela** (specifically Caracas and surrounding areas), where two shallow magnitude 7+ earthquakes struck seconds apart, killing at least 188 people and injuring nearly 1,500.
+
+ANSWER: The top headline is "Rescuers search rubble for survivors as Venezuela earthquakes kill at least 188." It relates to Latin America — specifically Venezuela (the Caracas region), where twin magnitude 7+ earthquakes caused mass casualties and building collapses.

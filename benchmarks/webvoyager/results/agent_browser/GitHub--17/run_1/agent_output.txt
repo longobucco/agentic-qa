@@ -1,0 +1,10 @@
+I located a qualifying project and confirmed all criteria are met.
+
+**Project: `tensorflow/tensorflow`**
+- **Language:** C++
+- **Stars:** ~196,000 (well over the 500 minimum)
+- **Recently updated:** "Updated 2 minutes ago" — comfortably within the last week (the search was filtered to `pushed:>2026-06-19`)
+
+**Main purpose:** TensorFlow is an open-source end-to-end machine learning framework. It provides a comprehensive ecosystem of tools and libraries for building, training, and deploying machine learning and deep learning models (neural networks) across platforms — from research prototyping to production at scale, on CPUs, GPUs, and TPUs.
+
+ANSWER: tensorflow/tensorflow — a C++ project with ~196k stars, updated minutes ago (within the last week). Its main purpose is to serve as an open-source, end-to-end machine learning framework for building, training, and deploying machine learning and deep neural network models across many platforms (CPU/GPU/TPU), from research to production.

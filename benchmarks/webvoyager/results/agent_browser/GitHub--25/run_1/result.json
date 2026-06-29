@@ -1,0 +1,8 @@
+{
+  "id": "GitHub--25",
+  "bucket": "GitHub",
+  "web_name": "GitHub",
+  "ques": "Search for a 'virtual reality' related repository on GitHub updated in the last 10 days with at least 200 stars and summarize its main objective.",
+  "web": "https://github.com/",
+  "answer": "The top match is aframevr/aframe (17.6k stars, updated 2 days ago). A-Frame is an open-source web framework for building browser-based 3D, AR, and VR experiences. Its main objective is to make VR development simple by handling the 3D/WebXR boilerplate so developers can build cross-platform experiences (mobile, desktop, and all WebXR headsets) using a declarative, entity-component HTML structure built on top of three.js."
+}

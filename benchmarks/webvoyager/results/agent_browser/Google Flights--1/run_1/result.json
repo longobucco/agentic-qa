@@ -1,0 +1,8 @@
+{
+  "id": "Google Flights--1",
+  "bucket": "Google Flights",
+  "web_name": "Google Flights",
+  "ques": "Show me the list of one-way flights on June 17, 2026 from Chicago to Paris.",
+  "web": "https://www.google.com/travel/flights/",
+  "answer": "Cannot show flights \u2014 June 17, 2026 is in the past (today is June 25, 2026). Google Flights disables all past dates (June 1\u201324 are greyed out; earliest selectable is June 25, 2026) and rejected the typed date, so no one-way Chicago\u2192Paris flight list exists for that day. The one-way Chicago\u2192Paris search was otherwise configured correctly."
+}

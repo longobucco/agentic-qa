@@ -1,0 +1,6 @@
+I navigated to the GitHub Skills section (GitHub Learn → Skills). Under the **'First day on GitHub'** heading there are **3 courses**:
+1. Introduction to GitHub
+2. Communicate using Markdown
+3. GitHub Pages
+
+ANSWER: 3 courses are under the 'First day on GitHub' heading (Introduction to GitHub, Communicate using Markdown, and GitHub Pages).

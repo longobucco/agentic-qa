@@ -1,0 +1,5 @@
+I was unable to complete the task. After navigating to the Cambridge Dictionary and attempting to reach the **+Plus** section, the entire site became gated behind a **Cloudflare "Verify you are human" (Turnstile) challenge**. I repeatedly clicked the verification checkbox and waited (the challenge briefly entered "Verifying you are human…" twice), but each attempt failed and reset to a fresh challenge with a new Ray ID. The headless Chromium's fingerprint is being detected and rejected, so the Plus section — and therefore any recommended Grammar quiz — could not be loaded.
+
+Because the quiz never became reachable, there is no genuine score to report, and I won't fabricate one.
+
+ANSWER: Unable to complete — the Cambridge Dictionary site (including the +Plus section) is blocked by a Cloudflare anti-bot "Verify you are human" challenge that the automated browser could not pass, so no Grammar quiz could be started and no score was obtained.

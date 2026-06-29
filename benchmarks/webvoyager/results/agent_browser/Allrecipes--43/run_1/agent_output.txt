@@ -1,0 +1,5 @@
+I was unable to complete the task. Allrecipes returned a site-wide access-denied page ("If you are a reader experiencing an access issue, please contact support@people.inc...") for **every** URL I tried — the homepage, the search results page, and a direct recipe URL. I retried multiple times with delays between attempts, but the block persisted on every request.
+
+This is the site's bot-detection / access-control system blocking the container's IP address, not a transient page error. I did not attempt to evade or bypass it, as that would mean circumventing the site's access controls. As a result, I could not browse to any recipe, read ratings, or check cook times, so I cannot provide a verified recipe that meets the criteria (vegan pumpkin pie, ≥4 stars, total time > 1 hour).
+
+ANSWER: Unable to complete — Allrecipes blocked all access from this environment (site-wide "access issue" page returned for the homepage, search, and recipe URLs across multiple retries), so no recipe could be retrieved or verified.

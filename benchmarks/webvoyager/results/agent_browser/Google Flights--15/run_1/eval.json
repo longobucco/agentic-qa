@@ -1,0 +1,5 @@
+{
+  "id": "Google Flights--15",
+  "verdict": "SUCCESS",
+  "reason": "The screenshot matches the response exactly \u2014 one non-stop NY\u2192Tokyo NRT flight (United/ANA, EWR-NRT, 13 hr 50 min, \u20ac1,668) for the correct dates with the nonstop filter applied, so the price/duration was correctly reported."
+}

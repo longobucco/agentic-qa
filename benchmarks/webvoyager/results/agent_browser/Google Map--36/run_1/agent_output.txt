@@ -1,0 +1,11 @@
+I've identified pizza restaurants near the 30309 zip code (Atlanta Midtown/Buckhead) on Google Maps and captured the results. Based on Google Maps ratings, here are the top 5 ranked highest to lowest:
+
+| Rank | Restaurant | Rating | Address |
+|------|-----------|--------|---------|
+| 1 | Varasano's Pizzeria – Buckhead | ⭐ 4.9 | 2171 Peachtree Rd NE |
+| 2 | Antico Pizza Napoletana | ⭐ 4.6 | 1093 Hemphill Ave NW |
+| 3 | Varuni Napoli | ⭐ 4.6 | 1540 Monroe Dr NE |
+| 4 | Atwoods Pizza Cafe | ⭐ 4.5 | 817 W Peachtree St NW |
+| 5 | Night Owl Pizza – Midtown | ⭐ 4.5 | 708 Spring St NW |
+
+ANSWER: Top 5 pizza restaurants near 30309 (Atlanta, GA) ranked by rating: 1) Varasano's Pizzeria - Buckhead (4.9), 2) Antico Pizza Napoletana (4.6), 3) Varuni Napoli (4.6), 4) Atwoods Pizza Cafe (4.5), 5) Night Owl Pizza - Midtown (4.5).

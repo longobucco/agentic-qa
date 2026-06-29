@@ -1,0 +1,8 @@
+I've completed the task. I navigated to the New York Jets depth chart in ESPN's NFL section and scanned the **2ND** position column across the offense, defense, and special teams tables for injury designations (per the glossary: Q=Questionable, O=Out, IR=Injured reserve, PUP, SUS).
+
+The players listed with an injury designation in the **2ND** position are all marked **Q (Questionable)**:
+- **Cade Klubnik (Q)** — QB
+- **Jarvis Brownlee Jr. (Q)** — Nickel Back (NB)
+- **Cade York (Q)** — Place Kicker (PK)
+
+ANSWER: In the 2ND position column of the NY Jets depth chart, the players carrying an injury designation are Cade Klubnik (QB – Q/Questionable), Jarvis Brownlee Jr. (NB – Q/Questionable), and Cade York (PK – Q/Questionable).

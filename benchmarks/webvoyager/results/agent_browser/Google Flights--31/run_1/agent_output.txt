@@ -1,0 +1,11 @@
+The final screenshot now clearly displays the full 2-stop flight option — the one with the most stops on the page. The expanded itinerary shows all three legs with both layovers:
+
+- **Leg 1:** Auckland (AKL) 1:10 PM → Wellington (WLG) 2:20 PM — Air New Zealand, Economy, Airbus A320 (NZ429)
+- **Layover 1:** 1 hr 50 min at Wellington (WLG)
+- **Leg 2:** Wellington (WLG) 4:10 PM → Nadi (NAN) 8:00 PM — Fiji Airways (FJ460)
+- **Layover 2:** 17 hr 35 min overnight at Nadi (NAN)
+- **Leg 3:** Nadi (NAN) 1:35 PM (+1) → Honolulu (HNL) 10:10 PM — Fiji Airways (FJ820)
+
+Search configured: one-way, Auckland → Honolulu, Sat Jul 25 2026, Economy. All other results were 1-stop; this is the only **2-stop** option (the most stops available).
+
+ANSWER: The flight option with the most stops (2 stops) is the Air New Zealand + Fiji Airways one-way itinerary on Sat, Jul 25, 2026: Auckland (AKL) 1:10 PM → Wellington (WLG) [1h50m layover] → Nadi (NAN) [17h35m overnight layover] → Honolulu (HNL) 10:10 PM, total 31 hr, €1,815. All other options had only 1 stop.

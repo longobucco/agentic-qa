@@ -1,0 +1,11 @@
+I attempted to complete the task on Google Search but was blocked. Here's what happened:
+
+- Opened google.com, dismissed the cookie/consent dialog, and entered the query **"elevation of Mount Kilimanjaro"**.
+- On submitting (and on every direct retry of the search URL), Google redirected to its `/sorry` anti-bot interstitial: *"Our systems have detected unusual traffic from your computer network."*
+- Clicking the legitimate "I'm not a robot" checkbox escalated to a full image-grid challenge ("Select all images with cars").
+
+I did not programmatically solve the image/audio CAPTCHA, since doing so would defeat the bot-detection control it exists to enforce. The network's IP (139.47.116.226) is flagged by Google, so the search results page is unreachable from this automated browser without solving that challenge.
+
+For reference, the factual answer is that Mount Kilimanjaro's summit (Uhuru Peak) elevation is **5,895 m (19,341 ft)** — but I was unable to verify this *via Google Search* because of the CAPTCHA wall.
+
+ANSWER: Could not complete the Google Search lookup — Google blocked the automated browser with a "unusual traffic" reCAPTCHA interstitial (image challenge) that I won't solve programmatically. (Kilimanjaro's elevation is 5,895 m / 19,341 ft, but this could not be confirmed via Google Search due to the bot block.)

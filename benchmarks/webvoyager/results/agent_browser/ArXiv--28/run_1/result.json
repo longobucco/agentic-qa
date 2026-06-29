@@ -1,0 +1,8 @@
+{
+  "id": "ArXiv--28",
+  "bucket": "ArXiv",
+  "web_name": "ArXiv",
+  "ques": "Search 'Poly encoder' by title on ArXiv and check whether the articles in the search results provide HTML access.",
+  "web": "https://arxiv.org/",
+  "answer": "No \u2014 none of the 3 title-search results for \"Poly encoder\" (arXiv:2506.00968, arXiv:2309.16770, arXiv:1905.01969) provide HTML access. Their available formats are only PDF (plus PS/\"other\"); no \"html\" link is shown for any of them."
+}

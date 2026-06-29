@@ -1,0 +1,8 @@
+{
+  "id": "Wolfram Alpha--20",
+  "bucket": "Wolfram Alpha",
+  "web_name": "Wolfram Alpha",
+  "ques": "Compute the integral of 3e^(2x) from x=0 to x=5.",
+  "web": "https://www.wolframalpha.com/",
+  "answer": "\u222b\u2080\u2075 3e^(2x) dx = (3/2)(e\u00b9\u2070 \u2212 1) \u2248 33038.2"
+}

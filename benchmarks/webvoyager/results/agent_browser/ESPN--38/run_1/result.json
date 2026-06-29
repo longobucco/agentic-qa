@@ -1,0 +1,8 @@
+{
+  "id": "ESPN--38",
+  "bucket": "ESPN",
+  "web_name": "ESPN",
+  "ques": "Check Los Angeles Lakers Stats 2023-24, calculate Anthony Davis' games played (GP) percentage, tell me if there are other players with the same games played percentage as Anthony Davis.",
+  "web": "https://www.espn.com/",
+  "answer": "Anthony Davis played 76 of 82 games in 2023-24, a GP percentage of ~92.7% (76/82 \u2248 92.68%). Yes \u2014 one other Laker matches it: D'Angelo Russell also played 76 games (92.7%)."
+}

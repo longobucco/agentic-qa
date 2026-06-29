@@ -1,0 +1,8 @@
+{
+  "id": "Google Search--16",
+  "bucket": "Google Search",
+  "web_name": "Google Search",
+  "ques": "How many members are there in the OpenAI community on Reddit, and what is the hottest news right now?",
+  "web": "https://www.google.com/",
+  "answer": "Could not load the live r/OpenAI page (Reddit blocks this environment on all paths). Best available: last cited subscriber count \u2248872,762 (lower bound; Reddit dropped public member counts in Sept 2025 for Visitors/Contributions). Live \"hot\" post unreadable; the top OpenAI news in June 2026 is OpenAI's first custom inference chip \"Jalape\u00f1o\" (with Broadcom), Noam Shazeer joining OpenAI, and GPT-5.6 previewed for late June."
+}

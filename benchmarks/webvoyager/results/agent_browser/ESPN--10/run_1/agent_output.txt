@@ -1,0 +1,16 @@
+I've completed the task. Here's what I found on ESPN for the latest college football championship game:
+
+## College Football Playoff National Championship
+**Indiana 27, Miami 21** — Final (Jan 19, 2026, Hard Rock Stadium, Miami Gardens, FL)
+
+**Scoring by quarter:**
+| Team | Q1 | Q2 | Q3 | Q4 | Final |
+|------|----|----|----|----|-------|
+| Miami (13-3) | 0 | 0 | 7 | 14 | **21** |
+| Indiana (16-0) | 3 | 7 | 7 | 10 | **27** |
+
+**Brief recap:** Top-seeded Indiana completed a perfect 16-0 season to win the **first national championship in program history**, defeating No. 10 seed Miami 27-21. The Hoosiers jumped out to a 17-0 lead by halftime and held off a furious second-half rally by the Hurricanes, who scored 21 unanswered before falling short. Miami QB Carson Beck's costly late interception ultimately handed Indiana the title. Beck finished 19/32 for 232 yards and a TD, RB Mark Fletcher Jr. ran for 112 yards and 2 TDs, and WR Malachi Toney had 10 catches for 122 yards and a score — but it wasn't enough against the undefeated Hoosiers. (Indiana reached the final by routing Oregon 56-22 in the Peach Bowl semifinal; Miami got there by upsetting defending champ Ohio State and edging Ole Miss in the Fiesta Bowl.)
+
+Screenshots saved to `/shots/step_1.png`, `/shots/step_2.png`, and `/shots/final.png`.
+
+ANSWER: In the College Football Playoff National Championship (Jan 19, 2026), Indiana beat Miami 27-21 to win its first national title and finish 16-0. Indiana led 17-0 at half and held off Miami's second-half rally; Carson Beck's late interception sealed it for the undefeated Hoosiers.

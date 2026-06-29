@@ -1,0 +1,10 @@
+I found the official ALBERT repository and its most recent commit.
+
+**Repository:** `google-research/albert` — *"ALBERT: A Lite BERT for Self-supervised Learning of Language Representations"* (now an archived public repo).
+
+**Most recent commit:** `ef80a5f` — *"Update tokenization.py"* (Apr 12, 2023), authored by armin (Verified).
+
+**Files changed in that commit:** 1 file changed
+- `tokenization.py` — 0 additions, 2 deletions
+
+ANSWER: The official ALBERT repo is google-research/albert. Its most recent commit, ef80a5f "Update tokenization.py" (Apr 12, 2023), changed exactly 1 file: tokenization.py (0 additions, 2 deletions).

@@ -1,0 +1,8 @@
+{
+  "id": "Google Map--29",
+  "bucket": "Google Map",
+  "web_name": "Google Map",
+  "ques": "Identify bus stops in Ypsilanti, MI, list three of them.",
+  "web": "https://www.google.com/maps/",
+  "answer": "Three bus stops in Ypsilanti, MI are: (1) Ypsilanti Transit Center (220 Pearl St), (2) Michigan + Mansfield, and (3) Tyler + Nash."
+}

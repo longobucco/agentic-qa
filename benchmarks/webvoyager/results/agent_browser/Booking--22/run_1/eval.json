@@ -1,0 +1,5 @@
+{
+  "id": "Booking--22",
+  "verdict": "FAILURE",
+  "reason": "The agent never executed the search or applied the 9+ review score and bicycle rental filters; the final screenshot only shows a search form with incorrect July dates, and no answer was produced."
+}

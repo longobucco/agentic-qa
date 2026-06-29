@@ -1,0 +1,8 @@
+{
+  "id": "Allrecipes--35",
+  "bucket": "Allrecipes",
+  "web_name": "Allrecipes",
+  "ques": "Search for an Italian-style meatball recipe on Allrecipes that has more than 100 reviews. Detail the type of meat used and the overall cooking time required.",
+  "web": "https://www.allrecipes.com/",
+  "answer": "Task could not be completed \u2014 Allrecipes (People Inc.) is blocking this container's IP, returning an \"access issue\" page on every URL (homepage, search, and recipe pages), so no Italian-style meatball recipe could be opened to read its meat type or total cooking time. Final screenshot shows the access-denied page."
+}

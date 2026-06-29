@@ -1,0 +1,8 @@
+{
+  "id": "ArXiv--35",
+  "bucket": "ArXiv",
+  "web_name": "ArXiv",
+  "ques": "Retrieve the latest research paper in Quantum Physics from ArXiv and provide the title, author(s), and date of submission.",
+  "web": "https://arxiv.org/",
+  "answer": "Title: \"Cultivating logical catalysts for fault-tolerant dyadic phase rotations\"; Author(s): Yichen Xu and Xiao Wang; Submitted on 25 Jun 2026 (arXiv:2606.27358)."
+}

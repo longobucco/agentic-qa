@@ -1,0 +1,10 @@
+I navigated to ArXiv's Leadership Team page and captured the final state.
+
+ArXiv's Leadership Team consists of:
+- **Ramin Zabih** — Executive Director
+- **Yoav Artzi** — Associate Faculty Director
+- **Jeff Sank** — Engineering Director
+- **Stephanie Orphan** — Program Director
+- **Steinn Sigurdsson** — Scientific Director
+
+ANSWER: ArXiv's Leadership Team: Ramin Zabih (Executive Director), Yoav Artzi (Associate Faculty Director), Jeff Sank (Engineering Director), Stephanie Orphan (Program Director), and Steinn Sigurdsson (Scientific Director).

@@ -1,0 +1,9 @@
+The final screenshot clearly shows the walking route from the Smithsonian Institution to the Blink Charging Station at 500 L'Enfant Plaza SW (0.4 mi, ~10 min walk / 2 min drive).
+
+**Summary of what I found:**
+- Recentered Google Maps from Barcelona (where it defaulted) to the Smithsonian Institution Building in Washington, DC.
+- Searched for EV charging parking near the Smithsonian and examined the nearby options.
+- The closest EV-charging-supported parking is the **Blink Charging Station at 500 L'Enfant Plaza SW** — an EV charger located *inside* the L'Enfant Plaza parking garage (panel shows "Se encuentra en: 500 L'Enfant Plaza"), open 24 hours.
+- Verified proximity via directions: **0.4 miles / ~10-min walk / 2-min drive** from the Smithsonian — closer than the other candidates (EVgo at 830 9th St NW, ChargePoint at 1318 D St SW, etc.).
+
+ANSWER: The closest EV-charging-supported parking to the Smithsonian is the L'Enfant Plaza parking garage (Blink Charging Station, 500 L'Enfant Plaza SW, Washington, DC 20024) — open 24h, ~0.4 mi / 10-min walk (2-min drive) from the Smithsonian Institution Building.

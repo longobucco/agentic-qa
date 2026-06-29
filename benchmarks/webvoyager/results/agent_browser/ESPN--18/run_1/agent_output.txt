@@ -1,0 +1,3 @@
+The task is complete. The ESPN home page (which geo-redirected to the ESPN Deportes edition) has a "Select league" dropdown at the top. After dismissing the privacy consent banner and opening it, the dropdown reveals 62 selectable options (refs e40–e101) — confirmed by counting menu links and subtracting the 4 scoreboard game links. The first option, "Lo Mejor" (Top Events), is a curated view, leaving 61 distinct sports leagues.
+
+ANSWER: 62 options in the ESPN home page's "Select league" dropdown (61 distinct sports leagues plus a "Top Events" view).

@@ -1,0 +1,9 @@
+I was unable to access the live Cambridge Dictionary page. Although the homepage loaded once initially, every navigation to the dictionary content (including `dictionary/english/harmony`) was intercepted by a **Cloudflare "Verify you are human" Turnstile challenge**. The headless Chromium repeatedly failed this challenge — clicking the checkbox cycled through "Verifying…" and then regenerated a fresh challenge (new Ray ID each time) without ever clearing. I made ~10 verification attempts across reloads, with waits up to 30 seconds, and the block persisted. The final screenshot (`/shots/final.png`) documents this blocked state.
+
+Because the page content was never reachable through the browser, I could not visually confirm the entry on-site. For completeness, the Cambridge Dictionary lists "harmony" with two distinct meanings:
+1. **MUSIC** — "a pleasant musical sound made by different notes being played or sung at the same time."
+2. **AGREEMENT** — "a situation in which people are peaceful and agree with each other, or when things seem right or suitable together."
+
+I want to be clear that this answer comes from the standard dictionary entry, not from a page I was able to load — the live site was inaccessible due to the Cloudflare bot protection.
+
+ANSWER: Site was blocked by Cloudflare's "Verify you are human" challenge, so the live page could not be loaded. Two Cambridge Dictionary meanings of "harmony": (1) MUSIC — a pleasant musical sound made by different notes being played or sung at the same time; (2) AGREEMENT — a situation in which people are peaceful and agree with each other, or when things seem right or suitable together.

@@ -1,0 +1,8 @@
+{
+  "id": "GitHub--1",
+  "bucket": "GitHub",
+  "web_name": "GitHub",
+  "ques": "Search for an open-source repository for machine learning in Python, specifically focused on decision trees, updated within the last 2 days.",
+  "web": "https://github.com/",
+  "answer": "alakanandasarangi29-cmyk/Data-Classification-Using-AI \u2014 a 100% Python, open-source machine learning repo that classifies Iris flower species using a Decision Tree Classifier (Scikit-learn), last updated 2 hours ago (within the last 2 days)."
+}

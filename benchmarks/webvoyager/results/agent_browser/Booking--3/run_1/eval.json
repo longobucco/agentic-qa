@@ -1,0 +1,5 @@
+{
+  "id": "Booking--3",
+  "verdict": "FAILURE",
+  "reason": "The agent hit the max-turn limit with no answer, and the final screenshot shows only a Los Angeles search page with the calendar open, no dates selected, no 4-star filter applied, and no qualifying hotel identified."
+}

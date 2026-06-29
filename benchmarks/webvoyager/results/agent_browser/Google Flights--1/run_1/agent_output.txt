@@ -1,0 +1,7 @@
+I configured Google Flights for a one-way Chicago → Paris trip, but the requested departure date cannot be searched.
+
+**Why:** Today's date is June 25, 2026. June 17, 2026 is 8 days in the **past**. The Google Flights calendar greys out all dates before today (June 1–24 are disabled, including June 17), and typing "June 17, 2026" into the Departure field was rejected — the field reverted to empty. The earliest selectable date is June 25, 2026. Google Flights does not list flights for past dates, so no results list can be produced for June 17, 2026.
+
+Everything else is set up correctly: trip type = One way, origin = Chicago, destination = Paris.
+
+ANSWER: Cannot show flights — June 17, 2026 is in the past (today is June 25, 2026). Google Flights disables all past dates (June 1–24 are greyed out; earliest selectable is June 25, 2026) and rejected the typed date, so no one-way Chicago→Paris flight list exists for that day. The one-way Chicago→Paris search was otherwise configured correctly.

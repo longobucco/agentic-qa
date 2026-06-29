@@ -1,0 +1,11 @@
+I completed the task. Here's the summary:
+
+**Route:** New York → Tokyo, round-trip · Depart Fri, Jul 10, 2026 · Return Fri, Jul 24, 2026
+
+**Price comparison by number of stops:**
+- **Nonstop (least stops, 0 stops):** cheapest was **American (JAL operated), €1,667** — JFK→Haneda. Other nonstops: United €1,668, JAL €1,728, ANA €1,825+.
+- **1-stop options** were cheaper in absolute terms (e.g. Qatar Airways €1,318) but involve a stop with very long layovers (~20 hrs).
+
+Per the task, I filtered to **Nonstop only** (the least number of stops) and selected the cheapest such option: the **American nonstop round-trip at €1,667**, JFK↔Haneda, departing 10:30 AM Jul 10 and returning 5:45 PM Jul 24. The itinerary summary confirms it as the "Lowest total price."
+
+ANSWER: Selected the nonstop (0-stop, least stops) round-trip JFK–Tokyo Haneda on American for €1,667 — the cheapest nonstop option (others: United €1,668, JAL €1,728, ANA €1,825+). One-stop itineraries were cheaper (from €1,318, e.g. Qatar Airways) but have more stops, so the least-stops choice is the €1,667 American nonstop.

@@ -1,0 +1,9 @@
+The screenshots live inside the container and are collected by the harness. I've confirmed the DP World Tour leaderboard data from the accessibility snapshot:
+
+- **Most recent tournament:** Open d'Italia
+- **Leader:** Edoardo Molinari at 8 under par (the tournament is only after Round 1, with Round 2 tee times listed)
+- **Players/teams at Total of -10 (10 under par):** none — the lowest total is -8
+
+No competitor has reached a Total of -10 strokes.
+
+ANSWER: The most recent DP World Tour tournament on the BBC Sport leaderboard is the Open d'Italia, and 0 teams/players have a Total of -10 (the best score is -8, by Edoardo Molinari, after round 1).

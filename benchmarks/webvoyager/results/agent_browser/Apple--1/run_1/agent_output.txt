@@ -1,0 +1,17 @@
+I've completed the task. I researched iOS 17's new features on Apple's official iOS 17 article and confirmed its compatibility with the iPhone 12 via the Availability section, capturing screenshots throughout.
+
+**Summary:**
+
+**New features of iOS 17** (from Apple's official iOS 17 page):
+- **Contact Posters** & a major upgrade to incoming calls
+- **Live Voicemail** (real‑time, on‑device transcription)
+- **FaceTime** video/audio messages and Reactions (hearts, balloons, fireworks)
+- **StandBy** — a new full‑screen experience while charging
+- **NameDrop** / easier AirDrop sharing
+- **Live Stickers** and a revamped Messages app (Check In, inline replies, search filters, audio transcription)
+- **Journal** app
+- Smarter, more accurate typing/autocorrect; "Siri" activation; offline **Maps**; Visual Look Up in video; Safari Profiles; new Health mental‑health and Screen Distance features; Accessibility additions (Assistive Access, Live Speech, Personal Voice)
+
+**iPhone 12 compatibility:** Per Apple's Availability statement — *"iOS 17 is a free software update that is available starting today for iPhone Xs and later."* The iPhone 12 is newer than the iPhone Xs, so **the iPhone 12 is fully compatible with iOS 17.**
+
+ANSWER: iOS 17's new features include Contact Posters, Live Voicemail, StandBy, NameDrop/AirDrop improvements, FaceTime video messages & Reactions, Live Stickers, Check In, the Journal app, interactive widgets, offline Maps, and smarter autocorrect/Siri. iOS 17 is available for "iPhone Xs and later," so the iPhone 12 IS compatible.

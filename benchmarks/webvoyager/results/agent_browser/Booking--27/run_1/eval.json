@@ -1,0 +1,5 @@
+{
+  "id": "Booking--27",
+  "verdict": "FAILURE",
+  "reason": "The agent ran out of turns without producing an answer; the final screenshot shows a hotel page with no stay dates set (June 28\u2013July 4) and no confirmation of free parking or free WiFi, so none of the task requirements are verifiably met."
+}

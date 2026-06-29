@@ -1,0 +1,7 @@
+I located the most recently created open-source NLP model for medical summarization on Hugging Face and read its model card.
+
+**Model:** `Chilliwiddit/Openi-llama3.1-8B-WeightedLoss-medical5` (Summarization, updated Feb 2 — the most recently created medical-summarization model in the list).
+
+**Description summary:** It is a LoRA/PEFT adapter fine-tuned on top of Meta's **Llama-3.1-8B** base model (English) to summarize medical text from the **Open-i** dataset. Training used 16-bit mixed precision, 5 epochs, a weighted-loss scheme (medical-concept weight λ=9, negation weight λ=0.3) with the 2nd iteration of a summary medical concepts file.
+
+ANSWER: The most recently released open-source NLP medical-summarization model is Chilliwiddit/Openi-llama3.1-8B-WeightedLoss-medical5. Its model card describes it as a model "basically used to summarize text from the Open-i dataset." It's a LoRA/PEFT adapter built on the Llama-3.1-8B base model (English), trained on the Open-i medical imaging dataset using 16-bit mixed precision, 5 epochs, and a weighted-loss approach (lambda medical weight = 9, lambda negation weight = 0.3) with a curated summary medical-concepts file.

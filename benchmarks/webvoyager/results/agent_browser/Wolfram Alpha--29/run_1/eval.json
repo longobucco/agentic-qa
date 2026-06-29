@@ -1,0 +1,5 @@
+{
+  "id": "Wolfram Alpha--29",
+  "verdict": "SUCCESS",
+  "reason": "The screenshots show Wolfram|Alpha rendering a cat-shaped parametric plot for the query 'cat curve' along with its parametric equations and curve properties, fully satisfying the task."
+}

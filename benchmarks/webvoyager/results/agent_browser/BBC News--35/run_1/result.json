@@ -1,0 +1,8 @@
+{
+  "id": "BBC News--35",
+  "bucket": "BBC News",
+  "web_name": "BBC News",
+  "ques": "In the Asia section, browse and identify the most recent report about technological advancements and summarize its content.",
+  "web": "https://www.bbc.com/news/",
+  "answer": "The most recent Asia-section tech report (1 day ago) is \"Anthropic accuses Chinese rival Alibaba of illicitly extracting AI capabilities.\" Anthropic told US Congress that Alibaba-linked operators used thousands of fake accounts to run ~29 million exchanges with its Claude AI model in the largest \"distillation attack\" of its kind \u2014 extracting Claude's most valuable capabilities to train a rival model. It warned this industrial-scale theft of US AI threatens national security and the military, and urged Congress to penalize such firms. The piece adds that Alibaba is suing to be removed from a Pentagon blacklist, OpenAI has made similar past accusations, and both Anthropic and OpenAI are nearing major IPOs."
+}

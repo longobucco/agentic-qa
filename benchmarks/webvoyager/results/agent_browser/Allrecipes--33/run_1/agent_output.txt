@@ -1,0 +1,5 @@
+I was unable to complete the task. Allrecipes is hard-blocking the container's IP address at the server level: every URL I tried (homepage, search, category, and the non-www variant) returns an HTTP **402** "access issue" page from People Inc (Allrecipes' parent company), reading *"If you are a reader experiencing an access issue, please contact support@people.inc."*
+
+This is a deliberate server-side block, not a cookie banner or a transient rate limit — I confirmed it persists across multiple retries and across different paths, and `curl` from inside the container returns status `402`. No amount of clicking, scrolling, or navigating within the site can get past it, so I cannot reach any recipe page to read its Nutrition Facts or carbohydrate content.
+
+ANSWER: Unable to complete — Allrecipes is blocking the container's IP with an HTTP 402 "access issue" page on every URL (homepage, search, category, and non-www), so no recipe or Nutrition Facts could be accessed.

@@ -1,0 +1,8 @@
+{
+  "id": "Cambridge Dictionary--23",
+  "bucket": "Cambridge Dictionary",
+  "web_name": "Cambridge Dictionary",
+  "ques": "Find the US English pronunciation of the word \"meticulous\" using the Cambridge Dictionary and note the International Phonetic Alphabet (IPA) notation, then find one example sentence provided in the dictionary using this word.",
+  "web": "https://dictionary.cambridge.org/",
+  "answer": "BLOCKED \u2014 could not access Cambridge Dictionary; the site is behind a Cloudflare \"Verify you are human\" challenge that the automated browser could not pass, so the US IPA and example sentence could not be verified from the source."
+}

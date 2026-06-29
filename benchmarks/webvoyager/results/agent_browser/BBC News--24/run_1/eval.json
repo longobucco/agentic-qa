@@ -1,0 +1,5 @@
+{
+  "id": "BBC News--24",
+  "verdict": "SUCCESS",
+  "reason": "The search-results screenshot confirms a 'space exploration' search returning the 17 Jun 2026 article 'Space industry giants visit fabrics factory' as the latest result with a matching factory/delegates image, and the response correctly identifies and summarizes that article's key points."
+}

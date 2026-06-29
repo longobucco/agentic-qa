@@ -1,0 +1,8 @@
+{
+  "id": "Google Map--18",
+  "bucket": "Google Map",
+  "web_name": "Google Map",
+  "ques": "Find a route between Chicago to Los Angeles, then print the route details.",
+  "web": "https://www.google.com/maps/",
+  "answer": "Chicago \u2192 Los Angeles driving route is ~2015 miles, about 29 hours via I-80 W (fastest route, has tolls, destination in a different time zone); an alternative is ~2028 miles via I-80 W and I-70 W. Flights take ~4h 15m."
+}

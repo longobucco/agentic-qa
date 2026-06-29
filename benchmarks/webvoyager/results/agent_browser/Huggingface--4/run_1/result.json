@@ -1,0 +1,8 @@
+{
+  "id": "Huggingface--4",
+  "bucket": "Huggingface",
+  "web_name": "Huggingface",
+  "ques": "Locate an open-source conversational AI model on Hugging Face, trained in English and list its main features and applications.",
+  "web": "https://huggingface.co/",
+  "answer": "microsoft/DialoGPT-medium \u2014 an open-source (MIT) English conversational model trained on 147M Reddit multi-turn dialogues. Features: GPT-2-based, state-of-the-art multi-turn dialogue response generation with near-human single-turn quality, supports Transformers/PyTorch/TensorFlow/JAX/Rust. Applications: chatbots/conversational agents, multi-turn open-domain dialogue and response generation, and as a base for fine-tuning custom chat/persona bots and conversational-AI research."
+}

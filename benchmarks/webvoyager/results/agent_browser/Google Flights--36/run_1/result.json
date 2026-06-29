@@ -1,0 +1,8 @@
+{
+  "id": "Google Flights--36",
+  "bucket": "Google Flights",
+  "web_name": "Google Flights",
+  "ques": "Search for round-trip flights from Helsinki to New Delhi, departing on July 28, 2026, and returning on August 4, 2026, and filter the results to show only flights under $1000.",
+  "web": "https://www.google.com/travel/flights/",
+  "answer": "Round-trip Helsinki (HEL) \u2192 New Delhi (DEL), Jul 28 \u2013 Aug 4, 2026, filtered to under $1,000 (USD). The matching flight shown is $922 round trip (Finnair + British Airways, 1 stop, 13 hr 30 min); the \"up to $1,000\" price filter is active."
+}

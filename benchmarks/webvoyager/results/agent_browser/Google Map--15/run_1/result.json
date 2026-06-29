@@ -1,0 +1,8 @@
+{
+  "id": "Google Map--15",
+  "bucket": "Google Map",
+  "web_name": "Google Map",
+  "ques": "Find daytime only parking nearest to Madison Square Garden. Summarize what people are saying about it. ",
+  "web": "https://www.google.com/maps/",
+  "answer": "The nearest daytime-only (non\u201124h) parking to Madison Square Garden is the Quik Park / Icon \u2013 QUIK PARK garage at 384 8th Ave (also listed as 253 W 29th St), ~3 blocks south; it opens ~7:00 and closes in the evening (Icon listing 22:00; Quik Park midnight) while surrounding garages are 24h. Sentiment is positive: the Quik Park operation rates 4.7\u2605 from 20 reviews and the overall Icon \u2013 QUIK PARK facility 4.0\u2605 (written review text wasn't viewable in Maps' signed-out limited view)."
+}

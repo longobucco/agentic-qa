@@ -1,0 +1,8 @@
+{
+  "id": "Huggingface--36",
+  "bucket": "Huggingface",
+  "web_name": "Huggingface",
+  "ques": "Summarize all the payment plans and their advantages in huggingface pricing.",
+  "web": "https://huggingface.co/",
+  "answer": "HuggingFace pricing has 3 subscription plans plus usage-based options. (1) **PRO \u2014 $9/mo**: personal boost \u2014 10\u00d7 private/2\u00d7 public storage, 20\u00d7 inference credits, 8\u00d7 ZeroGPU quota + priority, Spaces Dev Mode, blog publishing, private Dataset Viewer, PRO badge. (2) **Team \u2014 $20/mo per user** (most popular): for orgs \u2014 SSO (SAML/OIDC), Storage Regions, Audit Logs, Resource Groups, Analytics, advanced auth/token controls, plus PRO benefits for all members. (3) **Enterprise \u2014 $50/mo per user**: all Team features plus highest limits, SCIM provisioning, advanced security, managed/annual billing, compliance processes, and dedicated support. Additionally: Storage at $8\u201312/TB/mo (egress/CDN included), Spaces GPU hardware on-demand starting at $0 (free CPU/ZeroGPU tiers), and dedicated Inference Endpoints from $0.033/hour."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "Coursera--23",
+  "bucket": "Coursera",
+  "web_name": "Coursera",
+  "ques": "Find a course on Coursera about 'Artificial Intelligence Ethics', which has a duration of less than 5 weeks and has been rated 4.5 stars or higher. Provide the course name and the instructor's name.",
+  "web": "https://www.coursera.org/",
+  "answer": "Course: \"Artificial Intelligence: Ethics & Societal Challenges\" (Lund University, 4.7 stars, 1\u20134 weeks); Instructor: Maria Hedlund"
+}

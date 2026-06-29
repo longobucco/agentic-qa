@@ -1,0 +1,8 @@
+{
+  "id": "BBC News--38",
+  "bucket": "BBC News",
+  "web_name": "BBC News",
+  "ques": "Find news related to the storm in Weather section and indicate where and when the severe weather occurred.",
+  "web": "https://www.bbc.com/news/",
+  "answer": "A storm hit the West of England \u2014 lightning thunderstorms struck Bristol, Somerset, Gloucestershire and Wiltshire under a yellow thunderstorm warning in place from 00:00 to 10:00 BST (overnight, around 26 June 2026), the second such storm in five days after storms battered the region on Monday."
+}

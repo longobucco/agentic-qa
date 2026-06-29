@@ -1,0 +1,1 @@
+I've started a background retry loop polling Allrecipes for an HTTP 200 and scheduled a check. The site is currently returning HTTP 402 (People Inc's anti-bot block on this container's datacenter IP). I'll resume when the loop finishes or reports an unblock.

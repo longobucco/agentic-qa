@@ -1,0 +1,7 @@
+I navigated to the BBC News Artificial Intelligence section and opened its top (most recent) headline to identify the companies involved.
+
+- **AI section:** BBC News › Artificial intelligence (bbc.com/news/topics/ce1qrvleleqt)
+- **Top headline (5 hours ago):** "Asia stock markets slide as tech shares slump" — South Korea's Kospi trading was halted for the third time this week amid a tech-led sell-off and worries over heavy AI infrastructure spending.
+- **Companies involved:** Apple (price hikes on iPads/MacBooks; shares fell 6%), Microsoft (Xbox console price rise; shares fell), and SoftBank (down 12.5%). Investment firm Alpha Pacific Group and Kyoto University Innovation Capital are quoted as analysts.
+
+ANSWER: In BBC News' Artificial Intelligence section, the top headline is "Asia stock markets slide as tech shares slump"; the companies involved are Apple, Microsoft, and SoftBank (with analysts from Alpha Pacific Group and Kyoto University Innovation Capital quoted).

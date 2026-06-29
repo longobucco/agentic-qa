@@ -1,0 +1,5 @@
+{
+  "id": "ESPN--2",
+  "verdict": "FAILURE",
+  "reason": "The displayed Bucks\u201376ers game is from April 12, 2026 (over two months before the current date of June 25, 2026), so it does not satisfy the task's explicit requirement of a game within the last 2 days."
+}

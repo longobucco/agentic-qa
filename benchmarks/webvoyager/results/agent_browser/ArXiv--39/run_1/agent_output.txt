@@ -1,0 +1,5 @@
+I completed the task. I searched for "GPT-4 Technical Report" on arXiv, opened the paper (arXiv:2303.08774), accessed it through the HTML (experimental) format, and read the Introduction.
+
+According to the Introduction, one of the main goals of developing such models is to **improve their ability to understand and generate natural language text, particularly in more complex and nuanced scenarios**.
+
+ANSWER: One of the main goals of developing such models is to improve their ability to understand and generate natural language text, particularly in more complex and nuanced scenarios.

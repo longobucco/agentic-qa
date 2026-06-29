@@ -1,0 +1,8 @@
+{
+  "id": "Allrecipes--41",
+  "bucket": "Allrecipes",
+  "web_name": "Allrecipes",
+  "ques": "List 3 recommended dinner recipes in the Allrecipes Dinners section.",
+  "web": "https://www.allrecipes.com/",
+  "answer": "Unable to complete \u2014 Allrecipes blocked the container's IP with an anti-bot \"access issue\" page on every URL (homepage and Dinners section), so no dinner recipes could be retrieved."
+}

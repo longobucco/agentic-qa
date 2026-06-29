@@ -1,0 +1,20 @@
+I've investigated the Hugging Face Transformers documentation for the `Trainer` API.
+
+**How to use the `Trainer` for a custom dataset** (per the docs): load/preprocess your data into a `datasets.Dataset` (tokenize with a `processing_class`/tokenizer), instantiate a model and a `TrainingArguments` object (which holds `output_dir`, learning rate, batch size, epochs, etc.), then construct `Trainer(model=..., args=..., train_dataset=..., eval_dataset=..., processing_class=...)` and call `trainer.train()`.
+
+**Configurable parameters of the `Trainer` class constructor** (13 total):
+- `model` — the PreTrainedModel/`torch.nn.Module` to train (or supply `model_init`)
+- `args` — `TrainingArguments` (defaults to a basic instance with `output_dir="tmp_trainer"`)
+- `data_collator` — batches elements from the dataset (defaults to `default_data_collator` or `DataCollatorWithPadding`)
+- `train_dataset` — training dataset
+- `eval_dataset` — evaluation dataset (or dict of datasets)
+- `processing_class` — tokenizer / image processor / feature extractor / processor
+- `model_init` — callable returning a fresh model (for hyperparameter search)
+- `compute_loss_func` — custom loss function
+- `compute_metrics` — function computing metrics from `EvalPrediction`
+- `callbacks` — list of `TrainerCallback`s to customize the training loop
+- `optimizers` — tuple of `(optimizer, lr_scheduler)`
+- `optimizer_cls_and_kwargs` — optimizer class and its kwargs
+- `preprocess_logits_for_metrics` — preprocess logits before metric computation
+
+ANSWER: The Transformers `Trainer` (docs at huggingface.co/docs/transformers/main_classes/trainer) trains a model on a custom dataset by passing a `datasets.Dataset` as `train_dataset`/`eval_dataset` along with a model, a `TrainingArguments` (`args`) config, and a `processing_class` (tokenizer), then calling `trainer.train()`. The `Trainer` class has 13 configurable constructor parameters: model, args, data_collator, train_dataset, eval_dataset, processing_class, model_init, compute_loss_func, compute_metrics, callbacks, optimizers, optimizer_cls_and_kwargs, and preprocess_logits_for_metrics.

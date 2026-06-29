@@ -1,0 +1,5 @@
+{
+  "id": "Google Flights--23",
+  "verdict": "FAILURE",
+  "reason": "Although the form is configured for the correct one-way Mumbai\u2192Vancouver Jul 28 search with a stops filter, the final screenshot shows an 'Oops, something went wrong' error with no flight results displayed, and no answer was produced."
+}

@@ -1,0 +1,5 @@
+{
+  "id": "Coursera--3",
+  "verdict": "FAILURE",
+  "reason": "The screenshots show no applied 'Newest' sort, and the reported answer comes from a rotating 'Top courses to get started' carousel (an unrelated healthcare finance course) rather than a verifiable sorted Python Data Science results list."
+}

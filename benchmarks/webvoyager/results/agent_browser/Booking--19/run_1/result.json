@@ -1,0 +1,8 @@
+{
+  "id": "Booking--19",
+  "bucket": "Booking",
+  "web_name": "Booking",
+  "ques": "Look for a hotel with customer ratings above an 8.0 in Paris, France for a weekend stay from March 18, 2026, to March 20, 2026, and list top three suggestions based on user reviews.",
+  "web": "https://www.booking.com/",
+  "answer": ""
+}

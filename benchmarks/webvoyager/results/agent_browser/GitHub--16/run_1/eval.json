@@ -1,0 +1,5 @@
+{
+  "id": "GitHub--16",
+  "verdict": "SUCCESS",
+  "reason": "The final screenshot shows the 'First day on GitHub' heading on the GitHub Skills page with exactly three course cards (Introduction to GitHub, Communicate using Markdown, GitHub Pages), matching the agent's answer of 3 courses."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "Google Search--10",
+  "bucket": "Google Search",
+  "web_name": "Google Search",
+  "ques": "Find the no. 1 weekly charts ranked artist based on Billboard and tell me 10 most played song by this artist until now.",
+  "web": "https://www.google.com/",
+  "answer": "Billboard's #1 weekly-ranked artist (Artist 100, week of June 27, 2026) is Olivia Rodrigo. Her 10 most-played songs to date (by total Spotify streams): 1) drivers license 2) good 4 u 3) traitor 4) deja vu 5) vampire 6) happier 7) favorite crime 8) jealousy, jealousy 9) All I Want (From \"HSMTMTS\") 10) brutal."
+}

@@ -1,0 +1,3 @@
+The task is complete. I searched round-trip flights from Stockholm to Toronto (depart July 3, 2026, return July 10, 2026) and sorted the results by Duration ("Sorted by duration") to find the shortest total travel time. The shortest option now appears at the top of the list.
+
+ANSWER: Round-trip Stockholm→Toronto (Jul 3 – Jul 10, 2026) results are sorted by Duration (shortest travel time). The shortest is a nonstop Air Canada flight, 8 hr 10 min (depart Stockholm Arlanda 12:50 PM, arrive Toronto Pearson 3:00 PM), from €904; next shortest are SAS via Copenhagen (10 hr 40 min) and Icelandair via Reykjavík (11 hr 25 min).

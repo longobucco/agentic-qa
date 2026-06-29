@@ -1,0 +1,8 @@
+{
+  "id": "GitHub--7",
+  "bucket": "GitHub",
+  "web_name": "GitHub",
+  "ques": "Find the official GitHub repository for ALBERT and show me what files the repo changed in the most recent commit.",
+  "web": "https://github.com/",
+  "answer": "The official ALBERT repo is google-research/albert. Its most recent commit, ef80a5f \"Update tokenization.py\" (Apr 12, 2023), changed exactly 1 file: tokenization.py (0 additions, 2 deletions)."
+}

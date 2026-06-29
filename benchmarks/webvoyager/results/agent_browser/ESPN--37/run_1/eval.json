@@ -1,0 +1,5 @@
+{
+  "id": "ESPN--37",
+  "verdict": "SUCCESS",
+  "reason": "The final screenshot shows an ESPN career stats page with a long season-by-season table and a 'Regular Season Totals' row (with Lakers-context Pacific standings), consistent with LeBron James' stats, and the response reports the career games-played figure read from that page without contradiction."
+}

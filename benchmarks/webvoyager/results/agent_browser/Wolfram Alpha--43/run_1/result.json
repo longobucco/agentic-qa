@@ -1,0 +1,8 @@
+{
+  "id": "Wolfram Alpha--43",
+  "bucket": "Wolfram Alpha",
+  "web_name": "Wolfram Alpha",
+  "ques": "A polyominoes of order 6 means you have 6 identical squares to combine different shapes (2-sided). How many combinations are there? Looking at all the shapes in the result, how many of them have only 2 rows in total?",
+  "web": "https://www.wolframalpha.com/",
+  "answer": "35 combinations (2-sided hexominoes); 12 of them have only 2 rows."
+}

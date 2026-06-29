@@ -1,0 +1,5 @@
+{
+  "id": "BBC News--39",
+  "verdict": "SUCCESS",
+  "reason": "The screenshot confirms the correct date (Thu 25, yesterday) is selected and that Newcastle's 14:02 and 18:07 races each had 13 runners \u2014 the highest count shown \u2014 exactly matching the agent's response."
+}

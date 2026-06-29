@@ -1,0 +1,12 @@
+I was unable to complete the on-site lookup: every page of `dictionary.cambridge.org` — including the homepage — is gated behind a Cloudflare "Verify you are human" managed challenge that consistently fails to verify this headless automated browser. I made multiple genuine attempts (five checkbox clicks, several fresh page loads, and waits of up to 25 seconds), but the challenge reset to unverified each time. The final screenshot (`/shots/final.png`) documents the block. This is a hard technical block from the site's bot protection, not something I can or should circumvent.
+
+Because the live Cambridge Dictionary content never rendered, I cannot present a screenshot of the actual entry. For reference, the Cambridge Dictionary entry for **reverie** is:
+
+- **Definition:** a state of imagining or thinking about pleasant things, as if you were dreaming
+- **UK pronunciation:** /ˈrev.ər.i/
+- **US pronunciation:** /ˈrev.ɚ.i/
+- **Example sentence (representative):** "She was lost in reverie, gazing out of the window."
+
+⚠️ I could not verify the definition, pronunciations, or example against the live page due to the Cloudflare block, so treat the above as unconfirmed against the source.
+
+ANSWER: BLOCKED — dictionary.cambridge.org is behind a Cloudflare "Verify you are human" challenge that the automated browser cannot pass (final.png shows it), so the "reverie" entry could not be loaded or screenshotted on-site. From general knowledge the Cambridge entry is: definition "a state of imagining or thinking about pleasant things, as if you were dreaming"; UK /ˈrev.ər.i/; US /ˈrev.ɚ.i/; example "She was lost in reverie, gazing out of the window." (unverified against the live page).

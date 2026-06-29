@@ -1,0 +1,8 @@
+{
+  "id": "Apple--8",
+  "bucket": "Apple",
+  "web_name": "Apple",
+  "ques": "Identify and list the specifications of the latest iPad model released by Apple, including its storage options, processor type, and display features.",
+  "web": "https://www.apple.com/",
+  "answer": "The latest iPad is the iPad Pro (M5) (11\" and 13\"). Storage: 256GB / 512GB / 1TB / 2TB. Processor: Apple M5 chip (9- or 10-core CPU depending on storage, 10-core GPU with ray tracing, 16-core Neural Engine, 12\u201316GB RAM). Display: Ultra Retina XDR Tandem OLED, 2420\u00d71668 (11\") / 2752\u00d72064 (13\") at 264 ppi, ProMotion 10\u2013120Hz, P3 wide color, True Tone, antireflective coating, nano-texture glass option (1TB/2TB), up to 1600 nits HDR peak, 2,000,000:1 contrast."
+}

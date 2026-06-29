@@ -1,0 +1,12 @@
+I've completed the task. From the Apple Vision Pro Technical Specifications page on apple.com:
+
+**Device Weight:** 26.4–28.2 ounces (750–800 grams). The weight includes the Light Seal and counterbalanced Dual Knit Band and varies by configuration; the separate battery weighs 353 grams.
+
+**5 Built-in Apps** (from the full list, which includes App Store, Freeform, Keynote, Mail, Messages, Mindfulness, Music, Notes, Passwords, Photos, Safari, Settings, Spatial Gallery, Tips, TV, Books, Calendar, Clock, Home, Maps, News, Podcasts, Reminders, Shortcuts, Stocks, Voice Memos, and more):
+1. Safari
+2. Photos
+3. Music
+4. Mail
+5. Messages
+
+ANSWER: Apple Vision Pro device weight is 26.4–28.2 ounces (750–800 grams) — includes Light Seal and counterbalanced Dual Knit Band, varies by configuration; separate battery weighs 353 grams. 5 built-in apps it supports: Safari, Photos, Music, Mail, and Messages.

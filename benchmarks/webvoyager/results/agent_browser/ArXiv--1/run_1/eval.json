@@ -1,0 +1,5 @@
+{
+  "id": "ArXiv--1",
+  "verdict": "SUCCESS",
+  "reason": "Screenshot shows ArXiv searched for 'quantum computing' sorted by submission date newest-first, with top quant-ph papers arXiv:2606.26088 and 2606.26085 both submitted 24 June 2026, matching the response and satisfying the within-last-two-days intent as of 25 June 2026."
+}

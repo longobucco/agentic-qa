@@ -1,0 +1,8 @@
+{
+  "id": "ESPN--8",
+  "bucket": "ESPN",
+  "web_name": "ESPN",
+  "ques": "Find information on ESPN about the top three scoring leaders in the NBA as of the last day of the regular season, and note which teams they play for.",
+  "web": "https://www.espn.com/",
+  "answer": "The top three NBA scoring leaders for the 2025-26 regular season were: 1) Luka Don\u010di\u0107, Los Angeles Lakers (28.8 PPG); 2) Shai Gilgeous-Alexander, Oklahoma City Thunder (28.7 PPG); 3) Anthony Edwards, Minnesota Timberwolves (28.3 PPG)."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "Allrecipes--24",
+  "bucket": "Allrecipes",
+  "web_name": "Allrecipes",
+  "ques": "Locate a recipe for an eggplant Parmesan on Allrecipes with a rating of at least 4.5 stars and over 50 reviews. Include the preparation time and the number of servings provided by the recipe.",
+  "web": "https://www.allrecipes.com/",
+  "answer": "Unable to complete \u2014 Allrecipes blocked all access from this environment (persistent HTTP 402 access-block page on every URL), so no eggplant Parmesan recipe page could be loaded to read its rating, reviews, prep time, or servings."
+}

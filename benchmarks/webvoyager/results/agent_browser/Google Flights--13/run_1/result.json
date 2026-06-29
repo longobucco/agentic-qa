@@ -1,0 +1,8 @@
+{
+  "id": "Google Flights--13",
+  "bucket": "Google Flights",
+  "web_name": "Google Flights",
+  "ques": "Find the cheapest round-trip flight option from New York City to Tokyo for a departure on July 10, 2026, and a return on July 24, 2026.",
+  "web": "https://www.google.com/travel/flights/",
+  "answer": "The cheapest round-trip NYC\u2192Tokyo flight for Jul 10\u201324, 2026 is Qatar Airways at \u20ac1,318 round trip (1 stop via Doha, JFK\u2192NRT, ~42h 50m total)."
+}

@@ -1,0 +1,12 @@
+The final screenshot is captured, showing the Vivid Seats pricing FAQ. Here's my summary of what I found:
+
+**What I did:**
+1. Browsed ESPN → Lakers team page → schedule.
+2. Checked both the 2025-26 and 2026-27 Lakers schedules on ESPN.
+3. Followed ESPN's "Tickets" link, which goes to **Vivid Seats** (ESPN's ticket partner), the Lakers tickets page.
+
+**Findings:**
+- **Next game:** There is no upcoming Lakers game currently scheduled. The date is June 26, 2026 — the NBA offseason. The 2025-26 season has concluded (the NBA Draft is underway, shown in ESPN's scoreboard) and every game on the 2025-26 schedule shows a final result. The 2026-27 schedule has not yet been released (per Vivid Seats, regular-season tickets become available after the schedule drops in mid-August). So ESPN/Vivid Seats list **no start time for a "next game."**
+- **Cheapest ticket:** Because no game is on sale yet, the Vivid Seats schedule list is empty. The page's stated pricing is that Lakers tickets **start at $11** (average price $317), and the typically cheapest section is the LEXUS CLUB PASS.
+
+ANSWER: No next game is currently scheduled — it's the NBA offseason (June 26, 2026): the 2025-26 season is over and the 2026-27 schedule isn't released yet, so ESPN lists no upcoming Lakers game/start time. On ESPN's ticket partner Vivid Seats there are no games on sale yet; the listed cheapest Lakers ticket is $11 (starting price).

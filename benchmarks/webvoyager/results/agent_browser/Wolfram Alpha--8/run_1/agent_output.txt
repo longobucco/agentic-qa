@@ -1,0 +1,12 @@
+I've completed the task using Wolfram Alpha. Here's the summary:
+
+**4-cyanoindole** (1H-indole-4-carbonitrile), formula **C₉H₆N₂**, molar mass **142.16 g/mol**
+
+**12 lb → moles:** 12 lb = 5443.1 g ÷ 142.16 g/mol = **38.288 mol**
+
+**Elemental composition (mass percent):**
+- **C (carbon):** 76.04%
+- **H (hydrogen):** 4.254%
+- **N (nitrogen):** 19.71%
+
+ANSWER: 12 lb of 4-cyanoindole (C9H6N2, molar mass 142.16 g/mol) = 38.288 mol. Mass percentages: C 76.04%, H 4.254%, N 19.71%.

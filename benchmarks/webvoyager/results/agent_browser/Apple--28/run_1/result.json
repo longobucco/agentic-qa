@@ -1,0 +1,8 @@
+{
+  "id": "Apple--28",
+  "bucket": "Apple",
+  "web_name": "Apple",
+  "ques": "On the Apple website, find out if the Mac Mini can be configured with a GPU larger than 16-core.",
+  "web": "https://www.apple.com/",
+  "answer": "Yes. With the M4 Pro chip, the Mac mini can be upgraded from a 16-core GPU to a 14-core CPU / 20-core GPU configuration (+$200), so a GPU larger than 16-core (20-core) is available."
+}

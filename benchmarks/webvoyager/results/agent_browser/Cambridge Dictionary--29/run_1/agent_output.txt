@@ -1,0 +1,5 @@
+I was unable to complete the quiz. After accepting the cookie consent on the Cambridge Dictionary homepage and clicking through to the **Cambridge Dictionary +Plus** section, the entire `dictionary.cambridge.org` domain became gated behind a **Cloudflare "Verify you are human" challenge**. I made 6+ genuine attempts — clicking the verification checkbox and waiting 8–20 seconds each time — but the challenge is stuck in an infinite loop: it cycles "Verifying..." → "Performing security verification" and resets with a new Ray ID every time, which is the typical hard-block behavior for a headless browser against Cloudflare Turnstile.
+
+Because the bot protection never cleared, I could not reach the Plus section, the Image quizzes, or take the easy Animals quiz, so there is no final score to report.
+
+ANSWER: Unable to complete — dictionary.cambridge.org is blocked by a Cloudflare "Verify you are human" challenge that loops indefinitely for this headless browser, so the Plus Image quizzes (easy Animals quiz) could not be reached and no score was obtained.

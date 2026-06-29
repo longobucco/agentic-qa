@@ -1,0 +1,8 @@
+All criteria confirmed for **`dslim/bert-base-NER`**:
+- ✅ NER model — tagged **Token Classification**, named-entity recognition (English, CoNLL-2003)
+- ✅ Last updated in **2024** — Oct 8, 2024
+- ✅ **1M+ downloads** — 1,825,052 downloads last month (1.83M)
+
+Final state captured.
+
+ANSWER: dslim/bert-base-NER — a BERT-based named entity recognition (Token Classification) model on Hugging Face. Confirmed last updated Oct 8, 2024 and 1,825,052 (≈1.83M) downloads, satisfying the 2024-update and 1M+ download criteria.

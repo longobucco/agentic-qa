@@ -1,0 +1,9 @@
+The search results, filtered by `topic:web-scraping language:Python stars:>100` and sorted by **Recently updated** (descending), put the answer at the top of the list.
+
+- **Top result:** `dgtlmoon/changedetection.io`
+- **Language:** Python
+- **Stars:** 32.1k (well over 100)
+- **Tagged:** `web-scraping`
+- **Last updated:** 14 minutes ago (most recent of all matches)
+
+ANSWER: dgtlmoon/changedetection.io — a Python web-scraping–tagged repo (website change detection/monitoring tool) with ~32.1k stars, the most recently updated match (updated ~14 minutes ago).

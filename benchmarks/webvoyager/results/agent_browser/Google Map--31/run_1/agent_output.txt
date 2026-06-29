@@ -1,0 +1,3 @@
+I searched for Central Park Zoo on Google Maps, opened its place page, and clicked the "Share" (Compartir) button to open the share dialog, which displays the generated sharing link.
+
+ANSWER: https://maps.app.goo.gl/gJFpJcTUE8DS3RZLA

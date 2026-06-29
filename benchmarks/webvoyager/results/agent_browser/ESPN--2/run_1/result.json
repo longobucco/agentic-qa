@@ -1,0 +1,8 @@
+{
+  "id": "ESPN--2",
+  "bucket": "ESPN",
+  "web_name": "ESPN",
+  "ques": "Show the scores and main highlight of the Milwaukee Bucks game that took place within the last 2 days on ESPN.",
+  "web": "https://www.espn.com/",
+  "answer": "Milwaukee Bucks @ Philadelphia 76ers (Apr 12, 2026) \u2014 Final: 76ers 126, Bucks 106 (line score MIL 26-36-16-28, PHI 29-29-38-30). Main highlight: \"76ers tune-up for play-in tourney with 126-106 win over Bucks in Rivers' likely final game\" \u2014 Tyrese Maxey scored 21; Bucks' AJ Green set a franchise single-game record with 11 three-pointers. (Note: today is the NBA offseason/Draft, so this was the most recent Bucks game available, not one within the literal last 2 days.)"
+}

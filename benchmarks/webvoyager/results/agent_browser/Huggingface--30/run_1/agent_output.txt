@@ -1,0 +1,14 @@
+The most downloaded dedicated English→Chinese (en-zh) machine translation model on Hugging Face is **`Helsinki-NLP/opus-mt-en-zh`** (~112k downloads/month). The higher-ranked entries above it are multilingual models (NLLB, MADLAD-400) or the reverse zh→en direction, not dedicated en-zh models.
+
+**Performance metrics (latest model card):**
+- Benchmark: Tatoeba-test.eng.zho → **BLEU 31.4**, **chr-F 0.268**
+- Brevity penalty: 0.896, ref length: 110,468
+- Trained: 2020-07-17 (OPUS/Tatoeba-Challenge), transformer architecture, License: apache-2.0
+
+**Usage guidelines:**
+- Source: English (eng) → Target: Chinese (zho; covers cmn, yue, wuu, etc.)
+- Pre-processing: normalization + SentencePiece (spm32k,spm32k)
+- A sentence-initial target-language token is required, in the form `>>id<<` (id = valid target language ID, e.g. `>>cmn_Hans<<`)
+- Load via Transformers: `pipeline("translation", model="Helsinki-NLP/opus-mt-en-zh")`, or directly with `AutoTokenizer` + `AutoModelForSeq2SeqLM`. (Note: the "translation" pipeline type requires `transformers<5.0.0`; otherwise load the model directly.)
+
+ANSWER: The most downloaded en-zh model is Helsinki-NLP/opus-mt-en-zh (~112,436 downloads/month). Latest metrics — Tatoeba-test.eng.zho: BLEU 31.4, chr-F 0.268 (brevity penalty 0.896), Apache-2.0, MarianMT transformer trained 2020-07-17. Usage: English→Chinese; preprocessing is normalization + SentencePiece (spm32k); a sentence-initial target-language token like `>>cmn_Hans<<` is required; run via Transformers `pipeline("translation", model="Helsinki-NLP/opus-mt-en-zh")` or `AutoTokenizer`/`AutoModelForSeq2SeqLM` (translation pipeline needs transformers<5.0.0, else load the model directly).

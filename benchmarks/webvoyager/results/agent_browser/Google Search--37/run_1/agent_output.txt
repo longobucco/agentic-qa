@@ -1,0 +1,13 @@
+I've completed the research. The browser hit CAPTCHAs on Google, Bing, and DuckDuckGo, so I navigated directly to authoritative Wikipedia sources (the *Super-Earth* article and the *List of potentially habitable exoplanets*) and captured screenshots at each step.
+
+**Top 3 super-Earth planets (current, most notable):**
+
+1. **LHS 1140 b** — Widely described as one of the *best candidates in the search for signs of life*. It's a transiting rocky super-Earth (~5–6 Earth masses, ~1.7 Earth radii) sitting in the habitable zone of LHS 1140, a quiet red dwarf about 49 light-years away. Recent observations hint it could be a water/ocean world with a temperate climate.
+
+2. **55 Cancri e** — The archetypal super-Earth and the first whose atmosphere was ever detected. About 8 Earth masses, it orbits a Sun-like star ~41 light-years away on a blistering ~18-hour orbit, making it an ultra-hot "lava world" with a likely molten surface — not habitable, but the most intensely studied super-Earth.
+
+3. **Kepler-442b** — One of the most Earth-like confirmed exoplanets, with a very high Earth Similarity Index. This super-Earth (~2.3 Earth masses) orbits in the habitable zone of a cooler K-type star roughly 1,200 light-years away, where liquid surface water could plausibly exist.
+
+Screenshots saved: `/shots/step_1.png` (habitable-exoplanet list), `/shots/step_2.png` and `/shots/final.png` (Super-Earth article).
+
+ANSWER: Top 3 super-Earths: (1) LHS 1140 b — a rocky ~5–6 Earth-mass super-Earth in the habitable zone of a red dwarf ~49 ly away, a leading habitability/ocean-world candidate; (2) 55 Cancri e — the famous ~8 Earth-mass ultra-hot "lava world" orbiting a Sun-like star ~41 ly away (first super-Earth with a detected atmosphere); (3) Kepler-442b — a ~2.3 Earth-mass super-Earth in the habitable zone of a K-type star ~1,200 ly away, among the most Earth-like known planets.

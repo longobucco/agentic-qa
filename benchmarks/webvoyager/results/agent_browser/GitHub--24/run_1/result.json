@@ -1,0 +1,8 @@
+{
+  "id": "GitHub--24",
+  "bucket": "GitHub",
+  "web_name": "GitHub",
+  "ques": "Locate the GitHub repository for the open-source project \"angular\" and identify the last three issues closed.",
+  "web": "https://github.com/",
+  "answer": "In the angular/angular repository, the last three issues closed are: #69500 \"Docs: Improve discoverability of resource({ stream })\" (closed ~2h ago), #69534 \"@angular/common: Denial of Service (DoS) via OOM in Date Formatting (formatDate)\" (closed ~8h ago), and #69530 \"NgModule Zone.js Change Detection not working in Angular 22 - UI not updating\" (closed ~14h ago)."
+}

@@ -1,0 +1,13 @@
+I was unable to complete this task on the live site. The Cambridge Dictionary is protected by a Cloudflare "Verify you are human" turnstile that persistently rejected this automated browser. I tried every viable approach:
+
+- Homepage loaded fine, but the search submission triggered the challenge.
+- Direct navigation to `/dictionary/english/mitigate` → challenge.
+- Clicking the checkbox 15× in a loop → cycled between "Performing security verification" and "Verifying you are human…" without ever clearing.
+- A single click followed by a 12s wait → still looping (same Ray ID, token rejected).
+- A 20s undisturbed load → presented the checkbox again.
+
+The content pages are hard-blocked by bot detection, so the final screenshot (`/shots/final.png`) shows the Cloudflare verification page rather than the definition. I could not retrieve the actual page content to display.
+
+For reference, the standard Cambridge entry for *mitigate* is: definition — "to make something less harmful, unpleasant, or bad"; UK pronunciation — /ˈmɪt.ɪ.ɡeɪt/; example — "It is unclear how to mitigate the effects of tourism on the island." However, I want to be clear this was **not** verifiable on the live site in this session due to the block, and the screenshot does not show it.
+
+ANSWER: BLOCKED — Cambridge Dictionary's Cloudflare bot-verification looped and never cleared for the automated browser, so the live definition page for 'mitigate' could not be loaded or screenshotted. (Reference, unverified on-site: definition "to make something less harmful, unpleasant, or bad"; UK /ˈmɪt.ɪ.ɡeɪt/; example "It is unclear how to mitigate the effects of tourism on the island.")

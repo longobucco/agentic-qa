@@ -1,0 +1,8 @@
+{
+  "id": "Cambridge Dictionary--24",
+  "bucket": "Cambridge Dictionary",
+  "web_name": "Cambridge Dictionary",
+  "ques": "Look up the definition and both UK and US pronunciation of the word \"reverie,\" and provide an example sentence using the word from Cambridge Dictionary.",
+  "web": "https://dictionary.cambridge.org/",
+  "answer": "BLOCKED \u2014 dictionary.cambridge.org is behind a Cloudflare \"Verify you are human\" challenge that the automated browser cannot pass (final.png shows it), so the \"reverie\" entry could not be loaded or screenshotted on-site. From general knowledge the Cambridge entry is: definition \"a state of imagining or thinking about pleasant things, as if you were dreaming\"; UK /\u02c8rev.\u0259r.i/; US /\u02c8rev.\u025a.i/; example \"She was lost in reverie, gazing out of the window.\" (unverified against the live page)."
+}

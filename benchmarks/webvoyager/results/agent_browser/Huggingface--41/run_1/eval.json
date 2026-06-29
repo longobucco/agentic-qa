@@ -1,0 +1,5 @@
+{
+  "id": "Huggingface--41",
+  "verdict": "SUCCESS",
+  "reason": "Screenshots confirm microsoft/TRELLIS-text-xlarge is the top Text-to-3D model by downloads (7,196, ranked #1 sorted by Most downloads) and that 9 Spaces use it, matching the response."
+}

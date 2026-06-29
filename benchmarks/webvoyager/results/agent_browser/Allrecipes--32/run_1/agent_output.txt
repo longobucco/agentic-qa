@@ -1,0 +1,5 @@
+I was unable to complete the task because Allrecipes is hard-blocking this container's IP. Every request — the homepage (`/`), the search page (`/search?q=slow+cooker+beef+stew`), and a direct recipe URL (`/recipe/231170/slow-cooker-beef-stew-i/`) — returns the same People Inc access-denied page ("If you are a reader experiencing an access issue, please contact support@people.inc"), not recipe content. I retried with delays in case it was a transient rate limit, but the block is consistent.
+
+Because no recipe content ever loaded, I cannot truthfully report the cooking time or ingredients — and the task is scored from screenshots, which show only the block page. I won't fabricate recipe details.
+
+ANSWER: Unable to complete — Allrecipes is blocking this IP with an access-denied page on all pages (homepage, search, and direct recipe URLs), so no beef stew recipe, cooking time, or ingredient list could be retrieved.

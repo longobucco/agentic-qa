@@ -1,0 +1,5 @@
+{
+  "id": "Allrecipes--27",
+  "verdict": "FAILURE",
+  "reason": "Both screenshots show an Allrecipes/People Inc access-block page with no recipe content, and the agent provided no chicken curry recipe summary, so the task was not accomplished."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "ArXiv--37",
+  "bucket": "ArXiv",
+  "web_name": "ArXiv",
+  "ques": "Find the names of people in ArXiv's Leadership Team.",
+  "web": "https://arxiv.org/",
+  "answer": "ArXiv's Leadership Team: Ramin Zabih (Executive Director), Yoav Artzi (Associate Faculty Director), Jeff Sank (Engineering Director), Stephanie Orphan (Program Director), and Steinn Sigurdsson (Scientific Director)."
+}

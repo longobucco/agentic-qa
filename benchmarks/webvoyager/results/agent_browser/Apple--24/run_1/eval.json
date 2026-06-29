@@ -1,0 +1,5 @@
+{
+  "id": "Apple--24",
+  "verdict": "SUCCESS",
+  "reason": "The final screenshot of the Apple iMac page shows 'From $1499', matching the agent's reported starting price of $1,499 for the most recent iMac model."
+}

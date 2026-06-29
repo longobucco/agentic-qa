@@ -1,0 +1,5 @@
+The search results, sorted by "Most stars" descending, confirm the top match.
+
+**Result:** The most-starred open-source project related to "climate change data visualization" on GitHub is **resource-watch/resource-watch** with **73 stars**. It's a JavaScript/Next.js platform featuring hundreds of datasets on the state of the planet's resources, letting users visualize climate change and other environmental data.
+
+ANSWER: resource-watch/resource-watch — 73 stars (the most-starred result; a Next.js platform for visualizing climate change and planetary resource datasets)

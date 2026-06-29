@@ -1,0 +1,10 @@
+I found and opened a Coursera **Course** (not a Specialization) that teaches Java programming basics.
+
+- **Title:** Java Programming for Beginners
+- **Provider:** IBM
+- **Type:** Course (Beginner level, 5 modules, ~4–5 weeks)
+- **URL:** https://www.coursera.org/learn/java-for-programming-beginners
+
+It gives the job-ready, fundamental skills to develop Java applications — confirmed as a Course rather than a Specialization on its landing page.
+
+ANSWER: Java Programming for Beginners by IBM — a Beginner-level Coursera Course (not a Specialization) teaching Java fundamentals: https://www.coursera.org/learn/java-for-programming-beginners

@@ -1,0 +1,7 @@
+I was unable to complete the task. The Allrecipes site (allrecipes.com, owned by People Inc.) is serving an IP-level access-block page for every URL I tried — the homepage, the search page (`/search?q=baked+salmon`), the salmon category page, and a specific baked-salmon recipe page all returned the identical message:
+
+> "If you are a reader experiencing an access issue, please contact support@people.inc... If you would like to access our content for licensing, please contact contentlicensing@people.inc."
+
+The page has no title and no interactive elements (no cookie/consent banner to dismiss, no buttons), so there is no way to click through it. I retried multiple times with delays in case it was rate-limit based, but the block persisted across all URLs. The container's IP appears to be hard-blocked by the publisher's anti-bot wall, making it impossible to browse recipes and verify prep time/ratings.
+
+ANSWER: Unable to complete — allrecipes.com is serving an IP-level access-block page ("access issue, contact support@people.inc") on every URL (home, search, category, recipe), with no dismissible banner or interactive elements, so no Baked Salmon recipe could be accessed or evaluated.

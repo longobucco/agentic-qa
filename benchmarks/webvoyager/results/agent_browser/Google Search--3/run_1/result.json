@@ -1,0 +1,8 @@
+{
+  "id": "Google Search--3",
+  "bucket": "Google Search",
+  "web_name": "Google Search",
+  "ques": "Show me a list of comedy movies, sorted by user ratings. Show me the Top 5 movies.",
+  "web": "https://www.google.com/",
+  "answer": "Top 5 comedy movies by user (audience) rating, from the Rotten Tomatoes comedy list: 1) I Swear \u2014 98%, 2) Toy Story 4 \u2014 94%, 3) Hoppers \u2014 93%, 4) Toy Story \u2014 92%, 5) Toy Story 3 \u2014 90%."
+}

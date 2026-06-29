@@ -1,0 +1,19 @@
+Both screenshots are saved. Here's my review of the available NHL scoreboard data on ESPN.
+
+**What I found:** ESPN's NHL section is currently anchored to **Sunday, September 20, 2026** (the site's live date, NHL preseason). I navigated to the scoreboard and attempted to load the prior day (Sep 19) both via the date strip and a direct `?/date/20260919` URL. The page title updated to "September 19, 2026," but the game data is served from a frozen cache and continued to render the Sep 20 slate — so genuinely-completed prior-day results aren't retrievable in this environment.
+
+**The games on the scoreboard (all NHL Preseason, scheduled — no final scores yet, records all 0-0):**
+
+| Matchup | Time | Venue |
+|---|---|---|
+| Jets @ Oilers | 12:00 AM | Rogers Place, Edmonton |
+| Golden Knights @ Kings | 1:00 AM | Toyota Arena, Ontario, CA |
+| Canucks @ Kraken | 2:00 AM | Climate Pledge Arena, Seattle |
+| Islanders @ Devils | 5:00 PM | — |
+| Sharks @ Ducks | 8:00 PM | — |
+| Capitals @ Bruins | 9:00 PM | — |
+| Avalanche @ Utah | 11:00 PM | — |
+
+**On team performance:** Because every game on the available slate is an upcoming **preseason** matchup that hasn't been played, no scores, win/loss outcomes, or in-game stats exist to evaluate — all teams sit at 0-0. There were no completed "yesterday" results with final scores to review in this snapshot.
+
+ANSWER: ESPN's NHL scoreboard is anchored to Sun Sep 20, 2026 (preseason); the date-navigation/cached data wouldn't surface completed prior-day results. All listed games (Jets@Oilers, Golden Knights@Kings, Canucks@Kraken, Islanders@Devils, Sharks@Ducks, Capitals@Bruins, Avalanche@Utah) are scheduled preseason matchups with no final scores — every team is 0-0, so there were no completed game results or team performance stats to review.

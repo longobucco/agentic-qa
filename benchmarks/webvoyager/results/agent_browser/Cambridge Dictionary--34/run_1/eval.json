@@ -1,0 +1,5 @@
+{
+  "id": "Cambridge Dictionary--34",
+  "verdict": "FAILURE",
+  "reason": "The final screenshot shows only a Cloudflare 'Verify you are human' security verification page on dictionary.cambridge.org, so the comparative/superlative grammar content with example sentences was never accessed."
+}

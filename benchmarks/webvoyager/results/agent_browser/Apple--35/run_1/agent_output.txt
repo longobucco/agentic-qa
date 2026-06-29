@@ -1,0 +1,7 @@
+The final screenshot clearly documents the answer. The comparison table shows two column headers — "Pencil Pro" (left) and "Pencil" / USB-C (right) — and the "Wireless pairing and charging" row shows a checkmark ✓ under Apple Pencil Pro and a dash — under Apple Pencil (USB-C).
+
+Summary of findings from Apple's official Apple Pencil page:
+- **2 types of Apple Pencil** are currently available: **Apple Pencil Pro** ($129) and **Apple Pencil (USB-C)** ($79).
+- Only the **Apple Pencil Pro** supports **Wireless pairing and charging** (it automatically pairs and charges when magnetically attached to the iPad). The Apple Pencil (USB-C) pairs and charges via a USB-C cable, not wirelessly.
+
+ANSWER: There are 2 types of Apple Pencil currently available — Apple Pencil Pro ($129) and Apple Pencil (USB-C) ($79). The Apple Pencil Pro is the one that supports Wireless pairing and charging.

@@ -1,0 +1,8 @@
+{
+  "id": "Huggingface--29",
+  "bucket": "Huggingface",
+  "web_name": "Huggingface",
+  "ques": "Summarize the description of the recent open-source NLP model released on Hugging Face for medical summarization.",
+  "web": "https://huggingface.co/",
+  "answer": "The most recently released open-source NLP medical-summarization model is Chilliwiddit/Openi-llama3.1-8B-WeightedLoss-medical5. Its model card describes it as a model \"basically used to summarize text from the Open-i dataset.\" It's a LoRA/PEFT adapter built on the Llama-3.1-8B base model (English), trained on the Open-i medical imaging dataset using 16-bit mixed precision, 5 epochs, and a weighted-loss approach (lambda medical weight = 9, lambda negation weight = 0.3) with a curated summary medical-concepts file."
+}

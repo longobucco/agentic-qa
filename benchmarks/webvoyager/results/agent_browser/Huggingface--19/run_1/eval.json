@@ -1,0 +1,5 @@
+{
+  "id": "Huggingface--19",
+  "verdict": "SUCCESS",
+  "reason": "The agent reached an English summarization model page (medodeyaa/dentor-biobart) via the Summarization filter and produced a feature summary whose every detail\u2014task, English/BART tags, apache-2.0 license, 0.2B/F32, 137 downloads, BioBART vocab\u2014matches the ground-truth screenshot exactly."
+}

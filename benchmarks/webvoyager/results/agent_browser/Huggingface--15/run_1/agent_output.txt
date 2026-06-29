@@ -1,0 +1,3 @@
+I filtered Hugging Face models by the PaddlePaddle library and sorted by most downloads. The clear top result is **PaddlePaddle/PP-Chart2Table** (Image-to-Text) with **6.14k** downloads, followed by logasanjeev/indian-id-validator (1.73k) and PaddlePaddle/PP-DocBee2-3B (175).
+
+ANSWER: The most downloaded Hugging Face model using the PaddlePaddle library is **PaddlePaddle/PP-Chart2Table** (Image-to-Text, ~6.14k downloads). The next most downloaded are logasanjeev/indian-id-validator (~1.73k) and PaddlePaddle/PP-DocBee2-3B (~175).

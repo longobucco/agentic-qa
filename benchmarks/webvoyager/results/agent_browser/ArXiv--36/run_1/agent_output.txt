@@ -1,0 +1,6 @@
+Both searches completed via ArXiv's journal reference field:
+
+- **'CVPR 2023'** → 52 results
+- **'CVPR2023'** → 9 results
+
+ANSWER: Searching by journal reference on arXiv: 'CVPR 2023' returns 52 results, and 'CVPR2023' returns 9 results.

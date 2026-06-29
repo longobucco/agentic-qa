@@ -1,0 +1,1 @@
+Verification is processing in the background. I'll resume when the poller completes or the wakeup fires.
