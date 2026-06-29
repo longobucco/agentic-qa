@@ -1,0 +1,11 @@
+Wolfram Alpha computed the comparison at 300 g per serving. The Calories (mean values) are:
+
+| Burger | Calories (300 g) | Range |
+|---|---|---|
+| Wendy's Baconator | **902 Cal** | 902 Cal |
+| McDonald's Big Mac | 730 Cal | 702–757 Cal |
+| Burger King Whopper | 657 Cal | 580–733 Cal |
+
+The Baconator has the most calories, followed by the Big Mac, with the Whopper lowest.
+
+ANSWER: At 300 g per serving — Whopper ≈ 657 Cal, Baconator ≈ 902 Cal, Big Mac ≈ 730 Cal. The Baconator is highest, then the Big Mac, and the Whopper is the lowest.

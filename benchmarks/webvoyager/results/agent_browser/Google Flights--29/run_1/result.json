@@ -1,0 +1,8 @@
+{
+  "id": "Google Flights--29",
+  "bucket": "Google Flights",
+  "web_name": "Google Flights",
+  "ques": "Compare the prices and total travel time of non-stop flights from Mexico City to Frankfurt, departing on July 5, 2026, and returning on July 15, 2026.",
+  "web": "https://www.google.com/travel/flights/",
+  "answer": "Only one non-stop option exists on MEX\u2192FRA for these dates: Lufthansa, \u20ac1,504 round-trip total. Outbound Jul 5 (MEX 7:50 PM \u2192 FRA 2:50 PM) = 11 hr; Return Jul 15 (FRA 1:30 PM \u2192 MEX 5:30 PM) = 12 hr (total ~23 hr round trip). No other non-stop flights are available to compare."
+}

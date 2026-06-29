@@ -1,0 +1,8 @@
+{
+  "id": "Booking--35",
+  "bucket": "Booking",
+  "web_name": "Booking",
+  "ques": "Browse the booking website to get inspiration for your next trip, and summarize at least three places mentioned in one of the travel articles.",
+  "web": "https://www.booking.com/",
+  "answer": "From Booking.com's travel article \"Eight of the best places to see the 2026 solar eclipse,\" three places are: (1) Bilbao, Spain \u2014 in the path of totality, with coastal/hilltop vantage points plus architecture and food; (2) Zaragoza, Spain \u2014 inland city in the path of totality with a dry climate for clear skies and open plazas/riverside viewpoints; and (3) Valencia, Spain \u2014 in the path of totality, offering wide unobstructed views from its beaches and waterfront promenades alongside city amenities."
+}

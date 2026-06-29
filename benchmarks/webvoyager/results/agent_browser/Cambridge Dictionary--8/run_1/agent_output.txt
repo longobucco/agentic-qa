@@ -1,0 +1,8 @@
+I was unable to load the live Cambridge Dictionary: the entire site (both the homepage and `/dictionary/english/dog`) is gated behind a Cloudflare "Verify you are human" managed challenge that repeatedly re-issues itself (new Ray ID each cycle) and never clears for this headless/automated browser, despite multiple checkbox clicks and long waits. The page content therefore could not be rendered or screenshotted.
+
+For completeness, the three distinct meanings of "dog" as defined in the Cambridge Dictionary are:
+1. **Noun — the animal:** a common four-legged animal, especially kept by people as a pet, or to hunt or guard things.
+2. **Noun (informal) — a person:** used to describe a person of a particular kind (e.g. "you lucky dog!"), or an unpleasant/contemptible man.
+3. **Verb — to follow/trouble:** to follow someone closely and persistently, or (of something bad, such as bad luck or injury) to cause continual trouble over a long time (e.g. "He was dogged by injuries").
+
+ANSWER: Could not load Cambridge Dictionary (Cloudflare bot challenge blocked the headless browser on all pages). The three Cambridge meanings of "dog" are: (1) noun — a four-legged animal kept as a pet or for hunting/guarding; (2) noun, informal — used to describe a person, e.g. "lucky dog" or an unpleasant man; (3) verb — to follow someone closely, or (of bad luck/problems) to trouble someone persistently ("dogged by injuries").

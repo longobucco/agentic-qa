@@ -1,0 +1,5 @@
+The screenshots live inside the container (collected by the harness), so I can't read them from the host — that's expected. 
+
+I've completed the task. I navigated from BBC News → BBC Sport → Athletics → Calendar (https://www.bbc.com/sport/athletics/calendar). The calendar opened on the current month (June 2026; today is 26 June 2026). Reviewing the events, all earlier June fixtures have passed, so the next earliest upcoming game is **Sunday 28 June — Diamond League Paris**, which is displayed on the calendar I'm now viewing. Final state captured to `/shots/final.png`.
+
+ANSWER: The next earliest upcoming game on the BBC Athletics calendar is the Diamond League Paris on Sunday 28 June 2026; the calendar (bbc.com/sport/athletics/calendar) is open on June 2026 showing this date.

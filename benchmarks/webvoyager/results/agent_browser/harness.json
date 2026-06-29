@@ -1,0 +1,7 @@
+{
+  "system": "agent_browser",
+  "runs": 1,
+  "concurrency": 1,
+  "judge_repeats": 1,
+  "env": {}
+}

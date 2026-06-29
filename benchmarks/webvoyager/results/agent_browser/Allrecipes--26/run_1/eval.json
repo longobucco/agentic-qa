@@ -1,0 +1,5 @@
+{
+  "id": "Allrecipes--26",
+  "verdict": "FAILURE",
+  "reason": "Screenshots show only an access-block/reader-issue notice with no recipe content, so no chili recipe, ingredients, cooking time, or steps were ever retrieved."
+}

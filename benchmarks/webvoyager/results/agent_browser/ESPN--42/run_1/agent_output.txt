@@ -1,0 +1,19 @@
+The final screenshot captures the full America East Conference standings table.
+
+Looking at the America East Conference standings (2025-26), here are the conference records:
+
+| Team | Conf W-L |
+|------|----------|
+| UMBC Retrievers | 14-2 |
+| Vermont Catamounts | 12-4 |
+| NJIT Highlanders | 10-6 |
+| UMass Lowell River Hawks | 9-7 |
+| UAlbany Great Danes | 7-9 |
+| Maine Black Bears | 6-10 |
+| **New Hampshire Wildcats** | **5-11** |
+| **Bryant Bulldogs** | **5-11** |
+| Binghamton Bearcats | 4-12 |
+
+The two teams with identical (equal) win-loss records are **New Hampshire Wildcats and Bryant Bulldogs**, both at **5-11** in conference play. (No team has a .500 W=L record.)
+
+ANSWER: New Hampshire Wildcats and Bryant Bulldogs — both share an identical 5-11 America East Conference record.

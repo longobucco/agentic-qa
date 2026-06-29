@@ -1,0 +1,12 @@
+I found a repository matching all the criteria.
+
+**Repository: `alakanandasarangi29-cmyk/Data-Classification-Using-AI`**
+
+It satisfies every requirement of the task:
+- **Open-source**: Public repository
+- **Machine learning**: Builds an AI classification model using ML (Scikit-learn)
+- **Python**: 100% Python
+- **Decision trees**: Algorithm explicitly listed as "Decision Tree Classifier" (classifying Iris flower species)
+- **Updated within last 2 days**: Last commit was 2 hours ago
+
+ANSWER: alakanandasarangi29-cmyk/Data-Classification-Using-AI — a 100% Python, open-source machine learning repo that classifies Iris flower species using a Decision Tree Classifier (Scikit-learn), last updated 2 hours ago (within the last 2 days).

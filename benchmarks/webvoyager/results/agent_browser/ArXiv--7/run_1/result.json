@@ -1,0 +1,8 @@
+{
+  "id": "ArXiv--7",
+  "bucket": "ArXiv",
+  "web_name": "ArXiv",
+  "ques": "Find the most recent paper submitted on machine learning in the Computer Science category posted on ArXiv.",
+  "web": "https://arxiv.org/",
+  "answer": "The most recent Machine Learning (cs.LG) paper on arXiv is \"RevengeBench: Reverse Engineering Code-Space Policies from Behavioral Experiments\" (arXiv:2606.26094), submitted Thu, 25 Jun 2026 by Babak Rahmani et al."
+}

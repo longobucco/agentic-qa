@@ -1,0 +1,7 @@
+The GitHub Copilot product page presents three grouped feature highlights (immediately below the hero and the "Companies powered by GitHub" logos):
+
+1. **Go beyond one-size-fits-all** — Choose from leading LLMs optimized for speed, accuracy, or cost.
+2. **Use your agents, your way** — Use GitHub Copilot, your own custom agents, or the third-party ones you already rely on.
+3. **Stay in your flow** — Copilot works where you do—in GitHub, your IDE, the CLI, project tools, chat apps, and custom MCP servers.
+
+ANSWER: The 3 features are: (1) "Go beyond one-size-fits-all" — choose from leading LLMs optimized for speed, accuracy, or cost; (2) "Use your agents, your way" — use GitHub Copilot, your own custom agents, or third-party ones; (3) "Stay in your flow" — Copilot works where you do, across GitHub, your IDE, the CLI, project tools, chat apps, and custom MCP servers.

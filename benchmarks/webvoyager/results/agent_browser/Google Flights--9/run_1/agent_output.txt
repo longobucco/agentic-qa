@@ -1,0 +1,5 @@
+The final screenshot clearly shows the one-way economy flight Pune → New York on Fri, Jan 15, with the flight details expanded showing the transfer/layover times. The task is complete.
+
+I found a one-way economy flight from Pune (PNQ) to New York (JFK) departing Fri, Jan 15. The top result is the €673 Air India + LOT flight (2 stops, 30 hr 30 min total), and the expanded details show its transfer (layover) times.
+
+ANSWER: One-way economy Pune→New York on Jan 15 — top result (€673, Air India + LOT via Delhi & Warsaw) has two transfers: a 4 hr 30 min overnight layover at New Delhi (DEL) and a 5 hr 50 min layover at Warsaw (WAW), for ~10 hr 20 min total transfer time (30 hr 30 min overall trip).

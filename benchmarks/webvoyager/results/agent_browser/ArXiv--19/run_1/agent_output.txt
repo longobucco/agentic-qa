@@ -1,0 +1,7 @@
+The final screenshot clearly shows the Quick Facts section with **16,138 UNDERGRADUATE STUDENTS** at Cornell University. The task is complete.
+
+To summarize what I found:
+- **Which university maintains ArXiv:** Cornell University (its logo and link appear at the top of arxiv.org, and clicking it leads to cornell.edu)
+- **Undergraduate students:** Per Cornell's official "About" page Quick Facts → **16,138** undergraduate students (alongside 10,423 graduate/professional students)
+
+ANSWER: Cornell University maintains and manages ArXiv. According to Cornell's official About page (reached from the Cornell University link on arxiv.org), the university currently has 16,138 undergraduate students.

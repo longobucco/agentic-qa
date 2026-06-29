@@ -1,0 +1,5 @@
+{
+  "id": "Google Flights--2",
+  "verdict": "FAILURE",
+  "reason": "The screenshot shows the search was performed for Jun 25, not the requested Jun. 22, so the lowest fare for the specified date was not obtained despite correct origin/destination/passenger settings."
+}

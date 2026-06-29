@@ -1,0 +1,10 @@
+I was unable to complete the task because Allrecipes is blocking all access from this environment.
+
+**What happened:**
+- Every Allrecipes URL I tried — the homepage, `/search?q=chicken+curry`, the curries category page, and a specific recipe page — returned the same "access issue" page.
+- A direct HTTP check confirmed the cause: the site's edge consistently returns **HTTP 402** for this IP across multiple retries.
+- This is Allrecipes/People Inc's anti-bot/IP block, not an intermittent error or a cookie banner. There's no element to click or consent to dismiss — the actual content never loads.
+
+Because the live site is genuinely inaccessible, I cannot read any recipe's ingredients, ratings, review counts, prep time, or instructions. I won't fabricate a recipe summary, since that would not reflect anything actually observed on the site. The final screenshot captures the block page.
+
+ANSWER: Unable to complete — Allrecipes is hard-blocking this environment (HTTP 402 "access issue" page on every URL, including homepage, search, and recipe pages), so no chicken curry recipe could be located or summarized.

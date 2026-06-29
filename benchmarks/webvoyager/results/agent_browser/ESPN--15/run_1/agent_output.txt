@@ -1,0 +1,19 @@
+I have verified all the NBA scores for February 25, 2026 from the ESPN scoreboard (all games FINAL). The final screenshots are captured in `/shots`.
+
+**NBA Final Scores — Wednesday, February 25, 2026:**
+
+| Away | Score | Home | Score |
+|------|-------|------|-------|
+| 76ers | **135** | Pacers | 114 |
+| Wizards | 98 | Hawks | **119** |
+| Mavericks | **123** | Nets | 114 |
+| Thunder | **116** | Raptors | 107 |
+| Knicks | 94 | Cavaliers | **109** |
+| Hornets | **131** | Bulls | 99 |
+| Heat | 117 | Bucks | **128** |
+| Warriors | 109 | Pelicans | **113** |
+| Celtics | **97** | Suns | 81 |
+| Timberwolves | **124** | Trail Blazers | 121 |
+| Magic | **110** | Lakers | 109 |
+
+ANSWER: 11 NBA games were played on Feb 25, 2026 (all FINAL): 76ers 135–114 Pacers; Hawks 119–98 Wizards; Mavericks 123–114 Nets; Thunder 116–107 Raptors; Cavaliers 109–94 Knicks; Hornets 131–99 Bulls; Bucks 128–117 Heat; Pelicans 113–109 Warriors; Celtics 97–81 Suns; Timberwolves 124–121 Trail Blazers; Magic 110–109 Lakers.

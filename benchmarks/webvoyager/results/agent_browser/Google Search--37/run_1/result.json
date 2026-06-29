@@ -1,0 +1,8 @@
+{
+  "id": "Google Search--37",
+  "bucket": "Google Search",
+  "web_name": "Google Search",
+  "ques": "Find the current top 3 super-earth planets and give a brief introduction to them.",
+  "web": "https://www.google.com/",
+  "answer": "Top 3 super-Earths: (1) LHS 1140 b \u2014 a rocky ~5\u20136 Earth-mass super-Earth in the habitable zone of a red dwarf ~49 ly away, a leading habitability/ocean-world candidate; (2) 55 Cancri e \u2014 the famous ~8 Earth-mass ultra-hot \"lava world\" orbiting a Sun-like star ~41 ly away (first super-Earth with a detected atmosphere); (3) Kepler-442b \u2014 a ~2.3 Earth-mass super-Earth in the habitable zone of a K-type star ~1,200 ly away, among the most Earth-like known planets."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "ESPN--14",
+  "bucket": "ESPN",
+  "web_name": "ESPN",
+  "ques": "Find the latest news about NBA trades or player movements on ESPN and report the most recent trade deal OR player acquisition.",
+  "web": "https://www.espn.com/",
+  "answer": "The most recent NBA trade on ESPN is the blockbuster sending star guard LaMelo Ball from the Charlotte Hornets to the Minnesota Timberwolves in exchange for Naz Reid and draft picks (ESPN headline: \"Sources: Hornets' Ball to Wolves for Reid, picks\")."
+}

@@ -1,0 +1,5 @@
+{
+  "id": "Huggingface--7",
+  "verdict": "SUCCESS",
+  "reason": "The screenshot confirms the Audio modality filter with Most-downloads sort, showing artur-muratov/multilingual-speech-commands-15lang at 155k as the top genuine audio dataset (above it only the non-audio Narsil/image_dummy dummy fixture), matching the agent's well-justified answer."
+}

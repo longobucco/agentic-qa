@@ -1,0 +1,8 @@
+{
+  "id": "Wolfram Alpha--38",
+  "bucket": "Wolfram Alpha",
+  "web_name": "Wolfram Alpha",
+  "ques": "Compute the length of a curve defined by y = 2x^3 - 3x^2 + 4x - 5 from x = 0 to x = 3.",
+  "web": "https://www.wolframalpha.com/",
+  "answer": "The arc length of y = 2x\u00b3 \u2212 3x\u00b2 + 4x \u2212 5 from x = 0 to x = 3 is approximately 39.24992727 (\u2248 39.25)."
+}

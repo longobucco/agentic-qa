@@ -1,0 +1,5 @@
+{
+  "id": "Cambridge Dictionary--37",
+  "verdict": "FAILURE",
+  "reason": "The only screenshot shows a Cloudflare bot-verification wall on dictionary.cambridge.org, proving the agent never accessed the Cambridge Dictionary articles grammar content and the response's explanation came from outside knowledge, not the site."
+}

@@ -1,0 +1,5 @@
+{
+  "id": "Google Flights--22",
+  "verdict": "FAILURE",
+  "reason": "The final screenshots show an 'Oops, something went wrong' error with no flight results, incorrect dates (Jun 26\u2013Jul 3 instead of Jun 15\u201322), and no lowest-emissions option selected; the agent also hit max turns with no answer."
+}

@@ -1,0 +1,5 @@
+{
+  "id": "Booking--21",
+  "verdict": "FAILURE",
+  "reason": "Dates and city are set correctly and a high-rated hotel is visible, but the free Wi-Fi+parking requirement is never verified and the named answer (Mary MacKillop Place) appears in none of the screenshots, so the core criteria are unsupported by the ground-truth evidence."
+}

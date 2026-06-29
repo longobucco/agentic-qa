@@ -1,0 +1,8 @@
+{
+  "id": "GitHub--30",
+  "bucket": "GitHub",
+  "web_name": "GitHub",
+  "ques": "Search for an open-source project related to 'blockchain technology' on GitHub updated in the past 15 days and list the top five contributors.",
+  "web": "https://github.com/",
+  "answer": "Project: yeasy/blockchain_guide (updated yesterday, within the past 15 days). Top five contributors: 1) yeasy (638 commits), 2) swbsin (24), 3) dependabot[bot] (11), 4) qiang0723 (6), 5) lafenicecc (5)."
+}

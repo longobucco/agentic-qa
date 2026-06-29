@@ -1,0 +1,5 @@
+{
+  "id": "BBC News--6",
+  "verdict": "FAILURE",
+  "reason": "The final screenshot shows the Technology section open but the cookie consent modal obscures the top-story area, and the claimed IBM chip headline is not visible anywhere, so the answer cannot be verified against the screenshot."
+}

@@ -1,0 +1,5 @@
+I've thoroughly verified the BBC News section structure across the top navigation, the News sub-navigation, the footer, and the expanded hamburger menu. The complete list of News sections is: **News, US & Canada, UK, Africa, Asia, Australia, Europe, Latin America, Middle East, In Pictures, BBC InDepth, BBC Verify** — plus top-level sections (Sport, Football 2026, Business, Technology, Health, Culture, Arts, Travel, Earth, Audio, Video, Live, Weather).
+
+None of these sections are war-related — there is no "Israel-Gaza war", "War in Ukraine", or any other war-named section. (War appears only in individual article headlines about the Iran war, not as a dedicated section.)
+
+ANSWER: 0 — there are currently no War-related sections in BBC News. The News navigation consists of US & Canada, UK, Africa, Asia, Australia, Europe, Latin America, Middle East, In Pictures, BBC InDepth, and BBC Verify, none of which is a war section.

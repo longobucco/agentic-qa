@@ -1,0 +1,5 @@
+{
+  "id": "Amazon--25",
+  "verdict": "FAILURE",
+  "reason": "The screenshot shows no effective $50\u2013$100 price filter (a EUR 24.99 topper appears at the top), prices are in EUR not USD, and no visible product simultaneously meets all constraints (queen + hypoallergenic + memory foam + $50\u2013$100), contradicting the response's filter claim."
+}

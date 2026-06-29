@@ -1,0 +1,8 @@
+{
+  "id": "Apple--12",
+  "bucket": "Apple",
+  "web_name": "Apple",
+  "ques": "What Apple Repair ways are mentioned on apple website, answer 2 of them.",
+  "web": "https://www.apple.com/",
+  "answer": "Two Apple Repair ways mentioned are (1) repair at an Apple retail store / Apple Authorized Service Provider, and (2) Self Service Repair (repair your own device using genuine Apple parts, tools, and manuals)."
+}

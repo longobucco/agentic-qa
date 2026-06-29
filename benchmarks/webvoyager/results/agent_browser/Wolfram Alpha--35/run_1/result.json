@@ -1,0 +1,8 @@
+{
+  "id": "Wolfram Alpha--35",
+  "bucket": "Wolfram Alpha",
+  "web_name": "Wolfram Alpha",
+  "ques": "Calculate the determinant of a 6x6 Hilbert matrix.",
+  "web": "https://www.wolframalpha.com/",
+  "answer": "1/186313420339200000 (\u2248 5.367 \u00d7 10\u207b\u00b9\u2078)"
+}

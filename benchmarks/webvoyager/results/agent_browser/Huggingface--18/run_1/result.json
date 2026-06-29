@@ -1,0 +1,8 @@
+{
+  "id": "Huggingface--18",
+  "bucket": "Huggingface",
+  "web_name": "Huggingface",
+  "ques": "Look up TRL's forward modelling in the hugging face documentation on how to add a margin to a loss.",
+  "web": "https://huggingface.co/",
+  "answer": "In TRL's Reward Modeling docs, add a margin to the loss by adding a `margin` column to your dataset (as in the Llama 2 paper). The RewardTrainer's reward collator passes it through automatically. E.g. `def add_margin(row): return {'margin': row['score_chosen'] - row['score_rejected']}` then `dataset = dataset.map(add_margin)`. If no margin column is passed, no margin is used."
+}

@@ -1,0 +1,9 @@
+Task complete. I located the one-way flight and analyzed the price trends. Final state captured.
+
+**Summary of analysis:**
+- **Route/date:** One-way Johannesburg (JNB, O.R. Tambo) → Toronto (YYZ, Pearson), Thu Jul 30, 2026, 1 adult.
+- **Lowest fare on Jul 30:** €724 (2 stops, British Airways/Aer Lingus); Google rates current prices as **"typical."**
+- **Price trend for the following month (August):** Prices stay in a stable, flat band of roughly **€650–€800** with no major dips — slightly *above* the Jul 30 fare. Sampled departure dates: Aug 19 = €771, Aug 22 = €761.
+- **Wider context:** Across the full graph window, early **September is the most expensive (~€900+)**, while the cheapest dates appear in **mid-September (~€575)**. So within August itself there's no significant savings opportunity versus Jul 30; waiting into mid-September would be cheaper.
+
+ANSWER: One-way Johannesburg→Toronto on Jul 30, 2026 (1 adult) starts at €724 (prices "typical"). For the following month (August), the price graph shows a flat trend holding roughly €650–€800 (e.g. Aug 19 ≈ €771, Aug 22 ≈ €761), slightly higher than the Jul 30 fare with no notable dips; the cheapest dates in the broader window fall in mid-September (~€575) and the most expensive in early September (~€920).

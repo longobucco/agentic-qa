@@ -1,0 +1,3 @@
+I navigated to Hugging Face's Datasets page, applied the **Text Retrieval** task filter (under Natural Language Processing), and sorted by **Most downloads**. The top result is `isaacus/open-australian-legal-corpus` with ~176k downloads, ahead of `mteb/nfcorpus` (31.6k) and `microsoft/hnm-search-data` (23.7k).
+
+ANSWER: isaacus/open-australian-legal-corpus — the most downloaded Text Retrieval dataset on Hugging Face (~176k downloads).

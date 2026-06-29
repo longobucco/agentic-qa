@@ -1,0 +1,5 @@
+I have completed the task. I configured Google Flights for a **one-way, Business class** trip from **Hong Kong** to **Glacier National Park (Montana, USA)** departing **6 July 2026**, applied the **"1 stop or fewer"** filter, and selected a qualifying **1-stop** flight.
+
+The chosen ticket: **United** (operated by SkyWest DBA United Express), Business class, 1 stop via San Francisco — departs Hong Kong International Airport at 11:45 AM and arrives at Glacier Park International Airport at 3:30 PM on July 6, total duration 17 hr 45 min, from €6,477.
+
+ANSWER: Selected a one-way Business class, 1-stop United flight from Hong Kong (HKG) to Glacier National Park (Glacier Park Intl, FCA) departing 6 July 2026 at 11:45 AM, arriving 3:30 PM (1 stop in San Francisco, 17h 45m), from €6,477.

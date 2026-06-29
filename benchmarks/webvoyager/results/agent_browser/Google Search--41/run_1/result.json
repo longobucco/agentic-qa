@@ -1,0 +1,8 @@
+{
+  "id": "Google Search--41",
+  "bucket": "Google Search",
+  "web_name": "Google Search",
+  "ques": "Look up the current statistics of air pollution level in Los Angeles using Google Search.",
+  "web": "https://www.google.com/",
+  "answer": "Unable to retrieve \u2014 Google Search blocked automated access from this environment with a reCAPTCHA (\"unusual traffic\", IP 139.47.116.226), and I did not bypass the anti-bot image challenge required to proceed."
+}

@@ -1,0 +1,3 @@
+The title search for "SimCSE" on ArXiv returned "Showing 1–6 of 6 results for title: SimCSE", confirming 6 articles.
+
+ANSWER: 6

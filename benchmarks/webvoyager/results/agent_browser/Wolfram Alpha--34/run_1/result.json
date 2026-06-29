@@ -1,0 +1,8 @@
+{
+  "id": "Wolfram Alpha--34",
+  "bucket": "Wolfram Alpha",
+  "web_name": "Wolfram Alpha",
+  "ques": "Calculate the mass of Jupiter compared to Earth using Wolfram Alpha. Also, find the length of one day on Jupiter.",
+  "web": "https://www.wolframalpha.com/",
+  "answer": "Jupiter's mass is about 317.8 times Earth's mass (1.898\u00d710^27 kg vs 5.97\u00d710^24 kg), and one day on Jupiter (rotation period) is 9.925 hours \u2248 9 h 55 min 30 s."
+}

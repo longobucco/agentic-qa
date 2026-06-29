@@ -1,0 +1,8 @@
+{
+  "id": "Amazon--30",
+  "bucket": "Amazon",
+  "web_name": "Amazon",
+  "ques": "Locate the highest-rated fiction book released in 2026 on Amazon, with a minimum of 50 customer reviews.",
+  "web": "https://www.amazon.com/",
+  "answer": "Sweet Salvation (Love & Legacy Book 5) by Bella Matthews \u2014 4.9 out of 5 stars with 121 reviews, published June 25, 2026 (highest-rated 2026 fiction title with 50+ reviews)."
+}

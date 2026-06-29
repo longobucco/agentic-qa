@@ -1,0 +1,5 @@
+{
+  "id": "Cambridge Dictionary--30",
+  "verdict": "FAILURE",
+  "reason": "The only screenshot shows a Cloudflare bot-verification page on dictionary.cambridge.org, so the present perfect simple grammar and its affirmative/negative/interrogative examples were never accessed or displayed."
+}

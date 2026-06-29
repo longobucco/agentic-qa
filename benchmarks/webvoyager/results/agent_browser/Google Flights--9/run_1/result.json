@@ -1,0 +1,8 @@
+{
+  "id": "Google Flights--9",
+  "bucket": "Google Flights",
+  "web_name": "Google Flights",
+  "ques": "Find a one way economy flight from Pune to New York in Jan. 15th and show me how long it will take for flight transfer.",
+  "web": "https://www.google.com/travel/flights/",
+  "answer": "One-way economy Pune\u2192New York on Jan 15 \u2014 top result (\u20ac673, Air India + LOT via Delhi & Warsaw) has two transfers: a 4 hr 30 min overnight layover at New Delhi (DEL) and a 5 hr 50 min layover at Warsaw (WAW), for ~10 hr 20 min total transfer time (30 hr 30 min overall trip)."
+}

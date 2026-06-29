@@ -1,0 +1,5 @@
+{
+  "id": "Allrecipes--2",
+  "verdict": "FAILURE",
+  "reason": "Screenshots show only an access-blocked page from Allrecipes' parent (people.inc); no recipe meeting the vegetarian/<600-calorie/<1-hour-prep criteria was ever loaded or found."
+}

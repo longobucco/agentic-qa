@@ -1,0 +1,5 @@
+{
+  "id": "Allrecipes--42",
+  "verdict": "FAILURE",
+  "reason": "Both screenshots show only an Allrecipes/people.inc access-issue page with no recipe, rating, or review data, so no qualifying banana bread recipe was found."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "Huggingface--35",
+  "bucket": "Huggingface",
+  "web_name": "Huggingface",
+  "ques": "Find the latest Diffusion-related blog on Hugging Face, and read its intro or overview section to roughly summarize the content of the blog.",
+  "web": "https://huggingface.co/",
+  "answer": "The latest Diffusion blog is \"Waypoint-1.5: Higher-Fidelity Interactive Worlds for Everyday GPUs\" (Overworld, April 9, 2026). Its overview introduces Waypoint-1.5, a real-time generative video world model that builds on Waypoint-1 to bring interactive, explorable AI worlds to everyday consumer GPUs (RTX 3090\u20135090) at up to 720p/60 FPS, plus a new 360p tier for laptops and soon Apple Silicon \u2014 trained on ~100\u00d7 more data for more coherent, responsive worlds runnable locally instead of on datacenter clusters."
+}

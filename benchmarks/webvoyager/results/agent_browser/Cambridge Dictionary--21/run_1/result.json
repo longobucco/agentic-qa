@@ -1,0 +1,8 @@
+{
+  "id": "Cambridge Dictionary--21",
+  "bucket": "Cambridge Dictionary",
+  "web_name": "Cambridge Dictionary",
+  "ques": "Search for the word \"ephemeral\" on Cambridge Dictionary and find its translation into Spanish.",
+  "web": "https://dictionary.cambridge.org/",
+  "answer": "ef\u00edmero (ef\u00edmera) \u2014 though the live entry could not be loaded because Cambridge Dictionary's Cloudflare bot-verification challenge persistently blocked the headless browser."
+}

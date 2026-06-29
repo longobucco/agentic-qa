@@ -1,0 +1,5 @@
+{
+  "id": "Google Search--26",
+  "verdict": "FAILURE",
+  "reason": "The agent reached the correct Adobe Photoshop system-requirements page showing the macOS hardware requirements, but it hit the max-turns error and produced no final answer identifying those requirements, leaving the information-extraction task incomplete."
+}

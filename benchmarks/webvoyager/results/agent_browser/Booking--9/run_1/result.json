@@ -1,0 +1,8 @@
+{
+  "id": "Booking--9",
+  "bucket": "Booking",
+  "web_name": "Booking",
+  "ques": "Find hotels for 2 adults in London with a price less than 250 dollars for four days starting from December 25. You must browse the page and offer at least 3 options.",
+  "web": "https://www.booking.com/",
+  "answer": ""
+}

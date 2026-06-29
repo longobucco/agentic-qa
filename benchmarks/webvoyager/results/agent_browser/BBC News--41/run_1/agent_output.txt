@@ -1,0 +1,9 @@
+The final screenshot confirms the LIVE **Women's PGA Championship** leaderboard (a Women's Major) under the "Women's Majors" tab. I've read the full top-20 table from the accessibility tree.
+
+**Country count in the top 20** (the top-20 cut includes everyone ranked T19 or better — 29 players, since the next rank group is 30th):
+- 🇺🇸 **United States — 7** (Alexa Pano T2, Megan Khang T2, Andrea Lee T10, Jessica Porvasnik T19, Nelly Korda T19, Alison Lee T19, Auston Kim T19) → **most**
+- 🇰🇷 South Korea — 5 · 🇯🇵 Japan — 3 · 🇹🇭 Thailand — 3 · 🇩🇪 Germany — 2 · 🇨🇳 China — 2 · the rest (Australia, Taiwan, Canada, Singapore, Denmark, Russia, Netherlands) — 1 each
+
+**Australian player:** Only one Australian is up there — **Karis Davidson**, the best-placed Aussie at **5 under par, tied for 2nd place** (behind leader Ina Yoon at −9).
+
+ANSWER: On the LIVE Women's PGA Championship leaderboard (Women's Majors), the United States has the most players in the top 20 (7 players; South Korea is next with 5). The best-placed Australian is Karis Davidson at 5 under par, tied for 2nd place.

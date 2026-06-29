@@ -1,0 +1,8 @@
+{
+  "id": "Allrecipes--39",
+  "bucket": "Allrecipes",
+  "web_name": "Allrecipes",
+  "ques": "Locate a recipe for sushi rolls on Allrecipes with a minimum of 20 reviews. Show the Nutrition Facts and the main ingredients. Tell me how to store these rolls.",
+  "web": "https://www.allrecipes.com/",
+  "answer": "Unable to complete \u2014 Allrecipes is blocking the container's IP with a People Inc \"access issue\" page on all pages (homepage, search, and direct recipe URLs), so no sushi-roll recipe, reviews, nutrition facts, ingredients, or storage info could be retrieved."
+}

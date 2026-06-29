@@ -1,0 +1,8 @@
+{
+  "id": "ArXiv--42",
+  "bucket": "ArXiv",
+  "web_name": "ArXiv",
+  "ques": "Find an article published between 1 January 2000 and 1 January 2005 that requires Support Vector Machines in the title and its Journey ref is ACL Workshop.",
+  "web": "https://arxiv.org/",
+  "answer": "\"Using a Support-Vector Machine for Japanese-to-English Translation of Tense, Aspect, and Modality\" (arXiv:cs/0112003), by Murata, Uchimoto, Ma, and Isahara \u2014 submitted December 2001, Journal ref: \"ACL Workshop, the Data-Driven Machine Translation, 2001\"."
+}

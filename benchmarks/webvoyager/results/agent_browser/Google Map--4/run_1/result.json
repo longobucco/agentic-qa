@@ -1,0 +1,8 @@
+{
+  "id": "Google Map--4",
+  "bucket": "Google Map",
+  "web_name": "Google Map",
+  "ques": "Plan a trip from Boston Logan Airport to North Station.",
+  "web": "https://www.google.com/maps/",
+  "answer": "Route planned from Boston Logan International Airport to North Station (135 Causeway St, Boston). Best option: by car 19 min / 3.3 miles via MA-1A S (has tolls). Alternatives: public transit 27 min (Bus 33 \u2192 Blue Line \u2192 Orange Line), bike 23 min, walking 48 min."
+}

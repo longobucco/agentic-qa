@@ -1,0 +1,8 @@
+{
+  "id": "Google Search--7",
+  "bucket": "Google Search",
+  "web_name": "Google Search",
+  "ques": "Find the software requirements for iPhones that support AirDrop's ability to continue transmitting over the web when out of range.",
+  "web": "https://www.google.com/",
+  "answer": "iOS 17.1 or later (with both the sending and receiving iPhone signed in to iCloud/Apple Account). This feature, introduced in iOS 17.1, lets an in-progress AirDrop transfer continue over the internet (Wi-Fi or cellular) when the devices move out of Bluetooth/Wi-Fi range."
+}

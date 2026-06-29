@@ -1,0 +1,5 @@
+{
+  "id": "Booking--10",
+  "verdict": "FAILURE",
+  "reason": "While Drawing House (9.1 Paris hotel) and the dates/2-adults were set, the final availability section shows 'Select dates to see this property's availability and prices' and no room prices or free-cancellation badge ever rendered, so the required availability and free-cancellation criteria are unverified (and the agent itself admits this)."
+}

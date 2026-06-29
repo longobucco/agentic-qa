@@ -1,0 +1,8 @@
+{
+  "id": "ArXiv--23",
+  "bucket": "ArXiv",
+  "web_name": "ArXiv",
+  "ques": "Determine how many articles with the keyword 'autonomous vehicles' were published in the 'Electrical Engineering and Systems Science' section of ArXiv last week.",
+  "web": "https://arxiv.org/",
+  "answer": "5 articles"
+}

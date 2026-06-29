@@ -1,0 +1,8 @@
+The screenshot lives inside the container and is collected by the harness. I have all details verified from Wikipedia's "2026 UEFA Champions League final" page (the most recent final, since today is 27 June 2026).
+
+Summary of findings:
+- **When:** 30 May 2026
+- **Where:** Puskás Aréna, Budapest, Hungary
+- **Who won:** Paris Saint-Germain (the defending champions), beating Arsenal 1–1 after extra time, winning 4–3 on penalties — their second consecutive title.
+
+ANSWER: The most recent UEFA Champions League final was the 2026 final, held on 30 May 2026 at the Puskás Aréna in Budapest, Hungary. Paris Saint-Germain won it, defeating Arsenal 1–1 after extra time and 4–3 on penalties, retaining their title.

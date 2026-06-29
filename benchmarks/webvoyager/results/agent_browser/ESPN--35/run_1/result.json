@@ -1,0 +1,8 @@
+{
+  "id": "ESPN--35",
+  "bucket": "ESPN",
+  "web_name": "ESPN",
+  "ques": "Browse ESPN to find out when the next game of the Los Angeles Lakers will start. Then navigate to the ticket purchasing website from ESPN, what is the cheapest ticket available.",
+  "web": "https://www.espn.com/",
+  "answer": "No next game is currently scheduled \u2014 it's the NBA offseason (June 26, 2026): the 2025-26 season is over and the 2026-27 schedule isn't released yet, so ESPN lists no upcoming Lakers game/start time. On ESPN's ticket partner Vivid Seats there are no games on sale yet; the listed cheapest Lakers ticket is $11 (starting price)."
+}

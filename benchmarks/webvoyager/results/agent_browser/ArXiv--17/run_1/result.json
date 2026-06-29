@@ -1,0 +1,8 @@
+{
+  "id": "ArXiv--17",
+  "bucket": "ArXiv",
+  "web_name": "ArXiv",
+  "ques": "Find the paper 'GPT-4 Technical Report', when was v3 submitted?",
+  "web": "https://arxiv.org/",
+  "answer": "v3 of the 'GPT-4 Technical Report' (arXiv:2303.08774) was submitted on Mon, 27 Mar 2023 at 17:46:54 UTC."
+}

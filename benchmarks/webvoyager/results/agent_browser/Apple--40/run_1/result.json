@@ -1,0 +1,8 @@
+{
+  "id": "Apple--40",
+  "bucket": "Apple",
+  "web_name": "Apple",
+  "ques": "Find information on Apple website, and tell me the device weight of Apple Vision Pro and list 5 Built-in Apps it supports.",
+  "web": "https://www.apple.com/",
+  "answer": "Apple Vision Pro device weight is 26.4\u201328.2 ounces (750\u2013800 grams) \u2014 includes Light Seal and counterbalanced Dual Knit Band, varies by configuration; separate battery weighs 353 grams. 5 built-in apps it supports: Safari, Photos, Music, Mail, and Messages."
+}

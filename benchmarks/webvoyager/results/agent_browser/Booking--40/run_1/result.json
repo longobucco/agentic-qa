@@ -1,0 +1,8 @@
+{
+  "id": "Booking--40",
+  "bucket": "Booking",
+  "web_name": "Booking",
+  "ques": "I need to choose a hotel in Shenzhen, please select date (6 July to 8 July 2026) and click the search button. How much it costs when convert the price to Chinese Yuan on the page.",
+  "web": "https://www.booking.com/",
+  "answer": ""
+}

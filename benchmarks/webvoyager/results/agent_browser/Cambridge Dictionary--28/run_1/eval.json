@@ -1,0 +1,5 @@
+{
+  "id": "Cambridge Dictionary--28",
+  "verdict": "FAILURE",
+  "reason": "The final screenshot shows only a Cloudflare human-verification page on dictionary.cambridge.org; the Thesaurus entry for 'feel giddy' never loaded and no synonyms were retrieved."
+}

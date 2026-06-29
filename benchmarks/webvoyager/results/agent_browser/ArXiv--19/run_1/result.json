@@ -1,0 +1,8 @@
+{
+  "id": "ArXiv--19",
+  "bucket": "ArXiv",
+  "web_name": "ArXiv",
+  "ques": "Which university maintains and manages ArXiv. Accessing the university's website from ArXiv, how many underegraduate students are currently at the university.",
+  "web": "https://arxiv.org/",
+  "answer": "Cornell University maintains and manages ArXiv. According to Cornell's official About page (reached from the Cornell University link on arxiv.org), the university currently has 16,138 undergraduate students."
+}

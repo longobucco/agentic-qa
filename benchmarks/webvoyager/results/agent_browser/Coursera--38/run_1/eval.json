@@ -1,0 +1,5 @@
+{
+  "id": "Coursera--38",
+  "verdict": "SUCCESS",
+  "reason": "The filtered partners page shows exactly the 5 Australian university partners listed in the response (Macquarie, Melbourne, Sydney, Western Australia, UNSW), all universities and no companies, matching the agent's answer."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "Google Map--1",
+  "bucket": "Google Map",
+  "web_name": "Google Map",
+  "ques": "Tell me one bus stop that is nearest to the intersection of main street and Amherst street in Altavista.",
+  "web": "https://www.google.com/maps/",
+  "answer": "Amherst and 7th (a bus stop in Altavista, VA, served by ACTS, ~0.2 miles from the Amherst Ave & Main St intersection)"
+}

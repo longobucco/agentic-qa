@@ -1,0 +1,14 @@
+The route from Miami to New Orleans is now displayed with full detailed turn-by-turn information.
+
+**Driving route: Miami, FL → New Orleans, LA**
+- **Total:** 12 h 41 min (868 miles), via **I-10 W**
+- Fastest route now; avoids accidents on I-95 Express. ⚠️ Has tolls. ⚠️ Destination is in a different time zone.
+
+**Turn-by-turn steps:**
+1. Take **I-95 N** — 6 min (1.4 mi)
+2. Take **Florida's Tpke, I-75 N, and I-10 W** toward Cleveland Ave in New Orleans. Take exit **235B** from I-10 W — 12 h 14 min (866 mi)
+3. Continue on **Cleveland Ave** to **Loyola Ave** — 4 min (0.7 mi) → Arrive in New Orleans, Louisiana
+
+Alternative routes: via I-95 N & I-10 W (13 h 8 min, 897 mi) by car, or flights from Fort Lauderdale to New Orleans (~2 h, from €218).
+
+ANSWER: Driving route Miami → New Orleans: 12 h 41 min, 868 miles via I-10 W (fastest, has tolls, destination in a different time zone). Steps: (1) Take I-95 N — 6 min (1.4 mi); (2) Take Florida's Tpke, I-75 N and I-10 W toward Cleveland Ave, exit 235B from I-10 W — 12 h 14 min (866 mi); (3) Continue on Cleveland Ave to Loyola Ave — 4 min (0.7 mi), arriving New Orleans, LA.

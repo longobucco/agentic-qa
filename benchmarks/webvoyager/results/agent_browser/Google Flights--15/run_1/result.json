@@ -1,0 +1,8 @@
+{
+  "id": "Google Flights--15",
+  "bucket": "Google Flights",
+  "web_name": "Google Flights",
+  "ques": "Compare the prices and total duration of non-stop flights from New York to Tokyo Narita Airport departing on July 12th, 2026, and returning on July 26th, 2026.",
+  "web": "https://www.google.com/travel/flights/",
+  "answer": "Only one non-stop flight is available: United/ANA from Newark (EWR) to Tokyo Narita (NRT), total duration 13 hr 50 min, priced at \u20ac1,668 round-trip total. With just one non-stop option, there is no price/duration spread to compare among non-stops."
+}

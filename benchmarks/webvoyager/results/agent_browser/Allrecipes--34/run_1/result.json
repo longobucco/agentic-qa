@@ -1,0 +1,8 @@
+{
+  "id": "Allrecipes--34",
+  "bucket": "Allrecipes",
+  "web_name": "Allrecipes",
+  "ques": "Locate a baked salmon recipe on Allrecipes that has at least 50 reviews and a rating of 4.5 stars or higher. Note the primary seasoning or herb used and the estimated cooking time.",
+  "web": "https://www.allrecipes.com/",
+  "answer": "Unable to complete \u2014 allrecipes.com is blocked from this environment (server returns an \"access issue\" page for all URLs), so no baked salmon recipe data (rating, reviews, seasoning, or cooking time) could be retrieved."
+}

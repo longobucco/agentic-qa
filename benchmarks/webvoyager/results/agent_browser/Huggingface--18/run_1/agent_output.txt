@@ -1,0 +1,13 @@
+I found the relevant documentation. The task referred to TRL's **Reward Modeling** ("forward modelling") page in the Hugging Face docs, which has a section titled **"Adding a margin to the loss."**
+
+According to the docs (as in the Llama 2 paper), you add a margin to the reward model's loss by adding a `margin` column to your dataset — the reward collator automatically passes it through and the loss is computed accordingly. The documented way to create that column:
+
+```python
+def add_margin(row):
+    # Assume you have a score_chosen and score_rejected columns that you want to use to compute the margin
+    return {'margin': row['score_chosen'] - row['score_rejected']}
+
+dataset = dataset.map(add_margin)
+```
+
+ANSWER: In TRL's Reward Modeling docs, add a margin to the loss by adding a `margin` column to your dataset (as in the Llama 2 paper). The RewardTrainer's reward collator passes it through automatically. E.g. `def add_margin(row): return {'margin': row['score_chosen'] - row['score_rejected']}` then `dataset = dataset.map(add_margin)`. If no margin column is passed, no margin is used.

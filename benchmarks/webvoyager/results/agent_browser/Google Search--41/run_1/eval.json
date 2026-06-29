@@ -1,0 +1,5 @@
+{
+  "id": "Google Search--41",
+  "verdict": "FAILURE",
+  "reason": "All screenshots, including the final one, show Google's reCAPTCHA 'unusual traffic' block page with no air pollution statistics retrieved, so the task was not accomplished."
+}

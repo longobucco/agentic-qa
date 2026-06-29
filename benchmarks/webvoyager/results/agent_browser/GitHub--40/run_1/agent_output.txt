@@ -1,0 +1,3 @@
+The task is complete. After selecting "Sign up" on the GitHub homepage and entering the email `test123@gmail.com`, GitHub displayed the validation message: **"The email you have provided is already associated with an account."** — confirming the email already exists.
+
+ANSWER: Yes, the email 'test123@gmail.com' already exists — GitHub's sign-up form shows "The email you have provided is already associated with an account."

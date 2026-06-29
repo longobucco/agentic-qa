@@ -1,0 +1,8 @@
+{
+  "id": "ArXiv--40",
+  "bucket": "ArXiv",
+  "web_name": "ArXiv",
+  "ques": "How many articles are there on each of the three most recent announce days in the Solar and Stellar Astrophysics section of ArXiv. Choose one at random and answer its title and when the first version was uploaded?",
+  "web": "https://arxiv.org/",
+  "answer": "Article counts on the three most recent announce days in astro-ph.SR \u2014 Fri 26 Jun 2026: 24, Thu 25 Jun 2026: 23, Wed 24 Jun 2026: 18. Randomly chosen article arXiv:2606.25636: \"Observation of A Solar Like Magnetic Reconnection Event in an AGN Corona with XRISM\"; its first version (v1) was uploaded on Wed, 24 Jun 2026 at 09:41:18 UTC."
+}

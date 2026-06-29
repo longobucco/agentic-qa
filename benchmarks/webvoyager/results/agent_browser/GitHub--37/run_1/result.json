@@ -1,0 +1,8 @@
+{
+  "id": "GitHub--37",
+  "bucket": "GitHub",
+  "web_name": "GitHub",
+  "ques": "List the 3 features mentioned in GitHub's Copilot product page.",
+  "web": "https://github.com/",
+  "answer": "The 3 features are: (1) \"Go beyond one-size-fits-all\" \u2014 choose from leading LLMs optimized for speed, accuracy, or cost; (2) \"Use your agents, your way\" \u2014 use GitHub Copilot, your own custom agents, or third-party ones; (3) \"Stay in your flow\" \u2014 Copilot works where you do, across GitHub, your IDE, the CLI, project tools, chat apps, and custom MCP servers."
+}

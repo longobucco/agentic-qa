@@ -1,0 +1,5 @@
+The final screenshot clearly shows the parameter documentation. I've confirmed the answer from the HuggingFace Transformers docs (LlamaTokenizer reference):
+
+`spaces_between_special_tokens` is documented as: **`(bool, optional, defaults to False)` — Whether or not to add spaces between special tokens.**
+
+ANSWER: In `LlamaTokenizer`, the `spaces_between_special_tokens` parameter is of type `bool` (optional) and its default value is `False`.

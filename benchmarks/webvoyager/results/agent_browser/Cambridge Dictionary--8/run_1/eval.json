@@ -1,0 +1,5 @@
+{
+  "id": "Cambridge Dictionary--8",
+  "verdict": "FAILURE",
+  "reason": "Screenshots show only the Cloudflare bot-challenge page and never any Cambridge Dictionary entry for 'dog', so the three meanings were not actually found on the site."
+}

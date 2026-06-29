@@ -1,0 +1,8 @@
+{
+  "id": "Allrecipes--25",
+  "bucket": "Allrecipes",
+  "web_name": "Allrecipes",
+  "ques": "Find a popular quinoa salad recipe on Allrecipes with more than 500 reviews and a rating above 4 stars. Create a shopping list of ingredients for this recipe and include the total cooking and preparation time.",
+  "web": "https://www.allrecipes.com/",
+  "answer": "BLOCKED \u2014 Allrecipes returns HTTP 402 (access-denied block page) for all URLs from this container's IP (139.47.116.226), so no quinoa salad recipe, ratings/reviews, ingredients, or cooking time could be retrieved. Task could not be completed due to the site blocking access."
+}

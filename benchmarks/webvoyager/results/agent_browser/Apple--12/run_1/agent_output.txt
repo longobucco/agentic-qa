@@ -1,0 +1,7 @@
+The Apple Repair page (support.apple.com/repair) describes several ways to get an Apple product serviced:
+- **Apple retail stores** — Apple-certified repairs using genuine parts
+- **Apple Authorized Service Providers** — certified repairs covered by warranty/AppleCare
+- **Self Service Repair** — repair your own device with genuine Apple parts, tools, and manuals
+- Independent (non-authorized) repair providers
+
+ANSWER: Two Apple Repair ways mentioned are (1) repair at an Apple retail store / Apple Authorized Service Provider, and (2) Self Service Repair (repair your own device using genuine Apple parts, tools, and manuals).

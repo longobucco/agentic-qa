@@ -1,0 +1,5 @@
+{
+  "id": "ESPN--29",
+  "verdict": "SUCCESS",
+  "reason": "The screenshots show the agent navigated to ESPN's Soccer section, where the lead headline is the 'World Cup LIVE: Haaland on bench as Norway, France battle to win Group I' story, then opened that article and produced a summary matching the visible content, satisfying both the identify and summarize parts of the task."
+}

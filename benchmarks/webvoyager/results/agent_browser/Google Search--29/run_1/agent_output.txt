@@ -1,0 +1,7 @@
+The screenshot lives inside the container (the harness collects it). The page is at the top showing the infobox with "World records — Usain Bolt (JAM) 9.58 (2009)". The task is complete.
+
+I confirmed via Wikipedia's authoritative "100 metres" article: the current men's 100m world record is **9.58 seconds**, set by Usain Bolt (Jamaica) on 16 August 2009 in Berlin, Germany.
+
+(Note: Google, DuckDuckGo, and Bing all blocked the automated browser with CAPTCHA/Cloudflare challenges, so I went directly to Wikipedia as the authoritative source.)
+
+ANSWER: The men's 100m sprint world record is 9.58 seconds, set by Usain Bolt (Jamaica) on 16 August 2009 in Berlin, Germany.

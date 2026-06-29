@@ -1,0 +1,8 @@
+{
+  "id": "Coursera--21",
+  "bucket": "Coursera",
+  "web_name": "Coursera",
+  "ques": "Search for an online course on Coursera about 'Digital Marketing', suitable for beginner-level learners. Specify the course duration, the main learning outcomes, and the institution offering the course.",
+  "web": "https://www.coursera.org/",
+  "answer": "Course: \"Foundations of Digital Marketing and E-commerce\" by Google (Google Career Certificates), part of the Google Digital Marketing & E-commerce Professional Certificate. Level: Beginner (no prior experience required). Duration: 4 modules, flexible schedule, about 1 week at 10 hours/week (~3 hours per module). Main learning outcomes: (1) Define the fields of digital marketing and e-commerce; (2) Describe the job responsibilities of an entry-level digital marketer/e-commerce specialist; (3) Explain the concept of a marketing funnel; (4) Understand the elements and goals of a digital marketing and e-commerce strategy."
+}

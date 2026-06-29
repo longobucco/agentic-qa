@@ -1,0 +1,5 @@
+{
+  "id": "Allrecipes--21",
+  "verdict": "FAILURE",
+  "reason": "Both screenshots show only the People Inc. access-block page with no recipe, ingredients, or timing, and the agent admits it could not retrieve the requested gluten-free brownie recipe."
+}

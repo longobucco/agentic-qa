@@ -1,0 +1,18 @@
+I browsed destinations from **Seattle (SEA)** on the Google Flights Explore map and reviewed prices, flight times, and a detailed destination panel (San Francisco). Based on famous places that are close and reasonably priced, here are my recommendations.
+
+## Top recommendations from Seattle (famous, short, affordable)
+
+| Destination | Price (round trip) | Flight | Why go |
+|---|---|---|---|
+| **Los Angeles** 🌴 | €113 | Nonstop, ~3h | Hollywood, beaches, Disneyland — cheapest famous pick |
+| **Las Vegas** 🎰 | €113 | Nonstop, ~2h42m | The Strip + gateway to the Grand Canyon |
+| **San Diego** 🏖️ | €147 | Nonstop, ~2h53m | Beaches, world-famous zoo, Balboa Park |
+| **Portland** 🌲 | €156 | Nonstop, **59 min** | Closest hop — food, coffee, Columbia Gorge |
+| **Denver** 🏔️ | €158 | Nonstop, ~2h52m | Gateway to the Rocky Mountains |
+| **San Francisco** 🌉 | €185 | Nonstop, ~2h17m | Golden Gate Bridge, Alcatraz (iconic, peak season Jul–Oct) |
+
+**Best value overall:** Los Angeles and Las Vegas at just €113 nonstop. **Best quick getaway:** Portland (under 1 hour). **Most iconic for a weekend:** San Francisco — nonstop in ~2h20m with hotels from ~€60/night.
+
+All of these are West Coast / Western US, so they stay within a short nonstop flight and under ~€200 round trip. Farther famous cities like New York (€263, nonstop 5h26m) are also reachable but cost more and take longer.
+
+ANSWER: From Seattle, the best famous, close, and affordable trips are Los Angeles (€113, nonstop ~3h), Las Vegas (€113, nonstop ~2h42m), San Diego (€147, nonstop ~2h53m), Portland (€156, nonstop 59m), Denver (€158, nonstop ~2h52m), and San Francisco (€185, nonstop ~2h17m) — all West Coast/Western US picks under ~€200 round trip; New York is reachable nonstop too but pricier (€263, ~5h26m).

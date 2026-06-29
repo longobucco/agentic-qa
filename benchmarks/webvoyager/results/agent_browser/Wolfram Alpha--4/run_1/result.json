@@ -1,0 +1,8 @@
+{
+  "id": "Wolfram Alpha--4",
+  "bucket": "Wolfram Alpha",
+  "web_name": "Wolfram Alpha",
+  "ques": "Pack 24 circles in a circle radius r. Compare Densest known packing and Square packing. Then tell me the radius of the inner circles.",
+  "web": "https://www.wolframalpha.com/",
+  "answer": "For 24 circles packed in a circle of radius r \u2014 Densest known packing: inner circle radius \u2248 0.176939 r (filled fraction 75.14%); Square packing: inner circle radius \u2248 0.163961 r (filled fraction 64.52%, 7.33% smaller than densest)."
+}

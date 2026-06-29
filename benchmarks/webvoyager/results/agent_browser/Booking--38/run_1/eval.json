@@ -1,0 +1,5 @@
+{
+  "id": "Booking--38",
+  "verdict": "FAILURE",
+  "reason": "The agent set the Vienna destination and Jun 28\u2013Jul 2 dates but ran out of turns without applying the required Parking, breakfast-included, and 8+ rating filters (results still show all 4351 unfiltered hotels) and produced no final answer."
+}

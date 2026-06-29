@@ -44,14 +44,18 @@ def build_claude_cmd(prompt, *, model=None, max_turns=None, add_dir=None,
     return cmd
 
 
-def run_claude(cmd, *, timeout) -> str:
+def run_claude(cmd, *, timeout, env=None) -> str:
     """Run a `claude -p` command and return its result text.
+
+    `env` (optional) overrides the child environment — used by the containerized runner to
+    hand the orchestrator a PATH where bare `agent-browser` is shadowed, so it can only drive
+    the browser via `docker exec` (no host browser). None => inherit the parent environment.
 
     Tolerant by design: on timeout, return whatever stdout was captured; if the output is
     not the expected JSON envelope, return the raw stdout. Never raises on a slow/odd run.
     """
     try:
-        proc = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
+        proc = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout, env=env)
         raw = proc.stdout
     except subprocess.TimeoutExpired as e:
         raw = (e.stdout or b"").decode() if isinstance(e.stdout, bytes) else (e.stdout or "")

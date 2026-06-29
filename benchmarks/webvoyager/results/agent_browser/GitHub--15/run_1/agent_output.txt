@@ -1,0 +1,10 @@
+I found a repository that meets all the criteria.
+
+**NVIDIA/cudaqx** — verified against every requirement:
+- **Topic:** quantum computing ✓
+- **Stars:** 106 (≥ 50) ✓
+- **Recently updated:** last commit 6 minutes ago, with multiple commits "last week" ✓
+
+**Description:** CUDA-QX is a set of accelerated libraries for quantum-classical computing built on NVIDIA CUDA-Q. It enables rapid development of hybrid quantum-classical applications—including quantum error correction (QEC) decoders and quantum solvers—leveraging state-of-the-art CPUs, GPUs, and QPUs. Written primarily in C++ and Python, licensed under Apache 2.0.
+
+ANSWER: NVIDIA/cudaqx (106 stars, last commit ~6 minutes ago) — "Accelerated libraries for quantum-classical computing built on CUDA-Q." It provides libraries that build on NVIDIA CUDA-Q to enable rapid development of hybrid quantum-classical applications (e.g., quantum error correction decoders and solvers) leveraging CPUs, GPUs, and QPUs.

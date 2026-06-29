@@ -1,0 +1,3 @@
+The walking directions from Central Park Zoo to The Broadway Theatre are displayed. Walking mode ("A pie") is selected, showing two routes — both 0.9 mile, with the fastest/shortest being via 7th Ave at 20 min.
+
+ANSWER: The least walking route from Central Park Zoo to The Broadway Theatre (1681 Broadway) is about 0.9 mile (~1.4 km), a 20-minute walk via 7th Ave. (The alternate via 6th Ave/W 53rd St is also 0.9 mile but 21 min.)

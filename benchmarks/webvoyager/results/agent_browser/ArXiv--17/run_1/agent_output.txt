@@ -1,0 +1,3 @@
+The submission history on the GPT-4 Technical Report abstract page (arXiv:2303.08774) shows version 3 was submitted on Monday, 27 March 2023.
+
+ANSWER: v3 of the 'GPT-4 Technical Report' (arXiv:2303.08774) was submitted on Mon, 27 Mar 2023 at 17:46:54 UTC.

@@ -1,0 +1,8 @@
+{
+  "id": "Allrecipes--7",
+  "bucket": "Allrecipes",
+  "web_name": "Allrecipes",
+  "ques": "Find a popular recipe for a chocolate chip cookie and list the ingredients and preparation steps.",
+  "web": "https://www.allrecipes.com/",
+  "answer": "Could NOT load allrecipes.com \u2014 every URL returned a People Inc server-side \"access issue\" IP block (shown in final.png), so the live recipe could not be scraped. Best-effort from the site's most popular recipe, \"Best Chocolate Chip Cookies\" (#10813): Ingredients \u2014 1 cup softened butter, 1 cup white sugar, 1 cup packed brown sugar, 2 eggs, 2 tsp vanilla, 1 tsp baking soda, 2 tsp hot water, \u00bd tsp salt, 3 cups flour, 2 cups semisweet chocolate chips, 1 cup chopped walnuts (optional). Steps \u2014 1) Preheat 350\u00b0F; 2) cream butter and sugars; 3) beat in eggs, add vanilla; 4) dissolve baking soda in hot water, add with salt; 5) stir in flour, chips, walnuts; 6) drop spoonfuls on ungreased sheets; 7) bake ~10 min until edges browned."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "Allrecipes--38",
+  "bucket": "Allrecipes",
+  "web_name": "Allrecipes",
+  "ques": "Find a French ratatouille recipe on Allrecipes with a 4-star rating or higher and at least 15 reviews. Note the variety of vegetables included and the overall cooking time.",
+  "web": "https://www.allrecipes.com/",
+  "answer": "Unable to complete \u2014 Allrecipes blocked all access from this environment (site-wide \"access issue\" page on every URL, including the homepage, search, and direct recipe links), so no ratatouille recipe could be opened or evaluated."
+}

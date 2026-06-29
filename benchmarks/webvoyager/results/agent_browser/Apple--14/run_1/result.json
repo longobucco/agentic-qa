@@ -1,0 +1,8 @@
+{
+  "id": "Apple--14",
+  "bucket": "Apple",
+  "web_name": "Apple",
+  "ques": "Identify the upgrade options available for the cheapest base model of the MacBook Pro 14-inch with M3 chip, and calculate the total price difference from the base model to the maximum upgrade (no Pre-Installed Software) offered by Apple.",
+  "web": "https://www.apple.com/",
+  "answer": "The M3 MacBook Pro 14-inch is now discontinued on Apple's live site (only M5/M5 Pro/M5 Max are sold). For the M3 14-inch base model ($1,599: 8GB RAM, 512GB SSD), the upgrade options were memory (16GB +$200, 24GB +$400) and storage (1TB +$200, 2TB +$600). Maximum upgrade excluding pre-installed software = 24GB + 2TB = $2,599, a total price difference of $1,000."
+}

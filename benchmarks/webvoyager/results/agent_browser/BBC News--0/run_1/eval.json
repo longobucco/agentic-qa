@@ -1,0 +1,5 @@
+{
+  "id": "BBC News--0",
+  "verdict": "FAILURE",
+  "reason": "Both screenshots show only the BBC homepage blocked by a cookie consent dialog, providing no visual proof that the claimed renewable energy article was ever reached."
+}

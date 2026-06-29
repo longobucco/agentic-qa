@@ -1,0 +1,3 @@
+I searched GitHub for "Protein prediction" repositories sorted by most forks. The top result is **kexinhuang12345/DeepPurpose** (A Deep Learning Toolkit for DTI, Drug Property, PPI, DDI, Protein Function Prediction), which I confirmed has **304 forks** (1.2k stars) — the highest fork count among the protein-prediction projects.
+
+ANSWER: kexinhuang12345/DeepPurpose — a Deep Learning Toolkit for DTI, Drug Property, PPI, DDI, and Protein Function Prediction — has the highest number of forks (304 forks, ~1.2k stars).

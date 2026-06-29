@@ -1,0 +1,8 @@
+{
+  "id": "Wolfram Alpha--44",
+  "bucket": "Wolfram Alpha",
+  "web_name": "Wolfram Alpha",
+  "ques": "Solve the ODE, g' + cos(g) = 0, if there is a constant in the result, determine the value of the constant by the condition that g(0) = 1.",
+  "web": "https://www.wolframalpha.com/",
+  "answer": "g(x) = \u2212arcsin( coth( x \u2212 coth\u207b\u00b9(sin 1) ) ). The integration constant, fixed by g(0)=1, is coth\u207b\u00b9(sin 1) \u2248 0.9986."
+}

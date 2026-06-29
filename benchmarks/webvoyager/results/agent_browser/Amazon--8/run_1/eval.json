@@ -1,0 +1,5 @@
+{
+  "id": "Amazon--8",
+  "verdict": "FAILURE",
+  "reason": "The agent imposed unrequested 'New' and '4-stars-and-up' filters and its own response admits cheaper qualifying Samsung 10\u201310.9\" tablets exist (new offers from ~EUR 127.73, renewed ~EUR 90\u2013110), so the named Galaxy Tab A8 at EUR 202.50 is not actually the cheapest."
+}

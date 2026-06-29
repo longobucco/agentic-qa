@@ -1,0 +1,1 @@
+Waiting for the navigation loop to land on the course page before capturing the screenshot.

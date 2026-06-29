@@ -1,0 +1,5 @@
+{
+  "id": "Google Map--2",
+  "verdict": "SUCCESS",
+  "reason": "The final screenshot shows a Google Maps search for Apple stores near zip 90028 with a results list (Apple The Grove, Beverly Center, Century City, Tower Theatre) matching the agent's response, satisfying the task."
+}

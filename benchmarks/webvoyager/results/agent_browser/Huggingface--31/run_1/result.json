@@ -1,0 +1,8 @@
+{
+  "id": "Huggingface--31",
+  "bucket": "Huggingface",
+  "web_name": "Huggingface",
+  "ques": "Identify the latest machine learning model on Huggingface that specializes in detecting fake news, including the date of its last update.",
+  "web": "https://huggingface.co/",
+  "answer": "The latest fake-news detection model is \"helalsalloum/arabic-fake-news-model\", last updated about 13 hours ago (\u2248 2026-06-27)."
+}

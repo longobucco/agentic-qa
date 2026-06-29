@@ -1,0 +1,8 @@
+{
+  "id": "Huggingface--8",
+  "bucket": "Huggingface",
+  "web_name": "Huggingface",
+  "ques": "Retrieve an example of a pre-trained language model in natural language processing and identify the tasks it is specifically designed for, like translation or text summarization.",
+  "web": "https://huggingface.co/",
+  "answer": "Example pre-trained NLP language model: T5 (Text-To-Text Transfer Transformer), e.g. google-t5/t5-base by Google. It is specifically designed for NLP tasks including machine translation, document/text summarization, question answering, and classification (e.g., sentiment analysis), all framed in a unified text-to-text format."
+}

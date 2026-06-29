@@ -1,0 +1,8 @@
+{
+  "id": "BBC News--12",
+  "bucket": "BBC News",
+  "web_name": "BBC News",
+  "ques": "Find a picture in the travel section that contains food, tell me what the food is called and what region it comes from.",
+  "web": "https://www.bbc.com/news/",
+  "answer": "The food is non bread (Samarkand non) \u2014 a round flatbread with a thick chewy crust and black sesame seeds at the centre \u2014 and it comes from Samarkand, Uzbekistan."
+}

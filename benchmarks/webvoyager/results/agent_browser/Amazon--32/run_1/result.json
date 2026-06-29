@@ -1,0 +1,8 @@
+{
+  "id": "Amazon--32",
+  "bucket": "Amazon",
+  "web_name": "Amazon",
+  "ques": "Search for an electric kettle on Amazon with a capacity of at least 1.5 liters, made of stainless steel, and with a customer rating of 4 stars or above.",
+  "web": "https://www.amazon.com/",
+  "answer": "Found matching kettles by searching \"stainless steel electric kettle 1.5 liter\" and applying the 4 Stars & Up filter (424 results). Top match: Cosori Electric Kettle, Stainless Steel, 1.5L/1500W \u2014 stainless steel, \u22651.5 L capacity, and 4+ star rating."
+}

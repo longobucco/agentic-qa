@@ -1,0 +1,5 @@
+{
+  "id": "Cambridge Dictionary--38",
+  "verdict": "FAILURE",
+  "reason": "Both screenshots show the site blocked at a Cloudflare 'Verify you are human' challenge, so the agent never reached the Plus section, completed a Grammar quiz, or obtained any score."
+}

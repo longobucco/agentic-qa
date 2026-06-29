@@ -1,0 +1,8 @@
+{
+  "id": "Google Search--35",
+  "bucket": "Google Search",
+  "web_name": "Google Search",
+  "ques": "Look up the latest research paper related to black holes published in the journal \"Nature Astronomy\".",
+  "web": "https://www.google.com/",
+  "answer": "\"Discovery of quasar variability and early accretion disk signatures at cosmic dawn\" by Gene C. K. Leung, Anna-Christina Eilers, et al. \u2014 an Article published 08 June 2026 in Nature Astronomy, reporting black-hole accretion-disk signatures in an early-universe quasar."
+}

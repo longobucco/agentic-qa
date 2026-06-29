@@ -1,0 +1,5 @@
+{
+  "id": "BBC News--13",
+  "verdict": "SUCCESS",
+  "reason": "The screenshot confirms a BBC search for recent Trump news, and the response's summary aligns with the visible articles (inflation/Iran oil, Starmer 'lovely man', Israel/Lebanon criticism), satisfying both the search and summarize requirements."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "ESPN--1",
+  "bucket": "ESPN",
+  "web_name": "ESPN",
+  "ques": "Check the latest articles on ESPN for updates on any trades that occurred in the NBA within the past 2 days.",
+  "web": "https://www.espn.com/",
+  "answer": "ESPN's \"NBA trade tracker\" (updated ~7h ago) and related articles report several NBA trades within the past 2 days. June 25: the biggest deal \u2014 Charlotte Hornets traded LaMelo Ball (and Josh Green) to the Minnesota Timberwolves for Naz Reid, a 2033 unprotected first-round pick, three first-round pick swaps (2028/2029/2030), and three second-round picks. June 24 (draft day): Detroit Pistons traded Isaiah Stewart to the Memphis Grizzlies for three future second-round picks, plus numerous draft-pick swaps (Lakers\u2192Mavericks No. 56, Rockets\u2192Clippers No. 55, Knicks\u2192Pistons No. 53, Clippers\u2192Hawks No. 52, Magic\u2192Wizards No. 46, Bulls\u2192Pacers No. 38 for Kam Jones, Thunder/Heat second-rounder swap). June 23 (pre-draft): a four-team Knicks-Mavs-Cavs-Suns trade and multiple first-round pick deals. (The Giannis Antetokounmpo\u2013to\u2013Heat and Julius Randle\u2013to\u2013Nets blockbusters were ~3 days ago, just outside the 2-day window.)"
+}

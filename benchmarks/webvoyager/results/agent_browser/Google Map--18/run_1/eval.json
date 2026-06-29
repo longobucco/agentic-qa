@@ -1,0 +1,5 @@
+{
+  "id": "Google Map--18",
+  "verdict": "SUCCESS",
+  "reason": "The screenshot confirms Google Maps displays the Chicago\u2192Los Angeles route with full details (I-80 W ~29h fastest with tolls and time-zone note, an I-80 W/I-70 W alternative, and ~4h 15m flights), all consistent with the agent's printed response."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "Huggingface--25",
+  "bucket": "Huggingface",
+  "web_name": "Huggingface",
+  "ques": "In the Hugging Face documentation, find the tutorial on loading adapters with PEFT, tell me how to load in 8bit or 4bit.",
+  "web": "https://huggingface.co/",
+  "answer": "In the Transformers \"Parameter-efficient fine-tuning\" docs (Loading an adapter), use bitsandbytes via `BitsAndBytesConfig`: pass `quantization_config=BitsAndBytesConfig(load_in_8bit=True)` (or `load_in_4bit=True` for 4-bit) to `AutoModelForCausalLM.from_pretrained(...)`, plus `device_map=\"auto\"` to spread the model across hardware."
+}

@@ -1,0 +1,5 @@
+{
+  "id": "Google Map--23",
+  "verdict": "SUCCESS",
+  "reason": "The screenshot confirms Google Maps walking directions from The Met to Times Square, with the shortest route via 7th Ave at 43 min and longer 5th Ave alternatives at 46 min, matching the response."
+}

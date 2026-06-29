@@ -1,0 +1,8 @@
+{
+  "id": "Cambridge Dictionary--29",
+  "bucket": "Cambridge Dictionary",
+  "web_name": "Cambridge Dictionary",
+  "ques": "Go to the Plus section of Cambridge Dictionary, find Image quizzes and do an easy quiz about Animals and tell me your final score.",
+  "web": "https://dictionary.cambridge.org/",
+  "answer": "Unable to complete \u2014 dictionary.cambridge.org is blocked by a Cloudflare \"Verify you are human\" challenge that loops indefinitely for this headless browser, so the Plus Image quizzes (easy Animals quiz) could not be reached and no score was obtained."
+}

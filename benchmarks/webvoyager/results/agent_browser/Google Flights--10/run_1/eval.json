@@ -1,0 +1,5 @@
+{
+  "id": "Google Flights--10",
+  "verdict": "FAILURE",
+  "reason": "The screenshots show no Tokyo route, no submitted search, and no flight prices for the requested April 25\u2013May 15, 2026 dates, so the cheapest round-trip flights were never located."
+}

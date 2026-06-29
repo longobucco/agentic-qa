@@ -1,0 +1,8 @@
+{
+  "id": "Wolfram Alpha--30",
+  "bucket": "Wolfram Alpha",
+  "web_name": "Wolfram Alpha",
+  "ques": "Calculate the estimated time to sunburn for different skin types when exposed to the sun at 1:00 pm with SPF 1 in Brazil.",
+  "web": "https://www.wolframalpha.com/",
+  "answer": "At 1:00 pm with SPF 1 in Brazil (Bras\u00edlia), the estimated time to sunburn is: skin type I = 26 min, skin type II = 33 min, skin type III = 50 min, skin type IV = 1 h 10 min, skin type V = 1 h 58 min, and skin type VI = sunburn unlikely (UV exposure category: high)."
+}

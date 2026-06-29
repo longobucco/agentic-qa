@@ -1,0 +1,8 @@
+{
+  "id": "GitHub--29",
+  "bucket": "GitHub",
+  "web_name": "GitHub",
+  "ques": "Compare the maximum number of private repositories allowed in the Free and Pro plans in GitHub Pricing.",
+  "web": "https://github.com/",
+  "answer": "Both are Unlimited \u2014 GitHub's Free and Pro (now the $4/user/mo Team) plans each allow an unlimited number of private repositories, with no maximum cap; they differ only in features, not in private-repo count."
+}

@@ -1,0 +1,7 @@
+I've completed the task. I searched GitHub for repositories matching "AI agriculture" created in 2022, sorted by stars, and identified the top open-source project.
+
+**Project: `microsoft/farmvibes-ai`** (875 stars, created 2022)
+- **Main programming language:** Jupyter Notebook
+- **Description:** "FarmVibes.AI: Multi-Modal GeoSpatial ML Models for Agriculture and Sustainability" — it lets you develop rich geospatial insights for agriculture by fusing multiple geospatial/spatiotemporal datasets (satellite imagery, drone imagery, weather data, etc.) to build robust remote-sensing and earth-observation models focused on agriculture and sustainability.
+
+ANSWER: microsoft/farmvibes-ai — a new open-source GitHub project created in 2022. Main language: Jupyter Notebook. Description: "FarmVibes.AI: Multi-Modal GeoSpatial ML Models for Agriculture and Sustainability" (fuses satellite, drone, and weather data to build geospatial ML insights for agriculture/farming and sustainability).

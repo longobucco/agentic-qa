@@ -1,0 +1,8 @@
+I found a Python repository meeting all the criteria using GitHub's advanced search (`language:Python stars:>=500 pushed:>2026-06-23`), which returned ~2,000 matching repos.
+
+The top result, **public-apis/public-apis**, confirms on its repo page:
+- **Language:** Python (96.8%)
+- **Stars:** 444k (≥ 500 ✓)
+- **Updated:** within the past 2 days (listed as "Updated yesterday")
+
+ANSWER: public-apis/public-apis — a Python repo (96.8% Python) with 444k stars, updated within the past 2 days (yesterday). It satisfies the criteria: Python, ≥500 stars, updated in the last 2 days.

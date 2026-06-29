@@ -1,0 +1,5 @@
+{
+  "id": "GitHub--3",
+  "verdict": "SUCCESS",
+  "reason": "The agent reached the GitHub Pricing page (confirmed by screenshots) and gave a specific, internally consistent answer\u201450GB Enterprise vs 2GB Team = 48GB more\u2014which the screenshots do not contradict."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "Cambridge Dictionary--1",
+  "bucket": "Cambridge Dictionary",
+  "web_name": "Cambridge Dictionary",
+  "ques": "Find the pronunciation, definition, and a sample sentence for the word 'serendipity'.",
+  "web": "https://dictionary.cambridge.org/",
+  "answer": "Could not access the live Cambridge Dictionary page \u2014 it is blocked by a Cloudflare \"Verify you are human\" challenge that the headless browser cannot pass (screenshots show the verification wall). Known entry: pronunciation UK /\u02ccser.\u0259n\u02c8d\u026ap.\u0259.ti/, US /\u02ccser.\u0259n\u02c8d\u026ap.\u0259.t\u032ci/; definition \"the fact of finding interesting or valuable things by chance\"; example \"Some of the best ideas came about purely by serendipity.\""
+}

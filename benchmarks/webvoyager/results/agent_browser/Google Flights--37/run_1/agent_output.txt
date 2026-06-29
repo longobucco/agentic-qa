@@ -1,0 +1,9 @@
+I've completed the task. I located a round-trip flight from Buenos Aires (Ezeiza) to Beijing (Daxing), departing June 28, 2026 and returning July 3, 2026, and checked out the lowest-price option (€2,436, bookable with Lufthansa).
+
+Looking at the selected itinerary:
+- **Departing flight** (Sun, Jun 28, Ezeiza → Beijing Daxing): operated by **Lufthansa, Air China**
+- **Return flight** (Fri, Jul 3, Beijing Daxing → Ezeiza): operated by **Air China, Lufthansa**
+
+Both legs are flown by the same two carriers — Lufthansa and Air China — so yes, the airlines for the return flight are the same as the departure flight.
+
+ANSWER: Yes — the return flight uses the same airlines as the departure flight. Both the outbound (Jun 28, Buenos Aires→Beijing) and return (Jul 3, Beijing→Buenos Aires) legs of this option are operated by Lufthansa and Air China.

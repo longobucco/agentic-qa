@@ -1,0 +1,8 @@
+{
+  "id": "Google Search--19",
+  "bucket": "Google Search",
+  "web_name": "Google Search",
+  "ques": "What are the first 7 bits of the SHA of the Bert's latest commit on GitHub, and what exactly was changed in that commit.",
+  "web": "https://www.google.com/",
+  "answer": "First 7 chars of the SHA: **eedf571**. It is the latest commit on google-research/bert (a merge of PR #1027, \"Add links to 24 smaller BERT models,\" by jacobdevlin-google on Mar 11, 2020). The change edited only README.md (+71 lines, \u22120): it added a \"New March 11th, 2020: Smaller BERT Models\" section releasing 24 smaller BERT models, with a download-links table (L=2\u201312 \u00d7 H=128\u2013768, including BERT-Tiny/Mini/Small/Medium/Base) and a GLUE scores table."
+}

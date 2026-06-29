@@ -1,0 +1,8 @@
+{
+  "id": "BBC News--4",
+  "bucket": "BBC News",
+  "web_name": "BBC News",
+  "ques": "Find the latest article regarding the economic implications of climate change in Europe as reported by BBC News and summarize the central points.",
+  "web": "https://www.bbc.com/news/",
+  "answer": "The latest BBC News article is \"Climate change supercharged Europe's floods, scientists warn\" (25 Sept 2024). It reports that climate change made Storm Boris's central-European floods twice as likely and far more damaging \u2014 at least 24 deaths and billions in losses. Economically, the EU pledged \u20ac10bn (\u00a38.3bn) in emergency repairs, and scientists stress \"just how expensive climate change is\": as Europe (the fastest-warming continent) heats up, extreme rainfall intensifies, threatening to make existing flood defences inadequate and impacts \"unbearable\" for European societies. Keeping warming below 1.5\u00b0C would roughly halve future flood damage, so cutting emissions is the key way to limit the rising economic toll."
+}

@@ -1,0 +1,8 @@
+I found exactly one article matching all criteria: a Support Vector Machine title, an ACL Workshop journal reference, and a submission date within 2000–2005.
+
+- **arXiv:cs/0112003** — "Using a Support-Vector Machine for Japanese-to-English Translation of Tense, Aspect, and Modality"
+- Authors: Masaki Murata, Kiyotaka Uchimoto, Qing Ma, Hitoshi Isahara
+- Submitted: 5 December 2001
+- Journal ref: ACL Workshop, the Data-Driven Machine Translation, 2001
+
+ANSWER: "Using a Support-Vector Machine for Japanese-to-English Translation of Tense, Aspect, and Modality" (arXiv:cs/0112003), by Murata, Uchimoto, Ma, and Isahara — submitted December 2001, Journal ref: "ACL Workshop, the Data-Driven Machine Translation, 2001".

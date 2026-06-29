@@ -1,0 +1,14 @@
+I completed the search for round-trip flights from Bangkok (BKK) to Madrid (MAD), departing July 26, 2026 and returning July 28, 2026, with prices displayed in USD.
+
+**Key finding:** There are **no round-trip options under $1,000** for these exact dates. The cheapest fares all exceed $1,000.
+
+Cheapest options found (round-trip total):
+- **$1,041** — Qatar Airways + Iberia, 1 stop (3h15m in Doha), 17h15m — *the cheapest*
+- **$1,120** — Qatar Airways, 1 stop (Doha)
+- **$1,128** — Condor + Air Europa, 1 stop (Frankfurt)
+- **$1,133** — Etihad, 1 stop (Abu Dhabi)
+- **$1,170** — Emirates, 1 stop (Dubai)
+
+Note: in EUR the cheapest showed as €914, but at Google's conversion rate that equals ~$1,041, so it does not meet the under-$1,000 criterion.
+
+ANSWER: The cheapest round-trip Bangkok→Madrid (Jul 26→28, 2026) is $1,041 (Qatar Airways + Iberia, 1 stop in Doha). No options are available under $1,000 — fares start at $1,041 and the next cheapest are ~$1,120 (Qatar Airways), $1,128 (Condor/Air Europa), and $1,133 (Etihad).

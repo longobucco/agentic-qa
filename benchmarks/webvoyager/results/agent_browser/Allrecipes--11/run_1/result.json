@@ -1,0 +1,8 @@
+{
+  "id": "Allrecipes--11",
+  "bucket": "Allrecipes",
+  "web_name": "Allrecipes",
+  "ques": "Discover a suitable chocolate cupcake recipe on Allrecipes that has a preparation time of under 1 hour and at least 100 user reviews.",
+  "web": "https://www.allrecipes.com/",
+  "answer": "Unable to complete \u2014 Allrecipes (People Inc.) is serving an IP-level access-block page for the container on every URL (homepage, search, recipe pages), so no chocolate cupcake recipe could be located or verified."
+}

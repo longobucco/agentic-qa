@@ -1,0 +1,17 @@
+I searched ESPN for "Los Angeles" and opened the **Teams** filter, which returned 11 matching teams. Counting those whose name literally contains "Los Angeles":
+
+**Teams with "Los Angeles" in their name (8):**
+1. Los Angeles Lakers — **NBA**
+2. Los Angeles Dodgers — MLB
+3. Los Angeles Sparks — WNBA
+4. Los Angeles Rams — NFL
+5. Los Angeles Angels — MLB
+6. Los Angeles Chargers — NFL
+7. Los Angeles Kings — NHL
+8. Los Angeles Knight Riders — Cricket
+
+(The other results — Las Vegas Raiders, LAFC, and LA Galaxy — don't spell out "Los Angeles" in their name.)
+
+Of these, only **1 is NBA**: the Los Angeles Lakers.
+
+ANSWER: 8 teams in ESPN's search results have "Los Angeles" in their name (Lakers, Dodgers, Sparks, Rams, Angels, Chargers, Kings, Knight Riders), and exactly 1 of them is an NBA team — the Los Angeles Lakers.

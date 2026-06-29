@@ -1,0 +1,5 @@
+{
+  "id": "Cambridge Dictionary--2",
+  "verdict": "FAILURE",
+  "reason": "Screenshots show only the search autocomplete and a Cloudflare bot-verification block \u2014 the agent never reached the definition page, and it admits the pronunciation/definition/example came from prior knowledge rather than the looked-up page."
+}

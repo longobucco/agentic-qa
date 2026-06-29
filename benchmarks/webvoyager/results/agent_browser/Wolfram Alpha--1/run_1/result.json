@@ -1,0 +1,8 @@
+{
+  "id": "Wolfram Alpha--1",
+  "bucket": "Wolfram Alpha",
+  "web_name": "Wolfram Alpha",
+  "ques": "Give a constraint on the set of inequalities for the inner region of the pentagram.",
+  "web": "https://www.wolframalpha.com/",
+  "answer": "One constraint from the pentagram's defining inequalities is: 2a + 3\u221a5\u00b7x + 5x \u2265 \u221a(2(5+\u221a5))\u00b7y (with the variable constraint a > 0). This is one conjunct of Wolfram|Alpha's full \"Defining inequalities\" set for the pentagram lamina."
+}

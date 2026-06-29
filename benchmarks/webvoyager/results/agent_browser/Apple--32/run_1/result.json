@@ -1,0 +1,8 @@
+{
+  "id": "Apple--32",
+  "bucket": "Apple",
+  "web_name": "Apple",
+  "ques": "Investigate the trade-in value for an iPhone 13 Pro Max on Apple's website.",
+  "web": "https://www.apple.com/",
+  "answer": "Apple's estimated trade-in value for an iPhone 13 Pro Max is \"Up to $320\" (actual amount depends on the device's condition, storage, and configuration)."
+}

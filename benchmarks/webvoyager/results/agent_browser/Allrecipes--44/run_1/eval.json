@@ -1,0 +1,5 @@
+{
+  "id": "Allrecipes--44",
+  "verdict": "FAILURE",
+  "reason": "The agent was blocked by an anti-bot page (HTTP 402) and never reached the Occasions section, listing zero of the required 6 holiday recipe sections and producing no answer."
+}

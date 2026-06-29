@@ -1,0 +1,8 @@
+{
+  "id": "GitHub--34",
+  "bucket": "GitHub",
+  "web_name": "GitHub",
+  "ques": "Search for an open-source project on GitHub related to 'Protein prediction' and identify the project with the highest number of forks.",
+  "web": "https://github.com/",
+  "answer": "kexinhuang12345/DeepPurpose \u2014 a Deep Learning Toolkit for DTI, Drug Property, PPI, DDI, and Protein Function Prediction \u2014 has the highest number of forks (304 forks, ~1.2k stars)."
+}

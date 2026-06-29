@@ -1,0 +1,7 @@
+I located the Angular repository at **github.com/angular/angular** and viewed its closed issues sorted by most recently closed. The last three issues closed are:
+
+1. **#69500** — "Docs: Improve discoverability of resource({ stream })" — closed ~2 hours ago (completed)
+2. **#69534** — "@angular/common: Denial of Service (DoS) via OOM in Date Formatting (formatDate)" — closed ~8 hours ago (not planned)
+3. **#69530** — "NgModule Zone.js Change Detection not working in Angular 22 - UI not updating" — closed ~14 hours ago (completed)
+
+ANSWER: In the angular/angular repository, the last three issues closed are: #69500 "Docs: Improve discoverability of resource({ stream })" (closed ~2h ago), #69534 "@angular/common: Denial of Service (DoS) via OOM in Date Formatting (formatDate)" (closed ~8h ago), and #69530 "NgModule Zone.js Change Detection not working in Angular 22 - UI not updating" (closed ~14h ago).

@@ -1,0 +1,10 @@
+I've completed the comparison. The latest MacBook Air models (with the new **M5 chip**) come in two sizes, both shown on Apple's Buy page:
+
+| Model | Starting Price | Financing |
+|-------|---------------|-----------|
+| **MacBook Air 13‑inch (M5)** | **$1,299** | $108.25/mo for 12 mo. |
+| **MacBook Air 15‑inch (M5)** | **$1,499** | $124.91/mo for 12 mo. |
+
+**Difference:** The 15‑inch model costs **$200 more** than the 13‑inch model for the base configuration. (Education pricing starts at $1,199 for the 13‑inch.)
+
+ANSWER: The latest MacBook Air (M5 chip) starts at $1,299 for the 13-inch and $1,499 for the 15-inch — the 15-inch costs $200 more than the 13-inch.

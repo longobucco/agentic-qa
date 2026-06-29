@@ -1,0 +1,5 @@
+{
+  "id": "Google Map--0",
+  "verdict": "SUCCESS",
+  "reason": "Screenshots show a Seattle beauty-salon map search confirming the named salons, and the agent returned 5 with ratings (5.0, 5.0, 4.9, 4.9, 4.9) all strictly greater than 4.8."
+}

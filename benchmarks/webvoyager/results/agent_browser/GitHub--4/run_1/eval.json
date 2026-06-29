@@ -1,0 +1,5 @@
+{
+  "id": "GitHub--4",
+  "verdict": "FAILURE",
+  "reason": "Screenshots confirm a popular JavaScript repo with a Readme but provide no evidence it was created in the last 30 days\u2014only 'Updated 4 hours ago' is shown, and the visible v4.8.3 / 13-release history contradicts a sub-30-day creation date."
+}

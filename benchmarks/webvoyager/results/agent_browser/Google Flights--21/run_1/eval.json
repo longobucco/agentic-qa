@@ -1,0 +1,5 @@
+{
+  "id": "Google Flights--21",
+  "verdict": "FAILURE",
+  "reason": "The final screenshot shows an error ('Oops, something went wrong') with no flight results, and the agent produced no answer, so no price, duration, or layover information was obtained."
+}

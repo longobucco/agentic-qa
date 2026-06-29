@@ -1,0 +1,8 @@
+{
+  "id": "Cambridge Dictionary--40",
+  "bucket": "Cambridge Dictionary",
+  "web_name": "Cambridge Dictionary",
+  "ques": "Look up the definition, pronunciation in UK English, and at least one example using the word 'mitigate'.",
+  "web": "https://dictionary.cambridge.org/",
+  "answer": "BLOCKED \u2014 Cambridge Dictionary's Cloudflare bot-verification looped and never cleared for the automated browser, so the live definition page for 'mitigate' could not be loaded or screenshotted. (Reference, unverified on-site: definition \"to make something less harmful, unpleasant, or bad\"; UK /\u02c8m\u026at.\u026a.\u0261e\u026at/; example \"It is unclear how to mitigate the effects of tourism on the island.\")"
+}

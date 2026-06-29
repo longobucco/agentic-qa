@@ -1,0 +1,3 @@
+I identified the most popular open-source cybersecurity-related repository by sorting GitHub's repository search for "cybersecurity" by most stars. The top result is **sherlock-project/sherlock** with **85.6k stars** — an OSINT tool that hunts down social media accounts by username across 400+ networks. Its repository topics explicitly list `cybersecurity`, `osint`, `forensics`, `infosec`, `pentesting`, `reconnaissance`, and `redteam`, confirming its relevance.
+
+ANSWER: sherlock-project/sherlock — ~85.6k stars (an open-source OSINT/cybersecurity tool that hunts down social media accounts by username across 400+ social networks).

@@ -1,0 +1,5 @@
+{
+  "id": "Huggingface--27",
+  "verdict": "SUCCESS",
+  "reason": "The final screenshot shows the Hugging Face Datasets page filtered to Text Retrieval (Reset Tasks active, all results are IR benchmarks) and sorted by Most downloads, with isaacus/open-australian-legal-corpus in the #1 position, matching the agent's answer."
+}

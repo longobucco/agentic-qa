@@ -1,0 +1,12 @@
+I completed the task. Here's what I found:
+
+**Method:** Using ArXiv Advanced Search, I queried `climate change modeling` (All fields) combined with the category filter `astro-ph.EP` (Cross-list category).
+
+**Findings:**
+- Across **all dates**, there are **25** papers matching "climate change modeling" in the Earth and Planetary Astrophysics (astro-ph.EP) category.
+- The two most recent were submitted **30 March 2026** and **16 March 2026** — nothing newer than March 2026.
+- Restricting the date range to the **last month** (2026-05-26 → 2026-06-26, today being 2026-06-26) returned **"Sorry, your query returned no results."**
+
+So in the last month, **0** such papers have been published.
+
+ANSWER: 0 — No papers matching "climate change modeling" were published in the astro-ph.EP (Earth and Planetary Astrophysics) category in the last month (2026-05-26 to 2026-06-26). The most recent matching paper dates to March 2026; there are 25 such papers across all dates.

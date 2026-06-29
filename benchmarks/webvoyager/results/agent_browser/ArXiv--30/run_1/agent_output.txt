@@ -1,0 +1,14 @@
+I located ArXiv's official submission guidelines on the "Formats for figures" page. Here's what they specify.
+
+**Accepted figure formats on ArXiv:**
+
+- **PostScript — PS, EPS** → used with **(La)TeX** processing
+- **JPEG, GIF, PNG, or PDF** → used with **PDFLaTeX** processing
+
+**Important constraints:**
+- You cannot mix formats: if you use **PDFLaTeX**, all figures must be `.pdf`, `.jpg`, or `.png`; if you use **(La)TeX**, all figures must be `.ps` or `.eps`. ArXiv does not perform figure file conversion for you.
+- Submissions with omitted figures are not accepted (external links to figures don't count).
+- File references are case-sensitive (e.g., `Figure1.PDF` ≠ `figure1.pdf`), so LaTeX inclusion commands must match the filename case exactly.
+- Use standard macro packages (`graphics`/`graphicx`) to include figures in the document.
+
+ANSWER: ArXiv accepts two figure-format groups depending on your processing path: PostScript (PS, EPS) for (La)TeX submissions, and JPEG, GIF, PNG, or PDF for PDFLaTeX submissions. Formats can't be mixed — PDFLaTeX requires .pdf/.jpg/.png and (La)TeX requires .ps/.eps.

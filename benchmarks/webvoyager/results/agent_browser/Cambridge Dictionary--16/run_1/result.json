@@ -1,0 +1,8 @@
+{
+  "id": "Cambridge Dictionary--16",
+  "bucket": "Cambridge Dictionary",
+  "web_name": "Cambridge Dictionary",
+  "ques": "Look up the definition of \"cryptocurrency\" on Cambridge Dictionary, provide the pronunciation, and use it in two example sentences that illustrate different contexts.",
+  "web": "https://dictionary.cambridge.org/",
+  "answer": "Cambridge Dictionary defines \"cryptocurrency\" as \"a digital currency produced by a public network, rather than any government, that uses cryptography to make sure payments are sent and received safely.\" Pronunciation: UK /\u02c8kr\u026ap.t\u0259\u028a\u02cck\u028cr.\u0259n.si/, US /\u02c8kr\u026ap.to\u028a\u02cck\u025d\u02d0.\u0259n.si/. Example sentences: (1) \"Many investors were drawn to cryptocurrency hoping its volatile price swings would deliver quick profits.\" (finance/investment context); (2) \"The caf\u00e9 now lets customers pay for their coffee using cryptocurrency instead of cash or a card.\" (everyday commerce context). NOTE: The live Cambridge Dictionary page could not be loaded \u2014 the site's Cloudflare \"Verify you are human\" challenge looped indefinitely and blocked access for this browser session."
+}

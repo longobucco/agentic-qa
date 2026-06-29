@@ -1,0 +1,7 @@
+I've completed the task. Here's what I found:
+
+**Key finding:** Apple's current MacBook Pro 16-inch line has been updated to the **M5 generation** (only M5 Pro and M5 Max chips are offered on the live buy page, starting at $2,999). The **Apple M4 Max** chip is no longer available to configure as a *new* machine on apple.com — it now only appears in the Certified Refurbished store, and even there the exact 16-inch / 16-core CPU / 40-core GPU variant was not in stock at the time of this visit.
+
+For the requested configuration — **MacBook Pro 16-inch, Apple M4 Max (16-core CPU, 40-core GPU), 64GB unified memory, 1TB SSD** — the original new retail price was **$4,199** (the base M4 Max 16-inch at $3,999 with 48GB, plus a $200 upgrade to 64GB unified memory).
+
+ANSWER: $4,199 (MacBook Pro 16-inch, M4 Max 16-core CPU/40-core GPU, 64GB memory, 1TB SSD — original new price; base $3,999 with 48GB + $200 for the 64GB upgrade). Note: this M4 Max config is no longer sold new on apple.com, which has moved to the M5 generation.

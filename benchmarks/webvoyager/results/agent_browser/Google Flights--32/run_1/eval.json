@@ -1,0 +1,5 @@
+{
+  "id": "Google Flights--32",
+  "verdict": "SUCCESS",
+  "reason": "The final screenshot shows round-trip Stockholm\u2192Toronto for Jul 3\u2013Jul 10, 2026, explicitly 'Sorted by duration' with the shortest being the nonstop Air Canada 8 hr 10 min flight, matching the agent's response."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "Google Flights--18",
+  "bucket": "Google Flights",
+  "web_name": "Google Flights",
+  "ques": "Compare flight options from New York to Tokyo for a round trip leaving on June 25, 2026, and returning on July 15, 2026, for one adult. Prioritize the comparisons by the shortest travel time.",
+  "web": "https://www.google.com/travel/flights/",
+  "answer": ""
+}

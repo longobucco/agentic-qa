@@ -1,0 +1,6 @@
+Both queries completed successfully on Wolfram Alpha:
+
+1. **Mass of Jupiter compared to Earth**: Jupiter is **317.8 times** the mass of Earth (Jupiter = 1.898×10²⁷ kg; Earth = 5.97×10²⁴ kg).
+2. **Length of one day on Jupiter**: **9.925 hours** (sidereal rotation period), i.e. 9 hours 55 minutes 30 seconds.
+
+ANSWER: Jupiter's mass is about 317.8 times Earth's mass (1.898×10^27 kg vs 5.97×10^24 kg), and one day on Jupiter (rotation period) is 9.925 hours ≈ 9 h 55 min 30 s.

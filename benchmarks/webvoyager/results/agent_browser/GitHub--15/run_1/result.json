@@ -1,0 +1,8 @@
+{
+  "id": "GitHub--15",
+  "bucket": "GitHub",
+  "web_name": "GitHub",
+  "ques": "Locate a repository on GitHub related to 'quantum computing' that has been updated within the last week and has at least 50 stars. Provide a brief description of the project.",
+  "web": "https://github.com/",
+  "answer": "NVIDIA/cudaqx (106 stars, last commit ~6 minutes ago) \u2014 \"Accelerated libraries for quantum-classical computing built on CUDA-Q.\" It provides libraries that build on NVIDIA CUDA-Q to enable rapid development of hybrid quantum-classical applications (e.g., quantum error correction decoders and solvers) leveraging CPUs, GPUs, and QPUs."
+}

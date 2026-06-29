@@ -1,0 +1,6 @@
+The final screenshot clearly captures both the inputs and the Results pod. The Spring pendulum computation on Wolfram Alpha returned, for the given parameters (k=120 N/m, equilibrium length=0.12 m, initial angle=80°, initial length=0.24 m, mass=1 kg, t=6 s):
+
+- **Final angle from vertical** = −73.26° (= −1.279 radians)
+- **Final length** = 25.21 cm (= 0.2521 m)
+
+ANSWER: Final angle from vertical ≈ -73.26° (-1.279 rad); final length ≈ 25.21 cm (0.2521 m).

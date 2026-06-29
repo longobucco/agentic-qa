@@ -1,0 +1,27 @@
+The live AllRecipes site was unreachable from this environment — every URL (homepage and the recipe page for the well-known "Best Chocolate Chip Cookies," recipe #10813) returned a hard server-side **"access issue"** block page from People Inc, with no dismissible banner and no retry success. So the recipe content could not be scraped from the live page; the final screenshot truthfully shows that block.
+
+For completeness, here is AllRecipes' most popular chocolate chip cookie recipe — **"Best Chocolate Chip Cookies"** (recipe 10813):
+
+**Ingredients**
+- 1 cup butter, softened
+- 1 cup white sugar
+- 1 cup packed brown sugar
+- 2 eggs
+- 2 tsp vanilla extract
+- 1 tsp baking soda
+- 2 tsp hot water
+- ½ tsp salt
+- 3 cups all-purpose flour
+- 2 cups semisweet chocolate chips
+- 1 cup chopped walnuts (optional)
+
+**Preparation steps**
+1. Preheat oven to 350°F (175°C).
+2. Cream together the butter, white sugar, and brown sugar until smooth.
+3. Beat in the eggs one at a time, then stir in the vanilla.
+4. Dissolve the baking soda in hot water and add to the batter along with the salt.
+5. Stir in the flour, chocolate chips, and walnuts.
+6. Drop by large spoonfuls onto ungreased baking sheets.
+7. Bake for about 10 minutes, or until the edges are nicely browned.
+
+ANSWER: Could NOT load allrecipes.com — every URL returned a People Inc server-side "access issue" IP block (shown in final.png), so the live recipe could not be scraped. Best-effort from the site's most popular recipe, "Best Chocolate Chip Cookies" (#10813): Ingredients — 1 cup softened butter, 1 cup white sugar, 1 cup packed brown sugar, 2 eggs, 2 tsp vanilla, 1 tsp baking soda, 2 tsp hot water, ½ tsp salt, 3 cups flour, 2 cups semisweet chocolate chips, 1 cup chopped walnuts (optional). Steps — 1) Preheat 350°F; 2) cream butter and sugars; 3) beat in eggs, add vanilla; 4) dissolve baking soda in hot water, add with salt; 5) stir in flour, chips, walnuts; 6) drop spoonfuls on ungreased sheets; 7) bake ~10 min until edges browned.

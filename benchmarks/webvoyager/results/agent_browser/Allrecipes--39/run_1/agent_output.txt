@@ -1,0 +1,7 @@
+I was unable to complete the task. Allrecipes (operated by People Inc) is serving a hard **access-block page** to the container's IP address on every URL I tried — the homepage (`/`), the search page (`/search?q=sushi%20rolls`), and a direct recipe page (`/recipe/142401/sushi-roll/`) all return the identical message:
+
+> "If you are a reader experiencing an access issue, please contact support@people.inc … you may include your IP address."
+
+This is a server-side IP/bot block, not a cookie banner or JS challenge — reloading and waiting did not change it, and there is no interactive element on the page to get past it. Because no recipe content ever loads, I cannot retrieve a sushi-roll recipe, its review count, Nutrition Facts, ingredients, or storage instructions. There is no in-browser action that can bypass an IP-level block; it would require changing the container's network egress/IP (outside my control here).
+
+ANSWER: Unable to complete — Allrecipes is blocking the container's IP with a People Inc "access issue" page on all pages (homepage, search, and direct recipe URLs), so no sushi-roll recipe, reviews, nutrition facts, ingredients, or storage info could be retrieved.

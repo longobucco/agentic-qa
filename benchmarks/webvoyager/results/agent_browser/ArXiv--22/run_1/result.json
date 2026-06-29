@@ -1,0 +1,8 @@
+{
+  "id": "ArXiv--22",
+  "bucket": "ArXiv",
+  "web_name": "ArXiv",
+  "ques": "Locate the ArXiv Help section and find instructions on how to subscribe to daily listing emails for new submissions in a specific category.",
+  "web": "https://arxiv.org/",
+  "answer": "In the ArXiv Help section (info.arxiv.org/help \u2192 \"Subscribe to E-Mail Listings\"), the page \"Subscribe to daily listing emails\" explains: send a plain-ASCII-text email to the archive's address `<archive>@arxiv.org` with `Subject: subscribe <Your Name>`. For archives with subject classes, list categories in the body (e.g. To: q-fin@arxiv.org, Subject: subscribe John Smith, body: \"add RM\"); for undivided archives just the subscribe subject line suffices; astro-ph/cond-mat/nlin subsets go through physics@arxiv.org. Cancel by emailing the archive with Subject: cancel."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "Apple--29",
+  "bucket": "Apple",
+  "web_name": "Apple",
+  "ques": "On Apple's website, check the estimated battery life of the latest MacBook Air during web browsing in Tech Specs.",
+  "web": "https://www.apple.com/",
+  "answer": "Up to 15 hours of wireless web browsing (the latest MacBook Air with Apple M5 has a 53.8\u2011watt\u2011hour battery rated for up to 15 hours of wireless web browsing, and up to 18 hours of video streaming)."
+}

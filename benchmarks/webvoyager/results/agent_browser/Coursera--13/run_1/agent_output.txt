@@ -1,0 +1,5 @@
+The final screenshot clearly captures the **Python for Everybody** Specialization (University of Michigan) page with the "Skills you'll gain" and "Tools you'll learn" sections fully visible. The task is complete.
+
+I found a Python-programming Specialization on Coursera — **Python for Everybody** by the University of Michigan (a 5-course series, Beginner level, rated 4.8 from 280K+ reviews) — and identified the skills it teaches.
+
+ANSWER: I found the "Python for Everybody" Specialization by the University of Michigan. Skills you'll gain: Program Development, Database Design, Web Scraping, Data Structures, File I/O, Data Visualization Software, Debugging, Data Store, Web Services, Programming Principles, Data Visualization, Relational Databases, Database Software, JSON, Restful API, and Python Programming.

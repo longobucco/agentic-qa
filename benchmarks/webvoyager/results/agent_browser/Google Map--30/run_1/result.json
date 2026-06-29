@@ -1,0 +1,8 @@
+{
+  "id": "Google Map--30",
+  "bucket": "Google Map",
+  "web_name": "Google Map",
+  "ques": "Locate a parking lot near the Brooklyn Bridge that open 24 hours. Review the user comments about it.",
+  "web": "https://www.google.com/maps/",
+  "answer": "Located \"LAZ Parking - The 1 Hotel Brooklyn Bridge Garage\" (60 Furman St, Brooklyn) \u2014 a 24-hour parking garage by the Brooklyn Bridge, rated 3.3 stars by users. Individual review comments were not viewable because Google Maps served a signed-out \"limited view\" that gates reviews behind sign-in; only the aggregate 3.3-star user rating was accessible."
+}

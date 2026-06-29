@@ -1,0 +1,8 @@
+{
+  "id": "Huggingface--2",
+  "bucket": "Huggingface",
+  "web_name": "Huggingface",
+  "ques": "Discover three new and popular open-source NLP models for language translation released in the past month on Huggingface.",
+  "web": "https://huggingface.co/",
+  "answer": "The three new, popular open-source (Apache-2.0) NLP translation models released in the past month are Tencent's Hunyuan-MT2 family: tencent/Hy-MT2-1.8B (24.1k downloads, 1.13k likes), tencent/Hy-MT2-7B (24.5k downloads, 189 likes), and tencent/Hy-MT2-30B-A3B (7.91k downloads, 466 likes) \u2014 all top-trending Translation models supporting 33 languages."
+}

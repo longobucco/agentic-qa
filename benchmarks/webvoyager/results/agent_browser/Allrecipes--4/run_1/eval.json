@@ -1,0 +1,5 @@
+{
+  "id": "Allrecipes--4",
+  "verdict": "FAILURE",
+  "reason": "All screenshots show an Allrecipes access-block page with no recipe accessed, so no Baked Salmon recipe meeting the <30-minute and 4-star criteria was ever found."
+}

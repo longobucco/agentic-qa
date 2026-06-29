@@ -1,0 +1,17 @@
+I've completed the task. Google Flights now shows economy, one-way flights Oslo (OSL) → Dubai, departing Wed July 8 2026, filtered to "2 stops or fewer" (no more than two layovers). Here's the price/duration comparison of the top options:
+
+| Price | Airline(s) | Stops | Total duration |
+|------|-----------|-------|----------------|
+| €273 | Pegasus | 1 stop (Istanbul SAW) | 10 hr 25 min |
+| €293 | Pegasus | 1 stop (Istanbul SAW) → AUH | 10 hr 45 min |
+| €492 | Emirates | Nonstop | 7 hr 25 min |
+| €606 | SAS + Emirates | 1 stop (Copenhagen) | 11 hr 15 min |
+| €630 | Qatar Airways | 1 stop (Doha) → SHJ | 9 hr 30 min |
+| €631 | Brussels + Etihad | 1 stop (Brussels) → AUH | 10 hr 45 min |
+| €682 | Turkish Airlines | 1 stop (Istanbul) | 10 hr 10 min – 11 hr 25 min |
+| €691 | SAS + Etihad | 1 stop (Brussels/AUH) | 10 hr 25 min |
+| €794 | SAS + Etihad | 1 stop | 8 hr 25 min |
+
+Key takeaways: the **cheapest** option is Pegasus at **€273** (1 stop, 10h25m), while the **fastest** is the **Emirates nonstop at €492** (7h25m). All listed results satisfy the "no more than two layovers" constraint (the displayed options are all nonstop or 1-stop).
+
+ANSWER: Economy Oslo→Dubai on Jul 8, 2026 (≤2 layovers): cheapest is Pegasus €273 (1 stop, 10h25m); fastest is Emirates nonstop €492 (7h25m). Other options: Pegasus €293/10h45m, SAS+Emirates €606/11h15m, Qatar €630/9h30m, Brussels+Etihad €631/10h45m, Turkish €682/10h10m–11h25m, SAS+Etihad €691/10h25m and €794/8h25m.
