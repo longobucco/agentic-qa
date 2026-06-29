@@ -1,0 +1,8 @@
+{
+  "id": "BBC News--3",
+  "bucket": "BBC News",
+  "web_name": "BBC News",
+  "ques": "Check the leaderboard for Golf's DP World Tour in the SPORT section, what was the name of the most recent tournament, and how many teams have a Total of -10 strokes.",
+  "web": "https://www.bbc.com/news/",
+  "answer": "The most recent DP World Tour tournament on the BBC Sport leaderboard is the Open d'Italia, and 0 teams/players have a Total of -10 (the best score is -8, by Edoardo Molinari, after round 1)."
+}

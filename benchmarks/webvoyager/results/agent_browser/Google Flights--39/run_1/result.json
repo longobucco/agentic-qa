@@ -1,0 +1,8 @@
+{
+  "id": "Google Flights--39",
+  "bucket": "Google Flights",
+  "web_name": "Google Flights",
+  "ques": "Find a one-way flight from Prague to a city in Japan on July 20, 2026, which city in Japan is cheaper to go to, Tokyo or a certain city in Hokkaido?",
+  "web": "https://www.google.com/travel/flights/",
+  "answer": "Tokyo is cheaper. A one-way Prague\u2192Tokyo flight on July 20, 2026 starts at about \u20ac590, while the cheapest Prague\u2192Sapporo (Hokkaido) flight is about \u20ac1139 \u2014 so Tokyo is the cheaper Japanese destination."
+}

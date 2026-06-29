@@ -1,0 +1,5 @@
+{
+  "id": "Coursera--37",
+  "verdict": "SUCCESS",
+  "reason": "The screenshot confirms a Coursera free-courses listing with multiple free courses, including named ones from the response (e.g., Getting Started with Microsoft Excel and Business Analysis & Process Management, the latter showing a 'Free' badge), satisfying the request to list at least three free courses."
+}

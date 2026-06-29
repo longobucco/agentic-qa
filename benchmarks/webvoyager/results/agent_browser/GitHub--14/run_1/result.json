@@ -1,0 +1,8 @@
+{
+  "id": "GitHub--14",
+  "bucket": "GitHub",
+  "web_name": "GitHub",
+  "ques": "Locate the repository for the open-source project \"vscode\" and identify the top three contributors.",
+  "web": "https://github.com/",
+  "answer": "Repository: microsoft/vscode. Top three contributors (all-time, by commits): 1) jrieken \u2014 12,806; 2) Tyriar \u2014 12,694; 3) joaomoreno \u2014 9,033."
+}

@@ -1,0 +1,11 @@
+I was unable to complete the task because **Allrecipes is blocking this environment at the server level**. Every URL on `allrecipes.com` — the homepage, the search page (`/search?q=vegan+brownies`), and a direct recipe page — returns an HTTP **402** response and renders a publisher "access issue" page from People Inc (the site's owner), not any recipe content. I confirmed this is consistent across multiple attempts and multiple URLs, with a realistic browser User-Agent, so it is a deliberate IP-level block rather than a transient rate-limit or a dismissible cookie/consent banner.
+
+What I tried:
+- Opened `https://www.allrecipes.com/` → access-block page
+- Opened the search results URL for "vegan brownies" → same block page
+- Opened a direct recipe URL (`/recipe/240620/best-vegan-brownies/`) → same block page
+- Verified HTTP status: `402` on every request across 3+ retries
+
+Because no recipe data is reachable, I cannot read any vegan brownie recipe's reviews, rating, ingredients, times, or steps from the live site, and I won't substitute information from another website (the task requires staying on Allrecipes). The final screenshot captures the blocked state.
+
+ANSWER: Unable to complete — Allrecipes is blocking this environment (HTTP 402 "access issue" page on every URL, including the homepage, search, and recipe pages), so no vegan brownie recipe, rating, reviews, ingredients, times, or steps could be retrieved from the live site.

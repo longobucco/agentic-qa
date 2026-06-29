@@ -1,0 +1,8 @@
+{
+  "id": "ArXiv--36",
+  "bucket": "ArXiv",
+  "web_name": "ArXiv",
+  "ques": "Search 'CVPR 2023' and 'CVPR2023' through journal ref on ArXiv to see how many results there are respectively.",
+  "web": "https://arxiv.org/",
+  "answer": "Searching by journal reference on arXiv: 'CVPR 2023' returns 52 results, and 'CVPR2023' returns 9 results."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "Booking--34",
+  "bucket": "Booking",
+  "web_name": "Booking",
+  "ques": "Search for a hotel in Berlin available for a three-night stay from July 15 to July 18, 2026, for one adult. Tell me the price in USD and CNY for the three-night stay.",
+  "web": "https://www.booking.com/",
+  "answer": ""
+}

@@ -1,0 +1,8 @@
+{
+  "id": "Cambridge Dictionary--39",
+  "bucket": "Cambridge Dictionary",
+  "web_name": "Cambridge Dictionary",
+  "ques": "Try the Word Scramble game in the Plus section, Can you beat the clock by unscrambling the letters to spell the word? (Just try the first example.)",
+  "web": "https://dictionary.cambridge.org/",
+  "answer": "Reached and launched the Word Scramble game in the Cambridge Dictionary +Plus section (\"Can you beat the clock by unscrambling the letters to spell the word?\") and clicked Play to try the first example, but the actual playable game (loaded from dictionary.cambridge.org/wordscramble/) is blocked by a Cloudflare \"verify you are human\" security challenge that the automated browser cannot pass, so the scramble could not be solved."
+}

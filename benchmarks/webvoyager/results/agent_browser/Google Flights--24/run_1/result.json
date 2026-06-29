@@ -1,0 +1,8 @@
+{
+  "id": "Google Flights--24",
+  "bucket": "Google Flights",
+  "web_name": "Google Flights",
+  "ques": "Compare prices for economy class round-trip flights from Dubai to Rome, departing on July 1, 2026, and returning on July 8, 2026, and select the option with the fewest stops.",
+  "web": "https://www.google.com/travel/flights/",
+  "answer": "Could not complete the price comparison \u2014 the search was correctly set up (round-trip Economy Dubai\u2192Rome, depart 2026-07-01, return 2026-07-08, Nonstop filter applied for fewest stops), but Google Flights' results backend repeatedly returned \"Oops, something went wrong / No results returned,\" so no prices or flight options could be retrieved."
+}

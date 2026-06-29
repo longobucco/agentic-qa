@@ -1,0 +1,8 @@
+{
+  "id": "Coursera--30",
+  "bucket": "Coursera",
+  "web_name": "Coursera",
+  "ques": "Locate the course 'Modern Art & Ideas' on Coursera offered by The Museum of Modern Art. Find out the percentage (rounded) of 3-star ratings in the reviews and note which star level has the lowest percentage.",
+  "web": "https://www.coursera.org/",
+  "answer": "3-star ratings are 2.42% (\u22482%). The lowest percentage is 2 stars at 0.63%."
+}

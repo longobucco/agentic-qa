@@ -1,0 +1,12 @@
+The task is complete. 
+
+Searching Google Maps for "Tesla Destination Charger near National Air and Space Museum" returned results ranked by proximity. The first entry (M St NE) is a Tesla *Supercharger*, a different charger type. The closest actual **Destination Charger** is located inside the **Salamander Washington DC** hotel.
+
+Details confirmed from the place panel:
+- **Name:** Tesla Destination Charger
+- **Address:** 1330 Maryland Ave SW, Washington, DC 20024
+- **Located in:** Salamander Washington DC
+- **Phone:** +1 202-554-8588
+- **Plus Code:** VXM9+CR
+
+ANSWER: Tesla Destination Charger at the Salamander Washington DC hotel — 1330 Maryland Ave SW, Washington, DC 20024.

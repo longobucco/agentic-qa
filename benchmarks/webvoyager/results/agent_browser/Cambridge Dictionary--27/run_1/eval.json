@@ -1,0 +1,5 @@
+{
+  "id": "Cambridge Dictionary--27",
+  "verdict": "FAILURE",
+  "reason": "The agent was blocked by a Cloudflare human-verification page and never reached the Cambridge Dictionary entry, so the meaning, pronunciation, and example sentence for 'solitude' were never actually looked up on the site as required."
+}

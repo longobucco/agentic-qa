@@ -1,0 +1,3 @@
+I navigated to GitHub's Machine Learning topic category (github.com/topics/machine-learning), which is sorted by most stars/top-trending. The top project is **tensorflow/tensorflow** ("An Open Source Machine Learning Framework for Everyone"), and I confirmed its star count on the repository page.
+
+ANSWER: The top-trending open-source Machine Learning project on GitHub is **tensorflow/tensorflow**, with approximately **196k stars** (196,000).

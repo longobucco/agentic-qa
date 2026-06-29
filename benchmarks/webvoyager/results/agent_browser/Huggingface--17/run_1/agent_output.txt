@@ -1,0 +1,3 @@
+I found the most recently updated open-source NLP project on Hugging Face by filtering the Models catalog to the Text Generation task and sorting by "Recently updated." The top result (updated less than a minute before viewing) was a Swahili text-generation language model, confirmed via its model card.
+
+ANSWER: Name: "swa-latn-100mb-after-ppt-shuff-dyck-100mb-ckpt500_seed3407" — Creator: fpadovani — Functionality: A GPT-2-based open-source causal language model for Swahili (swa-latn = Swahili in Latin script), fine-tuned via supervised fine-tuning (SFT, using the TRL library) on ~100MB of Swahili text; it performs text generation, producing/continuing Swahili-language text via the Transformers `text-generation` pipeline.

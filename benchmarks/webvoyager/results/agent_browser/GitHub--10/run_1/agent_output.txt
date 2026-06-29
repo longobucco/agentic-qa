@@ -1,0 +1,13 @@
+GitHub has rebranded the old "Copilot Individual" plan to **Copilot Pro**, which is the individual-tier subscription.
+
+**Cost:** $10 USD per user / month → **$120 USD per year** (the page now lists only monthly billing for individuals).
+
+**Features (Everything in the Free plan, plus):**
+- Access to Cloud agent and code review
+- Unlimited code completion and next edit suggestions
+- Access to 3rd-party agents (Claude Code and Codex)
+- Model selection
+- $15 monthly total credits for Pro
+- Inherited from Free: 2,000 completions/month baseline, access to Haiku 4.5, GPT-5 mini and more, and Copilot CLI
+
+ANSWER: Copilot Individual (now "Copilot Pro") costs $10 USD/month = $120 USD per year. Features (everything in Free plus): access to Cloud agent and code review, unlimited code completion and next edit suggestions, access to 3rd-party agents (Claude Code & Codex), model selection, and $15 in monthly total credits; plus Free-tier perks like Copilot CLI and access to Haiku 4.5/GPT-5 mini.

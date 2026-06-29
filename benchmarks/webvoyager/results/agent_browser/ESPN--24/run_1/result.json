@@ -1,0 +1,8 @@
+{
+  "id": "ESPN--24",
+  "bucket": "ESPN",
+  "web_name": "ESPN",
+  "ques": "Find the final score from the most recent NFL game broadcast on ESPN, including the teams' names and the date of the match.",
+  "web": "https://www.espn.com/",
+  "answer": "Super Bowl LX (Feb 8, 2026): Seattle Seahawks 29, New England Patriots 13 \u2014 the Seahawks won."
+}

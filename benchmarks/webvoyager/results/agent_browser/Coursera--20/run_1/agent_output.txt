@@ -1,0 +1,15 @@
+The task is complete. The final screenshot confirms the course page showing Intermediate level, 1 week duration, and the "What you'll learn" goals.
+
+I found a course matching all the criteria — Intermediate level, Course format, 1–4 weeks duration, from a well-known institution (New York Institute of Finance):
+
+**Course:** Introduction to Supply Chain Finance & Blockchain Technology
+- **Institution:** New York Institute of Finance (well-known finance education institution)
+- **Level:** Intermediate · **Duration:** 1 week (~10 hrs/week), within the 1–4 week range
+- **Instructor:** Oliver Belin (lead instructor; the course credits 2 instructors total)
+- **Main goals (What you'll learn):**
+  1. Recognize the various means to improve the working capital of your company or your corporate client
+  2. Recognize the process to implement and manage a Supply Chain Finance program
+  3. Identify the main players, competitors, and enablers in global Supply Chain Finance
+  4. Recognize the impact of new technologies in Supply Chain Finance and how to apply them
+
+ANSWER: Course: "Introduction to Supply Chain Finance & Blockchain Technology" by New York Institute of Finance — Intermediate level, 1 week (1–4 weeks). Instructor: Oliver Belin. Main goals: improve company/client working capital; implement and manage a Supply Chain Finance program; identify the main players, competitors and enablers in global Supply Chain Finance; and recognize/apply the impact of new technologies (incl. blockchain) in Supply Chain Finance.

@@ -1,0 +1,3 @@
+I was unable to complete the task. Every Allrecipes URL — the homepage, the search results page, and direct recipe pages — returns the same hard access-block page from People Inc. (Allrecipes' parent company): *"If you are a reader experiencing an access issue, please contact support@people.inc."* This is an IP-level block on the container, not a cookie/consent banner, and it persisted across multiple retries and waits. With the site inaccessible, I cannot search for, open, or verify the review count and rating of any recipe.
+
+ANSWER: Unable to complete — Allrecipes blocked all access from this environment (every page returned a People Inc. "access issue" block page), so no recipe's reviews/rating could be verified.

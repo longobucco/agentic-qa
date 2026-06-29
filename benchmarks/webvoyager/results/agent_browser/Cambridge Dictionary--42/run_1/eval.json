@@ -1,0 +1,5 @@
+{
+  "id": "Cambridge Dictionary--42",
+  "verdict": "FAILURE",
+  "reason": "The final screenshot shows a Cloudflare security-verification interstitial rather than the Cambridge Dictionary homepage displayed in Deutsch, so the conversion was not completed."
+}

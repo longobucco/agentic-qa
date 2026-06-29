@@ -1,0 +1,11 @@
+I reached the Google Maps Search Settings page (Configuración de búsqueda). The task is complete.
+
+The search settings page is reached via **Menu → "Ajustes de búsqueda" (Search settings)**, which opens Google's "Configuración de búsqueda" (Search settings) page. The options shown are organized into sections:
+
+- **Tabs:** Privacidad y seguridad (Privacy & security), Otros ajustes (Other settings)
+- **Actividad (Activity):** Personalización de la Búsqueda / Search personalization (set to "On"), plus a link to cookie settings
+- **Contenido (Content):** Búsqueda Segura / SafeSearch (set to "Blur on")
+- **Más opciones (More options):** Controles parentales en Family Link (Parental controls in Family Link)
+- Footer links: Sugerencias (Suggestions), Ayuda (Help), Privacidad (Privacy), Términos (Terms)
+
+ANSWER: The Google Maps search settings are opened from the side Menu → "Search settings" (Ajustes de búsqueda), which loads Google's "Search settings" page. It shows: a Search personalization toggle (under "Activity", currently On) with a cookie-settings link; SafeSearch (under "Content", set to "Blur on"); Parental controls in Family Link (under "More options"); navigation tabs for "Privacy & security" and "Other settings"; plus Help, Privacy, and Terms links.

@@ -1,0 +1,8 @@
+{
+  "id": "BBC News--14",
+  "bucket": "BBC News",
+  "web_name": "BBC News",
+  "ques": "Find a news article on BBC News about the impact of the recent tech industry layoffs on the global economy. Summarize the key points and the name of the author, and provide the date of publication.",
+  "web": "https://www.bbc.com/news/",
+  "answer": "Article \u2014 \"Tech layoffs: PayPal cuts 2,000 jobs as global economy weakens\" (BBC News, Business). Key points: PayPal is cutting ~2,000 jobs (7% of staff) due to the \"challenging macro-economic environment,\" joining a wave of tech layoffs \u2014 Amazon (18,000+), Alphabet/Google (12,000), Microsoft (10,000), Spotify (6%); Snap warned of falling revenue (shares -15%); and chipmakers signaled a downturn (AMD net income -98%, SK Hynix record ~$1.4bn loss, Samsung's lowest profit in 8 years), reflecting a global-economy-driven tech slowdown. Author: no individual byline (attributed to BBC News). Date of publication: 1 February 2023."
+}

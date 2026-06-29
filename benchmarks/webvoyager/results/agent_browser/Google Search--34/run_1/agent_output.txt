@@ -1,0 +1,5 @@
+I have completed the task. Using the in-the-sky.org astronomical ephemeris (which computes positions for today, 27 June 2026), I found Mars's current distance from Earth.
+
+**Result:** As of today (27 June 2026), Mars is **2.12 AU** from Earth, equal to **17.62 light-minutes**. Converting: 2.12 AU × 149,597,871 km ≈ **317 million km** (≈ 197 million miles). This large distance fits the context — Mars is approaching its next opposition in February 2027, currently far across the Solar System in the constellation Taurus.
+
+ANSWER: As of today (27 June 2026), the distance from Earth to Mars is approximately 2.12 AU — about 317 million km (≈197 million miles), or 17.62 light-minutes (per in-the-sky.org's ephemeris).

@@ -1,0 +1,5 @@
+{
+  "id": "Wolfram Alpha--20",
+  "verdict": "SUCCESS",
+  "reason": "The Wolfram Alpha screenshot shows the definite integral \u222b\u2080\u2075 3e^(2x) dx = (3/2)(e\u00b9\u2070\u22121) \u2248 33038, matching the agent's response exactly."
+}

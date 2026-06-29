@@ -1,0 +1,5 @@
+{
+  "id": "ArXiv--23",
+  "verdict": "SUCCESS",
+  "reason": "The screenshot shows ArXiv advanced search filtered to 'autonomous vehicles' keyword, Electrical Engineering and Systems Science (eess) classification, and the 2026-06-15 to 2026-06-21 last-week range, with the header 'Showing 1\u20135 of 5 results' matching the agent's answer of 5 articles."
+}

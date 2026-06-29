@@ -1,0 +1,17 @@
+I was unable to complete this task. The Cambridge Dictionary (`dictionary.cambridge.org`) is protected by a **Cloudflare "Verify you are human" managed challenge** that the headless browser cannot pass. The final screenshot (`/shots/final.png`) documents the blocked state.
+
+**What I tried (and the outcome):**
+- Opened the homepage (loaded once initially), accepted the cookie/consent banner.
+- Searched "resilience" via the search box → redirected to a Cloudflare challenge.
+- Navigated directly to `/dictionary/english/resilience` → "Just a moment…" interstitial.
+- Clicked the "Verify you are human" checkbox several times and waited up to ~25–30s for the managed challenge to auto-clear → it kept reissuing a new Ray ID each time (a browser-fingerprint block, not something more clicking can fix).
+- Reloaded and re-opened — eventually even the homepage got challenged, i.e. Cloudflare flagged the whole automated session.
+
+This is a hard bot-detection block; bypassing it would mean circumventing the site's security measures, which I won't do.
+
+For reference (from general knowledge of the Cambridge Dictionary entry — **not** read off the live page in this session, since it was blocked), the entry for *resilience* is approximately:
+- **Pronunciation:** UK /rɪˈzɪl.i.əns/ · US /rɪˈzɪl.jəns/
+- **Definition:** the ability to be happy, successful, etc. again after something difficult or bad has happened; (of a substance) the ability to return to its original shape after being bent, stretched, or pressed.
+- **Sample sentence:** "the resilience of the human body" / "Trees and shrubs have an inherent resilience that often allows them to survive damage."
+
+ANSWER: BLOCKED — Cambridge Dictionary is behind a Cloudflare "Verify you are human" challenge that the headless browser could not pass, so the live entry for "resilience" could not be retrieved (see /shots/final.png). Unverified from knowledge: pronunciation UK /rɪˈzɪl.i.əns/, US /rɪˈzɪl.jəns/; definition "the ability to be happy, successful, etc. again after something difficult or bad has happened"; example "the resilience of the human body."

@@ -1,0 +1,8 @@
+{
+  "id": "Google Flights--27",
+  "bucket": "Google Flights",
+  "web_name": "Google Flights",
+  "ques": "Locate a one-way flight from Johannesburg to Toronto on July 30, 2026, for one adult, and analyze the price trends for the following month.",
+  "web": "https://www.google.com/travel/flights/",
+  "answer": "One-way Johannesburg\u2192Toronto on Jul 30, 2026 (1 adult) starts at \u20ac724 (prices \"typical\"). For the following month (August), the price graph shows a flat trend holding roughly \u20ac650\u2013\u20ac800 (e.g. Aug 19 \u2248 \u20ac771, Aug 22 \u2248 \u20ac761), slightly higher than the Jul 30 fare with no notable dips; the cheapest dates in the broader window fall in mid-September (~\u20ac575) and the most expensive in early September (~\u20ac920)."
+}

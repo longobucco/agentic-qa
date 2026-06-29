@@ -1,0 +1,8 @@
+{
+  "id": "Google Flights--30",
+  "bucket": "Google Flights",
+  "web_name": "Google Flights",
+  "ques": "Find the most affordable one-way flight from Cape Town to Singapore, departing on July 20, 2026, and include the airline and total number of layovers.",
+  "web": "https://www.google.com/travel/flights/",
+  "answer": "The cheapest one-way Cape Town \u2192 Singapore flight on July 20, 2026 is \u20ac518 with Qatar Airways, with 1 layover (in Doha, Hamad International Airport)."
+}

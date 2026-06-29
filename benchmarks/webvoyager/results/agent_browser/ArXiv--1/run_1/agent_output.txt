@@ -1,0 +1,8 @@
+I searched ArXiv for "quantum computing" and sorted the results by **submission date (newest first)**. Today is June 25, 2026, so the latest papers submitted within the last two days (June 24, 2026) are surfaced at the top:
+
+1. **arXiv:2606.26088** — "Simulating Universal Quantum Gate Sets on Photonic OAM Qubits: Single-Qubit and Multi-Qubit Operations via Spatial Light Modulator Phase Holography" (quant-ph) — submitted 24 June 2026
+2. **arXiv:2606.26085** — "Analytic Approach to Quantum Control Using Quantum Signal Processing" (quant-ph) — submitted 24 June 2026
+
+Both are quant-ph papers from the most recent submission day. Screenshots saved to `/shots/step_1.png` and `/shots/final.png`.
+
+ANSWER: The latest quantum computing papers submitted to ArXiv within the last two days (as of 25 June 2026) include arXiv:2606.26088 "Simulating Universal Quantum Gate Sets on Photonic OAM Qubits..." (quant-ph) and arXiv:2606.26085 "Analytic Approach to Quantum Control Using Quantum Signal Processing" (quant-ph), both submitted 24 June 2026, found via ArXiv search for "quantum computing" sorted by submission date (newest first).

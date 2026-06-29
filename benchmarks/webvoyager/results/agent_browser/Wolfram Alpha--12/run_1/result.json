@@ -1,0 +1,8 @@
+{
+  "id": "Wolfram Alpha--12",
+  "bucket": "Wolfram Alpha",
+  "web_name": "Wolfram Alpha",
+  "ques": "Which character in unicode 8900 to 8920 looks like a snowflake",
+  "web": "https://www.wolframalpha.com/",
+  "answer": "Unicode 8902 (U+22C6), the STAR OPERATOR \u22c6 \u2014 a six-pointed star that looks like a snowflake."
+}

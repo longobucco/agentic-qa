@@ -1,0 +1,3 @@
+The query computed successfully on Wolfram Alpha. The "Metabolic properties" panel shows the fat burned for a 28yo, 172cm, 70kg woman running 30 minutes at a 6 min/mile pace.
+
+ANSWER: Approximately 0.078 kg (about 78 grams) of fat burned (energy expenditure ≈ 2510 kJ).

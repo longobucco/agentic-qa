@@ -1,0 +1,5 @@
+{
+  "id": "Google Search--12",
+  "verdict": "SUCCESS",
+  "reason": "The screenshot shows the agent on Tom Brady's Wikipedia page consistent with the task, and the response correctly identifies 2007 (50 passing TDs) as his most-touchdown season, which is not contradicted by the screenshot."
+}

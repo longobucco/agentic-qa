@@ -1,0 +1,8 @@
+{
+  "id": "GitHub--19",
+  "bucket": "GitHub",
+  "web_name": "GitHub",
+  "ques": "Look up the most recently updated Python repository on GitHub that is tagged with 'web scraping' and has over 100 stars.",
+  "web": "https://github.com/",
+  "answer": "dgtlmoon/changedetection.io \u2014 a Python web-scraping\u2013tagged repo (website change detection/monitoring tool) with ~32.1k stars, the most recently updated match (updated ~14 minutes ago)."
+}

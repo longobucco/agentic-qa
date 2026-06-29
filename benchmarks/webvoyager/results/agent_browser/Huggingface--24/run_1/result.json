@@ -1,0 +1,8 @@
+{
+  "id": "Huggingface--24",
+  "bucket": "Huggingface",
+  "web_name": "Huggingface",
+  "ques": "Search for a model on Hugging Face with an Apache-2.0 license that has received the highest number of likes.",
+  "web": "https://huggingface.co/",
+  "answer": "hexgrad/Kokoro-82M \u2014 a Text-to-Speech model with the Apache-2.0 license and the highest number of likes (~6.39k) on Hugging Face."
+}

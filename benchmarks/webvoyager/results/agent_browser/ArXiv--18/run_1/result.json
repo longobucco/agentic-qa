@@ -1,0 +1,8 @@
+{
+  "id": "ArXiv--18",
+  "bucket": "ArXiv",
+  "web_name": "ArXiv",
+  "ques": "Download the paper 'Dense Passage Retrieval for Open-Domain Question Answering'. How many formulas are in the article and which one is the loss function?",
+  "web": "https://arxiv.org/",
+  "answer": "The article contains 5 numbered formulas. The loss function is formula (2): the negative log-likelihood of the positive passage, L(q\u1d62, p\u1d62\u207a, p\u1d62,\u2081\u207b,\u2026,p\u1d62,\u2099\u207b) = \u2212log[ e^sim(q\u1d62,p\u1d62\u207a) / ( e^sim(q\u1d62,p\u1d62\u207a) + \u03a3\u2c7c e^sim(q\u1d62,p\u1d62,\u2c7c\u207b) ) ]."
+}

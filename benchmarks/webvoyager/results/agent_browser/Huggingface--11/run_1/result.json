@@ -1,0 +1,8 @@
+{
+  "id": "Huggingface--11",
+  "bucket": "Huggingface",
+  "web_name": "Huggingface",
+  "ques": "Identify the latest updated image to video model available on Huggingface and summarize its main features.",
+  "web": "https://huggingface.co/",
+  "answer": "The latest updated image-to-video model is **geceff/Wan2.2-Custom-Models-GGUF** (updated ~2 hours ago). It provides Tesla-T4-optimized, GGUF-quantized Wan2.2 I2V (Lightning V2) custom models (14B params, Apache-2.0, ComfyUI). Key features: runs on low-VRAM GPUs like Colab's free T4; High-Noise variants for creative high-motion video and Low-Noise variants for high fidelity/prompt adherence; multiple quantizations (Q4_K_M, Q6_K_L, Q6_K, Q8_H, plus fp8_scaled); recommended ComfyUI settings (4 steps, CFG 1.0, euler+simple); and a hybrid multi-pass workflow for sharper detail."
+}

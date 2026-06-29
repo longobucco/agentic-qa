@@ -1,0 +1,23 @@
+========= WebVoyager FULL RUN — FINAL REPORT (post throttled re-run) =========
+generated: Sat Jun 27 03:08:37 CEST 2026
+isolation: host browser = 1   leftover containers = 0
+
+TASKS judged: 619/619   still-throttled(dead): 0   missing-screenshots: 0
+OVERALL pass rate: 441/619 = 71.2%
+
+Per-bucket (success/total):
+  Allrecipes                2/41  (5%)
+  Amazon                   33/40  (82%)
+  Apple                    36/41  (88%)
+  ArXiv                    43/43  (100%)
+  BBC News                 27/39  (69%)
+  Booking                   7/40  (18%)
+  Cambridge Dictionary      4/42  (10%)
+  Coursera                 37/40  (92%)
+  ESPN                     37/44  (84%)
+  GitHub                   38/41  (93%)
+  Google Flights           29/40  (72%)
+  Google Map               33/40  (82%)
+  Google Search            33/42  (79%)
+  Huggingface              39/40  (98%)
+  Wolfram Alpha            43/46  (93%)

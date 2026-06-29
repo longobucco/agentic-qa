@@ -1,0 +1,5 @@
+The task is complete. I configured a one-way search from Cape Town to Singapore departing July 20, 2026, and reviewed the results sorted by Cheapest.
+
+The most affordable one-way flight is **€518 with Qatar Airways**, a **1-stop** flight with a single layover (2 hr 45 min overnight) at Hamad International Airport in Doha, departing Cape Town at 1:15 PM and arriving Singapore Changi at 3:45 PM the next day.
+
+ANSWER: The cheapest one-way Cape Town → Singapore flight on July 20, 2026 is €518 with Qatar Airways, with 1 layover (in Doha, Hamad International Airport).

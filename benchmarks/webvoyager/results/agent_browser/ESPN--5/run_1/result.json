@@ -1,0 +1,8 @@
+{
+  "id": "ESPN--5",
+  "bucket": "ESPN",
+  "web_name": "ESPN",
+  "ques": "Identify the top scorer in the NBA from the latest completed game and note down the points scored, the team they play for, and their position on the team.",
+  "web": "https://www.espn.com/",
+  "answer": "Jalen Brunson was the top scorer in the latest completed NBA game (Finals Game 5, June 14, 2026, Knicks 94\u201390 over the Spurs) with 45 points. He plays for the New York Knicks (#11) and his position is Guard (point guard)."
+}

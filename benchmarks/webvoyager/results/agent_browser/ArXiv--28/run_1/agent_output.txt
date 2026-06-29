@@ -1,0 +1,9 @@
+I searched ArXiv for "Poly encoder" with the field set to **Title**, returning 3 results. I inspected the access-format links shown in brackets for each result:
+
+1. **arXiv:2506.00968** — "PolyBERT: Fine-Tuned Poly Encoder BERT-Based Model for Word Sense Disambiguation" → **[pdf, ps, other]**
+2. **arXiv:2309.16770** — "Persona-Coded Poly-Encoder..." → **[pdf, other]**
+3. **arXiv:1905.01969** — "Poly-encoders: Transformer Architectures..." → **[pdf, other]**
+
+None of the three results list an "html" link, so none of them provide HTML access.
+
+ANSWER: No — none of the 3 title-search results for "Poly encoder" (arXiv:2506.00968, arXiv:2309.16770, arXiv:1905.01969) provide HTML access. Their available formats are only PDF (plus PS/"other"); no "html" link is shown for any of them.

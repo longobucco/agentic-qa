@@ -1,0 +1,9 @@
+The screenshot lives inside the container (the harness collects it from there), so it's not readable from the host — that's expected.
+
+The task is complete. I searched GitHub for "cryptocurrency wallet" projects and selected **trustwallet/wallet-core** — a cross-platform, cross-blockchain cryptocurrency wallet library that was updated 3 hours ago (well within the past 30 days). From its all-time contributors graph, the top three contributors by commits are:
+
+1. **hewigovens** — 359 commits
+2. **satoshiotomakan** — 243 commits
+3. **optout21** — 234 commits
+
+ANSWER: Project: trustwallet/wallet-core (cross-platform cryptocurrency wallet library, last updated within the past 30 days). Top 3 contributors by commits — 1) hewigovens (359), 2) satoshiotomakan (243), 3) optout21 (234).

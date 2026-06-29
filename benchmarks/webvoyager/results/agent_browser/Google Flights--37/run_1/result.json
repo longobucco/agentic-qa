@@ -1,0 +1,8 @@
+{
+  "id": "Google Flights--37",
+  "bucket": "Google Flights",
+  "web_name": "Google Flights",
+  "ques": "Locate a round-trip flight from Buenos Aires to Beijing, leaving on June 28, 2026, and returning on July 3, 2026, check out one of the options and tell me if the airline for my return flight is the same as my departure flight.",
+  "web": "https://www.google.com/travel/flights/",
+  "answer": "Yes \u2014 the return flight uses the same airlines as the departure flight. Both the outbound (Jun 28, Buenos Aires\u2192Beijing) and return (Jul 3, Beijing\u2192Buenos Aires) legs of this option are operated by Lufthansa and Air China."
+}

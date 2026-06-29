@@ -1,0 +1,8 @@
+{
+  "id": "ArXiv--6",
+  "bucket": "ArXiv",
+  "web_name": "ArXiv",
+  "ques": "How many figures and tables are in the paper \"On the Sentence Embeddings from Pre-trained Language Models\"?",
+  "web": "https://arxiv.org/",
+  "answer": "The paper contains 2 figures (Figure 1\u20132) and 8 tables (Table 1\u20138), for a total of 10 figures and tables."
+}

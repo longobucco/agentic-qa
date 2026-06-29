@@ -1,0 +1,5 @@
+{
+  "id": "Google Map--26",
+  "verdict": "SUCCESS",
+  "reason": "Screenshots show Google Maps' print preview centered on Los Angeles with the Imprimir/Cancelar print controls, and the response provides a map summary, satisfying the search, try-to-print-as-PDF, and summarize requirements."
+}

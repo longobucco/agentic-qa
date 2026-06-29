@@ -1,0 +1,9 @@
+I found the ArXiv Blog (blog.arxiv.org) and opened its latest article, "Attention authors: temporary change to announcement schedule due to upcoming summer holidays" (by Kat Boboris, June 17, 2026).
+
+**Summary of the latest article:** The post alerts arXiv authors that upcoming U.S. federal summer holidays will temporarily disrupt arXiv's announcement schedule, mailings, and help-desk support (the arXiv team observes the U.S. holiday calendar). Importantly, only the *announcement* of new submissions is affected — arXiv servers stay up, existing papers remain browsable, and new submissions are still accepted. Specific deferrals:
+- **Friday, June 19, 2026 (Juneteenth):** No help desk; Sunday announcement deferred to Monday. Papers accepted from 14:00 ET Thursday, June 18 through before 14:00 ET Monday, June 22 will be announced Monday, June 22, 2026.
+- **Friday, July 3, 2026 (around U.S. Independence Day):** No help desk; Sunday announcement deferred to Monday. Papers accepted from 14:00 ET Thursday, July 2 through before 14:00 ET Monday, July 6 will be announced at 20:00 ET Monday, July 6, 2026.
+
+It closes by encouraging readers to subscribe to the arXiv blog or follow arXiv on social media (Twitter/X, Mastodon, Bluesky, LinkedIn) for schedule updates.
+
+ANSWER: The ArXiv Blog (blog.arxiv.org) latest article is "Attention authors: temporary change to announcement schedule due to upcoming summer holidays" (June 17, 2026, by Kat Boboris). It notifies authors that upcoming US federal holidays—Juneteenth (Fri June 19, 2026) and around Independence Day (Fri July 3, 2026)—will temporarily disrupt arXiv's mailings, help desk, and submission-announcement schedule, deferring announcements to the following Mondays (June 22 and July 6). Servers stay operational, existing papers remain browsable, and new submissions are still accepted; readers are urged to follow the blog/social media for updates.

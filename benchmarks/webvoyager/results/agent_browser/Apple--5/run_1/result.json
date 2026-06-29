@@ -1,0 +1,8 @@
+{
+  "id": "Apple--5",
+  "bucket": "Apple",
+  "web_name": "Apple",
+  "ques": "Check the release date and price for the latest version of the iPhone.",
+  "web": "https://www.apple.com/",
+  "answer": "The latest iPhone is the iPhone 17, priced from $799, released on September 19, 2025 (pre-orders September 12, 2025)."
+}

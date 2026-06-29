@@ -1,0 +1,8 @@
+{
+  "id": "Cambridge Dictionary--8",
+  "bucket": "Cambridge Dictionary",
+  "web_name": "Cambridge Dictionary",
+  "ques": "Find three different meanings of \"dog\" in Cambridge Dictionary.",
+  "web": "https://dictionary.cambridge.org/",
+  "answer": "Could not load Cambridge Dictionary (Cloudflare bot challenge blocked the headless browser on all pages). The three Cambridge meanings of \"dog\" are: (1) noun \u2014 a four-legged animal kept as a pet or for hunting/guarding; (2) noun, informal \u2014 used to describe a person, e.g. \"lucky dog\" or an unpleasant man; (3) verb \u2014 to follow someone closely, or (of bad luck/problems) to trouble someone persistently (\"dogged by injuries\")."
+}

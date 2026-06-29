@@ -1,0 +1,8 @@
+{
+  "id": "Google Flights--10",
+  "bucket": "Google Flights",
+  "web_name": "Google Flights",
+  "ques": "Locate the cheapest round-trip flights from New York to Tokyo leaving on April 25, 2026, and returning on May 15, 2026.",
+  "web": "https://www.google.com/travel/flights/",
+  "answer": "Cannot retrieve prices \u2014 April 25, 2026 (departure) and May 15, 2026 (return) are in the past relative to the browser's current date (~June 2026). Google Flights only allows dates from the current month onward (earliest selectable is June 25, 2026), so no round-trip NYC\u2192Tokyo flights for those past dates can be located."
+}

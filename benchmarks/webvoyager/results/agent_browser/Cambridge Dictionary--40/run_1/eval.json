@@ -1,0 +1,5 @@
+{
+  "id": "Cambridge Dictionary--40",
+  "verdict": "FAILURE",
+  "reason": "The only screenshot is a Cloudflare bot-verification page, so no definition, UK pronunciation, or example for 'mitigate' was ever loaded or shown, and the response's cited answer is self-admittedly unverified outside knowledge."
+}

@@ -1,0 +1,14 @@
+I completed the task. I searched Hokkaido for July 1–7, 2026, applied the "Wonderful: 9+" review-score filter, and opened the top result — **SAPPORO STREAM HOTEL** in Sapporo (overall rating **9.1, "Wonderful"**, 1,245 reviews) — then read its guest-review category breakdown.
+
+**Categories greater than 9:**
+- Location — 9.7
+- Cleanliness — 9.4
+- Comfort — 9.4
+- Free WiFi — 9.4
+- Facilities — 9.3
+- Staff — 9.1
+
+**Categories less than 9:**
+- Value for money — 8.6
+
+ANSWER: For SAPPORO STREAM HOTEL (Sapporo, Hokkaido; overall 9.1 "Wonderful", 1,245 reviews), the review categories greater than 9 are Location (9.7), Cleanliness (9.4), Comfort (9.4), Free WiFi (9.4), Facilities (9.3) and Staff (9.1); the only category less than 9 is Value for money (8.6).

@@ -1,0 +1,13 @@
+I've completed the task successfully. Here's a summary of what was accomplished:
+
+1. **Opened Google Flights** and accepted the cookie consent banner
+2. **Set ticket type to "One way"**
+3. **Set origin** to New York, USA (all NYC airports)
+4. **Set destination** to London, United Kingdom
+5. **Set departure date** to Saturday, December 26 (2026)
+6. **Searched** — returned 27 results including some 1-stop flights
+7. **Applied the Stops filter → "Nonstop only"** — results narrowed to 26 nonstop flights
+
+Verification confirmed all 26 result entries are nonstop (no "1 stop"/"2 stop" flights remain), and the Stops filter chip reads "Nonstop, Stops, Selected". Cheapest nonstop fares start at €277 (United, British Airways, Delta) on routes from JFK/Newark to London Heathrow.
+
+ANSWER: One-way flights from New York to London on Dec 26 are shown, filtered to nonstop only — 26 nonstop results (from €277 via United, British Airways, Delta; JFK/EWR to London Heathrow).

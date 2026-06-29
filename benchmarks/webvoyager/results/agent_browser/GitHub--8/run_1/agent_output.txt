@@ -1,0 +1,3 @@
+The Vuex releases page shows the topmost release **v4.0.2** carries the "Latest" badge, confirming it as the latest stable release, published on **Jun 17, 2021**.
+
+ANSWER: The latest stable release of Vuex is v4.0.2, published on June 17, 2021.

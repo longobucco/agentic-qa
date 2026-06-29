@@ -1,0 +1,10 @@
+I've completed the task. I navigated to GitHub's Customer Stories page (github.com/customer-stories), whose hero section "Meet the companies who build with GitHub" prominently features customer stories.
+
+A note on faithfulness: the task asked for "the 2 stories," but the live page currently displays **three** featured story cards in the hero (GM, AstraZeneca, and Cathay). The two leading/most-prominent featured stories are GM and AstraZeneca.
+
+Featured customer stories shown:
+1. **GM** — "How GM accelerated software delivery and strengthened engineering culture with GitHub."
+2. **AstraZeneca** — "How AstraZeneca accelerates medicine discovery with GitHub and AI."
+3. (also shown) **Cathay** — "Cathay embraces AI-powered development to deliver securely at scale."
+
+ANSWER: The two featured customer stories at the top of GitHub's Customer Stories page are: (1) GM — "How GM accelerated software delivery and strengthened engineering culture with GitHub," and (2) AstraZeneca — "How AstraZeneca accelerates medicine discovery with GitHub and AI." (Note: a third story, Cathay, is also currently displayed in the hero.)

@@ -1,0 +1,8 @@
+{
+  "id": "Google Flights--33",
+  "bucket": "Google Flights",
+  "web_name": "Google Flights",
+  "ques": "Find a one-way flight from Shanghai to Vancouver on July 27, 2026, and compare the options based on carbon dioxide emissions.",
+  "web": "https://www.google.com/travel/flights/",
+  "answer": "One-way Shanghai\u2192Vancouver on Jul 27, 2026 options sorted by CO\u2082: lowest is Air Canada nonstop at 488 kg (\u221211%, \u20ac1,065, 10h45m); then Korean Air 530 kg (avg), China Eastern nonstop 583 kg (+6%), Asiana/Alaska 589 kg (+7%), ANA ~629\u2013630 kg (+15%); highest are the cheapest Cathay Pacific 1-stop flights at 705\u2013725 kg (+29\u201332%, \u20ac466). The greenest option is the Air Canada nonstop (488 kg)."
+}

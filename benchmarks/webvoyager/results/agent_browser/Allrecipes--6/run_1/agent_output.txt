@@ -1,0 +1,5 @@
+I was unable to complete the task. AllRecipes.com is serving an "access issue" block page (an IP-level block on the container) on **every** path and hostname I tried — the homepage, the search URL, a direct recipe page, and the bare `allrecipes.com` domain. The block is returned immediately and consistently (not a transient rate limit), so the search results, recipe listings, ratings, and review counts are all inaccessible. I won't fabricate a recipe answer since I genuinely could not view any recipe data.
+
+The page shown is a People Inc. (Dotdash Meredith) access-restriction notice directing readers to `support@people.inc`, which indicates the testing IP is blocked by their bot/anti-scraping protection. This would need to be retried from an unblocked IP/network.
+
+ANSWER: Unable to complete — allrecipes.com returned an access-block page ("If you are a reader experiencing an access issue, please contact support@people.inc") on every URL (homepage, search, and direct recipe pages), so no vegetarian lasagna recipe with its rating/review count could be retrieved. The container's IP appears to be blocked by the site.

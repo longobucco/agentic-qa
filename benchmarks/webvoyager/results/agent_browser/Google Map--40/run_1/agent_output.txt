@@ -1,0 +1,17 @@
+The screenshots live inside the container (the harness collects them); they're saved. Here's my honest summary.
+
+**What I accomplished:**
+- Searched Google Maps for "Boston lobster restaurant Boston" and identified qualifying restaurants with a rating ≥ 4.6 that serve Boston lobster/seafood: **Boston Sail Loft (4.6★)**, Atlantic Fish Company (4.6★), and Row 34 (4.6★).
+- Selected **Boston Sail Loft** — a seafood restaurant at 80 Atlantic Ave, Boston, MA 02110, rated **4.6 stars**, which satisfies the "Boston restaurant serving Boston lobster, rating ≥ 4.6" criteria. Screenshots captured (`step_1`–`step_3`, `final`).
+
+**What I could not do — and why (not fabricating it):**
+Reading an individual one-star review proved impossible in this environment because Google has flagged this container's IP (139.47.116.226) for "unusual traffic." Every review channel is blocked:
+1. The signed-out **"limited view"** of Maps strips the reviews section entirely (only a "Sign in" prompt appears).
+2. The reviews-tab deep link (`!9m1!1b1`) yields only a sign-in prompt.
+3. The internal `listugcposts` reviews RPC returns an **empty array for every place** (gated) — I verified even the Eiffel Tower returns nothing.
+4. The deprecated `listentitiesreviews` endpoint 404s.
+5. `search.google.com/local/reviews` hits a **reCAPTCHA** ("unusual traffic from your computer network").
+
+I will not invent review text. Retrieving a specific one-star review here would require either signed-in Google credentials or solving a CAPTCHA, neither of which is available/appropriate.
+
+ANSWER: Found Boston Sail Loft (Seafood restaurant, 80 Atlantic Ave, Boston, MA — rated 4.6★, serves Boston lobster), which meets the ≥4.6 criterion; however, the one-star review text could not be read because Google flagged this environment's IP and blocks all review access (signed-out "limited view" strips reviews, the reviews RPC returns empty for every place, and search.google.com reviews returns a reCAPTCHA). The review content is unavailable without sign-in/CAPTCHA, and I did not fabricate it.

@@ -1,0 +1,8 @@
+{
+  "id": "Google Flights--22",
+  "bucket": "Google Flights",
+  "web_name": "Google Flights",
+  "ques": "Find a round-trip flight from Rio de Janeiro to Los Angeles, leaving on June 15, 2026, and returning on June 22, 2026, and select the option with the least carbon dioxide emissions.",
+  "web": "https://www.google.com/travel/flights/",
+  "answer": ""
+}

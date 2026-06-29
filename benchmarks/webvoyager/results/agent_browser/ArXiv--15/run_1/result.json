@@ -1,0 +1,8 @@
+{
+  "id": "ArXiv--15",
+  "bucket": "ArXiv",
+  "web_name": "ArXiv",
+  "ques": "Searching Chinese Benchmark on ArXiv, how many papers announced in December 2023 mention being accepted for AAAI 2024?",
+  "web": "https://arxiv.org/",
+  "answer": "2 papers (arXiv:2312.12853 \"AAAI 2024\" and arXiv:2312.12806 \"accepted by AAAI-24\"). A third AAAI 2024 paper, arXiv:2309.01431, was announced in September 2023, not December, so it is not counted."
+}

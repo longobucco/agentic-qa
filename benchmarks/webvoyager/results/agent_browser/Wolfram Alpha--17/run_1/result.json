@@ -1,0 +1,8 @@
+{
+  "id": "Wolfram Alpha--17",
+  "bucket": "Wolfram Alpha",
+  "web_name": "Wolfram Alpha",
+  "ques": "Show the average price of movie ticket in Providence, Nashville, Boise in 2023.",
+  "web": "https://www.wolframalpha.com/",
+  "answer": "In 2023, the average (mean) movie ticket price was $14.37 in Providence, $13.30 in Nashville, and $11.60 in Boise (based on the C2ER retail price survey)."
+}

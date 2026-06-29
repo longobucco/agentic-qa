@@ -1,0 +1,10 @@
+I've found the latest article in the Systems and Control (eess.SY / cs.SY) category and captured the final state.
+
+**Latest article (submitted 25 Jun 2026, listed 26 Jun 2026):**
+"Jet impingement cooling with multi-stage ducted electroaerodynamic actuators" (arXiv:2606.27338)
+
+**Authors:** Quinna Nguyen, C. Luke Nelson, Daniel S. Drew
+
+**Main objective/hypothesis:** The paper hypothesizes that compact arrays of reduced-scale electroaerodynamic (EAD) plasma actuators — silent, solid-state devices with no moving parts — can replace conventional fans for direct jet impingement cooling of mobile/high-performance electronics. Its main contribution is the first rigorous experimental demonstration and system-level validation of multi-stage, ducted EAD jet arrays as a compact fan-replacement cooling solution. The authors characterize single- and multi-stage actuators (heat transfer coefficients, cooling profiles), quantify how added ion-acceleration stages raise jet velocity and heat transfer (at reduced efficiency), benchmark an array against a comparable fan, and integrate it onto a commercial edge AI system — showing thermal regulation during inference workloads matches a stock fan at a fraction of the volume, weight, power, and noise.
+
+ANSWER: Latest eess.SY (Systems & Control) article: "Jet impingement cooling with multi-stage ducted electroaerodynamic actuators" (arXiv:2606.27338) by Quinna Nguyen, C. Luke Nelson, and Daniel S. Drew. Objective/hypothesis: demonstrate that compact, multi-stage ducted electroaerodynamic (EAD) plasma jet arrays — silent, solid-state, no moving parts — can serve as a fan-replacement jet-impingement cooling solution for mobile/high-performance electronics, providing the first rigorous experimental and system-level validation that such arrays match a conventional fan's thermal performance (even on a commercial edge AI device under inference workloads) at a fraction of the volume, weight, power, and noise.

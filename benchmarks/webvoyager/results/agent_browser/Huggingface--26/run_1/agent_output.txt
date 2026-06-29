@@ -1,0 +1,12 @@
+I've identified a Hugging Face model designed for generating travel chats and captured its details.
+
+**Model identified:** `joycejiang/llama2-13B-chat-qlora-travel-1k-rs0` — a Llama-2 chat model fine-tuned on a 1k-sample travel dataset for generating travel-related chat conversations.
+
+Key information from the model card:
+- **Name:** joycejiang/llama2-13B-chat-qlora-travel-1k-rs0
+- **Size:** 13B parameters (base model: `meta-llama/Llama-2-13b-chat-hf`), fine-tuned with QLoRA using 4-bit `nf4` bitsandbytes quantization (`bnb_4bit_compute_dtype: bfloat16`)
+- **Training framework:** PEFT 0.4.0 (Parameter-Efficient Fine-Tuning), built on Hugging Face Transformers with bitsandbytes for quantization
+
+Screenshots saved to `/shots/step_1.png` (search results), `/shots/step_2.png` (model header/library), and `/shots/final.png` (training procedure + framework versions).
+
+ANSWER: Name: joycejiang/llama2-13B-chat-qlora-travel-1k-rs0 — a Llama-2 travel chatbot. Size: 13B parameters (base meta-llama/Llama-2-13b-chat-hf), QLoRA-tuned with 4-bit nf4 quantization. Training framework: PEFT 0.4.0 (with Hugging Face Transformers + bitsandbytes).

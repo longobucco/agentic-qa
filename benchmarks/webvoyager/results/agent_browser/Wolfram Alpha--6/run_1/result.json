@@ -1,0 +1,8 @@
+{
+  "id": "Wolfram Alpha--6",
+  "bucket": "Wolfram Alpha",
+  "web_name": "Wolfram Alpha",
+  "ques": "Simplify x^5-20x^4+163x^3-676x^2+1424x-1209 so that it has fewer items.",
+  "web": "https://www.wolframalpha.com/",
+  "answer": "(x \u2212 4)^5 + 3(x \u2212 4)^3 + 7"
+}

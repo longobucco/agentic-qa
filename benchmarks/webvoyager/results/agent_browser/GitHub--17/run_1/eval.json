@@ -1,0 +1,5 @@
+{
+  "id": "GitHub--17",
+  "verdict": "SUCCESS",
+  "reason": "Screenshots confirm the agent found tensorflow/tensorflow via a C++-filtered GitHub search, a project with ~196k stars (>500) that is actively updated within the last week, and the response accurately describes its purpose as an open-source machine learning framework."
+}

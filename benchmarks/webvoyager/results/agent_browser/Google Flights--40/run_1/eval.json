@@ -1,0 +1,5 @@
+{
+  "id": "Google Flights--40",
+  "verdict": "SUCCESS",
+  "reason": "Screenshots show the Google Flights Explore map from Seattle with destination prices, and the agent's recommendations of famous nearby affordable cities (LA \u20ac113, Las Vegas \u20ac113, SF \u20ac185, etc.) match the visible map/panel data, satisfying all parts of the task."
+}

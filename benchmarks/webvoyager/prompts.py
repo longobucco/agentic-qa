@@ -22,12 +22,15 @@ Procedure:
 3. Loop: `snapshot` -> decide ONE next action -> execute -> re-`snapshot` (refs change
    after navigation/clicks). Dismiss cookie/consent banners if they cover the target
    (the snapshot/click error names the covering element).
-4. Save screenshots as you progress ({out}/step_1.png, step_2.png, ...) and a final
-   `agent-browser screenshot {out}/final.png` when you believe the task is done.
+4. Save a screenshot after each meaningful step ({out}/step_1.png, step_2.png, ...). The
+   run is scored ONLY from screenshots, so capturing them is REQUIRED, not optional.
 5. Keep it under ~{max_steps} browser actions. Do NOT ask for confirmation. Stay on the
    task's website.
 
-Finish by printing your result on the LAST line, EXACTLY:
+Finish: when the task is done, FIRST capture the final state — REQUIRED, the run cannot be
+scored without it:
+  agent-browser screenshot {out}/final.png
+Then print your result on the LAST line, EXACTLY:
 ANSWER: <concise answer to the question, or DONE for action-only tasks>
 
 TASK: {ques}
@@ -54,13 +57,16 @@ Procedure:
    `docker exec {cname} agent-browser open {start_url}`.
 2. Loop: `snapshot` -> decide ONE next action -> execute -> re-`snapshot` (refs change after
    navigation/clicks). Dismiss cookie/consent banners if they cover the target.
-3. Save screenshots as you progress to `/shots/step_1.png`, `/shots/step_2.png`, ... and a
-   final `/shots/final.png` when done. These live INSIDE the container at `/shots`; the
-   harness collects them — always write screenshots under `/shots/`.
+3. Save a screenshot after each meaningful step to `/shots/step_1.png`, `/shots/step_2.png`,
+   ... These live INSIDE the container at `/shots`; the harness collects them. The run is
+   scored ONLY from screenshots, so capturing them is REQUIRED — always write under `/shots/`.
 4. Keep it under ~{max_steps} browser actions. Do NOT ask for confirmation. Stay on the
    task's website.
 
-Finish by printing your result on the LAST line, EXACTLY:
+Finish: when the task is done, FIRST capture the final state — REQUIRED, the run cannot be
+scored without it:
+  docker exec {cname} agent-browser screenshot /shots/final.png
+Then print your result on the LAST line, EXACTLY:
 ANSWER: <concise answer to the question, or DONE for action-only tasks>
 
 TASK: {ques}

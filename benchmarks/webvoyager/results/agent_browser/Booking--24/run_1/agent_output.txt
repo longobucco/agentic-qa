@@ -1,0 +1,12 @@
+The final screenshot confirms the best achievable state: the Barcelona search bar shows **Thu, Feb 25 — Sun, Feb 28** with **3,912 hotels and places to stay** listed.
+
+I completed what this booking.com environment allows and hit a hard limitation on the rest. Summary:
+
+- **Done:** Searched Barcelona for Feb 25–28, 2027 (2 adults, 1 room). Results are shown with the dates set in the search bar.
+- **Could not apply (environment limitation):** This instance redirects every `searchresults.html` request (and the form's "Search" button) to the static Barcelona **city landing page** (`booking.com/city/es/barcelona.html`). That page exposes only **Star Rating** and **Review score** filters and four sort options (*Our top picks, Lowest Price First, Star rating and price, Top reviewed*). It offers **no "Free Wi-Fi" or "Breakfast included" facility filters** and **no "distance from beach" sort**, so those two requirements cannot be set via the UI here. URL parameters for filters/order (`nflt=hotelfacility=107;mealplan=1`, `order=...`) are stripped by the redirect.
+
+For reference, among the listed properties, **Acta Voraport** is a 10-minute walk from Bogatell Beach, and most listed hotels (Hotel Casa Sagnier, Seventy Barcelona, etc.) advertise **free WiFi**, with a dedicated "Best hotels with breakfast in Barcelona" section on the page.
+
+Screenshots saved to `/shots/step_search.png` and `/shots/final.png`.
+
+ANSWER: Searched Barcelona hotels for Feb 25–28, 2027 (3,912 properties shown with dates set). The free Wi-Fi/breakfast filters and "distance from beach" sort could not be applied because this booking.com environment redirects all search-results requests to the static Barcelona city page, which only provides Star-rating and Review-score filters and four non-beach sort options.

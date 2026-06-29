@@ -1,0 +1,8 @@
+{
+  "id": "Cambridge Dictionary--26",
+  "bucket": "Cambridge Dictionary",
+  "web_name": "Cambridge Dictionary",
+  "ques": "Search for the word \"nostalgia\" in the Cambridge Dictionary and report the translation of this word into Chinese.",
+  "web": "https://dictionary.cambridge.org/",
+  "answer": "Could not complete \u2014 Cambridge Dictionary blocked the browser with an unsolvable Cloudflare \"verify you are human\" challenge loop. (The site's English\u2013Chinese Simplified translation of \"nostalgia\" is \u6000\u65e7 / hu\u00e1i ji\u00f9, but this could not be confirmed on-screen.)"
+}

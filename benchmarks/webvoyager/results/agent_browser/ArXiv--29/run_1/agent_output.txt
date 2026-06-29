@@ -1,0 +1,3 @@
+The task is complete. I navigated to ArXiv's advanced search, searched for "Neural Network Optimization" in the **Title** field, filtered to the specific year **2023**, and the results header shows "Showing 1–50 of **205** results".
+
+ANSWER: 205 papers

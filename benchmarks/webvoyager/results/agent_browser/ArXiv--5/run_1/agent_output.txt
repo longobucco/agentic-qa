@@ -1,0 +1,6 @@
+I completed the task. Searching arXiv for "quantum computing" (All fields):
+
+- **Quantum Physics category (quant-ph):** 34,380 results
+- **All archives:** 56,005 results
+
+ANSWER: Searching "quantum computing" in the Quantum Physics (quant-ph) category returns 34,380 results in total; searching across all archives returns 56,005 results.

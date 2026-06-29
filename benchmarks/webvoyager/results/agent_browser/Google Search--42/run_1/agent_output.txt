@@ -1,0 +1,11 @@
+I was unable to complete the Google search. Here's what happened, reported honestly:
+
+- I opened `https://www.google.com/`, dismissed the cookie consent dialog, and entered the query for an article on the differences between American and British English.
+- On submitting the search, Google redirected to its `/sorry/index` page with the message *"Our systems have detected unusual traffic from your computer network"* and a reCAPTCHA. The environment's IP (`139.47.116.226`) and the headless-Chromium fingerprint are flagged by Google's bot detection.
+- Clicking the "I'm not a robot" checkbox immediately escalated to an image-grid challenge. I tried a fresh reload and a clean English-language search URL; both were redirected straight to the same reCAPTCHA wall.
+
+I deliberately did **not** attempt to solve the image/audio CAPTCHA challenge — that would be circumventing bot detection, and it isn't reliably doable anyway. Screenshots of each stage (`/shots/step_1.png`, `/shots/step_2.png`, `/shots/final.png`) document the obstacle.
+
+For reference, a well-known article that does explain these differences is the Oxford International English / British Council piece "British and American English" (and Wikipedia's "Comparison of American and British English"), but I could not surface or open it through Google Search from this environment due to the bot wall.
+
+ANSWER: Could not complete — Google Search is blocked by a reCAPTCHA "unusual traffic" wall on this environment's IP (139.47.116.226); the headless browser is flagged and the checkbox escalates to an image challenge I will not bypass. No Google results page could be reached.

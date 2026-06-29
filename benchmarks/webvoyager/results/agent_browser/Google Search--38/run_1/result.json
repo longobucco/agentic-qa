@@ -1,0 +1,8 @@
+{
+  "id": "Google Search--38",
+  "bucket": "Google Search",
+  "web_name": "Google Search",
+  "ques": "Search for the next visible solar eclipse in North America and its expected date, and what about the one after that.",
+  "web": "https://www.google.com/",
+  "answer": "The next solar eclipse visible in North America is on August 12, 2026 (a total eclipse over Greenland/Iceland/Spain, seen as a partial eclipse across North America). The one after that visible from North America is on August 2, 2027 (a total eclipse over Spain/North Africa/Middle East, seen as a partial eclipse in eastern Canada and northern Maine)."
+}

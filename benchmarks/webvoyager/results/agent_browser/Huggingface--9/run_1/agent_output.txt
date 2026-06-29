@@ -1,0 +1,13 @@
+I completed the task. 
+
+**Findings:** On Hugging Face, filtering Models by **Translation** + languages **English & Japanese**, sorted by **Most downloads**, the top result is **`facebook/nllb-200-distilled-600M`** (~1.51M downloads — the most-downloaded translation model covering English↔Japanese).
+
+**Evaluation metrics stated on its model card (Metrics section):**
+- **BLEU**, **spBLEU**, and **chrF++** (standard machine-translation metrics)
+- **Human evaluation** using the **XSTS protocol**
+- **Toxicity** of generated translations was measured
+- Evaluated on the **Flores-200** dataset
+
+(Note: The most-downloaded *bilingual* en↔ja-only model is `lmg-anon/vntl-llama3-8b-v2-gguf` at ~765k, but its card states only a Train Loss of 0.42 and no standard MT evaluation metrics — so the model that both leads the en/ja translation filter and reports proper evaluation metrics is NLLB-200-distilled-600M.)
+
+ANSWER: The most-downloaded machine-translation model on Hugging Face covering English & Japanese is facebook/nllb-200-distilled-600M (~1.51M downloads). Its stated evaluation metrics are BLEU, spBLEU, and chrF++, plus human evaluation via the XSTS protocol and toxicity measurement, evaluated on the Flores-200 dataset.

@@ -1,0 +1,8 @@
+{
+  "id": "ESPN--3",
+  "bucket": "ESPN",
+  "web_name": "ESPN",
+  "ques": "Retrieve the final score from the most recent NBA game broadcast on ESPN, including the playing teams' names and the date of the match.",
+  "web": "https://www.espn.com/",
+  "answer": "New York Knicks 94, San Antonio Spurs 90 (Final) \u2014 NBA Finals Game 5 on Sunday, June 14, 2026; the Knicks won the series 4\u20131."
+}

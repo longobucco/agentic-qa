@@ -1,0 +1,8 @@
+{
+  "id": "Cambridge Dictionary--0",
+  "bucket": "Cambridge Dictionary",
+  "web_name": "Cambridge Dictionary",
+  "ques": "Look up the pronunciation and definition of the word \"sustainability\" on the Cambridge Dictionary.",
+  "web": "https://dictionary.cambridge.org/",
+  "answer": "Could not retrieve from the live site \u2014 dictionary.cambridge.org served a Cloudflare \"Verify you are human\" challenge that the headless browser could not pass (final.png shows the block). Per the Cambridge Dictionary, \"sustainability\" is pronounced UK /s\u0259\u02ccste\u026a.n\u0259\u02c8b\u026al.\u0259.ti/, US /s\u0259\u02ccste\u026a.n\u0259\u02c8b\u026al.\u0259.t\u032ci/ and is defined as \"the quality of being able to continue over a period of time,\" especially causing little or no environmental damage so it can continue long-term."
+}

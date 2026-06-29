@@ -1,0 +1,5 @@
+{
+  "id": "Allrecipes--14",
+  "verdict": "FAILURE",
+  "reason": "Every screenshot shows a People Inc access-block page rather than Allrecipes search results, so no recipe matching chicken breast, quinoa, and under 30 minutes was ever found."
+}

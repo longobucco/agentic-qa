@@ -1,0 +1,5 @@
+{
+  "id": "BBC News--32",
+  "verdict": "FAILURE",
+  "reason": "The final screenshots show only a BBC registration modal obscuring an article and never display the Artificial Intelligence section, the claimed top headline, or the named companies, so no part of the task is visually verified."
+}

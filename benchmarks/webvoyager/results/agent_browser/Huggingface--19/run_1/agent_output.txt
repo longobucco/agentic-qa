@@ -1,0 +1,14 @@
+I explored the Hugging Face Hub, filtered Models by **Summarization** task + **English** language, sorted by **Recently created**, and enabled **Base only** (hiding quantizations/finetunes/adapters) to surface a substantive released model. The most recent open-source English summarization model is **`medodeyaa/dentor-biobart`** (updated ~10 days ago), and I opened its model card to summarize its features.
+
+**Feature summary of `medodeyaa/dentor-biobart`:**
+- **Task / type:** Text Summarization — sequence-to-sequence (`text2text-generation`)
+- **Architecture:** BART, specifically the **BioBART** biomedical variant (tags: `bart`, `biobart`, `biomedical`); V2 adopts a new biomedical vocabulary
+- **Language:** English
+- **Size:** ~0.2B (≈200M) parameters, tensor type F32
+- **Frameworks:** Transformers, PyTorch, Safetensors
+- **License:** Apache-2.0 (open source)
+- **Usage:** loadable via `pipeline("summarization", model="medodeyaa/dentor-biobart")` or directly with `AutoTokenizer` + `AutoModelForSeq2SeqLM`; note the card warns the `"summarization"` pipeline is no longer supported in Transformers v5, so load the model directly or use `transformers<5.0.0`
+- **Reference paper:** *BioBART: Pretraining and Evaluation of A Biomedical Generative Language Model* (arXiv:2204.03905)
+- **Adoption:** 137 downloads last month; not yet deployed by any Inference Provider
+
+ANSWER: The most recent open-source English summarization model on Hugging Face is medodeyaa/dentor-biobart (updated ~10 days ago). Key features: a BART/BioBART-based biomedical sequence-to-sequence (text2text-generation) summarization model for English, ~0.2B (200M) parameters, F32 tensors, built with Transformers/PyTorch/Safetensors, released under the Apache-2.0 license. It uses BioBART V2's new biomedical vocabulary (paper arXiv:2204.03905), is usable via the `summarization` pipeline or AutoModelForSeq2SeqLM, had 137 downloads last month, and is not yet hosted by an Inference Provider.

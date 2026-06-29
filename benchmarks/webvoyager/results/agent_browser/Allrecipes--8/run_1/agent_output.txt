@@ -1,0 +1,5 @@
+I could not complete the task. Allrecipes is blocking this environment's IP address at the network edge: every request — the homepage, the search page, and direct recipe URLs — returns **HTTP 402** and renders only an "access issue" page ("If you are a reader experiencing an access issue, please contact support@people.inc"). I verified this is persistent (3 retries with delays) and comprehensive (desktop UA, mobile UA, AMP, print, and the bare `allrecipes.com` domain all return 402). There is no recipe content available to read, verify, or screenshot, and the source IP cannot be changed from inside the container.
+
+I will not fabricate ingredients from memory, since the task requires verifying a specific recipe's review count (≥200) and rating (≥4.5★) on the live site, which is impossible while the site is blocked.
+
+ANSWER: Unable to complete — Allrecipes is blocking this environment's IP (HTTP 402 "access issue" page on every URL, including the homepage, search, and direct recipe links), so no Beef Wellington recipe or its ingredients could be accessed or verified.

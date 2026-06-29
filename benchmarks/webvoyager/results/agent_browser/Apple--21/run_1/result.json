@@ -1,0 +1,8 @@
+{
+  "id": "Apple--21",
+  "bucket": "Apple",
+  "web_name": "Apple",
+  "ques": "Identify the available storage options for the latest iPad Pro on the Apple website.",
+  "web": "https://www.apple.com/",
+  "answer": "The latest iPad Pro (M5) is available in four storage options: 256GB, 512GB, 1TB, and 2TB."
+}

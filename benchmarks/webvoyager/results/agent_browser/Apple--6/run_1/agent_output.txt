@@ -1,0 +1,10 @@
+I found AirPods on Apple and identified the current lineup. The **"Compare AirPods models"** section on apple.com/airpods/ lists the models currently available:
+
+1. **AirPods 4** — $129
+2. **AirPods 4 with Active Noise Cancellation** — $179
+3. **AirPods Pro 3** — $249
+4. **AirPods Max 2** — $549
+
+That's **4 distinct AirPods models** currently available (spanning 3 product families: AirPods, AirPods Pro, and AirPods Max). Screenshots saved to `/shots/`.
+
+ANSWER: 4 AirPods models are currently available — AirPods 4 ($129), AirPods 4 with Active Noise Cancellation ($179), AirPods Pro 3 ($249), and AirPods Max 2 ($549) — across 3 families (AirPods, AirPods Pro, AirPods Max).

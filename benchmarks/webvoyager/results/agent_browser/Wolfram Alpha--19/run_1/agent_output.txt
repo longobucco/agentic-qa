@@ -1,0 +1,3 @@
+The query computed successfully. Wolfram Alpha returned the typical time to sunburn for each skin type (starting 11:00 am AEST, SPF 5, Australia).
+
+ANSWER: Typical time to sunburn (SPF 5, from 11:00 am, Australia) — Skin type I: ~2.5 hours; Skin type II: ~3.5 hours; Skin types III, IV, V, and VI: sunburn unlikely.

@@ -1,0 +1,5 @@
+{
+  "id": "Booking--12",
+  "verdict": "FAILURE",
+  "reason": "The agent exhausted its turn limit without producing an answer, never entered the Jan 5\u201310 2027 dates or applied a Wi-Fi filter, and the final screenshot only shows a generic undated Paris hotel list with no specific hotel confirmed as meeting all the criteria."
+}

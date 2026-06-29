@@ -1,0 +1,8 @@
+{
+  "id": "Huggingface--34",
+  "bucket": "Huggingface",
+  "web_name": "Huggingface",
+  "ques": "List the benefits of hugging face classroom mentioned on Hugging face website.",
+  "web": "https://huggingface.co/",
+  "answer": "Hugging Face for Classrooms (huggingface.co/classrooms) offers these benefits, all free: (1) Free resources, teaching materials & support for students and teachers, turning class into a collaborative ML-building environment with open-source tools and state-of-the-art models; (2) Empower students with state-of-the-art resources \u2014 implement ML and collaborate on datasets, models, and demos hosted in your classroom workspace; (3) Unlimited access to modern ML tools \u2014 upload datasets/models/demos, train, fine-tune, experiment, deploy, and share with the classroom or community, all hosted free; (4) Easily manage your classroom \u2014 centralize datasets/models/demos in one place with version control and student access controls (admin, read, write), shareable privately or publicly."
+}

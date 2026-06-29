@@ -1,0 +1,8 @@
+{
+  "id": "GitHub--11",
+  "bucket": "GitHub",
+  "web_name": "GitHub",
+  "ques": "Find a newly created open-source project on GitHub related to 'climate change' that has been initiated in January 2023; check the main programming language used and the project's description.",
+  "web": "https://github.com/",
+  "answer": "bartek537/forest \u2014 Main language: Kotlin (100%). Description: \"A step counter app, which helps its users stay healthy and fight the climate change.\" (an Android app tracking steps, calories, distance, and CO\u2082 saved; created January 2023, 264 stars)."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "Wolfram Alpha--7",
+  "bucket": "Wolfram Alpha",
+  "web_name": "Wolfram Alpha",
+  "ques": "Give the final angle and final length after 6s of a Spring pendulum with spring equilibrium length=0.12m, initial length=0.24m, initial angle=80deg, mass=1kg, spring constant=120 N/m .",
+  "web": "https://www.wolframalpha.com/",
+  "answer": "Final angle from vertical \u2248 -73.26\u00b0 (-1.279 rad); final length \u2248 25.21 cm (0.2521 m)."
+}

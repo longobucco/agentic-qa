@@ -1,0 +1,18 @@
+I've gathered the color options for all three models from Apple's official tech specs pages.
+
+**Comparison of color (Finish) options:**
+
+| Model | Colors | Count |
+|---|---|---|
+| **iPhone 13 Pro** | Graphite, Gold, Silver, Sierra Blue, Alpine Green* | 5 |
+| **iPhone 14 Pro** | Space Black, Silver, Gold, Deep Purple | 4 |
+| **iPhone 15 Pro** | Black Titanium, White Titanium, Blue Titanium, Natural Titanium | 4 |
+
+*Alpine Green was added to the iPhone 13 Pro lineup in March 2022 (it launched with the first four).
+
+**Key differences:**
+- The 13 Pro and 14 Pro share the same neutral palette concept (Graphite/Space Black, Silver, Gold) plus one signature color (Sierra Blue → Deep Purple), but the 14 Pro dropped to a 4‑color lineup.
+- The 13 Pro had a glossy stainless steel design with named-color glass backs; the 15 Pro switched to a brushed **titanium** design, so all four of its finishes carry the "Titanium" suffix and have a more muted, matte look.
+- Only **Silver/Gold-adjacent neutrals** carry across all three; the 15 Pro is the only one with no true "gold" or vivid accent color, reflecting Apple's move to understated titanium tones.
+
+ANSWER: iPhone 13 Pro came in 5 finishes — Graphite, Gold, Silver, Sierra Blue, and Alpine Green (Alpine Green added March 2022). iPhone 14 Pro came in 4 — Space Black, Silver, Gold, and Deep Purple. iPhone 15 Pro came in 4 titanium finishes — Black Titanium, White Titanium, Blue Titanium, and Natural Titanium. The 13 Pro offered the most colors and a glossy stainless-steel look; the 15 Pro switched to a matte titanium design with all-"Titanium" color names and no gold/vivid accent.

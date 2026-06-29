@@ -1,0 +1,8 @@
+{
+  "id": "Allrecipes--42",
+  "bucket": "Allrecipes",
+  "web_name": "Allrecipes",
+  "ques": "Find a recipe for banana bread with more than 200 reviews and a rating of at least 4.0 stars on Allrecipes.",
+  "web": "https://www.allrecipes.com/",
+  "answer": "Unable to complete \u2014 allrecipes.com blocked all access from this environment (publisher \"access issue\" page on every page load), so no banana bread recipe with its rating/review count could be retrieved."
+}

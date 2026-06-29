@@ -1,0 +1,8 @@
+{
+  "id": "BBC News--33",
+  "bucket": "BBC News",
+  "web_name": "BBC News",
+  "ques": "In the World News section, find the latest war situations of Middle East and provide a brief summary.",
+  "web": "https://www.bbc.com/news/",
+  "answer": "The BBC Middle East (World News) section's latest war coverage centers on four fronts: (1) a US\u2013Israel\u2013Iran war now being wound down through a newly signed US-Iran deal (60-day timeline, IAEA inspections pending, thousands killed); (2) tensions in the Strait of Hormuz, where a cargo ship was hit by an \"unknown projectile\" near Oman, prompting the UN to pause sailor evacuations and Rubio to warn Iran against tolls; (3) Gaza, where Israeli strikes killed six including an Al Jazeera cameraman and a UN inquiry accuses Israel of genocide (which Israel rejects); and (4) south Lebanon, where Israeli troops killed two alleged Hezbollah operatives amid ceasefire-violation accusations."
+}

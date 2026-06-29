@@ -1,0 +1,7 @@
+I was unable to complete the task because **Allrecipes is hard-blocking this environment**. Every URL on the domain — the homepage, the `?q=quinoa+salad` search, and direct recipe pages, with and without `www` — returns **HTTP 402 (Payment Required)** served from People Inc's edge/CDN. This is an IP-level ban tied to the container's IP (`139.47.116.226`), independent of user-agent, and it persisted across multiple retries (not transient rate-limiting). The accessibility tree and screenshots show only the "If you are a reader experiencing an access issue, please contact support@people.inc" block page.
+
+Because the site itself refuses all access, I cannot browse to a quinoa salad recipe, read its review count/rating, or extract real ingredients and times. I won't fabricate a recipe, ingredient list, or cook time, since the task requires sourcing them from the actual live page, which is unreachable.
+
+What would unblock this: running the container from a non-blocked IP/network (or whitelisting `139.47.116.226` with People Inc), after which the original `snapshot → click → fill` flow on `/search?q=quinoa+salad` would work normally.
+
+ANSWER: BLOCKED — Allrecipes returns HTTP 402 (access-denied block page) for all URLs from this container's IP (139.47.116.226), so no quinoa salad recipe, ratings/reviews, ingredients, or cooking time could be retrieved. Task could not be completed due to the site blocking access.

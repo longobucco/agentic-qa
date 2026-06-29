@@ -1,0 +1,8 @@
+{
+  "id": "BBC News--21",
+  "bucket": "BBC News",
+  "web_name": "BBC News",
+  "ques": "Identify the top headline in the World News section on BBC News and describe the region it is related to.",
+  "web": "https://www.bbc.com/news/",
+  "answer": "The top headline is \"Rescuers search rubble for survivors as Venezuela earthquakes kill at least 188.\" It relates to Latin America \u2014 specifically Venezuela (the Caracas region), where twin magnitude 7+ earthquakes caused mass casualties and building collapses."
+}

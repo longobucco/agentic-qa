@@ -1,0 +1,5 @@
+{
+  "id": "Google Flights--16",
+  "verdict": "SUCCESS",
+  "reason": "The final screenshot confirms the cheapest one-way NY\u2192Tokyo flight on Fri Jan 15 is \u20ac579 on WestJet with a 31 hr 55 min duration (1 stop via Calgary/YYC), matching the response's airline and duration."
+}

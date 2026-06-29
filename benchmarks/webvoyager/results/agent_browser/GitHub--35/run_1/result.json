@@ -1,0 +1,8 @@
+{
+  "id": "GitHub--35",
+  "bucket": "GitHub",
+  "web_name": "GitHub",
+  "ques": "Check the latest release version of React and the date it was published on GitHub.",
+  "web": "https://github.com/",
+  "answer": "The latest React release is v19.2.7, published on June 1st, 2026."
+}

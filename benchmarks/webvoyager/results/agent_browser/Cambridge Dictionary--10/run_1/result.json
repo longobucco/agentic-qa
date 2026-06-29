@@ -1,0 +1,8 @@
+{
+  "id": "Cambridge Dictionary--10",
+  "bucket": "Cambridge Dictionary",
+  "web_name": "Cambridge Dictionary",
+  "ques": "Look up the definition and pronunciation of the word \"impeccable\" and also find an example sentence using that word.",
+  "web": "https://dictionary.cambridge.org/",
+  "answer": "Could not complete on the live site \u2014 dictionary.cambridge.org is blocked by a Cloudflare bot-verification challenge that the headless browser cannot pass. (For reference, \"impeccable\" /\u026am\u02c8pek.\u0259.b\u0259l/ means \"perfect, with no mistakes or faults\", e.g. \"He had impeccable manners.\")"
+}

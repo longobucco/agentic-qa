@@ -1,0 +1,10 @@
+I've completed the task. I identified a beginner C++ Specialization on Coursera, navigated to its detail page, and captured its learning outcomes.
+
+**Specialization:** *Programming in C++: A Hands-on Introduction* — offered by **Codio** (Beginner level · Specialization · 3–6 months · 4.6★). It's designed for people without programming experience seeking to develop C++ skills across four courses (fundamentals through object-oriented design).
+
+**Learning outcomes ("What you'll learn"):**
+1. Automate everyday, repetitive tasks using C++ programs
+2. Create engaging, graphical-based programs
+3. Develop a firm foundation of Computer Science concepts you can bring to any language you learn
+
+ANSWER: Specialization: "Programming in C++: A Hands-on Introduction" by Codio (Beginner). Learning outcomes: (1) Automate everyday, repetitive tasks using C++ programs; (2) Create engaging, graphical-based programs; (3) Develop a firm foundation of Computer Science concepts you can bring to any language you learn.

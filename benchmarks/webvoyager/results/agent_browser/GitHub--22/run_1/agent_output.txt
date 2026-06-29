@@ -1,0 +1,7 @@
+The task is complete. I searched GitHub with filters for `nlp language:Ruby pushed:>2026-06-19` sorted by recently updated, which returned 4 matching repositories. I selected and opened the most recently updated one to confirm it's a public open-source Ruby NLP project.
+
+**scientist-labs/topical** — a public (open-source) Ruby library for fast, flexible topic modeling built on modern embeddings and clustering to uncover themes in text. Tagged `ruby`, `nlp`, `ai`, `topic-modeling`; 13 stars; updated yesterday (well within the last week).
+
+Other qualifying matches from the same search: `scientist-labs/tokenkit` (updated 2 days ago), `scientist-labs/spellkit` (3 days ago), and `scientist-labs/phrasekit` (5 days ago).
+
+ANSWER: scientist-labs/topical — an open-source Ruby library for topic modeling (NLP), tagged ruby/nlp, 13 stars, updated yesterday (within the last week). https://github.com/scientist-labs/topical

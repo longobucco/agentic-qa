@@ -1,0 +1,5 @@
+{
+  "id": "Booking--19",
+  "verdict": "FAILURE",
+  "reason": "The agent hit max turns and produced no answer; the final screenshot shows only the Booking.com homepage with default dates and no Paris search or hotel suggestions."
+}

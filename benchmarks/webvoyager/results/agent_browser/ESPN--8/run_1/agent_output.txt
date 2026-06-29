@@ -1,0 +1,7 @@
+I've completed the task. ESPN's NBA Player Stats for the **2025-26 Regular Season** (sorted by points per game) shows the top three scoring leaders:
+
+1. **Luka Dončić** — Los Angeles Lakers (LAL) — 28.8 PPG
+2. **Shai Gilgeous-Alexander** — Oklahoma City Thunder (OKC) — 28.7 PPG
+3. **Anthony Edwards** — Minnesota Timberwolves (MIN) — 28.3 PPG
+
+ANSWER: The top three NBA scoring leaders for the 2025-26 regular season were: 1) Luka Dončić, Los Angeles Lakers (28.8 PPG); 2) Shai Gilgeous-Alexander, Oklahoma City Thunder (28.7 PPG); 3) Anthony Edwards, Minnesota Timberwolves (28.3 PPG).

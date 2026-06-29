@@ -1,0 +1,8 @@
+{
+  "id": "Google Map--40",
+  "bucket": "Google Map",
+  "web_name": "Google Map",
+  "ques": "Find a restaurant in Boston that eats Boston lobster and asks for a rating of 4.6 or higher, and check out what a one-star review says.",
+  "web": "https://www.google.com/maps/",
+  "answer": "Found Boston Sail Loft (Seafood restaurant, 80 Atlantic Ave, Boston, MA \u2014 rated 4.6\u2605, serves Boston lobster), which meets the \u22654.6 criterion; however, the one-star review text could not be read because Google flagged this environment's IP and blocks all review access (signed-out \"limited view\" strips reviews, the reviews RPC returns empty for every place, and search.google.com reviews returns a reCAPTCHA). The review content is unavailable without sign-in/CAPTCHA, and I did not fabricate it."
+}

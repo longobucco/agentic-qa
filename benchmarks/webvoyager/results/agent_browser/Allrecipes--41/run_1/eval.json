@@ -1,0 +1,5 @@
+{
+  "id": "Allrecipes--41",
+  "verdict": "FAILURE",
+  "reason": "Both screenshots show only a people.inc anti-bot access-issue page with no recipe content, so no dinner recipes were listed."
+}

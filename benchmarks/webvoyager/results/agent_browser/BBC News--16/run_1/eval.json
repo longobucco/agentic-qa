@@ -1,0 +1,5 @@
+{
+  "id": "BBC News--16",
+  "verdict": "FAILURE",
+  "reason": "Every screenshot, including the final one, shows the agent stuck behind the BBC cookie-consent dialog on the homepage with no Brexit article ever opened, so the detailed answer is unverifiable from the visual end state and the required impacts-on-European-economies element is unmet."
+}

@@ -1,0 +1,3 @@
+Wolfram Alpha returned the result. The "Power generation" section lists the annual power generation for the Itaipu Dam.
+
+ANSWER: According to Wolfram Alpha, the Itaipu Dam's annual electrical energy output (power generation) is 89.5 TWh (terawatt-hours), with a plant capacity of 14 GW.

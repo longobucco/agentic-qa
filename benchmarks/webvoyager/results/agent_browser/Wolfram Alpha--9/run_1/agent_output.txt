@@ -1,0 +1,3 @@
+The query resolved cleanly. WolframAlpha interpreted it as "Diablo Canyon-2 (nuclear reactor) | annual energy production | 2010" and returned the result.
+
+ANSWER: 9752 GW·h/yr (gigawatt-hours per year)

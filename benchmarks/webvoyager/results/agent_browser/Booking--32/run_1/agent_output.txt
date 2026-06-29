@@ -1,0 +1,15 @@
+I've completed a thorough attempt. Here's what I found:
+
+**Steps performed:**
+1. Opened Booking.com, dismissed cookie/sign-in banners
+2. Entered "Sydney" and selected *Sydney, New South Wales (Sydney Region), Australia*
+3. Set the dates correctly to **Wed, Feb 24 — Sat, Feb 27, 2027** (verified in the date field)
+4. Clicked Search
+
+**Obstacle encountered:** In this environment, every Sydney search (whether via the search form or a direct `searchresults.html` URL with all parameters and `nflt=hotelfacility` filter codes) is redirected to the static SEO landing page `booking.com/city/au/sydney.html`. The real interactive search-results page renders only an empty shell (its query parameters get stripped). 
+
+The reachable city landing page exposes **only "Star Rating" and "Review score" filters** — it has **no "Swimming Pool" or "Airport Shuttle" facility filters**, and no filterable property count. The only total it reports is the unfiltered *"Sydney – 4395 hotels and places to stay."* There is a curated "Hotels with airport shuttles in Sydney" strip, but it's a fixed 10-property marketing list, not a filter result.
+
+Because the Swimming Pool and Airport Shuttle facility filters are not present on any page this environment serves, the combined-filter hotel count cannot be obtained here. I did not fabricate a number.
+
+ANSWER: Could not be determined — the Swimming Pool and Airport Shuttle filters are unavailable in this environment. Every Sydney search redirects to the static city page (booking.com/city/au/sydney.html), which only offers Star Rating and Review score filters and shows just the unfiltered total of 4,395 Sydney hotels; the interactive search-results page with facility filters renders empty, so no filtered hotel count could be retrieved.

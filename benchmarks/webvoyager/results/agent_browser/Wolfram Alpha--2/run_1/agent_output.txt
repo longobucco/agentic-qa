@@ -1,0 +1,3 @@
+WolframAlpha computed 3^71 = 7509466514979724803946715958257547, with scientific notation 7.509466... × 10³³. Rounding to 5 significant figures gives 7.5095 × 10³³.
+
+ANSWER: 7.5095 × 10^33

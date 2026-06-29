@@ -1,0 +1,8 @@
+{
+  "id": "Booking--17",
+  "bucket": "Booking",
+  "web_name": "Booking",
+  "ques": "Find a hotel in Paris with a fitness center and a rating of 8 or higher available for a 5-night stay starting from February 14, 2027, and sort the results by best reviewed.",
+  "web": "https://www.booking.com/",
+  "answer": ""
+}

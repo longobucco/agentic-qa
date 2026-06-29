@@ -1,0 +1,8 @@
+{
+  "id": "Google Flights--8",
+  "bucket": "Google Flights",
+  "web_name": "Google Flights",
+  "ques": "Search a one-way filght from Dublin To Athens Greece for 1 Adult that leaves on December 30 and analyse the price graph for the next 2 months.",
+  "web": "https://www.google.com/travel/flights/",
+  "answer": "Searched one-way Dublin\u2192Athens, 1 adult, departing Wed Dec 30, 2026 (from \u20ac118). Price graph over the next 2 months: late-Dec/New-Year dates are the priciest (~\u20ac140\u2013150), while Jan\u2013Feb 2027 are much cheaper, mostly \u20ac60\u2013\u20ac120 with lows around \u20ac60\u201370; current Dec 30 prices are rated \"typical.\""
+}

@@ -1,0 +1,8 @@
+{
+  "id": "Amazon--18",
+  "bucket": "Amazon",
+  "web_name": "Amazon",
+  "ques": "Open Amazon's home page and tell me what the deal is that is going on at the moment, list the names of at least 2 items that are on offer and tell me what percent off they are.",
+  "web": "https://www.amazon.com/",
+  "answer": "The current deal is Amazon Prime Day 2026 (a Prime-exclusive event, up to 40% off, ending 6/26/2026). Example items on offer: Beckham Hotel Collection Bed Pillows (Set of 2) at 50% off, CGK Unlimited Queen 4-Piece Sheet Set at 42% off, Samsung Galaxy S26 Ultra at 29% off, and WHOOP 5.0 Activity Tracker at 21% off."
+}

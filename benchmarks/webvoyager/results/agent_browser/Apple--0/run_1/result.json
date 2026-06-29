@@ -1,0 +1,8 @@
+{
+  "id": "Apple--0",
+  "bucket": "Apple",
+  "web_name": "Apple",
+  "ques": "Compare the prices of the latest models of MacBook Air available on Apple's website.",
+  "web": "https://www.apple.com/",
+  "answer": "The latest MacBook Air (M5 chip) starts at $1,299 for the 13-inch and $1,499 for the 15-inch \u2014 the 15-inch costs $200 more than the 13-inch."
+}

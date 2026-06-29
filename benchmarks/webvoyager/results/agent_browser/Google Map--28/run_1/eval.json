@@ -1,0 +1,5 @@
+{
+  "id": "Google Map--28",
+  "verdict": "SUCCESS",
+  "reason": "The final screenshot shows the Google Search settings page with exactly the options the agent reported (Search personalization On, SafeSearch Blur on, Family Link parental controls, and the Privacy/Other settings tabs), confirming the task was accomplished."
+}

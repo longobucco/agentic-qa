@@ -1,0 +1,8 @@
+{
+  "id": "Allrecipes--9",
+  "bucket": "Allrecipes",
+  "web_name": "Allrecipes",
+  "ques": "Find a high-rated recipe for vegetarian lasagna, list the key ingredients required, and include the total preparation and cook time stated on the recipe.",
+  "web": "https://www.allrecipes.com/",
+  "answer": "Unable to complete \u2014 allrecipes.com is blocking this connection (People Inc. access-restriction page shown for every URL, including the homepage, search, and direct recipe pages), so no vegetarian lasagna recipe, ingredients, or prep/cook times could be retrieved."
+}

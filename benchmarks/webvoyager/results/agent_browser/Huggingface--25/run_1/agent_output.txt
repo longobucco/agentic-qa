@@ -1,0 +1,17 @@
+I found the tutorial in the Hugging Face Transformers documentation: **"Parameter-efficient fine-tuning" → "Loading an adapter"** (huggingface.co/docs/transformers/main/en/peft).
+
+For large models, you load a quantized version in 8-bit or 4-bit precision using **bitsandbytes** (to save memory), by passing a `BitsAndBytesConfig` to `quantization_config`, and adding `device_map="auto"` to distribute the model across available hardware:
+
+```python
+from transformers import AutoModelForCausalLM, BitsAndBytesConfig
+
+model = AutoModelForCausalLM.from_pretrained(
+    "klcsp/gemma7b-lora-alpaca-11-v1",
+    quantization_config=BitsAndBytesConfig(load_in_8bit=True),  # use load_in_4bit=True for 4-bit
+    device_map="auto",
+)
+```
+
+For 8-bit use `load_in_8bit=True`; for 4-bit use `load_in_4bit=True`. The adapter is loaded automatically by `from_pretrained()` when the repo contains an `adapter_config.json`.
+
+ANSWER: In the Transformers "Parameter-efficient fine-tuning" docs (Loading an adapter), use bitsandbytes via `BitsAndBytesConfig`: pass `quantization_config=BitsAndBytesConfig(load_in_8bit=True)` (or `load_in_4bit=True` for 4-bit) to `AutoModelForCausalLM.from_pretrained(...)`, plus `device_map="auto"` to spread the model across hardware.

@@ -1,0 +1,10 @@
+I've completed the comparison of non-stop flights from Mexico City (MEX) to Frankfurt (FRA), departing July 5, 2026 and returning July 15, 2026. After filtering to "Nonstop only," there is only one non-stop option on this route — operated by **Lufthansa** in both directions.
+
+**Results:**
+- **Outbound (Jul 5):** Lufthansa, MEX 7:50 PM → FRA 2:50 PM (Jul 6) — total duration **11 hr**
+- **Return (Jul 15):** Lufthansa, FRA 1:30 PM → MEX 5:30 PM — total duration **12 hr**
+- **Price:** **€1,504** round-trip total (the only non-stop fare available)
+
+Since Lufthansa is the sole non-stop carrier on this city pair, there are no competing non-stop prices/times to compare against — all other itineraries involve at least one stop.
+
+ANSWER: Only one non-stop option exists on MEX→FRA for these dates: Lufthansa, €1,504 round-trip total. Outbound Jul 5 (MEX 7:50 PM → FRA 2:50 PM) = 11 hr; Return Jul 15 (FRA 1:30 PM → MEX 5:30 PM) = 12 hr (total ~23 hr round trip). No other non-stop flights are available to compare.

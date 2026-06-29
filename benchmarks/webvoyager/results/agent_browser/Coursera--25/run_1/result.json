@@ -1,0 +1,8 @@
+{
+  "id": "Coursera--25",
+  "bucket": "Coursera",
+  "web_name": "Coursera",
+  "ques": "Find a course on Coursera about 'Relativity' for beginners. List the course's main topics and the estimated time (in hours) required to complete it.",
+  "web": "https://www.coursera.org/",
+  "answer": "Course: \"Understanding Einstein: The Special Theory of Relativity\" (Stanford University, Beginner level). Main topics (8 modules): 1) Introduction & Einstein in Context, 2) Events, Clocks, and Reference Frames, 3) Ethereal Problems and Solutions, 4) The Weirdness Begins, 5) Spacetime Switches, 6) Breaking the Spacetime Speed Limit, 7) Paradoxes to Ponder, 8) To the Center of the Galaxy and Back. Estimated time to complete: ~81 hours total (approx. 2 months at 10 hours/week)."
+}

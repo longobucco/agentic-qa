@@ -1,0 +1,5 @@
+{
+  "id": "ESPN--25",
+  "verdict": "SUCCESS",
+  "reason": "Screenshots confirm the latest NBA game (Finals Game 5, Knicks 94\u2013Spurs 90) with De'Aaron Fox showing 5 assists for the San Antonio Spurs at Guard, exceeding the visible Knicks max of 4, and the response correctly reports all three requested attributes."
+}

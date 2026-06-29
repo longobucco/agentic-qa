@@ -1,0 +1,8 @@
+{
+  "id": "Allrecipes--20",
+  "bucket": "Allrecipes",
+  "web_name": "Allrecipes",
+  "ques": "Find a recipe for a cauliflower pizza crust that has a preparation time of under 30 minutes and a rating of at least 4 stars on Allrecipes. Include the number of calories per serving.",
+  "web": "https://www.allrecipes.com/",
+  "answer": "Unable to complete \u2014 Allrecipes blocked all requests from this environment (HTTP 402 \"access issue\" page on every URL, including the homepage, search, and recipe pages), so no recipe, rating, prep time, or calorie data could be retrieved from the live site."
+}

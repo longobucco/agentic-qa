@@ -1,0 +1,10 @@
+I've completed the task. The latest iPhone is the **iPhone 17** series, with the **iPhone 17 Pro** and **iPhone 17 Pro Max** as the top-tier Pro models. Here's the comparison:
+
+| | iPhone 17 Pro | iPhone 17 Pro Max |
+|---|---|---|
+| **Starting price** | From $1,099 | From $1,199 |
+| **Screen size** | 6.3-inch Super Retina XDR (OLED) | 6.9-inch Super Retina XDR (OLED) |
+
+The Pro Max costs **$100 more** ($1,199 vs $1,099) and has a **0.6-inch larger display** (6.9" vs 6.3"). Both share the same design (ProMotion up to 120Hz, Always-On display, A19 Pro chip). Higher storage tiers scale identically (256GB base up to 2TB at $1,999).
+
+ANSWER: The latest iPhone is the iPhone 17 (Sep 2025). Comparing the two Pro models — iPhone 17 Pro: 6.3-inch display, from $1,099; iPhone 17 Pro Max: 6.9-inch display, from $1,199. The Pro Max is $100 more and has a 0.6-inch larger screen.

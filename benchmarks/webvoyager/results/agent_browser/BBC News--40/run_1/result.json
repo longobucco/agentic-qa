@@ -1,0 +1,8 @@
+{
+  "id": "BBC News--40",
+  "bucket": "BBC News",
+  "web_name": "BBC News",
+  "ques": "Read and summarise a recent story on BBC News about people being injured or killed in wars.",
+  "web": "https://www.bbc.com/news/",
+  "answer": "A recent BBC News story, \"Israeli strikes kill six people in Gaza including Al Jazeera cameraman,\" reports that Israeli strikes killed at least six people in Gaza \u2014 including Al Jazeera cameraman Ahmed Wishah (whom the IDF accused, without evidence, of being a Hamas sniper) and at least one child. Four members of one family, including two women and a child, died in a separate overnight strike in Gaza City; relatives said they were innocent civilians. Health officials say 1,007 people have been killed since the October ceasefire and over 73,000 since the war began in October 2023, with both Israel and Hamas accusing each other of ceasefire violations amid a dire humanitarian situation."
+}

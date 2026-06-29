@@ -1,0 +1,10 @@
+I've completed the research. The Apple support page confirms that AirDrop transfers continue over the internet when devices move out of Bluetooth/Wi-Fi range, and web sources confirm this capability was introduced in iOS 17.1.
+
+**Summary of findings:**
+- AirDrop's ability to continue a transfer over the internet (Wi-Fi or cellular) when devices move out of range was introduced in **iOS 17.1**.
+- **Software requirement:** Both the sending and receiving iPhone must be running **iOS 17.1 or later** and be **signed in to iCloud (Apple Account)**.
+- To use cellular data for out-of-range transfers, "Use Cellular Data" must be enabled under Settings > General > AirDrop > Out of Range.
+
+Sources: [Apple Support – Use AirDrop to send items to nearby Apple devices](https://support.apple.com/guide/iphone/use-airdrop-to-send-items-to-nearby-devices-iphcd8b9f0af/ios), [TechCrunch](https://techcrunch.com/2023/10/26/ios-17-1-will-let-you-continue-airdrop-transfers-over-cellular-data/), [MacRumors](https://www.macrumors.com/how-to/ios-use-airdrop-without-wi-fi/)
+
+ANSWER: iOS 17.1 or later (with both the sending and receiving iPhone signed in to iCloud/Apple Account). This feature, introduced in iOS 17.1, lets an in-progress AirDrop transfer continue over the internet (Wi-Fi or cellular) when the devices move out of Bluetooth/Wi-Fi range.

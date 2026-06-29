@@ -1,0 +1,8 @@
+{
+  "id": "ArXiv--8",
+  "bucket": "ArXiv",
+  "web_name": "ArXiv",
+  "ques": "What is the latest news on ArXiv?",
+  "web": "https://arxiv.org/",
+  "answer": "arXiv has no dedicated news feed; its \"latest\" content is the newest paper submissions. As of Thursday, 25 June 2026, the Computer Science section lists 961 new entries (564 new submissions), topped by \"Graph-Based Phonetic Error Correction of Noisy ASR\" (arXiv:2606.24889)."
+}

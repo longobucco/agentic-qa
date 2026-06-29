@@ -1,0 +1,8 @@
+{
+  "id": "Coursera--33",
+  "bucket": "Coursera",
+  "web_name": "Coursera",
+  "ques": "Find a beginner level Coursera course related to \"Internet of Things (IoT)\" with a high rating. Provide the course name, instructor's name, and a brief summary of the skills that will be taught.",
+  "web": "https://www.coursera.org/",
+  "answer": "Course: \"IoT (Internet of Things) Wireless & Cloud Computing Emerging Technologies\" (Yonsei University), Beginner level, rated 4.7/5 from 1,447 reviews. Instructor: Jong-Moon Chung. Skills taught: a foundational, hands-on intro covering IoT business & products, IoT architecture & technologies, IoT networks, Wi-Fi & Bluetooth wireless communication, and cloud technology (incl. AWS EC2 cloud projects) \u2014 building skills in Internet of Things, cloud computing & cloud platforms, cloud computing architecture, wireless/local-area networks, networking protocols/infrastructure, and cloud-based integration."
+}

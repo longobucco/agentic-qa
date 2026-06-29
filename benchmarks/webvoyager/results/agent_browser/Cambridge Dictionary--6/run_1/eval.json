@@ -1,0 +1,5 @@
+{
+  "id": "Cambridge Dictionary--6",
+  "verdict": "FAILURE",
+  "reason": "The agent never completed the search (word only typed in the box, blocked by a Cloudflare verification page) and produced no answer, so neither the Chinese nor French translation of 'sustainability' was obtained."
+}

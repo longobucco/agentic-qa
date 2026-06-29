@@ -1,0 +1,8 @@
+Task complete. I searched Coursera for "project management", identified the **Project Management Principles and Practices** Specialization produced by **University of California, Irvine** (a university), opened its page, navigated to the Testimonials section, and displayed the learner testimonials.
+
+A testimonial shown for this Specialization (under "Why people choose Coursera for their career"):
+- **Felipe M.** (Learner since 2018): *"To be able to take courses at my own pace and rhythm has been an amazing experience. I can learn whenever it fits my schedule and mood."*
+- Jennifer J. (Learner since 2020): *"I directly applied the concepts and skills I learned from my courses to an exciting new project at work."*
+- Larry W. (Learner since 2021): *"When I need courses on topics that my university doesn't offer, Coursera is one of the best places to go."*
+
+ANSWER: The "Project Management Principles and Practices" Specialization by University of California, Irvine displays testimonials including Felipe M. (Learner since 2018): "To be able to take courses at my own pace and rhythm has been an amazing experience. I can learn whenever it fits my schedule and mood."

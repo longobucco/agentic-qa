@@ -1,0 +1,5 @@
+{
+  "id": "Wolfram Alpha--21",
+  "verdict": "SUCCESS",
+  "reason": "The screenshot shows Wolfram Alpha returning 0.717183 \u2212 0.425258 i (polar form 0.833784\u00b7e^(\u22120.535225 i)) for the exact expression, matching the agent's answer."
+}

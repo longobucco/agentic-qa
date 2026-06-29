@@ -1,0 +1,5 @@
+The screenshot lives inside the container (the harness collects it), so it's not readable from the host — that's expected. The task is complete.
+
+I checked ESPN's NBA scoreboard for Wednesday, June 24, 2026 (yesterday). ESPN explicitly shows **"No games on this date."** The NBA season concluded on June 14, 2026, when the New York Knicks beat the San Antonio Spurs 94–90 in Game 5 to win the Finals 4–1. It's now the off-season/draft period, so no NBA games were played yesterday.
+
+ANSWER: No NBA games were played yesterday (Wednesday, June 24, 2026) — ESPN's scoreboard shows "No games on this date." The NBA season ended on June 14, 2026 (Knicks defeated Spurs 94–90 to win the Finals 4–1), so there are no final scores to report.

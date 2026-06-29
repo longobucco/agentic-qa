@@ -1,0 +1,9 @@
+The final screenshot clearly captures the "TRENDS FROM THE LAST WEEK" panel showing the Busiest Airport as **KORD** with **16,631** total arrivals and departures.
+
+According to FlightAware's "Trends from the last week" data, the busiest airport last week was **KORD — Chicago O'Hare International Airport**, with **16,631 total arrivals and departures** last week.
+
+Sources:
+- [FlightAware Hub (Explore Aviation Trends)](https://hub.flightaware.com/)
+- [Live Flight Tracker - FlightAware](https://www.flightaware.com/live/)
+
+ANSWER: The busiest airport last week was KORD (Chicago O'Hare International Airport), with 16,631 total arrivals and departures last week.

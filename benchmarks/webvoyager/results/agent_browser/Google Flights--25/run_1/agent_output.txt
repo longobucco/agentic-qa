@@ -1,0 +1,15 @@
+I've completed the task. I configured Google Flights for a one-way Business class search from Buenos Aires to Amsterdam on July 10, 2026, then sorted the results by duration to identify the shortest flight.
+
+The flight with the shortest duration is the **KLM nonstop**:
+- **Airline:** KLM (Flight **KL702**)
+- **Route:** Ezeiza International Airport (EZE), Buenos Aires → Amsterdam Airport Schiphol (AMS)
+- **Departure:** 3:05 PM, Fri, July 10, 2026
+- **Arrival:** 9:10 AM, Sat, July 11, 2026 (+1 day, overnight)
+- **Duration:** 13 hr 5 min (nonstop)
+- **Aircraft:** Boeing 777
+- **Class:** Business (individual suite, Wi-Fi for a fee, in-seat power & USB, on-demand video)
+- **Price:** €4,002
+
+This is notably shorter than all alternatives (next best was 15 hr 55 min with a stop), as expected since it's the only nonstop option.
+
+ANSWER: The shortest-duration one-way Business class flight from Buenos Aires to Amsterdam on July 10, 2026 is KLM flight KL702 (nonstop): departs Ezeiza International Airport (EZE) at 3:05 PM on Fri, Jul 10, arrives Amsterdam Schiphol (AMS) at 9:10 AM on Sat, Jul 11 (+1), total duration 13 hr 5 min, Boeing 777, Business Class, €4,002.

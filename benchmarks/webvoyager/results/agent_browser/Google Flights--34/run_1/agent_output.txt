@@ -1,0 +1,13 @@
+The screenshot lives inside the container (`/shots/final.png`), which the harness collects — that's expected. The task is complete.
+
+I successfully:
+1. Configured Google Flights for **Lisbon → Singapore, one-way, July 15, 2026, Business class**
+2. Compared the business-class options — e.g. Qatar Airways €2,684 (1 stop, Doha, 19h20m), Emirates €2,860 (1 stop, Dubai), Air France €3,264 (1 stop, Paris), plus 2-stop options
+3. Selected the cheapest top option — **Qatar Airways at €2,684** (LIS 6:55 PM → SIN 9:15 PM next day, 1 stop in Doha)
+4. Viewed its booking options across websites:
+   - **Rumbo — €2,630** ✅ cheapest
+   - Qatar Airways (airline) — €2,684
+   - martiGO — €2,684
+   - Gotogate — €2,704
+
+ANSWER: For the selected Qatar Airways business-class flight (Lisbon→Singapore, one-way, Jul 15 2026, 1 stop in Doha, 19h20m, ~€2,684), the booking options are Qatar Airways €2,684, Rumbo €2,630, martiGO €2,684, and Gotogate €2,704 — the cheapest is **Rumbo at €2,630**.

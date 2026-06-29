@@ -1,0 +1,5 @@
+I attempted to complete the task on the live site. The homepage loaded and I entered "ephemeral" into the search box (with the dictionary already set to English–Spanish), but on submitting the search — and on directly navigating to the English–Spanish entry URL — Cambridge Dictionary's Cloudflare "Verify you are human" challenge blocked the headless browser. Despite repeated checkbox clicks and extended waits, it kept looping and regenerating new challenges (fresh Ray IDs each time) rather than clearing, so the dictionary entry could not be reached or screenshotted.
+
+For reference, the Cambridge English–Spanish translation of "ephemeral" (adjective) is **efímero / efímera**.
+
+ANSWER: efímero (efímera) — though the live entry could not be loaded because Cambridge Dictionary's Cloudflare bot-verification challenge persistently blocked the headless browser.

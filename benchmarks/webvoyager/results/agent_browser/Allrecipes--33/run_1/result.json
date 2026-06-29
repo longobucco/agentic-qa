@@ -1,0 +1,8 @@
+{
+  "id": "Allrecipes--33",
+  "bucket": "Allrecipes",
+  "web_name": "Allrecipes",
+  "ques": "Find a recipe for a low-carb breakfast on Allrecipes with at least 25 reviews. Show the Nutrition Facts and the total carbohydrate content per serving.",
+  "web": "https://www.allrecipes.com/",
+  "answer": "Unable to complete \u2014 Allrecipes is blocking the container's IP with an HTTP 402 \"access issue\" page on every URL (homepage, search, category, and non-www), so no recipe or Nutrition Facts could be accessed."
+}

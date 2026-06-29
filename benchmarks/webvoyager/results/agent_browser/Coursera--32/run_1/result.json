@@ -1,0 +1,8 @@
+{
+  "id": "Coursera--32",
+  "bucket": "Coursera",
+  "web_name": "Coursera",
+  "ques": "Search for 'Data Analysis' courses on Coursera. Apply filters to find courses that are 'Beginner Level' and have a duration ranging from 1 to 3 months. Determine the total count of courses that match these specifications.",
+  "web": "https://www.coursera.org/",
+  "answer": "24 courses match the filters (Beginner Level + 1\u20133 Months duration) for the 'Data Analysis' search on Coursera."
+}

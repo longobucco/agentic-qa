@@ -1,0 +1,5 @@
+{
+  "id": "Allrecipes--17",
+  "verdict": "FAILURE",
+  "reason": "Screenshots show only a People Inc. IP access-block page with no recipe or review content, and the agent admits it could not retrieve the latest review, so the task was not accomplished."
+}

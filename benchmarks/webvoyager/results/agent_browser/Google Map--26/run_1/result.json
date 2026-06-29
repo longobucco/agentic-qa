@@ -1,0 +1,8 @@
+{
+  "id": "Google Map--26",
+  "bucket": "Google Map",
+  "web_name": "Google Map",
+  "ques": "Search for Los Angeles on Google Map, try to print the map as PDF and summarize the information on the map.",
+  "web": "https://www.google.com/maps/",
+  "answer": "Searched \"Los Angeles\" on Google Maps (Los \u00c1ngeles, California, USA), opened the Google Maps print preview via Ctrl+P and clicked \"Imprimir\" to print/save the map as PDF. Map summary: Los Angeles is a fast-growing Southern California city and the heart of the US TV/film industry \u2014 home to the Hollywood sign, major studios (Paramount, Universal, Warner Bros.), Hollywood Boulevard, Grauman's Chinese Theatre, and the Walk of Fame."
+}

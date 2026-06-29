@@ -1,0 +1,5 @@
+{
+  "id": "BBC News--22",
+  "verdict": "FAILURE",
+  "reason": "The screenshots show only a cookie-consent modal blocking the BBC Business page (never dismissed), and the one visible lead headline is the Apple/Xbox story, not the claimed 'Oil price falls back to pre-Iran war levels' \u2014 so the agent's answer is unsupported by and contradicts the ground-truth screenshots."
+}

@@ -1,0 +1,7 @@
+I've completed the task. Google, IMDb, DuckDuckGo, and Bing all blocked the container's IP with CAPTCHAs/403s, so I used The Movie Database (TMDB), which has reliable, current filmography data.
+
+On Jerry Trainor's TMDB profile, his Acting credits list one project with no release date yet (marked "—", indicating it is unreleased/in development), sitting above his most recent released work (Predator: Killer of Killers, 2025).
+
+Screenshots saved to `/shots/step_1.png` and `/shots/final.png`.
+
+ANSWER: Jerry Trainor's upcoming project is the "Untitled iCarly Movie," in which he is set to reprise his role as Spencer (Spencer Shay). It is the only credit on his filmography with no release date yet (his most recent released work was Predator: Killer of Killers in 2025).

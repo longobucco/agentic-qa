@@ -1,0 +1,11 @@
+I've completed the task. I searched Google Maps for "locksmiths in Texas City" and applied the **"Open now" (Abierto ahora)** filter. Google Maps has no single filter for "open now AND not 24 hours," so among the open-now results I identified those that close at a set time (not 24-hour operations).
+
+From the open-now results, the locksmiths that are **open now but NOT open 24 hours** (shown as "Open · Closes at…") are:
+- **KeyMe Locksmiths** – 2750 E League City Pkwy (closes 23:00)
+- **KeyMe Locksmiths** – 1920 W League City Pkwy (closes 23:00)
+- **KeyMe Locksmiths** – 250 S Egret Bay Blvd (closes 23:00)
+- **Minute Key** – 3620 Emmett F Lowry Expy (closes 22:00)
+
+The rest (Local Galveston Locksmith, Auto Keys Now LLC, Locksmith 4 Life, Alamo Key & Lock, Howard Safe & Lock, RoadRunner Locksmith, Island Locksmith) are marked "Open 24 hours" and excluded.
+
+ANSWER: Locksmiths open now but not 24 hours in Texas City: KeyMe Locksmiths (2750 E League City Pkwy, closes 23:00), KeyMe Locksmiths (1920 W League City Pkwy, closes 23:00), KeyMe Locksmiths (250 S Egret Bay Blvd, closes 23:00), and Minute Key (3620 Emmett F Lowry Expy, closes 22:00).

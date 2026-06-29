@@ -1,0 +1,8 @@
+{
+  "id": "GitHub--21",
+  "bucket": "GitHub",
+  "web_name": "GitHub",
+  "ques": "Find the Security topic in GitHub Resources and answer the role of GitHub Advanced Security.",
+  "web": "https://github.com/",
+  "answer": "In GitHub Resources' Security topic, GitHub Advanced Security's role is to find and fix vulnerabilities swiftly \u2014 built-in application security (code scanning/SAST, secret scanning) that delivers fast remediation rates and integrates seamlessly into the developer workflow so teams ship more secure software faster."
+}

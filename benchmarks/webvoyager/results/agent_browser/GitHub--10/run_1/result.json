@@ -1,0 +1,8 @@
+{
+  "id": "GitHub--10",
+  "bucket": "GitHub",
+  "web_name": "GitHub",
+  "ques": "If I start using Copilot Individual, how much US dollars will it cost per year and what features does it have?",
+  "web": "https://github.com/",
+  "answer": "Copilot Individual (now \"Copilot Pro\") costs $10 USD/month = $120 USD per year. Features (everything in Free plus): access to Cloud agent and code review, unlimited code completion and next edit suggestions, access to 3rd-party agents (Claude Code & Codex), model selection, and $15 in monthly total credits; plus Free-tier perks like Copilot CLI and access to Haiku 4.5/GPT-5 mini."
+}

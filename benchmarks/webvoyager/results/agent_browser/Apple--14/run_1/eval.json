@@ -1,0 +1,5 @@
+{
+  "id": "Apple--14",
+  "verdict": "FAILURE",
+  "reason": "The screenshots show only M5-chip MacBook Pros and end on an unrelated refurbished MacBook Air page; no M3 MacBook Pro 14-inch base model or its upgrade options are ever shown, so the response's pricing and $1,000 difference are unverifiable from the visual ground truth."
+}

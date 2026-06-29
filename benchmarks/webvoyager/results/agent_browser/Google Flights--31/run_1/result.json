@@ -1,0 +1,8 @@
+{
+  "id": "Google Flights--31",
+  "bucket": "Google Flights",
+  "web_name": "Google Flights",
+  "ques": "Find a one-way economy flight from Auckland to Honolulu on July 25, 2026, browse the full page and display a flight option with the most stops.",
+  "web": "https://www.google.com/travel/flights/",
+  "answer": "The flight option with the most stops (2 stops) is the Air New Zealand + Fiji Airways one-way itinerary on Sat, Jul 25, 2026: Auckland (AKL) 1:10 PM \u2192 Wellington (WLG) [1h50m layover] \u2192 Nadi (NAN) [17h35m overnight layover] \u2192 Honolulu (HNL) 10:10 PM, total 31 hr, \u20ac1,815. All other options had only 1 stop."
+}

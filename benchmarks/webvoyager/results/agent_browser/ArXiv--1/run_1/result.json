@@ -1,0 +1,8 @@
+{
+  "id": "ArXiv--1",
+  "bucket": "ArXiv",
+  "web_name": "ArXiv",
+  "ques": "Search for the latest research papers on quantum computing submitted to ArXiv within the last two days.",
+  "web": "https://arxiv.org/",
+  "answer": "The latest quantum computing papers submitted to ArXiv within the last two days (as of 25 June 2026) include arXiv:2606.26088 \"Simulating Universal Quantum Gate Sets on Photonic OAM Qubits...\" (quant-ph) and arXiv:2606.26085 \"Analytic Approach to Quantum Control Using Quantum Signal Processing\" (quant-ph), both submitted 24 June 2026, found via ArXiv search for \"quantum computing\" sorted by submission date (newest first)."
+}

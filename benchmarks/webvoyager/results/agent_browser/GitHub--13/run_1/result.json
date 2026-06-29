@@ -1,0 +1,8 @@
+{
+  "id": "GitHub--13",
+  "bucket": "GitHub",
+  "web_name": "GitHub",
+  "ques": "Identify the latest top-trending open-source project in the category of 'Machine Learning' on GitHub, and check the number of stars it has received.",
+  "web": "https://github.com/",
+  "answer": "The top-trending open-source Machine Learning project on GitHub is **tensorflow/tensorflow**, with approximately **196k stars** (196,000)."
+}

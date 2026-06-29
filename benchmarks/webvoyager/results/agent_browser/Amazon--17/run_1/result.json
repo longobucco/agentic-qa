@@ -1,0 +1,8 @@
+{
+  "id": "Amazon--17",
+  "bucket": "Amazon",
+  "web_name": "Amazon",
+  "ques": "Show me the list of baby products that are on sale and under 10 dollars on Amazon. Provide at least 2 on sale products",
+  "web": "https://www.amazon.com/",
+  "answer": "Yes \u2014 multiple on-sale baby products under $10 are available. Examples: Modern Moments by Gerber Baby Romper ($5.28, was $14.09), Infinno Baby Wrist Rattle & Foot Finder Set ($8.35, was $11.43), Baby Grooming Kit ($7.04, typical $8.80), Burt's Bees Baby Footed Pajamas ($7.95, was $16.69), and Johnson's Baby Head-To-Toe Wash ($6.05, was $9.44)."
+}

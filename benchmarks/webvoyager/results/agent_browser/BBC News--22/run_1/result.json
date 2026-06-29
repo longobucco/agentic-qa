@@ -1,0 +1,8 @@
+{
+  "id": "BBC News--22",
+  "bucket": "BBC News",
+  "web_name": "BBC News",
+  "ques": "Determine the current top business story on BBC News and give a brief overview of its economic implications.",
+  "web": "https://www.bbc.com/news/",
+  "answer": "The current top BBC business story is \"Oil price falls back to pre-Iran war levels\" \u2014 Brent crude dropped below ~$72/barrel as Strait of Hormuz shipping resumes after a US\u2013Iran de-escalation deal. Economic implications: lower energy/input costs ease inflation, cheaper petrol/diesel (UK petrol set to fall below 150p/litre; US gasoline down to ~$3.93/gal) boost consumer spending power, and restored shipping flows reduce supply-chain risk premiums \u2014 but analysts warn the relief is fragile and prices could spike again if tensions reignite."
+}

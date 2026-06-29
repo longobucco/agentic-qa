@@ -1,0 +1,3 @@
+The final screenshot at `/shots/final.png` captures the expanded official FAQ answer. The relevant FAQ — "What languages, IDEs, and platforms does GitHub Copilot support?" — states that Copilot Chat is available on mobile through the GitHub Mobile app: "All plans are supported in GitHub Copilot in GitHub Mobile."
+
+ANSWER: According to GitHub Copilot's official FAQ ("What languages, IDEs, and platforms does GitHub Copilot support?"), Copilot chat can be used on mobile via the GitHub Mobile app — "All plans are supported in GitHub Copilot in GitHub Mobile." (GitHub Mobile for Copilot Pro and Business get Bing and public repository code search; Copilot Enterprise in GitHub Mobile adds access to your organization's knowledge.)

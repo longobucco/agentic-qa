@@ -1,0 +1,8 @@
+{
+  "id": "GitHub--31",
+  "bucket": "GitHub",
+  "web_name": "GitHub",
+  "ques": "Find the official GitHub repository for TensorFlow and list the files changed in the last commit. Tell me the name of changed files, total additions and total deletion.",
+  "web": "https://github.com/",
+  "answer": "Repository: github.com/tensorflow/tensorflow. Last commit \"Add _xla_table_name frontend attribute to grad and custom combiner ops.\" (4b48483) changed 1 file: tensorflow/core/tpu/kernels/sparse_core_xla_ops.cc, with 12 additions and 0 deletions."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "GitHub--9",
+  "bucket": "GitHub",
+  "web_name": "GitHub",
+  "ques": "Locate a repository on GitHub that was created in the last week and has 50 or more stars. Provide brief details about the project's purpose and its programming language.",
+  "web": "https://github.com/",
+  "answer": "overflowy/make-look-scanned \u2014 a CLI tool (also runnable in-browser via WebAssembly) that degrades a PDF to look like a physical scan, adding skew, grayscale, warm paper tone, scanner grain, defocus, edge shadow, and JPEG artifacts to produce an image-only PDF. Created in the last week with 415 stars; written primarily in Go (67.5%)."
+}

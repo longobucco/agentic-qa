@@ -1,0 +1,8 @@
+{
+  "id": "Wolfram Alpha--41",
+  "bucket": "Wolfram Alpha",
+  "web_name": "Wolfram Alpha",
+  "ques": "What is the approximate Heart Rate Reserve of a 50 year old man who has a heart rate of 60bpm at rest.",
+  "web": "https://www.wolframalpha.com/",
+  "answer": "Approximately 110 bpm (beats per minute) \u2014 using the Karvonen formula: HRR = (220 \u2212 50) \u2212 60 = 170 \u2212 60 = 110 bpm."
+}

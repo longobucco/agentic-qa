@@ -1,0 +1,7 @@
+I have gathered all the required information.
+
+**Findings:**
+- **Scottish Premiership teams:** The table lists **12 teams** (Aberdeen, Celtic, Dundee, Dundee United, Falkirk, Heart of Midlothian, Hibernian, Kilmarnock, Motherwell, Rangers, St. Johnstone, St. Mirren).
+- **Hibernian's most recent match:** Hibernian 0–1 Motherwell, which started on **Saturday 16 May 2026** at Easter Road Stadium (the most recent match — the current season fixtures haven't begun yet).
+
+ANSWER: The Scottish Premiership has 12 teams, and Hibernian's most recent match (Hibernian 0–1 Motherwell at Easter Road) started on Saturday 16 May 2026.

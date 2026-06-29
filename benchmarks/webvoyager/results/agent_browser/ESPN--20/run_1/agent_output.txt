@@ -1,0 +1,10 @@
+Both screenshots are captured (`/shots/step_2.png` shows the assists table, `/shots/final.png` shows the rebounds table). I've identified the Western Conference leaders by filtering the league leaderboards to Western Conference teams.
+
+**Western Conference leaders (2025-26 Regular Season, ESPN):**
+
+- **Rebounds:** Nikola Jokić (Denver Nuggets) — 12.9 RPG (league-wide #1; next West players: Donovan Clingan POR 11.6, Victor Wembanyama SA / Rudy Gobert MIN 11.5)
+- **Assists:** Nikola Jokić (Denver Nuggets) — 10.7 APG (league-wide #1; next West players: Luka Dončić LAL 8.3, James Harden 8.0)
+
+Nikola Jokić leads the Western Conference in *both* categories.
+
+ANSWER: In the 2025-26 NBA season, Nikola Jokić (Denver Nuggets) leads the Western Conference in both rebounds (12.9 RPG) and assists (10.7 APG).

@@ -1,0 +1,15 @@
+I've gathered all available data. Let me summarize what I found.
+
+**Findings for Denver International Airport (overall rating 4.1★, 8500 Peña Blvd, Denver, CO):**
+
+I worked through Google Maps' Overview and About tabs and even inspected the page's underlying data to be thorough. The session is in Google Maps' signed-out **"limited view"**, which has a real impact on this task:
+
+1. **Level with the least proportion in reviews** — The limited view shows only the overall **4.1★** rating for the airport; it does **not** render the per-star review histogram (5★/4★/3★/2★/1★ bars). I confirmed the review-breakdown data is not even loaded into the page (the airport panel exposes no review count or distribution), so the star level with the smallest proportion cannot be read from the available view.
+
+2. **Accessibility & Amenities** (from the About tab — see `final.png`):
+   - **Accessibility:** Assistive hearing loop · Wheelchair accessible entrance · Wheelchair accessible parking lot · Wheelchair accessible restroom · Wheelchair accessible seating
+   - **Amenities:** No Amenities section is provided for this place in the available view — the About info lists only the Accessibility category (confirmed in the page data: no amenities/Wi-Fi attributes present).
+
+Screenshots saved: `step_1`–`step_3` and `final.png`.
+
+ANSWER: 1) The review-score breakdown (per-star histogram) is not available in this signed-out "limited view" of Google Maps — only the overall 4.1★ rating is shown — so the level with the least proportion of reviews cannot be determined from the page. 2) Accessibility: Assistive hearing loop, Wheelchair accessible entrance, Wheelchair accessible parking lot, Wheelchair accessible restroom, Wheelchair accessible seating. Amenities: none listed (the About section provides only the Accessibility category for this place).

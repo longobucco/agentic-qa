@@ -1,0 +1,5 @@
+{
+  "id": "Amazon--15",
+  "verdict": "FAILURE",
+  "reason": "The agent hit max turns without adding any item to the cart; the final screenshot shows only a search results page with an empty (0-item) cart and no product selected at size 7 under $50."
+}

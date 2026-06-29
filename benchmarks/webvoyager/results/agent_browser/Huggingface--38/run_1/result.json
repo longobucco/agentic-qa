@@ -1,0 +1,8 @@
+{
+  "id": "Huggingface--38",
+  "bucket": "Huggingface",
+  "web_name": "Huggingface",
+  "ques": "Investigate the 'transformers' library in the Hugging Face documentation, focusing on how to add new tokens to a tokenizer.",
+  "web": "https://huggingface.co/",
+  "answer": "In the Transformers docs (Tokenizer main-class reference), you add new tokens with `tokenizer.add_tokens([...])` for regular tokens or `tokenizer.add_special_tokens({...})` for special tokens, then resize the model embeddings with `model.resize_token_embeddings(len(tokenizer))` to match the enlarged vocabulary."
+}

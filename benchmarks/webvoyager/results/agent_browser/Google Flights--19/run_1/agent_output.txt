@@ -1,0 +1,5 @@
+The final screenshot confirms the search form is correctly configured (One way · London → Paris · Sat, Jul 25, 2026) but Google Flights returns a persistent "Oops, something went wrong" error and refuses to return any flight results to this automated browser session. I tried cookie accept/reject/clear, both metro-area and specific-airport (LHR) searches, multiple reloads, fresh URL navigations, and waits up to 18 seconds — all failed identically.
+
+I cannot determine the cheapest flight, airline, travel time, or layovers because Google never returned the flight data, and I won't fabricate those values.
+
+ANSWER: Unable to retrieve flights — Google Flights returned a persistent "Oops, something went wrong" backend error for the correctly-configured search (One-way, London → Paris, Sat Jul 25 2026), so no cheapest flight, airline, travel time, or layover information could be obtained.

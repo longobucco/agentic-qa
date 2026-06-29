@@ -1,0 +1,8 @@
+{
+  "id": "Huggingface--26",
+  "bucket": "Huggingface",
+  "web_name": "Huggingface",
+  "ques": "Identify a model on Hugging Face designed for generating travel chats. Obtain information about the model, including its name, size and training framwork.",
+  "web": "https://huggingface.co/",
+  "answer": "Name: joycejiang/llama2-13B-chat-qlora-travel-1k-rs0 \u2014 a Llama-2 travel chatbot. Size: 13B parameters (base meta-llama/Llama-2-13b-chat-hf), QLoRA-tuned with 4-bit nf4 quantization. Training framework: PEFT 0.4.0 (with Hugging Face Transformers + bitsandbytes)."
+}

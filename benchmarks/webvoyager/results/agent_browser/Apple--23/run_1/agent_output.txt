@@ -1,0 +1,8 @@
+The final screenshot clearly shows the Apple Watch lineup with model names and starting prices:
+- **Apple Watch Series 11** (latest series): From **$399**
+- **Apple Watch SE 3** (latest SE): From **$249**
+- Apple Watch Ultra 3: From $799
+
+The price difference between the latest Apple Watch Series (Series 11 at $399) and the Apple Watch SE (SE 3 at $249) is **$399 − $249 = $150**.
+
+ANSWER: $150 — the latest Apple Watch Series 11 starts at $399 while the latest Apple Watch SE (SE 3) starts at $249, a difference of $150.

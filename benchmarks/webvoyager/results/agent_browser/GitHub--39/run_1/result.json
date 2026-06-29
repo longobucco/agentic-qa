@@ -1,0 +1,8 @@
+{
+  "id": "GitHub--39",
+  "bucket": "GitHub",
+  "web_name": "GitHub",
+  "ques": "Browse the GitHub Trending and find out which developer is currently ranked first this month and the corresponding repository.",
+  "web": "https://github.com/",
+  "answer": "The #1 trending developer this month is Matt Van Horn (@mvanhorn), with his popular repository \"last30days-skill\"."
+}

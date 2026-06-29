@@ -1,0 +1,5 @@
+{
+  "id": "Google Search--29",
+  "verdict": "SUCCESS",
+  "reason": "The agent navigated to the Wikipedia 100 metres article and reported the correct men's world record (9.58s by Usain Bolt, 2009), consistent with the screenshot and uncontradicted."
+}

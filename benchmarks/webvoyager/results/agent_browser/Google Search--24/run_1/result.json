@@ -1,0 +1,8 @@
+{
+  "id": "Google Search--24",
+  "bucket": "Google Search",
+  "web_name": "Google Search",
+  "ques": "What is the name of the star system closest to the Solar System, and what are the discovered planets in it?",
+  "web": "https://www.google.com/",
+  "answer": "The closest star system to the Solar System is Alpha Centauri (a triple system: Rigil Kentaurus/\u03b1 Cen A, Toliman/\u03b1 Cen B, and Proxima Centauri/\u03b1 Cen C, ~4.24 ly away). Its discovered planets all orbit Proxima Centauri: Proxima Centauri b and Proxima Centauri d (both confirmed), plus the disputed candidate Proxima Centauri c."
+}

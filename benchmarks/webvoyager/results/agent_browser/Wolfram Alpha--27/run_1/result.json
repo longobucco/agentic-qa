@@ -1,0 +1,8 @@
+{
+  "id": "Wolfram Alpha--27",
+  "bucket": "Wolfram Alpha",
+  "web_name": "Wolfram Alpha",
+  "ques": "Display the thermal conductivity of Copper (Cu) and Aluminum (Al) at 25 degrees Celsius.",
+  "web": "https://www.wolframalpha.com/",
+  "answer": "Copper (Cu) \u2248 400 W/(m\u00b7K) and Aluminum (Al) \u2248 235 W/(m\u00b7K) at 25 \u00b0C."
+}

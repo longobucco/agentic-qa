@@ -1,0 +1,8 @@
+{
+  "id": "Booking--18",
+  "bucket": "Booking",
+  "web_name": "Booking",
+  "ques": "Search a hotel in London with a user rating of 8 or higher for a stay between February 14th, 2027, and February 21st, 2027, suitable for a couple. Provide the name and a short description of the hotel.",
+  "web": "https://www.booking.com/",
+  "answer": "art'otel London Hoxton \u2014 a stylish design hotel in Hackney, central London (guest rating 9.2/10). Conveniently located in the city center, it offers buffet breakfast and free WiFi throughout, and is well suited to a couple for the Feb 14\u201321, 2027 stay."
+}

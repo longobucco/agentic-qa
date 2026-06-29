@@ -1,0 +1,8 @@
+{
+  "id": "Booking--33",
+  "bucket": "Booking",
+  "web_name": "Booking",
+  "ques": "Find the Customer Service on the Booking website, browse the questions about cancellation, and tell me 'how do I know whether my booking has been cancelled'.",
+  "web": "https://www.booking.com/",
+  "answer": "After you cancel a booking with Booking.com, you should receive an email confirming the cancellation. Check your inbox and your spam/junk mail folders. If you don't get the confirmation email within 24 hours, contact the property directly to confirm they received your cancellation."
+}

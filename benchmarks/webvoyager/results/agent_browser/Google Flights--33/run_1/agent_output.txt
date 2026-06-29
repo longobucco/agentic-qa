@@ -1,0 +1,17 @@
+I completed the task. I searched Google Flights for a one-way flight from Shanghai to Vancouver on July 27, 2026, then sorted the results by carbon emissions to compare the options.
+
+**CO₂ emissions comparison (lowest → highest), Shanghai → Vancouver, Mon Jul 27, 2026:**
+
+| Airline | Stops | CO₂ | vs. avg | Price | Duration |
+|---|---|---|---|---|---|
+| **Air Canada** | Nonstop | **488 kg** | −11% (lowest) | €1,065 | 10h 45m |
+| Korean Air | 1 stop (ICN) | 530 kg | average | €806 | 14h 10m |
+| China Eastern | Nonstop | 583 kg | +6% | n/a | 10h 50m |
+| Asiana + Alaska | 2 stops | 589 kg | +7% | €616 | 20h 25m |
+| ANA | 1 stop (NRT) | 629 kg | +15% | €1,562 | 12h 40m |
+| ANA | 1 stop (HND) | 630 kg | +15% | €882 | 16h 15m |
+| Cathay Pacific | 1 stop (HKG) | 705–725 kg | +29–32% (highest) | €466 | 15h 50m+ |
+
+The **Air Canada nonstop flight is the greenest option at 488 kg CO₂ (−11% below average)**, while the cheapest flights (Cathay Pacific, €466) are also the highest-emitting at ~705–725 kg (+29–32%). There's a clear trade-off: the lowest-emission and shortest flights cost more, and the budget Cathay Pacific options carry the largest carbon footprint.
+
+ANSWER: One-way Shanghai→Vancouver on Jul 27, 2026 options sorted by CO₂: lowest is Air Canada nonstop at 488 kg (−11%, €1,065, 10h45m); then Korean Air 530 kg (avg), China Eastern nonstop 583 kg (+6%), Asiana/Alaska 589 kg (+7%), ANA ~629–630 kg (+15%); highest are the cheapest Cathay Pacific 1-stop flights at 705–725 kg (+29–32%, €466). The greenest option is the Air Canada nonstop (488 kg).

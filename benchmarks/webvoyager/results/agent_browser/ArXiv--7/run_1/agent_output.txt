@@ -1,0 +1,8 @@
+The most recent paper submitted under Machine Learning (cs.LG) in Computer Science is the first entry in the "Thu, 25 Jun 2026" recent-submissions listing.
+
+- **Title:** RevengeBench: Reverse Engineering Code-Space Policies from Behavioral Experiments
+- **arXiv ID:** 2606.26094
+- **Authors:** Babak Rahmani, Sebastian Dziadzio, Joschka Strüber, Sergio Hernández-Gutiérrez, Matthias Bethge
+- **Subject:** Machine Learning (cs.LG)
+
+ANSWER: The most recent Machine Learning (cs.LG) paper on arXiv is "RevengeBench: Reverse Engineering Code-Space Policies from Behavioral Experiments" (arXiv:2606.26094), submitted Thu, 25 Jun 2026 by Babak Rahmani et al.

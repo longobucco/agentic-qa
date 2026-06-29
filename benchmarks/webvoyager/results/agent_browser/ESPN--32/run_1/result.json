@@ -1,0 +1,8 @@
+{
+  "id": "ESPN--32",
+  "bucket": "ESPN",
+  "web_name": "ESPN",
+  "ques": "Review yesterday's NHL game results on ESPN, focusing on teams' performance.",
+  "web": "https://www.espn.com/",
+  "answer": "ESPN's NHL scoreboard is anchored to Sun Sep 20, 2026 (preseason); the date-navigation/cached data wouldn't surface completed prior-day results. All listed games (Jets@Oilers, Golden Knights@Kings, Canucks@Kraken, Islanders@Devils, Sharks@Ducks, Capitals@Bruins, Avalanche@Utah) are scheduled preseason matchups with no final scores \u2014 every team is 0-0, so there were no completed game results or team performance stats to review."
+}

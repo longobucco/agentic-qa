@@ -1,0 +1,8 @@
+{
+  "id": "GitHub--4",
+  "bucket": "GitHub",
+  "web_name": "GitHub",
+  "ques": "Find a popular JavaScript repository created in the last 30 days on GitHub with a Readme file.",
+  "web": "https://github.com/",
+  "answer": "DietrichGebert/ponytail \u2014 a popular JavaScript repository (57.8k stars, ~3k forks) created in the last 30 days that includes a README.md file."
+}

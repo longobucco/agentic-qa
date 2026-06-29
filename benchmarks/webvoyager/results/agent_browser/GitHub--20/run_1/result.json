@@ -1,0 +1,8 @@
+{
+  "id": "GitHub--20",
+  "bucket": "GitHub",
+  "web_name": "GitHub",
+  "ques": "Open GitHub Copilot's FAQs to find the official answer to when Copilot chat can be used on mobile.",
+  "web": "https://github.com/",
+  "answer": "According to GitHub Copilot's official FAQ (\"What languages, IDEs, and platforms does GitHub Copilot support?\"), Copilot chat can be used on mobile via the GitHub Mobile app \u2014 \"All plans are supported in GitHub Copilot in GitHub Mobile.\" (GitHub Mobile for Copilot Pro and Business get Bing and public repository code search; Copilot Enterprise in GitHub Mobile adds access to your organization's knowledge.)"
+}

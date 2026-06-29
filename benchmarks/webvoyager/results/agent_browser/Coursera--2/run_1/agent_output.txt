@@ -1,0 +1,5 @@
+The final screenshot is saved and clearly shows all the courses in the Specialization. The task is complete.
+
+I found the **"Learn Spanish: Basic Spanish Vocabulary"** Specialization by the University of California, Davis — a Beginner-level Spanish Specialization. The specialization page displays all 5 courses in the series.
+
+ANSWER: The Beginner Spanish Specialization "Learn Spanish: Basic Spanish Vocabulary" (University of California, Davis) contains 5 courses: 1) Spanish Vocabulary: Meeting People, 2) Spanish Vocabulary: Cultural Experience, 3) Spanish Vocabulary: Sports, Travel, and the Home, 4) Spanish Vocabulary: Careers and Social Events, and 5) Spanish Vocabulary Project.

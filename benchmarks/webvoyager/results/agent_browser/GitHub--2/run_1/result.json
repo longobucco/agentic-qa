@@ -1,0 +1,8 @@
+{
+  "id": "GitHub--2",
+  "bucket": "GitHub",
+  "web_name": "GitHub",
+  "ques": "Look for the trending Python repositories on GitHub with most stars.",
+  "web": "https://github.com/",
+  "answer": "On GitHub Trending (Python, Today), the repo with the most total stars is Significant-Gravitas/AutoGPT (~185,155 stars), followed by pytorch/pytorch (~101,020) and swisskyrepo/PayloadsAllTheThings (~78,675)."
+}

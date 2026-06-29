@@ -1,0 +1,5 @@
+{
+  "id": "Wolfram Alpha--45",
+  "verdict": "SUCCESS",
+  "reason": "The final screenshot shows Wolfram Alpha's Metabolic properties table matching the task inputs, and the response accurately summarizes all listed values (2720 kJ energy expenditure, 1.1 kJ/step, 0.084 kg fat burned, 129.9 L oxygen, 7 METs)."
+}

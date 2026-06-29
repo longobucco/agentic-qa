@@ -1,0 +1,5 @@
+{
+  "id": "Allrecipes--32",
+  "verdict": "FAILURE",
+  "reason": "Both screenshots show an Allrecipes access-denied/blocked page rather than any beef stew recipe, so no slow-cooker recipe, cooking time, or ingredients were retrieved."
+}
