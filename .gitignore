@@ -155,7 +155,12 @@ benchmarks/webvoyager/alumnium/vendor/
 **/.env
 benchmarks/browsecomp/data/browsecomp.jsonl
 benchmarks/webarena/data/webarena.jsonl
+benchmarks/osworld/data/osworld_*.jsonl
 
 # WebArena Daytona scratch / runtime artifacts (provisioning capability probes, live sandbox id)
 benchmarks/webarena/env/_probe*.py
 benchmarks/webarena/env/_last_sandbox.txt
+
+# Thesis research notes -- never committed, local only
+benchmarks/osworld/docs/
+benchmarks/osuniverse/data/osuniverse_tasks.jsonl
