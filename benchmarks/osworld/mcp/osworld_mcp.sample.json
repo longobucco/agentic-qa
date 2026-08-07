@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "osworld": {
+      "type": "stdio",
+      "command": "python",
+      "args": ["-m", "benchmarks.osworld.mcp.server"],
+      "env": { "OSW_CONTROLLER_URL": "http://REPLACE-WITH-SANDBOX-URL:5000" }
+    }
+  }
+}

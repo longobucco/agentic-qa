@@ -11,10 +11,21 @@ folded into that run's `eval.json`.
         eval.json         written here after judging: verdict [+ judge_runs for variance]
 """
 import json
+import re
+
+_RUN_DIR_RE = re.compile(r"^run_\d+$")
 
 
 def run_dir(results_dir, system, task_id, run_idx):
     return results_dir / system / task_id / f"run_{run_idx}"
+
+
+def is_run_dir(name):
+    """True only for the exact `run_<int>` shape `run_dir()` produces -- not e.g.
+    `run_1_legacy`, so a directory archived aside (see the *_legacy convention used to
+    retire tainted runs without losing them) is never picked back up by collection code
+    that globs on a loose `startswith("run_")`."""
+    return bool(_RUN_DIR_RE.match(name))
 
 
 def write_result(out, record):
@@ -30,6 +41,23 @@ def write_output(out, text):
 def write_eval(out, record):
     out.mkdir(parents=True, exist_ok=True)
     (out / "eval.json").write_text(json.dumps(record, indent=2))
+
+
+def write_infra_error(out, record):
+    """Persist a run that died before producing a verdict (provisioning failed, controller
+    never came up, harness bug) as `infra_error.json` -- deliberately not eval.json, so
+    resume still retries it while the attempt stays on disk. Appends, so a unit that flakes
+    repeatedly shows every attempt, not just the last one."""
+    out.mkdir(parents=True, exist_ok=True)
+    path = out / "infra_error.json"
+    history = []
+    if path.exists():
+        try:
+            history = json.loads(path.read_text())
+        except Exception:
+            history = []
+    history.append(record)
+    path.write_text(json.dumps(history, indent=2))
 
 
 def is_done(out, *, need_eval=True):

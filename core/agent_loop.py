@@ -44,25 +44,39 @@ def build_claude_cmd(prompt, *, model=None, max_turns=None, add_dir=None,
     return cmd
 
 
-def run_claude(cmd, *, timeout, env=None) -> str:
-    """Run a `claude -p` command and return its result text.
-
-    `env` (optional) overrides the child environment — used by the containerized runner to
+def _run_raw(cmd, *, timeout, env=None) -> str:
+    """`env` (optional) overrides the child environment — used by the containerized runner to
     hand the orchestrator a PATH where bare `agent-browser` is shadowed, so it can only drive
     the browser via `docker exec` (no host browser). None => inherit the parent environment.
-
-    Tolerant by design: on timeout, return whatever stdout was captured; if the output is
-    not the expected JSON envelope, return the raw stdout. Never raises on a slow/odd run.
-    """
+    On timeout, returns whatever stdout was captured rather than raising."""
     try:
         proc = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout, env=env)
-        raw = proc.stdout
+        return proc.stdout
     except subprocess.TimeoutExpired as e:
-        raw = (e.stdout or b"").decode() if isinstance(e.stdout, bytes) else (e.stdout or "")
+        return (e.stdout or b"").decode() if isinstance(e.stdout, bytes) else (e.stdout or "")
+
+
+def run_claude(cmd, *, timeout, env=None) -> str:
+    """Run a `claude -p` command and return its result text. Tolerant by design: if the output
+    isn't the expected JSON envelope, returns the raw stdout. Never raises on a slow/odd run."""
+    raw = _run_raw(cmd, timeout=timeout, env=env)
     try:
         return json.loads(raw).get("result", raw)
     except Exception:
         return raw
+
+
+def run_claude_meta(cmd, *, timeout, env=None) -> dict:
+    """Like `run_claude`, but returns the full JSON envelope instead of just the result text —
+    use when a caller needs `num_turns`/`stop_reason`/`is_error` to tell a clean finish (agent
+    printed its answer and stopped on its own) from a truncated one (hit --max-turns or errored)
+    that happened to score SUCCESS anyway because the desktop state was already correct. `{}` if
+    the output isn't the expected JSON envelope."""
+    raw = _run_raw(cmd, timeout=timeout, env=env)
+    try:
+        return json.loads(raw)
+    except Exception:
+        return {}
 
 
 def preview(cmd) -> str:
