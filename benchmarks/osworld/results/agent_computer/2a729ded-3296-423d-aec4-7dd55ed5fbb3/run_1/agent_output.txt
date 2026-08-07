@@ -1,0 +1,3 @@
+The background has been successfully made transparent. The checkered pattern in GIMP confirms the background is now transparent — the dog (Husky) is preserved while the blue-gray background has been removed. The file has been saved as a PNG with an alpha channel at `/home/user/Desktop/dog_with_background.png`.
+
+ANSWER: DONE

@@ -1,0 +1,8 @@
+The task is complete. The file has been saved. The document now shows:
+- **First paragraph** ("Compared to a short story...") - double line spacing applied
+- **Second paragraph** ("A novel may have any number of climaxes...") - double line spacing applied  
+- **Remaining paragraphs** - unchanged (single spacing)
+
+The double line spacing is clearly visible in the first two paragraphs compared to the tighter single-spaced paragraphs below.
+
+ANSWER: DONE

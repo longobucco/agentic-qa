@@ -1,0 +1,8 @@
+The task is complete. The rectangular Columbus cityscape image on the first slide has been:
+- **Stretched to fill the entire page** — resized to 10.13" × 7.50", covering the full 10" × 7.5" slide (top and bottom edges align with the page, sides extend slightly beyond).
+- **Proportion kept** — I used the "Keep ratio" option so the original aspect ratio (~1.35) was preserved with no distortion.
+- **Centered** — positioned at −0.06" / 0.00", so its center is at the page center (5", 3.75").
+
+The file was saved in PowerPoint format. It now serves as a full-page cover image.
+
+ANSWER: DONE

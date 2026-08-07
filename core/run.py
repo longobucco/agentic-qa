@@ -42,6 +42,9 @@ _print_lock = threading.Lock()
 _HARNESS_ENV_KEYS = (
     "WV_MODEL", "WV_MAX_TURNS", "WA_MAX_TURNS", "WA_TASK_TIMEOUT",
     "BC_MAX_TURNS", "BC_TASK_TIMEOUT", "BU_PROVIDER", "BU_MODEL", "BU_IMAGE",
+    # OSWorld pins the observation/action profile + image so a desktop A/B is auditable.
+    "OSW_RELEASE", "OSW_MAX_TURNS", "OSW_MAX_STEPS", "OSW_TASK_TIMEOUT",
+    "OSW_OBSERVATION", "OSW_ACTION_SPACE", "OSW_IMAGE",
 )
 
 
@@ -197,6 +200,17 @@ def main(benchmark, argv=None):
                 verdict = rec["verdict"]
             return task["id"], k, verdict, answer, time.time() - t0, None
         except Exception as e:
+            # never reached a verdict (provisioning/controller/harness) -- persist it so infra
+            # flakiness is measurable instead of scrolling past in stdout
+            results_io.write_infra_error(out, {
+                "id": task["id"], "run": k,
+                "outcome": "HARNESS_ERROR" if isinstance(e, (TypeError, AttributeError, KeyError,
+                                                            ImportError, NameError))
+                            else "INFRA_FLAKE",
+                "error_type": type(e).__name__, "error": str(e),
+                "elapsed_s": round(time.time() - t0, 1),
+                "at": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
+            })
             return task["id"], k, None, "", time.time() - t0, str(e)
         finally:
             if port is not None:

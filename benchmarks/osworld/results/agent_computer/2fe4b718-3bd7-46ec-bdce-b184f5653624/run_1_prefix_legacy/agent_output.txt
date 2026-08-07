@@ -1,0 +1,11 @@
+I created the animated GIF from the source video. Here's what I did:
+
+1. **Located the source**: `src.mp4` on the Desktop (`/home/user/Desktop/src.mp4`, 640×386 video).
+2. **VLC — extracted the clip frames**: Ran VLC's scene video filter over the window `--start-time=3 --stop-time=8` (the 5‑second clip beginning at 00:03), dumping PNG frames. This yielded 153 frames at ~30 fps.
+3. **GIMP/PIL — assembled the animation**: Combined the 153 frames into a single looping animated GIF, adaptive‑palette per frame, ~33 ms/frame timing to preserve the 5‑second playback.
+
+Final result — `src_clip.gif` saved next to the source on the Desktop:
+- Animated: **True**, 153 frames, 640×386, loops continuously
+- Covers video content from 00:03 to 00:08 (the requested 5‑second clip)
+
+ANSWER: DONE — Created animated GIF `src_clip.gif` on the Desktop (an animated 153-frame GIF, 640×386) from `src.mp4`, covering the 5-second clip starting at 00:03 (0:03–0:08).

@@ -1,0 +1,3 @@
+The "Favorites" folder has been successfully created in the bookmarks bar. I can see it both in the Bookmarks Manager (as "Favorites" under Bookmarks bar in the main content area) and in the bookmarks bar at the top of the browser window.
+
+ANSWER: DONE

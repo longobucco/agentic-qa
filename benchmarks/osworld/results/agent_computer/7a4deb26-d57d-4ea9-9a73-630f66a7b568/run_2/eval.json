@@ -1,0 +1,11 @@
+{
+  "id": "7a4deb26-d57d-4ea9-9a73-630f66a7b568",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official check_brightness_decrease_and_structure_sim -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "edited_darker.png": "4dcd75eb484959b6e4f94da8c75c08559dae651488d597749f5e3f55be5b368a",
+    "woman_sitting_by_the_tree.png": "4acbf30f243b4098fe571534d67f3b71f3aa17fe0abebbeba27db9fc79c52367"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "id": "0f84bef9-9790-432e-92b7-eece357603fb",
+  "bucket": "libreoffice_impress",
+  "instruction": "On it Whenever I launch a LibreOffice Impress, it uses both screens, one for current slide and next slide and another for actual presentation. What I want is to use only one monitor which shows presentation. I dont want the screen with Current slide and Next slide so that it can be used for other purposes. How should I achieve this?",
+  "answer": "To use only one monitor for the presentation (and disable the Presenter Console showing current/next slide), go to the **Slide Show** menu in LibreOffice Impress and click **\"Presenter Console\"** to uncheck/disable it. This toggle option appears in the Slide Show menu when multiple displays are connected. When disabled, LibreOffice Impress will only use one screen to show the actual presentation, freeing the other monitor for other purposes. Alternatively, go to **Slide Show > Slide Show Settings** and under the \"Multiple Displays\" section, configure the \"Presentation display\" to select which single monitor to use.",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "5afe7fcec36a9292458cbb35e163125ecc9421706db81f88d11b181ebfed5431",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:300565e6d5065a6277d7154071c581b4a72adfcb68d4726564545c9b05798a3c",
+    "controller_url": "https://5000-a340481c-063a-42c3-b787-ac3c19469a0c.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-04T20:43:57.793047+00:00",
+    "finished_at": "2026-08-04T20:51:24.466285+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 48,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.9054416500000002,
+  "agent_input_tokens": 59,
+  "agent_output_tokens": 13186,
+  "agent_cache_read_tokens": 1820958,
+  "agent_cache_creation_tokens": 42735,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 816,
+      "outputTokens": 23,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.000931,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 59,
+      "outputTokens": 13186,
+      "cacheReadInputTokens": 1820958,
+      "cacheCreationInputTokens": 42735,
+      "webSearchRequests": 0,
+      "costUSD": 0.9045106500000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 444305,
+  "agent_duration_api_ms": 433105,
+  "agent_session_id": "3e92c710-b6b0-430c-8697-fdbf5979a78a",
+  "agent_uuid": "76ce7332-cc83-4640-a212-b991c5978b01"
+}

@@ -1,0 +1,59 @@
+{
+  "id": "2a729ded-3296-423d-aec4-7dd55ed5fbb3",
+  "bucket": "gimp",
+  "instruction": "Could you make the background of this image transparent for me?",
+  "answer": "",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "f749f31020041052fd6684cb6fdb236ab3ee9d85bca6621321e86f113361494d",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:300565e6d5065a6277d7154071c581b4a72adfcb68d4726564545c9b05798a3c",
+    "controller_url": "https://5000-c38b0fe5-20d4-4b22-abaf-ff15463cf8de.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-04T16:36:40.322631+00:00",
+    "finished_at": "2026-08-04T17:06:14.101476+00:00"
+  },
+  "agent_clean_finish": false,
+  "agent_num_turns": 32,
+  "agent_stop_reason": "stop_sequence",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": true,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.4345121,
+  "agent_input_tokens": 44,
+  "agent_output_tokens": 3338,
+  "agent_cache_read_tokens": 909217,
+  "agent_cache_creation_tokens": 29528,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 755,
+      "outputTokens": 12,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0008150000000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 44,
+      "outputTokens": 3338,
+      "cacheReadInputTokens": 909217,
+      "cacheCreationInputTokens": 29528,
+      "webSearchRequests": 0,
+      "costUSD": 0.4336971,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 269580,
+  "agent_duration_api_ms": 239407,
+  "agent_session_id": "9bf6545d-1617-4cd9-bc42-2cb6c7f87959",
+  "agent_uuid": "002866cf-c3e4-4533-a794-60951205581d"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "2a729ded-3296-423d-aec4-7dd55ed5fbb3",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official check_structure_sim -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "dog_cutout_gold.png": "8be70fdebe02f0a5d54aeecfcc37baa0cc381019cc9770a0c347db491748ddc4"
+  }
+}

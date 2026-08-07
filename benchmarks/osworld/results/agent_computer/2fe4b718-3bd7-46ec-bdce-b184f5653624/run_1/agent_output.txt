@@ -1,0 +1,9 @@
+The task is complete. Here's a summary of what was accomplished:
+
+1. **VLC** (via python-vlc library/libvlc): Extracted 153 frames from `src.mp4` starting at 3 seconds for a 5-second duration (3s–8s), saving them as PNG files in `/tmp/vlc_frames/`
+
+2. **GIMP** (via Script-Fu Console): Loaded 51 evenly-spaced frames as layers into a single image, converted to indexed color mode (required for GIF format), and exported the animated GIF to `/home/user/Desktop/src_clip.gif`
+
+The resulting animated GIF (`src_clip.gif`) is 2.3 MB and contains the 5-second clip beginning at the 00:03 mark of the source video.
+
+ANSWER: DONE

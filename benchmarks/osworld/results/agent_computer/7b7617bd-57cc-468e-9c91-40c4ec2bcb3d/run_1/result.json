@@ -1,0 +1,61 @@
+{
+  "id": "7b7617bd-57cc-468e-9c91-40c4ec2bcb3d",
+  "bucket": "gimp",
+  "instruction": "Set the minimum number of undo steps to 100.",
+  "answer": "",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "6561deca0d5d4cf9a7193a93cb8a5ba52e20635660f76ccc829270e3386dfc21",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:300565e6d5065a6277d7154071c581b4a72adfcb68d4726564545c9b05798a3c",
+    "controller_url": "https://5000-459b53bc-492c-4137-b551-925a7d063353.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-04T07:48:03.087495+00:00",
+    "finished_at": "2026-08-04T08:20:02.458058+00:00"
+  },
+  "agent_clean_finish": false,
+  "agent_num_turns": 151,
+  "agent_stop_reason": "tool_use",
+  "agent_terminal_reason": "max_turns",
+  "agent_subtype": "error_max_turns",
+  "agent_is_error": true,
+  "agent_errors": [
+    "Reached maximum number of turns (150)"
+  ],
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 4.891456600000001,
+  "agent_input_tokens": 169,
+  "agent_output_tokens": 51121,
+  "agent_cache_read_tokens": 11806807,
+  "agent_cache_creation_tokens": 155002,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 755,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.000835,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 169,
+      "outputTokens": 51121,
+      "cacheReadInputTokens": 11806807,
+      "cacheCreationInputTokens": 155002,
+      "webSearchRequests": 0,
+      "costUSD": 4.8906216,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 1565458,
+  "agent_duration_api_ms": 1505879,
+  "agent_session_id": "cc40f1cb-646c-44ea-9b7d-b03031a05550",
+  "agent_uuid": "6880c0ca-4806-47df-a888-f93674224691"
+}

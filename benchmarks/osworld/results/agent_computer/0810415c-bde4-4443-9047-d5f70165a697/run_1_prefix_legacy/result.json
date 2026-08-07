@@ -1,0 +1,14 @@
+{
+  "id": "0810415c-bde4-4443-9047-d5f70165a697",
+  "bucket": "libreoffice_writer",
+  "instruction": "Make the line spacing of first two paragraph into double line spacing",
+  "answer": "DONE",
+  "eval_state": null,
+  "agent_clean_finish": true,
+  "agent_num_turns": 19,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null
+}

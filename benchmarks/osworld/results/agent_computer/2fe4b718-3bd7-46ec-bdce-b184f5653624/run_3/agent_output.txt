@@ -1,0 +1,11 @@
+The animated GIF `src_clip.gif` has been successfully created on the desktop with:
+- **51 frames** extracted from the 5-second clip (3s–8s) of `src.mp4` using VLC (libvlc)
+- **640×386 pixels**, GIF89a format
+- **2.35 MB** file size
+- Created using GIMP (batch mode Script-Fu) with indexed color conversion
+
+The workflow used:
+1. **VLC** (via libvlc ctypes): extracted PNG frames from `src.mp4` starting at 00:03 for 5 seconds
+2. **GIMP** (Script-Fu batch mode): loaded all frames as layers, converted to indexed color, and exported as animated GIF to `/home/user/Desktop/src_clip.gif`
+
+ANSWER: DONE

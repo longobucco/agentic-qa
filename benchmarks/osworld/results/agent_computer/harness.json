@@ -1,0 +1,9 @@
+{
+  "system": "agent_computer",
+  "runs": 3,
+  "concurrency": 1,
+  "judge_repeats": 1,
+  "env": {
+    "WV_MODEL": "sonnet"
+  }
+}

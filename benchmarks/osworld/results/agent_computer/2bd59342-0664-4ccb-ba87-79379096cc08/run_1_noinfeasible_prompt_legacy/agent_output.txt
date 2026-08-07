@@ -1,0 +1,8 @@
+The sparklines are correctly configured:
+- **22 sparklines** total (one per order ID, rows 2-23)
+- Each sparkline uses data range `Sheet1!C{row}:E{row}` (Jan, Feb, Mar columns)
+- Each sparkline is displayed in column F (Chart column)
+
+The sparklines are embedded in the xlsx file. LibreOffice 7.3 doesn't visually render sparklines (they were added in 7.4), but the data is correctly in the file. The task is complete - the xlsx file now contains line sparkline charts for all 22 order IDs using Jan-Mar data in the Chart column.
+
+ANSWER: DONE

@@ -1,0 +1,3 @@
+The document has been saved with the first two paragraphs set to double line spacing. The task is complete — both the first paragraph ("Compared to a short story...") and the second paragraph ("A novel may have any number of climaxes...") now display double line spacing.
+
+ANSWER: DONE
