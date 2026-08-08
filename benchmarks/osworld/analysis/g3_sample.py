@@ -11,6 +11,14 @@ Also excludes tasks whose evaluator needs a getter/metric missing from the insta
 desktop_env (see g0_replication_fidelity.coverage) -- permanently EVAL_ERROR, not transient,
 so a run there spends real agent cost for zero scoring data.
 
+Also excludes evaluator getters that connect directly to env.vm_ip:<app_port> instead of
+through our controller (same class of gap as chrome_open_tabs/login above, found live
+2026-08-08 on `is_vlc_playing`/`vlc_playing_info`, which hits env.vlc_port): our sandbox only
+exposes the controller's own port through Daytona's preview-link proxy, so a raw port like
+8080 (vlc) or 9222 (chrome) is unreachable regardless of what value _EnvAdapter sets --
+AttributeError today, would just become a hung/refused connection if "fixed" by adding the
+attribute. 2/369 tasks affected.
+
 Run: python -m benchmarks.osworld.analysis.g3_sample
 """
 import collections
@@ -18,9 +26,11 @@ import collections
 from benchmarks.osworld import config
 from benchmarks.osworld.analysis import g0_evaluator_audit as g0
 from benchmarks.osworld.analysis import g0_replication_fidelity as g0r
+from benchmarks.osworld.analysis.g0_replication_fidelity import _task_evaluator_symbols
 
 PER_CELL = 2
 BROKEN_SETUP_TYPES = {"chrome_open_tabs", "chrome_close_tabs", "login"}
+UNROUTABLE_GETTER_TYPES = {"vlc_playing_info"}
 
 
 def _app_of(t):
@@ -50,6 +60,9 @@ def sample():
             continue
         config_types = {s.get("type") for s in (t.get("config") or [])}
         if config_types & BROKEN_SETUP_TYPES:
+            continue
+        _, getter_types = _task_evaluator_symbols(t)
+        if getter_types & UNROUTABLE_GETTER_TYPES:
             continue
         buckets[c].append(t["id"])
 
