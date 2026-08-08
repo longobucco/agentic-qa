@@ -1,0 +1,12 @@
+The task is complete. The document now shows:
+- **First three words** of each sentence: left-aligned at the start of the line
+- **Empty gap** in the middle (space for photos)
+- **Remaining words**: right-aligned at the right margin using a right-aligned tab stop
+
+The macro accomplished this by:
+1. Setting a right-aligned tab stop at the page's right text margin for each paragraph
+2. Inserting a `Tab` character after the 3rd word in each non-empty paragraph
+
+The document has been saved in Word format.
+
+ANSWER: DONE

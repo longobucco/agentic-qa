@@ -1,0 +1,11 @@
+The task is complete. The file has been saved successfully with all the correct data:
+
+**Sheet1 - Gross Profit column (J) filled in:**
+- Formula: `=B-C-D-F-G-H` (Sales - Sales Return - Discounts & Allowances - Materials Charges - Labor Charges - Overhead)
+- Values: 55000, 47662, 53451, 60819, 62864, 57924, 59634, 50852, 43649
+
+**Sheet2 - Year_Profit column (A) created:**
+- Header: "Year_Profit"
+- Values: 2015_55000, 2016_47662, 2017_53451, 2018_60819, 2019_62864, 2020_57924, 2021_59634, 2022_50852, 2023_43649
+
+ANSWER: DONE

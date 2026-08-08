@@ -1,0 +1,5 @@
+The task is complete. The saved file confirms the Dissolve transition is applied to slide 1 with the XML element `<p:dissolve/>`.
+
+The "Dissolve" slide transition has been successfully added to the first page of the presentation and saved.
+
+ANSWER: DONE

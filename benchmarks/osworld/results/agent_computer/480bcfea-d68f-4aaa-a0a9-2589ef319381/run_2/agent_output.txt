@@ -1,0 +1,3 @@
+The Chrome Refresh 2023 flag has been successfully disabled. I added `chrome-refresh-2023@2` to Chrome's Local State file (the `@2` suffix means "Disabled" — the same format Chrome uses when you toggle a flag off via `chrome://flags`). Since Chrome 151 no longer shows this flag in the UI, I modified the Local State file directly after closing Chrome to ensure the change wasn't overwritten.
+
+ANSWER: DONE

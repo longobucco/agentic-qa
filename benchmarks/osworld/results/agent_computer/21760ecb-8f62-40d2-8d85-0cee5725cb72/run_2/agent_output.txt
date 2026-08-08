@@ -1,0 +1,3 @@
+The "Dissolve" transition has been successfully applied to the first slide and the file has been saved. The "Dissolve" icon is now highlighted with a blue border in the Slide Transition panel, confirming it's applied to slide 1.
+
+ANSWER: DONE

@@ -1,0 +1,3 @@
+The conversion was successful! The title bar now shows "**Indexed color 8-bit** gamma integer" instead of "RGB color 8-bit". The image has been converted to palette-based (indexed) mode. The dialog closed and the image mode changed.
+
+ANSWER: DONE

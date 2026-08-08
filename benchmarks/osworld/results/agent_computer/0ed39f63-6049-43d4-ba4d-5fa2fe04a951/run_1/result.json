@@ -1,0 +1,59 @@
+{
+  "id": "0ed39f63-6049-43d4-ba4d-5fa2fe04a951",
+  "bucket": "vscode",
+  "instruction": "Please help me change all the places in this document that say \"text\" to \"test\".",
+  "answer": "DONE",
+  "eval_state": "In order to evaluate the effectiveness of the new educational curriculum, a series of tests were designed.\nThese tests aimed to test not only the retention of knowledge but also the ability to apply this knowledge in various scenarios.\nDuring the testing phase, it became apparent that the tests themselves were a test of patience and endurance for both students and educators.\nThe test results would eventually reveal how well the curriculum prepared students for real-world challenges.\nIt was a test of the system's robustness, a test of educational theories in practice, and, ultimately, a test of our commitment to quality education.",
+  "provenance": {
+    "task_sha256": "fafd37721e1e2f0843cb0d841c312a687c37e21557b38958ffc0dac0450d5e40",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-c9111d80-8155-46b7-8dab-a66a1b6ed9dd.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-07T11:15:03.458831+00:00",
+    "finished_at": "2026-08-07T11:20:27.059158+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 54,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 1.12478965,
+  "agent_input_tokens": 65,
+  "agent_output_tokens": 12523,
+  "agent_cache_read_tokens": 2377003,
+  "agent_cache_creation_tokens": 59405,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 810,
+      "outputTokens": 14,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0008799999999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 65,
+      "outputTokens": 12523,
+      "cacheReadInputTokens": 2377003,
+      "cacheCreationInputTokens": 59405,
+      "webSearchRequests": 0,
+      "costUSD": 1.12390965,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 320885,
+  "agent_duration_api_ms": 305800,
+  "agent_session_id": "29d7a778-95cb-48e7-bd81-1e5ab8cf514e",
+  "agent_uuid": "33c561e6-ef73-446d-a3eb-7d3ee9eafc9b"
+}
