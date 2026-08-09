@@ -1,0 +1,59 @@
+{
+  "id": "12086550-11c0-466b-b367-1d9e75b3910e",
+  "bucket": "chrome",
+  "instruction": "Computer, please navigate to the area in my browser settings where my passwords are stored. I want to check my login information for Etsy without revealing it just yet.",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "a65652b0842766a7a45d54feaa7ed754cf9545a398d72a309b3f9bd631f3c863",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-6f9b68f9-5b4b-43ed-8418-a276afb07db8.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-08T15:27:14.847929+00:00",
+    "finished_at": "2026-08-08T15:32:09.375169+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 47,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.801816,
+  "agent_input_tokens": 56,
+  "agent_output_tokens": 9537,
+  "agent_cache_read_tokens": 1677335,
+  "agent_cache_creation_tokens": 41042,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1420,
+      "outputTokens": 13,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001485,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 56,
+      "outputTokens": 9537,
+      "cacheReadInputTokens": 1677335,
+      "cacheCreationInputTokens": 41042,
+      "webSearchRequests": 0,
+      "costUSD": 0.800331,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 291706,
+  "agent_duration_api_ms": 282082,
+  "agent_session_id": "47226990-0019-4e40-b629-b8fbb54a2db7",
+  "agent_uuid": "e425f869-f5e1-4f27-840d-82aaea7c3fc3"
+}

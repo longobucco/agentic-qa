@@ -1,0 +1,10 @@
+{
+  "id": "aa3a8974-2e85-438b-b29e-a64df44deb4b",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official ['check_pdf_pages', 'compare_pdfs'] -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "Resize_Cells_Fit_Page_gt.pdf": "42ecfd5c8e81877db86d2b21d2bfaaf372466170a9fbe0927ccbed71e196b030"
+  }
+}

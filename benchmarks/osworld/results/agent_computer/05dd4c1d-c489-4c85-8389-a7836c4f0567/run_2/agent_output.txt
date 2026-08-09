@@ -1,0 +1,8 @@
+The file on disk has the correct alignments:
+- **Slide 3** first textbox: all paragraphs aligned **right** (`r`) ✓
+- **Slide 4** first textbox: all paragraphs aligned **center** (`ctr`) ✓  
+- **Slide 5** first textbox: all paragraphs aligned **left** (`l`) ✓
+
+The task is complete. The file `/home/user/Desktop/38_1.pptx` has been modified with the correct text alignments for all three slides.
+
+ANSWER: DONE

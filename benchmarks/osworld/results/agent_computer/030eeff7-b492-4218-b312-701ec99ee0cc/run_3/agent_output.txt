@@ -1,0 +1,3 @@
+The "Do Not Track" feature has been successfully enabled. The toggle for "Send a 'Do Not Track' request with your browsing traffic" is now blue (ON), confirming the feature is active.
+
+ANSWER: DONE

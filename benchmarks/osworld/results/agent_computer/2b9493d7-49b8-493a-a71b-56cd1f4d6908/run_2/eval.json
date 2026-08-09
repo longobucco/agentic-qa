@@ -1,0 +1,7 @@
+{
+  "id": "2b9493d7-49b8-493a-a71b-56cd1f4d6908",
+  "verdict": "EVAL_ERROR",
+  "reason": "eval_state='no libreoffice is running\\nnot killed from terminal\\n' (official eval errored: JSONDecodeError: Expecting value: line 1 column 1 (char 0))",
+  "source": "offline_fallback",
+  "gold_sha256": {}
+}

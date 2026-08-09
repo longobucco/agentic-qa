@@ -1,0 +1,59 @@
+{
+  "id": "3299584d-8f11-4457-bf4c-ce98f7600250",
+  "bucket": "chrome",
+  "instruction": "On my surface pro whenever I launch Chrome it always opens \"funbrain.com.\" I don't want this. I cleared my cache but it still happens. What should I do?",
+  "answer": "Change Chrome's startup page setting. Go to Chrome Menu (\u22ee) \u2192 Settings \u2192 On startup \u2192 select \"Open the New Tab page\" or remove funbrain.com from the \"Open a specific page or set of pages\" list. Clearing cache does not affect startup page settings, which are stored in Chrome's configuration.",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "0386f94a439efbb0f6a9caa0b6cc90621ec68b8cd3079f5420a849ea34aad4c1",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-fb4e0dd2-43e3-41c6-8217-52b3814d4f0a.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-08T19:49:50.174726+00:00",
+    "finished_at": "2026-08-08T19:50:12.240224+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 2,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.03108935,
+  "agent_input_tokens": 5,
+  "agent_output_tokens": 947,
+  "agent_cache_read_tokens": 38212,
+  "agent_cache_creation_tokens": 1061,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1327,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001427,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 5,
+      "outputTokens": 947,
+      "cacheReadInputTokens": 38212,
+      "cacheCreationInputTokens": 1061,
+      "webSearchRequests": 0,
+      "costUSD": 0.029662350000000004,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 19750,
+  "agent_duration_api_ms": 21057,
+  "agent_session_id": "cce025c5-f982-40ae-b7f0-bc7d9f6253f0",
+  "agent_uuid": "36eb17a5-65de-4b3b-a832-d83c360586a8"
+}

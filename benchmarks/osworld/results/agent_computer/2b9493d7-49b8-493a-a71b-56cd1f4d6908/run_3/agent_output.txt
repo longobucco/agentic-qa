@@ -1,0 +1,3 @@
+LibreOffice Writer has been successfully force quit. The screen is now black/empty, confirming that the application has been terminated. The command used was `pkill -f soffice`, which sends a SIGTERM signal to the LibreOffice process by matching the process name pattern "soffice" (the underlying process name for all LibreOffice applications).
+
+ANSWER: DONE

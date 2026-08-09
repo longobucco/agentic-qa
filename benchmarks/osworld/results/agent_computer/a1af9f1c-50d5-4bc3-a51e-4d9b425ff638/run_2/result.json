@@ -1,0 +1,61 @@
+{
+  "id": "a1af9f1c-50d5-4bc3-a51e-4d9b425ff638",
+  "bucket": "thunderbird",
+  "instruction": "Due to certain security considerations and the nature of my work, I prefer not to configure an incoming email service in Thunderbird. However, I still need to send emails. Can you help me set up Thunderbird to send emails from anonym-x2024@outlook.com without configuring its incoming email service?",
+  "answer": "",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "e4f846c9dc769905650bfeda44bdcb64c328e0b7dc47ba1686a9a54045a45fa6",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-a40fe66d-26b8-4525-b0af-8a62bda6897d.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-09T13:12:57.150373+00:00",
+    "finished_at": "2026-08-09T13:35:27.342213+00:00"
+  },
+  "agent_clean_finish": false,
+  "agent_num_turns": 151,
+  "agent_stop_reason": "tool_use",
+  "agent_terminal_reason": "max_turns",
+  "agent_subtype": "error_max_turns",
+  "agent_is_error": true,
+  "agent_errors": [
+    "Reached maximum number of turns (150)"
+  ],
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 5.2775492,
+  "agent_input_tokens": 169,
+  "agent_output_tokens": 45316,
+  "agent_cache_read_tokens": 13288259,
+  "agent_cache_creation_tokens": 162506,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1332,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001427,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 169,
+      "outputTokens": 45316,
+      "cacheReadInputTokens": 13288259,
+      "cacheCreationInputTokens": 162506,
+      "webSearchRequests": 0,
+      "costUSD": 5.2761222000000005,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 1347727,
+  "agent_duration_api_ms": 1187766,
+  "agent_session_id": "55d01690-3c10-4e15-b6cf-2fbb2c13d05d",
+  "agent_uuid": "b6035420-c6c2-401f-9ea0-6e7c7389dd38"
+}

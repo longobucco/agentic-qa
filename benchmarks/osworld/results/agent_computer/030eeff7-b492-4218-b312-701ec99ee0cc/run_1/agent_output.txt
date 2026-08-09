@@ -1,0 +1,3 @@
+The "Do Not Track" feature is now enabled. The toggle for "Send a 'Do Not Track' request with your browsing traffic" is shown in blue (enabled) under the Advanced section in Chrome's Third-party cookies settings.
+
+ANSWER: DONE

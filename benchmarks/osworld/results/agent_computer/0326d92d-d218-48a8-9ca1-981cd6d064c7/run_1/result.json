@@ -1,0 +1,61 @@
+{
+  "id": "0326d92d-d218-48a8-9ca1-981cd6d064c7",
+  "bucket": "libreoffice_calc",
+  "instruction": "Calculate the total sales in an underneath row called \"Total\" and display the total of each month as bars. Then calculate the month-on-month growth percentage for Feb to Jun in another row called \"Growth\" and show them in a line chart (Jan should be omitted in the chart as well). Set the chart titles as the two row headers respectively.",
+  "answer": "",
+  "eval_state": "<binary:9500 bytes at SalesRep.xlsx>",
+  "provenance": {
+    "task_sha256": "02a4bb4a139ec2dfbea654a9b8ee4e75f13412d8b031b95caa5f1e7508258203",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-dfbecfe1-269e-4e44-be62-71a69837b7dd.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-09T08:41:25.121314+00:00",
+    "finished_at": "2026-08-09T09:08:47.509513+00:00"
+  },
+  "agent_clean_finish": false,
+  "agent_num_turns": 151,
+  "agent_stop_reason": "tool_use",
+  "agent_terminal_reason": "max_turns",
+  "agent_subtype": "error_max_turns",
+  "agent_is_error": true,
+  "agent_errors": [
+    "Reached maximum number of turns (150)"
+  ],
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 4.732896600000001,
+  "agent_input_tokens": 161,
+  "agent_output_tokens": 50420,
+  "agent_cache_read_tokens": 11637007,
+  "agent_cache_creation_tokens": 128958,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1339,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001419,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 161,
+      "outputTokens": 50420,
+      "cacheReadInputTokens": 11637007,
+      "cacheCreationInputTokens": 128958,
+      "webSearchRequests": 0,
+      "costUSD": 4.731477600000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 1315050,
+  "agent_duration_api_ms": 1196987,
+  "agent_session_id": "badafbeb-3434-475a-9f4d-804f7b8214cc",
+  "agent_uuid": "4b9e5723-412a-42ee-a878-654a17e36cc7"
+}
