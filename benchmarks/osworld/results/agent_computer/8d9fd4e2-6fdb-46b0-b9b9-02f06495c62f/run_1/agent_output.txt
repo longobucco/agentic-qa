@@ -1,0 +1,8 @@
+VLC is now playing the video in fullscreen mode. The window has:
+- `_NET_WM_STATE_FULLSCREEN` set (confirmed via xprop)
+- Geometry of 1280x1024 at position 0,0 (full screen)
+- No title bar, menu bar, or controls visible
+- The video fills the entire screen (black bars at top/bottom are normal letterboxing for 16:9 content on a 4:3 display)
+- The VLC config (`vlcrc`) has `fullscreen=1` set
+
+ANSWER: DONE

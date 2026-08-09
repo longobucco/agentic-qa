@@ -1,0 +1,9 @@
+Dark mode has been successfully enabled in Thunderbird! The interface has immediately switched to a dark color scheme. I can see:
+
+1. The entire UI is now dark
+2. The "Dark" theme now shows a "Disable" button (confirming it's active)
+3. The "System theme — auto" has moved to the Saved Themes section with an "Enable" button
+
+The dark theme with a dark color scheme is now fully active in Thunderbird, which will be much easier on your eyes when working late at night.
+
+ANSWER: DONE

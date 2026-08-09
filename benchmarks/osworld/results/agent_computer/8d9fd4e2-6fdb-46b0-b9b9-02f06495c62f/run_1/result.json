@@ -1,0 +1,59 @@
+{
+  "id": "8d9fd4e2-6fdb-46b0-b9b9-02f06495c62f",
+  "bucket": "vlc",
+  "instruction": "Can you enable fullscreen mode in VLC so that the video fill up the whole screen?",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "f03da79b6f749a4c0abb359e403ac6ad737ff35b903dbe0c56dfa21d749dafff",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-77107429-f12f-4014-8e50-9abda0a21caa.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-09T18:24:44.268595+00:00",
+    "finished_at": "2026-08-09T18:34:02.371795+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 74,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 1.5628904499999994,
+  "agent_input_tokens": 85,
+  "agent_output_tokens": 17536,
+  "agent_cache_read_tokens": 3452084,
+  "agent_cache_creation_tokens": 70075,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1109,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001189,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 85,
+      "outputTokens": 17536,
+      "cacheReadInputTokens": 3452084,
+      "cacheCreationInputTokens": 70075,
+      "webSearchRequests": 0,
+      "costUSD": 1.5617014499999993,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 555412,
+  "agent_duration_api_ms": 481313,
+  "agent_session_id": "35916769-6d8f-47d8-a42d-5b1e4548be1c",
+  "agent_uuid": "994bc3ff-862d-424d-83d4-fe79cb62a993"
+}

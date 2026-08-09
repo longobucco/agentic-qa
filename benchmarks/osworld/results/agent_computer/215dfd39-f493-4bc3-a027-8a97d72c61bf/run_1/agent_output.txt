@@ -1,0 +1,3 @@
+The VLC configuration file has been created at `/root/.config/vlc/vlcrc` with `qt-bgcone=0`, which disables the cone (traffic cone) icon in VLC's splash screen/background. This is the VLC Qt interface setting that controls whether the skeuomorphic cone logo is shown in the video area when no media is playing.
+
+ANSWER: DONE

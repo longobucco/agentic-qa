@@ -1,0 +1,6 @@
+The screen is completely black and there is no video application open. More fundamentally, this task is impossible as stated because:
+
+1. There is no way to measure "room's lighting" — the computer has no ambient light sensor or camera to detect the physical environment
+2. "Automatically adjusting brightness/contrast to match room lighting" is not a defined, executable operation — no standard software can sense and match actual room illumination
+
+ANSWER: FAIL

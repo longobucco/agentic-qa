@@ -1,0 +1,3 @@
+The screen is black. The task asks to "automatically adjust brightness and contrast of a video to match my room's lighting" — this requires measuring ambient room light, which is not possible through a desktop computer without an ambient light sensor. There is no such capability available on a standard Linux desktop, and there is no way to determine what the room's lighting conditions are.
+
+ANSWER: FAIL
