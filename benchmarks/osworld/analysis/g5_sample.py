@@ -23,17 +23,21 @@ ARM_OBSERVATION (OSW_OBSERVATION=screenshot, a11y_tree removed): one medium-stre
 app, contrasting coordinate/grid-heavy apps (gimp, libreoffice_calc) against label/structure-
 heavy ones (chrome, vscode).
   - 12086550-...  (chrome)
-  - 0512bb38-...  (vscode)
+  - 0ed39f63-...  (vscode) -- swapped in 2026-08-09 for the original pick, 0512bb38-...: that
+    task turned out to permanently EVAL_ERROR (unshelled-pipe vm_command_line bug, see
+    g3_sample.py) and was excluded from sample() entirely, taking its G3 baseline down with it.
+    0ed39f63-... is the next medium-strength vscode candidate with a clean 3x SUCCESS baseline.
   - 06ca5602-...  (gimp)
   - aa3a8974-...  (libreoffice_calc, shared with ARM_MAX_TURNS)
 
 N=3/task/arm (matches G3's N). 8 distinct tasks, 24 new runs. Estimated ~$50-65 from G3's
 $1.72/run average (76 scored runs, $130.80) -- roughly 1/5 of G3's spend so far.
 
-Not runnable as-is: all 8 tasks already have G3 baseline runs under the same
-results/agent_computer/<id>/run_N/ path -- is_done() would skip the ablated condition, and
---force would overwrite the baseline this design needs to diff against. Archive the existing
-baseline runs before launching (see _main() for the exact commands).
+Operational blocker resolved 2026-08-09: the 7 distinct tasks' G3 baseline runs were copied
+(not moved) to run_N_g3baseline_legacy/ alongside the live run_N/ -- launching G5 with --force
+on just these task ids now overwrites run_N/ with the ablated condition while the baseline
+stays readable from the _legacy copy for the diff. Ready to launch (see _main()); not yet run
+(real spend, gated).
 """
 
 ARM_MAX_TURNS = {
@@ -50,7 +54,7 @@ ARM_OBSERVATION = {
     "env": {"OSW_OBSERVATION": "screenshot"},
     "ids": [
         "12086550-11c0-466b-b367-1d9e75b3910e",
-        "0512bb38-d531-4acf-9e7e-0add90816068",
+        "0ed39f63-6049-43d4-ba4d-5fa2fe04a951",
         "06ca5602-62ca-47f6-ad4f-da151cde54cc",
         "aa3a8974-2e85-438b-b29e-a64df44deb4b",
     ],
@@ -64,7 +68,8 @@ def _main():
         env_str = " ".join(f"{k}={v}" for k, v in arm["env"].items())
         ids_str = " ".join(arm["ids"])
         print(f"{name}  ({len(arm['ids'])} tasks x {N_RUNS} runs = {len(arm['ids']) * N_RUNS}):")
-        print(f"  {env_str} python -m benchmarks.osworld.run --ids {ids_str} --runs {N_RUNS}\n")
+        print(f"  {env_str} python -m benchmarks.osworld.run --ids {ids_str} "
+              f"--runs {N_RUNS} --force\n")
 
 
 if __name__ == "__main__":
