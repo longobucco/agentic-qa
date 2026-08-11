@@ -1,0 +1,3 @@
+The extension was successfully installed. The command `code --install-extension /home/user/test.vsix` completed with return code 0 and confirmed: "Extension 'test.vsix' was successfully installed."
+
+ANSWER: DONE

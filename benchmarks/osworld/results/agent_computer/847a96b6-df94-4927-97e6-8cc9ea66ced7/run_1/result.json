@@ -1,0 +1,59 @@
+{
+  "id": "847a96b6-df94-4927-97e6-8cc9ea66ced7",
+  "bucket": "vscode",
+  "instruction": "Please help me open two workspaces \"/home/user/workspace1.code-workspace\" and \"/home/user/workspace2.code-workspace\" simultaneously in the same window.",
+  "answer": "FAIL",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "603705a137938054c14469241f3f61db82bc39fd197faac0f3f40c33ea3486a9",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-14781176-1c70-464b-891a-58fe83c1ec82.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-09T22:16:52.775331+00:00",
+    "finished_at": "2026-08-09T23:26:00.325708+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 29,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.3597536,
+  "agent_input_tokens": 33,
+  "agent_output_tokens": 4713,
+  "agent_cache_read_tokens": 629486,
+  "agent_cache_creation_tokens": 11060,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 957,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001037,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 36,
+      "outputTokens": 7028,
+      "cacheReadInputTokens": 705712,
+      "cacheCreationInputTokens": 11060,
+      "webSearchRequests": 0,
+      "costUSD": 0.3587166,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 356769,
+  "agent_duration_api_ms": 295250,
+  "agent_session_id": "4eb65436-8a1f-481c-a14f-4660164dcc10",
+  "agent_uuid": "a2546ff0-1d8b-4a8a-b793-42feb05b5184"
+}

@@ -5,9 +5,9 @@ Gate decided 2026-08-09: k=40 gives a 95% CI half-width of ~13.4pp (measured at 
 G3 data). k=260 would narrow that to ~5.5pp, but at 6.5x the run count -- fixed as a step right
 after G3 anyway, not deferred on the k=40 result.
 
-205 tasks clear g3_sample's exclusions (unscorable, broken setup, unroutable getters, missing
-postconfig init) -- same population sample() draws its stratified 40 from, here uncapped. 40 of
-those already have full G3 runs; this module targets only the other 165.
+202 tasks clear g3_sample's exclusions (unscorable, broken setup, unroutable getters, missing
+postconfig init, malformed vm_command_line) -- same population sample() draws its stratified 40
+from, here uncapped. 40 of those already have full G3 runs; this module targets the other 162.
 
 Run: python -m benchmarks.osworld.analysis.g3_full_sample
 """

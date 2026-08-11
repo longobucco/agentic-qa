@@ -1,0 +1,59 @@
+{
+  "id": "7c4cc09e-7a92-40dd-8338-b2286535c4ed",
+  "bucket": "vscode",
+  "instruction": "Please help me change the display language of VS Code to \"Arabic\" without using any extensions.",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "0d5065abdffed31a6e71bac31af03dd8d72791199ad61468e3b4b0327ed433a4",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-e58530c8-d914-4424-bdc9-28762d6bf8eb.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-09T21:23:59.529688+00:00",
+    "finished_at": "2026-08-09T22:16:35.065993+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 64,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 1.22835775,
+  "agent_input_tokens": 75,
+  "agent_output_tokens": 12940,
+  "agent_cache_read_tokens": 2847365,
+  "agent_cache_creation_tokens": 47683,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 937,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001012,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 75,
+      "outputTokens": 12940,
+      "cacheReadInputTokens": 2847365,
+      "cacheCreationInputTokens": 47683,
+      "webSearchRequests": 0,
+      "costUSD": 1.2273457500000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 451069,
+  "agent_duration_api_ms": 434457,
+  "agent_session_id": "35c5a865-267f-4846-bbf4-f393ce0e9db5",
+  "agent_uuid": "10ee776d-fb24-4252-a086-cadc967a4aed"
+}

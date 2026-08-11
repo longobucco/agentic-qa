@@ -1,0 +1,3 @@
+I've successfully navigated to Chrome's Google Password Manager (`chrome://password-manager/passwords?q=etsy`) and searched for Etsy. The search is active showing "etsy" in the search bar. The passwords section shows "Saved passwords will appear here" indicating no Etsy credentials are currently saved in this browser's password manager.
+
+ANSWER: DONE

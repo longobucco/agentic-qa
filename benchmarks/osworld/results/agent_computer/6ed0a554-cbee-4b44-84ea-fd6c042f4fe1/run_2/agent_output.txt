@@ -1,0 +1,3 @@
+VS Code automatically detected the workspace file change and now shows all three folders in the Explorer panel: `project`, `data1`, and `data2`. Both `/home/user/data1` and `/home/user/data2` have been successfully added to the workspace.
+
+ANSWER: DONE

@@ -1,0 +1,59 @@
+{
+  "id": "2ad9387a-65d8-4e33-ad5b-7580065a27ca",
+  "bucket": "chrome",
+  "instruction": "Can you make a new folder for me on the bookmarks bar in my internet browser? Let's call it 'Favorites.'",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "92920906fd235851fede78a135e6bbb67bf89934e9bcffa6048fd86bb309b5ec",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:300565e6d5065a6277d7154071c581b4a72adfcb68d4726564545c9b05798a3c",
+    "controller_url": "https://5000-7bd06f2e-a134-4086-9768-d7aca123f89e.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-04T16:04:04.126896+00:00",
+    "finished_at": "2026-08-04T16:14:11.843424+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 71,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 1.6827592499999997,
+  "agent_input_tokens": 80,
+  "agent_output_tokens": 24373,
+  "agent_cache_read_tokens": 3434760,
+  "agent_cache_creation_tokens": 76175,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 770,
+      "outputTokens": 14,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0008399999999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 80,
+      "outputTokens": 24373,
+      "cacheReadInputTokens": 3434760,
+      "cacheCreationInputTokens": 76175,
+      "webSearchRequests": 0,
+      "costUSD": 1.6819192499999995,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 605262,
+  "agent_duration_api_ms": 578181,
+  "agent_session_id": "424da6c3-4801-4434-bda0-e27e7121d117",
+  "agent_uuid": "4988f8e4-83f2-4a1e-a872-c50a406f7790"
+}

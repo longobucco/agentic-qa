@@ -1,0 +1,59 @@
+{
+  "id": "847a96b6-df94-4927-97e6-8cc9ea66ced7",
+  "bucket": "vscode",
+  "instruction": "Please help me open two workspaces \"/home/user/workspace1.code-workspace\" and \"/home/user/workspace2.code-workspace\" simultaneously in the same window.",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "603705a137938054c14469241f3f61db82bc39fd197faac0f3f40c33ea3486a9",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-1a6c10dc-e16f-40d5-ac90-83bdcd204e32.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-10T07:16:24.225537+00:00",
+    "finished_at": "2026-08-10T07:22:18.034353+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 49,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.9435584499999999,
+  "agent_input_tokens": 62,
+  "agent_output_tokens": 12281,
+  "agent_cache_read_tokens": 1928239,
+  "agent_cache_creation_tokens": 47905,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 957,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001042,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 62,
+      "outputTokens": 12281,
+      "cacheReadInputTokens": 1928239,
+      "cacheCreationInputTokens": 47905,
+      "webSearchRequests": 0,
+      "costUSD": 0.94251645,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 351600,
+  "agent_duration_api_ms": 327850,
+  "agent_session_id": "7832f46f-4cbb-4098-97ab-9adbd8b4c2a3",
+  "agent_uuid": "1eaebcb4-d04d-4113-9e48-395c72e0eea2"
+}
