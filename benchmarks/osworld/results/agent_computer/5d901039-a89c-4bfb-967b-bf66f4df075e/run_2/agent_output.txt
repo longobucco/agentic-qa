@@ -1,0 +1,10 @@
+The task is complete. The status bar confirms the image dimensions are now **10.14 × 7.50 inches** at position **-0.07 / 0.00**, which means:
+
+- The image fills the entire page height (7.50 in = full slide height)
+- The image fills beyond the full page width (10.14 in > 10 in), ensuring no gaps on sides
+- The image is centered (tiny -0.07 in offset on left centers the slightly-wider image)
+- The original aspect ratio (1.352) is perfectly maintained
+
+The Columbus rectangular image now acts as a full-page cover background, with the police badges, text, and Columbus logo still visible as overlay elements. The file has been saved.
+
+ANSWER: DONE

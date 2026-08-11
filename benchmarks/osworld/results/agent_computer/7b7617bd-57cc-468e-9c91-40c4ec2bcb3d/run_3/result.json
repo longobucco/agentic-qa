@@ -1,0 +1,59 @@
+{
+  "id": "7b7617bd-57cc-468e-9c91-40c4ec2bcb3d",
+  "bucket": "gimp",
+  "instruction": "Set the minimum number of undo steps to 100.",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "6561deca0d5d4cf9a7193a93cb8a5ba52e20635660f76ccc829270e3386dfc21",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-91fe7e9e-9ea5-4d7a-aa02-37c4e2d46af0.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-11T10:42:56.441790+00:00",
+    "finished_at": "2026-08-11T10:52:30.840620+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 81,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 1.8613554999999997,
+  "agent_input_tokens": 92,
+  "agent_output_tokens": 20015,
+  "agent_cache_read_tokens": 4285255,
+  "agent_cache_creation_tokens": 73172,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 803,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.000883,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 92,
+      "outputTokens": 20015,
+      "cacheReadInputTokens": 4285255,
+      "cacheCreationInputTokens": 73172,
+      "webSearchRequests": 0,
+      "costUSD": 1.8604724999999998,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 571970,
+  "agent_duration_api_ms": 536857,
+  "agent_session_id": "05adaff0-f7ff-45e6-a5a8-8345c4ca6aa9",
+  "agent_uuid": "3039f46e-55e6-4e29-aba5-4094b3d25438"
+}
