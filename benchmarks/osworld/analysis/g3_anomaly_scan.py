@@ -15,12 +15,14 @@ automatically before G3-full replicates it across 6.5x more runs:
                        signature of the 26455s/2193s split (host sleep, not an agent issue)
   turn_cap_hit      -- agent_num_turns >= config.MAX_TURNS
   dirty_finish      -- agent_clean_finish is False
-  reason_cluster    -- an identical eval.json reason recurring across >=2 DIFFERENT tasks,
-                       restricted to EVAL_ERROR/ENVIRONMENT_ERROR verdicts. SUCCESS/FAILURE
-                       reasons repeat by design (every infeasible task shares "official
-                       infeasible -> 0.00") and aren't a signal; the same exception string on
-                       two unrelated tasks is (this is how chrome_inject_js's shared gap across
-                       030eeff7 and 2ae9ba84 would have surfaced without a human noticing).
+  reason_cluster    -- the same underlying exception recurring across >=2 DIFFERENT tasks,
+                       restricted to EVAL_ERROR/ENVIRONMENT_ERROR verdicts. Matched on the text
+                       after "eval errored: " when present, not the whole reason -- the prefix
+                       carries per-task eval_state content (found live 2026-08-09: three tasks
+                       shared an identical JSONDecodeError but were missed by whole-string
+                       matching because each had different captured eval_state text before it).
+                       SUCCESS/FAILURE reasons repeat by design (every infeasible task shares
+                       "official infeasible -> 0.00") and aren't a signal.
 
 Scoped to g3_sample.full(), not just the k=40 stratified sample, so it keeps working
 unmodified once G3-full lands on disk.
@@ -117,7 +119,8 @@ def scan(results_dir=None, system="agent_computer"):
                 pass
 
         if reason and verdict in ("EVAL_ERROR", "ENVIRONMENT_ERROR"):
-            reason_tasks.setdefault(reason, set()).add(tid)
+            key = reason.split("eval errored: ", 1)[-1]
+            reason_tasks.setdefault(key, set()).add(tid)
 
     for reason, tids in reason_tasks.items():
         if len(tids) >= 2:
