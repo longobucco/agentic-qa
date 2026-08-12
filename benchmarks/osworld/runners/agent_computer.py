@@ -198,6 +198,26 @@ def _environment_error_rec(task, setup_error):
     }
 
 
+def _rate_limit_result_rec(task, meta):
+    """Telemetry for a run the CLI never actually attempted (see _rate_limit_infra_rec) --
+    same shape as a normal result.json so it stays inspectable, minus provenance/eval_state
+    (the caller fills provenance; there's no desktop state to capture)."""
+    telemetry = _agent_telemetry(meta)
+    telemetry["agent_clean_finish"] = False
+    return {"id": task["id"], "bucket": tasks.bucket_of(task),
+            "instruction": task["instruction"], "answer": "", **telemetry}
+
+
+def _rate_limit_infra_rec(task, api_error_status):
+    """Deliberately NOT eval.json (see write_infra_error): a subscription session limit is
+    transient on a fixed reset clock, not evidence of agent success or failure. Written so
+    is_done() still sees this run as undone -- a later `--runs` invocation retries it
+    automatically once the limit clears, no --force needed."""
+    return {"id": task["id"], "outcome": "RATE_LIMITED",
+            "error_type": "APIError", "error": f"api_error_status={api_error_status}",
+            "at": time.strftime("%Y-%m-%dT%H:%M:%S%z")}
+
+
 def run(task, *, env, out, refs=None, dry=False):
     started_at = datetime.now(timezone.utc).isoformat()
     ctrl = getattr(env, "browser", None)
@@ -223,6 +243,20 @@ def run(task, *, env, out, refs=None, dry=False):
         return None
 
     meta = run_claude_meta(cmd, timeout=config.TASK_TIMEOUT)
+    api_error_status = meta.get("api_error_status")
+    if api_error_status:
+        # The CLI itself hit an API-level error (observed live: 429 subscription session
+        # limit, "You've hit your session limit") before the agent acted at all -- num_turns=1,
+        # cost=$0. Scoring the untouched desktop now would silently mint a SUCCESS/FAILURE that
+        # measures our subscription throttling, not the model (found live: 14/27 runs in one
+        # batch, all within the same ~8-minute window).
+        results_io.write_output(out, meta.get("result", ""))
+        result_rec = _rate_limit_result_rec(task, meta)
+        result_rec["provenance"] = _provenance(task, ctrl, started_at)
+        results_io.write_result(out, result_rec)
+        results_io.write_infra_error(out, _rate_limit_infra_rec(task, api_error_status))
+        return ""
+
     text = meta.get("result", "")
     answer = extract_answer(text)
     clean_finish = _clean_finish(meta, answer)

@@ -1,0 +1,59 @@
+{
+  "id": "554785e9-4523-4e7a-b8e1-8016f565f56a",
+  "bucket": "gimp",
+  "instruction": "Could you assist me in enhancing the color vibrancy of my photo?",
+  "answer": "",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "6fb484fc9a8d83c270d220c46d9722d60494ba7000291a77f6836d34123cc4b9",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-f347b9a6-1029-465b-850b-4b394ecfe493.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-12T09:29:17.275061+00:00",
+    "finished_at": "2026-08-12T10:15:10.204721+00:00"
+  },
+  "agent_clean_finish": false,
+  "agent_num_turns": 9,
+  "agent_stop_reason": "stop_sequence",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": true,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.07610355,
+  "agent_input_tokens": 10,
+  "agent_output_tokens": 720,
+  "agent_cache_read_tokens": 143237,
+  "agent_cache_creation_tokens": 3189,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 807,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.000882,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 11,
+      "outputTokens": 889,
+      "cacheReadInputTokens": 166316,
+      "cacheCreationInputTokens": 3189,
+      "webSearchRequests": 0,
+      "costUSD": 0.07522155000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 44051,
+  "agent_duration_api_ms": 39924,
+  "agent_session_id": "75651db5-5e8b-4510-9ccc-d854b66866b9",
+  "agent_uuid": "c358990a-4b51-4380-bad6-58cc650c8f26"
+}

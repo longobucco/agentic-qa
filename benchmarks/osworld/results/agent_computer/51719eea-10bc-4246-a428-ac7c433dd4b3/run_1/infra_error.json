@@ -1,0 +1,11 @@
+[
+  {
+    "id": "51719eea-10bc-4246-a428-ac7c433dd4b3",
+    "run": 1,
+    "outcome": "INFRA_FLAKE",
+    "error_type": "DaytonaBadRequestError",
+    "error": "Failed to execute command: bad request: failed to resolve container IP after 3 attempts: no IP address found. Is the Sandbox started?",
+    "elapsed_s": 22369.6,
+    "at": "2026-08-12T19:42:09+0200"
+  }
+]

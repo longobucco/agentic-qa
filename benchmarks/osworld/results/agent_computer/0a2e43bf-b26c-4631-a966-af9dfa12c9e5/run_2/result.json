@@ -1,0 +1,61 @@
+{
+  "id": "0a2e43bf-b26c-4631-a966-af9dfa12c9e5",
+  "bucket": "libreoffice_calc",
+  "instruction": "Work out the monthly total sales in a new row called \"Total\" and then create a line chart to show the results (x-axis be Months).",
+  "answer": "",
+  "eval_state": "<binary:9500 bytes at SalesRep.xlsx>",
+  "provenance": {
+    "task_sha256": "5c6356e4b1422a63ba8b5a61f56f46778f9c887f9189e58f20ac9247d8526450",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-3a41ec3e-fa92-4e59-9c26-948af5c4ff50.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-11T14:14:51.897518+00:00",
+    "finished_at": "2026-08-11T14:42:17.410565+00:00"
+  },
+  "agent_clean_finish": false,
+  "agent_num_turns": 151,
+  "agent_stop_reason": "tool_use",
+  "agent_terminal_reason": "max_turns",
+  "agent_subtype": "error_max_turns",
+  "agent_is_error": true,
+  "agent_errors": [
+    "Reached maximum number of turns (150)"
+  ],
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 4.3509740500000005,
+  "agent_input_tokens": 166,
+  "agent_output_tokens": 24367,
+  "agent_cache_read_tokens": 11590958,
+  "agent_cache_creation_tokens": 124029,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 823,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0008979999999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 167,
+      "outputTokens": 24791,
+      "cacheReadInputTokens": 11708671,
+      "cacheCreationInputTokens": 124029,
+      "webSearchRequests": 0,
+      "costUSD": 4.35007605,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 1070569,
+  "agent_duration_api_ms": 1026248,
+  "agent_session_id": "9e00405c-2378-4b85-8868-b3e53278ec17",
+  "agent_uuid": "4837595b-bc0d-47cd-80bb-eebcb3f08e6d"
+}

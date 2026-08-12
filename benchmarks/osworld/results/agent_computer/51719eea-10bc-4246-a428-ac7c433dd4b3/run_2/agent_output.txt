@@ -1,0 +1,14 @@
+The task has been completed successfully. Here's what was accomplished:
+
+1. **Revenue column added to Sheet1 (column G)**: Using the formula `=VLOOKUP(C[n],'Retail Price'!$A:$B,2,0)*E[n]*(1-F[n])`, which:
+   - Looks up each product's retail price from the "Retail Price" sheet
+   - Multiplies by Quantity (column E)
+   - Applies the discount: `× (1 - Discount)`
+
+2. **Pivot Table created in Sheet2**: Contains two columns:
+   - **Product** (15 unique products from the sales data)
+   - **Revenue** (total revenue per product using `SUMIF` formulas referencing Sheet1's Revenue column)
+
+The pivot table summarizes revenues ranging from GelFast (24.00) to Quad (3,233.71), with Aspen (2,262.91), Fire Aspen (1,344.75), and Sunset (1,105.00) also being significant contributors.
+
+ANSWER: DONE

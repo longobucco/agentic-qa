@@ -7,7 +7,9 @@ browser/MCP specifics live in each benchmark's runner; this module is the generi
 both those runners and `core.judge` build on.
 """
 import json
+import os
 import re
+import signal
 import subprocess
 
 ANSWER_RE = re.compile(r"^ANSWER:\s*(.*)$", re.MULTILINE)
@@ -48,12 +50,27 @@ def _run_raw(cmd, *, timeout, env=None) -> str:
     """`env` (optional) overrides the child environment — used by the containerized runner to
     hand the orchestrator a PATH where bare `agent-browser` is shadowed, so it can only drive
     the browser via `docker exec` (no host browser). None => inherit the parent environment.
-    On timeout, returns whatever stdout was captured rather than raising."""
+    On timeout, returns whatever stdout was captured rather than raising.
+
+    Runs in its own process group (`start_new_session`) and kills the WHOLE group on timeout,
+    not just the direct child. Observed live: `claude -p` with an MCP server (e.g. OSWorld's
+    stdio server) spawns that server as a grandchild inheriting the stdout pipe; a plain
+    `subprocess.run(..., timeout=...)` only kills the direct child on TimeoutExpired, so the
+    orphaned grandchild keeps the pipe open and `communicate()` blocks forever waiting for EOF
+    that never comes -- froze an unattended --runs campaign on ONE task for 7+ hours with no
+    recovery, well past `timeout`."""
+    proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True,
+                             env=env, start_new_session=True)
     try:
-        proc = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout, env=env)
-        return proc.stdout
-    except subprocess.TimeoutExpired as e:
-        return (e.stdout or b"").decode() if isinstance(e.stdout, bytes) else (e.stdout or "")
+        stdout, _ = proc.communicate(timeout=timeout)
+        return stdout
+    except subprocess.TimeoutExpired:
+        try:
+            os.killpg(os.getpgid(proc.pid), signal.SIGKILL)
+        except ProcessLookupError:
+            pass
+        stdout, _ = proc.communicate()   # drain whatever's buffered now that the tree is dead
+        return stdout or ""
 
 
 def run_claude(cmd, *, timeout, env=None) -> str:

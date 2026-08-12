@@ -1,0 +1,3 @@
+The font size slider is now at 72 (the maximum "Huge" value), with the slider positioned all the way to the right. The preview text shows a very large font size. The default font size has been set to the largest possible value in Chrome.
+
+ANSWER: DONE

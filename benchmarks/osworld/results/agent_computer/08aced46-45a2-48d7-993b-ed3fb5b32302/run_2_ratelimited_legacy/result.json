@@ -1,0 +1,59 @@
+{
+  "id": "08aced46-45a2-48d7-993b-ed3fb5b32302",
+  "bucket": "libreoffice_impress",
+  "instruction": "Give the slide 2 the right aligned title, \"Note\".",
+  "answer": "",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "6d8dfb75f7eac884231873402af4b961c844e51f5fa73b80e5f1be3cf6498142",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-f9724281-4039-4b55-a8cb-a62d9f29d69d.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-11T11:07:38.687083+00:00",
+    "finished_at": "2026-08-11T11:11:42.141651+00:00"
+  },
+  "agent_clean_finish": false,
+  "agent_num_turns": 46,
+  "agent_stop_reason": "stop_sequence",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": true,
+  "agent_errors": null,
+  "agent_api_error_status": 429,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.6955697999999999,
+  "agent_input_tokens": 62,
+  "agent_output_tokens": 6207,
+  "agent_cache_read_tokens": 1509396,
+  "agent_cache_creation_tokens": 39620,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 805,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.000885,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 62,
+      "outputTokens": 6207,
+      "cacheReadInputTokens": 1509396,
+      "cacheCreationInputTokens": 39620,
+      "webSearchRequests": 0,
+      "costUSD": 0.6946847999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 240930,
+  "agent_duration_api_ms": 231352,
+  "agent_session_id": "44ed832d-73c2-4f73-8bb1-21280585859b",
+  "agent_uuid": "908be3c4-e145-4d41-8397-6c8abad2eea9"
+}

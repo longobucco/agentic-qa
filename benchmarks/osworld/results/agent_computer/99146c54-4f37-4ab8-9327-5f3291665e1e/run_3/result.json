@@ -1,0 +1,61 @@
+{
+  "id": "99146c54-4f37-4ab8-9327-5f3291665e1e",
+  "bucket": "chrome",
+  "instruction": "Please help me set Chrome to delete my browsing data automatically every time I close the browser.",
+  "answer": "",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "dc6828f1e38267baba42611f65976939480d8e4d9d1dfcaabd163711561862e2",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-f2f99801-4ab1-47da-86b0-3b82e0b75c63.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-12T07:30:56.722968+00:00",
+    "finished_at": "2026-08-12T07:50:44.070674+00:00"
+  },
+  "agent_clean_finish": false,
+  "agent_num_turns": 151,
+  "agent_stop_reason": "tool_use",
+  "agent_terminal_reason": "max_turns",
+  "agent_subtype": "error_max_turns",
+  "agent_is_error": true,
+  "agent_errors": [
+    "Reached maximum number of turns (150)"
+  ],
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 3.970185350000001,
+  "agent_input_tokens": 171,
+  "agent_output_tokens": 30845,
+  "agent_cache_read_tokens": 10289487,
+  "agent_cache_creation_tokens": 111799,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 810,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.000905,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 171,
+      "outputTokens": 30845,
+      "cacheReadInputTokens": 10289487,
+      "cacheCreationInputTokens": 111799,
+      "webSearchRequests": 0,
+      "costUSD": 3.969280350000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 1185418,
+  "agent_duration_api_ms": 1130438,
+  "agent_session_id": "2d2c5500-628c-495f-b7c5-dae72d0eede8",
+  "agent_uuid": "3696dca7-15e4-4143-8d1e-1716c0dc292c"
+}

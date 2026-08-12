@@ -1,0 +1,15 @@
+The task is complete. The file has been saved successfully.
+
+**Summary of what was accomplished:**
+
+1. **Added "Total" row** (row 12) with SUM formulas calculating monthly total sales:
+   - Jan: 4,852 | Feb: 4,587 | Mar: 3,943 | Apr: 3,857 | May: 4,677 | Jun: 4,243
+
+2. **Created a line chart** showing the monthly total sales with:
+   - X-axis: Jan, Feb, Mar, Apr, May, Jun (months as required)
+   - Y-axis: Sales values (0–6,000)
+   - "Lines Only" style showing the trend across all 6 months
+
+The file was saved in Excel format.
+
+ANSWER: DONE

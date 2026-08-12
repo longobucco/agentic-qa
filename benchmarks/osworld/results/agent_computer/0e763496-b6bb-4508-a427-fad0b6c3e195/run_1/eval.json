@@ -1,0 +1,8 @@
+{
+  "id": "0e763496-b6bb-4508-a427-fad0b6c3e195",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official compare_font_names -> 1.00",
+  "source": "official",
+  "gold_sha256": {}
+}

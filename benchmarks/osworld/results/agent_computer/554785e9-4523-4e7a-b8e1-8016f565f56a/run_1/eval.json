@@ -1,0 +1,10 @@
+{
+  "id": "554785e9-4523-4e7a-b8e1-8016f565f56a",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official check_saturation_increase_and_structure_sim -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "woman_sitting_by_the_tree2.png": "4acbf30f243b4098fe571534d67f3b71f3aa17fe0abebbeba27db9fc79c52367"
+  }
+}

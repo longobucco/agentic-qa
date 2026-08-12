@@ -1,0 +1,59 @@
+{
+  "id": "99146c54-4f37-4ab8-9327-5f3291665e1e",
+  "bucket": "chrome",
+  "instruction": "Please help me set Chrome to delete my browsing data automatically every time I close the browser.",
+  "answer": "FAIL",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "dc6828f1e38267baba42611f65976939480d8e4d9d1dfcaabd163711561862e2",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-4c9efcd3-b01d-4fc0-9d86-7148ecb71f9d.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-12T06:32:28.079511+00:00",
+    "finished_at": "2026-08-12T07:22:46.635033+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 106,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 1.8402376999999994,
+  "agent_input_tokens": 121,
+  "agent_output_tokens": 11029,
+  "agent_cache_read_tokens": 4921199,
+  "agent_cache_creation_tokens": 52580,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 810,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.000905,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 121,
+      "outputTokens": 11029,
+      "cacheReadInputTokens": 4921199,
+      "cacheCreationInputTokens": 52580,
+      "webSearchRequests": 0,
+      "costUSD": 1.8393326999999993,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 965769,
+  "agent_duration_api_ms": 426299,
+  "agent_session_id": "de7edeb2-a4da-4681-a3e4-35eda4a43683",
+  "agent_uuid": "b9f9e458-d994-4750-8eed-55b123dd8908"
+}
