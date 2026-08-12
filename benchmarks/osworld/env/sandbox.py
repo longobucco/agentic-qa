@@ -15,6 +15,7 @@ CLI: python -m benchmarks.osworld.env.sandbox up|down <id>|list|resume <id>
 import os
 import sys
 import time
+from concurrent.futures import ThreadPoolExecutor, TimeoutError as FutureTimeoutError
 from contextlib import contextmanager
 
 from benchmarks.osworld import config
@@ -25,6 +26,19 @@ from core.environment import Env
 START_CMD = "supervisord -c /etc/supervisord.conf"
 READY_POLL_TRIES = 60      # * 2s = up to 120s per attempt
 READY_ATTEMPTS = 2         # attempts at (lock cleanup + start + poll)
+
+# Observed live (2026-08-12): a freshly-created sandbox auto-stopped mid-provisioning (idle gap
+# between create() returning and the first exec against it), then the deprecated daytona_sdk's
+# process.exec() blocked forever against the stopped VM -- no effective timeout, no exception,
+# just poll() never returning. That froze an unattended --runs campaign for 4+ hours on ONE task
+# out of 435 with no recovery. Every step below (create, controller-ready poll, upstream
+# SetupController.setup()) is individually bounded EXCEPT the raw SDK exec call, so this
+# wall-clock watchdog is the backstop: past _PROVISION_TIMEOUT_S the whole provision+configure
+# step is treated as a hang and raised as a plain RuntimeError, which core.run's work() already
+# catches and files as INFRA_FLAKE -- resume then retries the task's run untouched (see finally
+# below: the sandbox reference is exposed to the caller via `holder` as soon as it exists, so a
+# timed-out attempt still gets torn down instead of leaking a paid sandbox).
+_PROVISION_TIMEOUT_S = 900
 
 
 def _client():
@@ -71,7 +85,10 @@ def _ensure_controller_up(sb):
     raise RuntimeError(f"OSWorld controller never became ready on sandbox {sb.id}")
 
 
-def provision(image=None, *, disk=10, memory=8, cpu=4, auto_stop=20):
+def provision(image=None, *, disk=10, memory=8, cpu=4, auto_stop=20, on_created=None):
+    """`on_created(sb)`, if given, fires right after create() returns and before the
+    (potentially hanging) controller-ready wait -- lets a caller capture the sandbox for
+    teardown even if the next step never comes back (see _PROVISION_TIMEOUT_S above)."""
     from daytona_sdk import CreateSandboxFromImageParams, Resources
     d = _client()
     sb = d.create(CreateSandboxFromImageParams(
@@ -79,6 +96,8 @@ def provision(image=None, *, disk=10, memory=8, cpu=4, auto_stop=20):
         resources=Resources(cpu=cpu, memory=memory, disk=min(disk, 10)),
         auto_stop_interval=auto_stop,
     ), timeout=2400)
+    if on_created:
+        on_created(sb)
     ctrl = _ensure_controller_up(sb)
     return sb, ctrl
 
@@ -143,6 +162,25 @@ def _warn_reuse_once(how):
         _warned_reuse = True
 
 
+def _provision_and_configure(task, holder):
+    """Runs in a worker thread so osworld_environment can bound it with a wall-clock timeout
+    (see _PROVISION_TIMEOUT_S) -- the deprecated daytona_sdk gives no such guarantee itself.
+    `holder["sb"]` is set as soon as a sandbox exists, so a timed-out caller can still tear it
+    down instead of leaking a paid sandbox the worker thread is stuck holding."""
+    if config.SANDBOX_ID:
+        _warn_reuse_once("OSW_SANDBOX_ID set")
+        d = _client()
+        sb = next((s for s in d.list() if s.id == config.SANDBOX_ID), None)
+        if sb is None:
+            raise SystemExit(f"OSW_SANDBOX_ID={config.SANDBOX_ID} not found")
+        holder["sb"] = sb
+        _ensure_running(sb)
+        ctrl = _ensure_controller_up(sb)
+    else:
+        sb, ctrl = provision(on_created=lambda s: holder.update(sb=s))
+    return ctrl, _run_config(ctrl, task)
+
+
 @contextmanager
 def osworld_environment(task, *, port=None):
     # priority: OSW_CONTROLLER_URL (running desktop) > OSW_SANDBOX_ID (existing) > fresh per task
@@ -153,21 +191,22 @@ def osworld_environment(task, *, port=None):
         yield Env(port=None, browser=ctrl, setup_error=err)
         return
 
-    sb = None
+    holder = {}
+    ex = ThreadPoolExecutor(max_workers=1)
     try:
-        if config.SANDBOX_ID:
-            _warn_reuse_once("OSW_SANDBOX_ID set")
-            d = _client()
-            sb = next((s for s in d.list() if s.id == config.SANDBOX_ID), None)
-            if sb is None:
-                raise SystemExit(f"OSW_SANDBOX_ID={config.SANDBOX_ID} not found")
-            _ensure_running(sb)
-            ctrl = _ensure_controller_up(sb)
-        else:
-            sb, ctrl = provision()
-        err = _run_config(ctrl, task)
+        fut = ex.submit(_provision_and_configure, task, holder)
+        try:
+            ctrl, err = fut.result(timeout=_PROVISION_TIMEOUT_S)
+        except FutureTimeoutError:
+            raise RuntimeError(
+                f"sandbox provisioning/setup exceeded {_PROVISION_TIMEOUT_S}s -- treated as a "
+                f"hang, not a legitimate wait (observed live: sandbox auto-stopped mid-"
+                f"provisioning, then the SDK's exec blocked against the stopped VM forever)"
+            ) from None
         yield Env(port=None, browser=ctrl, setup_error=err)
     finally:
+        ex.shutdown(wait=False)   # don't block the whole campaign on a still-stuck worker thread
+        sb = holder.get("sb")
         if sb is not None and not config.SANDBOX_ID:   # tear down fresh sandboxes only
             try:
                 sb.delete()

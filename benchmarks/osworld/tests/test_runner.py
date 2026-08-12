@@ -3,7 +3,8 @@ gold-hashing logic in runners/agent_computer.py (pure, no desktop/LLM):
   python -m benchmarks.osworld.tests.test_runner
 """
 from benchmarks.osworld.runners.agent_computer import (
-    _agent_telemetry, _annotate_incidental, _clean_finish, _environment_error_rec, _score,
+    _agent_telemetry, _annotate_incidental, _clean_finish, _environment_error_rec,
+    _rate_limit_infra_rec, _rate_limit_result_rec, _score,
 )
 
 
@@ -127,6 +128,29 @@ def test_score_falls_back_to_eval_error_without_a_controller():
         assert rec["source"] == "offline_fallback"
     finally:
         shutil.rmtree(d)
+
+
+_RATE_LIMITED_TASK = {"id": "t1", "instruction": "do the thing",
+                      "related_apps": ["libreoffice_calc"]}
+_RATE_LIMITED_META = {"api_error_status": 429, "num_turns": 1, "is_error": True,
+                      "total_cost_usd": 0, "usage": {}, "result": ""}
+
+
+def test_rate_limit_result_rec_is_not_clean_finish():
+    """A run the CLI never attempted (session limit hit before any turn) must never read as
+    a clean finish -- that flag feeds _annotate_incidental's incidental-success detection."""
+    rec = _rate_limit_result_rec(_RATE_LIMITED_TASK, _RATE_LIMITED_META)
+    assert rec["agent_clean_finish"] is False
+    assert rec["answer"] == ""
+    assert rec["bucket"] == "libreoffice_calc"
+    assert rec["agent_cost_usd"] == 0
+
+
+def test_rate_limit_infra_rec_carries_the_status_code():
+    rec = _rate_limit_infra_rec(_RATE_LIMITED_TASK, 429)
+    assert rec["outcome"] == "RATE_LIMITED"
+    assert rec["id"] == "t1"
+    assert "429" in rec["error"]
 
 
 def main():
