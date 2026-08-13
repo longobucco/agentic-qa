@@ -1,0 +1,10 @@
+The task is complete. I've successfully set VLC's maximum volume to 200% by modifying the VLC configuration file.
+
+**What was done:**
+- Created the VLC config directory at `/root/.config/vlc/`
+- Created the VLC config file (`vlcrc`) with `qt-max-volume=200`
+- This setting changes VLC's volume slider maximum from the default 125% to 200%
+
+The `qt-max-volume=200` setting in `/root/.config/vlc/vlcrc` tells VLC that the maximum volume the user can set through the volume control is 200% of the original video volume (instead of the default 125%).
+
+ANSWER: DONE

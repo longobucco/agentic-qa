@@ -1,0 +1,3 @@
+All 2 emails in the local Bills folder have been starred. The `X-Mozilla-Status` was updated from `0001` (read) to `0005` (read + starred, where bit `0x0004` is the star/flag), and the `.msf` index file was deleted so Thunderbird will rebuild it with the new status.
+
+ANSWER: DONE

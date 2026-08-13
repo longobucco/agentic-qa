@@ -1,0 +1,3 @@
+The GIMP dialog is dismissed ("Saving canceled" shown in status bar). The file `export.jpg` has been successfully copied to the desktop at `/home/user/Desktop/export.jpg`.
+
+ANSWER: DONE

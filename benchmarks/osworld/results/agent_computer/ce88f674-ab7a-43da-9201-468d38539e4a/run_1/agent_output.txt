@@ -1,0 +1,6 @@
+The file has been saved successfully. The slide is now in Portrait (upright) orientation as shown by:
+- The Properties panel showing "Orientation: Portrait"
+- The slide preview in the thumbnail panel showing portrait layout
+- The main slide view showing the slide in upright/portrait format
+
+ANSWER: DONE

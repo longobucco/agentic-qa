@@ -1,0 +1,59 @@
+{
+  "id": "77b8ab4d-994f-43ac-8930-8ca087d7c4b4",
+  "bucket": "gimp",
+  "instruction": "Could you assist me in placing my photo on the desktop and renaming it to export.jpg?",
+  "answer": "DONE",
+  "eval_state": "<binary:129365 bytes at export.jpg>",
+  "provenance": {
+    "task_sha256": "afc9b187254f046cb2cb24437a35a03ab46efacfcd59e2e693e2cbafbc1d25f0",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-1b2809ca-8b7f-46b5-86cd-233555ac00cc.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-12T20:10:12.507543+00:00",
+    "finished_at": "2026-08-12T20:11:59.849524+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 20,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.25223035000000005,
+  "agent_input_tokens": 23,
+  "agent_output_tokens": 2844,
+  "agent_cache_read_tokens": 502322,
+  "agent_cache_creation_tokens": 15441,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 811,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.000901,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 23,
+      "outputTokens": 2844,
+      "cacheReadInputTokens": 502322,
+      "cacheCreationInputTokens": 15441,
+      "webSearchRequests": 0,
+      "costUSD": 0.25132935,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 105375,
+  "agent_duration_api_ms": 100823,
+  "agent_session_id": "1ae3c991-63cf-4d12-aac9-c6c3c56a45b9",
+  "agent_uuid": "401a4407-4349-4b64-a36f-69fca0163be1"
+}

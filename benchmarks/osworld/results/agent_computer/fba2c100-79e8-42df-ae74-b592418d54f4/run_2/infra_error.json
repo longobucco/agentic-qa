@@ -1,0 +1,9 @@
+[
+  {
+    "id": "fba2c100-79e8-42df-ae74-b592418d54f4",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-12T23:20:01+0200"
+  }
+]

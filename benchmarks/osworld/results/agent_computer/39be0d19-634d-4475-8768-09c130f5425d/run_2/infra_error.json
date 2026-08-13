@@ -1,0 +1,11 @@
+[
+  {
+    "id": "39be0d19-634d-4475-8768-09c130f5425d",
+    "run": 2,
+    "outcome": "INFRA_FLAKE",
+    "error_type": "DaytonaConnectionError",
+    "error": "Failed to create sandbox: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))",
+    "elapsed_s": 687.0,
+    "at": "2026-08-13T12:10:04+0200"
+  }
+]

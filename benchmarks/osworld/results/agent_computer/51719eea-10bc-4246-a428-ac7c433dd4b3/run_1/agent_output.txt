@@ -1,0 +1,22 @@
+The file has been saved successfully. The task is complete:
+
+1. **Revenue column (G) in Sheet1**: Added with VLOOKUP formula `=VLOOKUP(C2,'Retail Price'.$A:$B,2,0)*E2*(1-F2)` for each row, calculating Price × Quantity × (1 - Discount) using the Retail Price sheet.
+
+2. **Pivot Table in Sheet2**: Created with Product and Revenue columns summarizing total revenue per product across all transactions:
+   - Aspen: 2262.91
+   - Bellen: 173.57
+   - Bower Aussie Round: 258.00
+   - Carlota Doublers: 590.25
+   - Crested Beaut: 651.58
+   - Fire Aspen: 1344.75
+   - Fun Fly: 508.22
+   - GelFast: 24.00
+   - Manu LD: 1000.00
+   - Manu MTA: 117.72
+   - Quad: 3233.71
+   - Sunset: 1105.00
+   - Sunshine: 565.08
+   - Sunspot: 560.00
+   - Yanaki: 590.37
+
+ANSWER: DONE

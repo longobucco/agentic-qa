@@ -1,0 +1,59 @@
+{
+  "id": "39be0d19-634d-4475-8768-09c130f5425d",
+  "bucket": "libreoffice_impress",
+  "instruction": "In the \"Features\" slide, insert a table with 5 rows and 2 columns.",
+  "answer": "DONE",
+  "eval_state": "<binary:352453 bytes at 41_3.pptx>",
+  "provenance": {
+    "task_sha256": "04181f270672baa1df05c50cd772fdb97c969f232c5585962cddf74832a4a1d4",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-c0b52e57-8955-4397-9047-9eaba3a82de7.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-13T09:40:42.053885+00:00",
+    "finished_at": "2026-08-13T09:58:32.957085+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 64,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 1.09813945,
+  "agent_input_tokens": 73,
+  "agent_output_tokens": 8394,
+  "agent_cache_read_tokens": 2639749,
+  "agent_cache_creation_tokens": 47789,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 812,
+      "outputTokens": 13,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.000877,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 73,
+      "outputTokens": 8394,
+      "cacheReadInputTokens": 2639749,
+      "cacheCreationInputTokens": 47789,
+      "webSearchRequests": 0,
+      "costUSD": 1.09726245,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 335331,
+  "agent_duration_api_ms": 310887,
+  "agent_session_id": "e8a906d1-10bf-470b-b932-22af9a2cc9eb",
+  "agent_uuid": "cfdc7531-da14-419d-a61f-e570a8cafc93"
+}

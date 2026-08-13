@@ -1,0 +1,3 @@
+The task is complete. I can clearly see in the slides panel that slide 2 now has a solid red background (FF0000), which matches the color of its title "Our Customers Love Us!!!" (also FF0000). The background color of slide 2 has been successfully set to match its title color.
+
+ANSWER: DONE

@@ -1,0 +1,58 @@
+{
+  "id": "9195653c-f4aa-453d-aa95-787f6ccfaae9",
+  "bucket": "vlc",
+  "instruction": "I like watching movies (using VLC) on my laptop and sometimes the volume is too low for my taste even when the volume in VLC is set to the maximum of 125% on the volume control. Can you increase the max volume of the video to the 200% of the original volume?",
+  "answer": "",
+  "agent_clean_finish": false,
+  "agent_num_turns": 21,
+  "agent_stop_reason": "stop_sequence",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": true,
+  "agent_errors": null,
+  "agent_api_error_status": 429,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.30700479999999997,
+  "agent_input_tokens": 27,
+  "agent_output_tokens": 6036,
+  "agent_cache_read_tokens": 528161,
+  "agent_cache_creation_tokens": 15198,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 853,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.000943,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 27,
+      "outputTokens": 6036,
+      "cacheReadInputTokens": 528161,
+      "cacheCreationInputTokens": 15198,
+      "webSearchRequests": 0,
+      "costUSD": 0.30606179999999994,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 155646,
+  "agent_duration_api_ms": 149282,
+  "agent_session_id": "a7543276-3ae4-431f-84a4-729fbd01c569",
+  "agent_uuid": "0128b4bf-1ca4-41c7-955d-6ea5b5a7e951",
+  "provenance": {
+    "task_sha256": "c593e4c056103cbbe69276ce8e0c25518a519972b342bde7a0d84666a2170ce9",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-c17cb311-ded4-4ab8-8084-ca8788e9bdd4.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-13T07:22:23.222783+00:00",
+    "finished_at": "2026-08-13T07:25:00.398045+00:00"
+  }
+}

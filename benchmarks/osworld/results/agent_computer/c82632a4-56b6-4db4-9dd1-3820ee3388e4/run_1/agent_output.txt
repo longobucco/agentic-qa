@@ -1,0 +1,3 @@
+The image "none.png" has been successfully added to slide 2 with exactly 1cm × 1cm dimensions (360000 EMU × 360000 EMU). The file was saved at `/home/user/Desktop/31_2.pptx`.
+
+ANSWER: DONE

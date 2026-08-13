@@ -1,0 +1,58 @@
+{
+  "id": "af2d657a-e6b3-4c6a-9f67-9e3ed015974c",
+  "bucket": "libreoffice_impress",
+  "instruction": "In the first slide, insert the title \"Happy Family\" and make the font style \"Microsoft JhengHei\".",
+  "answer": "",
+  "agent_clean_finish": false,
+  "agent_num_turns": 19,
+  "agent_stop_reason": "stop_sequence",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": true,
+  "agent_errors": null,
+  "agent_api_error_status": 429,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.22244899999999998,
+  "agent_input_tokens": 27,
+  "agent_output_tokens": 1788,
+  "agent_cache_read_tokens": 444340,
+  "agent_cache_creation_tokens": 16360,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 816,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.000896,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 27,
+      "outputTokens": 1788,
+      "cacheReadInputTokens": 444340,
+      "cacheCreationInputTokens": 16360,
+      "webSearchRequests": 0,
+      "costUSD": 0.221553,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 75546,
+  "agent_duration_api_ms": 70227,
+  "agent_session_id": "2bd37095-95c5-45a6-9f10-36b526b4935c",
+  "agent_uuid": "30235629-c026-4438-88a3-812b393a83d8",
+  "provenance": {
+    "task_sha256": "e686e7fb7fc3c27d91b1e9c3e1c8020ba0b8d68db4fe90e885d565a4224396de",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-029a4b4b-f8fa-4faa-9793-0e0cee78e816.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-13T11:19:58.739958+00:00",
+    "finished_at": "2026-08-13T11:21:15.540091+00:00"
+  }
+}

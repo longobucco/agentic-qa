@@ -1,0 +1,8 @@
+{
+  "id": "ce88f674-ab7a-43da-9201-468d38539e4a",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official check_slide_orientation_Portrait -> 0.00",
+  "source": "official",
+  "gold_sha256": {}
+}
