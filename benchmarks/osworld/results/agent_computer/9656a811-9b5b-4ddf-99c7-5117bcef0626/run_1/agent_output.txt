@@ -1,1 +1,5 @@
-You've hit your session limit · resets 12:40am (Europe/Rome)
+The Chrome Security settings are showing Safe Browsing options. I can see that "Standard protection" is already selected (blue radio button), which warns about harmful websites. Since this feature is already enabled, the task is complete.
+
+The Safe Browsing feature — specifically "Standard protection" — is currently active in Chrome. This setting protects against sites, downloads, and extensions known to be dangerous and warns users when they visit potentially harmful websites.
+
+ANSWER: DONE

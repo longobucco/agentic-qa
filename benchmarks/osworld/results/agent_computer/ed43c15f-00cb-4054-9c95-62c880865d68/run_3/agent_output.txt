@@ -1,0 +1,12 @@
+All changes are confirmed:
+
+1. **Picture on slide 2** is at the top-left (position 0,0) ✓
+2. **"Announcement"** text is underlined ✓  
+3. **"I'm Rain, and I'll be sharing..."** and **"Follow me at @reallygreatsite..."** are underlined ✓
+4. Slide 1 thumbnail shows underlined text ("Minimalistic Newsletter" and "Here is the start of the presentation") ✓
+
+Both tasks have been completed successfully:
+- The picture on page 2 was moved to the slide top (position 0,0)
+- All textboxes on slides 1 and 2 have underline formatting applied
+
+ANSWER: DONE

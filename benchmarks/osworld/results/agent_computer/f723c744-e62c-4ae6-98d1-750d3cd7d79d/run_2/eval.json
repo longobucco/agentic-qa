@@ -1,0 +1,10 @@
+{
+  "id": "f723c744-e62c-4ae6-98d1-750d3cd7d79d",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official check_contrast_increase_and_structure_sim -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "berries.png": "1ec94535c02ac32c5a492f1277312c28ab6567ba6cf1783c01721eba5b914b0b"
+  }
+}

@@ -1,1 +1,11 @@
-You've hit your session limit · resets 12:40am (Europe/Rome)
+The report is complete. The `None` values shown in the CC column when reading back are just openpyxl's representation of empty cells (the string `''` was written correctly). The file `/root/Desktop/report.xlsx` has been created with:
+
+- **Header row**: sender_name, sender_address, subject, CC, number_of_attachments
+- **5 data rows** (latest 5 emails, earliest to most recent):
+  1. Jan 25, 2024 - HKU Bulk Email Delivery System / HKU Daily Email Digest (25 JAN 2024)
+  2. Jan 27, 2024 - eNotices System / HKU Daily Notices (27 JAN 2024) / CC: mail.service@intranet.hku.hk
+  3. Jan 28, 2024 - eNotices System / HKU Daily Notices (28 JAN 2024) / CC: mail.service@intranet.hku.hk
+  4. Jan 29, 2024 - HKU Bulk Email Delivery System / HKU Daily Email Digest (29 JAN 2024)
+  5. Jan 30, 2024 - HKU Bulk Email Delivery System / HKU Daily Email Digest (30 JAN 2024)
+
+ANSWER: DONE

@@ -1,0 +1,11 @@
+{
+  "id": "21ab7b40-77c2-4ae6-8321-e00d3a086c73",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official compare_table -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "1_PeriodRate_gt1.xlsx": "599cbdc6fe16b64b9628022bf55f26a488d1912c4b036359f3564c6146e1407a"
+  },
+  "note": "incidental: agent did not finish cleanly (no ANSWER / hit max-turns or errored) \u2014 the state happened to already satisfy the evaluator, not necessarily evidence the agent completed the task"
+}

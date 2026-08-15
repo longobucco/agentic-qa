@@ -4,8 +4,10 @@ to the offline checker in evaluate.py when desktop_env isn't importable.
 """
 import hashlib
 import json
+import os
 import tempfile
 import time
+from concurrent.futures import ThreadPoolExecutor, TimeoutError as FutureTimeoutError
 from datetime import datetime, timezone
 
 import requests
@@ -42,6 +44,29 @@ def _action_history(answer):
     if a.startswith("FAIL") or "INFEASIBLE" in a:
         return ["FAIL"]
     return [answer]
+
+
+# Observed live (2026-08-13): the claude subprocess itself is bounded by TASK_TIMEOUT and exits
+# cleanly, but the POST-agent work -- eval-state capture (screenshot/file/command against the
+# same flaky Daytona-proxied controller) and official scoring -- has no bound of its own. A run
+# that reported ~950s of actual agent activity took 3600s+ wall-clock end to end; the gap sat in
+# this unbounded tail, not in provisioning (see sandbox._PROVISION_TIMEOUT_S, a separate bound).
+# Same watchdog pattern as provisioning: run in a worker thread, cap wall-clock, raise a plain
+# RuntimeError past the cap so core.run's work() files it as INFRA_FLAKE and a later invocation
+# retries the run untouched -- a hung capture/score no longer strands a whole unit for an hour.
+_POST_RUN_TIMEOUT_S = int(os.environ.get("OSW_POST_RUN_TIMEOUT", "600"))
+
+
+def _bounded(label, fn, *args):
+    with ThreadPoolExecutor(max_workers=1) as ex:
+        fut = ex.submit(fn, *args)
+        try:
+            return fut.result(timeout=_POST_RUN_TIMEOUT_S)
+        except FutureTimeoutError:
+            raise RuntimeError(
+                f"{label} exceeded {_POST_RUN_TIMEOUT_S}s -- treated as a hang, not a "
+                f"legitimate wait"
+            ) from None
 
 
 def _capture_eval_state(ctrl, task, out):
@@ -262,7 +287,7 @@ def run(task, *, env, out, refs=None, dry=False):
     clean_finish = _clean_finish(meta, answer)
     results_io.write_output(out, text)
 
-    eval_state = _capture_eval_state(ctrl, task, out) if ctrl else None
+    eval_state = _bounded("eval-state capture", _capture_eval_state, ctrl, task, out) if ctrl else None
     telemetry = _agent_telemetry(meta)
     telemetry["agent_clean_finish"] = clean_finish
     results_io.write_result(out, {
@@ -274,6 +299,6 @@ def run(task, *, env, out, refs=None, dry=False):
         "provenance": _provenance(task, ctrl, started_at),
         **telemetry,
     })
-    rec = _annotate_incidental(_score(ctrl, task, answer, out), clean_finish)
+    rec = _annotate_incidental(_bounded("scoring", _score, ctrl, task, answer, out), clean_finish)
     results_io.write_eval(out, {"id": task["id"], **rec})
     return answer

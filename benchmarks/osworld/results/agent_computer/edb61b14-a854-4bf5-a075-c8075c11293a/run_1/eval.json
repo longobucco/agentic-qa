@@ -1,0 +1,10 @@
+{
+  "id": "edb61b14-a854-4bf5-a075-c8075c11293a",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official compare_pptx_files -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "24_8_Gold.pptx": "75b698d4e35c4fd91c7399210cfe448bdfb340471a12c8c0b133bcf70a600d88"
+  }
+}

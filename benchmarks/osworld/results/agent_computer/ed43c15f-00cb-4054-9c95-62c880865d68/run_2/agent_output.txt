@@ -1,0 +1,11 @@
+All tasks have been completed successfully:
+
+1. **Picture moved to slide top**: On slide 2, the picture is now positioned at y=0 (the very top of the slide).
+
+2. **Textboxes underlined on slide 1**: "Minimalistic Newsletter" and "Here is the start of the presentation" are both underlined.
+
+3. **Textboxes underlined on slide 2**: "Announcement" and the description text are both underlined.
+
+The file has been saved with all the required changes.
+
+ANSWER: DONE

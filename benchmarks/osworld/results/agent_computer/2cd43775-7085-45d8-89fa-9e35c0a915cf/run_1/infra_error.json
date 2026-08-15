@@ -5,5 +5,35 @@
     "error_type": "APIError",
     "error": "api_error_status=429",
     "at": "2026-08-13T09:44:25+0200"
+  },
+  {
+    "id": "2cd43775-7085-45d8-89fa-9e35c0a915cf",
+    "run": 1,
+    "outcome": "INFRA_FLAKE",
+    "error_type": "FileNotFoundError",
+    "error": "[Errno 2] No such file or directory: 'claude'",
+    "elapsed_s": 11.2,
+    "at": "2026-08-13T15:20:51+0200"
+  },
+  {
+    "id": "2cd43775-7085-45d8-89fa-9e35c0a915cf",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-14T07:30:25+0200"
+  },
+  {
+    "id": "2cd43775-7085-45d8-89fa-9e35c0a915cf",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-14T18:26:56+0200"
+  },
+  {
+    "id": "2cd43775-7085-45d8-89fa-9e35c0a915cf",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-15T11:37:02+0200"
   }
 ]

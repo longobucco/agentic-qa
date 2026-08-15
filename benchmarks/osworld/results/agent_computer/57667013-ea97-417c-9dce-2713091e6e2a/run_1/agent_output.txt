@@ -1,1 +1,7 @@
-You've hit your session limit · resets 3:40pm (Europe/Rome)
+The task is complete. I can clearly see that slide 5 now has yellow text for both textboxes:
+- "WRITE AN ORIGINAL STATEMENT OR INSPIRING QUOTE" - now in yellow
+- "Include a credit, citation, or supporting message" - also in yellow
+
+The macro successfully changed all textbox font colors to yellow (RGB 255, 255, 0) and saved the file.
+
+ANSWER: DONE

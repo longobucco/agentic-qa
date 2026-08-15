@@ -1,0 +1,6 @@
+The file has been successfully saved on disk with the correct values. The task is complete:
+
+1. **Slide 3**: Picture "Picture 5" height changed from 19.68cm → **20cm**
+2. **Slide 6**: All textboxes font size changed to **40pt** (TextBox 5 "Name Surname", TextBox 9 with presentation text, TextBox 21 "Our Founder", and all other text-containing shapes)
+
+ANSWER: DONE

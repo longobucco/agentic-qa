@@ -1,0 +1,59 @@
+{
+  "id": "ed43c15f-00cb-4054-9c95-62c880865d68",
+  "bucket": "libreoffice_impress",
+  "instruction": "Move the picture on page 2 to slide top. Make textboxes underlined on slide 1 and 2.",
+  "answer": "DONE",
+  "eval_state": "<binary:441459 bytes at 43_1.pptx>",
+  "provenance": {
+    "task_sha256": "2345890031dd7566a746817474adedb2b134269d2dbd92879111bb8b3b0ffa9f",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-69f7fe46-c087-4fc7-a3ea-38e1fcecd240.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-14T07:32:02.975390+00:00",
+    "finished_at": "2026-08-14T07:44:33.970932+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 85,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 2.1583761999999993,
+  "agent_input_tokens": 102,
+  "agent_output_tokens": 20466,
+  "agent_cache_read_tokens": 5150104,
+  "agent_cache_creation_tokens": 80532,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3994,
+      "outputTokens": 12,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.004054,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 102,
+      "outputTokens": 20466,
+      "cacheReadInputTokens": 5150104,
+      "cacheCreationInputTokens": 80532,
+      "webSearchRequests": 0,
+      "costUSD": 2.1543221999999997,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 749179,
+  "agent_duration_api_ms": 624870,
+  "agent_session_id": "aed08826-ea39-44c3-8634-4fc6df18c6e3",
+  "agent_uuid": "4fa3e033-a66d-49e5-8892-39cc854e74e1"
+}

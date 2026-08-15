@@ -1,0 +1,5 @@
+Both changes are verified on the saved file:
+- **Slide 3**: Picture height = **20.00cm** ✓
+- **Slide 6**: All textboxes ('TextBox 5', 'TextBox 9', 'TextBox 21') font size = **40pt** ✓
+
+ANSWER: DONE

@@ -1,1 +1,10 @@
-You've hit your session limit · resets 10:40am (Europe/Rome)
+The task is complete. I have successfully:
+
+1. Created a new sheet named **"Sheet2"** in the FutureValue.xlsx workbook
+2. Merged cells **A1:C1** and wrote **"Investment Summary"** as the header
+3. Merged cells **A2:B2** and wrote **"High Interest Rate"**
+4. Merged cells **C2:D2** and wrote **"Low Interest Rate"**
+
+The file has been saved with all the required changes.
+
+ANSWER: DONE

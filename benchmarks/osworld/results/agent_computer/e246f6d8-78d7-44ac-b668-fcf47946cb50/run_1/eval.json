@@ -1,0 +1,10 @@
+{
+  "id": "e246f6d8-78d7-44ac-b668-fcf47946cb50",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official check_italic_font_size_14 -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "Y22-2119-assign4.docx_Gold.docx": "48ac677346bd818af4f90d77b0947b30b91c0627883fcc31902c1edd94bcc7f9"
+  }
+}

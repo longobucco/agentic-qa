@@ -1,1 +1,9 @@
-You've hit your session limit · resets 3:40pm (Europe/Rome)
+The status bar shows "19.07 x 9.84" for slide 6's picture. 9.84" × 2.54 = 24.99cm ≈ 25cm. All three picture heights are verified correctly:
+
+- **Slide 3**: Picture height = 7.87" ≈ **20cm** ✓
+- **Slide 4**: Picture height = 11.81" ≈ **30cm** ✓  
+- **Slide 6**: Picture height = 9.84" ≈ **25cm** ✓
+
+All picture heights have been successfully changed as requested. The file was saved using python-pptx to `/home/user/Desktop/30_1.pptx`.
+
+ANSWER: DONE

@@ -1,1 +1,7 @@
-You've hit your session limit · resets 10:40am (Europe/Rome)
+The file has been saved as "BoomerangSales.xlsx". The task is complete:
+
+1. **Data sorted**: Column A (Date Time) is sorted in ascending order from 12/6/14 to 12/20/15
+2. **Line chart created**: Shows "Date Time" on the X-axis and "Quantity" on the Y-axis with a "Lines Only" line chart style
+3. **File saved**: Saved as Excel 2007-365 (.xlsx) format
+
+ANSWER: DONE

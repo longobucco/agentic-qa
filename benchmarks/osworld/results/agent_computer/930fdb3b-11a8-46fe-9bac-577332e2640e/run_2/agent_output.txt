@@ -1,1 +1,10 @@
-You've hit your session limit · resets 12:40am (Europe/Rome)
+The keyboard shortcut has been successfully configured. The VS Code Keyboard Shortcuts editor confirms:
+
+- **Command**: View: Focus Active Editor Group (`workbench.action.focusActiveEditorGroup`)
+- **Keybinding**: `Ctrl + J`
+- **When**: `terminalFocus`
+- **Source**: User
+
+The shortcut `ctrl+j` is now set to move cursor focus from the terminal to the editor in VS Code, active only when the terminal has focus.
+
+ANSWER: DONE

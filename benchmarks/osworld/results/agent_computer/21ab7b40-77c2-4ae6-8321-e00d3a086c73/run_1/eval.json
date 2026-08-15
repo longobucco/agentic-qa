@@ -1,0 +1,10 @@
+{
+  "id": "21ab7b40-77c2-4ae6-8321-e00d3a086c73",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official compare_table -> 0.00",
+  "source": "official",
+  "gold_sha256": {
+    "1_PeriodRate_gt1.xlsx": "599cbdc6fe16b64b9628022bf55f26a488d1912c4b036359f3564c6146e1407a"
+  }
+}

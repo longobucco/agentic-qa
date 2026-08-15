@@ -1,1 +1,13 @@
-You've hit your session limit · resets 12:40am (Europe/Rome)
+The settings have been updated successfully. The VS Code `settings.json` at `/root/.config/Code/User/settings.json` now contains:
+
+```json
+{
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportMissingImports": "none"
+    }
+}
+```
+
+This sets `reportMissingImports` to `"none"`, which disables error reporting for Python missing imports in VS Code (via the Pylance/Python extension).
+
+ANSWER: DONE

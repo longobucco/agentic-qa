@@ -1,1 +1,7 @@
-You've hit your session limit · resets 10:40am (Europe/Rome)
+The file has been saved successfully. The freeze is confirmed by the thick lines visible in the spreadsheet:
+- A thick vertical line after column B (freezing columns A and B)
+- A thick horizontal line after row 1 (freezing row 1)
+
+This means row 1 (containing the "Item" and "Month" headers in A1:B1) will always remain visible when scrolling through the spreadsheet.
+
+ANSWER: DONE
