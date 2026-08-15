@@ -38,7 +38,7 @@ READY_ATTEMPTS = 2         # attempts at (lock cleanup + start + poll)
 # catches and files as INFRA_FLAKE -- resume then retries the task's run untouched (see finally
 # below: the sandbox reference is exposed to the caller via `holder` as soon as it exists, so a
 # timed-out attempt still gets torn down instead of leaking a paid sandbox).
-_PROVISION_TIMEOUT_S = 900
+_PROVISION_TIMEOUT_S = int(os.environ.get("OSW_PROVISION_TIMEOUT", "600"))
 
 
 def _client():
