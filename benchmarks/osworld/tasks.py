@@ -1,4 +1,6 @@
 """Load OSWorld task specs; bucket by app under test."""
+import sys
+
 from benchmarks.osworld import config
 from core.tasks import load_jsonl
 
@@ -21,9 +23,13 @@ def load_tasks():
     out = [t for t in all_tasks if set(t.get("related_apps") or []) <= in_scope]
     skipped = len(all_tasks) - len(out)
     if skipped:
+        # stderr, not stdout: callers that capture load_tasks()'s stdout as data (e.g. the
+        # watchdog's --print-order, redirected straight into the driver's task-id list file)
+        # would otherwise get this diagnostic line mixed in as a bogus "task id".
         print(f"[osworld] {len(out)} runnable tasks; skipped {skipped} outside the validated "
               f"app scope ({sorted(config.SUPPORTED_APPS)}) — set OSW_INCLUDE_ALL_APPS=1 to run "
-              f"everything (expect ENVIRONMENT_ERROR, or a misdiagnosed FAILURE, outside this set)")
+              f"everything (expect ENVIRONMENT_ERROR, or a misdiagnosed FAILURE, outside this set)",
+              file=sys.stderr)
     return out
 
 

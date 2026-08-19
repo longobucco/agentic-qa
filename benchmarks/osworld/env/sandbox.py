@@ -13,7 +13,9 @@ Two things handled here rather than by hand:
 CLI: python -m benchmarks.osworld.env.sandbox up|down <id>|list|resume <id>
 """
 import os
+import shutil
 import sys
+import tempfile
 import time
 from concurrent.futures import ThreadPoolExecutor, TimeoutError as FutureTimeoutError
 from contextlib import contextmanager
@@ -141,10 +143,17 @@ def _run_config(ctrl, task):
         from benchmarks.osworld.env.osworld_eval import make_setup_controller
     except ImportError as e:
         return f"desktop_env not importable, cannot run config setup: {e}"
+    # own the cache dir so it can be cleaned up afterwards -- left to its own mkdtemp default,
+    # every provisioned run leaks one uncleaned dir (found live 2026-08-16, part of a 5400-file/
+    # 3.6GB leak across the temp-dir patterns in this codebase; see the matching fix in
+    # agent_computer._score / osworld_eval.evaluate_official).
+    cache_dir = tempfile.mkdtemp(prefix="osw_setup_cache_")
     try:
-        make_setup_controller(ctrl.base_url).setup(steps)
+        make_setup_controller(ctrl.base_url, cache_dir=cache_dir).setup(steps)
     except Exception as e:
         return f"config setup failed: {e}"
+    finally:
+        shutil.rmtree(cache_dir, ignore_errors=True)
     return _verify_launches(ctrl, steps)
 
 

@@ -1,4 +1,5 @@
-"""Local watchdog for the OSWorld G3-full campaign.
+"""Local watchdog for the OSWorld G3-full campaign (scope widened 2026-08-16 to all 260 runnable
+tasks -- see _pending_task_ids).
 
 Run standalone (no Claude session, no cloud agent) by a local launchd agent every ~2h. If the
 overnight driver (`g3_full_overnight_driver.sh`) is not alive, relaunches it -- so the
@@ -101,17 +102,24 @@ def _process_alive():
 
 
 def _pending_task_ids():
+    """Population is now every runnable OSWorld task (260, the 8-supported-app scope), not just
+    g3_full_sample's 196-task 'eligible' subset -- 2026-08-16 decision to also attempt the 64
+    tasks g3_sample.py excludes as permanently unscorable (broken Chrome setup port, unroutable
+    VLC getter, missing postconfig init, broken vm_command_line), even though most of them are
+    expected to end in EVAL_ERROR/ENVIRONMENT_ERROR -- attempted-and-inconclusive is preferred
+    over never-attempted for full benchmark coverage."""
     sys.path.insert(0, str(REPO_ROOT))
-    from benchmarks.osworld.analysis.g3_full_sample import remaining
+    from benchmarks.osworld import tasks as tasks_mod
     from benchmarks.osworld import config
     from core import results as results_io
 
     base = config.RESULTS_DIR / "agent_computer"
     ids = []
-    for tid in remaining():
+    for t in tasks_mod.load_tasks():
+        tid = t["id"]
         if any(not results_io.is_done(base / tid / f"run_{n}") for n in (1, 2, 3)):
             ids.append(tid)
-    return base, ids
+    return base, sorted(ids)
 
 
 def _pending_units():
@@ -174,15 +182,32 @@ def _earliest_rate_limit_ts(base, tid):
     return ts
 
 
+def _n_done(base, tid):
+    sys.path.insert(0, str(REPO_ROOT))
+    from core import results as results_io
+    return sum(1 for n in (1, 2, 3) if results_io.is_done(base / tid / f"run_{n}"))
+
+
 def ordered_remaining_ids():
-    """Remaining task ids, rate-limited-pending ones first (chronological), then the rest
-    (alphabetical). Recomputed fresh on every call so a long-running driver re-prioritizes on
-    every pass instead of freezing the order at campaign start."""
+    """Remaining task ids, prioritized 2026-08-17 per explicit direction: every PARTIAL task
+    (1-2/3 runs already have a real verdict) before any task that's never gotten one, so the 18
+    partials in flight finish before the 108 never-attempted tasks start eating fresh rate-limit
+    budget. Within each of those two groups, rate-limited-pending ones go first (earliest
+    rate-limit timestamp), same rationale as before -- an attempt already spent should retry
+    before a fresh one is started. Recomputed fresh on every call so a long-running driver
+    re-prioritizes on every pass instead of freezing the order at campaign start."""
     base, pending = _pending_task_ids()
     rl_ts = {tid: t for tid in pending if (t := _earliest_rate_limit_ts(base, tid))}
-    rate_limited_first = [tid for tid, _ in sorted(rl_ts.items(), key=lambda kv: kv[1])]
-    rest = sorted(set(pending) - set(rate_limited_first))
-    return rate_limited_first + rest
+
+    def _rate_limited_first(ids):
+        ids = set(ids)
+        rl_first = [tid for tid, _ in sorted(rl_ts.items(), key=lambda kv: kv[1]) if tid in ids]
+        rest = sorted(ids - set(rl_first))
+        return rl_first + rest
+
+    partial = [tid for tid in pending if 0 < _n_done(base, tid) < 3]
+    never_started = [tid for tid in pending if _n_done(base, tid) == 0]
+    return _rate_limited_first(partial) + _rate_limited_first(never_started)
 
 
 def _breakdown_line(units):
