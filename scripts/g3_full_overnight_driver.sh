@@ -43,7 +43,18 @@ cd /Users/lucavisconti/QATesting/agentic-qa
 export OSW_TASK_TIMEOUT=2700
 export OSW_PROVISION_TIMEOUT=600
 export OSW_POST_RUN_TIMEOUT=600
-PER_TASK_TIMEOUT=12000   # 200min hard ceiling, OS-enforced regardless of Python's own clock
+# Tightened 2026-08-19 from the original 12000s (200min) worst-case-arithmetic ceiling to the
+# actual observed maximum across the campaign so far: 4337s (72.3min, dbbf4b99-2253-4b10-9274-
+# 45f246af2466, 3 clean EVAL_ERROR runs), measured directly from consecutive per-run log
+# durations. Excludes two found anomalies (1822s and 16327s) where OSW_PROVISION_TIMEOUT=600s
+# did NOT fire as it should have (config setup retrying against a broken Chrome CDP / missing
+# Google Drive credentials) -- a real bug in that timeout's enforcement, not a legitimate
+# provisioning need, so it must not be baked into this ceiling. Left OSW_PROVISION_TIMEOUT
+# itself untouched (600s) since isolating provisioning-only duration from these logs turned out
+# unreliable across repeated retries of the same run slot.
+PER_TASK_TIMEOUT=4500   # 75min hard ceiling (72.3min observed max + small margin), OS-enforced
+                        # regardless of Python's own clock -- see history above for how the
+                        # observed-max figure was derived
 
 IDS_FILE=$(mktemp)
 trap 'rm -f "$IDS_FILE"' EXIT

@@ -42,5 +42,26 @@
     "error_type": "APIError",
     "error": "api_error_status=429",
     "at": "2026-08-15T20:07:51+0200"
+  },
+  {
+    "id": "ea98c5d7-3cf9-4f9b-8ad3-366b58e0fcae",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-16T07:00:01+0200"
+  },
+  {
+    "id": "ea98c5d7-3cf9-4f9b-8ad3-366b58e0fcae",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-16T17:15:51+0200"
+  },
+  {
+    "id": "ea98c5d7-3cf9-4f9b-8ad3-366b58e0fcae",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-18T17:56:25+0200"
   }
 ]

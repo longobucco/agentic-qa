@@ -1,0 +1,20 @@
+[
+  {
+    "id": "121ba48f-9e17-48ce-9bc6-a4fb17a7ebba",
+    "run": 1,
+    "outcome": "INFRA_FLAKE",
+    "error_type": "DaytonaConnectionError",
+    "error": "Failed to create sandbox: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))",
+    "elapsed_s": 14658.8,
+    "at": "2026-08-17T07:31:44+0200"
+  },
+  {
+    "id": "121ba48f-9e17-48ce-9bc6-a4fb17a7ebba",
+    "run": 1,
+    "outcome": "INFRA_FLAKE",
+    "error_type": "RuntimeError",
+    "error": "sandbox provisioning/setup exceeded 600s -- treated as a hang, not a legitimate wait (observed live: sandbox auto-stopped mid-provisioning, then the SDK's exec blocked against the stopped VM forever)",
+    "elapsed_s": 654.8,
+    "at": "2026-08-18T11:24:49+0200"
+  }
+]

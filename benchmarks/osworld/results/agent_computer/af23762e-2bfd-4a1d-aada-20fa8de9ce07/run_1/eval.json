@@ -1,0 +1,10 @@
+{
+  "id": "af23762e-2bfd-4a1d-aada-20fa8de9ce07",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official compare_pptx_files -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "Forests_Gold.pptx": "71fb1493917c1f147d93a50923ec06eebfb6d2c8ad2beb79056a7a4bd86ed482"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "5bc63fb9-276a-4439-a7c1-9dc76401737f",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official compare_docx_files_and_ignore_new_lines -> 0.00",
+  "source": "official",
+  "gold_sha256": {
+    "gemini_results_Gold.docx": "01e3ad9bebaee3c028f7fd8635e9c6de69b4e57fd4fa5ae53447a73fd42dc0f8"
+  }
+}

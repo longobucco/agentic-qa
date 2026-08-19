@@ -1,0 +1,10 @@
+{
+  "id": "30e3e107-1cfb-46ee-a755-2cd080d7ba6a",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official compare_table -> 0.00",
+  "source": "official",
+  "gold_sha256": {
+    "1_DemographicProfile_gt1.xlsx": "8a32d39129088ab172e7275193a51880d8241157041d10c71f3cf656a49fae93"
+  }
+}

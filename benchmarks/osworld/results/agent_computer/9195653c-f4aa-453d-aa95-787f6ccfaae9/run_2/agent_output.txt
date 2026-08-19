@@ -1,1 +1,5 @@
-You've hit your session limit · resets 7:10am (Europe/Rome)
+The VLC configuration has been updated. The `vlcrc` config file at `/root/.config/vlc/vlcrc` now contains `qt-max-volume=200` under the `[qt]` section (changed from the default commented `#qt-max-volume=125`), which raises VLC's maximum displayable volume from 125% to 200% of the original.
+
+Note: VLC could not be driven through its GUI here because it refuses to run as root and no unprivileged desktop user exists, so I set the underlying preference directly — the same setting the Preferences dialog writes.
+
+ANSWER: DONE

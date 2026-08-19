@@ -1,0 +1,6 @@
+{
+  "id": "0d8b7de3-e8de-4d86-b9fd-dd2dce58a217",
+  "verdict": "ENVIRONMENT_ERROR",
+  "reason": "config setup failed: Setup step 3 failed: _chrome_open_tabs_setup - BrowserType.connect_over_cdp: connect ETIMEDOUT ::ffff:63.182.75.90:9222\nCall log:\n  - <ws preparing> retrieving websocket url from http://5000-de9c97fa-8907-48f4-9a0a-d61a9212ef87.daytonaproxy01.eu:9222\n",
+  "source": "environment"
+}

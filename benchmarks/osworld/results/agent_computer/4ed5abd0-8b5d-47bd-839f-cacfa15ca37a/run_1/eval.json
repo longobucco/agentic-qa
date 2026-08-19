@@ -1,0 +1,7 @@
+{
+  "id": "4ed5abd0-8b5d-47bd-839f-cacfa15ca37a",
+  "verdict": "EVAL_ERROR",
+  "reason": "no eval_state captured (official eval errored: AttributeError: module 'desktop_env.evaluators.metrics' has no attribute 'compare_pptx_files_robust')",
+  "source": "offline_fallback",
+  "gold_sha256": {}
+}

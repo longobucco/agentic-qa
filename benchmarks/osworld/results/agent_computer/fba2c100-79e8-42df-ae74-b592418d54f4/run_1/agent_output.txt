@@ -1,1 +1,5 @@
-You've hit your session limit · resets 10:10pm (Europe/Rome)
+The snapshot is a valid 1920×1080 frame of the current scene (mean 47.8, std 45.7 — real content, not black), and it's now saved at `/home/user/Desktop/interstellar.png`.
+
+The task is complete: I launched the Interstellar trailer in VLC, paused on the current scene, used VLC's snapshot feature (Shift+S), and placed the resulting photo on the Desktop as `interstellar.png`.
+
+ANSWER: DONE

@@ -1,1 +1,8 @@
-You've hit your session limit · resets 12:10pm (Europe/Rome)
+Both column bar charts are saved and verified:
+
+- **Chart 1 (2019):** type `col`, values `Sheet1!$I$3:$I$14` (per-month totals), categories `Sheet1!$A$3:$A$14` (Jan–Dec).
+- **Chart 2 (2020):** type `col`, values `Sheet1!$I$20:$I$31`, categories `Sheet1!$A$20:$A$31`.
+
+The per-month total column now holds correct static values (2019: 399, 404, 429, … ; 2020: 359, 364, 349, …), so the charts reflect the total cost for each month of each year.
+
+ANSWER: DONE

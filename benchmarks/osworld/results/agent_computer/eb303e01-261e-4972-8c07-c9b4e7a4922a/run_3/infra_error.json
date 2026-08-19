@@ -35,5 +35,28 @@
     "error_type": "APIError",
     "error": "api_error_status=429",
     "at": "2026-08-15T16:44:10+0200"
+  },
+  {
+    "id": "eb303e01-261e-4972-8c07-c9b4e7a4922a",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-16T05:33:26+0200"
+  },
+  {
+    "id": "eb303e01-261e-4972-8c07-c9b4e7a4922a",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-16T15:45:59+0200"
+  },
+  {
+    "id": "eb303e01-261e-4972-8c07-c9b4e7a4922a",
+    "run": 3,
+    "outcome": "INFRA_FLAKE",
+    "error_type": "DaytonaError",
+    "error": "Failed to execute command: HTTPSConnectionPool(host='proxy.app-eu.daytona.io', port=443): Max retries exceeded with url: /toolbox/3d8b76b6-c7e6-4459-a6cb-cc44c61fd7d9/process/execute (Caused by NameResolutionError(\"HTTPSConnection(host='proxy.app-eu.daytona.io', port=443): Failed to resolve 'proxy.app-eu.daytona.io' ([Errno 8] nodename nor servname provided, or not known)\"))",
+    "elapsed_s": 1.0,
+    "at": "2026-08-18T16:07:33+0200"
   }
 ]
