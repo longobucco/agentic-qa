@@ -137,7 +137,12 @@ def evaluate_official(controller_url, task, action_history, cache_dir=None):
 
     postconfig = ev.get("postconfig", [])
     if postconfig:
-        make_setup_controller(controller_url).setup(postconfig)
+        # reuse the caller's cache_dir instead of minting a fresh one here -- the caller (see
+        # agent_computer._score) already owns cleanup of the one it passed in; a second,
+        # uncleaned mkdtemp per scored run is exactly the kind of per-run temp-dir leak that
+        # let 5400 stray dirs/files (3.6GB) accumulate over ~1000 run attempts (found live
+        # 2026-08-16).
+        make_setup_controller(controller_url, cache_dir=cache_dir).setup(postconfig)
 
     if func == "infeasible":
         return 1.0 if _last_is_fail(action_history) else 0.0

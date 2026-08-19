@@ -5,6 +5,7 @@ to the offline checker in evaluate.py when desktop_env isn't importable.
 import hashlib
 import json
 import os
+import shutil
 import tempfile
 import time
 from concurrent.futures import ThreadPoolExecutor, TimeoutError as FutureTimeoutError
@@ -198,6 +199,10 @@ def _score(ctrl, task, answer, out):
         finally:
             # scoring can fail after the gold was already fetched -- still worth recording
             gold_sha256 = osworld_eval.hash_gold_artifacts(gold_dir, task)
+            # hashed, no longer needed -- an unattended multi-day campaign otherwise leaks one
+            # of these per run (found live 2026-08-16: 5400 stray temp dirs/files, 3.6GB, after
+            # ~1000 run attempts -- see the matching cleanup for _mcp_config below)
+            shutil.rmtree(gold_dir, ignore_errors=True)
     if reward is not None:   # OSWorld's official evaluators
         return {"verdict": osworld_eval.reward_to_verdict(reward), "reward": reward,
                 "reason": f"official {task.get('evaluator', {}).get('func')} -> {reward:.2f}",
@@ -256,18 +261,30 @@ def run(task, *, env, out, refs=None, dry=False):
         results_io.write_eval(out, rec["eval"])
         return ""
 
+    mcp_config_path = _mcp_config(controller_url)
     cmd = build_claude_cmd(
         agent_prompt(task),
         model=config.MODEL or None,
         max_turns=config.MAX_TURNS,
-        mcp_config=_mcp_config(controller_url),
+        mcp_config=mcp_config_path,
         allowed_tools=OSWORLD_TOOLS,
     )
     if dry:
         print("DRY-RUN command:\n ", preview(cmd))
+        os.unlink(mcp_config_path)
         return None
 
-    meta = run_claude_meta(cmd, timeout=config.TASK_TIMEOUT)
+    try:
+        meta = run_claude_meta(cmd, timeout=config.TASK_TIMEOUT)
+    finally:
+        # written fresh per run (NamedTemporaryFile(delete=False)); the claude subprocess has
+        # exited by now (run_claude_meta blocks until it does) so it's safe to remove. Without
+        # this an unattended multi-day campaign leaks one of these per run indefinitely (found
+        # live 2026-08-16 -- see the matching cleanup on gold_dir in _score).
+        try:
+            os.unlink(mcp_config_path)
+        except OSError:
+            pass
     api_error_status = meta.get("api_error_status")
     if api_error_status:
         # The CLI itself hit an API-level error (observed live: 429 subscription session
