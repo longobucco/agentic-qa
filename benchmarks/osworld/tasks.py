@@ -4,6 +4,20 @@ import sys
 from benchmarks.osworld import config
 from core.tasks import load_jsonl
 
+# related_apps naming varies across the dataset for apps we DO support -- different casing,
+# spaces instead of underscores, or a shorthand -- and an exact-string scope check treated every
+# variant as a missing app. Found live 2026-08-19 alongside the "os" tag fix (see
+# config.ALWAYS_PRESENT_CAPABILITIES): together these two normalizations recovered 98 of the 109
+# tasks previously marked out of scope. Lowercase + space->underscore handles most variants
+# (e.g. "libreoffice calc" -> "libreoffice_calc", "Chrome" -> "chrome") on their own; only
+# genuine shorthands need an explicit alias here.
+_APP_ALIASES = {"vs_code": "vscode", "calc": "libreoffice_calc", "writer": "libreoffice_writer"}
+
+
+def _normalize_app(name):
+    n = name.strip().lower().replace(" ", "_")
+    return _APP_ALIASES.get(n, n)
+
 
 def bucket_of(task):
     apps = task.get("related_apps") or []
@@ -20,7 +34,8 @@ def load_tasks():
     if config.INCLUDE_ALL_APPS:
         return all_tasks
     in_scope = config.SUPPORTED_APPS | config.ALWAYS_PRESENT_CAPABILITIES
-    out = [t for t in all_tasks if set(t.get("related_apps") or []) <= in_scope]
+    out = [t for t in all_tasks
+           if {_normalize_app(a) for a in (t.get("related_apps") or [])} <= in_scope]
     skipped = len(all_tasks) - len(out)
     if skipped:
         # stderr, not stdout: callers that capture load_tasks()'s stdout as data (e.g. the
