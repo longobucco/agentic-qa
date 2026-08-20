@@ -1,1 +1,5 @@
-You've hit your session limit · resets 8:10pm (Europe/Rome)
+The signature is saved to `prefs.js` as `mail.identity.id1.htmlSigText` = `"Anonym\nXYZ Lab"`, with "Use HTML" unchecked (plain text format, `htmlSigFormat` defaults to false). The account `anonym-x2024@outlook.com` exists and its identity now carries the two-line plain text signature: "Anonym" then "XYZ Lab".
+
+The task is complete: a plain text signature with first line "Anonym" and second line "XYZ Lab" is now configured for the email account.
+
+ANSWER: DONE

@@ -1,1 +1,5 @@
-You've hit your session limit · resets 8:10pm (Europe/Rome)
+I'm unable to complete this task. The task requires controlling a Linux desktop through the `osworld` MCP server (the `screenshot`, `click`, `type`, `key`, `run_python`, etc. tools). That MCP server was listed as "still connecting" at startup and never came online — after multiple waits totaling over a minute and repeated tool-schema searches, none of those desktop-control tools ever registered, so I have no way to observe the screen or interact with the document containing the course outline.
+
+Without the desktop-control tools there is no supported path to do this (there's explicitly no browser and no shell into the target machine), so I can't fall back to a workaround.
+
+ANSWER: FAIL

@@ -16,5 +16,32 @@
     "error": "sandbox provisioning/setup exceeded 600s -- treated as a hang, not a legitimate wait (observed live: sandbox auto-stopped mid-provisioning, then the SDK's exec blocked against the stopped VM forever)",
     "elapsed_s": 660.5,
     "at": "2026-08-18T11:58:00+0200"
+  },
+  {
+    "id": "236833a3-5704-47fc-888c-4f298f09f799",
+    "run": 2,
+    "outcome": "INFRA_FLAKE",
+    "error_type": "RuntimeError",
+    "error": "sandbox provisioning/setup exceeded 600s -- treated as a hang, not a legitimate wait (observed live: sandbox auto-stopped mid-provisioning, then the SDK's exec blocked against the stopped VM forever)",
+    "elapsed_s": 600.4,
+    "at": "2026-08-19T11:45:29+0200"
+  },
+  {
+    "id": "236833a3-5704-47fc-888c-4f298f09f799",
+    "run": 2,
+    "outcome": "INFRA_FLAKE",
+    "error_type": "DaytonaError",
+    "error": "Failed to create sandbox: HTTPSConnectionPool(host='app.daytona.io', port=443): Max retries exceeded with url: /api/sandbox (Caused by NameResolutionError(\"HTTPSConnection(host='app.daytona.io', port=443): Failed to resolve 'app.daytona.io' ([Errno 8] nodename nor servname provided, or not known)\"))",
+    "elapsed_s": 1.7,
+    "at": "2026-08-19T20:25:31+0200"
+  },
+  {
+    "id": "236833a3-5704-47fc-888c-4f298f09f799",
+    "run": 2,
+    "outcome": "INFRA_FLAKE",
+    "error_type": "RuntimeError",
+    "error": "sandbox provisioning/setup exceeded 600s -- treated as a hang, not a legitimate wait (observed live: sandbox auto-stopped mid-provisioning, then the SDK's exec blocked against the stopped VM forever)",
+    "elapsed_s": 600.4,
+    "at": "2026-08-20T08:59:03+0200"
   }
 ]

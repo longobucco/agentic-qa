@@ -58,5 +58,12 @@
     "error": "Failed to execute command: HTTPSConnectionPool(host='proxy.app-eu.daytona.io', port=443): Max retries exceeded with url: /toolbox/e7392ea6-4972-41e6-ab21-5811bb527e05/process/execute (Caused by NameResolutionError(\"HTTPSConnection(host='proxy.app-eu.daytona.io', port=443): Failed to resolve 'proxy.app-eu.daytona.io' ([Errno 8] nodename nor servname provided, or not known)\"))",
     "elapsed_s": 3.5,
     "at": "2026-08-18T16:07:38+0200"
+  },
+  {
+    "id": "778efd0a-153f-4842-9214-f05fc176b877",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-19T12:13:06+0200"
   }
 ]

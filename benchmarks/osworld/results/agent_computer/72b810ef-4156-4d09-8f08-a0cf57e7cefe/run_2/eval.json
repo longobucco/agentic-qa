@@ -1,0 +1,8 @@
+{
+  "id": "72b810ef-4156-4d09-8f08-a0cf57e7cefe",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official evaluate_strike_through_last_paragraph -> 0.00",
+  "source": "official",
+  "gold_sha256": {}
+}

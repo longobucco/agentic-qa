@@ -1,1 +1,5 @@
-You've hit your session limit · resets 8:10pm (Europe/Rome)
+The audio is embedded and saved. The pptx now contains `ppt/media/media4.mp3` (the Baseball.mp3 audio), confirming the file was successfully added and the presentation saved on disk.
+
+The audio was inserted into slide 1 (shown by the music-note icon) and the presentation `Mady_and_Mia_Baseball.pptx` was saved in PowerPoint format with the embedded mp3.
+
+ANSWER: DONE

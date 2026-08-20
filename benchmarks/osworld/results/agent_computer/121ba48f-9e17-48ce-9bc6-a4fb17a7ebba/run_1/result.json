@@ -1,0 +1,19 @@
+{
+  "id": "121ba48f-9e17-48ce-9bc6-a4fb17a7ebba",
+  "bucket": "chrome",
+  "instruction": "Find Dota 2 game and add all DLC to cart.",
+  "answer": "",
+  "setup_error": "config setup failed: Setup step 3 failed: _chrome_open_tabs_setup - BrowserType.connect_over_cdp: getaddrinfo ENOTFOUND 5000-17567aa0-797d-48e1-a1b0-3089a4162cf7.daytonaproxy01.eu\nCall log:\n  - <ws preparing> retrieving websocket url from http://5000-17567aa0-797d-48e1-a1b0-3089a4162cf7.daytonaproxy01.eu:9222\n",
+  "provenance": {
+    "task_sha256": "be6fe1643c9fabbc1e18a7a0208daa332ac265f9fd818c837334510f1e27090b",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-17567aa0-797d-48e1-a1b0-3089a4162cf7.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-19T17:30:12.941914+00:00",
+    "finished_at": "2026-08-19T17:30:12.945124+00:00"
+  }
+}

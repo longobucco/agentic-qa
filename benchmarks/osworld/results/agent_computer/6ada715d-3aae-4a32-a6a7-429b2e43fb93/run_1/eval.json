@@ -1,0 +1,10 @@
+{
+  "id": "6ada715d-3aae-4a32-a6a7-429b2e43fb93",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official compare_docx_images -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "Viewing_Your_Class_Schedule_and_Textbooks_Gold.docx": "4c00616bf875d84bbd9d3a141dc1882f274235db820279210037698e99ab3425"
+  }
+}

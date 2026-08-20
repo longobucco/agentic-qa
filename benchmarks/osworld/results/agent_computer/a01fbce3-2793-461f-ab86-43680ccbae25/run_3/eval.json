@@ -1,0 +1,11 @@
+{
+  "id": "a01fbce3-2793-461f-ab86-43680ccbae25",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official compare_table -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "Set_Decimal_Separator_Dot_gold.xlsx": "8e3d3258ae8686590922159b550f1fe3f684925635aa205c91ee979e2538d39d",
+    "Set_Decimal_Separator_Dot_gold-Sheet1.csv": "8e5a2d3304bad6390dc9ca6903b6305a7a89a83c2d435b133a3d0f468b0e0232"
+  }
+}

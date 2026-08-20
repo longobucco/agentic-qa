@@ -1,1 +1,18 @@
-You've hit your session limit · resets 1:20pm (Europe/Rome)
+All nine reference entries have been rewritten to comply with APA 7th edition and saved in place. Corrections made:
+
+- **Datta, P. (2020)** — converted from mixed style (removed "Teaching Case", ISSN, "DOI:" label); added the correct volume and page range (**46, 252–272**), sentence-case title.
+- **Dwivedi et al.** — fixed inaccurate details: year **2017 → 2016**, volume/issue **30(1) → 33(1)**, pages **130–139 → 174–187**, added DOI.
+- **European Commission (2018 & 2019)** — removed the improper retrieval-date prefix ("October 1, 2022,"); URLs kept as source locators.
+- **Gartner (2021)** — converted from Chicago style (quotation marks, "Accessed") to APA: `Gartner. (2021). Digital transformation. https://…`
+- **Mergel et al. (2019)** — already accurate; added missing DOI.
+- **OECD (2017)** — sentence-case full title with subtitle, added publisher (OECD Publishing).
+- **United Nations (2018)** — converted from Chicago style to APA with publisher (Department of Economic and Social Affairs).
+- **World Bank (2016)** — converted to APA parenthetical-year format, sentence-case title, publisher retained.
+
+Alphabetical order was already correct and preserved; no other part of the document was touched. Paragraph formatting was retained by editing existing runs in place.
+
+Note: the in-text citation for Dwivedi still reads "(Dwivedi et al., 2017)", but per your instruction I did not alter any part outside the References list — the reference itself now shows the verified correct year (2016).
+
+Sources: [Datta (CAIS vol. 46)](https://aisel.aisnet.org/cais/vol46/iss1/11/), [Dwivedi et al. (GIQ)](https://www.sciencedirect.com/science/article/abs/pii/S0740624X15000751), [Mergel et al. (GIQ)](https://www.sciencedirect.com/science/article/pii/S0740624X18304131)
+
+ANSWER: DONE

@@ -1,1 +1,8 @@
-You've hit your session limit · resets 8:10pm (Europe/Rome)
+The required preconditions for this task are missing:
+
+1. **`~/aws-bill.pdf` does not exist** — `ls: cannot access '/root/aws-bill.pdf': No such file or directory`. There is no AWS bill file to attach.
+2. **No email compose window is open** — the only window is Thunderbird's "Account Setup" screen, and no email account is even configured, so there is no in-progress email to attach a file to.
+
+The task asks me to attach an existing bill to an existing email, but neither exists. Creating a fake PDF or a new email would be a workaround, not completing the task as stated. Per the rules, a missing required precondition means I should not attempt a workaround.
+
+ANSWER: FAIL

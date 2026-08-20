@@ -1,0 +1,8 @@
+{
+  "id": "f3977615-2b45-4ac5-8bba-80c17dbe2a37",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official check_one_instance_when_started_from_file -> 1.00",
+  "source": "official",
+  "gold_sha256": {}
+}

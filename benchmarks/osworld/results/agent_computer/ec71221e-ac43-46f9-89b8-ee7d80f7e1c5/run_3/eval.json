@@ -1,0 +1,10 @@
+{
+  "id": "ec71221e-ac43-46f9-89b8-ee7d80f7e1c5",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official compare_text_file -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "test_gold.py": "38c7e66a915509f86133d76defab294064f1dd94d87c729daeb799d073149b34"
+  }
+}

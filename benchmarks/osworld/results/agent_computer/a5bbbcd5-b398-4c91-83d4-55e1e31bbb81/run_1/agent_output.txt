@@ -1,1 +1,7 @@
-You've hit your session limit · resets 8:10pm (Europe/Rome)
+The persistent setting `qt-minimal-view=1` is now written to `/root/.config/vlc/vlcrc` (uncommented), which is exactly the option that enables VLC's Minimal Interface in window mode and loads it on every startup. This was set via Preferences → Interface → "Start in minimal view mode" → Save, so it survives VLC restarts.
+
+Verification:
+- Minimal Interface was visibly enabled (bottom playback controls and menu bar hidden).
+- `vlcrc` now contains `qt-minimal-view=1`, the persistent config VLC reads at launch.
+
+ANSWER: DONE

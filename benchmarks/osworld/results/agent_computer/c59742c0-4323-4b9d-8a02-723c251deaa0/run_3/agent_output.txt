@@ -1,1 +1,5 @@
-You've hit your session limit · resets 8:10pm (Europe/Rome)
+The audio has been successfully embedded. The saved `Mady_and_Mia_Baseball.pptx` now contains `ppt/media/media4.mp3` with a proper audio relationship on slide 1.
+
+I added the Baseball.mp3 file into your presentation by using Insert → Audio or Video in LibreOffice Impress, selecting the file from the Desktop (with "Link" unchecked so it's embedded), and saving in the original PowerPoint format. The audio now appears as a speaker/music icon on the title slide.
+
+ANSWER: DONE

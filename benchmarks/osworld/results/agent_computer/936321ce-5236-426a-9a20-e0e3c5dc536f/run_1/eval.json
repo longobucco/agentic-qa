@@ -1,0 +1,10 @@
+{
+  "id": "936321ce-5236-426a-9a20-e0e3c5dc536f",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official ['compare_docx_tables', 'compare_docx_tables'] -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "Graphemes_Sound_Letter_Patterns_Gold.docx": "1fb8ea4bb0abe1d84544fa3c02e8715e6e3936853c3b160a6fb2087f909ab07f"
+  }
+}

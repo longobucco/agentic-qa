@@ -1,0 +1,10 @@
+{
+  "id": "a097acff-6266-4291-9fbd-137af7ecd439",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official compare_pptx_files -> 0.00",
+  "source": "official",
+  "gold_sha256": {
+    "Secrets-of-Monetizing-Video.pptx": "73621e64dcfbcf2c19d465c2726701f7e1b3445e6154ee795994a2e098d7d047"
+  }
+}
