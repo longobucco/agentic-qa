@@ -34,5 +34,9 @@ SUPPORTED_APPS = {
     "libreoffice_calc", "libreoffice_writer", "libreoffice_impress",
     "gimp", "thunderbird", "vlc", "chrome", "vscode",
 }
-ALWAYS_PRESENT_CAPABILITIES = {"terminal"}   # not an app -- always in the image
+# "os": a generic desktop/OS-level capability tag (terminal use, file manager, ...) that shows
+# up alongside a task's real app tag(s), e.g. ['vlc', 'os'] or ['vscode', 'os'] -- not an
+# installable app, same category as "terminal". Found live 2026-08-19: treating it as an
+# unsupported app was excluding 85 otherwise-runnable tasks from the population for no reason.
+ALWAYS_PRESENT_CAPABILITIES = {"terminal", "os"}   # not apps -- always in the image
 INCLUDE_ALL_APPS = bool(os.environ.get("OSW_INCLUDE_ALL_APPS", "").strip())
