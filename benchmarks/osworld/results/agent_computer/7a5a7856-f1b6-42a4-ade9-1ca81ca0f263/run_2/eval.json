@@ -1,0 +1,6 @@
+{
+  "id": "7a5a7856-f1b6-42a4-ade9-1ca81ca0f263",
+  "verdict": "ENVIRONMENT_ERROR",
+  "reason": "config setup failed: Setup step 3 failed: _chrome_open_tabs_setup - BrowserType.connect_over_cdp: Timeout 180000ms exceeded.\nCall log:\n  - <ws preparing> retrieving websocket url from http://5000-96256542-54aa-41ed-bde2-46d75e1bd430.daytonaproxy01.eu:9222\n",
+  "source": "environment"
+}

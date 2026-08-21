@@ -1,0 +1,59 @@
+{
+  "id": "7ff48d5b-2df2-49da-b500-a5150ffc7f18",
+  "bucket": "chrome",
+  "instruction": "I am a Chinese citizen and I want to go to Macau to watch a concert recently, but I have not yet applied for a visa for Macau. I live in Futian District, Shenzhen City. I heard that Shenzhen currently has 24-hour self-service check-in machines. Please help me find the addresses of 5 24-hour self-service check-in machines in Futian District and save them in Chinese in this open word document.",
+  "answer": "DONE",
+  "eval_state": "<binary:10420 bytes at AllLocations.docx>",
+  "provenance": {
+    "task_sha256": "a7d46aa0fcb34c6f59ab3e387fbae2d90765886b555399eaacfaa92ffa8b9b83",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-387af86a-b0dc-4f78-8e24-ebeb80438299.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-21T06:53:56.006735+00:00",
+    "finished_at": "2026-08-21T06:57:49.578285+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 35,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 1.1513032499999998,
+  "agent_input_tokens": 3460,
+  "agent_output_tokens": 11562,
+  "agent_cache_read_tokens": 1169765,
+  "agent_cache_creation_tokens": 40827,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 4792,
+      "outputTokens": 22,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.004902,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 3460,
+      "outputTokens": 11562,
+      "cacheReadInputTokens": 1169765,
+      "cacheCreationInputTokens": 40827,
+      "webSearchRequests": 0,
+      "costUSD": 1.1464012499999998,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 230406,
+  "agent_duration_api_ms": 214495,
+  "agent_session_id": "dd23a6cb-26ff-402b-bd25-4689d704d988",
+  "agent_uuid": "45692a23-f6f4-4e2b-8e53-549c6776f2df"
+}

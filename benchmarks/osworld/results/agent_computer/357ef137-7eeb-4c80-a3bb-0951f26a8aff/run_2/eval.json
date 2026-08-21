@@ -1,0 +1,8 @@
+{
+  "id": "357ef137-7eeb-4c80-a3bb-0951f26a8aff",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official compare_table -> 1.00",
+  "source": "official",
+  "gold_sha256": {}
+}

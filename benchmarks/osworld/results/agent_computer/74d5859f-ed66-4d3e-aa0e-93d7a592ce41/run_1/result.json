@@ -1,0 +1,19 @@
+{
+  "id": "74d5859f-ed66-4d3e-aa0e-93d7a592ce41",
+  "bucket": "chrome",
+  "instruction": "Help me to set up an initial web extension project with help of the web tool, tagging it \"happy-extension v0.0.1\". Leave description blank for now. Include a background script and browser action, while other features are not required. Remember to unzip the auto-generated folder into \"~/Projects\".",
+  "answer": "",
+  "setup_error": "config setup failed: Setup step 3 failed: _chrome_open_tabs_setup - BrowserType.connect_over_cdp: connect ECONNREFUSED ::ffff:62.0.58.94:9222\nCall log:\n  - <ws preparing> retrieving websocket url from http://5000-d22ffb40-3c30-41c8-9171-fec1f0210bdc.daytonaproxy01.eu:9222\n",
+  "provenance": {
+    "task_sha256": "172b0533a77d0af8290f1953b3c78c3c709d8ae3f1638223b45cb2515a5ccf07",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-d22ffb40-3c30-41c8-9171-fec1f0210bdc.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-20T17:39:52.275755+00:00",
+    "finished_at": "2026-08-20T17:39:52.276315+00:00"
+  }
+}

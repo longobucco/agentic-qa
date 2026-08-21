@@ -1,0 +1,19 @@
+{
+  "id": "7a5a7856-f1b6-42a4-ade9-1ca81ca0f263",
+  "bucket": "chrome",
+  "instruction": "Can you save this webpage I'm looking at to bookmarks bar so I can come back to it later?",
+  "answer": "",
+  "setup_error": "config setup failed: Setup step 3 failed: _chrome_open_tabs_setup - BrowserType.connect_over_cdp: Timeout 180000ms exceeded.\nCall log:\n  - <ws preparing> retrieving websocket url from http://5000-c7ff72fa-5c50-48c0-aa62-1dd8326de75b.daytonaproxy01.eu:9222\n",
+  "provenance": {
+    "task_sha256": "c7da1096c278f2798d3a6d10ad0ca6cfbfa52753816d0f7bc0b86164b93c851e",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-c7ff72fa-5c50-48c0-aa62-1dd8326de75b.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-20T22:09:41.353836+00:00",
+    "finished_at": "2026-08-20T22:09:41.359928+00:00"
+  }
+}

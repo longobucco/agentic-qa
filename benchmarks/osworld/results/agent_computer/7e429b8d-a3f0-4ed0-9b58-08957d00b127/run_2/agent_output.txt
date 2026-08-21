@@ -1,0 +1,3 @@
+The Officer Name column is filled correctly via VLOOKUP, and the file was saved (Keep xlsx format confirmed with Enter). Each HeadOffice now maps to its branch officer.
+
+ANSWER: DONE

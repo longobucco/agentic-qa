@@ -1,0 +1,59 @@
+{
+  "id": "37887e8c-da15-4192-923c-08fa390a176d",
+  "bucket": "os",
+  "instruction": "Compress all files under \"/tmp/test_files\" that were last modified 30 days ago and put them in \"/tmp/test_files/old_files\". Move all other files to \"/tmp/test_files/new_files.",
+  "answer": "DONE",
+  "eval_state": "",
+  "provenance": {
+    "task_sha256": "c599bdae68083b179853a16287494b17981f66f960849b9dc14dbefaf299f409",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-e2fe84af-f57e-4f02-b5fe-ed234f62aad8.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-20T14:12:19.636742+00:00",
+    "finished_at": "2026-08-20T14:14:08.893253+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 9,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.43881950000000003,
+  "agent_input_tokens": 3021,
+  "agent_output_tokens": 6707,
+  "agent_cache_read_tokens": 188936,
+  "agent_cache_creation_tokens": 25082,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 4739,
+      "outputTokens": 14,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.004809,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 3021,
+      "outputTokens": 6707,
+      "cacheReadInputTokens": 188936,
+      "cacheCreationInputTokens": 25082,
+      "webSearchRequests": 0,
+      "costUSD": 0.43401049999999997,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 106034,
+  "agent_duration_api_ms": 105671,
+  "agent_session_id": "da9ffebb-74f7-4094-baa4-d1b0823193b6",
+  "agent_uuid": "1c91fc6d-97b1-41f6-ac0b-a7962dc17e5e"
+}

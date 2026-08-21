@@ -1,0 +1,59 @@
+{
+  "id": "7f35355e-02a6-45b5-b140-f0be698bcf85",
+  "bucket": "libreoffice_calc",
+  "instruction": "Export the table to a CSV file and then write code to find the median Stock Price after filling empty Stock Price values with the average Stock Price. Save only the numeric result in \"result.txt\".",
+  "answer": "25.27",
+  "eval_state": "25.27",
+  "provenance": {
+    "task_sha256": "6cfb11c6fbf8774d0133ecc6615c43e85fecbdb02d48dccf423d1eb2a035432a",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-014498a2-fffc-477c-9c37-4aa63b727b50.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-21T06:04:21.130073+00:00",
+    "finished_at": "2026-08-21T06:05:16.802716+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 11,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.34242575,
+  "agent_input_tokens": 3025,
+  "agent_output_tokens": 3118,
+  "agent_cache_read_tokens": 253140,
+  "agent_cache_creation_tokens": 18875,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 4727,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.004812,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 3025,
+      "outputTokens": 3118,
+      "cacheReadInputTokens": 253140,
+      "cacheCreationInputTokens": 18875,
+      "webSearchRequests": 0,
+      "costUSD": 0.33761374999999993,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 52745,
+  "agent_duration_api_ms": 51360,
+  "agent_session_id": "6d7bea88-d799-4ed3-a95d-3125fcc720a1",
+  "agent_uuid": "f23c42f9-fb56-4e16-bd1a-f7b4ee5a50d8"
+}

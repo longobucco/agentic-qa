@@ -1,0 +1,8 @@
+The task is complete. Final state:
+
+- **`/tmp/test_files/old_files/`** — the 30-day-old files, now gzip-compressed: `old_file1.txt.gz`, `old_file2.txt.gz`
+- **`/tmp/test_files/new_files/`** — all other (recently modified) files: `new_file1.txt`, `new_file2.txt`
+
+No uncompressed old files or stray top-level files remain.
+
+ANSWER: DONE

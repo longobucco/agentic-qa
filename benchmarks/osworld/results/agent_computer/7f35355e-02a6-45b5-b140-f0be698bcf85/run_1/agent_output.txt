@@ -1,0 +1,6 @@
+I've completed the task:
+1. Exported the table to `/home/user/Desktop/stock.csv` via LibreOffice Calc's Save As (Text CSV).
+2. Wrote code (csv + statistics) that read the CSV, filled the 12 empty Stock Price cells with the average of the 48 present values (39.20125), then computed the median of all 60 values.
+3. Saved the numeric result (25.27) to `/home/user/Desktop/result.txt`.
+
+ANSWER: 25.27

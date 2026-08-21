@@ -1,0 +1,3 @@
+The file has been saved in xlsx format. All 21 rows are split correctly into First Name, Last Name, and Rank columns, with the original data in column A untouched and the autocomplete error on row 12 (East) fixed.
+
+ANSWER: DONE

@@ -1,0 +1,19 @@
+{
+  "id": "67890eb6-6ce5-4c00-9e3d-fb4972699b06",
+  "bucket": "libreoffice_calc",
+  "instruction": "I am an NLP researcher. Check out the best long paper awards of ACL from 2019 to 2022 and record the 'title', 'year', 'author list' and 'PDF link' into table best_awards_acl.xlsx on the desktop. Separate authors only by commas, use offical aclanthology urls not arxiv, and sort rows by years in descending orders.",
+  "answer": "",
+  "setup_error": "config setup failed: Setup step 5 failed: _chrome_open_tabs_setup - BrowserType.connect_over_cdp: connect ECONNREFUSED ::ffff:62.0.58.94:9222\nCall log:\n  - <ws preparing> retrieving websocket url from http://5000-cb671973-7c1c-4232-a659-9daa6b8ae9be.daytonaproxy01.eu:9222\n",
+  "provenance": {
+    "task_sha256": "000289b995c128d1c0f472ebf244127123910057897b109c111a3d95ba8ce455",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-cb671973-7c1c-4232-a659-9daa6b8ae9be.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-20T16:54:07.345318+00:00",
+    "finished_at": "2026-08-20T16:54:07.349169+00:00"
+  }
+}

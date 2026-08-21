@@ -1,1 +1,5 @@
-You've hit your session limit · resets 6:20pm (Europe/Rome)
+The unified inbox is now set up. The folder pane displays a "Unified Folders" section with a single unified **Inbox** (plus Drafts, Templates, Sent, Archives, Junk, Trash) that aggregates messages from all email accounts into one place. The window title confirms "Inbox - Unified Folders".
+
+To do this yourself: click the **⋯** (options) button at the top of the folder pane → **Folder Modes** → **Unified Folders**. All your accounts' inboxes then appear combined under one Inbox.
+
+ANSWER: DONE
