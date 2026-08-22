@@ -1,0 +1,3 @@
+The task is complete. The "continuation of the sub topics" line on Page 3 now has no bullet in front of it, while remaining at the same indentation level as "Main idea" and "Sub topics" (its text aligns with the bullet position of the other top-level items). The file has been saved in PowerPoint format.
+
+ANSWER: DONE

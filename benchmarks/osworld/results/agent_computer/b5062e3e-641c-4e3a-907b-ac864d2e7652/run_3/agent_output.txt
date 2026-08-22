@@ -1,0 +1,12 @@
+The table has been created and saved to `~/authors.xlsx` (`/home/user/authors.xlsx`, with a copy at `/root/authors.xlsx`).
+
+Extracted first-author data from all 4 papers in `~/Documents/Papers/`, sorted alphabetically by full name:
+
+| Name | E-mail | Affiliation |
+|------|--------|-------------|
+| Chi Zhang | johnczhang@tencent.com | Tencent |
+| Jing Yu Koh | jingyuk@cs.cmu.edu | Carnegie Mellon University |
+| Runliang Niu | niurl19@mails.jlu.edu.cn | Jilin University |
+| Xiang Deng | deng.595@osu.edu | The Ohio State University |
+
+ANSWER: DONE

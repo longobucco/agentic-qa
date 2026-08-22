@@ -1,0 +1,10 @@
+{
+  "id": "881deb30-9549-4583-a841-8270c65f2a17",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official compare_table -> 0.00",
+  "source": "official",
+  "gold_sha256": {
+    "supported_rate-gt.xlsx": "9d97b986f83c1871831933499ff69de7198d99b3be0b9347ef8ab1559073fca0"
+  }
+}

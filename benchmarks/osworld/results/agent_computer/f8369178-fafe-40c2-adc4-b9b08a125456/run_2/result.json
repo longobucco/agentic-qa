@@ -1,0 +1,59 @@
+{
+  "id": "f8369178-fafe-40c2-adc4-b9b08a125456",
+  "bucket": "chrome",
+  "instruction": "Help me to install Orchis theme from gnome-look.org and change to it for my GNOME desktop.",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "1e7cc0642096a1850672cfd30cea45642c7dc309cd7d0320d8d7df739ea409e6",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-d8788ce2-4f89-44e4-84cf-1ebd4cc058d7.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-22T02:17:43.848261+00:00",
+    "finished_at": "2026-08-22T02:20:27.537556+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 21,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.8900017500000001,
+  "agent_input_tokens": 3433,
+  "agent_output_tokens": 8168,
+  "agent_cache_read_tokens": 832010,
+  "agent_cache_creation_tokens": 39651,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 4713,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0048130000000000004,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 3433,
+      "outputTokens": 8168,
+      "cacheReadInputTokens": 832010,
+      "cacheCreationInputTokens": 39651,
+      "webSearchRequests": 0,
+      "costUSD": 0.8851887500000001,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 160986,
+  "agent_duration_api_ms": 137620,
+  "agent_session_id": "7cc59597-e0d9-4c62-9e11-584f27aa6741",
+  "agent_uuid": "0de57936-c5c3-4b87-94dc-56c2dd894958"
+}

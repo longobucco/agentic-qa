@@ -1,0 +1,10 @@
+{
+  "id": "d53ff5ee-3b1a-431e-b2be-30ed2673079b",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official compare_docx_files -> 0.00",
+  "source": "official",
+  "gold_sha256": {
+    "presentation_instruction_2023_Feb_Gold.docx": "4bf3cec92ae61e1263f4bd54131c03ec90f6dbc8f70159a3a1fdc6be10cfc19a"
+  }
+}

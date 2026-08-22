@@ -1,0 +1,3 @@
+All four unpaid students' emails are confirmed in the draft's To field. The task is complete: I identified the students with Payment = "No" from `tuition_payment.xlsx` (Fox, Iron, Nancy, Stella) and added their emails to the receiver field of the "Reminder of Payment" draft, which is now saved.
+
+ANSWER: DONE — Added the four unpaid students' emails (fox@someuniversity.edu, iron@someuniversity.edu, nancy@someuniversity.edu, stella@someuniversity.edu) to the receiver field of the payment reminder draft.

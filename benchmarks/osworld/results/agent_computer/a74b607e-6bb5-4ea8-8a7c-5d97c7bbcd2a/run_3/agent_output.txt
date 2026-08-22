@@ -1,0 +1,5 @@
+The extension "Hello Extensions 1.0 - Base Level Extension" is now installed and enabled (toggle is blue/on), with ID `mocnijhgdiggfoillfodiefncpjkahbp`.
+
+The Chrome extension from the Desktop directory has been successfully installed as an unpacked extension and is enabled.
+
+ANSWER: DONE

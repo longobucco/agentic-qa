@@ -1,0 +1,3 @@
+The file is saved to disk with all 72 pass-rate values (supported ÷ applications from each year's grand-total row), filled into Sheet1 columns B–I for years 2015–2023 and confirmed on disk.
+
+ANSWER: DONE

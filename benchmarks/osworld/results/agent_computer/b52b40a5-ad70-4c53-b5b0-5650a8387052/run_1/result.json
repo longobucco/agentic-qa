@@ -1,0 +1,19 @@
+{
+  "id": "b52b40a5-ad70-4c53-b5b0-5650a8387052",
+  "bucket": "thunderbird",
+  "instruction": "Could you help me merge all PDF files in the \"Paper Recommendation\" email attachment in Thunderbird into one file and upload it to attachment_full.pdf in Google Drive?",
+  "answer": "",
+  "setup_error": "config setup failed: Setup step 1 failed: _googledrive_setup - Invalid client secrets file ('Error opening file', 'client_secrets.json', 'No such file or directory', 2)",
+  "provenance": {
+    "task_sha256": "ab7832694f5b8e7f5cf093e24a6d767173bfb9f8e9d4dc1a9ac6ae495400e100",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-17387291-74fa-4c37-8f5f-0bccf867b94a.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-21T14:58:17.257485+00:00",
+    "finished_at": "2026-08-21T14:58:17.257716+00:00"
+  }
+}

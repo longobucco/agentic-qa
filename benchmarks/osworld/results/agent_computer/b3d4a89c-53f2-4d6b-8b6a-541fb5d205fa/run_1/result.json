@@ -1,0 +1,59 @@
+{
+  "id": "b3d4a89c-53f2-4d6b-8b6a-541fb5d205fa",
+  "bucket": "os",
+  "instruction": "I want to switch on the Bluetooth. Can you help me?",
+  "answer": "FAIL",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "45411bae4a0ccbb82d43726bd24c52a20afc5dbfbec97895a9f9ff5d3f4973f8",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-53127dfd-3eee-4d8d-9d88-50ae92ea2186.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-21T14:06:17.626508+00:00",
+    "finished_at": "2026-08-21T14:07:43.349769+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 15,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.51728075,
+  "agent_input_tokens": 3292,
+  "agent_output_tokens": 4467,
+  "agent_cache_read_tokens": 393262,
+  "agent_cache_creation_tokens": 30039,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 4701,
+      "outputTokens": 14,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.004771,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 3292,
+      "outputTokens": 4467,
+      "cacheReadInputTokens": 393262,
+      "cacheCreationInputTokens": 30039,
+      "webSearchRequests": 0,
+      "costUSD": 0.51250975,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 83255,
+  "agent_duration_api_ms": 79220,
+  "agent_session_id": "ea5f2abd-9c0e-458d-bc41-f5e3f54d0719",
+  "agent_uuid": "85e4744c-08fe-4066-8080-8ae8f9a8a6b6"
+}

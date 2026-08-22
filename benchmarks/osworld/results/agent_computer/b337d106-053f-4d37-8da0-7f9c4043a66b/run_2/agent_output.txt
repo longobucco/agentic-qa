@@ -1,0 +1,3 @@
+The `~/.vimrc` now contains `set number`, which enables absolute line numbers as the default for the local Vim editor.
+
+ANSWER: DONE — Added `set number` to ~/.vimrc, enabling absolute line numbers as the default in the local Vim editor.

@@ -1,0 +1,9 @@
+All three deliverables are complete and verified:
+
+- **`character_gimp.png`** — extracted in GIMP via Script-Fu (Select by Color on background RGB 190,216,205, threshold 0.1, then Clear), giving a transparent background with the puppy character preserved.
+- **`extract_character.py`** — a Python script that mimics GIMP's "Select by Color" composite criterion (max per-channel / L∞ distance ≤ 25.5) and clears the background to transparency.
+- **`character_code.png`** — output of that script.
+
+Match quality between the two extractions: alpha (the actual cutout shape) agrees to within **5 pixels out of 1,638,400**, and visible RGB differs by at most **2** (mean 1.2, just GIMP's internal rounding). The script precisely reproduces the manual GIMP extraction.
+
+ANSWER: DONE

@@ -1,0 +1,6 @@
+The Orchis theme is now installed and applied.
+
+- Installed `sassc`, downloaded the Orchis theme source (v2026-07-07) from the vinceliuice repo that gnome-look.org links to, and ran `./install.sh`, producing `Orchis` (and variants) in `/usr/share/themes`.
+- Set `org.gnome.desktop.interface gtk-theme` to `Orchis` (also the WM/shell theme keys), verified it reads back `'Orchis'` and the theme directory exists.
+
+ANSWER: DONE

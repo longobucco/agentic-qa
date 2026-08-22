@@ -1,0 +1,8 @@
+{
+  "id": "986fc832-6af2-417c-8845-9272b3a1528b",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official compare_pptx_files -> 0.00",
+  "source": "official",
+  "gold_sha256": {}
+}

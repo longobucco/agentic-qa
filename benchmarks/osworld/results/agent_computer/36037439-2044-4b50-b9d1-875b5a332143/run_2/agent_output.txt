@@ -1,0 +1,3 @@
+The Google Scholar profile page for the corresponding author is now open in Chrome. This is confirmed as the correct author: the profile lists "World of Bits: An Open-Domain Platform for Web-Based Agents" (T Shi, A Karpathy, L Fan, J Hernandez, P Liang) and has a verified stanford.edu email, matching the correspondence footnote for Tianlin (Tim) Shi.
+
+ANSWER: DONE — Opened the Google Scholar profile of the corresponding author, Tianlin (Tim) Shi (tianlin@cs.stanford.edu), in Chrome.

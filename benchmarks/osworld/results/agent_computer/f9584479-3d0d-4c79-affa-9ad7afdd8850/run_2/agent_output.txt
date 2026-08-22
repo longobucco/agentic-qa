@@ -1,0 +1,3 @@
+All totals are now filled correctly across all three zones, including F20 (42,966.00) and the stray value in E21 removed. The file has been saved.
+
+ANSWER: DONE

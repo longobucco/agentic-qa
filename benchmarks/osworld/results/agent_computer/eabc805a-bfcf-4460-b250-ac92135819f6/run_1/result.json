@@ -1,0 +1,58 @@
+{
+  "id": "eabc805a-bfcf-4460-b250-ac92135819f6",
+  "bucket": "vscode",
+  "instruction": "Please help me install the extension Python in VS Code.",
+  "answer": "",
+  "agent_clean_finish": false,
+  "agent_num_turns": 17,
+  "agent_stop_reason": "stop_sequence",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": true,
+  "agent_errors": null,
+  "agent_api_error_status": 429,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.5399237499999999,
+  "agent_input_tokens": 3423,
+  "agent_output_tokens": 1256,
+  "agent_cache_read_tokens": 507469,
+  "agent_cache_creation_tokens": 37265,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 4698,
+      "outputTokens": 14,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.004768,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 3423,
+      "outputTokens": 1256,
+      "cacheReadInputTokens": 507469,
+      "cacheCreationInputTokens": 37265,
+      "webSearchRequests": 0,
+      "costUSD": 0.5351557499999999,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 37175,
+  "agent_duration_api_ms": 31883,
+  "agent_session_id": "252c14d5-4dd6-4023-af33-5502a00b05b9",
+  "agent_uuid": "950c99eb-fadb-4c06-9944-8939cfe44ad3",
+  "provenance": {
+    "task_sha256": "5f5f4deea8420c6d67e39a16563c4a8f3ccf94240da448564b9ae5755be27fa3",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-a54ffd5f-572f-4325-8467-0770c68dde26.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-21T22:56:58.739228+00:00",
+    "finished_at": "2026-08-21T22:57:38.302308+00:00"
+  }
+}
