@@ -62,6 +62,55 @@ DRIVER_LOG = REPO_ROOT / "scripts" / "g3_full_overnight_driver.log"
 # comfortably above it, not tight against the typical case.
 _STALE_LOG_S = 225 * 60   # 225min
 
+# 2026-08-22: manually excluded from the campaign. Each failed provisioning identically --
+# "sandbox provisioning/setup exceeded 600s" -- 3 to 6 times in a row, on a fresh Daytona VM
+# every single retry. That rules out ordinary per-VM flakiness (which would look randomly
+# distributed across tasks, not repeatedly hit the exact same wall on the exact same task while
+# 300+ others provision fine); blind retrying wasn't converging and was just burning campaign
+# time/rate-limit budget. Needs a real fix (bump OSW_PROVISION_TIMEOUT for these, or find what
+# their setup has in common) before re-enabling -- remove an id here once that's done.
+#
+# 2026-08-23: expanded from 7 to 34 ids -- the same "provisioning exceeded 600s" symptom showed
+# up on 27 more tasks overnight, all 3/3 runs each, on the very FIRST attempt (3 independent
+# fresh VMs failing identically on try #1, not needing repeated retries to notice like the
+# original 7 did) -- same task-specific-setup signature, just caught earlier this time.
+_SKIP_TASK_IDS = {
+    "0d8b7de3-e8de-4d86-b9fd-dd2dce58a217",
+    "121ba48f-9e17-48ce-9bc6-a4fb17a7ebba",
+    "236833a3-5704-47fc-888c-4f298f09f799",
+    "06fe7178-4491-4589-810f-2e2bc9502122",
+    "2888b4e6-5b47-4b57-8bf5-c73827890774",
+    "35253b65-1c19-4304-8aa4-6884b8218fc0",
+    "368d9ba4-203c-40c1-9fa3-da2f1430ce63",
+    "0e5303d4-8820-42f6-b18d-daf7e633de21",
+    "7b6c7e24-c58a-49fc-a5bb-d57b80e5b4c3",
+    "7f52cab9-535c-4835-ac8c-391ee64dc930",
+    "82279c77-8fc6-46f6-9622-3ba96f61b477",
+    "82bc8d6a-36eb-4d2d-8801-ef714fb1e55a",
+    "9f3f70fc-5afc-4958-a7b7-3bb4fcb01805",
+    "9f935cce-0a9f-435f-8007-817732bfc0a5",
+    "a728a36e-8bf1-4bb6-9a03-ef039a5233f0",
+    "a96b564e-dbe9-42c3-9ccf-b4498073438a",
+    "b070486d-e161-459b-aa2b-ef442d973b92",
+    "b4f95342-463e-4179-8c3f-193cd7241fb2",
+    "b7895e80-f4d1-4648-bee0-4eb45a6f1fa8",
+    "c1fa57f3-c3db-4596-8f09-020701085416",
+    "cabb3bae-cccb-41bd-9f5d-0f3a9fecd825",
+    "da46d875-6b82-4681-9284-653b0c7ae241",
+    "da922383-bfa4-4cd3-bbad-6bebab3d7742",
+    "dd60633f-2c72-42ba-8547-6f2c8cb0fdb0",
+    "df67aebb-fb3a-44fd-b75b-51b6012df509",
+    "e135df7c-7687-4ac0-a5f0-76b74438b53e",
+    "e1e75309-3ddb-4d09-92ec-de869c928143",
+    "e2392362-125e-4f76-a2ee-524b183a3412",
+    "f0b971a1-6831-4b9b-a50e-22a6e47f45ba",
+    "f3b19d1e-2d48-44e9-b4e1-defcae1a0197",
+    "f5d96daf-83a8-4c86-9686-bada31fc66ab",
+    "f79439ad-3ee8-4f99-a518-0eb60e5652b0",
+    "f8cfa149-d1c1-4215-8dac-4a0932bad3c2",
+    "fc6d8143-9452-4171-9459-7f515143419a",
+}
+
 
 def _log(msg):
     line = f"{time.strftime('%Y-%m-%dT%H:%M:%S%z')}  {msg}"
@@ -117,6 +166,8 @@ def _pending_task_ids():
     ids = []
     for t in tasks_mod.load_tasks():
         tid = t["id"]
+        if tid in _SKIP_TASK_IDS:
+            continue
         if any(not results_io.is_done(base / tid / f"run_{n}") for n in (1, 2, 3)):
             ids.append(tid)
     return base, sorted(ids)

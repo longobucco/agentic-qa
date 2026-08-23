@@ -1,0 +1,10 @@
+{
+  "id": "a9f325aa-8c05-4e4f-8341-9e4358565f4f",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official compare_table -> 0.00",
+  "source": "official",
+  "gold_sha256": {
+    "Movie_title_garbage_clean_gold.xlsx": "a71315476cb9ce5bd4c843db097311dedcb784d21a89c3fdf29578a376eee684"
+  }
+}

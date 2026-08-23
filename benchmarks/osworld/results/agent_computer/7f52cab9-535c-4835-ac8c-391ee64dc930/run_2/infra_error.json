@@ -16,5 +16,14 @@
     "error": "sandbox provisioning/setup exceeded 600s -- treated as a hang, not a legitimate wait (observed live: sandbox auto-stopped mid-provisioning, then the SDK's exec blocked against the stopped VM forever)",
     "elapsed_s": 600.6,
     "at": "2026-08-21T08:25:21+0200"
+  },
+  {
+    "id": "7f52cab9-535c-4835-ac8c-391ee64dc930",
+    "run": 2,
+    "outcome": "INFRA_FLAKE",
+    "error_type": "RuntimeError",
+    "error": "sandbox provisioning/setup exceeded 600s -- treated as a hang, not a legitimate wait (observed live: sandbox auto-stopped mid-provisioning, then the SDK's exec blocked against the stopped VM forever)",
+    "elapsed_s": 600.3,
+    "at": "2026-08-23T07:51:04+0200"
   }
 ]

@@ -1,1 +1,3 @@
-You've hit your session limit · resets 2:30am (Europe/Rome)
+The Python extension by Microsoft is now installed — its entry now shows a gear/settings icon instead of the "Install" button, and its getting-started page (Python v2026.4.0, activation time 108ms) has opened, confirming the extension is installed and active.
+
+ANSWER: DONE
