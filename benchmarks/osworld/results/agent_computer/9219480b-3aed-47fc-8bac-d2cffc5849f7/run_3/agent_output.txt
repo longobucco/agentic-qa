@@ -1,1 +1,1 @@
-You've hit your session limit · resets 1:30pm (Europe/Rome)
+The background filesystem search completed — but the fix is already done. The Tetris rotation bug has been resolved.
