@@ -8,6 +8,11 @@ venv/
 logs
 *.log
 npm-debug.log*
+
+# Playwright MCP scratch output (console logs, page accessibility-tree snapshots) -- unrelated
+# to any benchmark, swept into results commits via broad `git add` since 2026-08-13 (first
+# commit: 89e0cbf on os-world). Untracked 2026-08-23.
+.playwright-mcp/
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
