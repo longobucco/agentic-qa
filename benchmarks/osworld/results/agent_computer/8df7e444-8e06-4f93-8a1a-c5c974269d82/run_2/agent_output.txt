@@ -1,1 +1,7 @@
-You've hit your weekly limit · resets 7pm (Europe/Rome)
+The task is complete. Here's what was accomplished:
+
+1. **Read reminder.docx** — requirements were: export essay as PDF, then pack the docx + PDF into `essay_submission.zip`
+2. **Converted essay to PDF** — used LibreOffice headless to create `Recruitment_and_retention_of_health_professionals_across_Europe.pdf` in `/home/user/`
+3. **Created ZIP archive** — `essay_submission.zip` in `/home/user/` containing both the `.docx` and `.pdf` files
+
+ANSWER: DONE

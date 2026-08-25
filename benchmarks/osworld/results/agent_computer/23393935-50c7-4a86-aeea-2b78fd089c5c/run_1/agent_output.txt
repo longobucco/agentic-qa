@@ -1,1 +1,7 @@
-You've hit your weekly limit · resets Aug 27 at 6pm (Europe/Rome)
+The task is complete:
+- Recursively searched the `/root/Desktop/photos` directory tree (including subdirs: vacation/thailand, vacation/hk, family, events)
+- Found 0 .jpg files (the directory tree contains only empty subdirectories)
+- Created the `cpjpg` directory at `/root/Desktop/cpjpg`
+- Copied all found .jpg files (none) to `cpjpg`
+
+ANSWER: DONE

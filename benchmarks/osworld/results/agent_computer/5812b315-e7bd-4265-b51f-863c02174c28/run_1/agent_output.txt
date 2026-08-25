@@ -1,1 +1,8 @@
-You've hit your weekly limit · resets Aug 27 at 6pm (Europe/Rome)
+All components are configured correctly:
+
+- **User `charles`** created (uid=1000) with password `Ex@mpleP@55w0rd!`
+- **`/home/test1`** exists, owned by root with mode 755 (required for SSH chroot)
+- **sshd_config** has `Match User charles` block with `ChrootDirectory /home/test1`, `ForceCommand internal-sftp` (restricts to SFTP only within that directory), and forwarding disabled
+- **SSH daemon** is running and listening
+
+ANSWER: DONE

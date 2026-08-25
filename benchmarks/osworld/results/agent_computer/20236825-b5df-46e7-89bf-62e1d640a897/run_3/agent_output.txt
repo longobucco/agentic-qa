@@ -1,1 +1,6 @@
-You've hit your weekly limit · resets Aug 27 at 6pm (Europe/Rome)
+Both tasks are complete:
+
+1. **`bubbleSort.py`** — Implemented the optimized bubble sort function with an early-exit flag (stops if no swaps occur in a pass).
+2. **`res.txt`** — Saved on the Desktop with the program output: `Sorted array: 11 12 22 25 34 64 90`
+
+ANSWER: DONE

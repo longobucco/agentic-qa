@@ -1,1 +1,9 @@
-You've hit your weekly limit · resets Aug 27 at 6pm (Europe/Rome)
+The task is complete. I:
+
+1. Located the `photos` directory at `/root/Desktop/photos` (with subdirectories: `vacation/thailand`, `vacation/hk`, `family`, `events`)
+2. Created the `cpjpg` directory at `/root/Desktop/cpjpg`
+3. Recursively searched all subdirectories of `photos` for `.jpg` files — none were found (all subdirectories are empty)
+
+The `cpjpg` directory has been created and is ready; there were no `.jpg` files to copy.
+
+ANSWER: DONE

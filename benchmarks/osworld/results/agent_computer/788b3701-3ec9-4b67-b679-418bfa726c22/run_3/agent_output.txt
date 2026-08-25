@@ -1,1 +1,9 @@
-You've hit your weekly limit · resets 7pm (Europe/Rome)
+The task is complete. 
+
+**Summary:**
+- The novel collection folder is at `/home/user/Documents/Novels/4th Year in Tsinghua/`
+- The `.old-chapters.tar.xz` archive contained 6 previously downloaded chapters: Prelude, Zero-Zero Pavilion, Moonlight over Lotus Pond, The Phantom of the West Lake, Gong Office, and Classroom Building 2 (plus main.tex)
+- The GitHub repository (`liangjs333/4th-year-in-tsinghua-eng`) has one chapter not yet obtained: **Early Buildings**
+- `Early Buildings.tex` (5,045 bytes) was successfully downloaded and saved to the novel collection folder
+
+ANSWER: DONE

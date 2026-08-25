@@ -1,1 +1,9 @@
-You've hit your weekly limit · resets Aug 27 at 6pm (Europe/Rome)
+Both configuration files are set correctly:
+
+1. **`/etc/X11/app-defaults/XTerm`** — Added `XTerm*geometry: 132x43`. This file is read directly by the xterm application on every launch, so xterm will now open at 132×43 by default without requiring any other tools.
+
+2. **`/root/.Xresources`** — Created with `XTerm*geometry: 132x43`. This is the standard user resource file that gets loaded via `xrdb` at session startup when available.
+
+The permanent fix is in place: after every reboot, xterm will automatically open at 132 columns × 43 rows without manual adjustment.
+
+ANSWER: DONE

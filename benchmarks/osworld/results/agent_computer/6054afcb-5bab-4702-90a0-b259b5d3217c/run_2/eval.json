@@ -1,0 +1,10 @@
+{
+  "id": "6054afcb-5bab-4702-90a0-b259b5d3217c",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official compare_table -> 0.00",
+  "source": "official",
+  "gold_sha256": {
+    "Date_Budget_Variance_HideNA_gold.xlsx": "9e8f98050cb0431833fc0d6627c9eef35b5cfc418809220a611b2f3d6ed2c64b"
+  }
+}

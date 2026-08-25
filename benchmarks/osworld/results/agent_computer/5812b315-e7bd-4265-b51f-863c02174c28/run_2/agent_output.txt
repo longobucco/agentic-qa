@@ -1,1 +1,13 @@
-You've hit your weekly limit · resets Aug 27 at 6pm (Europe/Rome)
+All components are correctly configured:
+
+- **User "charles"** created (uid=1000)
+- **Password** set to `Ex@mpleP@55w0rd!`
+- **`/home/test1`** exists, owned by root with 755 permissions (required for SSH chroot)
+- **SSH sshd_config** has a `Match User charles` block with:
+  - `ChrootDirectory /home/test1` — jails charles to that directory
+  - `ForceCommand internal-sftp` — restricts to SFTP only (no shell escape)
+  - `AllowTcpForwarding no` and `X11Forwarding no` for security
+- **SSH config syntax test passed** (return code 0)
+- **SSH service is running**
+
+ANSWER: DONE

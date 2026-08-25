@@ -1,1 +1,7 @@
-You've hit your weekly limit · resets 7pm (Europe/Rome)
+The spreadsheet has been filled in and saved successfully. All 21 conference cities are now populated:
+
+- **ICLR**: Scottsdale (2013), Banff (2014), San Diego (2015), San Juan (2016), Toulon (2017), Vancouver (2018), New Orleans (2019)
+- **ICML**: Atlanta (2013), Beijing (2014), Lille (2015), New York City (2016), Sydney (2017), Stockholm (2018), Long Beach (2019)
+- **NeurIPS**: Lake Tahoe (2013), Montreal (2014), Montreal (2015), Barcelona (2016), Long Beach (2017), Montreal (2018), Vancouver (2019)
+
+ANSWER: DONE

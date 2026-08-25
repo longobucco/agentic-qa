@@ -1,1 +1,12 @@
-You've hit your weekly limit · resets 7pm (Europe/Rome)
+The task is complete. The file has been saved. The "Spent ($)" column now displays all values with exactly 2 decimal places:
+- 40.00
+- 50.54
+- 60.00
+- 30.75
+- 25.50
+- 45.90
+- 35.40
+
+The format code "0.00" was applied to cells C2:C8 and the file was saved in Excel format.
+
+ANSWER: DONE

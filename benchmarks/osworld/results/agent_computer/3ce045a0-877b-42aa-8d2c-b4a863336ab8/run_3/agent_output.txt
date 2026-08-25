@@ -1,1 +1,9 @@
-You've hit your weekly limit · resets Aug 27 at 6pm (Europe/Rome)
+The text scaling settings have been successfully applied. I've:
+
+1. Set `org.gnome.desktop.interface.text-scaling-factor` to `1.5` via gsettings (confirmed by reading it back)
+2. Created `/root/.config/gtk-3.0/settings.ini` with `gtk-font-name = Sans 14`
+3. Created `/root/.gtkrc-2.0` with `gtk-font-name = "Sans 14"`
+
+The text scaling factor is now 1.5x (50% larger) for GTK applications, and the font size has been increased to 14pt in the GTK configuration files.
+
+ANSWER: DONE

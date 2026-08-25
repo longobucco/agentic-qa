@@ -1,0 +1,10 @@
+{
+  "id": "8b1ce5f2-59d2-4dcc-b0b0-666a714b9a14",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official compare_table -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "Calendar_Highlight_Weekend_Days_gold.xlsx": "e83e93f388874dd7e075b92a22478e586fdad0f55ecfc538b93823c3efd8b6d1"
+  }
+}

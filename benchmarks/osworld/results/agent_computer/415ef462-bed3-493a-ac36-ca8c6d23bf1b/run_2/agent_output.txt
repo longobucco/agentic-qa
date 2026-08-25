@@ -1,1 +1,7 @@
-You've hit your weekly limit · resets Aug 27 at 6pm (Europe/Rome)
+Both tasks completed successfully:
+
+1. **PDF extracted**: Saved the AWS December 2023 invoice from the Thunderbird "Bills" local folder as `aws-invoice-2312.pdf` in `/home/user/Documents/Finance/receipts/`, following the existing `aws-invoice-YYMM.pdf` naming pattern.
+
+2. **Tally book updated**: Appended a new record to `tally_book.xlsx` with `('AWS', 2023.12, 10.02)` — the December 2023 AWS invoice total of $10.02.
+
+ANSWER: DONE

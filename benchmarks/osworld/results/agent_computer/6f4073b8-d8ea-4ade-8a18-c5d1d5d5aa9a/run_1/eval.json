@@ -1,0 +1,8 @@
+{
+  "id": "6f4073b8-d8ea-4ade-8a18-c5d1d5d5aa9a",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official compare_conference_city_in_order -> 0.00",
+  "source": "official",
+  "gold_sha256": {}
+}

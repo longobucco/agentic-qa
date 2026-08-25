@@ -1,1 +1,15 @@
-You've hit your weekly limit · resets Aug 27 at 6pm (Europe/Rome)
+The configuration is fully correct. The effective SSH settings for user `charles` show:
+- `chrootdirectory /home/test1` — user is restricted to `/home/test1`
+- `forcecommand internal-sftp` — only SFTP access allowed
+- `allowtcpforwarding no` — no TCP forwarding
+- `x11forwarding no` — no X11 forwarding
+- `passwordauthentication yes` — password login enabled
+
+All steps completed successfully:
+1. Created user `charles` with the password `Ex@mpleP@55w0rd!`
+2. Installed `openssh-server`
+3. Configured `/etc/ssh/sshd_config` with a `Match User charles` block setting `ChrootDirectory /home/test1`
+4. Verified `/home/test1` is owned by root (required for chroot)
+5. Started the SSH service (verified running)
+
+ANSWER: DONE
