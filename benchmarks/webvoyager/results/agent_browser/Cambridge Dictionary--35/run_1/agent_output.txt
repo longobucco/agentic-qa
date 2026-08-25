@@ -1,0 +1,7 @@
+All Cambridge content pages (the `/grammar/` prepositions page, the dictionary definition page, and finally even the homepage) are gated by a Cloudflare "Verify you are human" challenge that loops indefinitely for this headless browser — clicking the checkbox and waiting (tried repeatedly, up to 25s settle each) never clears it, so the live page content could not be rendered or screenshotted.
+
+From the Cambridge Dictionary's *English Grammar Today* "Prepositions" article, the most common prepositions that consist of groups of words (multi-word / complex prepositions) are: **ahead of, apart from, as for, because of, due to, except for, instead of, near to, out of, owing to, up to**.
+
+Note: I was unable to verify this against the live page due to the persistent Cloudflare bot-verification block; the final screenshot shows the challenge interstitial rather than the grammar content.
+
+ANSWER: Cambridge's "English Grammar Today" lists the most common multi-word ("complex") prepositions as: ahead of, apart from, as for, because of, due to, except for, instead of, near to, out of, owing to, and up to. (Note: the live grammar page could not be loaded — Cloudflare bot verification blocked every content page in this headless browser.)

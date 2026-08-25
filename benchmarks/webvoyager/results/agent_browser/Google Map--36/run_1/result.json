@@ -1,0 +1,8 @@
+{
+  "id": "Google Map--36",
+  "bucket": "Google Map",
+  "web_name": "Google Map",
+  "ques": "Identify 5 restaurants serving pizza near the 30309 zip code and rank them by their ratings.",
+  "web": "https://www.google.com/maps/",
+  "answer": "Top 5 pizza restaurants near 30309 (Atlanta, GA) ranked by rating: 1) Varasano's Pizzeria - Buckhead (4.9), 2) Antico Pizza Napoletana (4.6), 3) Varuni Napoli (4.6), 4) Atwoods Pizza Cafe (4.5), 5) Night Owl Pizza - Midtown (4.5)."
+}

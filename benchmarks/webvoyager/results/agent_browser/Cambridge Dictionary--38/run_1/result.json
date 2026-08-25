@@ -1,0 +1,8 @@
+{
+  "id": "Cambridge Dictionary--38",
+  "bucket": "Cambridge Dictionary",
+  "web_name": "Cambridge Dictionary",
+  "ques": "Go to the Plus section of Cambridge Dictionary, finish a recommended Grammar quiz without login and tell me your final score.",
+  "web": "https://dictionary.cambridge.org/",
+  "answer": "Unable to complete \u2014 the Cambridge Dictionary site (including the +Plus section) is blocked by a Cloudflare anti-bot \"Verify you are human\" challenge that the automated browser could not pass, so no Grammar quiz could be started and no score was obtained."
+}

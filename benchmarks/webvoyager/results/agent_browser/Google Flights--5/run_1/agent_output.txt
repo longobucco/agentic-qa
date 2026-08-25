@@ -1,0 +1,9 @@
+The task is complete. The final screenshot confirms Google Flights search results for **Chicago → London**, departing **Sun, Dec 20** and returning **Wed, Dec 23**, round trip.
+
+Top departing flights found:
+- **Air Canada/United** — €953, 1 stop (1hr via YYZ), 10 hr
+- **American/British Airways/Finnair** — €975, 1 stop (1hr 11min via JFK), 10 hr 29 min
+- **United** — €1,073, **Nonstop**, 8 hr 10 min
+- Cheapest option overall: **€885** (Scandinavian Airlines, 1 stop)
+
+ANSWER: Round-trip flights from Chicago (ORD) to London (LHR) departing Sun Dec 20 and returning Wed Dec 23 are available. Best options start at €953 (Air Canada/United, 1 stop, 10 hr); the cheapest nonstop is United at €1,073 (8 hr 10 min); the overall cheapest is €885 (Scandinavian Airlines, 1 stop).

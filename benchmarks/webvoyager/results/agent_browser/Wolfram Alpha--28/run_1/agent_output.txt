@@ -1,0 +1,3 @@
+I verified this on Wolfram Alpha. The Geometric Shapes range 9632–9650 contains two parallelograms: U+25B0 "black parallelogram" (▰, solid/filled) and U+25B1 "white parallelogram" (▱, hollow/outline). Wolfram Alpha confirms character 9649 → Name: "white parallelogram", Encoding: U+25B1 (decimal 9649).
+
+ANSWER: ▱ — U+25B1 WHITE PARALLELOGRAM (decimal 9649), the hollow parallelogram in the 9632–9650 range.

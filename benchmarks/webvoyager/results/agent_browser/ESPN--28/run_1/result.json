@@ -1,0 +1,8 @@
+{
+  "id": "ESPN--28",
+  "bucket": "ESPN",
+  "web_name": "ESPN",
+  "ques": "How many MLB teams are there and list all the teams with 'City' in their name.",
+  "web": "https://www.espn.com/",
+  "answer": "There are 30 MLB teams. The only team with \"City\" in its name is the Kansas City Royals."
+}

@@ -1,0 +1,3 @@
+The task is complete. I searched arXiv for "quantum computing" and the results are sorted by **Announcement date (newest first)** — exactly what "latest preprints" calls for — returning 56,005 results, with the most recent submitted today (24 June 2026).
+
+ANSWER: Searched arXiv for "quantum computing" (56,005 results, sorted by announcement date newest-first). The latest preprint is arXiv:2606.26088 — "Simulating Universal Quantum Gate Sets on Photonic OAM Qubits: Single-Qubit and Multi-Qubit Operations via Spatial Light Modulator Phase Holography" (quant-ph), submitted 24 June 2026.

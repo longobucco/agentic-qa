@@ -1,0 +1,8 @@
+{
+  "id": "Coursera--31",
+  "bucket": "Coursera",
+  "web_name": "Coursera",
+  "ques": "Search for the course 'Exploring Quantum Physics' on Coursera, offered by the University of Maryland, College Park. Identify the percentage (rounded) of 5-star ratings in the reviews.",
+  "web": "https://www.coursera.org/",
+  "answer": "61% (the 5-star ratings make up 61.33% of reviews for \"Exploring Quantum Physics\" by University of Maryland, College Park, which rounds to 61%)"
+}

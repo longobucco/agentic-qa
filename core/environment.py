@@ -21,9 +21,15 @@ from core.browser import Chrome
 
 @dataclass
 class Env:
-    """What a runner receives for one task. `port` is a CDP debug port, or None."""
+    """What a runner receives for one task. `port` is a CDP debug port, or None.
+
+    `setup_error`: set by an environment impl whose per-task setup genuinely failed (e.g.
+    OSWorld's config-step preparation). Just how the failure is communicated -- skipping the
+    agent on an unprepared environment is the runner's job, not this seam's. `None` (default)
+    means setup is presumed fine."""
     port: int = None
     browser: object = None
+    setup_error: str = None
 
 
 @contextmanager

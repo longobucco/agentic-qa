@@ -1,0 +1,8 @@
+{
+  "id": "Coursera--8",
+  "bucket": "Coursera",
+  "web_name": "Coursera",
+  "ques": "Find a free course related to 'R for Data Science' available on Coursera. Scroll to find a course with the Free tag. What language the course is taught in?",
+  "web": "https://www.coursera.org/",
+  "answer": "Spanish \u2014 the free 'R for Data Science' course \"Introducci\u00f3n a R para ciencia de datos\" (Universitat Polit\u00e8cnica de Val\u00e8ncia) is taught in Spanish."
+}

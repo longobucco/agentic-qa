@@ -1,0 +1,12 @@
+I was unable to complete this task. Allrecipes is actively blocking this environment's IP address at the Cloudflare layer.
+
+What I tried:
+- Opened the homepage, the search page (`?q=fried+fish`), and a direct fried-fish recipe page (`/recipe/228947/crispy-fried-fish/`)
+- Retried multiple times with delays and chained navigations to let a Cloudflare challenge cookie settle
+- Diagnosed with curl: every request returns **HTTP 402** with a `server: cloudflare` header and a freshly-issued `__cf_bm` (Cloudflare Bot Management) cookie
+
+Every URL — including in the real headless Chromium — returns the same "access issue / contact support@people.inc" page. This is a hard, IP-level bot block by Allrecipes' parent company (People Inc.), not something I can work around from inside this container, and not a transient error.
+
+I will not fabricate a nutrition value. Because the live page never loaded, I genuinely cannot read the Full Nutrition Label or the Iron-per-serving figure.
+
+ANSWER: Unable to complete — Allrecipes is blocking this environment's IP at the Cloudflare layer (HTTP 402 "access issue" page on every URL, including direct recipe pages), so no recipe, nutrition label, or Iron value could be retrieved.

@@ -1,0 +1,5 @@
+{
+  "id": "Google Search--19",
+  "verdict": "SUCCESS",
+  "reason": "The screenshot confirms commit eedf571 is the latest commit (master tip) on google-research/bert, merging PR #1027 and changing only README.md (+71) to add the 24 smaller BERT models section, matching the response."
+}

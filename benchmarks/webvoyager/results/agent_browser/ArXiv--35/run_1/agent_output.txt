@@ -1,0 +1,7 @@
+I've retrieved the latest Quantum Physics paper from ArXiv. It's the top entry (#1) in the most recent submissions listing, confirmed on its abstract page.
+
+- **Title:** Cultivating logical catalysts for fault-tolerant dyadic phase rotations
+- **Authors:** Yichen Xu, Xiao Wang
+- **Date of submission:** Thu, 25 Jun 2026 (arXiv:2606.27358; announced in the Fri, 26 Jun 2026 listing)
+
+ANSWER: Title: "Cultivating logical catalysts for fault-tolerant dyadic phase rotations"; Author(s): Yichen Xu and Xiao Wang; Submitted on 25 Jun 2026 (arXiv:2606.27358).

@@ -1,0 +1,8 @@
+{
+  "id": "Wolfram Alpha--18",
+  "bucket": "Wolfram Alpha",
+  "web_name": "Wolfram Alpha",
+  "ques": "Plot Albert Einstein curve with Parametric equations.",
+  "web": "https://www.wolframalpha.com/",
+  "answer": "Plotted the Albert Einstein curve on WolframAlpha via its parametric equations \u2014 x(t) and y(t) are given as a piecewise Fourier sine series (using Heaviside \u03b8 step functions), and the result page shows both these parametric equations and the rendered plot of Einstein's face/portrait curve."
+}

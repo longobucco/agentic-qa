@@ -1,0 +1,5 @@
+The task is complete. I found and verified a popular JavaScript repository created in the last 30 days with a README file.
+
+**`DietrichGebert/ponytail`** — a JavaScript repository (primary language 55.3% JavaScript) created within the last 30 days, with **57.8k stars**, containing a `README.md` file (rendered on the repo page and listed under "Readme" in the About section, MIT licensed).
+
+ANSWER: DietrichGebert/ponytail — a popular JavaScript repository (57.8k stars, ~3k forks) created in the last 30 days that includes a README.md file.

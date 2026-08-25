@@ -1,0 +1,7 @@
+The paper "On the Sentence Embeddings from Pre-trained Language Models" (arXiv:2011.05864, EMNLP 2020) contains:
+- **2 figures** (Figure 1, Figure 2)
+- **8 tables** (Table 1 through Table 8)
+
+for a total of **10 figures and tables**.
+
+ANSWER: The paper contains 2 figures (Figure 1–2) and 8 tables (Table 1–8), for a total of 10 figures and tables.

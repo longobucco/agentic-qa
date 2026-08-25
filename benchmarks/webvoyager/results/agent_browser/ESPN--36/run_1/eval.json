@@ -1,0 +1,5 @@
+{
+  "id": "ESPN--36",
+  "verdict": "SUCCESS",
+  "reason": "The screenshots show the agent reached Lionel Messi's ESPN match log (the correct data source) and the response completely answers all parts\u2014team (Inter Miami CF) and results for each of the last 5 games\u2014with nothing in the visible portion of the Matches table contradicting it."
+}

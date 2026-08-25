@@ -1,0 +1,8 @@
+The final screenshot clearly shows the Lakers 2023-24 player stats table with the GP column. The task is complete.
+
+**Findings (Lakers 2023-24 Regular Season, 82-game season):**
+- **Anthony Davis: GP = 76** → GP percentage = 76 / 82 = **92.7%** (~92.68%)
+- Checking every other player's GP: LeBron 71, **D'Angelo Russell 76**, Austin Reaves 82, Rui Hachimura 68, Taurean Prince 78, Christian Wood 50, Jaxson Hayes 70, Max Christie 67, and the rest ≤ 50.
+- The only other player who matches Davis's GP percentage is **D'Angelo Russell**, who also played 76 of 82 games (92.7%).
+
+ANSWER: Anthony Davis played 76 of 82 games in 2023-24, a GP percentage of ~92.7% (76/82 ≈ 92.68%). Yes — one other Laker matches it: D'Angelo Russell also played 76 games (92.7%).

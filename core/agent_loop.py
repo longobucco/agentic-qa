@@ -7,7 +7,9 @@ browser/MCP specifics live in each benchmark's runner; this module is the generi
 both those runners and `core.judge` build on.
 """
 import json
+import os
 import re
+import signal
 import subprocess
 
 ANSWER_RE = re.compile(r"^ANSWER:\s*(.*)$", re.MULTILINE)
@@ -44,21 +46,54 @@ def build_claude_cmd(prompt, *, model=None, max_turns=None, add_dir=None,
     return cmd
 
 
-def run_claude(cmd, *, timeout) -> str:
-    """Run a `claude -p` command and return its result text.
+def _run_raw(cmd, *, timeout, env=None) -> str:
+    """`env` (optional) overrides the child environment — used by the containerized runner to
+    hand the orchestrator a PATH where bare `agent-browser` is shadowed, so it can only drive
+    the browser via `docker exec` (no host browser). None => inherit the parent environment.
+    On timeout, returns whatever stdout was captured rather than raising.
 
-    Tolerant by design: on timeout, return whatever stdout was captured; if the output is
-    not the expected JSON envelope, return the raw stdout. Never raises on a slow/odd run.
-    """
+    Runs in its own process group (`start_new_session`) and kills the WHOLE group on timeout,
+    not just the direct child. Observed live: `claude -p` with an MCP server (e.g. OSWorld's
+    stdio server) spawns that server as a grandchild inheriting the stdout pipe; a plain
+    `subprocess.run(..., timeout=...)` only kills the direct child on TimeoutExpired, so the
+    orphaned grandchild keeps the pipe open and `communicate()` blocks forever waiting for EOF
+    that never comes -- froze an unattended --runs campaign on ONE task for 7+ hours with no
+    recovery, well past `timeout`."""
+    proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True,
+                             env=env, start_new_session=True)
     try:
-        proc = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
-        raw = proc.stdout
-    except subprocess.TimeoutExpired as e:
-        raw = (e.stdout or b"").decode() if isinstance(e.stdout, bytes) else (e.stdout or "")
+        stdout, _ = proc.communicate(timeout=timeout)
+        return stdout
+    except subprocess.TimeoutExpired:
+        try:
+            os.killpg(os.getpgid(proc.pid), signal.SIGKILL)
+        except ProcessLookupError:
+            pass
+        stdout, _ = proc.communicate()   # drain whatever's buffered now that the tree is dead
+        return stdout or ""
+
+
+def run_claude(cmd, *, timeout, env=None) -> str:
+    """Run a `claude -p` command and return its result text. Tolerant by design: if the output
+    isn't the expected JSON envelope, returns the raw stdout. Never raises on a slow/odd run."""
+    raw = _run_raw(cmd, timeout=timeout, env=env)
     try:
         return json.loads(raw).get("result", raw)
     except Exception:
         return raw
+
+
+def run_claude_meta(cmd, *, timeout, env=None) -> dict:
+    """Like `run_claude`, but returns the full JSON envelope instead of just the result text —
+    use when a caller needs `num_turns`/`stop_reason`/`is_error` to tell a clean finish (agent
+    printed its answer and stopped on its own) from a truncated one (hit --max-turns or errored)
+    that happened to score SUCCESS anyway because the desktop state was already correct. `{}` if
+    the output isn't the expected JSON envelope."""
+    raw = _run_raw(cmd, timeout=timeout, env=env)
+    try:
+        return json.loads(raw)
+    except Exception:
+        return {}
 
 
 def preview(cmd) -> str:

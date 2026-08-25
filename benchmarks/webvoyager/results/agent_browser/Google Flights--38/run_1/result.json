@@ -1,0 +1,8 @@
+{
+  "id": "Google Flights--38",
+  "bucket": "Google Flights",
+  "web_name": "Google Flights",
+  "ques": "Compare the prices and flight durations for economy class flights from Oslo to Dubai, departing on July 8, 2026, and show the options with no more than two layovers.",
+  "web": "https://www.google.com/travel/flights/",
+  "answer": "Economy Oslo\u2192Dubai on Jul 8, 2026 (\u22642 layovers): cheapest is Pegasus \u20ac273 (1 stop, 10h25m); fastest is Emirates nonstop \u20ac492 (7h25m). Other options: Pegasus \u20ac293/10h45m, SAS+Emirates \u20ac606/11h15m, Qatar \u20ac630/9h30m, Brussels+Etihad \u20ac631/10h45m, Turkish \u20ac682/10h10m\u201311h25m, SAS+Etihad \u20ac691/10h25m and \u20ac794/8h25m."
+}

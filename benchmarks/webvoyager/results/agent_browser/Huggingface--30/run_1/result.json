@@ -1,0 +1,8 @@
+{
+  "id": "Huggingface--30",
+  "bucket": "Huggingface",
+  "web_name": "Huggingface",
+  "ques": "Identify the most downloaded English-Chinese (en-zh) machine translation model on Huggingface and report its latest performance metrics and usage guidelines.",
+  "web": "https://huggingface.co/",
+  "answer": "The most downloaded en-zh model is Helsinki-NLP/opus-mt-en-zh (~112,436 downloads/month). Latest metrics \u2014 Tatoeba-test.eng.zho: BLEU 31.4, chr-F 0.268 (brevity penalty 0.896), Apache-2.0, MarianMT transformer trained 2020-07-17. Usage: English\u2192Chinese; preprocessing is normalization + SentencePiece (spm32k); a sentence-initial target-language token like `>>cmn_Hans<<` is required; run via Transformers `pipeline(\"translation\", model=\"Helsinki-NLP/opus-mt-en-zh\")` or `AutoTokenizer`/`AutoModelForSeq2SeqLM` (translation pipeline needs transformers<5.0.0, else load the model directly)."
+}

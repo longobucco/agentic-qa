@@ -1,0 +1,5 @@
+{
+  "id": "Amazon--1",
+  "verdict": "FAILURE",
+  "reason": "The saved item (Cutter & Buck polo at EUR44.04 / agent's own stated $44.04) is below the required $50 floor, so the $50\u2013$75 price constraint is violated."
+}

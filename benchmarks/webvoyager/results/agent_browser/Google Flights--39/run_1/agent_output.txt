@@ -1,0 +1,8 @@
+I've completed the comparison of one-way flights from Prague on July 20, 2026:
+
+- **Tokyo**: cheapest from **€590** (1 stop, e.g. Hainan via Beijing)
+- **Sapporo (Hokkaido)**: cheapest from **€1139** (and the cheapest reasonable flights start at €1377)
+
+Tokyo is significantly cheaper to fly to than Sapporo in Hokkaido.
+
+ANSWER: Tokyo is cheaper. A one-way Prague→Tokyo flight on July 20, 2026 starts at about €590, while the cheapest Prague→Sapporo (Hokkaido) flight is about €1139 — so Tokyo is the cheaper Japanese destination.

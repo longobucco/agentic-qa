@@ -1,0 +1,8 @@
+{
+  "id": "BBC News--8",
+  "bucket": "BBC News",
+  "web_name": "BBC News",
+  "ques": "Get a brief overview of the economic implications of the UK's latest trade deal posted on BBC News and the date when the article was published.",
+  "web": "https://www.bbc.com/news/",
+  "answer": "BBC News' latest UK trade deal article, \"UK agrees \u00a33.7bn trade deal with six Gulf states\" (published **21 May 2026**), reports the UK's Free Trade Agreement with the six GCC states (Bahrain, Kuwait, Oman, Qatar, Saudi Arabia, UAE). Economically it is said to be worth \u00a33.7bn to the UK economy, removing ~\u00a3580m/year in tariffs on British exports (e.g. cheese, butter, chocolate), easing market access and data flows, and supporting UK jobs, wages and investment \u2014 though rights groups argue the gains are marginal and raise human-rights/climate concerns."
+}

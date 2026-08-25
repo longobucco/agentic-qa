@@ -1,0 +1,9 @@
+The task is complete. I searched Google Flights for a one-way flight from New York to Tokyo departing January 15, 2027, and sorted by cheapest price.
+
+**Cheapest one-way flight (New York → Tokyo, Jan 15, 2027):**
+- **Price:** €579
+- **Airline:** WestJet
+- **Total duration:** 31 hr 55 min (1 stop)
+- Route detail: Departs JFK at 5:35 PM Jan 15, arrives Narita (NRT) at 3:30 PM Jan 17, with a 15 hr 31 min overnight layover in Calgary.
+
+ANSWER: The cheapest one-way New York → Tokyo flight on Jan 15, 2027 is €579 on WestJet, with a total flight duration of 31 hr 55 min (1 stop, via Calgary).

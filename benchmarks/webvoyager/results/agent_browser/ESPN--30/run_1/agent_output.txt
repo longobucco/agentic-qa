@@ -1,0 +1,17 @@
+The task is complete. I've explored the NHL Standings 2025-26 on ESPN across both the Conference view (teams ranked 1–16 in each conference) and the Division view (Atlantic, Metropolitan, Central, Pacific), capturing screenshots of each (`step_3`–`step_7` and `final.png`).
+
+Here's what the standings show:
+
+**Conference standings (top → bottom)**
+- **Eastern Conference:** Top = **Carolina Hurricanes** (113 pts, clinched best record in conference). Bottom = **New York Rangers** (16th).
+- **Western Conference:** Top = **Colorado Avalanche** (121 pts — best record in the entire NHL). Bottom = **Vancouver Canucks** (16th).
+
+**Division standings (winner → last place)**
+- **Atlantic (East):** 1st Buffalo Sabres → last Toronto Maple Leafs
+- **Metropolitan (East):** 1st Carolina Hurricanes → last New York Rangers
+- **Central (West):** 1st Colorado Avalanche → last Chicago Blackhawks
+- **Pacific (West):** 1st Vegas Golden Knights → last Vancouver Canucks
+
+So the four division winners are Buffalo, Carolina, Colorado, and Vegas, with Colorado the overall NHL leader and Carolina pacing the East.
+
+ANSWER: NHL 2025-26 standings — EAST: top = Carolina Hurricanes (113 pts, best record in conference), bottom = New York Rangers. WEST: top = Colorado Avalanche (121 pts, best record in the NHL), bottom = Vancouver Canucks. By DIVISION — Atlantic: 1st Buffalo Sabres, last Toronto Maple Leafs; Metropolitan: 1st Carolina Hurricanes, last NY Rangers; Central: 1st Colorado Avalanche, last Chicago Blackhawks; Pacific: 1st Vegas Golden Knights, last Vancouver Canucks.

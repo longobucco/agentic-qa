@@ -1,0 +1,8 @@
+{
+  "id": "Google Flights--12",
+  "bucket": "Google Flights",
+  "web_name": "Google Flights",
+  "ques": "Find the best-priced round-trip flight from New York to London leaving on June 25, 2026, and returning on July 5, 2026, with one stop or fewer.",
+  "web": "https://www.google.com/travel/flights/",
+  "answer": "The best-priced round-trip NYC\u2192London flight (Jun 25 \u2192 Jul 5, 1 stop or fewer) is \u20ac1,026 round trip on Iberia \u2014 1 stop via Madrid (JFK\u2192LHR, dep 8:40 PM Jun 25)."
+}

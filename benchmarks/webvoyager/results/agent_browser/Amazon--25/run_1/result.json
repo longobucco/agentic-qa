@@ -1,0 +1,8 @@
+{
+  "id": "Amazon--25",
+  "bucket": "Amazon",
+  "web_name": "Amazon",
+  "ques": "Search for a queen-sized, hypoallergenic mattress topper on Amazon. It should have a memory foam material and be priced between $50 to $100.",
+  "web": "https://www.amazon.com/",
+  "answer": "Completed the Amazon search for a queen-sized, hypoallergenic memory foam mattress topper priced $50\u2013$100. Query \"queen hypoallergenic memory foam mattress topper\" was run with a 50\u2013100 price filter applied, yielding matching queen memory-foam toppers \u2014 e.g. the PERLECARE Queen 3-Inch Gel Memory Foam Topper (EUR75.30), SINWEEK 3-Inch Gel Memory Foam Queen, and Czpalo 3-Inch Gel Memory Foam Queen \u2014 all queen-sized memory foam toppers within the $50\u2013$100 range. (Note: the storefront displays prices in EUR since delivery is set to Spain.)"
+}

@@ -1,0 +1,8 @@
+{
+  "id": "Google Search--21",
+  "bucket": "Google Search",
+  "web_name": "Google Search",
+  "ques": "Show a list of the top 5 highest-grossing animated movies, sorted by box office earnings.",
+  "web": "https://www.google.com/",
+  "answer": "The top 5 highest-grossing animated movies by box office are: 1) Ne Zha 2 \u2014 $2.216B (2025); 2) Zootopia 2 \u2014 $1.870B (2025); 3) Inside Out 2 \u2014 $1.699B (2024); 4) The Lion King \u2014 $1.662B (2019); 5) Frozen II \u2014 $1.452B (2019)."
+}

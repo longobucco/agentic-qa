@@ -1,0 +1,8 @@
+{
+  "id": "ArXiv--16",
+  "bucket": "ArXiv",
+  "web_name": "ArXiv",
+  "ques": "Locate the latest research about gravitational waves that were uploaded to ArXiv this week and provide a brief summary of one article's main findings.",
+  "web": "https://arxiv.org/",
+  "answer": "This week's latest gravitational-wave research on arXiv (submitted 24 Jun 2026) includes \"Probing Kinematic Anisotropies in the Stochastic Gravitational Wave Background with the SKA\" (arXiv:2606.25845) by Cruz, Malhotra, Tasinato & Zavala. Its main finding: forecasting with optimal estimators/Fisher techniques shows that although the SKA Observatory will greatly improve constraints on anisotropies in the nanohertz stochastic gravitational-wave background, even SKAO combined with Gaia-like astrometry stays below the sensitivity required to detect the kinematic dipole from the Solar System's motion, so new observation/analysis strategies are needed."
+}

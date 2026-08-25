@@ -1,0 +1,3 @@
+The task is complete. Wolfram Alpha computed the geomagnetic field for Oslo, Norway on Tuesday, June 20, 2023.
+
+ANSWER: For Oslo, Norway on June 20, 2023, the geomagnetic field had a magnetic declination of 4.51°E and a magnetic dip (inclination) of 72.888°.

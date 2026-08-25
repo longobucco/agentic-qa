@@ -1,0 +1,8 @@
+{
+  "id": "ArXiv--38",
+  "bucket": "ArXiv",
+  "web_name": "ArXiv",
+  "ques": "Find the ArXiv Blog on the ArXiv website and summarize the content of its latest article.",
+  "web": "https://arxiv.org/",
+  "answer": "The ArXiv Blog (blog.arxiv.org) latest article is \"Attention authors: temporary change to announcement schedule due to upcoming summer holidays\" (June 17, 2026, by Kat Boboris). It notifies authors that upcoming US federal holidays\u2014Juneteenth (Fri June 19, 2026) and around Independence Day (Fri July 3, 2026)\u2014will temporarily disrupt arXiv's mailings, help desk, and submission-announcement schedule, deferring announcements to the following Mondays (June 22 and July 6). Servers stay operational, existing papers remain browsable, and new submissions are still accepted; readers are urged to follow the blog/social media for updates."
+}

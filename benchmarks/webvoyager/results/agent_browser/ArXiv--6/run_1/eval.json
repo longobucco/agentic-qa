@@ -1,0 +1,5 @@
+{
+  "id": "ArXiv--6",
+  "verdict": "SUCCESS",
+  "reason": "Screenshots confirm the agent located the correct paper and the specific, plausible figure/table count in the response is not contradicted by any screenshot, so the response is believed per protocol."
+}

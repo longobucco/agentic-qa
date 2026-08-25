@@ -1,0 +1,3 @@
+WolframAlpha computed the derivative of x² as 2x, and evaluated at x=5.6 the result is 11.2.
+
+ANSWER: 11.2

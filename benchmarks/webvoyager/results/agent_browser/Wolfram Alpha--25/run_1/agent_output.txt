@@ -1,0 +1,7 @@
+Using WolframAlpha, I computed the projectile state at t=3s (launch: 30 m/s at 45°, g=9.81 m/s²):
+
+- **Position:** x = 45√2 ≈ 63.64 m, y ≈ 19.49 m
+- **Velocity components:** vₓ = 15√2 ≈ 21.21 m/s, v_y ≈ −8.22 m/s (downward)
+- **Speed (magnitude):** ≈ 22.75 m/s
+
+ANSWER: After 3 s, position ≈ (63.6 m horizontal, 19.5 m vertical); velocity components vₓ ≈ 21.2 m/s, v_y ≈ −8.22 m/s (descending), giving a speed of ≈ 22.75 m/s.

@@ -1,0 +1,8 @@
+{
+  "id": "ArXiv--30",
+  "bucket": "ArXiv",
+  "web_name": "ArXiv",
+  "ques": "Look up the submission guidelines on ArXiv for submitting a paper and tell me the formats for figures.",
+  "web": "https://arxiv.org/",
+  "answer": "ArXiv accepts two figure-format groups depending on your processing path: PostScript (PS, EPS) for (La)TeX submissions, and JPEG, GIF, PNG, or PDF for PDFLaTeX submissions. Formats can't be mixed \u2014 PDFLaTeX requires .pdf/.jpg/.png and (La)TeX requires .ps/.eps."
+}

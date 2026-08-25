@@ -1,0 +1,5 @@
+{
+  "id": "Huggingface--1",
+  "verdict": "FAILURE",
+  "reason": "The final screenshot shows the space stuck on 'Starting...' with no story generated, the prompt was never even submitted, and no answer was produced."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "Wolfram Alpha--2",
+  "bucket": "Wolfram Alpha",
+  "web_name": "Wolfram Alpha",
+  "ques": "Calculate 3^71 and retain 5 significant figures in scientific notation.",
+  "web": "https://www.wolframalpha.com/",
+  "answer": "7.5095 \u00d7 10^33"
+}

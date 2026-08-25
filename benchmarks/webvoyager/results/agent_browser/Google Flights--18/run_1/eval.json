@@ -1,0 +1,5 @@
+{
+  "id": "Google Flights--18",
+  "verdict": "FAILURE",
+  "reason": "The final screenshots show a Google Flights error page ('Oops, something went wrong') with no flight results, the wrong departure date (Jun 26), and no comparison was produced, plus the agent gave no answer."
+}

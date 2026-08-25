@@ -1,0 +1,5 @@
+{
+  "id": "Apple--17",
+  "verdict": "FAILURE",
+  "reason": "The zip code 90038 was only typed into the field but never applied, so no store-specific closest pickup availability was retrieved \u2014 only Apple's generic 'Pick up at an Apple Store near you' message is shown, which the agent itself admits could not be confirmed."
+}

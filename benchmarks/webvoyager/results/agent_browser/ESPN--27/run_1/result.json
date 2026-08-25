@@ -1,0 +1,8 @@
+{
+  "id": "ESPN--27",
+  "bucket": "ESPN",
+  "web_name": "ESPN",
+  "ques": "Search on ESPN for how many teams have 'Golden' in their name and how many of them are in the NHL.",
+  "web": "https://www.espn.com/",
+  "answer": "ESPN's search lists 15 distinct teams with 'Golden' in their name (31 entries counting each sport/league separately), and exactly 1 of them is in the NHL \u2014 the Vegas Golden Knights."
+}

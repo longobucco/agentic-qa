@@ -1,0 +1,5 @@
+{
+  "id": "GitHub--0",
+  "verdict": "SUCCESS",
+  "reason": "The screenshot shows a GitHub search for 'climate change data visualization' sorted by 'Most stars' with resource-watch/resource-watch as the top result at 73 stars, exactly matching the agent's reported answer."
+}

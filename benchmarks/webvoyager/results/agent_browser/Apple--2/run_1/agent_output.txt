@@ -1,0 +1,9 @@
+Task complete. I compared the iPhone 14 Pro and iPhone 15 Pro directly on Apple's official comparison page (apple.com/iphone/compare). Screenshots captured: model labels + availability (step_2), and the Chip section (step_1, final).
+
+**Chips:**
+- **iPhone 14 Pro → A16 Bionic chip** — 6-core CPU (2 performance + 4 efficiency), 5-core GPU, 16-core Neural Engine.
+- **iPhone 15 Pro → A17 Pro chip** — 6-core CPU (2 performance + 4 efficiency), **6-core GPU**, 16-core Neural Engine, plus **hardware-accelerated ray tracing**.
+
+**Prices:** Apple no longer sells either model directly — the compare page lists both as **"Available at authorized resellers"** with no Apple price (only currently-sold models like iPhone Air show a "Buy"/price). Both originally launched on Apple's store at a **$999 starting price** (128 GB).
+
+ANSWER: From Apple's compare page: iPhone 14 Pro uses the A16 Bionic chip (5-core GPU); iPhone 15 Pro uses the newer A17 Pro chip (6-core GPU + hardware-accelerated ray tracing). On price, Apple no longer sells either directly — both are listed as "Available at authorized resellers" (no current Apple price); each originally launched at $999.

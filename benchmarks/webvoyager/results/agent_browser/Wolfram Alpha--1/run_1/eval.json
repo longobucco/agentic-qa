@@ -1,0 +1,5 @@
+{
+  "id": "Wolfram Alpha--1",
+  "verdict": "SUCCESS",
+  "reason": "The final screenshot shows Wolfram|Alpha's 'Defining inequalities' for the pentagram lamina whose first conjunct (2a + 3\u221a5 x + 5x \u2265 \u221a(2(5+\u221a5)) y) exactly matches the constraint the agent reported, satisfying the request for one constraint."
+}

@@ -1,0 +1,5 @@
+{
+  "id": "Google Map--17",
+  "verdict": "SUCCESS",
+  "reason": "The screenshot confirms locksmiths matching the response (KeyMe at 2750 E League City Pkwy closing 23:00, Minute Key closing 22:00) that are open now but not 24 hours, while the response correctly excluded the entries marked 'Abierto las 24 horas'."
+}

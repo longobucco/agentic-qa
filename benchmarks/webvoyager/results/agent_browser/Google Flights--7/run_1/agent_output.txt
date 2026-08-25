@@ -1,0 +1,7 @@
+I completed the search and captured the final state.
+
+I searched Google Flights for a round trip from **Phoenix (PHX) to Miami (MIA), departing Tue Jul 7 and returning Fri Jul 10**, in **First Class** (currency set to USD). The results returned 16 First Class options, with prices starting at **$1,572 round trip** (cheapest: Delta 1-stop). The price filter's maximum slider could not even be set below ~$2,000, confirming no fares exist near the requested cap.
+
+**No First Class tickets meet the $1,320 limit** — the cheapest available First Class fare for these exact dates is $1,572, which exceeds $1,320.
+
+ANSWER: No First Class round-trip tickets from Phoenix (PHX) to Miami (MIA) for Jul 7–10 fall at or under $1,320. The cheapest available First Class fare is $1,572 (Delta, 1 stop, round trip); other options run $1,572–$2,096+. Therefore no flights satisfy the "not exceeding $1,320" constraint.

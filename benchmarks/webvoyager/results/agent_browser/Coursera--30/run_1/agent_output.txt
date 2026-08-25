@@ -1,0 +1,10 @@
+The star rating breakdown for **Modern Art & Ideas** (by The Museum of Modern Art) is:
+- 5 stars: 83.02%
+- 4 stars: 13.24%
+- 3 stars: 2.42% → **rounds to 2%**
+- 2 stars: 0.63% → **lowest percentage**
+- 1 star: 0.66%
+
+The 3-star ratings make up about **2%** (2.42% rounded). The star level with the **lowest** percentage is **2 stars** at 0.63%.
+
+ANSWER: 3-star ratings are 2.42% (≈2%). The lowest percentage is 2 stars at 0.63%.

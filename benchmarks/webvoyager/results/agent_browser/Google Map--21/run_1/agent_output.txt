@@ -1,0 +1,5 @@
+The search resolved directly to a transit stop located at that intersection.
+
+The nearest bus stop to the corner of Elm Street and Oak Street is a stop named **"Elm Street & Oak Street"** (Stop #8916168) in Amesbury, Massachusetts 01913 — located right at the intersection. It's served by MVRTA bus route 17.
+
+ANSWER: The nearest bus stop is "Elm Street & Oak Street" (Stop #8916168), located at the intersection in Amesbury, Massachusetts 01913, served by MVRTA bus route 17.

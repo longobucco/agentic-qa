@@ -1,0 +1,5 @@
+{
+  "id": "Booking--34",
+  "verdict": "FAILURE",
+  "reason": "The agent ran out of turns without producing an answer; the final screenshot shows only an in-progress Berlin search with default occupancy and no confirmed dates, no hotel results, and no USD/CNY prices."
+}

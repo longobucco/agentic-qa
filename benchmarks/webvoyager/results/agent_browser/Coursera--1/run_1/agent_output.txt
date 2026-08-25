@@ -1,0 +1,5 @@
+I've completed the task successfully. 
+
+I searched Coursera for "Python programming for beginners" and identified the ideal course for someone with no programming experience: **"Programming for Everybody (Getting Started with Python)"** by the University of Michigan. The course page explicitly confirms it is **Beginner level** with **"No prior experience required"** — and it's highly rated (4.8 stars, 233K reviews, 3.5M+ enrolled).
+
+ANSWER: Programming for Everybody (Getting Started with Python) by University of Michigan — a Beginner-level Coursera course that explicitly requires no prior programming experience (4.8★, 233K reviews).

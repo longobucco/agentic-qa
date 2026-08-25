@@ -1,0 +1,8 @@
+I located the repository **microsoft/vscode** (Visual Studio Code, ~187k stars) and opened its Contributors insights page, set to the "All" time period to identify the project's overall top contributors.
+
+The top three all-time contributors are:
+1. **jrieken** (Johannes Rieken) — 12,806 commits
+2. **Tyriar** (Daniel Imms) — 12,694 commits
+3. **joaomoreno** (João Moreno) — 9,033 commits
+
+ANSWER: Repository: microsoft/vscode. Top three contributors (all-time, by commits): 1) jrieken — 12,806; 2) Tyriar — 12,694; 3) joaomoreno — 9,033.

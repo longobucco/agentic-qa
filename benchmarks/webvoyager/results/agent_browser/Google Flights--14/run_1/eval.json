@@ -1,0 +1,5 @@
+{
+  "id": "Google Flights--14",
+  "verdict": "FAILURE",
+  "reason": "The final screenshot shows the default Google Flights homepage (origin still 'Barcelona', no destination or dates entered, no search results) and the agent produced no answer after hitting max turns, so no fares were compared."
+}

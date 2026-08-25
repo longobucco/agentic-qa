@@ -1,0 +1,5 @@
+{
+  "id": "Google Map--14",
+  "verdict": "SUCCESS",
+  "reason": "The search box shows 'motorcycle parking near 1260 6th Ave' (Radio City Music Hall's address) and the screenshot displays a list of nearby Midtown parking results (Metropolis, NYC Parking at CBS Building, Icon Advance Parking) matching the agent's reported answer."
+}

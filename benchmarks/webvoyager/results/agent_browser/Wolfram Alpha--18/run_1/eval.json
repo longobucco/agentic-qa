@@ -1,0 +1,5 @@
+{
+  "id": "Wolfram Alpha--18",
+  "verdict": "SUCCESS",
+  "reason": "Screenshots show WolframAlpha rendering the plotted Albert Einstein curve (Einstein's face) and the corresponding parametric equations x(t)/y(t) as a Fourier sine series, satisfying the task."
+}

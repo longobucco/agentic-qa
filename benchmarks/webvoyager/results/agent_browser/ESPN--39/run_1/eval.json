@@ -1,0 +1,5 @@
+{
+  "id": "ESPN--39",
+  "verdict": "FAILURE",
+  "reason": "The final screenshot shows the depth chart's 2ND-position column obscured by a privacy-consent modal, so the claimed injured players (Klubnik, Brownlee, York) cannot be verified and appear inconsistent with a NY Jets roster."
+}

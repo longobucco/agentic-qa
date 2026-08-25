@@ -1,0 +1,5 @@
+{
+  "id": "Google Map--36",
+  "verdict": "SUCCESS",
+  "reason": "The screenshot confirms a Google Maps search for pizza near 30309 with 4 of the 5 named restaurants and their ratings directly verified, and the agent delivered a valid 5-restaurant list ranked in descending rating order, fulfilling the task intent."
+}

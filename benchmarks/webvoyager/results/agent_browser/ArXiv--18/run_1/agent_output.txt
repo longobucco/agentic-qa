@@ -1,0 +1,12 @@
+I've completed the task. I located the paper **'Dense Passage Retrieval for Open-Domain Question Answering'** (arXiv:2004.04906) on arXiv, downloaded it via "View PDF," and examined its content to count the formulas and identify the loss function.
+
+**Findings:**
+- The article contains **5 numbered formulas**:
+  - (1) Similarity function: `sim(q,p) = E_Q(q)ᵀ E_P(p)` (dot product of question/passage embeddings)
+  - **(2) The loss function** — negative log-likelihood of the positive passage:
+    `L(qᵢ, pᵢ⁺, pᵢ,₁⁻, …, pᵢ,ₙ⁻) = −log [ e^sim(qᵢ,pᵢ⁺) / ( e^sim(qᵢ,pᵢ⁺) + Σⱼ e^sim(qᵢ,pᵢ,ⱼ⁻) ) ]`
+  - (3) Answer span start probability: `P_start,i(s) = softmax(Pᵢ w_start)_s`
+  - (4) Answer span end probability: `P_end,i(t) = softmax(Pᵢ w_end)_t`
+  - (5) Passage selection probability: `P_selected(i) = softmax(P̂ᵀ w_selected)_i`
+
+ANSWER: The article contains 5 numbered formulas. The loss function is formula (2): the negative log-likelihood of the positive passage, L(qᵢ, pᵢ⁺, pᵢ,₁⁻,…,pᵢ,ₙ⁻) = −log[ e^sim(qᵢ,pᵢ⁺) / ( e^sim(qᵢ,pᵢ⁺) + Σⱼ e^sim(qᵢ,pᵢ,ⱼ⁻) ) ].

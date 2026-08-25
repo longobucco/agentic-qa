@@ -1,0 +1,5 @@
+{
+  "id": "ESPN--28",
+  "verdict": "SUCCESS",
+  "reason": "The screenshot shows the ESPN MLB Teams page with Kansas City Royals visible, and the agent correctly reported 30 MLB teams with the Kansas City Royals as the only team containing 'City' in its name."
+}

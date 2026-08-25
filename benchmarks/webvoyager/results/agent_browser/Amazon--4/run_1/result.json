@@ -1,0 +1,8 @@
+{
+  "id": "Amazon--4",
+  "bucket": "Amazon",
+  "web_name": "Amazon",
+  "ques": "Find the used Nintendo Switch Lite on Amazon then filter by 'Used - Good', tell me the cheapest one that is 'Used - Good'.",
+  "web": "https://www.amazon.com/",
+  "answer": "The cheapest \"Used - Good\" Nintendo Switch Lite is the Turquoise model from seller Chummy LLC at EUR 137.43 (item price; +EUR 97.47 delivery). It was the only \"Used - Good\" offer after applying the filter."
+}

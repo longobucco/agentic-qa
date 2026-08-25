@@ -1,0 +1,5 @@
+{
+  "id": "Wolfram Alpha--23",
+  "verdict": "SUCCESS",
+  "reason": "The Wolfram Alpha screenshot shows the population growth rate of Canada from 2020 to 2023 with mean 0.9886 %/yr, lowest 0.7392 %/yr (2021), and highest 1.231 %/yr (2023), exactly matching the agent's response."
+}

@@ -1,0 +1,6 @@
+The calculation is complete. WolframAlpha evaluated (1+0.1·i)^8 + (1−0.2·i)^8 (with i as the imaginary unit) and returned the result.
+
+- **Result:** 0.717183... − 0.425258... i
+- Polar form: 0.833784·(cos(−0.535225) + i·sin(−0.535225)) ≈ 0.833784·e^(−0.535225 i)
+
+ANSWER: 0.717183 − 0.425258 i (approximately; in polar form ≈ 0.833784·e^(−0.535225 i))

@@ -1,0 +1,8 @@
+{
+  "id": "Huggingface--16",
+  "bucket": "Huggingface",
+  "web_name": "Huggingface",
+  "ques": "Find information on the latest (as of today's date) pre-trained language model on Huggingface suitable for text classification and briefly describe its intended use case and architecture.",
+  "web": "https://huggingface.co/",
+  "answer": "The latest text-classification model on Hugging Face (sorted by recently created, as of 2026-06-26) is g25ait2149/aegis-rjd3-guard (\"Aegis Guard RJD-3\"). Use case: a binary jailbreak/prompt-injection safety classifier (P(unsafe)) acting as the L2 guard in the layered \"Aegis\" LLM defense, invoked on uncertain prompts via a selective cascade with de-obfuscation normalization (Base64/homoglyph/zero-width/emoji), aligned to OWASP LLM Top 10 (LLM01) and NIST AI RMF. Architecture: a LoRA/PEFT adapter fine-tuned over the Qwen/Qwen2.5-1.5B base, loaded as AutoModelForSequenceClassification with num_labels=2 (Safetensors, MIT license)."
+}

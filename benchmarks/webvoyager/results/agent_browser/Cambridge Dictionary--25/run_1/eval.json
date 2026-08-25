@@ -1,0 +1,5 @@
+{
+  "id": "Cambridge Dictionary--25",
+  "verdict": "FAILURE",
+  "reason": "Every screenshot shows only the Cloudflare security-verification block page; the agent never accessed the Cambridge Dictionary entry for 'harmony', and the response's two meanings are unsupported by the screenshots."
+}

@@ -1,0 +1,9 @@
+I found the official TensorFlow repository (`tensorflow/tensorflow`) and opened its latest commit on the `master` branch.
+
+**Last commit:** "Add _xla_table_name frontend attribute to grad and custom combiner ops." (`4b48483`)
+
+- **Files changed (1 file):** `tensorflow/core/tpu/kernels/sparse_core_xla_ops.cc`
+- **Total additions:** 12
+- **Total deletions:** 0
+
+ANSWER: Repository: github.com/tensorflow/tensorflow. Last commit "Add _xla_table_name frontend attribute to grad and custom combiner ops." (4b48483) changed 1 file: tensorflow/core/tpu/kernels/sparse_core_xla_ops.cc, with 12 additions and 0 deletions.

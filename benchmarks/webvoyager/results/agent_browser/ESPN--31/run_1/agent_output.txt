@@ -1,0 +1,3 @@
+The final screenshot clearly shows the full Infielders table with all weights visible. Among the Yankees infielders, the heaviest is **Ben Rice (1B) at 228 lbs**, narrowly edging out Amed Rosario (227 lbs) and Paul Goldschmidt (225 lbs).
+
+ANSWER: Ben Rice (1B) is the heaviest infielder on the 2026 New York Yankees roster at 228 lbs.

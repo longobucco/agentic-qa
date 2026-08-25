@@ -1,0 +1,8 @@
+{
+  "id": "Booking--15",
+  "bucket": "Booking",
+  "web_name": "Booking",
+  "ques": "Find the highest-rated luxury hotel in Rome available for booking from January 10, 2027, to January 20, 2027, for 2 adults. Include the cost, amenities offered, and customer rating.",
+  "web": "https://www.booking.com/",
+  "answer": ""
+}

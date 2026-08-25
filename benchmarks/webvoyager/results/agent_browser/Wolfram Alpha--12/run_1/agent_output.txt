@@ -1,0 +1,3 @@
+The query confirms the answer. In the decimal Unicode range 8900–8920 (U+22C4 to U+22D8, all Mathematical Operators), the character that looks like a snowflake is decimal **8902** = **U+22C6**, named the **STAR OPERATOR (⋆)** — a six-pointed star resembling a snowflake.
+
+ANSWER: Unicode 8902 (U+22C6), the STAR OPERATOR ⋆ — a six-pointed star that looks like a snowflake.

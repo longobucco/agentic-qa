@@ -1,0 +1,5 @@
+{
+  "id": "Booking--25",
+  "verdict": "FAILURE",
+  "reason": "The agent ran out of turns producing no answer, and the final screenshot shows only the default Lisbon search page with no dates, no airport-shuttle/rating/breakfast filters, and no qualifying hotel selected."
+}

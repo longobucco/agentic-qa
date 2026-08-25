@@ -1,0 +1,5 @@
+{
+  "id": "Allrecipes--35",
+  "verdict": "FAILURE",
+  "reason": "The only screenshots show a People Inc. access-denied page with no Allrecipes recipe loaded, so no Italian meatball recipe, meat type, or cooking time was obtained."
+}

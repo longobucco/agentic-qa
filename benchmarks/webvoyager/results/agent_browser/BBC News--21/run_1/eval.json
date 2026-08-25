@@ -1,0 +1,5 @@
+{
+  "id": "BBC News--21",
+  "verdict": "FAILURE",
+  "reason": "The screenshots show only the BBC homepage with the cookie dialog still blocking the page, not the World News section, so the claimed World-section top headline and its region cannot be verified."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "Wolfram Alpha--31",
+  "bucket": "Wolfram Alpha",
+  "web_name": "Wolfram Alpha",
+  "ques": "Using Wolfram Alpha, determine the current temperature and wind speed in Chicago, IL.",
+  "web": "https://www.wolframalpha.com/",
+  "answer": "In Chicago, IL the current temperature is 18 \u00b0C (about 64 \u00b0F) and the wind speed is 4.6 m/s (NNE, roughly 10 mph), under overcast skies."
+}

@@ -1,0 +1,3 @@
+The task is complete. Wolfram Alpha computed the weight loss regimen duration for a 40-year-old male, 175 cm, going from 90 kg down to 73 kg (a loss of 17 kg) on a 1500 Cal/day intake with a sedentary activity level.
+
+ANSWER: About 3 months 6 days (intake 1500 Cal/d to lose 17 kg, going from 90 kg to 73 kg, sedentary).

@@ -1,0 +1,8 @@
+{
+  "id": "Booking--43",
+  "bucket": "Booking",
+  "web_name": "Booking",
+  "ques": "Search for properties in Los Angeles, browse the results page to see what filters are available, list some of them.",
+  "web": "https://www.booking.com/",
+  "answer": "On the Booking.com Los Angeles results page (2,685 properties), the \"Filter by:\" sidebar offers filters including Star Rating (5/4/3/2/1 stars) and Review score (Wonderful: 9+, Very Good: 8+, Good: 7+, Pleasant: 6+), along with sort options like Our top picks, Lowest Price First, Star rating and price, and Top reviewed."
+}

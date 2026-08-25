@@ -1,0 +1,9 @@
+The route from Chicago to Los Angeles has been found and the details are displayed in Google Maps.
+
+**Route details (Chicago, Illinois → Los Angeles, California):**
+- **Driving (fastest):** 29 h, **2015 miles** via **I-80 W** — fastest route with usual traffic; has tolls; destination is in another time zone.
+- **Driving (alternative):** 29 h, **2028 miles** via **I-80 W and I-70 W**.
+- **Flights:** 4 h 15 min, from €303.
+- Other modes: Public transport ~2 days, Cycling ~8 days, Walking ~31 days.
+
+ANSWER: Chicago → Los Angeles driving route is ~2015 miles, about 29 hours via I-80 W (fastest route, has tolls, destination in a different time zone); an alternative is ~2028 miles via I-80 W and I-70 W. Flights take ~4h 15m.

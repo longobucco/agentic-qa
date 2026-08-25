@@ -1,0 +1,16 @@
+I've completed the task. Here's a summary of what I found:
+
+**Search performed:** Hotels near National University of Singapore for **Jan 3 – Jan 6** (2027, the next occurrence since today is June 2026).
+
+**Hotels nearest NUS (sorted by distance), all under $500:**
+| Hotel | Distance from NUS | Price from |
+|---|---|---|
+| **Coliwoo Hotel Pasir Panjang – CoLiving** | **2,800 ft (closest)** | **$126.44** |
+| Fragrance Hotel – Ocean View | 3,250 ft | $90.74 |
+| ibis budget Singapore West Coast | 3,250 ft | $84.72 |
+| The Quay Hotel West Coast | 3,250 ft | $90.31 |
+| Train Pod at one-north | 0.7 mi | $70.09 |
+
+The **closest hotel to NUS that costs less than $500 is Coliwoo Hotel Pasir Panjang – CoLiving** (404 Pasir Panjang Road), at just 2,800 ft (~0.5 mi) from campus, priced from **$126.44/night** — well within budget. I confirmed it offers room types (Premier Studio, Deluxe Twin, Superior Studio, etc.) available for the Jan 3–6 stay.
+
+ANSWER: Coliwoo Hotel Pasir Panjang - CoLiving — the closest hotel to NUS (2,800 ft away), priced from $126.44, well under $500, available for Jan 3-6.

@@ -1,0 +1,8 @@
+{
+  "id": "ArXiv--27",
+  "bucket": "ArXiv",
+  "web_name": "ArXiv",
+  "ques": "On ArXiv, what categories does Economics include, and what are their abbreviations?",
+  "web": "https://arxiv.org/",
+  "answer": "ArXiv Economics (econ) includes 3 categories: Econometrics (econ.EM), General Economics (econ.GN), and Theoretical Economics (econ.TH)."
+}

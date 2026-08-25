@@ -1,0 +1,8 @@
+The final screenshot clearly shows the course **"Introducción a R para ciencia de datos"** with **"Taught in Spanish"** under "Details to know" and a "Shareable certificate" — confirming the free course's teaching language.
+
+Summary of what I found:
+- Searched Coursera for "R for Data Science" and scrolled through all results.
+- The paid courses carry a **"Free Trial"** badge; the fully-free university courses (UNAM, UPV) carry a distinct badge (the free/preview tag).
+- The free course directly matching the topic is **"Introducción a R para ciencia de datos"** by Universitat Politècnica de València — its detail page confirms **"Enroll for Free"** and **"Taught in Spanish."**
+
+ANSWER: Spanish — the free 'R for Data Science' course "Introducción a R para ciencia de datos" (Universitat Politècnica de València) is taught in Spanish.

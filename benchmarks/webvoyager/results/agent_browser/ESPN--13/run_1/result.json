@@ -1,0 +1,8 @@
+{
+  "id": "ESPN--13",
+  "bucket": "ESPN",
+  "web_name": "ESPN",
+  "ques": "Identify today's top headline in the Basketball section of ESPN, and summarize the main points of that article.",
+  "web": "https://www.espn.com/",
+  "answer": "Today's top headline in ESPN's Basketball (NBA) section is \"2026 NBA offseason trade grades: LaMelo Ball, Isaiah Stewart deals\" by Zach Kram (lead hook: \"LaMelo Ball traded to Minnesota! Which team gets a D+?\"). It grades the June 25 trade sending LaMelo Ball (and Josh Green) from Charlotte to Minnesota for Naz Reid plus picks/swaps. Minnesota gets a D+: Ball is an elite offensive engine pairing with Anthony Edwards, but the deal stakes the team's future on his injury history and leaves a gaping frontcourt/power-forward hole with no cap flexibility. Charlotte gets a B-: it loses its best player but gains optionality, a deep big-man rotation, the largest trade exception in NBA history ($40.7M), and an unprotected 2033 first-round pick."
+}

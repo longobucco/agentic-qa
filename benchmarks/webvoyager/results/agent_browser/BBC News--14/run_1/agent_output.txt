@@ -1,0 +1,16 @@
+The article is fully captured. I confirmed via the accessibility tree (headline → date → share buttons, with no "By [name]" element) that this BBC Business story carries no individual byline — it's attributed to BBC News.
+
+**Article found:** "Tech layoffs: PayPal cuts 2,000 jobs as global economy weakens" (BBC News, Business section)
+
+**Key points:**
+- PayPal is cutting ~2,000 jobs (7% of its workforce), citing the "challenging macro-economic environment."
+- It is the latest of many tech firms making cuts: Amazon (18,000+ jobs), Alphabet/Google (12,000), Microsoft (10,000), and Spotify (6% of staff) all announced layoffs around the same period.
+- Snap (Snapchat) warned revenue could fall up to 10%; its shares dropped ~15% after-hours.
+- Chipmakers signaled an industry slowdown: AMD reported a 98% fall in net income for Q4 2022; SK Hynix posted a record quarterly loss (1.7tn won / ~$1.4bn) with sales down 38%; Samsung reported its lowest quarterly profit in eight years.
+- Overall, the piece frames a broad tech-industry downturn driven by a weakening global economy and pandemic-era over-hiring.
+
+**Author:** No individual author is bylined — the article is attributed to BBC News (Business).
+
+**Date of publication:** 1 February 2023
+
+ANSWER: Article — "Tech layoffs: PayPal cuts 2,000 jobs as global economy weakens" (BBC News, Business). Key points: PayPal is cutting ~2,000 jobs (7% of staff) due to the "challenging macro-economic environment," joining a wave of tech layoffs — Amazon (18,000+), Alphabet/Google (12,000), Microsoft (10,000), Spotify (6%); Snap warned of falling revenue (shares -15%); and chipmakers signaled a downturn (AMD net income -98%, SK Hynix record ~$1.4bn loss, Samsung's lowest profit in 8 years), reflecting a global-economy-driven tech slowdown. Author: no individual byline (attributed to BBC News). Date of publication: 1 February 2023.

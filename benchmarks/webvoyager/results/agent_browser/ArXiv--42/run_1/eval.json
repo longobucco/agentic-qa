@@ -1,0 +1,5 @@
+{
+  "id": "ArXiv--42",
+  "verdict": "SUCCESS",
+  "reason": "The screenshot confirms the single matching arXiv paper cs/0112003 with 'Support-Vector Machine' in the title, submitted 2001 (within 2000\u20132005), and Journal ref 'ACL Workshop', exactly as stated in the response."
+}

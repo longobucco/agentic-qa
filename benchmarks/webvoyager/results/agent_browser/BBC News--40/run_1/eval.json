@@ -1,0 +1,5 @@
+{
+  "id": "BBC News--40",
+  "verdict": "FAILURE",
+  "reason": "The only screenshots, including the final end-state image, show the BBC homepage stuck behind an unresolved cookie-consent dialog with no article ever opened, so there is no visual evidence the war story was actually read and summarised."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "Google Flights--11",
+  "bucket": "Google Flights",
+  "web_name": "Google Flights",
+  "ques": "Compare the prices for round-trip flights from New York to Tokyo for a departure on July 10, 2026, and a return on July 24, 2026, and select the option with the least number of stops.",
+  "web": "https://www.google.com/travel/flights/",
+  "answer": "Selected the nonstop (0-stop, least stops) round-trip JFK\u2013Tokyo Haneda on American for \u20ac1,667 \u2014 the cheapest nonstop option (others: United \u20ac1,668, JAL \u20ac1,728, ANA \u20ac1,825+). One-stop itineraries were cheaper (from \u20ac1,318, e.g. Qatar Airways) but have more stops, so the least-stops choice is the \u20ac1,667 American nonstop."
+}

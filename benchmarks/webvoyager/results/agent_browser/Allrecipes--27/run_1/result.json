@@ -1,0 +1,8 @@
+{
+  "id": "Allrecipes--27",
+  "bucket": "Allrecipes",
+  "web_name": "Allrecipes",
+  "ques": "Locate a chicken curry recipe on Allrecipes that has been reviewed more than 30 times and has a rating of at least 4 stars. Provide a summary of the recipe including ingredients, preparation time, and cooking instructions.",
+  "web": "https://www.allrecipes.com/",
+  "answer": "Unable to complete \u2014 Allrecipes is hard-blocking this environment (HTTP 402 \"access issue\" page on every URL, including homepage, search, and recipe pages), so no chicken curry recipe could be located or summarized."
+}

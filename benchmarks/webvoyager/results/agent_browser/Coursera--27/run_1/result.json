@@ -1,0 +1,8 @@
+{
+  "id": "Coursera--27",
+  "bucket": "Coursera",
+  "web_name": "Coursera",
+  "ques": "Search for a Specialization on Coursera about 'Data Visualization' that includes a project. Provide the name of the Specialization, the institution offering it, and the skills that will be developed by completing it.",
+  "web": "https://www.coursera.org/",
+  "answer": "Specialization: \"Data Visualization\" (Data Visualization Specialization) \u2014 offered by Johns Hopkins University. It includes an Applied Learning Project (hands-on labs across 3 courses). Skills developed: Data Visualization Software, Scientific Visualization, Interactive Data Visualization, Geospatial Information and Technology, Geospatial Mapping, Data Presentation, Color Theory, Graphic and Visual Design, Visual Design, Spatial Data Analysis, Tree Maps, Visualization (Computer Graphics), Data Storytelling, Statistical Visualization, Design Elements and Principles, Tableau Software, Plot (Graphics), Data Literacy, Computer Displays, and Time Series Analysis and Forecasting."
+}

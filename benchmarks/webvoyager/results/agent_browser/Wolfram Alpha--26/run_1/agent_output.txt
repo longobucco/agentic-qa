@@ -1,0 +1,10 @@
+The task is complete. WolframAlpha computed both parts of the query on a single results page, which is captured in the final screenshot.
+
+**Results for 15 kg of sulfuric acid (H₂SO₄):**
+- **Conversion to moles (molar amount): 153 mol**
+- **Percentage composition by weight:**
+  - H (hydrogen): 0.308 kg → **2.1%**
+  - O (oxygen): 9.788 kg → **65.2%**
+  - S (sulfur): 4.904 kg → **32.7%**
+
+ANSWER: 15 kg of sulfuric acid ≈ 153 mol; mass composition by weight: H 2.1% (0.308 kg), O 65.2% (9.788 kg), S 32.7% (4.904 kg).

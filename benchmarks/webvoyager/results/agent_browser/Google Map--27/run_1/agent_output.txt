@@ -1,0 +1,11 @@
+The search for "Target Atlanta, GA" on Google Maps returned a complete list of 7 Target store locations, with the panel showing "Has llegado al final de la lista" (You've reached the end of the list), confirming the count:
+
+1. 375 18th St NW
+2. 1275 Caroline St NE
+3. 3535 Peachtree Rd NE
+4. 3660 Marketplace Blvd
+5. 2539 Piedmont Rd NE
+6. 100 Perimeter Center Pl
+7. 2400 N Druid Hills Rd
+
+ANSWER: 7 Target stores are shown on the map for Atlanta, GA.

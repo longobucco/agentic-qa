@@ -1,0 +1,13 @@
+I've identified and reviewed the latest updated image-to-video model. Final state captured.
+
+**geceff/Wan2.2-Custom-Models-GGUF** — top of the "Recently updated" sort (updated ~2 hours ago), 14B params, Apache-2.0, ~4,439 downloads.
+
+**Main features:**
+- **What it is:** A collection of highly optimized **Wan2.2 Image-to-Video (I2V) GGUF + Lightning V2** quantized custom models (architecture: `wan`), distributed for ComfyUI workflows.
+- **Key selling point — efficiency:** Fine-tuned to run on memory-constrained hardware, specifically Google Colab's free **NVIDIA Tesla T4 (15GB VRAM)**, with guidance for L4 (24GB+) too.
+- **Two model families:** *High Noise* models (best for creative, high-motion generation and diverse camera movement) and *Low Noise* models (best for high fidelity, stability, and adhering to the starting frame's structure).
+- **Quantizations offered:** `Q4_K_M`, `Q6_K_L`, `Q6_K`, `Q8_H`, plus `fp8_scaled` (low-noise only) — letting users trade VRAM vs. quality.
+- **Optimal ComfyUI settings provided:** 4 sampling steps (Lightning/Distilled V2), CFG scale 1.0 (prevents "burnt" images), 2–3 high-noise + 3 low-noise steps, euler + simple sampler/scheduler.
+- **Hybrid multi-pass workflow** recommended for higher fidelity/micro-detail, with detailed per-GPU setup ceilings (e.g., T4 GUI limited to Q4_K_M/Q6_K to avoid OOM; "backdoor" direct-code execution unlocks Q8_H on T4).
+
+ANSWER: The latest updated image-to-video model is **geceff/Wan2.2-Custom-Models-GGUF** (updated ~2 hours ago). It provides Tesla-T4-optimized, GGUF-quantized Wan2.2 I2V (Lightning V2) custom models (14B params, Apache-2.0, ComfyUI). Key features: runs on low-VRAM GPUs like Colab's free T4; High-Noise variants for creative high-motion video and Low-Noise variants for high fidelity/prompt adherence; multiple quantizations (Q4_K_M, Q6_K_L, Q6_K, Q8_H, plus fp8_scaled); recommended ComfyUI settings (4 steps, CFG 1.0, euler+simple); and a hybrid multi-pass workflow for sharper detail.

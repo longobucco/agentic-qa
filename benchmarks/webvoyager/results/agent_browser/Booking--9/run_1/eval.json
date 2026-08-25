@@ -1,0 +1,5 @@
+{
+  "id": "Booking--9",
+  "verdict": "FAILURE",
+  "reason": "The agent hit max turns with no final answer; the last screenshot shows only the Booking.com London search with the date picker open, with no dates selected, no price filter, and no list of 3+ hotel options."
+}

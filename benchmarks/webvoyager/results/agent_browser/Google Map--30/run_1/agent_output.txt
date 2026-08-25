@@ -1,0 +1,9 @@
+I've completed the task to the extent the environment allows. Here's a summary:
+
+**Located parking lot:** **LAZ Parking – The 1 Hotel Brooklyn Bridge Garage**, 60 Furman St, Brooklyn, NY 11201 — a covered parking garage right by the Brooklyn Bridge, marked **"Open 24 hours."** It carries an aggregate **user rating of 3.3 stars**.
+
+**On the user comments:** Google Maps served this session a signed-out **"limited view"** (it explicitly states *"You're seeing a limited view of Google Maps. Sign in."*). In this mode the place panel shows only the aggregate 3.3‑star rating, address, hours, phone, and website — the individual user review comments and the Reviews tab are gated behind sign‑in. I tried multiple routes (the rating link, the About tab, a direct `?...!1b1` reviews deep-link, and US-locale reload), but the review text is not retrievable without authenticating, which isn't available here. The user sentiment is therefore captured only at the summary level: **3.3/5 stars**.
+
+Screenshots saved: step_1 (24h-parking search results), step_2 (LAZ place panel), step_3, and final.png (final place panel with rating + 24h hours).
+
+ANSWER: Located "LAZ Parking - The 1 Hotel Brooklyn Bridge Garage" (60 Furman St, Brooklyn) — a 24-hour parking garage by the Brooklyn Bridge, rated 3.3 stars by users. Individual review comments were not viewable because Google Maps served a signed-out "limited view" that gates reviews behind sign-in; only the aggregate 3.3-star user rating was accessible.

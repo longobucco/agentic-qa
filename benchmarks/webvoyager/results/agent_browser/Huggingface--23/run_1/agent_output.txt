@@ -1,0 +1,9 @@
+I identified the three models by sorting Hugging Face's ASR models by Trending (a proxy for "widely recognized") and verifying each candidate's actual creation date via its commit history — discarding deceptively-dated entries like `cohere-transcribe-03-2026` (March 2026) and `Fun-ASR-Nano-2512` (Dec 2025) whose recent "Updated" timestamps masked older releases.
+
+The three innovative, widely recognized, open-source ASR models released in the past month:
+
+1. **nvidia/nemotron-3.5-asr-streaming-0.6b** — NVIDIA's streaming ASR model; #1 trending ASR model (695 likes, 50.6k downloads), actively released in mid-2026.
+2. **AutoArk-AI/ARK-ASR-3B** — brand-new ARK-ASR model created ~4 days ago, already #4 in ASR trending (31 likes).
+3. **google/medasr** — Google's medical-domain ASR model (339 likes, 59.9k downloads), released ~1 month ago.
+
+ANSWER: Three innovative, widely recognized open-source ASR models released in the past month on Hugging Face: (1) nvidia/nemotron-3.5-asr-streaming-0.6b (NVIDIA streaming ASR, #1 trending, 695 likes), (2) AutoArk-AI/ARK-ASR-3B (created ~4 days ago, #4 trending), and (3) google/medasr (Google medical ASR, 339 likes, ~1 month old).

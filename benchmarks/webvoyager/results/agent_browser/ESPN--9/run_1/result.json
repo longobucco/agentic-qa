@@ -1,0 +1,8 @@
+{
+  "id": "ESPN--9",
+  "bucket": "ESPN",
+  "web_name": "ESPN",
+  "ques": "Search on ESPN for how many teams have Los Angeles in their name and how many of them are NBA.",
+  "web": "https://www.espn.com/",
+  "answer": "8 teams in ESPN's search results have \"Los Angeles\" in their name (Lakers, Dodgers, Sparks, Rams, Angels, Chargers, Kings, Knight Riders), and exactly 1 of them is an NBA team \u2014 the Los Angeles Lakers."
+}

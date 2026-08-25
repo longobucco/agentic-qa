@@ -1,0 +1,11 @@
+I've completed the task. Here's what I found from the latest NBA game:
+
+**Latest NBA game:** NBA Finals Game 5 — New York Knicks @ San Antonio Spurs (Sunday, June 14, 2026, Final 94–90; NY won series 4–1).
+
+**Player with the most assists:** I checked the full box score (both teams). The leader was **De'Aaron Fox** with **5 assists** (next-highest were Mikal Bridges, Stephon Castle, and Dylan Harper with 4 each). The team assist totals cross-check confirms this (Knicks 14, Spurs 18, with Fox's 5 being the single-game high).
+
+- **Assists:** 5
+- **Team:** San Antonio Spurs (#4)
+- **Position:** Guard (point guard)
+
+ANSWER: De'Aaron Fox led the latest NBA game (2026 NBA Finals Game 5, Knicks 94–90 Spurs) with 5 assists. He plays for the San Antonio Spurs and his position is Guard (point guard).

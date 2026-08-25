@@ -1,0 +1,8 @@
+{
+  "id": "GitHub--5",
+  "bucket": "GitHub",
+  "web_name": "GitHub",
+  "ques": "Find a Python repository on GitHub that has been updated in the past 2 days and has at least 500 stars.",
+  "web": "https://github.com/",
+  "answer": "public-apis/public-apis \u2014 a Python repo (96.8% Python) with 444k stars, updated within the past 2 days (yesterday). It satisfies the criteria: Python, \u2265500 stars, updated in the last 2 days."
+}

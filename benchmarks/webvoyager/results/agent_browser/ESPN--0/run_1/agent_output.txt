@@ -1,0 +1,23 @@
+I've looked up the current NBA Eastern Conference standings on ESPN (2025-26 regular season):
+
+| # | Team | W | L | PCT | GB |
+|---|------|---|---|-----|-----|
+| 1 | Detroit Pistons (z) | 60 | 22 | .732 | — |
+| 2 | Boston Celtics (y) | 56 | 26 | .683 | 4 |
+| 3 | New York Knicks (x) | 53 | 29 | .646 | 7 |
+| 4 | Cleveland Cavaliers (x) | 52 | 30 | .634 | 8 |
+| 5 | Toronto Raptors (x) | 46 | 36 | .561 | 14 |
+| 6 | Atlanta Hawks (y) | 46 | 36 | .561 | 14 |
+| 7 | Philadelphia 76ers (xp) | 45 | 37 | .549 | 15 |
+| 8 | Orlando Magic (xp) | 45 | 37 | .549 | 15 |
+| 9 | Charlotte Hornets (pb) | 44 | 38 | .537 | 16 |
+| 10 | Miami Heat (pb) | 43 | 39 | .524 | 17 |
+| 11 | Milwaukee Bucks (e) | 32 | 50 | .390 | 28 |
+| 12 | Chicago Bulls (e) | 31 | 51 | .378 | 29 |
+| 13 | Brooklyn Nets (e) | 20 | 62 | .244 | 40 |
+| 14 | Indiana Pacers (e) | 19 | 63 | .232 | 41 |
+| 15 | Washington Wizards (e) | 17 | 65 | .207 | 43 |
+
+The Detroit Pistons lead the East at 60-22, having clinched the conference's top seed; teams 7-10 (76ers, Magic, Hornets, Heat) are in play-in position.
+
+ANSWER: The Detroit Pistons lead the NBA Eastern Conference (60-22, .732), followed by Boston (56-26), New York (53-29), Cleveland (52-30), Toronto (46-36), Atlanta (46-36), Philadelphia (45-37), Orlando (45-37), Charlotte (44-38), Miami (43-39), Milwaukee (32-50), Chicago (31-51), Brooklyn (20-62), Indiana (19-63), and Washington (17-65).

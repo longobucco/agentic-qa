@@ -1,0 +1,9 @@
+I found a matching dog bed on Amazon and confirmed it on the product detail page.
+
+**Product:** Orthopedic Dog Bed for Large Dogs – Gel Memory Foam Pet Bed with Waterproof & Washable Cover, Contoured Bolster Design (Grey, 36.0" L x 27.0" W x 6.7" Th)
+
+It satisfies both requirements:
+- **Washable** ✅ — "Removable Cover, Washable" / "Machine Washable: just unzip, remove the inner cushions, and machine wash the outer cover on a gentle cycle."
+- **Length ≥ 30 inches** ✅ — selected size is **36.0" L** x 27.0" W (the size range also offers 30" and 44" lengths).
+
+ANSWER: Orthopedic Dog Bed for Large Dogs - Gel Memory Foam Pet Bed with Waterproof & Washable Cover (Grey, 36.0" L x 27.0" W x 6.7" Th) — it is machine washable (removable washable cover) and 36 inches long, which is ≥ 30 inches.

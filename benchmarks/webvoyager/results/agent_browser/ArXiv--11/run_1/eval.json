@@ -1,0 +1,5 @@
+{
+  "id": "ArXiv--11",
+  "verdict": "SUCCESS",
+  "reason": "The final screenshot of the arXiv multilingual-submissions help page confirms both that an English abstract is required for non-English submissions and that the separator is five dashes '-----' with blank lines before and after, matching the agent's response."
+}

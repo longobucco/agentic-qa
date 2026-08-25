@@ -1,0 +1,8 @@
+{
+  "id": "Booking--41",
+  "bucket": "Booking",
+  "web_name": "Booking",
+  "ques": "Browse Booking's homepage to find out which company it belongs to.",
+  "web": "https://www.booking.com/",
+  "answer": "Booking.com belongs to Booking Holdings Inc."
+}

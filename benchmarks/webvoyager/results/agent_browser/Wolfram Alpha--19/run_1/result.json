@@ -1,0 +1,8 @@
+{
+  "id": "Wolfram Alpha--19",
+  "bucket": "Wolfram Alpha",
+  "web_name": "Wolfram Alpha",
+  "ques": "Standing in the sun from 11:00 am with SPF 5 in Australia. Approximate time to sunburn for each skin type.",
+  "web": "https://www.wolframalpha.com/",
+  "answer": "Typical time to sunburn (SPF 5, from 11:00 am, Australia) \u2014 Skin type I: ~2.5 hours; Skin type II: ~3.5 hours; Skin types III, IV, V, and VI: sunburn unlikely."
+}

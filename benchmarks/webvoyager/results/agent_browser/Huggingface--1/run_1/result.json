@@ -1,0 +1,8 @@
+{
+  "id": "Huggingface--1",
+  "bucket": "Huggingface",
+  "web_name": "Huggingface",
+  "ques": "Use the Huggingface Inference API to generate a short story about a dragon and a wizard.",
+  "web": "https://huggingface.co/",
+  "answer": ""
+}

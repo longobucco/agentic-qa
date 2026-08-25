@@ -1,0 +1,8 @@
+{
+  "id": "ArXiv--3",
+  "bucket": "ArXiv",
+  "web_name": "ArXiv",
+  "ques": "Locate the most recent research paper about 'Algebraic Topology' under Mathematics published on ArXiv. Provide the title of the paper, the name of the authors, and the abstract.",
+  "web": "https://arxiv.org/",
+  "answer": "Title: \"Profinite Borel completeness and smooth Artin motives\"; Author: Yorick Fuhrmann; Abstract: The purpose of this paper is twofold. In the first part, we revisit the description of the \u221e-category of Borel complete equivariant spectra for a finite group given by Mathew-Naumann-Noel, introduce a version with coefficients, and then consider Borel equivariance for profinite groups, identifying two generally differing notions: levelwise Borel completeness and the hypercompletion thereof. In the second part, we study variants of smooth Artin motives \u2014 subcategories of the \u221e-categories of effective Nisnevich and \u00e9tale Voevodsky motives over a base scheme S controlled by the \u00e9tale fundamental group \u03c0\u2081^\u00e9t(S). In the Nisnevich case, they extend a theorem of Voevodsky and identify smooth Artin motives with modules over the Bredon cohomology spectrum for the profinite group \u03c0\u2081^\u00e9t(S). In the \u00e9tale case, they show the difference between the two notions of profinite Borel completeness is precisely the difference between \u00e9tale sheaves and hypersheaves on finite \u00e9tale schemes."
+}

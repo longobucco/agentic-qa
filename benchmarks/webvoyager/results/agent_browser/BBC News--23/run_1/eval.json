@@ -1,0 +1,5 @@
+{
+  "id": "BBC News--23",
+  "verdict": "FAILURE",
+  "reason": "The only screenshot (final.png) shows the BBC homepage blocked by a cookie-consent modal, with no Health section or article visible, so the response's detailed health-article summary is unverifiable and contradicted by the end-state evidence."
+}

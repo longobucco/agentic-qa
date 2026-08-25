@@ -1,0 +1,5 @@
+I searched Coursera for "Python Data Science", opened **Filter & Sort**, selected the **Newest** sort option, and applied it. After sorting by newest, the first course listed in the results is "Healthcare Finance and Cost Management" offered by EDUCBA.
+
+Note: when Coursera sorts by "Newest," it prioritizes recency over query relevance, so the top items are the most recently added courses rather than the most Python-Data-Science-specific ones. The literal first result is reported below.
+
+ANSWER: After sorting the "Python Data Science" search results by Newest, the first course is "Healthcare Finance and Cost Management," offered by EDUCBA.

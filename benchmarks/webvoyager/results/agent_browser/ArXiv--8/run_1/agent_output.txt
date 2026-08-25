@@ -1,0 +1,5 @@
+The arXiv homepage is a subject directory rather than a news feed, so the closest equivalent to "latest news" is arXiv's newest paper submissions. I navigated to the Computer Science "new" listing, which shows the latest research posted today.
+
+The page displays **"Showing new listings for Thursday, 25 June 2026"** with **961 total entries** (564 new submissions) in Computer Science alone. The most recent paper at the top is **"Graph-Based Phonetic Error Correction of Noisy ASR" (arXiv:2606.24889)**, followed by "Small edits, large models: How Wikipedia advocacy shapes LLM values."
+
+ANSWER: arXiv has no dedicated news feed; its "latest" content is the newest paper submissions. As of Thursday, 25 June 2026, the Computer Science section lists 961 new entries (564 new submissions), topped by "Graph-Based Phonetic Error Correction of Noisy ASR" (arXiv:2606.24889).

@@ -1,0 +1,8 @@
+{
+  "id": "Booking--23",
+  "bucket": "Booking",
+  "web_name": "Booking",
+  "ques": "Identify a hotel in Tokyo with a spa and wellness center, rated 9 or above, with availability for a five-night stay starting on June 20, 2026. Check if free cancellation is offered.",
+  "web": "https://www.booking.com/",
+  "answer": ""
+}

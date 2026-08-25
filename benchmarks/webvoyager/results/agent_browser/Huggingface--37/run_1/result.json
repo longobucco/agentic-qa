@@ -1,0 +1,8 @@
+{
+  "id": "Huggingface--37",
+  "bucket": "Huggingface",
+  "web_name": "Huggingface",
+  "ques": "Browse the daily paper on Hugging Face. What is the title of the first article, how many upvotes has it received, and is there any related model or data release?",
+  "web": "https://huggingface.co/",
+  "answer": "Title: \"DanceOPD: On-Policy Generative Field Distillation\" (by ByteDance Seed, #1 paper of the day). Upvotes: 53. Related model/data release: None \u2014 the page lists 0 models and 0 datasets citing this paper, and the authors note the code is still under approval (only pseudocode in the paper)."
+}

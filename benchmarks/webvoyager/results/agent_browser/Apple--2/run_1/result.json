@@ -1,0 +1,8 @@
+{
+  "id": "Apple--2",
+  "bucket": "Apple",
+  "web_name": "Apple",
+  "ques": "Compare the prices and chips for the iPhone 14 Pro and iPhone 15 Pro models directly from Apple's website.",
+  "web": "https://www.apple.com/",
+  "answer": "From Apple's compare page: iPhone 14 Pro uses the A16 Bionic chip (5-core GPU); iPhone 15 Pro uses the newer A17 Pro chip (6-core GPU + hardware-accelerated ray tracing). On price, Apple no longer sells either directly \u2014 both are listed as \"Available at authorized resellers\" (no current Apple price); each originally launched at $999."
+}

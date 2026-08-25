@@ -1,0 +1,10 @@
+I found a strong match for the task.
+
+**Course:** *IoT (Internet of Things) Wireless & Cloud Computing Emerging Technologies* — offered by **Yonsei University**
+- **Level:** Beginner
+- **Rating:** 4.7 / 5 (1,447 reviews)
+- **Instructor:** Jong-Moon Chung
+
+**Skills taught (brief summary):** The course gives a foundational, hands-on introduction to IoT and cloud computing. You'll learn IoT business models and products, IoT architecture and technologies, IoT networking, and wireless communication via Wi-Fi & Bluetooth, plus cloud technology with practical EC2 cloud projects. Key skills include Internet of Things, Cloud Computing & Cloud Platforms, Cloud Computing Architecture, Wireless Networks, Local Area Networks, General Networking, Network Protocols/Infrastructure, and Cloud-Based Integration (AWS).
+
+ANSWER: Course: "IoT (Internet of Things) Wireless & Cloud Computing Emerging Technologies" (Yonsei University), Beginner level, rated 4.7/5 from 1,447 reviews. Instructor: Jong-Moon Chung. Skills taught: a foundational, hands-on intro covering IoT business & products, IoT architecture & technologies, IoT networks, Wi-Fi & Bluetooth wireless communication, and cloud technology (incl. AWS EC2 cloud projects) — building skills in Internet of Things, cloud computing & cloud platforms, cloud computing architecture, wireless/local-area networks, networking protocols/infrastructure, and cloud-based integration.

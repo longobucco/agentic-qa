@@ -1,0 +1,8 @@
+{
+  "id": "Huggingface--9",
+  "bucket": "Huggingface",
+  "web_name": "Huggingface",
+  "ques": "Find the most download machine translation model on Huggingface which focuses on English and Japanese (en-ja) and report the evaluation metrics stated for it.",
+  "web": "https://huggingface.co/",
+  "answer": "The most-downloaded machine-translation model on Hugging Face covering English & Japanese is facebook/nllb-200-distilled-600M (~1.51M downloads). Its stated evaluation metrics are BLEU, spBLEU, and chrF++, plus human evaluation via the XSTS protocol and toxicity measurement, evaluated on the Flores-200 dataset."
+}

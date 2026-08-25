@@ -1,0 +1,7 @@
+The driving route from San Francisco International Airport to Union Square is now planned and displayed on Google Maps.
+
+- **Mode:** Driving ("En coche") — selected
+- **Fastest route:** 36 min, 14.8 miles via US-101 N
+- **Alternatives:** 37 min (US-101 N & I-280 N), 38 min (US-101 N, I-280 N & 7th St)
+
+ANSWER: Driving route planned from San Francisco International Airport (SFO) to Union Square, San Francisco — fastest route is ~36 min and 14.8 miles via US-101 N (alternatives: 37 min via US-101 N & I-280 N, 38 min via US-101 N, I-280 N & 7th St).

@@ -1,0 +1,8 @@
+{
+  "id": "Google Search--30",
+  "bucket": "Google Search",
+  "web_name": "Google Search",
+  "ques": "Find the current number one artist on the Spotify Global Top 50 chart and list his/her top 10 songs as of now.",
+  "web": "https://www.google.com/",
+  "answer": "The current #1 artist on the Spotify Global Top 50 is Olivia Rodrigo (her song \"stupid song\" is #1). Her top 10 songs: 1) drop dead (297M plays), 2) the cure (170M), 3) stupid song (87M), 4) honeybee (59M), 5) maggots for brains (47M), 6) drivers license, 7) good 4 u, 8) vampire, 9) deja vu, 10) traitor."
+}

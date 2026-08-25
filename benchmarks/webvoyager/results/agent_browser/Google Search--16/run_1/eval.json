@@ -1,0 +1,5 @@
+{
+  "id": "Google Search--16",
+  "verdict": "FAILURE",
+  "reason": "The screenshot shows only a third-party stats page with a subscriber count and no news, and the agent admits it never read the live Hot feed, so the required 'hottest news' part of the task was not achieved."
+}

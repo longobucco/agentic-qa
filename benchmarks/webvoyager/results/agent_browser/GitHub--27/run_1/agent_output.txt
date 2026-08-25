@@ -1,0 +1,10 @@
+I found a Ruby repository on GitHub meeting all the criteria.
+
+**Homebrew/homebrew-cask**
+- **Language:** Ruby (99.7%)
+- **Stars:** 22.1k (≥ 1000 ✓)
+- **Last updated:** latest commit 8 minutes ago — well within the past 3 days ✓
+
+I located it by searching GitHub with the query `language:Ruby stars:>=1000 pushed:>2026-06-23` sorted by recently updated (which returned 125 matching repositories), then opened the top result to verify the language, star count, and recent activity.
+
+ANSWER: Homebrew/homebrew-cask — a Ruby repository with 22.1k stars, last updated ~8 minutes ago (within the past 3 days).

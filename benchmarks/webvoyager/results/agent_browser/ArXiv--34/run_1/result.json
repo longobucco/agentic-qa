@@ -1,0 +1,8 @@
+{
+  "id": "ArXiv--34",
+  "bucket": "ArXiv",
+  "web_name": "ArXiv",
+  "ques": "Search for the most recent paper related to non-commutative geometry submitted by an author with the first name John. Provide the title and the abstract.",
+  "web": "https://arxiv.org/",
+  "answer": "Title: \"Fuzzy Geometries with an Internal Space\" (arXiv:2604.19549, by John W. Barrett and Joseph Burridge; submitted 21 Apr 2026). Abstract: \"The product of a non-commutative matrix spectral triple with a simple two-dimensional internal space is considered. This is interpreted as a non-commutative spacetime that contains one charged Dirac fermion and its antiparticle. The inner fluctuations of a vacuum Dirac operator are calculated, using the standard technique of Connes' one-forms. This results in the non-commutative analogue of a gauge field, as expected, and also fluctuations of the spacetime geometry. In addition, the fluctuations include a derivative operator that depends on the particle charge. The integral over the fermions in the model is calculated, leading to some novel induced bosonic terms.\""
+}

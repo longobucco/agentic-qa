@@ -1,0 +1,5 @@
+{
+  "id": "Cambridge Dictionary--12",
+  "verdict": "FAILURE",
+  "reason": "Both screenshots show the agent stuck on a Cloudflare human-verification page, never reaching the Cambridge entry, so none of the required pronunciation, definition, or sample sentence for 'resilience' were retrieved or shown."
+}

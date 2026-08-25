@@ -1,0 +1,8 @@
+{
+  "id": "Wolfram Alpha--14",
+  "bucket": "Wolfram Alpha",
+  "web_name": "Wolfram Alpha",
+  "ques": "Compare the total Calories: whopper vs baconator vs big mac. Assume that each serving of food is 300g.",
+  "web": "https://www.wolframalpha.com/",
+  "answer": "At 300 g per serving \u2014 Whopper \u2248 657 Cal, Baconator \u2248 902 Cal, Big Mac \u2248 730 Cal. The Baconator is highest, then the Big Mac, and the Whopper is the lowest."
+}

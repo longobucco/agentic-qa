@@ -1,0 +1,8 @@
+{
+  "id": "Allrecipes--1",
+  "bucket": "Allrecipes",
+  "web_name": "Allrecipes",
+  "ques": "Find a recipe for a vegetarian lasagna that has at least a four-star rating and uses zucchini.",
+  "web": "https://www.allrecipes.com/",
+  "answer": "Unable to complete \u2014 allrecipes.com is blocking the container's IP with a \"People Inc access issue\" page on all URLs (homepage, search, and recipe pages), so no vegetarian zucchini lasagna recipe or its rating could be accessed."
+}

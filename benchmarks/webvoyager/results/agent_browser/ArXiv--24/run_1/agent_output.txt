@@ -1,0 +1,10 @@
+The task is complete.
+
+**Most recent paper related to "graph neural networks" on ArXiv:**
+- **Title:** "Graph Neural Networks Applications Across Domains: All Insights You Need"
+- **arXiv ID:** 2606.27202 (submitted 25 June 2026, the newest by announcement date)
+- **First author:** Abderaouf Bahi (email: a.bahi@univ-eltarf.dz)
+
+The affiliation, found in the PDF's footnote, is: **Computer Science and Applied Mathematics Laboratory (LIMA), Faculty of Science and Technology, Chadli Bendjedid University, El Tarf 36000, Algeria.**
+
+ANSWER: The most recent ArXiv paper on graph neural networks is "Graph Neural Networks Applications Across Domains: All Insights You Need" (arXiv:2606.27202, submitted 25 June 2026). Its first author, Abderaouf Bahi, is affiliated with the Computer Science and Applied Mathematics Laboratory (LIMA), Faculty of Science and Technology, Chadli Bendjedid University, El Tarf 36000, Algeria.

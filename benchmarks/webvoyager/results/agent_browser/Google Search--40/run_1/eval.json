@@ -1,0 +1,5 @@
+{
+  "id": "Google Search--40",
+  "verdict": "FAILURE",
+  "reason": "Every screenshot including final.png shows only Google's 'unusual traffic' reCAPTCHA block page; the elevation was never looked up via Google Search as the task required."
+}

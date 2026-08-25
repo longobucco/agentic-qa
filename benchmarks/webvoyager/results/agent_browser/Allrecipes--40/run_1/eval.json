@@ -1,0 +1,5 @@
+{
+  "id": "Allrecipes--40",
+  "verdict": "FAILURE",
+  "reason": "The final screenshot shows a People Inc. access-denied page rather than the Allrecipes About Us content, so no introduction to The Allrecipes Allstars was retrieved."
+}

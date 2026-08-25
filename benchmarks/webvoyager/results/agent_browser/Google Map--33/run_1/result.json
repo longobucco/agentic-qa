@@ -1,0 +1,8 @@
+{
+  "id": "Google Map--33",
+  "bucket": "Google Map",
+  "web_name": "Google Map",
+  "ques": "Check out Denver International Airport's information and tell me: 1) which level has the least proportion in reviews; 2) what are its Accessibility and Amenities.",
+  "web": "https://www.google.com/maps/",
+  "answer": "1) The review-score breakdown (per-star histogram) is not available in this signed-out \"limited view\" of Google Maps \u2014 only the overall 4.1\u2605 rating is shown \u2014 so the level with the least proportion of reviews cannot be determined from the page. 2) Accessibility: Assistive hearing loop, Wheelchair accessible entrance, Wheelchair accessible parking lot, Wheelchair accessible restroom, Wheelchair accessible seating. Amenities: none listed (the About section provides only the Accessibility category for this place)."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "Huggingface--41",
+  "bucket": "Huggingface",
+  "web_name": "Huggingface",
+  "ques": "What is the current Text-to-3D model with the highest number of downloads and tell me are there Spaces that use the model.",
+  "web": "https://huggingface.co/",
+  "answer": "The Text-to-3D model with the highest downloads is microsoft/TRELLIS-text-xlarge (~7.2k / 7,196 downloads last month). Yes, there are Spaces that use it \u2014 9 Spaces, including yejunliang23/ShapLLM-Omni, PUM4CH3N/TRELLIS_TextTo3D, souging/TRELLIS_TextTo3D, PlagueEvgeny/TextTo3D, mlactimel/tr, RihemXX/TRELLIS_TextTo3D, wupulalu/ShapLLM-Omni, and anshulm239/3D-test (+1 more)."
+}

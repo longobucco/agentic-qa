@@ -1,0 +1,12 @@
+I've now browsed the full arXiv merchandise store (hosted on Bonfire). The store offers several designs (arXiv Logo Shirt, arXiv baseball cap, arXiv Logo Mug, arXiv is Open Science, arXiv Morning Mug, arXiv Forever), but across all of them there are **6 distinct product types** of merchandise:
+
+1. **Printed Classic Baseball Cap** – $25.99
+2. **Premium Unisex Tee** (t-shirt) – $28.49
+3. **Premium Long Sleeve Tee** – $33.49
+4. **Midweight Pullover Hoodie** – $45.49
+5. **Coffee Mug** – $19.99
+6. **Large Coffee Mug** – $22.49
+
+These fall into 3 broad categories — headwear (cap), apparel (tee, long-sleeve, hoodie), and drinkware (regular and large mug). Final state captured to `/shots/final.png`.
+
+ANSWER: 6 different types of merchandise are available in the arXiv (Bonfire) store: a Printed Classic Baseball Cap, a Premium Unisex Tee, a Premium Long Sleeve Tee, a Midweight Pullover Hoodie, a Coffee Mug, and a Large Coffee Mug (i.e., a cap, three shirt styles, and two mug sizes — spanning headwear, apparel, and drinkware).

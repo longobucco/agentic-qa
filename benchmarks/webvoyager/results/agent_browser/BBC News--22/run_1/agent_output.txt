@@ -1,0 +1,13 @@
+I've completed the task. Here's a summary of what I found.
+
+**Top business story (BBC Business, lead headline):** "Oil price falls back to pre-Iran war levels"
+
+**What it's about:** Brent crude briefly dipped below ~$72.48/barrel — its level before the late-February US/Israel strikes on Iran — as traffic through the Strait of Hormuz gradually resumes following a US–Iran Memorandum of Understanding (signed 17 June) that opened a 60-day negotiation window and partially lifted sanctions on Iranian oil exports. Vessel transits are recovering (284 since 18 June) but remain below the pre-conflict norm.
+
+**Economic implications:**
+- **Lower energy/input costs:** Falling crude eases a key cost across the whole economy (transport, manufacturing, logistics, food), helping dampen inflationary pressure that had spiked during the conflict.
+- **Cheaper fuel for consumers:** The RAC expects UK petrol to fall below 150p/litre and diesel under 160p within a week or so; US regular gasoline has eased to ~$3.93/gallon from $4 in April — boosting household disposable income.
+- **Easier supply-chain flows:** Reopening the Strait of Hormuz (a critical chokepoint for oil, LNG and other goods) reduces shipping risk premiums and freight disruption, though hundreds of ships are still queued.
+- **Persistent risk premium:** The Economist Intelligence Unit warns the calm is fragile — any renewed tensions could quickly spike prices again, so markets retain a geopolitical risk premium and businesses face continued uncertainty in energy-cost planning.
+
+ANSWER: The current top BBC business story is "Oil price falls back to pre-Iran war levels" — Brent crude dropped below ~$72/barrel as Strait of Hormuz shipping resumes after a US–Iran de-escalation deal. Economic implications: lower energy/input costs ease inflation, cheaper petrol/diesel (UK petrol set to fall below 150p/litre; US gasoline down to ~$3.93/gal) boost consumer spending power, and restored shipping flows reduce supply-chain risk premiums — but analysts warn the relief is fragile and prices could spike again if tensions reignite.

@@ -1,0 +1,8 @@
+{
+  "id": "Allrecipes--28",
+  "bucket": "Allrecipes",
+  "web_name": "Allrecipes",
+  "ques": "On Allrecipes, find a vegan brownie recipe that has at least 40 reviews and a rating of 4.5 or higher. Include the list of ingredients, total prep and cook time, and a brief overview of the preparation steps.",
+  "web": "https://www.allrecipes.com/",
+  "answer": "Unable to complete \u2014 Allrecipes is blocking this environment (HTTP 402 \"access issue\" page on every URL, including the homepage, search, and recipe pages), so no vegan brownie recipe, rating, reviews, ingredients, times, or steps could be retrieved from the live site."
+}

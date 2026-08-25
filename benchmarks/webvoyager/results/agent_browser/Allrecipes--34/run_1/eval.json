@@ -1,0 +1,5 @@
+{
+  "id": "Allrecipes--34",
+  "verdict": "FAILURE",
+  "reason": "Both screenshots show only an Allrecipes/people.inc access-blocked page with no recipe, rating, review count, seasoning, or cooking-time information, so no part of the task was satisfied."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "GitHub--6",
+  "bucket": "GitHub",
+  "web_name": "GitHub",
+  "ques": "Search for an open-source project related to 'cryptocurrency wallet' updated in the past 30 days and provide the top three contributors.",
+  "web": "https://github.com/",
+  "answer": "Project: trustwallet/wallet-core (cross-platform cryptocurrency wallet library, last updated within the past 30 days). Top 3 contributors by commits \u2014 1) hewigovens (359), 2) satoshiotomakan (243), 3) optout21 (234)."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "ESPN--23",
+  "bucket": "ESPN",
+  "web_name": "ESPN",
+  "ques": "Find the result of the latest basketball game between the Miami Heat and the New York Knicks, including the final score and top rebounder from the match.",
+  "web": "https://www.espn.com/",
+  "answer": "In the latest Heat\u2013Knicks game (Dec 21, 2025, at Madison Square Garden), the New York Knicks beat the Miami Heat 132\u2013125. The top rebounder of the match was Miami's Kel'el Ware with 19 rebounds (he also scored a game-high 28 points)."
+}

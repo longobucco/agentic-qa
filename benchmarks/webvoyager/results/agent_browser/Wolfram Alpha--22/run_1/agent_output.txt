@@ -1,0 +1,6 @@
+The task is complete. Wolfram Alpha computed the area of a regular hexagon with side length 7 cm.
+
+- **Input interpretation:** regular hexagon | edge length 7 cm | area
+- **Result:** (147√3)/2 cm² ≈ 127.306 cm²
+
+ANSWER: The area of a regular hexagon with side length 7 cm is (147√3)/2 cm² ≈ 127.306 cm² (about 127.31 cm²).

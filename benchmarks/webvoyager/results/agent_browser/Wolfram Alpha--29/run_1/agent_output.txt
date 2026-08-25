@@ -1,0 +1,3 @@
+The task is complete. I successfully navigated to WolframAlpha, entered "cat curve" as the query, and WolframAlpha computed and rendered the plot of the cat curve — a popular parametric curve. The results page displays the Input interpretation, the **Plot** (the cat-shaped curve), the alternate name ("kitty curve"), associated species (domestic cat), the parametric equations, and properties. Screenshots were saved to `/shots/step_1.png`, `/shots/step_2.png`, and `/shots/final.png`.
+
+ANSWER: Created a plot of the "cat curve" on Wolfram|Alpha by entering "cat curve" — it rendered the cat-shaped parametric plot along with its parametric equations (x(t), y(t) as sums of sines/cosines), alternate name "kitty curve", and curve properties.

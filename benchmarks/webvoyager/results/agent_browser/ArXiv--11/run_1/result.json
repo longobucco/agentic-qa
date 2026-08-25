@@ -1,0 +1,8 @@
+{
+  "id": "ArXiv--11",
+  "bucket": "ArXiv",
+  "web_name": "ArXiv",
+  "ques": "For Non-English submissions, do I need to provide a multi-language abstract, if need, answer the separator between the multiple abstracts.",
+  "web": "https://arxiv.org/",
+  "answer": "Yes \u2014 for non-English submissions you must include an English version of the abstract alongside the other-language abstract. The separator between the multiple abstracts is a line of five dashes \"-----\" (with a blank line before and after it)."
+}

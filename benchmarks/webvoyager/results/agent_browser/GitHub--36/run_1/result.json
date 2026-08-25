@@ -1,0 +1,8 @@
+{
+  "id": "GitHub--36",
+  "bucket": "GitHub",
+  "web_name": "GitHub",
+  "ques": "Identify a new open-source project on GitHub related to 'AI agriculture' that created in 2022, and note its main programming language and description.",
+  "web": "https://github.com/",
+  "answer": "microsoft/farmvibes-ai \u2014 a new open-source GitHub project created in 2022. Main language: Jupyter Notebook. Description: \"FarmVibes.AI: Multi-Modal GeoSpatial ML Models for Agriculture and Sustainability\" (fuses satellite, drone, and weather data to build geospatial ML insights for agriculture/farming and sustainability)."
+}

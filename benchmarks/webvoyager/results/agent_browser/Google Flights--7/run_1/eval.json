@@ -1,0 +1,5 @@
+{
+  "id": "Google Flights--7",
+  "verdict": "SUCCESS",
+  "reason": "The screenshot confirms the correct search (round-trip, First class, PHX\u2192MIA, Jul 7\u201310) with the cheapest First Class fare at $1,572, validating the agent's accurate conclusion that no fare is at or under $1,320."
+}

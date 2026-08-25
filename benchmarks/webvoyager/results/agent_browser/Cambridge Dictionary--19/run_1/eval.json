@@ -1,0 +1,5 @@
+{
+  "id": "Cambridge Dictionary--19",
+  "verdict": "FAILURE",
+  "reason": "The agent was stuck on the Cloudflare human-verification page through the final screenshot, never reached a translation, and produced no answer identifying the translation provider."
+}

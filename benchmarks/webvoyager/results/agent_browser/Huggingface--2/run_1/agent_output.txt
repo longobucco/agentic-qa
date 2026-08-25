@@ -1,0 +1,8 @@
+I completed the task. On Hugging Face's Translation models page sorted by Trending, the three most popular newly-released models — all part of Tencent's Hunyuan-MT2 family, Apache-2.0 licensed (open-source), supporting 33 languages, and all "Updated about 1 month ago" — are clearly at the top.
+
+The three new + popular open-source NLP translation models released in the past month:
+1. **tencent/Hy-MT2-1.8B** — ~24.1k downloads, 1.13k likes
+2. **tencent/Hy-MT2-7B** — ~24.5k downloads, 189 likes
+3. **tencent/Hy-MT2-30B-A3B** (MoE) — ~7.91k downloads, 466 likes
+
+ANSWER: The three new, popular open-source (Apache-2.0) NLP translation models released in the past month are Tencent's Hunyuan-MT2 family: tencent/Hy-MT2-1.8B (24.1k downloads, 1.13k likes), tencent/Hy-MT2-7B (24.5k downloads, 189 likes), and tencent/Hy-MT2-30B-A3B (7.91k downloads, 466 likes) — all top-trending Translation models supporting 33 languages.

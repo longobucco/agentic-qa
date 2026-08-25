@@ -1,0 +1,3 @@
+I found a sentiment analysis NLP model on Hugging Face with a last update within March 2023, verified both via the displayed listing card ("Text Classification • Updated Mar 22, 2023") and the HF API (`lastModified: 2023-03-22`, `pipeline_tag: text-classification`).
+
+ANSWER: Jean-Baptiste/roberta-large-financial-news-sentiment-en — a RoBERTa-large NLP sentiment-analysis (text-classification) model, last updated Mar 22, 2023.

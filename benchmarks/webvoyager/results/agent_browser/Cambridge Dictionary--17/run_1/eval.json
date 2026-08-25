@@ -1,0 +1,5 @@
+{
+  "id": "Cambridge Dictionary--17",
+  "verdict": "FAILURE",
+  "reason": "The screenshot shows only one definition for 'unblemished' (immediately followed by synonyms), contradicting the agent's answer of 2; the claimed second 'skin' meaning is not visible on the page."
+}

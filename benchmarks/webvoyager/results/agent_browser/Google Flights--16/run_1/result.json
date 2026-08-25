@@ -1,0 +1,8 @@
+{
+  "id": "Google Flights--16",
+  "bucket": "Google Flights",
+  "web_name": "Google Flights",
+  "ques": "Find the cheapest one-way flight from New York to Tokyo departing on January 15, 2027, and provide the airline and total flight duration.",
+  "web": "https://www.google.com/travel/flights/",
+  "answer": "The cheapest one-way New York \u2192 Tokyo flight on Jan 15, 2027 is \u20ac579 on WestJet, with a total flight duration of 31 hr 55 min (1 stop, via Calgary)."
+}

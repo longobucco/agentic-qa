@@ -1,0 +1,7 @@
+The most recent NFL game broadcast on ESPN is **Super Bowl LX**, played on **Sunday, February 8, 2026** at Levi's Stadium in Santa Clara, CA. (The upcoming 2026 regular season doesn't kick off until September 2026, so this is the most recent completed game.)
+
+Final score (marked FINAL):
+- **Seattle Seahawks 29** — quarters: 3, 6, 3, 17
+- **New England Patriots 13** — quarters: 0, 0, 0, 13
+
+ANSWER: Super Bowl LX (Feb 8, 2026): Seattle Seahawks 29, New England Patriots 13 — the Seahawks won.

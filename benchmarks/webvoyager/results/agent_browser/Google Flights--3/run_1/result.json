@@ -1,0 +1,8 @@
+{
+  "id": "Google Flights--3",
+  "bucket": "Google Flights",
+  "web_name": "Google Flights",
+  "ques": "Search for the one-way flight available from Calgary to New York on Jan. 1st with the lowest carbon dioxide emissions.",
+  "web": "https://www.google.com/travel/flights/",
+  "answer": "The one-way flight with the lowest carbon dioxide emissions is the WestJet (Delta) nonstop from Calgary (YYC) to New York (JFK) on Fri, Jan 1, departing 9:50 AM and arriving 3:36 PM (3 hr 46 min), at 222 kg CO\u2082e (\u221232% vs. typical), priced from \u20ac176."
+}
