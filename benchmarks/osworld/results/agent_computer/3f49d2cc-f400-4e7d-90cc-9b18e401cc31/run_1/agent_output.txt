@@ -1,0 +1,5 @@
+The Unified Folders (unified inbox) view is now enabled and active. The folder pane displays a single "Unified Folders" section with a combined **Inbox**, Drafts, Templates, Sent, Archives, Junk, and Trash — so all accounts' emails now appear together in one place. The tab title also confirms "Inbox - Unified Folders".
+
+To set this up yourself: click the **⋯ (more options)** button at the top of the folder pane → **Folder Modes** → check **Unified Folders**.
+
+ANSWER: DONE

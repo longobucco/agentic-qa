@@ -1,0 +1,6 @@
+Done. I captured a genuine frame from the Interstellar trailer using VLC's headless scene filter (VLC refuses to run as root, so I ran it under a non-root account), and saved it as `interstellar.png` on the Desktop:
+
+- Location: `/home/user/Desktop/interstellar.png` (same Desktop where the video lives)
+- Valid PNG, native resolution 1920×1090, RGB, real scene content (not a blank frame)
+
+ANSWER: DONE

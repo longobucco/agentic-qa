@@ -1,0 +1,59 @@
+{
+  "id": "b8adbc24-cef2-4b15-99d5-ecbe7ff445eb",
+  "bucket": "libreoffice_impress",
+  "instruction": "Go to the second slide and name its title as \"Online Shopping\" with the same color, position and font size as the previous title.",
+  "answer": "DONE",
+  "eval_state": "<binary:318564 bytes at 189_4.pptx>",
+  "provenance": {
+    "task_sha256": "dc853382a9f78c6ebef27d71b2ca41bce85f0d12a3d66aba9c6530a24638b883",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-4a59f8fb-bf2a-4b19-9e98-3a7b85bdc618.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-14T20:25:48.518189+00:00",
+    "finished_at": "2026-08-14T20:41:04.756433+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 132,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 3.6905613,
+  "agent_input_tokens": 151,
+  "agent_output_tokens": 27521,
+  "agent_cache_read_tokens": 9554766,
+  "agent_cache_creation_tokens": 108554,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3716,
+      "outputTokens": 14,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0037860000000000003,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 151,
+      "outputTokens": 27521,
+      "cacheReadInputTokens": 9554766,
+      "cacheCreationInputTokens": 108554,
+      "webSearchRequests": 0,
+      "costUSD": 3.6867753,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 914494,
+  "agent_duration_api_ms": 845384,
+  "agent_session_id": "f7975b82-2db0-4977-a8e9-869463be0b40",
+  "agent_uuid": "fd4547c0-69b7-4aa3-978d-6fb7f14babda"
+}

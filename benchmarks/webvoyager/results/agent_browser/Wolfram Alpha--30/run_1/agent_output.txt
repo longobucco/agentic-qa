@@ -1,0 +1,11 @@
+The task is complete. Wolfram Alpha computed the estimated time to sunburn for all six skin types when exposed to the sun at 1:00 pm with SPF 1 in Brazil (Brasília, location confirmed as "Brasília, Plano Piloto, Brazil").
+
+Results (Typical time to sunburn, SPF 1, 1:00 pm):
+- Skin type I: 26 min
+- Skin type II: 33 min
+- Skin type III: 50 min
+- Skin type IV: 1 h 10 min
+- Skin type V: 1 h 58 min
+- Skin type VI: sunburn unlikely
+
+ANSWER: At 1:00 pm with SPF 1 in Brazil (Brasília), the estimated time to sunburn is: skin type I = 26 min, skin type II = 33 min, skin type III = 50 min, skin type IV = 1 h 10 min, skin type V = 1 h 58 min, and skin type VI = sunburn unlikely (UV exposure category: high).

@@ -1,0 +1,5 @@
+{
+  "id": "BBC News--27",
+  "verdict": "FAILURE",
+  "reason": "The end-state screenshots show only the BBC homepage blocked by a cookie-consent popup, with no archaeology article visible, so the claimed summary cannot be verified from the visual evidence."
+}

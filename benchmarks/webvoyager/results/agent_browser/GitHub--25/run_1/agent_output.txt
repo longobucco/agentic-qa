@@ -1,0 +1,7 @@
+Task complete. I searched GitHub for `virtual reality stars:>=200 pushed:>2026-06-16` (last 10 days from today, 2026-06-26) and opened the top match.
+
+**Repository: `aframevr/aframe`** — 17.6k stars, updated 2 days ago (meets all criteria: VR-related, ≥200 stars, updated within the last 10 days).
+
+**Main objective:** A-Frame is an open-source **web framework for building browser-based 3D, AR, and VR experiences**. Its goal is to make virtual reality simple — it handles the 3D and WebXR boilerplate needed to run across platforms (mobile, desktop, and all WebXR-capable headsets) by just dropping in an `<a-scene>` HTML tag. Built as a thin, high-performance layer on top of three.js, it provides a declarative, composable **entity-component architecture** that lets developers create cross-platform VR/AR apps from plain HTML while retaining full access to JavaScript, the DOM, three.js, WebXR, and WebGL.
+
+ANSWER: The top match is aframevr/aframe (17.6k stars, updated 2 days ago). A-Frame is an open-source web framework for building browser-based 3D, AR, and VR experiences. Its main objective is to make VR development simple by handling the 3D/WebXR boilerplate so developers can build cross-platform experiences (mobile, desktop, and all WebXR headsets) using a declarative, entity-component HTML structure built on top of three.js.

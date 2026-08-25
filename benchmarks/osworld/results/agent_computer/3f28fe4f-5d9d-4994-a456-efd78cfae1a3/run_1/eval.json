@@ -1,0 +1,8 @@
+{
+  "id": "3f28fe4f-5d9d-4994-a456-efd78cfae1a3",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official check_thunderbird_prefs -> 0.00",
+  "source": "official",
+  "gold_sha256": {}
+}

@@ -1,0 +1,10 @@
+{
+  "id": "6a33f9b9-0a56-4844-9c3f-96ec3ffb3ba2",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official check_highlighted_words -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "sample-recruitment-phone-script_Gold.odt": "a2bbb4d2c48cffb539511301d84ac8aef95100e977f681119f219215860e1c2d"
+  }
+}

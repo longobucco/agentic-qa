@@ -1,0 +1,59 @@
+{
+  "id": "12382c62-0cd1-4bf2-bdc8-1d20bf9b2371",
+  "bucket": "libreoffice_calc",
+  "instruction": "Create a clustered column chart showing the Sales and COGS data for each week in a new sheet named \"Sheet2\". Set the chart title as \"Sales & COGS\".",
+  "answer": "DONE",
+  "eval_state": "<binary:9608 bytes at WeeklySales.xlsx>",
+  "provenance": {
+    "task_sha256": "b1b45564daadae0ae5507bfde182d20a685efd5e2d8023c982b7f481200d94fd",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-60069570-3ddb-4949-8547-5cfa2972ff43.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-19T21:22:53.530693+00:00",
+    "finished_at": "2026-08-19T21:30:06.663795+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 40,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 1.5677540000000003,
+  "agent_input_tokens": 4138,
+  "agent_output_tokens": 17640,
+  "agent_cache_read_tokens": 1496661,
+  "agent_cache_creation_tokens": 56426,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 4976,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.005071,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 4138,
+      "outputTokens": 17640,
+      "cacheReadInputTokens": 1496661,
+      "cacheCreationInputTokens": 56426,
+      "webSearchRequests": 0,
+      "costUSD": 1.5626830000000003,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 430553,
+  "agent_duration_api_ms": 277659,
+  "agent_session_id": "56471e9a-50a4-4f35-827d-67b71cf073d8",
+  "agent_uuid": "99fc2b23-d5ec-4a59-beb3-7b212bd72e26"
+}

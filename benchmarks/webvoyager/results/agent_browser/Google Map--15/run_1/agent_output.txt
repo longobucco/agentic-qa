@@ -1,0 +1,11 @@
+## Summary
+
+I searched Google Maps for daytime-only parking near Madison Square Garden and reviewed the candidates. MSG is at 4 Penn Plaza (7th Ave, W 31st–33rd St). Almost every nearby garage is **open 24 hours** (Icon Parking @ One Penn Plaza, MSG/Meyers Parking, Metropolis, City Parking, Garden Lots, LAZ/Edison, etc.). The **only nearby option with restricted, daytime-style hours** — i.e. not 24h — is the **Quik Park / Icon – QUIK PARK** garage just ~3 blocks south:
+
+- **Icon – QUIK PARK**, 384 8th Ave (corner of W 29th–30th St) — covered, wheelchair-accessible, **open 7:00 and closes 22:00** (daytime/evening only, not overnight). Same facility is also listed as **Quik Park, 253 W 29th St**, which closes at midnight. Phone +1 212-947-5805, iconparking.com.
+
+**What people are saying:** The Quik Park operation at this location is rated very highly — **4.7★ across 20 reviews** — indicating customers are generally very satisfied (it's the valet "Quik Park" brand inside the garage). The broader **Icon – QUIK PARK** facility carries a more moderate **4.0★**, suggesting overall favorable but somewhat mixed experiences. Note: I was in Google Maps' signed-out "limited view," which displays star ratings but does not render the individual written review text (that's gated behind sign-in), so this sentiment is based on the aggregate ratings rather than direct quotes.
+
+Screenshots saved: `/shots/step_1.png` (results list) and `/shots/final.png` (Icon – QUIK PARK detail with hours and the 4.7★/20-review Quik Park rating).
+
+ANSWER: The nearest daytime-only (non‑24h) parking to Madison Square Garden is the Quik Park / Icon – QUIK PARK garage at 384 8th Ave (also listed as 253 W 29th St), ~3 blocks south; it opens ~7:00 and closes in the evening (Icon listing 22:00; Quik Park midnight) while surrounding garages are 24h. Sentiment is positive: the Quik Park operation rates 4.7★ from 20 reviews and the overall Icon – QUIK PARK facility 4.0★ (written review text wasn't viewable in Maps' signed-out limited view).

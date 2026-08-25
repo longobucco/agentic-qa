@@ -1,0 +1,59 @@
+{
+  "id": "6054afcb-5bab-4702-90a0-b259b5d3217c",
+  "bucket": "libreoffice calc",
+  "instruction": "Some data are missed by now and are filled by 'N/A' temporarily. Please hide them in the table for now. Do not delete any cells and filter is not needed.",
+  "answer": "DONE",
+  "eval_state": "<binary:6773 bytes at Date_Budget_Variance_HideNA.xlsx>",
+  "provenance": {
+    "task_sha256": "19ed1793d0989db668d6f1e5a355a8c293705ff838b5f5276c0631f5eb7bb287",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-7845be95-1dc3-4e12-ba73-e4b1ccba8e8e.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-24T23:22:37.707051+00:00",
+    "finished_at": "2026-08-24T23:27:01.505209+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 41,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.7786578999999999,
+  "agent_input_tokens": 48,
+  "agent_output_tokens": 10432,
+  "agent_cache_read_tokens": 1551808,
+  "agent_cache_creation_tokens": 41250,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1729,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001804,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 48,
+      "outputTokens": 10432,
+      "cacheReadInputTokens": 1551808,
+      "cacheCreationInputTokens": 41250,
+      "webSearchRequests": 0,
+      "costUSD": 0.7768538999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 260664,
+  "agent_duration_api_ms": 207400,
+  "agent_session_id": "c4ec27ca-b631-4d71-b80e-b1d908f0fe8b",
+  "agent_uuid": "dd8b202a-b2c1-4401-9ffc-76848ec2ac8b"
+}

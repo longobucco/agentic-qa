@@ -1,0 +1,10 @@
+The Orchis theme is now installed and applied.
+
+I completed the task:
+1. Downloaded the Orchis theme (the same project distributed on gnome-look.org, from its official source).
+2. Installed it into `/usr/share/themes` — the prebuilt release provided proper `gtk.css` for GTK 2/3/4, gnome-shell, xfwm4, etc. (the source `install.sh` alone couldn't build CSS because `sassc` was absent, so I used the bundled prebuilt release).
+3. Applied it by setting `org.gnome.desktop.interface gtk-theme` to `Orchis` (and the window-manager theme too).
+
+Verified: `gtk-theme` now returns `'Orchis'` and `/usr/share/themes/Orchis/gtk-3.0/gtk.css` exists.
+
+ANSWER: DONE

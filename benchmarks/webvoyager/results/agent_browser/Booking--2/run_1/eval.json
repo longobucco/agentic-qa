@@ -1,0 +1,5 @@
+{
+  "id": "Booking--2",
+  "verdict": "FAILURE",
+  "reason": "The final screenshot shows an Ohio landing page with unselected dates (calendar on June/July 2026) and default occupancy of 2 adults/1 room rather than the required Dec 20\u201323 / 3 adults / 2 rooms, no hotel was found, and the agent hit max turns producing no answer."
+}

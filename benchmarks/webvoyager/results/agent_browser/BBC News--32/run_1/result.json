@@ -1,0 +1,8 @@
+{
+  "id": "BBC News--32",
+  "bucket": "BBC News",
+  "web_name": "BBC News",
+  "ques": "Find the artificial intelligence section, what is the top headline at this time, and which companies are involved?",
+  "web": "https://www.bbc.com/news/",
+  "answer": "In BBC News' Artificial Intelligence section, the top headline is \"Asia stock markets slide as tech shares slump\"; the companies involved are Apple, Microsoft, and SoftBank (with analysts from Alpha Pacific Group and Kyoto University Innovation Capital quoted)."
+}

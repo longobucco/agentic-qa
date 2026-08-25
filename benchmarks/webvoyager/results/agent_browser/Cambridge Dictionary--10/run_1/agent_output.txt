@@ -1,0 +1,12 @@
+I was unable to complete the lookup on the live site. After loading `dictionary.cambridge.org`, every attempt to navigate to the word's page (via search or direct URL `/dictionary/english/impeccable`) is intercepted by a **Cloudflare "Verify you are human" Turnstile challenge**. Clicking the verification checkbox repeatedly cycles back to "Performing security verification" (a new Ray ID each time), and waiting up to 30 seconds untouched does not auto-clear it. The headless Chromium is being flagged as a bot, and I won't attempt to evade that detection by deceptive means.
+
+The screenshots (`step_1`, `step_2`, `final`) document the homepage, the search entry, and the persistent challenge wall.
+
+For reference, the dictionary entry for **impeccable** is:
+- **Pronunciation:** UK /ɪmˈpek.ə.bəl/, US /ɪmˈpek.ə.bəl/
+- **Definition:** perfect, with no mistakes or faults
+- **Example sentence:** "He had impeccable manners." (also "impeccable taste in clothes")
+
+Note: I could not verify these from the live Cambridge page itself due to the Cloudflare block — they reflect the standard Cambridge Dictionary entry from knowledge, not a confirmed on-screen reading.
+
+ANSWER: Could not complete on the live site — dictionary.cambridge.org is blocked by a Cloudflare bot-verification challenge that the headless browser cannot pass. (For reference, "impeccable" /ɪmˈpek.ə.bəl/ means "perfect, with no mistakes or faults", e.g. "He had impeccable manners.")

@@ -1,0 +1,25 @@
+[
+  {
+    "id": "7ae48c60-f143-4119-b659-15b8f485eb9a",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-13T13:22:47+0200"
+  },
+  {
+    "id": "7ae48c60-f143-4119-b659-15b8f485eb9a",
+    "run": 1,
+    "outcome": "INFRA_FLAKE",
+    "error_type": "FileNotFoundError",
+    "error": "[Errno 2] No such file or directory: 'claude'",
+    "elapsed_s": 11.1,
+    "at": "2026-08-13T15:46:12+0200"
+  },
+  {
+    "id": "7ae48c60-f143-4119-b659-15b8f485eb9a",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-14T07:59:40+0200"
+  }
+]

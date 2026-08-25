@@ -1,0 +1,8 @@
+{
+  "id": "Booking--16",
+  "bucket": "Booking",
+  "web_name": "Booking",
+  "ques": "Look for a hotel in Paris with a user rating of 9 or higher and available for a 5-night stay starting January 15, 2027. The hotel should also offer free Wi-Fi and breakfast included in the price. Provide the name, location, and price per night.",
+  "web": "https://www.booking.com/",
+  "answer": ""
+}

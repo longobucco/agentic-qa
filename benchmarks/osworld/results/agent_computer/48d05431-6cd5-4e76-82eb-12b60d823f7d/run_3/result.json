@@ -1,0 +1,59 @@
+{
+  "id": "48d05431-6cd5-4e76-82eb-12b60d823f7d",
+  "bucket": "os",
+  "instruction": "When I ran \"conda install datasets\" in terminal, I got \"conda: command not found\". Could you help me solve it so that I can use conda command right away?",
+  "answer": "DONE",
+  "eval_state": "",
+  "provenance": {
+    "task_sha256": "9dd3d1c5baec63197c2e35b62898c05df8b56172207b884a9a128da9a52ac8a8",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-eb9b6d82-0265-45b6-9750-0b76c33ae004.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-24T22:51:56.778780+00:00",
+    "finished_at": "2026-08-24T22:53:40.860896+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 14,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.2107344,
+  "agent_input_tokens": 17,
+  "agent_output_tokens": 3965,
+  "agent_cache_read_tokens": 336013,
+  "agent_cache_creation_tokens": 12962,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1727,
+      "outputTokens": 14,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001797,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 17,
+      "outputTokens": 3965,
+      "cacheReadInputTokens": 336013,
+      "cacheCreationInputTokens": 12962,
+      "webSearchRequests": 0,
+      "costUSD": 0.2089374,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 100542,
+  "agent_duration_api_ms": 84761,
+  "agent_session_id": "9254e13f-ecdc-499a-acc8-073b48b8925e",
+  "agent_uuid": "863295ed-95a2-450e-8866-09a986e26e08"
+}

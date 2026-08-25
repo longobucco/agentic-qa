@@ -1,0 +1,5 @@
+{
+  "id": "Cambridge Dictionary--10",
+  "verdict": "FAILURE",
+  "reason": "The final screenshot shows a Cloudflare bot-verification block page rather than the dictionary entry, so the definition, pronunciation, and example sentence for 'impeccable' were never retrieved or displayed."
+}

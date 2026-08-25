@@ -8,6 +8,11 @@ venv/
 logs
 *.log
 npm-debug.log*
+
+# Playwright MCP scratch output (console logs, page accessibility-tree snapshots) -- unrelated
+# to any benchmark, swept into results commits via broad `git add` since 2026-08-13 (first
+# commit: 89e0cbf on os-world). Untracked 2026-08-23.
+.playwright-mcp/
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
@@ -155,7 +160,35 @@ benchmarks/webvoyager/alumnium/vendor/
 **/.env
 benchmarks/browsecomp/data/browsecomp.jsonl
 benchmarks/webarena/data/webarena.jsonl
+benchmarks/osworld/data/osworld_*.jsonl
 
 # WebArena Daytona scratch / runtime artifacts (provisioning capability probes, live sandbox id)
 benchmarks/webarena/env/_probe*.py
 benchmarks/webarena/env/_last_sandbox.txt
+
+# Thesis research notes -- never committed, local only
+benchmarks/osworld/docs/
+benchmarks/osuniverse/data/osuniverse_tasks.jsonl
+
+# OSWorld per-run results: track only what analysis/resume actually reads. Everything else in a
+# run_N/ dir is a raw artifact _capture_eval_state saves purely for ad-hoc human debugging --
+# never read back by scoring (official eval scores live against the sandbox; the offline
+# fallback reads eval_state, a string already inlined in result.json) -- found live 2026-08-16
+# to be ~220MB of ~293MB of committed results (pptx/docx/xlsx/gif duplicated per run). An
+# allowlist here (not an extension blocklist) so a future task's artifact type doesn't quietly
+# repeat the bloat. Still written locally (kept out of git only) so it's there for a debugging
+# session right after a run; final.png stays tracked -- cheap (~145KB avg) and high diagnostic
+# value on its own.
+benchmarks/osworld/results/agent_computer/*/run_*/*
+!benchmarks/osworld/results/agent_computer/*/run_*/result.json
+!benchmarks/osworld/results/agent_computer/*/run_*/eval.json
+!benchmarks/osworld/results/agent_computer/*/run_*/infra_error.json
+!benchmarks/osworld/results/agent_computer/*/run_*/agent_output.txt
+!benchmarks/osworld/results/agent_computer/*/run_*/final.png
+
+# conversation.jsonl (2026-08-24): a copy of Claude Code's own full session transcript --
+# every turn and tool call, not just the final answer -- saved per run for deep debugging.
+# Already excluded by the allowlist above (not in the "!" list); named explicitly here too
+# since it can run several MB per run and is the most likely accidental-commit candidate of
+# the bunch.
+benchmarks/osworld/results/agent_computer/*/run_*/conversation.jsonl

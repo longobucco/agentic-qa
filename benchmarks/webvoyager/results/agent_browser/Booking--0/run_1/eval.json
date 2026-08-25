@@ -1,0 +1,5 @@
+{
+  "id": "Booking--0",
+  "verdict": "FAILURE",
+  "reason": "The final screenshots show only a Mexico destination overview page with travel tips and reviews \u2014 no hotel search results, prices, or deals are visible, and none of the specific hotels claimed in the response appear in any screenshot."
+}

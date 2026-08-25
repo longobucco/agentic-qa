@@ -1,0 +1,59 @@
+{
+  "id": "58d3eeeb-e9d0-499f-962e-fd0db2a744d8",
+  "bucket": "gimp",
+  "instruction": "Based on the image above, translate the hidden audio conversation into French.",
+  "answer": "FAIL",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "fdfd806afccbdb308d1fc5f0e96bda0df16556912963841f859a2006308686b8",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-ff07734f-7b5e-436f-afc6-2e56f64eb430.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-16T12:10:35.402374+00:00",
+    "finished_at": "2026-08-16T12:11:56.609036+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 8,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.11756644999999999,
+  "agent_input_tokens": 18,
+  "agent_output_tokens": 2303,
+  "agent_cache_read_tokens": 189224,
+  "agent_cache_creation_tokens": 6191,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2909,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002984,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 18,
+      "outputTokens": 2303,
+      "cacheReadInputTokens": 189224,
+      "cacheCreationInputTokens": 6191,
+      "webSearchRequests": 0,
+      "costUSD": 0.11458244999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 79688,
+  "agent_duration_api_ms": 79989,
+  "agent_session_id": "919e8063-f6c5-4d32-ab41-9fdc6f7ea77f",
+  "agent_uuid": "021bf52e-98bd-4f3d-8c36-3220c8cd29bb"
+}

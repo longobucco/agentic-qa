@@ -1,0 +1,59 @@
+{
+  "id": "4172ea6e-6b77-4edb-a9cc-c0014bd1603b",
+  "bucket": "libreoffice_calc",
+  "instruction": "I want to work out the maturity date for all the loans. Please do it for me in a new column with header \"Maturity Date\".",
+  "answer": "DONE",
+  "eval_state": "<binary:9001 bytes at MaturityDate.xlsx>",
+  "provenance": {
+    "task_sha256": "74a7c76e97b5d7addbd8cea10cce050e4e84876cf2378ab0d8ec68231448b1c5",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-150e7eec-1f0d-49d6-9376-be878b416daf.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-16T12:21:04.745431+00:00",
+    "finished_at": "2026-08-16T12:25:53.395159+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 45,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.6462132,
+  "agent_input_tokens": 58,
+  "agent_output_tokens": 8007,
+  "agent_cache_read_tokens": 1430719,
+  "agent_cache_creation_tokens": 24990,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2926,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.003006,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 58,
+      "outputTokens": 8007,
+      "cacheReadInputTokens": 1430719,
+      "cacheCreationInputTokens": 24990,
+      "webSearchRequests": 0,
+      "costUSD": 0.6432072,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 287132,
+  "agent_duration_api_ms": 275445,
+  "agent_session_id": "35586394-cbcd-4e47-a471-eade28ca7be7",
+  "agent_uuid": "93fd08a0-cf10-48f3-91f7-1def894a7a85"
+}

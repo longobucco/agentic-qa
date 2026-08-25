@@ -1,0 +1,8 @@
+{
+  "id": "Booking--30",
+  "bucket": "Booking",
+  "web_name": "Booking",
+  "ques": "Search for hotels in London from July 20 to July 23, 2026, on Booking. How many hotels are left after applying the Breakfast included and Fitness center filters?",
+  "web": "https://www.booking.com/",
+  "answer": ""
+}

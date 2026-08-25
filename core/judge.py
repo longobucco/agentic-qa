@@ -15,6 +15,7 @@ implementation:
 """
 import json
 import re
+import time
 from dataclasses import dataclass
 from typing import Callable
 
@@ -49,15 +50,27 @@ def parse_verdict(text: str):
     return ("FAILURE", "could not parse verdict")
 
 
-def llm_verdict(prompt, *, out, model=None, timeout=180, max_turns=12) -> dict:
-    """Run one `claude -p` judge pass and parse its verdict.
+def llm_verdict(prompt, *, out, model=None, timeout=180, max_turns=12, retries=3) -> dict:
+    """Run a `claude -p` judge pass and parse its verdict, retrying on unparseable output.
 
     The building block for every LLM judge: the benchmark supplies the prompt (and may let
     the judge Read screenshots under `out`), this returns the parsed verdict dict. Writing
     `eval.json` is `core.results`' job, not the judge's — so the same trajectory can be
     judged repeatedly for variance without clobbering anything.
+
+    `retries`: an empty/garbled judge response (e.g. when the subscription is rate-limited
+    under concurrency) parses to "could not parse verdict" and would otherwise be silently
+    counted as a FAILURE. That is a JUDGE failure, not an agent failure, so we re-ask a few
+    times with linear backoff before giving up — without this, a transient rate-limit turns
+    into a bogus FAILURE verdict.
     """
     cmd = build_claude_cmd(prompt, model=model, max_turns=max_turns, add_dir=out)
-    text = run_claude(cmd, timeout=timeout)
-    verdict, reason = parse_verdict(text)
-    return {"verdict": verdict, "reason": reason}
+    result = {"verdict": "FAILURE", "reason": "could not parse verdict"}
+    for attempt in range(max(1, retries)):
+        if attempt:
+            time.sleep(5 * attempt)   # let a transient rate-limit clear before re-asking
+        verdict, reason = parse_verdict(run_claude(cmd, timeout=timeout))
+        result = {"verdict": verdict, "reason": reason}
+        if reason != "could not parse verdict":
+            break
+    return result

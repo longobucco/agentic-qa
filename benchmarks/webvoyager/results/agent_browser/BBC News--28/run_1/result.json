@@ -1,0 +1,8 @@
+{
+  "id": "BBC News--28",
+  "bucket": "BBC News",
+  "web_name": "BBC News",
+  "ques": "Find the Market Data section on BBC News and tell me which company the data comes from.",
+  "web": "https://www.bbc.com/news/",
+  "answer": "BBC News no longer has a live Market Data section \u2014 its market data feeds were discontinued on 26 November 2024, and the page is now just a notice with no data provider named (previously the data came from Morningstar)."
+}

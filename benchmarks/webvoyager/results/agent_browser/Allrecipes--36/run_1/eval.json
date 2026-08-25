@@ -1,0 +1,5 @@
+{
+  "id": "Allrecipes--36",
+  "verdict": "FAILURE",
+  "reason": "Both screenshots show an Allrecipes access-block error page rather than any apple pie recipe, and no answer or temperature was produced, so the task was not accomplished."
+}

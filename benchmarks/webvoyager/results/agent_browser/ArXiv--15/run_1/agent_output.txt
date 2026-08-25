@@ -1,0 +1,12 @@
+I completed the search. Here's my analysis:
+
+**Method:** Searched arXiv (all fields) for "Chinese Benchmark", then filtered to papers **originally announced in December 2023** and inspected each paper's comments for AAAI 2024 acceptance. (Note: arXiv's announcement-date *range* filter is broken and returns 0 for any query, so I filtered by submission date covering Nov–Dec 2023 and read each result's "originally announced …" line to identify the December 2023 papers.)
+
+**Across the full result set, only three papers mention AAAI 2024:**
+- `2312.12853` — Comments: "AAAI 2024" — *announced December 2023* ✓
+- `2312.12806` — Comments: "accepted by AAAI-24" — *announced December 2023* ✓
+- `2309.01431` — Comments: "Accepted to AAAI 2024" — *announced September 2023* ✗ (excluded)
+
+So **2** papers announced in December 2023 mention being accepted for AAAI 2024.
+
+ANSWER: 2 papers (arXiv:2312.12853 "AAAI 2024" and arXiv:2312.12806 "accepted by AAAI-24"). A third AAAI 2024 paper, arXiv:2309.01431, was announced in September 2023, not December, so it is not counted.

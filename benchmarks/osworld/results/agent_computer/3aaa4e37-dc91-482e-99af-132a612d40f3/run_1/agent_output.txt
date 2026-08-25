@@ -1,0 +1,3 @@
+The CSV has been exported as `/home/user/Export_Calc_to_CSV.csv` with cell content saved as shown, sharing the filename with the original xlsx and using default CSV options.
+
+ANSWER: DONE

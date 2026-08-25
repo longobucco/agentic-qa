@@ -1,0 +1,8 @@
+{
+  "id": "Google Map--28",
+  "bucket": "Google Map",
+  "web_name": "Google Map",
+  "ques": "Find the search settings for Google Map, what options are shown on that page?",
+  "web": "https://www.google.com/maps/",
+  "answer": "The Google Maps search settings are opened from the side Menu \u2192 \"Search settings\" (Ajustes de b\u00fasqueda), which loads Google's \"Search settings\" page. It shows: a Search personalization toggle (under \"Activity\", currently On) with a cookie-settings link; SafeSearch (under \"Content\", set to \"Blur on\"); Parental controls in Family Link (under \"More options\"); navigation tabs for \"Privacy & security\" and \"Other settings\"; plus Help, Privacy, and Terms links."
+}

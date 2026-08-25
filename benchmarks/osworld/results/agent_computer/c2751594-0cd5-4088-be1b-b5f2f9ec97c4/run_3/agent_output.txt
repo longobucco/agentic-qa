@@ -1,0 +1,3 @@
+The OSWorld MCP server (`screenshot`, `click`, `type`, `key`, `run_python`, etc.) is not connecting — `OSW_CONTROLLER_URL` is empty and no desktop controller is reachable. Without those tools, I cannot observe or interact with the Linux desktop.
+
+ANSWER: FAIL

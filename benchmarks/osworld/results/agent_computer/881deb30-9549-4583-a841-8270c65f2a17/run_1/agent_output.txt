@@ -1,0 +1,3 @@
+The document reloaded and now displays all pass-rate values in the live LibreOffice view, matching the disk file. The table is fully populated (2015-2023 × 8 universities) with pass rates computed as supported/applications from each ECS PDF's grand-total row.
+
+ANSWER: DONE

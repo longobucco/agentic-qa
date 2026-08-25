@@ -1,0 +1,59 @@
+{
+  "id": "f7dfbef3-7697-431c-883a-db8583a4e4f9",
+  "bucket": "libreoffice_writer",
+  "instruction": "Could you convert all `.doc` files in current directory to PDF all at once in the command line?",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "d7f3a3a0ac1c8387cbd4f758022c9a827de41a02f3b56cfa03dd189ac885db7b",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-f5731386-8936-45ac-9d6b-b3c7c07cd2d4.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-16T12:03:09.742867+00:00",
+    "finished_at": "2026-08-16T12:08:15.710724+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 41,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.7479741999999998,
+  "agent_input_tokens": 48,
+  "agent_output_tokens": 7385,
+  "agent_cache_read_tokens": 1602564,
+  "agent_cache_creation_tokens": 40876,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2916,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.003001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 48,
+      "outputTokens": 7385,
+      "cacheReadInputTokens": 1602564,
+      "cacheCreationInputTokens": 40876,
+      "webSearchRequests": 0,
+      "costUSD": 0.7449731999999998,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 304772,
+  "agent_duration_api_ms": 237589,
+  "agent_session_id": "193d490a-3b1f-49d0-8f6b-a310246d168d",
+  "agent_uuid": "b861d95c-94b6-4337-a7a9-c6274f16dea3"
+}

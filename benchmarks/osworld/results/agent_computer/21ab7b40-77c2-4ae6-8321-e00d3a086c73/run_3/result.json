@@ -1,0 +1,59 @@
+{
+  "id": "21ab7b40-77c2-4ae6-8321-e00d3a086c73",
+  "bucket": "libreoffice_calc",
+  "instruction": "Please calculate the period rate for my data in a new column with header \"Period Rate (%)\", convert the results as number type, and highlight the highest result with green (#00ff00) font.",
+  "answer": "DONE",
+  "eval_state": "<binary:5813 bytes at PeriodRate.xlsx>",
+  "provenance": {
+    "task_sha256": "a5162998260df053032e6396aa9211d72041dcc0c58a943b8cdacc0283092323",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-3d5233e0-3aa2-4268-9865-ac9642f1189d.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-14T21:21:40.734236+00:00",
+    "finished_at": "2026-08-14T21:34:55.909250+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 116,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 2.878393549999999,
+  "agent_input_tokens": 135,
+  "agent_output_tokens": 22096,
+  "agent_cache_read_tokens": 7344711,
+  "agent_cache_creation_tokens": 90487,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3729,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.003809,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 135,
+      "outputTokens": 22096,
+      "cacheReadInputTokens": 7344711,
+      "cacheCreationInputTokens": 90487,
+      "webSearchRequests": 0,
+      "costUSD": 2.874584549999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 793680,
+  "agent_duration_api_ms": 715292,
+  "agent_session_id": "8230cd96-41d2-4ac5-bc12-3978781f3c6f",
+  "agent_uuid": "32f2e4bf-5166-4178-ae44-c02743d88c8e"
+}

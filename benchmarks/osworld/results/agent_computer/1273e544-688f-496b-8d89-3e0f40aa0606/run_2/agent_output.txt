@@ -1,0 +1,3 @@
+The Revenue column with its "Revenue" header has been copied into the new Sheet2 and the file has been saved in xlsx format.
+
+ANSWER: DONE

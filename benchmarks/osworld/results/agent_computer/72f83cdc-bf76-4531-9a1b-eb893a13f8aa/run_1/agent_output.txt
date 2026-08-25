@@ -1,0 +1,3 @@
+The task is complete. The status bar confirms "Image exported to '/home/user/Desktop/berry.png'" and the title bar shows "(overwritten)". The berry image has been successfully mirrored horizontally using GIMP's Image > Transform > Flip Horizontally, and saved back to the original file.
+
+ANSWER: DONE

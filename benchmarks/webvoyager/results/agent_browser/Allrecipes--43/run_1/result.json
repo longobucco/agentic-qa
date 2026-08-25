@@ -1,0 +1,8 @@
+{
+  "id": "Allrecipes--43",
+  "bucket": "Allrecipes",
+  "web_name": "Allrecipes",
+  "ques": "Find a recipe for a vegan pumpkin pie on Allrecipes with a minimum four-star rating and a total cook time exceeding 1 hour.",
+  "web": "https://www.allrecipes.com/",
+  "answer": "Unable to complete \u2014 Allrecipes blocked all access from this environment (site-wide \"access issue\" page returned for the homepage, search, and recipe URLs across multiple retries), so no recipe could be retrieved or verified."
+}

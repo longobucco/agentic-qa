@@ -1,0 +1,8 @@
+{
+  "id": "Wolfram Alpha--39",
+  "bucket": "Wolfram Alpha",
+  "web_name": "Wolfram Alpha",
+  "ques": "Use Wolfram alpha to write the expression of the ellipse x^2 + 3 y^2 = 4 rotated 33 degrees counterclockwise.",
+  "web": "https://www.wolframalpha.com/",
+  "answer": "The rotated ellipse equation is x\u00b2(sin(2\u03c0/15) \u2212 2) + 2xy\u00b7cos(2\u03c0/15) + 4 = y\u00b2(2 + sin(2\u03c0/15)), equivalently (2 \u2212 cos66\u00b0)x\u00b2 \u2212 2sin66\u00b0\u00b7xy + (2 + cos66\u00b0)y\u00b2 = 4 \u2248 1.5933x\u00b2 \u2212 1.8271xy + 2.4067y\u00b2 = 4."
+}

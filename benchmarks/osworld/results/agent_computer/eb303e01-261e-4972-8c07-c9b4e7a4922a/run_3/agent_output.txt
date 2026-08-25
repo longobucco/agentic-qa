@@ -1,0 +1,10 @@
+All seven slides now have their speaking notes in the notes section. I filled in the remaining slides that were empty (1, 2, 3, and 6), matching the text from `notes.docx`; slides 4, 5, and 7 already had notes from before.
+
+- Slide 1: "Lecture 1"
+- Slide 2: "Lecture slides DO NOT contain everything… / So, make sure you bring yourself up-to-date if you miss a class"
+- Slide 3: (same two lines as slide 2, per the notes doc)
+- Slide 6: "moderate illness, conflicts with other courses, travel, extracurricular obligations, job interviews, etc."
+
+The edits were written directly into `lecture1-2021-with-ink.pptx` and verified by re-reading the notes slides.
+
+ANSWER: DONE

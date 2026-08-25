@@ -1,0 +1,8 @@
+The system timezone is already configured to UTC+0:
+- `date` reports **UTC** (`Fri Aug 21 15:05:43 UTC 2026`)
+- `/etc/localtime` → `/usr/share/zoneinfo/Etc/UTC`
+- `/etc/timezone` = `Etc/UTC`
+
+`Etc/UTC` is exactly UTC+0, so the current time zone is already set to UTC+0 — the requested state is satisfied.
+
+ANSWER: DONE

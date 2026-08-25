@@ -1,0 +1,9 @@
+I've identified a Coursera course matching all the criteria.
+
+**Programming with JavaScript** — offered by **Meta** (https://www.coursera.org/learn/programming-with-javascript)
+- **Teaches JavaScript**: Covers JavaScript fundamentals — creating simple JavaScript code, data structures, functions, OOP, testing with Jest, etc.
+- **Beginner-friendly**: Labeled "Beginner level"
+- **Certificate**: Offers a "Shareable certificate" / "Earn a career certificate"
+- Rating: 4.7/5 (4.9K reviews), duration 1–3 months
+
+ANSWER: Programming with JavaScript by Meta (coursera.org/learn/programming-with-javascript) — a Beginner-level course that teaches JavaScript fundamentals and offers a shareable career certificate upon completion.

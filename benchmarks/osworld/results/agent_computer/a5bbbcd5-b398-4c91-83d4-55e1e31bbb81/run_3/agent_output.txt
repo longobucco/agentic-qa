@@ -1,0 +1,7 @@
+The setting survived a clean exit. VLC's Minimal Interface is now enabled and persistent:
+
+- Set `qt-minimal-view=1` in `/root/.config/vlc/vlcrc` (the setting that controls window-mode minimal interface, hiding the menu bar and bottom playback controls).
+- Verified by restarting VLC: it launched directly in Minimal Interface with the bottom toolbar hidden.
+- Confirmed the value remains `qt-minimal-view=1` after a clean quit, so it persists across restarts.
+
+ANSWER: DONE

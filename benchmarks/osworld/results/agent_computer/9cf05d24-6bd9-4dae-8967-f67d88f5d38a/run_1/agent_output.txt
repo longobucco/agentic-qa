@@ -1,0 +1,9 @@
+The task is complete. Slide 1 now has a green background color (#00FF00) applied successfully:
+
+- The slide panel on the left shows slide 1 with a bright green background
+- The main editing area confirms slide 1 has the green background
+- The Properties panel on the right shows "Background: Color #00FF00"
+- Slide 2 remains unchanged with its original content
+- The file has been saved in PowerPoint format
+
+ANSWER: DONE

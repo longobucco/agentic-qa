@@ -1,0 +1,8 @@
+{
+  "id": "Wolfram Alpha--24",
+  "bucket": "Wolfram Alpha",
+  "web_name": "Wolfram Alpha",
+  "ques": "Solve the differential equation y''(t) - 2y'(t) + 10y(t) = 0 and display its general solution.",
+  "web": "https://www.wolframalpha.com/",
+  "answer": "y(t) = c\u2081 e\u1d57 sin(3t) + c\u2082 e\u1d57 cos(3t)"
+}

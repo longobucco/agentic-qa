@@ -1,0 +1,5 @@
+{
+  "id": "Cambridge Dictionary--24",
+  "verdict": "FAILURE",
+  "reason": "Screenshots show only a Cloudflare human-verification challenge, not the Cambridge entry, so the definition, UK/US pronunciations, and example sentence for 'reverie' were never retrieved or shown."
+}

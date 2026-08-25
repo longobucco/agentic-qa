@@ -1,0 +1,10 @@
+The task is complete. The verification confirms:
+
+1. **C1 header**: "Period Rate (%)" ✓
+2. **All values are numeric** (number type, not formulas) ✓  
+3. **C20 = 14.724** (the highest value) has font color **FF00FF00** = green #00ff00 ✓
+4. All other cells have black font (FF000000) ✓
+
+The period rate was calculated as `Annual Rate (%) / Period per year` for all 24 rows, stored as plain numbers, and the highest result (14.724 at row 20) is highlighted with green (#00ff00) font.
+
+ANSWER: DONE

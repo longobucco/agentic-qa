@@ -1,0 +1,5 @@
+All textboxes on slide 5 now have font color `FFFF00` (yellow). Both shapes have been updated:
+- "WRITE AN ORIGINAL / STATEMENT OR / INSPIRING QUOTE" — all runs set to yellow
+- "Include a credit, citation, or supporting message" — set to yellow
+
+ANSWER: DONE

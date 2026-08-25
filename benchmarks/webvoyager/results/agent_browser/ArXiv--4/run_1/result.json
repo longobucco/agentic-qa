@@ -1,0 +1,8 @@
+{
+  "id": "ArXiv--4",
+  "bucket": "ArXiv",
+  "web_name": "ArXiv",
+  "ques": "Find the most recent research papers in Astrophysics of Galaxies. How many papers have been announced in the last day?",
+  "web": "https://arxiv.org/",
+  "answer": "188 papers were announced in the last day (Thu, 25 Jun 2026) in Astrophysics of Galaxies (astro-ph.GA)."
+}

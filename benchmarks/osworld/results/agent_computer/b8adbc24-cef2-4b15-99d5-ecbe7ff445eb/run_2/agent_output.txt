@@ -1,0 +1,3 @@
+The task is complete. Slide 2 now shows "Online Shopping" as the title in red (FF0000), with Calibri font at 44pt, centered — exactly matching the color, position, and font size of the "Sustainable Energy" title on slide 1.
+
+ANSWER: DONE

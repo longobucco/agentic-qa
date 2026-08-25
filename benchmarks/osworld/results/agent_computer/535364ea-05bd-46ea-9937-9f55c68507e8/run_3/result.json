@@ -1,0 +1,59 @@
+{
+  "id": "535364ea-05bd-46ea-9937-9f55c68507e8",
+  "bucket": "libreoffice_calc",
+  "instruction": "Create two pivot tables in a new sheet named \"Sheet2\" showing the total revenue for each product and sales channel.",
+  "answer": "DONE",
+  "eval_state": "<binary:7943 bytes at SummerSales.xlsx>",
+  "provenance": {
+    "task_sha256": "8143dd185749022a2a299263289021f86912707c3428f0f57c853ca38492418a",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-5383eb1d-310f-4160-90bd-8d802fe31e41.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-14T12:21:19.882540+00:00",
+    "finished_at": "2026-08-14T12:30:38.056037+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 59,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 1.3880678000000002,
+  "agent_input_tokens": 68,
+  "agent_output_tokens": 16983,
+  "agent_cache_read_tokens": 3029351,
+  "agent_cache_creation_tokens": 58734,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3991,
+      "outputTokens": 14,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0040609999999999995,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 68,
+      "outputTokens": 16983,
+      "cacheReadInputTokens": 3029351,
+      "cacheCreationInputTokens": 58734,
+      "webSearchRequests": 0,
+      "costUSD": 1.3840068000000003,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 556439,
+  "agent_duration_api_ms": 541415,
+  "agent_session_id": "e88466df-6693-40f8-8100-2d44233f841a",
+  "agent_uuid": "b83b1214-7b18-4129-b339-354357f35a82"
+}

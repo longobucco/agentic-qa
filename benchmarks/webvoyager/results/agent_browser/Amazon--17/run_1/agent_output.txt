@@ -1,0 +1,12 @@
+I completed the task. I searched Amazon's **Baby** department, applied a price filter of **under $10**, and applied the **deals/sale** filter. The results show numerous baby products on sale (each displaying a struck-through List/Typical price plus a discount).
+
+On-sale baby products under $10 found:
+- **Modern Moments by Gerber Baby Henley Waffle-Knit Romper** — $5.28 (List: $14.09)
+- **Infinno Baby Wrist Rattle Socks & Foot Finder Set** — $8.35 (List: $11.43, Save 5%)
+- **Baby Grooming Kit (Infant Safety Care Set)** — $7.04 (Typical: $8.80)
+- **Burt's Bees Baby Organic Cotton Footed Pajamas** — $7.95 (List: $16.69)
+- **hahaland Baby Books 0-6 Months (Tummy Time Sensory Toy)** — $8.35 (List: $17.61, Save 5%)
+- **Johnson's Baby Head-To-Toe Wash & Shampoo** — $6.05 (List: $9.44)
+- **Burt's Bees Baby Infant Wearable Blanket** — $6.37 (Typical: $13.20)
+
+ANSWER: Yes — multiple on-sale baby products under $10 are available. Examples: Modern Moments by Gerber Baby Romper ($5.28, was $14.09), Infinno Baby Wrist Rattle & Foot Finder Set ($8.35, was $11.43), Baby Grooming Kit ($7.04, typical $8.80), Burt's Bees Baby Footed Pajamas ($7.95, was $16.69), and Johnson's Baby Head-To-Toe Wash ($6.05, was $9.44).

@@ -1,0 +1,59 @@
+{
+  "id": "acb0f96b-e27c-44d8-b55f-7cb76609dfcd",
+  "bucket": "os",
+  "instruction": "Please help me clone the repo \"https://github.com/xlang-ai/instructor-embedding\" to /home/user.",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "90df58a89af13cba5d57997c4b06f86380ebf93939685ff8ad96b9d63bb5bd2e",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-698b182e-c4b9-475b-b2a0-a7e00ee7654c.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-23T07:19:49.291859+00:00",
+    "finished_at": "2026-08-23T07:22:57.178034+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 26,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.47400390000000003,
+  "agent_input_tokens": 39,
+  "agent_output_tokens": 7251,
+  "agent_cache_read_tokens": 854038,
+  "agent_cache_creation_tokens": 28466,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2093,
+      "outputTokens": 14,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002163,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 39,
+      "outputTokens": 7251,
+      "cacheReadInputTokens": 854038,
+      "cacheCreationInputTokens": 28466,
+      "webSearchRequests": 0,
+      "costUSD": 0.4718409,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 185426,
+  "agent_duration_api_ms": 161469,
+  "agent_session_id": "f0e2318e-6e60-47fe-9f6b-5c1c93a951dc",
+  "agent_uuid": "261b826b-a4a6-4489-b227-1e35ed960ebd"
+}

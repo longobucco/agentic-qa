@@ -1,0 +1,3 @@
+This task is impossible to complete as stated. "Automatically adjust brightness and contrast to match my room's lighting" requires ambient light sensor data from the physical room — there is no hardware sensor, camera input, or API available on this Linux desktop that can measure the actual lighting conditions of the user's room. Without that measurement, there is no target value to adjust toward.
+
+ANSWER: FAIL

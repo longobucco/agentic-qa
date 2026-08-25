@@ -1,0 +1,8 @@
+{
+  "id": "ArXiv--0",
+  "bucket": "ArXiv",
+  "web_name": "ArXiv",
+  "ques": "Search for the latest preprints about 'quantum computing'.",
+  "web": "https://arxiv.org/",
+  "answer": "Searched arXiv for \"quantum computing\" (56,005 results, sorted by announcement date newest-first). The latest preprint is arXiv:2606.26088 \u2014 \"Simulating Universal Quantum Gate Sets on Photonic OAM Qubits: Single-Qubit and Multi-Qubit Operations via Spatial Light Modulator Phase Holography\" (quant-ph), submitted 24 June 2026."
+}

@@ -1,0 +1,59 @@
+{
+  "id": "6f56bf42-85b8-4fbb-8e06-6c44960184ba",
+  "bucket": "os",
+  "instruction": "Copies file 'file1' to each of directories 'dir1', 'dir2', 'dir3'.",
+  "answer": "DONE",
+  "eval_state": "",
+  "provenance": {
+    "task_sha256": "5e860c74978dc5e8d0c769aca1395f8cc3e4ed23ce8c72a329f06f67b0d805cf",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-62ca5793-8516-49bf-9968-3c6c75b538a5.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-25T03:56:48.327123+00:00",
+    "finished_at": "2026-08-25T03:57:09.063325+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 6,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.07762379999999999,
+  "agent_input_tokens": 11,
+  "agent_output_tokens": 985,
+  "agent_cache_read_tokens": 122716,
+  "agent_cache_creation_tokens": 6600,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1176,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001251,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 11,
+      "outputTokens": 985,
+      "cacheReadInputTokens": 122716,
+      "cacheCreationInputTokens": 6600,
+      "webSearchRequests": 0,
+      "costUSD": 0.07637279999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 18600,
+  "agent_duration_api_ms": 17229,
+  "agent_session_id": "c14100bc-9806-4d49-b9d9-c0de07a93c28",
+  "agent_uuid": "42df694e-45a9-4fb7-a6a2-7b778b8fee46"
+}

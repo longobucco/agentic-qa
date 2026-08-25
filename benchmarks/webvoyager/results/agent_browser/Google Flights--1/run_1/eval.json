@@ -1,0 +1,5 @@
+{
+  "id": "Google Flights--1",
+  "verdict": "FAILURE",
+  "reason": "The screenshots show only an open date-picker with June 17 greyed out as a past date and no Chicago\u2192Paris flight list ever displayed, so the task's requested output was not produced."
+}

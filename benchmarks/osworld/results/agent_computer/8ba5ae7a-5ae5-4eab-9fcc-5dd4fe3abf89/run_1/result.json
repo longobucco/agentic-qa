@@ -1,0 +1,59 @@
+{
+  "id": "8ba5ae7a-5ae5-4eab-9fcc-5dd4fe3abf89",
+  "bucket": "vlc",
+  "instruction": "Help me modify the folder used to store my recordings to Desktop",
+  "answer": "",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "8e3c373c2086b34057ac8f2dd93ed4590c1958b7f46ec2d13f90ed300699e88e",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-cd62007e-7bab-4fc9-acba-f5d06dd0dbb2.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-13T23:20:24.338122+00:00",
+    "finished_at": "2026-08-14T00:06:25.541014+00:00"
+  },
+  "agent_clean_finish": false,
+  "agent_num_turns": 15,
+  "agent_stop_reason": "stop_sequence",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": true,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.18099584999999999,
+  "agent_input_tokens": 21,
+  "agent_output_tokens": 1222,
+  "agent_cache_read_tokens": 366797,
+  "agent_cache_creation_tokens": 12937,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3980,
+      "outputTokens": 14,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.00405,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 21,
+      "outputTokens": 1222,
+      "cacheReadInputTokens": 366797,
+      "cacheCreationInputTokens": 12937,
+      "webSearchRequests": 0,
+      "costUSD": 0.17694585,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 57269,
+  "agent_duration_api_ms": 45802,
+  "agent_session_id": "9467b37b-533f-482a-b214-eb0f829d8ae0",
+  "agent_uuid": "048018a3-091a-4f63-8570-39c51a95a76e"
+}

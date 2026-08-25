@@ -1,0 +1,10 @@
+{
+  "id": "eb303e01-261e-4972-8c07-c9b4e7a4922a",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official compare_pptx_files -> 0.00",
+  "source": "official",
+  "gold_sha256": {
+    "lecture1-2021-with-ink_Gold.pptx": "dbefcaa98ecf1511016ac3063cba1c2ca70ac7e51d5e590d773afa95cb7591e0"
+  }
+}

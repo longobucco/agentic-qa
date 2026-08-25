@@ -1,0 +1,8 @@
+Wolfram Alpha returned the current weather for Chicago, IL.
+
+From the "Latest recorded weather for Chicago, United States" panel:
+- **Temperature:** 18 °C (~64 °F)
+- **Wind speed:** 4.6 m/s, direction NNE (~10 mph)
+- (Conditions: overcast, humidity 81%, recorded ~1h35m ago)
+
+ANSWER: In Chicago, IL the current temperature is 18 °C (about 64 °F) and the wind speed is 4.6 m/s (NNE, roughly 10 mph), under overcast skies.

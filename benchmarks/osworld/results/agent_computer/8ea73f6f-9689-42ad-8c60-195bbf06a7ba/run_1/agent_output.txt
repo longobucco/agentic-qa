@@ -1,0 +1,9 @@
+I can see GIMP is open with a file called "low_resolution.jpeg" at 1280x851 pixels. The task asks to enhance it to high-resolution WITHOUT increasing file size.
+
+This is a fundamentally contradictory requirement:
+- **Enhancing to high-resolution** means adding more pixels and detail (more data)
+- **Without increasing file size** means the compressed bytes on disk must stay the same or decrease
+
+You cannot genuinely add resolution/detail information to an image while simultaneously keeping the same file size — any true upscaling/enhancement would require more storage space. The two requirements are mutually exclusive. Any "enhancement" that keeps the file size the same would actually reduce quality through heavier compression, not improve it.
+
+ANSWER: FAIL

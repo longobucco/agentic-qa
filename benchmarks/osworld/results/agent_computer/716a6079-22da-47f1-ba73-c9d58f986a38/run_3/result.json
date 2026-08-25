@@ -1,0 +1,59 @@
+{
+  "id": "716a6079-22da-47f1-ba73-c9d58f986a38",
+  "bucket": "os",
+  "instruction": "I remember there is a file named \"secret.docx\" on this computer, but I can't remember where it is. Please find the path where this file is stored and copy it to the clipboard.",
+  "answer": "/home/user/Data3/List3/secret.docx",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "0351686020bbafb2be9876ac09d98b4c3cb19c5b1397ef56f580154827f1e206",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-3f866d1e-f667-4d65-892a-736c27c05352.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-25T04:03:24.717431+00:00",
+    "finished_at": "2026-08-25T04:05:14.762308+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 15,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.18512499999999998,
+  "agent_input_tokens": 20,
+  "agent_output_tokens": 3379,
+  "agent_cache_read_tokens": 344405,
+  "agent_cache_creation_tokens": 7942,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1191,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001276,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 20,
+      "outputTokens": 3379,
+      "cacheReadInputTokens": 344405,
+      "cacheCreationInputTokens": 7942,
+      "webSearchRequests": 0,
+      "costUSD": 0.18384899999999998,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 108816,
+  "agent_duration_api_ms": 72182,
+  "agent_session_id": "21f73f83-0389-4651-807b-7c280f5088fa",
+  "agent_uuid": "698429d1-fb51-4855-8bb2-b335e051901f"
+}

@@ -1,0 +1,3 @@
+The document is saved in .docx format with every word's first letter capitalized. The task is complete.
+
+ANSWER: DONE

@@ -1,0 +1,16 @@
+I searched BBC News for "Trump" and the results page returned a set of recent stories. Here's a summary of the main points from the latest BBC coverage:
+
+**Recent Trump news on BBC (mid-to-late June 2026):**
+
+- **Reaction to Starmer's resignation** (3 days ago) — Trump called UK PM Keir Starmer "a lovely man" while voicing some criticisms.
+- **Tensions with Israel** (16 Jun) — Trump renewed his criticism of Israel's actions in Lebanon.
+- **US–Iran developments** — Trump said the Strait of Hormuz will reopen, with a US–Iran peace deal due to be signed Friday (15 Jun); he also claimed the US is "taking out" millions of barrels of oil from Iran and said "I love the inflation" (10 Jun). Iran also dominated his agenda at the recent **G7 summit in France** (6 days ago).
+- **Legal setback** (8 Jun) — A federal judge cancelled an H-1B visa fee, a defeat for the administration.
+- **"Flying White House"** (5 days ago) — Trump unveiled a new Boeing 747-8 Air Force One donated by Qatar as an "unconditional" gift.
+- **2026 World Cup** (1 day ago) — Trump has yet to attend a match but may soon; separately he described British MP Andy Burnham as "extremely liberal."
+
+**Main themes:** foreign policy dominates — a US–Iran peace deal and oil moves, friction with Israel over Lebanon, and UK political commentary — alongside a domestic legal setback on visa fees and lighter items (the Qatari jet and the World Cup).
+
+Screenshots saved to `/shots/step_1.png` and `/shots/final.png`.
+
+ANSWER: BBC's recent Trump coverage centers on foreign policy: a US–Iran peace deal (Strait of Hormuz reopening, signing due Friday) plus claims of removing Iranian oil and "loving" inflation; renewed criticism of Israel over Lebanon; and Iran dominating the G7 summit in France. He reacted to Starmer's resignation (calling him "a lovely man") and called MP Andy Burnham "extremely liberal." Domestically, a federal judge cancelled an H-1B visa fee (a legal setback). Lighter stories: unveiling a Qatar-donated Boeing 747-8 "flying White House" and his pending first 2026 World Cup match appearance.

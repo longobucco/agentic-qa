@@ -1,0 +1,3 @@
+The VM has been unresponsive for over an hour — all action tools (screenshot, click, run_python, key) consistently return HTTP 400, while only `wait` succeeds. This indicates the VM's action endpoint is unavailable and the task cannot be completed.
+
+ANSWER: FAIL

@@ -1,0 +1,59 @@
+{
+  "id": "227d2f97-562b-4ccb-ae47-a5ec9e142fbb",
+  "bucket": "libreoffice_writer",
+  "instruction": "I've stored my .xcf file on the Desktop. Can you assist me in copying the image and pasting it into a LibreOffice Writer document? Save the document as 'image.docx' on the Desktop, please.",
+  "answer": "DONE",
+  "eval_state": "<binary:863616 bytes at image.docx>",
+  "provenance": {
+    "task_sha256": "e689c037f6e3b5843c946c8ea4b0f21aa2b4e1e48598738836fbfff7a062c663",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-b51954f2-25ca-4b64-b601-3a9af93d07fd.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-24T21:54:37.652496+00:00",
+    "finished_at": "2026-08-24T21:55:34.445583+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 11,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.15168784999999999,
+  "agent_input_tokens": 16,
+  "agent_output_tokens": 2456,
+  "agent_cache_read_tokens": 265267,
+  "agent_cache_creation_tokens": 8901,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1741,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001841,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 16,
+      "outputTokens": 2456,
+      "cacheReadInputTokens": 265267,
+      "cacheCreationInputTokens": 8901,
+      "webSearchRequests": 0,
+      "costUSD": 0.14984685,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 55046,
+  "agent_duration_api_ms": 50837,
+  "agent_session_id": "60af59be-a532-4e9a-b004-905cf036d15e",
+  "agent_uuid": "dc5ce796-f783-4f5d-a7e3-9a2beb742606"
+}

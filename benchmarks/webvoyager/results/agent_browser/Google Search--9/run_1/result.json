@@ -1,0 +1,8 @@
+{
+  "id": "Google Search--9",
+  "bucket": "Google Search",
+  "web_name": "Google Search",
+  "ques": "Show the rating of Prometheus movie on IMDb and Rotten Tomatoes.",
+  "web": "https://www.google.com/",
+  "answer": "Prometheus (2012) \u2014 IMDb: 7.0/10; Rotten Tomatoes: 73% (Tomatometer/critics) and 68% (audience/Popcornmeter)."
+}

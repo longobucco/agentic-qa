@@ -1,0 +1,8 @@
+{
+  "id": "Coursera--15",
+  "bucket": "Coursera",
+  "web_name": "Coursera",
+  "ques": "Find a course on Coursera named 'Introduction to Mathematical Thinking' offered by Stanford, what is the percentage (rounded) of 5 star ratings in reviews and which level has the least percentage?.",
+  "web": "https://www.coursera.org/",
+  "answer": "5-star ratings \u2248 84% (84.23%); the level with the least percentage is 2 stars at 0.49%."
+}

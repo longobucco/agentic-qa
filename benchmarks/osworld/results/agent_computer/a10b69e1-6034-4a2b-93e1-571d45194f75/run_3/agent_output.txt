@@ -1,0 +1,3 @@
+Both **COMPANY** and **UNIVERSITY** folders now appear under **Local Folders** in Thunderbird, alongside the auto-generated Trash and Outbox. The Local Folders account was created and both folders are recognized.
+
+ANSWER: DONE

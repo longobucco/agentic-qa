@@ -1,0 +1,5 @@
+Both folders are confirmed on disk (COMPANY and UNIVERSITY mbox + .msf files) under the Local Folders account, and they display correctly in Thunderbird's folder pane.
+
+The task is complete: I created a proper Local Folders account (which didn't exist initially) and added the two requested local folders, COMPANY and UNIVERSITY.
+
+ANSWER: DONE

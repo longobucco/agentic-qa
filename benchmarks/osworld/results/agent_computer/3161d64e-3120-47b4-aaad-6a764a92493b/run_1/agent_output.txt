@@ -1,0 +1,3 @@
+Both text boxes updated: index 6 "Target audience" → 60 pt (762000 EMU), index 7 "Elaborate on what you want to discuss." → 28 pt (355600 EMU). The file is saved.
+
+ANSWER: DONE

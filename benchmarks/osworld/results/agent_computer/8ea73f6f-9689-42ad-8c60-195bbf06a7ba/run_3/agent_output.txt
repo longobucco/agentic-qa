@@ -1,0 +1,3 @@
+The task asks to enhance a low-resolution photo to high-resolution without increasing the file size. This is a contradictory requirement — genuinely increasing resolution means adding more pixels/data, which necessarily increases file size. There's no way to truly enhance a photo to higher resolution while keeping the file size the same or smaller (any upscaling that saves with matching file size would require heavy compression that degrades quality, defeating the purpose of "enhancement").
+
+ANSWER: FAIL

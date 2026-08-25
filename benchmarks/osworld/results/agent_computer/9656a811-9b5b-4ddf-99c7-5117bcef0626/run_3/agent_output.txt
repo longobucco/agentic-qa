@@ -1,0 +1,5 @@
+The Chrome Security settings page is now visible. I can see the Safe Browsing section with "Standard protection" already selected (blue radio button), which warns against dangerous sites. This already enables Chrome to warn about potentially harmful websites.
+
+The safety feature (Standard protection Safe Browsing) is already enabled. This protects against sites, downloads, and extensions known to be dangerous.
+
+ANSWER: DONE

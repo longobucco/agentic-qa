@@ -1,0 +1,5 @@
+{
+  "id": "BBC News--1",
+  "verdict": "SUCCESS",
+  "reason": "Screenshots show a BBC Health article whose visible standfirst matches the response's 'Pregorexia' article, and the agent provided a thorough summary of its key points, satisfying both reading and summarizing."
+}

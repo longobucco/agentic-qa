@@ -1,0 +1,5 @@
+{
+  "id": "Google Flights--31",
+  "verdict": "SUCCESS",
+  "reason": "Screenshots confirm a one-way Economy AKL\u2192HNL search for Jul 25, 2026, with a 2-stop itinerary (AKL\u2192WLG\u2192NAN\u2192HNL) displayed, matching the response and exceeding the 1-stop options visible on the page."
+}

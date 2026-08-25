@@ -1,0 +1,59 @@
+{
+  "id": "efcf0d81-0835-4880-b2fd-d866e8bc2294",
+  "bucket": "vlc",
+  "instruction": "Make this part of the video my computer's background picture",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "d5547fc6d6d64ada443319820b655fd3d0ec1accb3761c773d5cbcd27012417b",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-34ab4176-b5a1-44ed-905c-1a59105b6297.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-19T20:40:33.557078+00:00",
+    "finished_at": "2026-08-19T20:49:45.051477+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 1,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 1.6437917500000003,
+  "agent_input_tokens": 2,
+  "agent_output_tokens": 159,
+  "agent_cache_read_tokens": 69340,
+  "agent_cache_creation_tokens": 715,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 4949,
+      "outputTokens": 14,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.005019,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 3648,
+      "outputTokens": 17174,
+      "cacheReadInputTokens": 1580228,
+      "cacheCreationInputTokens": 64171,
+      "webSearchRequests": 0,
+      "costUSD": 1.6387727500000002,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 4042,
+  "agent_duration_api_ms": 277873,
+  "agent_session_id": "8d8924bf-5d5d-4c55-bd31-35d52c6ef053",
+  "agent_uuid": "74aa536d-d079-4e5d-be7a-abd043aa644c"
+}

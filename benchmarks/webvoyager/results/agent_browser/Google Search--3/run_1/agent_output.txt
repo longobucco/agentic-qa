@@ -1,0 +1,21 @@
+I've captured the final screenshots. Let me summarize what happened and give the result.
+
+I encountered heavy bot-blocking across the major movie/rating sites in this environment:
+- **IMDb** (the ideal source) returned `403 Forbidden` on every path.
+- **Letterboxd** was stuck behind a Cloudflare "verify you are human" challenge.
+- **Google search** triggered a reCAPTCHA "unusual traffic" block.
+- **TMDB** loaded its filter UI (I set Comedy + "Rating Descending" + a release-date cap), but its results pane never re-fetched — it kept showing the default popular-movies list, so the filters couldn't take effect.
+
+**Rotten Tomatoes** was the one site that loaded a real, relevant list — "Best Comedy Movies to Stream at Home" — with each title showing its **audience score (Popcornmeter = user rating)**. Its sort control only offers Most Popular / Newest / A–Z (no "by user rating" option) and its dynamic filters also didn't refresh in this headless environment, so I read the user/audience scores off the cards and ranked them myself.
+
+The final screenshot (`/shots/final.png`) shows the Rotten Tomatoes comedy list with user (audience) scores. Ranking the comedy titles by their user/audience score, the top 5 are:
+
+1. **I Swear** — 98% audience
+2. **Toy Story 4** — 94% audience
+3. **Hoppers** — 93% audience
+4. **Toy Story** — 92% audience
+5. **Toy Story 3** — 90% audience
+
+Note: this is drawn from Rotten Tomatoes' "comedy, streaming at home" set, not an all-time global index, because IMDb/Letterboxd/Google were all blocked here.
+
+ANSWER: Top 5 comedy movies by user (audience) rating, from the Rotten Tomatoes comedy list: 1) I Swear — 98%, 2) Toy Story 4 — 94%, 3) Hoppers — 93%, 4) Toy Story — 92%, 5) Toy Story 3 — 90%.

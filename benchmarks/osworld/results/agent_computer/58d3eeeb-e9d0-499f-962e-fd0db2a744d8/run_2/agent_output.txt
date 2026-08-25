@@ -1,0 +1,3 @@
+The system only has `heron.jpeg` on the Desktop — a photograph of a bird — with no audio files, text conversations, or any other media present. The task references "the image above" but no image was provided in the task description, and there is no hidden audio conversation on this system to translate.
+
+ANSWER: FAIL

@@ -1,0 +1,59 @@
+{
+  "id": "415ef462-bed3-493a-ac36-ca8c6d23bf1b",
+  "bucket": "thunderbird",
+  "instruction": "There's an e-mail containing the AWS invoice for December saved in local \"Bills\" folder. Extract the invoice PDF to the my receipts folder. Follow the file name pattern of the old files and append a record at the end of my tally book.",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "5e3b1b278e4be2e8805f2504e102018b05467083234e2b9e450cd14fa7ae9011",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-e9a0026d-22cf-424a-b5da-46e88746ab30.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-24T22:14:55.512783+00:00",
+    "finished_at": "2026-08-24T22:17:11.131913+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 27,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.49420785,
+  "agent_input_tokens": 34,
+  "agent_output_tokens": 7466,
+  "agent_cache_read_tokens": 908177,
+  "agent_cache_creation_tokens": 28757,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1744,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001824,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 34,
+      "outputTokens": 7466,
+      "cacheReadInputTokens": 908177,
+      "cacheCreationInputTokens": 28757,
+      "webSearchRequests": 0,
+      "costUSD": 0.49238385000000007,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 134282,
+  "agent_duration_api_ms": 127831,
+  "agent_session_id": "1862a485-677d-4132-b134-0e073ebf3ec4",
+  "agent_uuid": "2b5e8d01-009d-40e7-b606-b4a80cbd8883"
+}

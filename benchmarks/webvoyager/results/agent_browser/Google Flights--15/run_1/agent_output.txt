@@ -1,0 +1,12 @@
+The search completed successfully. Google Flights returns exactly **one** nonstop option for New York → Tokyo Narita (NRT) departing Jul 12, 2026 and returning Jul 26, 2026.
+
+**Nonstop flight comparison (only one available):**
+- **Airline:** United (operated with ANA)
+- **Route:** Newark Liberty (EWR) → Tokyo Narita (NRT), departs 11:40 AM Jul 12, arrives 2:30 PM Jul 13 (+1)
+- **Total duration:** 13 hr 50 min
+- **Price:** €1,668 round-trip total
+- Carbon emissions: 562 kg (−17%)
+
+Since only one nonstop itinerary exists for these dates, there is no spread to compare — it is the single nonstop option. (Connecting itineraries are cheaper, starting at €1,488 with 1 stop, but those are not non-stop.)
+
+ANSWER: Only one non-stop flight is available: United/ANA from Newark (EWR) to Tokyo Narita (NRT), total duration 13 hr 50 min, priced at €1,668 round-trip total. With just one non-stop option, there is no price/duration spread to compare among non-stops.

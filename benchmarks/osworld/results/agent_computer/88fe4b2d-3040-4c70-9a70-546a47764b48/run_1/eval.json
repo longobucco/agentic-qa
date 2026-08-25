@@ -1,0 +1,13 @@
+{
+  "id": "88fe4b2d-3040-4c70-9a70-546a47764b48",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official ['compare_docx_files', 'compare_docx_files', 'compare_docx_files', 'compare_docx_files'] -> 0.00",
+  "source": "official",
+  "gold_sha256": {
+    "CCCH9003_Tutorial_guidelines_Gold_1.docx": "5d649645b9f3298dfdcce5b2943f4be7314bb23bcdf70e37288db86f81852674",
+    "CCCH9003_Tutorial_guidelines_Gold_2.docx": "7a335b4d24d47ebb37db765899a193987506a8de62fd86ce5c741a072e642a33",
+    "CCCH9003_Tutorial_guidelines_Gold_3.docx": "98fb56cedd2e1f1a3e795d9645dd2a5f2af40568c693855825b53d2d7f65f023",
+    "CCCH9003_Tutorial_guidelines_Gold_4.docx": "1b4b3e83d3bac2af3506b19e72f857c30dc21d0b6cac9efca2edfe2584e76cd9"
+  }
+}

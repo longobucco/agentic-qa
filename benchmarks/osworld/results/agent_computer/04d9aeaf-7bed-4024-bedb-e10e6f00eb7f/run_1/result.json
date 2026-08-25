@@ -1,0 +1,61 @@
+{
+  "id": "04d9aeaf-7bed-4024-bedb-e10e6f00eb7f",
+  "bucket": "libreoffice_calc",
+  "instruction": "In a new sheet (\"Sheet2\") with 4 headers \"Year\", \"CA changes\", \"FA changes\", and \"OA changes\", calculate the percentage annual changes compared to last year in 2015 to 2019 for the Current Assets, Fixed Assets, and Other Assets columns. ",
+  "answer": "",
+  "eval_state": "<binary:11976 bytes at SmallBalanceSheet.xlsx>",
+  "provenance": {
+    "task_sha256": "ea1ab06b0f5f9e11163387e0a86d3b9b256a1057206f208992e13d3dc11b046a",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-75b42b5c-85b8-49e9-8d2c-fc87397e7345.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-11T07:28:40.515904+00:00",
+    "finished_at": "2026-08-11T07:41:18.792551+00:00"
+  },
+  "agent_clean_finish": false,
+  "agent_num_turns": 151,
+  "agent_stop_reason": "tool_use",
+  "agent_terminal_reason": "max_turns",
+  "agent_subtype": "error_max_turns",
+  "agent_is_error": true,
+  "agent_errors": [
+    "Reached maximum number of turns (150)"
+  ],
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 2.7410765499999985,
+  "agent_input_tokens": 155,
+  "agent_output_tokens": 13422,
+  "agent_cache_read_tokens": 7850766,
+  "agent_cache_creation_tokens": 48833,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 853,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.000928,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 155,
+      "outputTokens": 13422,
+      "cacheReadInputTokens": 7850766,
+      "cacheCreationInputTokens": 48833,
+      "webSearchRequests": 0,
+      "costUSD": 2.7401485499999985,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 755493,
+  "agent_duration_api_ms": 708516,
+  "agent_session_id": "bc39d6e6-c87a-4bf3-99fe-0f2487cfaaee",
+  "agent_uuid": "b1800eaa-d26d-4f8c-9b37-33be859882fb"
+}

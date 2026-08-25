@@ -1,0 +1,14 @@
+I have completed the task. I navigated Hugging Face to the official `google-t5/t5-base` model page and read its model card, which explicitly describes the NLP tasks the model is designed for.
+
+**Example pre-trained NLP language model:** **T5 (Text-To-Text Transfer Transformer)** — `google-t5/t5-base` by Google.
+
+**Tasks it is specifically designed for:** T5 reframes every NLP problem into a unified text-to-text format, and the model card states it is designed for, among others:
+- **Machine translation**
+- **Document/text summarization**
+- **Question answering**
+- **Classification tasks** (e.g., sentiment analysis)
+- It can even be applied to regression tasks.
+
+The page tags also list "Translation" and "summarization" directly, and the card cites the paper *"Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer"* (Raffel et al., 2020).
+
+ANSWER: Example pre-trained NLP language model: T5 (Text-To-Text Transfer Transformer), e.g. google-t5/t5-base by Google. It is specifically designed for NLP tasks including machine translation, document/text summarization, question answering, and classification (e.g., sentiment analysis), all framed in a unified text-to-text format.

@@ -1,0 +1,7 @@
+{
+  "id": "57242fad-77ca-454f-b71b-f187181a9f23",
+  "verdict": "EVAL_ERROR",
+  "reason": "eval_state='/home/user/Desktop:\\ntest.py\\n' (official eval errored: JSONDecodeError: Expecting value: line 1 column 1 (char 0))",
+  "source": "offline_fallback",
+  "gold_sha256": {}
+}

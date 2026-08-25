@@ -1,0 +1,11 @@
+The search returned 5 papers with "Graph Neural Networks" in the abstract submitted between Jan 1–3, 2024:
+
+| arXiv ID | Authors | Count | >5? |
+|---|---|---|---|
+| 2401.01384 | Mohamadi, Chehreghani | 2 | No |
+| 2401.00755 | Pei, Xu, Wu, Li, Wang, Lu, Wang | 7 | ✅ |
+| 2312.09086 | Tian, Medya, Ye | 3 | No |
+| 2310.19274 | Chung, Ahmad, Sun, Cai, Mukerji | 5 | No (exactly 5) |
+| 2304.14274 | Luan, Hua, Xu, Lu, Zhu, Chang, Fu, Leskovec, Precup | 9 | ✅ |
+
+ANSWER: 2 papers have more than five authors (arXiv:2401.00755 with 7 authors and arXiv:2304.14274 with 9 authors), out of 5 total matching papers.

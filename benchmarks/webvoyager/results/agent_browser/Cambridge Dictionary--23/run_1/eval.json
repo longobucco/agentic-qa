@@ -1,0 +1,5 @@
+{
+  "id": "Cambridge Dictionary--23",
+  "verdict": "FAILURE",
+  "reason": "Every screenshot, including the final one, shows the Cloudflare human-verification challenge on dictionary.cambridge.org; the agent never accessed the entry, so no US IPA pronunciation or example sentence was found."
+}

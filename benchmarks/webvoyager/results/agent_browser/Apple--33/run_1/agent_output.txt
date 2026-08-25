@@ -1,0 +1,5 @@
+The final screenshot clearly shows the newest iMac with its color selector displaying all 7 color swatches (Blue selected, plus Purple, Pink, Orange, Yellow, Green, Silver). The task is complete.
+
+The newest iMac (M4) is offered in **7 colors**, confirmed both by the color-selector radiogroup ("Select iMac color") and the hero copy ("Animation of 7 iMacs in different colors").
+
+ANSWER: The newest iMac (M4) comes in 7 color options: Green, Yellow, Orange, Pink, Purple, Blue, and Silver.

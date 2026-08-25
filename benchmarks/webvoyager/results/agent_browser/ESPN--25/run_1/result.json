@@ -1,0 +1,8 @@
+{
+  "id": "ESPN--25",
+  "bucket": "ESPN",
+  "web_name": "ESPN",
+  "ques": "Identify the player with the most assists in the latest NBA game and show me the assists, the team they play for, and their position.",
+  "web": "https://www.espn.com/",
+  "answer": "De'Aaron Fox led the latest NBA game (2026 NBA Finals Game 5, Knicks 94\u201390 Spurs) with 5 assists. He plays for the San Antonio Spurs and his position is Guard (point guard)."
+}

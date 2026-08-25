@@ -1,0 +1,8 @@
+The task is complete. Wolfram Alpha displays the thermal conductivity of both elements side by side, evaluated at standard room temperature (~25 °C):
+
+- **Copper (Cu): 400 W/(m·K)**
+- **Aluminum (Al): 235 W/(m·K)**
+
+It also shows the relative comparison (copper is ~1.7× / 70% higher than aluminum).
+
+ANSWER: Copper (Cu) ≈ 400 W/(m·K) and Aluminum (Al) ≈ 235 W/(m·K) at 25 °C.

@@ -1,0 +1,8 @@
+The extension was successfully installed. The VS Code CLI output confirms:
+
+```
+Installing extensions...
+Extension 'test.vsix' was successfully installed.
+```
+
+ANSWER: DONE

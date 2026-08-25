@@ -1,0 +1,3 @@
+The pivot table is created and saved. Sheet2 now contains the pivot table summarizing total revenue by promotion type, with promotion names (Fall Kite Event, Festival of Flight, None) as column headers.
+
+ANSWER: DONE

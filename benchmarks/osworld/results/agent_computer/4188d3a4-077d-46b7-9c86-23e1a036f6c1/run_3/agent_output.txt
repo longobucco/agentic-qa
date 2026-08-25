@@ -1,0 +1,3 @@
+The freeze has been applied and the file saved. Row 1 (containing the A1:B1 headers "Item" / "Month") is now frozen, indicated by the horizontal freeze line below row 1, keeping the headers always visible while scrolling.
+
+ANSWER: DONE

@@ -1,0 +1,3 @@
+The file has been saved successfully in Excel format. The records are now sorted by Amount in ascending order, from $442.00 (lowest) to $9,444.00 (highest).
+
+ANSWER: DONE

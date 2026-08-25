@@ -1,0 +1,9 @@
+The task is complete. The background color of slide 2 has been successfully set to match the title color:
+
+- **Title**: "Our Customers Love Us!!!" — Color: `#FF0000` (red)
+- **Background**: Color: `#FF0000` (red)
+- **Colors match**: True
+
+The file has been saved to `/home/user/Desktop/71_6.pptx`.
+
+ANSWER: DONE

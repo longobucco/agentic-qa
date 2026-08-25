@@ -1,0 +1,9 @@
+I found Apple's official solutions for a forgotten Apple ID password. Navigating from apple.com → Support → Apple Account Support surfaced a "Forgot your password?" section, and the "Reset your password" link led to Apple's official **iForgot / Forgot Password?** page where you verify your account info and reset the password.
+
+Apple's solutions for a forgotten Apple ID password are:
+- **Reset your Apple Account password** via the iForgot page (verify account info → Reset Password) — the primary fix.
+- **Regain access to a locked, inactive, or disabled account.**
+- **Set up an account recovery contact** so you can always recover access.
+- Reset directly on a trusted device (iPhone/iPad/Mac) in Settings, or contact Apple Support / call 1-800-MY-APPLE.
+
+ANSWER: Apple's solution is to reset your Apple ID (Apple Account) password. From apple.com go to Support → Apple Account, then under "Forgot your password?" click "Reset your password," which opens Apple's iForgot page (iforgot.apple.com / "Forgot Password?") where you verify your account information and choose Reset Password. You can also reset from a trusted device's Settings, regain access to a locked account, set up an account recovery contact, or contact Apple Support.

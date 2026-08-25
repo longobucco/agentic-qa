@@ -1,0 +1,8 @@
+{
+  "id": "Allrecipes--13",
+  "bucket": "Allrecipes",
+  "web_name": "Allrecipes",
+  "ques": "Find a recipe with over 100 reviews for Fried Fish on Allrecipes, list the Full Nutrition Label and tell me the amount of Iron per Serving.",
+  "web": "https://www.allrecipes.com/",
+  "answer": "Unable to complete \u2014 Allrecipes is blocking this environment's IP at the Cloudflare layer (HTTP 402 \"access issue\" page on every URL, including direct recipe pages), so no recipe, nutrition label, or Iron value could be retrieved."
+}

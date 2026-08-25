@@ -1,0 +1,59 @@
+{
+  "id": "8b1ce5f2-59d2-4dcc-b0b0-666a714b9a14",
+  "bucket": "libreoffice calc",
+  "instruction": "Given a partial calendar, please highlight all the weekends (Satureday & Sunday) by setting the cell background as red (#ff0000). Finish the work and don't touch irrelevant regions, even if they are blank.",
+  "answer": "DONE",
+  "eval_state": "<binary:6508 bytes at Calendar_Highlight_Weekend_Days.xlsx>",
+  "provenance": {
+    "task_sha256": "d4fd1d6a6a9cf778ecb704055c9b3903826496ad072d4eaeb19718717a59e370",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-ad46b716-18ef-4141-a153-12e70826bcd2.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-25T04:36:17.308909+00:00",
+    "finished_at": "2026-08-25T04:56:08.966554+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 124,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 4.002341100000001,
+  "agent_input_tokens": 135,
+  "agent_output_tokens": 36693,
+  "agent_cache_read_tokens": 9848257,
+  "agent_cache_creation_tokens": 132208,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1199,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001284,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 135,
+      "outputTokens": 36693,
+      "cacheReadInputTokens": 9848257,
+      "cacheCreationInputTokens": 132208,
+      "webSearchRequests": 0,
+      "costUSD": 4.001057100000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 1189295,
+  "agent_duration_api_ms": 1044000,
+  "agent_session_id": "06b7df3f-bd98-488c-a605-01de20266d96",
+  "agent_uuid": "2bc69533-8e12-43f6-8ab1-52d3efef39f7"
+}

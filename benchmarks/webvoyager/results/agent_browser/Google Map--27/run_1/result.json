@@ -1,0 +1,8 @@
+{
+  "id": "Google Map--27",
+  "bucket": "Google Map",
+  "web_name": "Google Map",
+  "ques": "Locate the Target stores in Atlanta, GA. How many results are shown on the map.",
+  "web": "https://www.google.com/maps/",
+  "answer": "7 Target stores are shown on the map for Atlanta, GA."
+}

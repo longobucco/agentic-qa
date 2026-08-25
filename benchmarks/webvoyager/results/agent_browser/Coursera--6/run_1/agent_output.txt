@@ -1,0 +1,10 @@
+The final screenshot clearly shows the course "Foundations of AI in Healthcare" with **4 modules**, **8 hours to complete**, part of the Artificial Intelligence for Healthcare Specialization. Combined with step_5 showing the **Assessments: 13 assignments** detail, the task is complete.
+
+Summary of findings:
+- **Course identified:** *Foundations of AI in Healthcare* (the foundational course of the exact-title **"Artificial Intelligence for Healthcare"** Specialization by SkillUp on Coursera)
+- **Course duration:** 8 hours to complete (4 modules, ~2 hours each); the full specialization is 12 weeks at 3 hrs/week
+- **Assessments:** 13 (Coursera lists these graded assessments/quizzes as "13 assignments" under the *Details to know → Assessments* section)
+
+Note: Coursera's current UI labels the Assessments count as "assignments" rather than "quizzes" across the AI-for-Healthcare courses (e.g., the sibling courses show 13 and 10 assignments; DeepLearning.AI's AI for Medical Diagnosis shows 3).
+
+ANSWER: Course: "Foundations of AI in Healthcare" (part of the Artificial Intelligence for Healthcare Specialization on Coursera). Duration: 8 hours to complete (4 modules). Assessments: 13 (listed as "13 assignments" under Details to know → Assessments; Coursera labels these as assignments rather than quizzes).

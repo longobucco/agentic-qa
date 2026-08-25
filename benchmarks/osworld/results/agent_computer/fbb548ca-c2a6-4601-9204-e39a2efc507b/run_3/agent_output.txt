@@ -1,0 +1,3 @@
+The available GIMP themes are Dark, Gray, Light, and System - there is no "Blue" theme available in this GIMP installation. The "Blue" theme doesn't exist in GIMP 2.10's theme system (which changed from older versions). This task cannot be completed as stated.
+
+ANSWER: FAIL

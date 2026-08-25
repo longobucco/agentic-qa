@@ -1,0 +1,5 @@
+{
+  "id": "Huggingface--30",
+  "verdict": "SUCCESS",
+  "reason": "The final screenshot shows the Helsinki-NLP/opus-mt-en-zh model card (English\u2192Chinese, ~112.4K downloads) with the SentencePiece preprocessing and the required `>>id<<` language-token usage guideline visible, corroborating the agent's identification and usage report, with metrics believable per protocol."
+}

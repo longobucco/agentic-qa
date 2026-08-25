@@ -1,0 +1,12 @@
+The table has been completed. Column F now contains the officer name for each area, looked up by its HeadOffice (branch) against the lookup table:
+
+- Surat → A. B. Bose
+- Jamnagar → G. H. Harris
+- Ahmedabad → C. D. Dey
+- Bhavnagar → K. L. Lathiya
+- Vadodara → E. F. Frank
+- Porbandar → I. J. Jain
+
+The file has been saved in xlsx format.
+
+ANSWER: DONE

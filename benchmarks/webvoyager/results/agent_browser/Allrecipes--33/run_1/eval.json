@@ -1,0 +1,5 @@
+{
+  "id": "Allrecipes--33",
+  "verdict": "FAILURE",
+  "reason": "Both screenshots show an Allrecipes/people.inc access-blocked page, so no low-carb breakfast recipe, Nutrition Facts, or carbohydrate content was ever displayed."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "ArXiv--9",
+  "bucket": "ArXiv",
+  "web_name": "ArXiv",
+  "ques": "Find the latest research paper about neural networks published on ArXiv which has been submitted within the last week.",
+  "web": "https://arxiv.org/",
+  "answer": "PERTINENCE: Input-based Opportunistic Neural Network Dynamic Execution (arXiv:2507.01695), last submitted 24 June 2026 \u2014 a neural network paper on dynamically selecting lightweight DNN models at runtime to improve efficiency."
+}

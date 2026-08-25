@@ -1,0 +1,59 @@
+{
+  "id": "4783cc41-c03c-4e1b-89b4-50658f642bd5",
+  "bucket": "os",
+  "instruction": "Copy directory hierarchy from \"$sourceDir\" to \"$targetDir\"",
+  "answer": "FAIL",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "cc700a8f5e3835d8a0bda0aba580e32ab94a332653683d590df3727c0f1ba103",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-33aea722-59b0-46b5-8504-3192b7fa458a.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-24T22:41:41.779534+00:00",
+    "finished_at": "2026-08-24T22:42:57.495458+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 17,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.23546269999999997,
+  "agent_input_tokens": 22,
+  "agent_output_tokens": 3656,
+  "agent_cache_read_tokens": 424109,
+  "agent_cache_creation_tokens": 13748,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1704,
+      "outputTokens": 13,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001769,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 22,
+      "outputTokens": 3656,
+      "cacheReadInputTokens": 424109,
+      "cacheCreationInputTokens": 13748,
+      "webSearchRequests": 0,
+      "costUSD": 0.2336937,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 73654,
+  "agent_duration_api_ms": 71366,
+  "agent_session_id": "fefb19f2-cfcc-49be-bbc3-a20bbfc00020",
+  "agent_uuid": "aaea1f08-6228-43f4-be8b-7adb4d8d54e4"
+}

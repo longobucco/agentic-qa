@@ -1,0 +1,5 @@
+{
+  "id": "Google Flights--38",
+  "verdict": "SUCCESS",
+  "reason": "The screenshot shows Google Flights for economy Oslo\u2192Dubai on Wed Jul 8 with the '2 stops or fewer' filter active, displaying prices and durations (Pegasus \u20ac273/10h25m, \u20ac293/10h45m, Emirates nonstop \u20ac492/7h25m, etc.) that match the response's comparison."
+}

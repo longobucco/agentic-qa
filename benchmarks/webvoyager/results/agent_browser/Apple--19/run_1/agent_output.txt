@@ -1,0 +1,6 @@
+Both slogans found from Apple's website:
+
+- **Mac** (apple.com/mac): the page hero shows "Mac" with the headline **"Explore the lineup."**
+- **MacBook Pro** (apple.com/macbook-pro): the hero slogan is **"Fast runs in the family."** (with subtitle "Now with M5, M5 Pro, and M5 Max.")
+
+ANSWER: Mac slogan: "Explore the lineup." | MacBook Pro slogan: "Fast runs in the family." (subtitle: "Now with M5, M5 Pro, and M5 Max.")

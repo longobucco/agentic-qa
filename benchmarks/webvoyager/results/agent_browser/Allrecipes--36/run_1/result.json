@@ -1,0 +1,8 @@
+{
+  "id": "Allrecipes--36",
+  "bucket": "Allrecipes",
+  "web_name": "Allrecipes",
+  "ques": "Locate a recipe for an American apple pie on Allrecipes with a rating of at least 4 stars and more than 50 reviews. Note the maximum temperature mentioned in the Directions.",
+  "web": "https://www.allrecipes.com/",
+  "answer": ""
+}

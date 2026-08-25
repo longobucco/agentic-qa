@@ -1,0 +1,59 @@
+{
+  "id": "1334ca3e-f9e3-4db8-9ca7-b4c653be7d17",
+  "bucket": "libreoffice_calc",
+  "instruction": "The cells are so big that I can not click on the cell I want, zoom out a little bit.",
+  "answer": "DONE",
+  "eval_state": "<binary:7176 bytes at Zoom_Out_Oversized_Cells.xlsx>",
+  "provenance": {
+    "task_sha256": "7b42448859bcd926e4a4adb6bf1d12730ca279acbbbe334ed40e6d742c51e429",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-fb9a4873-b141-4bcb-970f-c44d7075ff4a.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-16T02:32:06.280354+00:00",
+    "finished_at": "2026-08-16T02:34:08.317850+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 30,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.49311365000000007,
+  "agent_input_tokens": 35,
+  "agent_output_tokens": 4645,
+  "agent_cache_read_tokens": 970803,
+  "agent_cache_creation_tokens": 34345,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3229,
+      "outputTokens": 14,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0032990000000000003,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 35,
+      "outputTokens": 4645,
+      "cacheReadInputTokens": 970803,
+      "cacheCreationInputTokens": 34345,
+      "webSearchRequests": 0,
+      "costUSD": 0.48981465,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 120267,
+  "agent_duration_api_ms": 113490,
+  "agent_session_id": "e7ed0f88-4d39-49e0-a59e-7bba66655068",
+  "agent_uuid": "9afbb182-e59d-4cb4-b9b8-2583f9a0f014"
+}

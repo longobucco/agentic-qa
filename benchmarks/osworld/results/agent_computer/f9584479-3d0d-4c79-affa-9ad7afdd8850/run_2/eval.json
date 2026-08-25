@@ -1,0 +1,10 @@
+{
+  "id": "f9584479-3d0d-4c79-affa-9ad7afdd8850",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official compare_table -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "Quarterly_Product_Sales_by_Zone_gold.xlsx": "14bfa146f541d07809894ee19c02d192d4c5c2092a41397e47b580be47091031"
+  }
+}

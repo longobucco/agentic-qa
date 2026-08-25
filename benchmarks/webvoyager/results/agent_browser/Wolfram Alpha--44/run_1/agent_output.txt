@@ -1,0 +1,5 @@
+WolframAlpha solved the ODE and applied the initial condition g(0)=1, determining the integration constant automatically.
+
+The separable equation −g'/cos(g) = 1 integrates to a solution with one constant; the condition g(0)=1 fixes that constant to coth⁻¹(sin(1)) ≈ 0.9985.
+
+ANSWER: g(x) = −arcsin( coth( x − coth⁻¹(sin 1) ) ). The integration constant, fixed by g(0)=1, is coth⁻¹(sin 1) ≈ 0.9986.

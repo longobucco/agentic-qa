@@ -1,0 +1,3 @@
+The file is now open in LibreOffice Calc with the sheets in the correct order. I can see the tabs at the bottom: **ReadMe, Raw_data, Beans, Millet, Sorghum, Mkt Gotheye, Mkt Mangaize, Mkt Ouallam, Mkt Tera, Millet spatial integration** — exactly matching the requirements from reminder.docx.
+
+ANSWER: DONE

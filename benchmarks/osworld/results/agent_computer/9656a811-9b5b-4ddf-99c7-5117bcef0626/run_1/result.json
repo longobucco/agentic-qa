@@ -1,0 +1,59 @@
+{
+  "id": "9656a811-9b5b-4ddf-99c7-5117bcef0626",
+  "bucket": "chrome",
+  "instruction": "I want Chrome to warn me whenever I visit a potentially harmful or unsafe website. Can you enable this safety feature?",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "c16da03c6ec28dc0b53df81c5028128e207865add72ddb8b596a8a16c2c7ece8",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-56dbac10-b4ec-42ee-bbff-2860004a5e05.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-15T16:28:43.596156+00:00",
+    "finished_at": "2026-08-15T16:29:51.916592+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 8,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.14810620000000002,
+  "agent_input_tokens": 15,
+  "agent_output_tokens": 3146,
+  "agent_cache_read_tokens": 188079,
+  "agent_cache_creation_tokens": 10974,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3230,
+      "outputTokens": 13,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0032949999999999998,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 15,
+      "outputTokens": 3146,
+      "cacheReadInputTokens": 188079,
+      "cacheCreationInputTokens": 10974,
+      "webSearchRequests": 0,
+      "costUSD": 0.1448112,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 66688,
+  "agent_duration_api_ms": 66621,
+  "agent_session_id": "eb2cf4cd-d7ba-410e-a7be-68c90b93693e",
+  "agent_uuid": "4018958f-ca18-4370-9d14-f9beec40b35d"
+}

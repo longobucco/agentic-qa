@@ -1,0 +1,8 @@
+{
+  "id": "Huggingface--17",
+  "bucket": "Huggingface",
+  "web_name": "Huggingface",
+  "ques": "Find the most recently updated open-source project related to natural language processing on the Huggingface platform. Provide the project's name, creator, and a brief description of its functionality.",
+  "web": "https://huggingface.co/",
+  "answer": "Name: \"swa-latn-100mb-after-ppt-shuff-dyck-100mb-ckpt500_seed3407\" \u2014 Creator: fpadovani \u2014 Functionality: A GPT-2-based open-source causal language model for Swahili (swa-latn = Swahili in Latin script), fine-tuned via supervised fine-tuning (SFT, using the TRL library) on ~100MB of Swahili text; it performs text generation, producing/continuing Swahili-language text via the Transformers `text-generation` pipeline."
+}

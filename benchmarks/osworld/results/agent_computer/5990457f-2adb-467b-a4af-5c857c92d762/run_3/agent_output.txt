@@ -1,0 +1,12 @@
+The researchers.xlsx file at `/private/tmp/researchers.xlsx` already contains Yann LeCun's entry as the last row (row 6), with data that matches exactly what I found on Google Scholar:
+
+- **Name**: Yann LeCun
+- **All citations**: 490,888 ✓
+- **h-index**: 174 ✓
+- **i10-index**: 501 ✓
+- **Top Cited Work**: "Deep learning" ✓ (121,236 citations on Google Scholar)
+- **PDF Link**: https://hal.science/hal-04206682/document
+
+The entry is correctly appended to the table (which had 4 previous entries: Hinton, Manning, Ng, Sutskever).
+
+ANSWER: DONE

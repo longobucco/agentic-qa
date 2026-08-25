@@ -1,0 +1,11 @@
+{
+  "id": "550ce7e7-747b-495f-b122-acdc4d0b8e54",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official ['compare_pptx_files', 'compare_pptx_files'] -> 0.00",
+  "source": "official",
+  "gold_sha256": {
+    "New_Club_Spring_2018_Training_Gold.pptx": "8382628642c922dc8a092ccb42f1a2958e9ca9b699bfe5c509a280111a0a11a4",
+    "New_Club_Spring_2018_Training_Gold_all_fonts_1.pptx": "7f11fe1048a41bd4391d9aa4d0c48f7f98310d86e640eb369b8983ee1b62afaf"
+  }
+}

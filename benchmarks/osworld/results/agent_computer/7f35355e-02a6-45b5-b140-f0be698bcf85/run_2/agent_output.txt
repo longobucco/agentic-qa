@@ -1,0 +1,7 @@
+I've completed the task:
+
+1. **Exported the table to CSV**: Saved `/home/user/Desktop/stock.csv` via LibreOffice Calc's Save As (Text CSV, comma-delimited).
+2. **Computed the result**: Read the Stock Price column (48 filled values, 12 empty), filled the empty cells with the average (39.20125), then took the median of all 60 values = **25.27**.
+3. **Saved** the numeric result to `result.txt`.
+
+ANSWER: 25.27

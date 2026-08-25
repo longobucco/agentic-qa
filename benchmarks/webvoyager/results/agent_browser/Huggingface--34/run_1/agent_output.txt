@@ -1,0 +1,15 @@
+I've located the **Hugging Face for Classrooms** page (huggingface.co/classrooms) and captured screenshots of the benefits. Here's what the site lists.
+
+## Benefits of Hugging Face for Classrooms
+
+**Overview:** Free resources, teaching materials, and support for students and teachers — turning your class into a collaborative environment where students learn and build ML-powered applications using free open-source technologies and state-of-the-art models.
+
+The page highlights three core benefits, all **free**:
+
+1. **Empower your students with state-of-the-art resources** — Implement machine learning with Hugging Face tools and collaborate with students easily on all their datasets, models, and ML demos hosted within your classroom workspace.
+
+2. **Give your students unlimited access to modern machine learning tools** — Upload datasets, models, and demos for free; train, fine-tune, experiment, and deploy, then share models and demos with the classroom or community — all hosted for free.
+
+3. **Easily manage your classroom** — Centralize students' datasets, models, and demos in one place, collaborate with version control and student access controls (admin, read, write), then share privately or publicly with the community.
+
+ANSWER: Hugging Face for Classrooms (huggingface.co/classrooms) offers these benefits, all free: (1) Free resources, teaching materials & support for students and teachers, turning class into a collaborative ML-building environment with open-source tools and state-of-the-art models; (2) Empower students with state-of-the-art resources — implement ML and collaborate on datasets, models, and demos hosted in your classroom workspace; (3) Unlimited access to modern ML tools — upload datasets/models/demos, train, fine-tune, experiment, deploy, and share with the classroom or community, all hosted free; (4) Easily manage your classroom — centralize datasets/models/demos in one place with version control and student access controls (admin, read, write), shareable privately or publicly.

@@ -1,0 +1,6 @@
+{
+  "id": "48c46dc7-fe04-4505-ade7-723cba1aa6f6",
+  "verdict": "ENVIRONMENT_ERROR",
+  "reason": "config setup failed: Setup step 3 failed: _launch_setup - SetupController._launch_setup() got an unexpected keyword argument 'wait_for_cdp'",
+  "source": "environment"
+}

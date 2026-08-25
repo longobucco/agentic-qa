@@ -1,0 +1,5 @@
+{
+  "id": "Booking--15",
+  "verdict": "FAILURE",
+  "reason": "The agent hit max turns and produced no answer; screenshots show only the Booking.com Rome search landing page with default dates, with no luxury hotel identified and no cost, amenities, or rating provided."
+}

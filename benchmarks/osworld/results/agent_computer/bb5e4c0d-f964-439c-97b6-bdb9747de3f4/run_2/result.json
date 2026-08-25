@@ -1,0 +1,59 @@
+{
+  "id": "bb5e4c0d-f964-439c-97b6-bdb9747de3f4",
+  "bucket": "chrome",
+  "instruction": "Can you make Bing the main search engine when I look stuff up on the internet?",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "118bafaf4431d2325a422908fe2cbdb5c3bc7a1220004fe8547c56041c22922e",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-035a3477-89a0-4aa0-a0ff-747286a85ff0.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-11T08:31:28.071396+00:00",
+    "finished_at": "2026-08-11T08:36:04.973588+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 41,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.6201904999999999,
+  "agent_input_tokens": 52,
+  "agent_output_tokens": 6247,
+  "agent_cache_read_tokens": 1280140,
+  "agent_cache_creation_tokens": 37706,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 810,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.00089,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 52,
+      "outputTokens": 6247,
+      "cacheReadInputTokens": 1280140,
+      "cacheCreationInputTokens": 37706,
+      "webSearchRequests": 0,
+      "costUSD": 0.6193004999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 274612,
+  "agent_duration_api_ms": 260039,
+  "agent_session_id": "2bba8ea5-2c46-4eac-84f1-000eafce7f01",
+  "agent_uuid": "ab952f08-5f97-4494-8654-dd398186df08"
+}

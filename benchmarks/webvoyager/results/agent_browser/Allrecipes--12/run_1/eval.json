@@ -1,0 +1,5 @@
+{
+  "id": "Allrecipes--12",
+  "verdict": "FAILURE",
+  "reason": "Screenshots show only a people.inc access-denied page with no recipe, rating, review count, or ingredient list, so no part of the task was completed."
+}

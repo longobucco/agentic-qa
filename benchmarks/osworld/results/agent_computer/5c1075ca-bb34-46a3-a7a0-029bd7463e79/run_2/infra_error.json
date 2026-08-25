@@ -1,0 +1,123 @@
+[
+  {
+    "id": "5c1075ca-bb34-46a3-a7a0-029bd7463e79",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-20T18:23:04+0200"
+  },
+  {
+    "id": "5c1075ca-bb34-46a3-a7a0-029bd7463e79",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-22T14:54:37+0200"
+  },
+  {
+    "id": "5c1075ca-bb34-46a3-a7a0-029bd7463e79",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-23T02:08:26+0200"
+  },
+  {
+    "id": "5c1075ca-bb34-46a3-a7a0-029bd7463e79",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-23T12:12:26+0200"
+  },
+  {
+    "id": "5c1075ca-bb34-46a3-a7a0-029bd7463e79",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-23T17:20:57+0200"
+  },
+  {
+    "id": "5c1075ca-bb34-46a3-a7a0-029bd7463e79",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-23T22:26:20+0200"
+  },
+  {
+    "id": "5c1075ca-bb34-46a3-a7a0-029bd7463e79",
+    "run": 2,
+    "outcome": "INFRA_FLAKE",
+    "error_type": "DaytonaConnectionTimeoutError",
+    "error": "Failed to execute command: HTTPSConnectionPool(host='proxy.app-eu.daytona.io', port=443): Read timed out. (read timeout=24.99936420796439)",
+    "elapsed_s": 1765.0,
+    "at": "2026-08-24T10:07:24+0200"
+  },
+  {
+    "id": "5c1075ca-bb34-46a3-a7a0-029bd7463e79",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-24T12:40:25+0200"
+  },
+  {
+    "id": "5c1075ca-bb34-46a3-a7a0-029bd7463e79",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-24T15:53:41+0200"
+  },
+  {
+    "id": "5c1075ca-bb34-46a3-a7a0-029bd7463e79",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-24T18:52:36+0200"
+  },
+  {
+    "id": "5c1075ca-bb34-46a3-a7a0-029bd7463e79",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-25T02:58:08+0200"
+  },
+  {
+    "id": "5c1075ca-bb34-46a3-a7a0-029bd7463e79",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-25T04:39:06+0200"
+  },
+  {
+    "id": "5c1075ca-bb34-46a3-a7a0-029bd7463e79",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-25T07:30:48+0200"
+  },
+  {
+    "id": "5c1075ca-bb34-46a3-a7a0-029bd7463e79",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-25T08:11:00+0200"
+  },
+  {
+    "id": "5c1075ca-bb34-46a3-a7a0-029bd7463e79",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-25T08:50:06+0200"
+  },
+  {
+    "id": "5c1075ca-bb34-46a3-a7a0-029bd7463e79",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-25T09:35:28+0200"
+  },
+  {
+    "id": "5c1075ca-bb34-46a3-a7a0-029bd7463e79",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-25T10:18:18+0200"
+  }
+]

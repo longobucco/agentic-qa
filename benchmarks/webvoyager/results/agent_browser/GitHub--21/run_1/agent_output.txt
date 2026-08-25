@@ -1,0 +1,5 @@
+I navigated to GitHub → Resources → Security topic, then opened a Security-topic article that describes GitHub Advanced Security's role.
+
+In the GitHub Resources Security topic, GitHub Advanced Security (GHAS) is presented as GitHub's built-in application security solution. Its role: it helps you **find and fix vulnerabilities swiftly** — providing capabilities like code scanning (SAST via CodeQL with semantic analysis to reduce false positives) and secret scanning — ensuring **fast remediation rates and seamless integration into your developer workflow** so teams can ship more secure software faster.
+
+ANSWER: In GitHub Resources' Security topic, GitHub Advanced Security's role is to find and fix vulnerabilities swiftly — built-in application security (code scanning/SAST, secret scanning) that delivers fast remediation rates and integrates seamlessly into the developer workflow so teams ship more secure software faster.

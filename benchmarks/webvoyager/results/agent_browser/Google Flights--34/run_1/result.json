@@ -1,0 +1,8 @@
+{
+  "id": "Google Flights--34",
+  "bucket": "Google Flights",
+  "web_name": "Google Flights",
+  "ques": "Compare business class flight options from Lisbon to Singapore for a one-way trip on July 15, 2026, select one of the flights and see which websites offer its booking options. Which one is the cheapest.",
+  "web": "https://www.google.com/travel/flights/",
+  "answer": "For the selected Qatar Airways business-class flight (Lisbon\u2192Singapore, one-way, Jul 15 2026, 1 stop in Doha, 19h20m, ~\u20ac2,684), the booking options are Qatar Airways \u20ac2,684, Rumbo \u20ac2,630, martiGO \u20ac2,684, and Gotogate \u20ac2,704 \u2014 the cheapest is **Rumbo at \u20ac2,630**."
+}

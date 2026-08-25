@@ -1,0 +1,8 @@
+{
+  "id": "Booking--0",
+  "bucket": "Booking",
+  "web_name": "Booking",
+  "ques": "Find a Mexico hotel with deals for December 25-26, 2026.",
+  "web": "https://www.booking.com/",
+  "answer": "Searched Booking.com for Mexico, Dec 25\u201326 2026. Found many hotels with deals \u2014 e.g. Hacienda Sepulveda Hotel & Spa (9.5 Exceptional, from $248), Hotel El Dorado (9.0, from $56), and Hotel Plaza Cuatro Ci\u00e9negas (9.2, from $143)."
+}

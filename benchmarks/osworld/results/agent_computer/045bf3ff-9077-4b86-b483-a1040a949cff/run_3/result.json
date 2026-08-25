@@ -1,0 +1,59 @@
+{
+  "id": "045bf3ff-9077-4b86-b483-a1040a949cff",
+  "bucket": "gimp",
+  "instruction": "Could you turn my image into CYMK mode within GIMP ?",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "8429f109f739d1b6d2ae078a2a0e7c64d1ca3d1a6c567b3765893ea25f332b6f",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-aaa2ab90-ef10-4ae7-9a68-9dfb7cd4baa5.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-08T16:02:55.803330+00:00",
+    "finished_at": "2026-08-08T16:27:44.047536+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 140,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 4.64356355,
+  "agent_input_tokens": 159,
+  "agent_output_tokens": 45440,
+  "agent_cache_read_tokens": 11430931,
+  "agent_cache_creation_tokens": 141523,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1401,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001496,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 159,
+      "outputTokens": 45440,
+      "cacheReadInputTokens": 11430931,
+      "cacheCreationInputTokens": 141523,
+      "webSearchRequests": 0,
+      "costUSD": 4.64206755,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 1485853,
+  "agent_duration_api_ms": 1365772,
+  "agent_session_id": "97934e50-7264-403a-974b-2b00825c67d4",
+  "agent_uuid": "37a9a01b-7884-4587-8cf6-17941bc6cd61"
+}

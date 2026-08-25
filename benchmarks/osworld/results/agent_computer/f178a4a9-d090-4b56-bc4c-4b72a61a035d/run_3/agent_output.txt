@@ -1,0 +1,3 @@
+The LibreOffice configuration file has been successfully written with Times New Roman set as the default font (Standard, Caption, Index, and List entries all set to Times New Roman) in `/home/user/.config/libreoffice/4/user/registrymodifications.xcu`.
+
+ANSWER: DONE

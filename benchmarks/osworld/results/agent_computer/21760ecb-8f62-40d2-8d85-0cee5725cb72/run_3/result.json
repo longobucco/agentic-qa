@@ -1,0 +1,59 @@
+{
+  "id": "21760ecb-8f62-40d2-8d85-0cee5725cb72",
+  "bucket": "libreoffice_impress",
+  "instruction": "Could you help me add slide transition \"dissolve\" to my first page?",
+  "answer": "DONE",
+  "eval_state": "<binary:13466343 bytes at Ch4 Video Effect.pptx>",
+  "provenance": {
+    "task_sha256": "045272a4bf9a563c31651b8b846f0144773dfdcd13d5016b6428945fd6e77b9b",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-e5c2a98b-2ec2-4c81-9418-5312d953a259.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-08T08:19:18.998045+00:00",
+    "finished_at": "2026-08-08T08:40:11.875402+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 102,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 3.5698124,
+  "agent_input_tokens": 109,
+  "agent_output_tokens": 53044,
+  "agent_cache_read_tokens": 7601003,
+  "agent_cache_creation_tokens": 131370,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 807,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.000887,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 109,
+      "outputTokens": 53044,
+      "cacheReadInputTokens": 7601003,
+      "cacheCreationInputTokens": 131370,
+      "webSearchRequests": 0,
+      "costUSD": 3.5689254,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 1249375,
+  "agent_duration_api_ms": 1197964,
+  "agent_session_id": "565acbef-1bad-45c1-8105-28795faf8273",
+  "agent_uuid": "60f837cd-5083-40bf-a91d-abdb7cf4fadd"
+}

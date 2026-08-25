@@ -1,0 +1,3 @@
+The workspace was saved successfully. The title bar now shows "project (Workspace) [Superuser]", the Explorer header reads "PROJECT (WORKSPACE)", and `project.code-workspace` now appears in the file tree at `/home/user/project/`.
+
+ANSWER: DONE

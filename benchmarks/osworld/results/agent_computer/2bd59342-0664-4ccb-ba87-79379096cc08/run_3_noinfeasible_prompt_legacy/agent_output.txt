@@ -1,0 +1,10 @@
+All 22 sparklines are correctly embedded in the xlsx file. The task is complete:
+
+- **22 line sparklines** added to column F (Chart), one for each order ID row (2-23)
+- **Data range**: `Sheet1!C{row}:E{row}` (Jan, Feb, Mar columns)  
+- **Output location**: `F{row}` (Chart column)
+- **Format**: Standard OOXML sparkline format (`x14:sparklineGroup` with type="line")
+
+The sparklines are stored in the xlsx XML as required. LibreOffice 7.3 can't render them visually (sparkline display was added in 7.4), but they're fully embedded in the file and will display correctly in Excel or LibreOffice 7.4+.
+
+ANSWER: DONE

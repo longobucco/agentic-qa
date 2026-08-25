@@ -1,0 +1,59 @@
+{
+  "id": "5812b315-e7bd-4265-b51f-863c02174c28",
+  "bucket": "os",
+  "instruction": "Please create an SSH user named \"charles\" with password \"Ex@mpleP@55w0rd!\" on Ubuntu who is only allowed to access the folder \"/home/test1\".",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "b6efc599cce4546546a1ab023b1a4ebd85d5b591976164b27ecd52130c41c2ad",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-167b2f65-0bbe-4e65-b0d7-66be1579bd8e.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-24T23:10:14.874153+00:00",
+    "finished_at": "2026-08-24T23:11:56.388528+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 17,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.2660156,
+  "agent_input_tokens": 22,
+  "agent_output_tokens": 4709,
+  "agent_cache_read_tokens": 441082,
+  "agent_cache_creation_tokens": 16316,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1730,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001805,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 22,
+      "outputTokens": 4709,
+      "cacheReadInputTokens": 441082,
+      "cacheCreationInputTokens": 16316,
+      "webSearchRequests": 0,
+      "costUSD": 0.2642106,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 99289,
+  "agent_duration_api_ms": 91230,
+  "agent_session_id": "33524bd7-95e7-43ab-8ab0-9df3a50f214d",
+  "agent_uuid": "7ce10d6a-9d5c-4768-9007-49b76896fc69"
+}

@@ -1,0 +1,8 @@
+{
+  "id": "Huggingface--23",
+  "bucket": "Huggingface",
+  "web_name": "Huggingface",
+  "ques": "Identify three innovative and widely recognized open-source NLP models for automatic speech recognition released in the past month on Huggingface.",
+  "web": "https://huggingface.co/",
+  "answer": "Three innovative, widely recognized open-source ASR models released in the past month on Hugging Face: (1) nvidia/nemotron-3.5-asr-streaming-0.6b (NVIDIA streaming ASR, #1 trending, 695 likes), (2) AutoArk-AI/ARK-ASR-3B (created ~4 days ago, #4 trending), and (3) google/medasr (Google medical ASR, 339 likes, ~1 month old)."
+}

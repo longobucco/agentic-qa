@@ -1,0 +1,3 @@
+The document now shows every word's first letter capitalized, matching the required output ("Question Two: Geography And Magical Realism", "There Is A Lot Of Debate...", etc.). The transformed file is already saved on disk and the document is open with the correct window title, ready for the evaluator's save step.
+
+ANSWER: DONE

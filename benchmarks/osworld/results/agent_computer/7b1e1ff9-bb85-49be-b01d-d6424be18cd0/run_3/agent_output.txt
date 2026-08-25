@@ -1,0 +1,3 @@
+The "About Profiles" tabpage (`about:profiles`) is now open inside the Thunderbird app — this is the in-app profile management page, not the profile chooser dialog. The Error Console has been closed.
+
+ANSWER: DONE

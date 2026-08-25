@@ -1,0 +1,12 @@
+All tasks are complete:
+
+1. **Found the email**: AWS invoice for December 2023 was in the Thunderbird local "Bills" mailbox (`/home/user/.thunderbird/t5q2a5hp.default-release/Mail/Local Folders/Bills`)
+
+2. **Extracted the PDF**: The PDF attachment (`invoice0123456789.pdf`) was extracted and saved as **`aws-invoice-2312.pdf`** in `/home/user/Documents/Finance/receipts/`, following the existing naming pattern `aws-invoice-YYMM.pdf`
+
+3. **Updated the tally book**: Added a new record to `/home/user/Documents/Finance/tally_book.xlsx` with:
+   - Service: `AWS`
+   - Month: `2023.12` (December 2023)
+   - Amount: `$10.02` (total from the invoice)
+
+ANSWER: DONE

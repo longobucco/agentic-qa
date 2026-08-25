@@ -1,0 +1,59 @@
+{
+  "id": "efcf0d81-0835-4880-b2fd-d866e8bc2294",
+  "bucket": "vlc",
+  "instruction": "Make this part of the video my computer's background picture",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "d5547fc6d6d64ada443319820b655fd3d0ec1accb3761c773d5cbcd27012417b",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-1b93fa49-7228-4372-8ed8-af120f0b9784.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-19T20:55:12.812271+00:00",
+    "finished_at": "2026-08-19T21:03:40.975780+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 32,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 1.292375,
+  "agent_input_tokens": 4079,
+  "agent_output_tokens": 14660,
+  "agent_cache_read_tokens": 1190822,
+  "agent_cache_creation_tokens": 48808,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 4949,
+      "outputTokens": 14,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.005019,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 4079,
+      "outputTokens": 14660,
+      "cacheReadInputTokens": 1190822,
+      "cacheCreationInputTokens": 48808,
+      "webSearchRequests": 0,
+      "costUSD": 1.287356,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 505574,
+  "agent_duration_api_ms": 261150,
+  "agent_session_id": "da158a02-3924-4f34-9acb-c92a9a3eade3",
+  "agent_uuid": "bf92ba91-794e-4d8c-90f4-fe8c4b55bb98"
+}

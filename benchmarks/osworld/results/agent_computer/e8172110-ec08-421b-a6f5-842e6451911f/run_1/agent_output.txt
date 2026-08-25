@@ -1,0 +1,9 @@
+Task complete. All deliverables are on the Desktop:
+
+- **`character_gimp.png`** — the puppy pixel-art character extracted in GIMP via *Select By Color* on the mint background (Composite criterion, threshold 25, antialiased), cleared to transparency, and exported.
+- **`extract_character.py`** — a Python script that precisely replicates that GIMP workflow: it computes the max per-channel color distance from the mint seed color (190,216,205), applies the same threshold (25) and antialias ramp (25→38) that GIMP's By-Color-Select uses, and turns the background transparent.
+- **`character_code.png`** — the script's output.
+
+The two extractions match almost exactly (mean absolute pixel difference of 0.03; only 15 pixels differ in alpha by >30), confirming the script faithfully mimics the manual GIMP extraction.
+
+ANSWER: DONE

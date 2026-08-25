@@ -1,0 +1,5 @@
+{
+  "id": "Google Search--27",
+  "verdict": "SUCCESS",
+  "reason": "The final screenshot shows IQAir's live 'Air quality in Paris' page displaying the current AQI and PM2.5 data, matching the response's reported moderate air quality reading."
+}

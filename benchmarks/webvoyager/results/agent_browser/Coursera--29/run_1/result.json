@@ -1,0 +1,8 @@
+{
+  "id": "Coursera--29",
+  "bucket": "Coursera",
+  "web_name": "Coursera",
+  "ques": "Browse the Coursera website and find the price required for one year of Coursera Plus. How much is the discount? Then list 3 companies that work with Coursera.",
+  "web": "https://www.coursera.org/",
+  "answer": "One year of Coursera Plus (Annual) costs \u20ac204.60/year, discounted from the original \u20ac341/year \u2014 a 40% discount (saving \u20ac136.40). Three companies that work with Coursera: IBM, Microsoft, and Google (Meta is also a partner)."
+}

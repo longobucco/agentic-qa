@@ -1,0 +1,3 @@
+All columns are filled and the file is saved. Column B (up-ramp acceleration) and D (down-ramp acceleration) are populated for rows 2–30 using the row-2 formulas, and column E "Combined Data" concatenates each header with its cell value (2 decimals) in the pattern "Header: value, ..." for every row.
+
+ANSWER: DONE

@@ -1,0 +1,8 @@
+{
+  "id": "Allrecipes--6",
+  "bucket": "Allrecipes",
+  "web_name": "Allrecipes",
+  "ques": "Search for a vegetarian lasagna recipe that has at least a four-star rating and over 500 reviews.",
+  "web": "https://www.allrecipes.com/",
+  "answer": "Unable to complete \u2014 allrecipes.com returned an access-block page (\"If you are a reader experiencing an access issue, please contact support@people.inc\") on every URL (homepage, search, and direct recipe pages), so no vegetarian lasagna recipe with its rating/review count could be retrieved. The container's IP appears to be blocked by the site."
+}

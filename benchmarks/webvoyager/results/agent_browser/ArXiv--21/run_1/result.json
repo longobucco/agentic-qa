@@ -1,0 +1,8 @@
+{
+  "id": "ArXiv--21",
+  "bucket": "ArXiv",
+  "web_name": "ArXiv",
+  "ques": "Search for papers on 'neural networks for image processing' in the Computer Science category on ArXiv and report how many were submitted in the last week.",
+  "web": "https://arxiv.org/",
+  "answer": "13 papers on \"neural networks for image processing\" in the Computer Science category were submitted on ArXiv in the last week (2026-06-19 to 2026-06-26)."
+}

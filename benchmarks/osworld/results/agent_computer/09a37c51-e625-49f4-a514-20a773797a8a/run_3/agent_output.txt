@@ -1,0 +1,7 @@
+The task is complete. The file `pic.jpg` has been successfully created on the Desktop with:
+- Background removed using the rembg AI-powered background removal library
+- Person preserved on a clean white background (verified: corner pixels are 255,255,255)
+- Same dimensions as the original (320x510 pixels)
+- Saved as JPEG format
+
+ANSWER: DONE

@@ -1,0 +1,28 @@
+I've gathered all the information from the Apple TV 4K Tech Specs page and captured screenshots.
+
+## Apple TV 4K — Size and Weight
+
+**Apple TV 4K (the box):**
+- Height: 1.2 inches (31 mm)
+- Width: 3.66 inches (93 mm)
+- Depth: 3.66 inches (93 mm)
+- Weight (Wi-Fi model): 7.3 ounces (208 g)
+- Weight (Wi-Fi + Ethernet model): 7.5 ounces (214 g)
+
+**Siri Remote (size & weight):**
+- Height: 5.4 inches (136 mm)
+- Width: 1.4 inches (35 mm)
+- Depth: 0.36 inch (9.25 mm)
+- Weight: 2.3 ounces (66 g)
+
+## Siri Remote — Features
+- Bluetooth 5.0 wireless technology
+- IR transmitter
+- USB‑C connector for charging
+- Rechargeable battery providing months of battery life on a single charge (with typical daily usage)
+- Charging via USB‑C cable to computer system or power adapter (each sold separately)
+- Control your TV or receiver via IR or CEC
+
+**Buttons:** Microphone for Siri, Touch‑enabled clickpad, Back, Play/Pause, Mute, Power, Siri, TV/Home, Volume, USB‑C.
+
+ANSWER: Apple TV 4K size/weight — Height 1.2 in (31 mm), Width 3.66 in (93 mm), Depth 3.66 in (93 mm); Weight 7.3 oz (208 g) Wi-Fi model / 7.5 oz (214 g) Wi-Fi+Ethernet model. Siri Remote features: Bluetooth 5.0 wireless technology, IR transmitter, USB-C connector for charging, rechargeable battery (months of life per charge), charging via USB-C cable, and TV/receiver control via IR or CEC; buttons include Microphone for Siri, Touch-enabled clickpad, Back, Play/Pause, Mute, Power, Siri, TV/Home, Volume, and USB-C.

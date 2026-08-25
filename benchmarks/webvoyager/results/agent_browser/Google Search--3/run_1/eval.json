@@ -1,0 +1,5 @@
+{
+  "id": "Google Search--3",
+  "verdict": "FAILURE",
+  "reason": "The final screenshot shows only unloaded gray placeholder cards on the Rotten Tomatoes page behind a cookie overlay\u2014no comedy movie titles, no user ratings, and no user-rating sort are visible, so the claimed Top-5 list cannot be verified as achieved."
+}

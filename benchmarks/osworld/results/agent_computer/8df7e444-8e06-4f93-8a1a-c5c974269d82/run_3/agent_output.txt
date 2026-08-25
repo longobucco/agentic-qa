@@ -1,0 +1,13 @@
+The task is complete. I:
+
+1. Read `reminder.docx` on the Desktop — it specified:
+   - Export the essay as PDF
+   - Pack the writer file + PDF into a ZIP named `essay_submission.zip`
+
+2. Converted `/home/user/Recruitment_and_retention_of_health_professionals_across_Europe.docx` to PDF using LibreOffice
+
+3. Created `/home/user/essay_submission.zip` containing both:
+   - `Recruitment_and_retention_of_health_professionals_across_Europe.docx`
+   - `Recruitment_and_retention_of_health_professionals_across_Europe.pdf`
+
+ANSWER: DONE

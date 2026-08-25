@@ -1,0 +1,15 @@
+I've found the information on the latest MacBook model on Apple's official site.
+
+**Latest MacBook model: MacBook Pro (M5 family) — available with M5, M5 Pro, and M5 Max chips.**
+
+Key features (from apple.com/macbook-pro/specs/):
+
+- **Processor:**
+  - **Apple M5** — 10-core CPU (4 performance "super" cores + 6 efficiency cores), 10-core GPU, 16-core Neural Engine, 153GB/s memory bandwidth
+  - **Apple M5 Pro** — up to 18-core CPU, up to 20-core GPU, 307GB/s memory bandwidth
+  - **Apple M5 Max** — 18-core CPU, up to 40-core GPU, up to 614GB/s memory bandwidth
+- **Memory (unified):** Base M5 offers 16GB, 24GB, or 32GB; higher configs go up to 36GB, 48GB, 64GB, or **128GB** (M5 Max)
+- **Storage (SSD):** From 1TB, configurable up to 2TB, 4TB, or **8TB**
+- **Battery:** Up to 24 hours video streaming (M5), 72.4-watt-hour battery, MagSafe 3 charging
+
+ANSWER: The latest MacBook model is the MacBook Pro with the M5 chip family (M5, M5 Pro, M5 Max). Base Apple M5: 10-core CPU (4 super + 6 efficiency) and 10-core GPU; memory 16GB/24GB/32GB unified; storage 1TB SSD (configurable to 2TB/4TB). Higher-end M5 Pro/M5 Max scale up to an 18-core CPU, 40-core GPU, up to 128GB unified memory, and up to 8TB SSD.

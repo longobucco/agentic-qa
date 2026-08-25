@@ -1,0 +1,3 @@
+VS Code has launched successfully with the `project` folder open (shown in the title bar as "project"). The command `code ~/Desktop/project` was executed from the xterm terminal and VS Code opened the folder.
+
+ANSWER: DONE

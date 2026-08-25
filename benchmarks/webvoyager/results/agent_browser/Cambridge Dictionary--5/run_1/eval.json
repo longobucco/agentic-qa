@@ -1,0 +1,5 @@
+{
+  "id": "Cambridge Dictionary--5",
+  "verdict": "FAILURE",
+  "reason": "Both screenshots show only a Cloudflare 'Verify you are human' challenge on dictionary.cambridge.org; the pronunciations and example sentence for 'procrastination' were never retrieved, so the task was not accomplished."
+}

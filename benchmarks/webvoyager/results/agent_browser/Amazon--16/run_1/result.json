@@ -1,0 +1,8 @@
+{
+  "id": "Amazon--16",
+  "bucket": "Amazon",
+  "web_name": "Amazon",
+  "ques": "Find the Return Policy for Mens Rhinestone Skull Graphic Shirt on Amazon. Color: Black, Size: XX-Large. If Free return is avaliable, tell me how to return this item.",
+  "web": "https://www.amazon.com/",
+  "answer": "Return policy = \"30-day refund / replacement\" (quick refund usually within 24 hours, convenient drop-off at 50,000+ US locations). However, FREE return is NOT available for this item (Black, XX-Large) \u2014 the policy states \"Shipping fee: May apply, not eligible for free return,\" so a return shipping fee may be charged."
+}

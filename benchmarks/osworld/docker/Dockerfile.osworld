@@ -1,0 +1,141 @@
+# Slim OSWorld desktop image: base for the Daytona sandbox. Must fit Daytona's 10GB disk cap.
+# Daytona sandboxes are x86_64 — build with --platform linux/amd64 even on an arm64 (Apple
+# Silicon) host, or the sandbox won't run. Daytona also ignores this image's CMD and doesn't
+# keep a plain background `&` process alive after its exec call returns, so the controller runs
+# under supervisord (see env/sandbox.py, which execs `supervisord -c /etc/supervisord.conf`
+# after creating the sandbox — the same pattern WebArena uses for its site stacks).
+#
+# Only the OSWorld in-guest server is vendored here (main.py + pyxcursor.py), not the full
+# desktop_env pip package — that package pulls torch/transformers/easyocr (multi-GB, meant for
+# the evaluators that run on the HOST side, not the guest server).
+#
+# Build + push, then set OSW_IMAGE:
+#   docker build --platform linux/amd64 -f benchmarks/osworld/docker/Dockerfile.osworld \
+#     -t <registry>/osworld-ab:latest .
+FROM ubuntu:22.04
+
+ENV DEBIAN_FRONTEND=noninteractive DISPLAY=:99
+
+# add only the apps your subset needs; python3-pyatspi is required for /accessibility (imported
+# unconditionally on Linux — without it the guest server won't even start). wmctrl is used by
+# main.py's activate_window (part of the evaluator's postconfig on many tasks); gsettings
+# (libglib2.0-bin + schemas) and python-is-python3 (a bare `python` binary — OSWorld's own
+# config/postconfig steps invoke "python", not "python3") are needed by other task configs.
+# open_file (config step "open") shells out to `xdg-open`, which needs xdg-mime/desktop-file
+# lookups to resolve a file to an app; without file (libmagic) at all, that fails outright.
+# xdg-utils/desktop-file-utils provide xdg-open/xdg-mime and the desktop-file database. A
+# second, more specific failure mode in the same area is fixed by libfile-mimeinfo-perl below.
+# Batch 2 (2026-08): extending app coverage beyond libreoffice, one Ubuntu-repo app at a time,
+# same discipline as the libreoffice fixes above — added here, but NOT yet in
+# config.SUPPORTED_APPS until each is live-validated on a real sandbox (see README).
+#   gimp                — GUI image editor (36 tasks); benefits from the xdg-open/wmctrl/file
+#                         fixes above already, since those are generic, not libreoffice-specific.
+#   thunderbird / vlc    — mail client (27 tasks) / media player (23 tasks).
+#   gvfs                 — provides the trash backend `gio trash` needs; `gio` itself already
+#                         ships in libglib2.0-bin, but `gio trash` silently no-ops without a
+#                         registered gvfs trash daemon (found the hard way with _open_setup: an
+#                         apt-get install claim isn't validation, a live check is).
+#   pulseaudio-utils     — `pactl` (audio-adjustment "os" tasks); needs a running pulseaudio
+#                         daemon to talk to, which is why plain `pulseaudio` is added too.
+#   xdotool, libnotify-bin — `xdotool`/`notify-send`, used by several "os" config/postconfig steps.
+#   socat                — a `chrome`-category CDP-forwarding task launches
+#                         `socat tcp-listen:9222,fork tcp:localhost:1337` alongside chrome itself.
+#   libfile-mimeinfo-perl — no GNOME/KDE session (openbox only), so xdg-open's generic fallback
+#                         skips the glob database and shells out to `file --mime-type`, which
+#                         can't tell pptx/docx/xlsx apart (shared OOXML/zip signature) -- every
+#                         one resolves to octet-stream, no default app, _open_setup hangs the
+#                         full 1800s before failing. This package provides `mimetype`, which
+#                         xdg-open prefers over `file` and does use the glob database. Confirmed
+#                         live: without it, xdg-open hangs on a real task .pptx; with it, soffice
+#                         opens in ~10s.
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        xvfb x11-utils openbox xterm scrot gnome-screenshot wmctrl \
+        python3 python3-pip python3-tk python3-dev python-is-python3 \
+        at-spi2-core python3-pyatspi dbus-x11 \
+        libglib2.0-bin gsettings-desktop-schemas \
+        xdg-utils desktop-file-utils shared-mime-info file libfile-mimeinfo-perl \
+        supervisor curl \
+        libreoffice \
+        gimp thunderbird vlc socat \
+        gvfs pulseaudio pulseaudio-utils xdotool libnotify-bin \
+    && rm -rf /var/lib/apt/lists/*
+
+# Batch 3: chrome (task launch command is literally "google-chrome") and vscode ("code") aren't
+# in Ubuntu's repos. Installed from each vendor's own "always latest stable" direct .deb URL
+# rather than adding a third-party apt repo + signing key — lighter (no repo metadata, no
+# keyring) and avoids trusting a repo's ongoing key-rotation. Trade-off, stated plainly: this
+# pins nothing upstream — a rebuild later can silently pick up a newer Chrome/VSCode. The
+# RESULTING image is still pinned by digest (see config.py), so THIS build is reproducible;
+# only a future rebuild inherits the drift. `apt-get install <path>.deb` (not bare `dpkg -i`)
+# resolves the packages' own dependencies from the already-configured Ubuntu repos in one step.
+RUN apt-get update && \
+    curl -sSL -o /tmp/chrome.deb \
+        "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb" && \
+    curl -sSL -o /tmp/code.deb \
+        "https://update.code.visualstudio.com/latest/linux-deb-x64/stable" && \
+    apt-get install -y --no-install-recommends /tmp/chrome.deb /tmp/code.deb && \
+    rm -f /tmp/chrome.deb /tmp/code.deb && \
+    rm -rf /var/lib/apt/lists/*
+
+# Both refuse to run as root without --no-sandbox (Chromium/Electron's own sandbox check), and
+# BOTH separately refuse remote debugging without an explicit --user-data-dir (a Chromium
+# anti-CDP-hijacking check) — found live: chrome without --user-data-dir starts but silently
+# never opens the debug port; the task's own launch command specifies neither flag. Rather than
+# switch the whole container to a non-root user (touches every already-validated app), each
+# entry point is replaced with a thin wrapper that injects the two flags before exec'ing the
+# vendor's real binary/wrapper chain untouched (/etc/alternatives/google-chrome,
+# /usr/share/code/bin/code) — surgical, doesn't change how gimp/thunderbird/vlc/libreoffice run.
+#
+# google-chrome's --user-data-dir is $HOME/.config/google-chrome, not an arbitrary scratch path:
+# desktop_env's official evaluator getters (evaluators/getters/chrome.py, e.g.
+# get_default_search_engine) hardcode that exact path for os_type == 'Linux' and read it straight
+# off the guest filesystem. Pointing the wrapper anywhere else (e.g. /tmp/chrome-profile) makes
+# Chrome's real state and the evaluator's read location diverge — the getter 404s, swallows the
+# error, and returns a hardcoded default, scoring every chrome task FAILURE independent of what
+# the agent did (found live via the dataset notebook's §8.3 case study). Using $HOME here, not a
+# hardcoded /root, keeps this correct regardless of what HOME actually resolves to at runtime —
+# the same env var the getter asks the guest server to resolve on its own end.
+#
+# Several evaluators' postconfig kills chrome and relaunches it right before reading state (e.g.
+# this task's own postconfig: pkill chrome -> relaunch -> a fixed 3s sleep -> read Preferences).
+# Confirmed live: on this guest, a cold Chrome start takes closer to a minute (no D-Bus system bus
+# to connect to, GPU command-buffer failures, a background GCM-registration retry loop all add
+# real wall-clock delay before Preferences gets flushed) — well past that fixed 3s budget, which
+# is pinned in the upstream task data and out of our control. These flags remove exactly the slow
+# paths seen in the logs (D-Bus lookups, GPU init, first-run checks, background network registration)
+# so a cold start fits inside a few seconds instead of most of a minute — not a workaround for the
+# evaluator's own timing assumption, an actual reduction in what "started" has to wait on.
+RUN rm -f /usr/bin/google-chrome && \
+    printf '#!/bin/sh\nmkdir -p "$HOME/.config/google-chrome"\nexec /etc/alternatives/google-chrome --no-sandbox --user-data-dir="$HOME/.config/google-chrome" --disable-gpu --disable-dev-shm-usage --no-first-run --disable-background-networking --disable-sync --disable-default-apps "$@"\n' \
+        > /usr/bin/google-chrome && \
+    chmod +x /usr/bin/google-chrome && \
+    rm -f /usr/bin/code && \
+    printf '#!/bin/sh\nmkdir -p /tmp/code-profile /tmp/code-extensions\nexec /usr/share/code/bin/code --no-sandbox --user-data-dir=/tmp/code-profile --extensions-dir=/tmp/code-extensions "$@"\n' \
+        > /usr/bin/code && \
+    chmod +x /usr/bin/code
+
+# pynput is in upstream's server/requirements.txt but unused by main.py/pyxcursor.py (its Linux
+# backend needs evdev, a C extension that's slow/flaky to build under QEMU emulation) — skipped.
+RUN pip3 install --no-cache-dir \
+        pyautogui==0.9.54 pillow==10.1.0 python-xlib requests flask numpy lxml pygame
+
+# Pinned to a commit, not `main` HEAD (same reasoning as the OSW_IMAGE digest pin in config.py —
+# a mutable ref can silently change under a rebuild). Verified byte-identical (sha256) to what
+# was already validated live before this pin was added; bump deliberately, re-verify on bump.
+ARG OSW_UPSTREAM_COMMIT=091f5ef1d5544bc74953c77875d5feb5bed30108
+
+# Vendor just the guest server (main.py + its sibling helper), not the whole desktop_env package.
+RUN mkdir -p /app/desktop_env/server && \
+    touch /app/desktop_env/__init__.py /app/desktop_env/server/__init__.py && \
+    curl -sSL -o /app/desktop_env/server/main.py \
+        "https://raw.githubusercontent.com/xlang-ai/OSWorld/${OSW_UPSTREAM_COMMIT}/desktop_env/server/main.py" && \
+    curl -sSL -o /app/desktop_env/server/pyxcursor.py \
+        "https://raw.githubusercontent.com/xlang-ai/OSWorld/${OSW_UPSTREAM_COMMIT}/desktop_env/server/pyxcursor.py"
+WORKDIR /app
+
+COPY benchmarks/osworld/docker/start.sh /start.sh
+COPY benchmarks/osworld/docker/supervisord.conf /etc/supervisord.conf
+RUN chmod +x /start.sh
+
+EXPOSE 5000
+CMD ["supervisord", "-c", "/etc/supervisord.conf"]

@@ -1,0 +1,7 @@
+The macro executed successfully. I can see on slide 5 that:
+1. "WRITE AN ORIGINAL STATEMENT OR INSPIRING QUOTE" text is now **yellow**
+2. "Include a credit, citation, or supporting message" text is also **yellow**
+
+The font color of all textboxes on slide 5 has been set to yellow (RGB 255, 255, 0), and the file was saved. The task is complete.
+
+ANSWER: DONE

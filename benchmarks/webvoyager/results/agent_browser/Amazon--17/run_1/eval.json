@@ -1,0 +1,5 @@
+{
+  "id": "Amazon--17",
+  "verdict": "SUCCESS",
+  "reason": "The final screenshot shows an Amazon baby-department results page with multiple products bearing sale/deal badges and single-digit dollar prices, satisfying the requirement of at least 2 on-sale baby products under $10."
+}

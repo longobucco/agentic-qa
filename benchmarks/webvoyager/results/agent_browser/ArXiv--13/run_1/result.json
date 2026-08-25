@@ -1,0 +1,8 @@
+{
+  "id": "ArXiv--13",
+  "bucket": "ArXiv",
+  "web_name": "ArXiv",
+  "ques": "How many articles on ArXiv with 'SimCSE' in the title?",
+  "web": "https://arxiv.org/",
+  "answer": "6"
+}

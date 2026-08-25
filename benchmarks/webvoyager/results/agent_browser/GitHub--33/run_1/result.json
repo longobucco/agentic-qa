@@ -1,0 +1,8 @@
+{
+  "id": "GitHub--33",
+  "bucket": "GitHub",
+  "web_name": "GitHub",
+  "ques": "Find Customer Stories on the GitHub page and list the 2 stories that appear on the web page.",
+  "web": "https://github.com/",
+  "answer": "The two featured customer stories at the top of GitHub's Customer Stories page are: (1) GM \u2014 \"How GM accelerated software delivery and strengthened engineering culture with GitHub,\" and (2) AstraZeneca \u2014 \"How AstraZeneca accelerates medicine discovery with GitHub and AI.\" (Note: a third story, Cathay, is also currently displayed in the hero.)"
+}

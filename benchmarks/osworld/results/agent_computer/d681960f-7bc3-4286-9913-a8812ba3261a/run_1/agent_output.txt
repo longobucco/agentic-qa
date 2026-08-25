@@ -1,0 +1,18 @@
+The file has been saved successfully. All grades have been correctly filled in the Message column based on the scale table:
+
+- Benedict (42) = Pass
+- Blake (94) = Excellent
+- Bey (33) = Pass
+- Arnold (6) = Fail
+- Clint (86) = Above average
+- Olivia (67) = Average
+- Parah (59) = Pass
+- Elijah (60) = Average
+- Tom (10) = Fail
+- John (85) = Above average
+- Kanye (5) = Fail
+- Reese (73) = Average
+- Swan (100) = Exceptional!
+- 50 Dollar (32) = Pass
+
+ANSWER: DONE

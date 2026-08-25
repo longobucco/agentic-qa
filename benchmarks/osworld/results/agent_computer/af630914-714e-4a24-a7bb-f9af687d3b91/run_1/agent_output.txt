@@ -1,0 +1,3 @@
+The font size is now set to 72 (the maximum "Huge" value). The slider is all the way to the right, and the preview text is displayed at the largest font size available in Chrome.
+
+ANSWER: DONE

@@ -1,0 +1,59 @@
+{
+  "id": "13584542-872b-42d8-b299-866967b5c3ef",
+  "bucket": "os",
+  "instruction": "I click in terminal: terminal->132x43 to change terminal size but after each reboot terminal size is set to default setting and I have to change it again. Help me set it permanently",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "967c0901eee92e82c70f8c3f4d8b6c9dd4675786e644e56060097e773fc36052",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-779bf347-0cae-43ef-8e5e-6ee4f9123f3b.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-24T21:37:10.430783+00:00",
+    "finished_at": "2026-08-24T21:40:11.926696+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 24,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.45496074999999997,
+  "agent_input_tokens": 29,
+  "agent_output_tokens": 7896,
+  "agent_cache_read_tokens": 725280,
+  "agent_cache_creation_tokens": 31209,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1731,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001816,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 29,
+      "outputTokens": 7896,
+      "cacheReadInputTokens": 725280,
+      "cacheCreationInputTokens": 31209,
+      "webSearchRequests": 0,
+      "costUSD": 0.45314475,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 180210,
+  "agent_duration_api_ms": 145055,
+  "agent_session_id": "edefbfbf-6980-44b3-8767-1676b76e6a25",
+  "agent_uuid": "61422cf9-f93e-491e-8220-2a92ae3d89f9"
+}

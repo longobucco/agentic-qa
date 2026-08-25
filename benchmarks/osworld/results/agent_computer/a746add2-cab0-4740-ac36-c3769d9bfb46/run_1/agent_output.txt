@@ -1,0 +1,3 @@
+The Vignette filter window is now successfully open in GIMP. The dialog shows the Vignette filter applied to the dog image with options for Shape, Radius, Softness, Proportional, Center X, Center Y, and Blending Options.
+
+ANSWER: DONE

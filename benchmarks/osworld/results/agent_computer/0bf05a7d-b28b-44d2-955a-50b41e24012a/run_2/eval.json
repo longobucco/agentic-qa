@@ -1,0 +1,11 @@
+{
+  "id": "0bf05a7d-b28b-44d2-955a-50b41e24012a",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official compare_table -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "Customers_New_7digit_Id_gold.xlsx": "7b6e9a8897f371bdab4d73d11599e6b376c1229493374cdb779e334feb906286",
+    "Customers_New_7digit_Id_gold-Sheet1.csv": "916e6766e0243aab25c43dbf88c30d56a598aede0b8128dde85c351c7a98895b"
+  }
+}

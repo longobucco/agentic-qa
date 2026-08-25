@@ -1,0 +1,8 @@
+The task is complete. The first two paragraphs now have double line spacing applied:
+
+1. **First paragraph** ("Compared to a short story...the end.") - now shows double spacing between lines
+2. **Second paragraph** ("A novel may have any number of climaxes...the end.") - now shows double spacing between lines
+
+The remaining paragraphs ("The setting of a novel...", "There may be sudden shifts...", etc.) retain their original single line spacing. The file has been saved in Word format.
+
+ANSWER: DONE

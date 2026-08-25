@@ -1,0 +1,10 @@
+{
+  "id": "d681960f-7bc3-4286-9913-a8812ba3261a",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official compare_table -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "Student_Grades_and_Remarks_gold.xlsx": "5dc811582827f43111a5d6ab442f6d49a784b6b01afed2bca3af8b385fe23478"
+  }
+}

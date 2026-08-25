@@ -1,0 +1,5 @@
+{
+  "id": "Allrecipes--13",
+  "verdict": "FAILURE",
+  "reason": "Both screenshots show an Allrecipes access-block page with no recipe, nutrition label, or Iron value, so none of the task's parts were accomplished."
+}

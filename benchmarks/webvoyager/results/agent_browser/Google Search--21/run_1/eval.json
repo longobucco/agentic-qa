@@ -1,0 +1,5 @@
+{
+  "id": "Google Search--21",
+  "verdict": "SUCCESS",
+  "reason": "The final screenshot shows a box-office-sorted table whose top 5 entries (Ne Zha 2, Zootopia 2, Inside Out 2, The Lion King, Frozen II) exactly match the agent's response."
+}

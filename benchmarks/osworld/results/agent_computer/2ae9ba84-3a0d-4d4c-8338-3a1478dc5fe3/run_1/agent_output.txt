@@ -1,0 +1,3 @@
+The Chrome profile username has been successfully changed to "Thomas". The profile name field now shows "Thomas" instead of the previous "Il tuo Chrome".
+
+ANSWER: DONE

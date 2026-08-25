@@ -1,0 +1,8 @@
+The task is complete. I successfully:
+
+1. Navigated to the last slide (slide 5 - "Conclusion") in LibreOffice Impress
+2. Selected all the text in the title text box
+3. Changed the font to "Times New Roman" (visible in the Properties panel)
+4. Saved the file - the 24_8.pptx file on the Desktop now contains "Times New Roman" in the last slide, as verified by reading the slide XML directly
+
+ANSWER: DONE

@@ -1,0 +1,9 @@
+The command ran successfully. The terminal shows the line counts for all PHP files recursively:
+
+- `21` ./project/models/User.php
+- `13` ./project/views/home.php
+- `12` ./project/controllers/UserController.php
+- `8` ./project/index.php
+- `54` total
+
+ANSWER: DONE

@@ -1,0 +1,5 @@
+I've found the answer on the GitHub Trending Developers page (Date range: This month).
+
+The #1 ranked developer this month is **Matt Van Horn** (`@mvanhorn`), and his popular/corresponding repository is **last30days-skill** — an AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web, then synthesizes a grounded summary.
+
+ANSWER: The #1 trending developer this month is Matt Van Horn (@mvanhorn), with his popular repository "last30days-skill".

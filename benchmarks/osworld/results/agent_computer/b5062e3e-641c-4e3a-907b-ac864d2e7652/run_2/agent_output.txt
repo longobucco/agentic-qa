@@ -1,0 +1,10 @@
+I extracted the first author's name, email, and affiliation from all 4 papers in `/home/user/Documents/Papers/`, sorted alphabetically by full name, and saved the Excel table to `~/authors.xlsx` (both `/home/user` and `/root`).
+
+| Name | E-mail | Affiliation |
+|------|--------|-------------|
+| Chi Zhang | johnczhang@tencent.com | Tencent |
+| Jing Yu Koh | jingyuk@cs.cmu.edu | Carnegie Mellon University |
+| Runliang Niu | niurl19@mails.jlu.edu.cn | School of Artificial Intelligence, Jilin University |
+| Xiang Deng | deng.595@osu.edu | The Ohio State University |
+
+ANSWER: DONE

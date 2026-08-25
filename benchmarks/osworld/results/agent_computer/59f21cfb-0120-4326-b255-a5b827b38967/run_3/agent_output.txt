@@ -1,0 +1,3 @@
+VLC is now playing the "Rick Astley - Never Gonna Give You Up (Official Music Video).mp4" file at 01:55/03:32 with the error dialog closed. The music video is playing successfully in VLC.
+
+ANSWER: DONE

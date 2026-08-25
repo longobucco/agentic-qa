@@ -1,0 +1,79 @@
+[
+  {
+    "id": "d68204bf-11c1-4b13-b48b-d303c73d4bf6",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-21T19:40:18+0200"
+  },
+  {
+    "id": "d68204bf-11c1-4b13-b48b-d303c73d4bf6",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-22T17:27:13+0200"
+  },
+  {
+    "id": "d68204bf-11c1-4b13-b48b-d303c73d4bf6",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-23T06:05:15+0200"
+  },
+  {
+    "id": "d68204bf-11c1-4b13-b48b-d303c73d4bf6",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-23T15:23:33+0200"
+  },
+  {
+    "id": "d68204bf-11c1-4b13-b48b-d303c73d4bf6",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-23T20:33:39+0200"
+  },
+  {
+    "id": "d68204bf-11c1-4b13-b48b-d303c73d4bf6",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-23T23:47:10+0200"
+  },
+  {
+    "id": "d68204bf-11c1-4b13-b48b-d303c73d4bf6",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-24T12:17:51+0200"
+  },
+  {
+    "id": "d68204bf-11c1-4b13-b48b-d303c73d4bf6",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-24T15:31:18+0200"
+  },
+  {
+    "id": "d68204bf-11c1-4b13-b48b-d303c73d4bf6",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-24T18:30:18+0200"
+  },
+  {
+    "id": "d68204bf-11c1-4b13-b48b-d303c73d4bf6",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-25T02:52:29+0200"
+  },
+  {
+    "id": "d68204bf-11c1-4b13-b48b-d303c73d4bf6",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-25T04:33:31+0200"
+  }
+]

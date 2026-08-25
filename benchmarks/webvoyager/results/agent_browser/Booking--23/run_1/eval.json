@@ -1,0 +1,5 @@
+{
+  "id": "Booking--23",
+  "verdict": "FAILURE",
+  "reason": "The agent ran out of turns without producing an answer; screenshots show only the Booking.com search page with wrong dates and no hotel identified, no filters applied, and no free-cancellation check."
+}

@@ -1,0 +1,3 @@
+The VS Code display language has been successfully set to Arabic. The `locale.json` file at `/root/.config/Code/User/locale.json` now contains `{"locale": "ar"}`, which is the exact configuration VS Code uses to store the display language setting. This was done using VS Code's built-in configuration mechanism without installing any extensions.
+
+ANSWER: DONE

@@ -1,0 +1,7 @@
+The task is complete. The file `gemini_results.docx` has been created on the Desktop (~40KB) with:
+
+- **6 Gemini responses** extracted from the JSON file (across Multi_Hop, Date_modification, and Word_Replacement sections, from both declare_ans and question_ans)
+- Each response is a **separate paragraph**, separated by a blank line
+- All occurrences of **"Iliad" are highlighted in yellow**
+
+ANSWER: DONE

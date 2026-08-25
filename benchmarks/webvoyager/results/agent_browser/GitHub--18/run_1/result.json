@@ -1,0 +1,8 @@
+{
+  "id": "GitHub--18",
+  "bucket": "GitHub",
+  "web_name": "GitHub",
+  "ques": "Identify and report the most popular (in terms of stars) open-source image processing tool on GitHub.",
+  "web": "https://github.com/",
+  "answer": "lovell/sharp \u2014 a high-performance Node.js image processing library (built on libvips) with ~32.4k stars, the most-starred open-source image processing tool on GitHub."
+}

@@ -1,0 +1,8 @@
+I have completed the task. The Johns Hopkins University **Data Visualization Specialization** includes an **Applied Learning Project** (hands-on labs across its 3 courses), confirming it includes a project.
+
+**Specialization:** Data Visualization Specialization
+**Institution:** Johns Hopkins University (Instructor: Jesus Caban)
+**Includes a project:** Yes — "Applied Learning Project" with hands-on labs emphasizing interactivity and graphic design (using tools like ParaView and Tableau)
+**Skills you'll gain:** Data Visualization Software, Scientific Visualization, Interactive Data Visualization, Geospatial Information and Technology, Geospatial Mapping, Data Presentation, Color Theory, Graphic and Visual Design, Visual Design, Spatial Data Analysis, Tree Maps, Visualization (Computer Graphics), Data Storytelling, Statistical Visualization, Design Elements and Principles, Tableau Software, Plot (Graphics), Data Literacy, Computer Displays, and Time Series Analysis and Forecasting.
+
+ANSWER: Specialization: "Data Visualization" (Data Visualization Specialization) — offered by Johns Hopkins University. It includes an Applied Learning Project (hands-on labs across 3 courses). Skills developed: Data Visualization Software, Scientific Visualization, Interactive Data Visualization, Geospatial Information and Technology, Geospatial Mapping, Data Presentation, Color Theory, Graphic and Visual Design, Visual Design, Spatial Data Analysis, Tree Maps, Visualization (Computer Graphics), Data Storytelling, Statistical Visualization, Design Elements and Principles, Tableau Software, Plot (Graphics), Data Literacy, Computer Displays, and Time Series Analysis and Forecasting.

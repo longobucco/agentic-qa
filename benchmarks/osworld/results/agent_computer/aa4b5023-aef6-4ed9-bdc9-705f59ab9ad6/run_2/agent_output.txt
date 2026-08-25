@@ -1,0 +1,3 @@
+The task is complete. I found the upside-down video `flipped_1984_Apple_Macintosh_Commercial.mp4` on the desktop, applied a vertical flip using moviepy's `MirrorY` effect to correct the orientation, and saved the result as `1984_Apple_Macintosh_Commercial.mp4` (2.8 MB) on the desktop at `/home/user/Desktop/1984_Apple_Macintosh_Commercial.mp4`.
+
+ANSWER: DONE

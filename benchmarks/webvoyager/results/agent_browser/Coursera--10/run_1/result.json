@@ -1,0 +1,8 @@
+{
+  "id": "Coursera--10",
+  "bucket": "Coursera",
+  "web_name": "Coursera",
+  "ques": "Locate an introductory course related to artificial intelligence on Coursera, ensuring it's suitable for beginners and contains at least one module discussing Ethical Considerations.",
+  "web": "https://www.coursera.org/",
+  "answer": "\"Introduction to Artificial Intelligence (AI)\" by IBM (coursera.org/learn/introduction-to-ai) \u2014 a Beginner-level intro AI course whose Module 4 is \"Issues, Concerns, and Ethical Considerations.\""
+}

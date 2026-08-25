@@ -1,0 +1,59 @@
+{
+  "id": "9bc3cc16-074a-45ac-9bdc-b2a362e1daf3",
+  "bucket": "thunderbird",
+  "instruction": "Could you help me back up all the email files in my inbox to ~/emails.bak? Please save them separately in eml format.",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "efe4fbdda384f314c6b8adb2d48725116673a74dcf14f2ec9eaa66c76d6497ad",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-9b548d3b-6563-4729-a923-44d307d982aa.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-14T11:01:03.356569+00:00",
+    "finished_at": "2026-08-14T11:01:27.817057+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 6,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.12723875,
+  "agent_input_tokens": 9,
+  "agent_output_tokens": 1206,
+  "agent_cache_read_tokens": 138840,
+  "agent_cache_creation_tokens": 16905,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3996,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.004076000000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 9,
+      "outputTokens": 1206,
+      "cacheReadInputTokens": 138840,
+      "cacheCreationInputTokens": 16905,
+      "webSearchRequests": 0,
+      "costUSD": 0.12316274999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 22339,
+  "agent_duration_api_ms": 23528,
+  "agent_session_id": "48bf27c7-20b2-4985-88f4-f13766026d70",
+  "agent_uuid": "2b34f80c-a476-4aaf-80c6-7887808cbc37"
+}

@@ -1,0 +1,8 @@
+Both deliverables are complete and match near-perfectly:
+
+- **character_gimp.png** — created via GIMP (Script-Fu: add alpha → select background by color at (193,219,208), composite criterion, threshold 40 → clear to transparent → export). Background is 79.4% transparent, character preserved.
+- **character_code.png** — created by `extract_character.py`, replicating the exact same algorithm (same reference color, threshold 40, max-channel/"Composite" difference).
+
+Verification: the two outputs agree on 99.999% of the alpha mask and 99.86% of all pixels — the script precisely mimics the GIMP extraction. All files are on `/home/user/Desktop/`.
+
+ANSWER: DONE

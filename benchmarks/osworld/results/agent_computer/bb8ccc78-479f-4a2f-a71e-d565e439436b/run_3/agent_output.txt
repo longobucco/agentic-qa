@@ -1,0 +1,6 @@
+The task is complete. I have successfully enabled the **Track Changes > Record** feature in LibreOffice Writer (via Edit > Track Changes > Record). This allows collaborative real-time editing where:
+- Each team member's edits are tracked and displayed in distinct colors (as verified when the test character appeared in orange)
+- A change bar appears on the left margin for modified lines
+- Team members can see who changed what and when
+
+ANSWER: DONE

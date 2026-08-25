@@ -1,0 +1,8 @@
+{
+  "id": "02ce9a50-7af2-47ed-8596-af0c230501f8",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official ['compare_image_text', 'compare_image_text', 'compare_image_text'] -> 0.00",
+  "source": "official",
+  "gold_sha256": {}
+}

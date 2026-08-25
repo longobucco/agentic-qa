@@ -1,0 +1,8 @@
+{
+  "id": "BBC News--23",
+  "bucket": "BBC News",
+  "web_name": "BBC News",
+  "ques": "Identify the latest health-related news on BBC News and summarize the main findings or recommendations.",
+  "web": "https://www.bbc.com/news/",
+  "answer": "BBC News Health's latest top story, \"Want to feel happier at work? Take a five-minute walk,\" reports a new British Journal of Sports Medicine study (Columbia University, 11,000+ office workers) finding that a five-minute walking break every hour is the most feasible way to improve mood, alertness and productivity. Prolonged sitting raises risks of obesity, heart disease and type 2 diabetes, so the recommendation is to take hourly \"movement snacks\" (e.g. walking meetings or pacing during calls) \u2014 though researchers caution the data was self-reported and short-term."
+}

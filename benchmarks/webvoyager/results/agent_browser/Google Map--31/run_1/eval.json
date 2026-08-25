@@ -1,0 +1,5 @@
+{
+  "id": "Google Map--31",
+  "verdict": "SUCCESS",
+  "reason": "Screenshots show Central Park Zoo searched and the Share dialog open with a sharing link whose visible prefix (gJFpJcTUE8DS) matches the reported https://maps.app.goo.gl/gJFpJcTUE8DS3RZLA."
+}

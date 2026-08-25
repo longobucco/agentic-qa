@@ -1,0 +1,8 @@
+{
+  "id": "GitHub--22",
+  "bucket": "GitHub",
+  "web_name": "GitHub",
+  "ques": "Find an open-source repository on GitHub focused on natural language processing in Ruby, updated within the last week.",
+  "web": "https://github.com/",
+  "answer": "scientist-labs/topical \u2014 an open-source Ruby library for topic modeling (NLP), tagged ruby/nlp, 13 stars, updated yesterday (within the last week). https://github.com/scientist-labs/topical"
+}

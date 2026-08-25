@@ -1,0 +1,5 @@
+{
+  "id": "Coursera--32",
+  "verdict": "FAILURE",
+  "reason": "Both filters were correctly applied, but the reported total of 24 courses is unsupported by any screenshot and contradicted by the visible Duration dropdown, which shows 2,545 courses for the 1-3 Months option under the Beginner-filtered Data Analysis search."
+}

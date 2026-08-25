@@ -1,0 +1,3 @@
+The image has been successfully converted to CMYK mode in GIMP. The title bar shows "gate-CMYK.jpeg-2.0 (Grayscale 8-bit gamma integer, GIMP built-in D65 Grayscale with sRGB TRC, 4 layers) 2850x5070 – GIMP" and the layers panel shows 4 CMYK channels: **cyan**, **magenta**, **yellow**, and **black**.
+
+ANSWER: DONE

@@ -1,0 +1,8 @@
+I found the answer on ArXiv's Category Taxonomy page, which lists the three categories Economics includes along with their abbreviations.
+
+Economics (econ) includes three categories:
+- **Econometrics** — econ.EM
+- **General Economics** — econ.GN
+- **Theoretical Economics** — econ.TH
+
+ANSWER: ArXiv Economics (econ) includes 3 categories: Econometrics (econ.EM), General Economics (econ.GN), and Theoretical Economics (econ.TH).

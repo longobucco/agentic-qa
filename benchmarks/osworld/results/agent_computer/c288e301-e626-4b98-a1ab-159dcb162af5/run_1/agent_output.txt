@@ -1,0 +1,3 @@
+Python 4 does not exist — the Python project has never released a version 4.x series. As of August 2025, the current stable versions are in the Python 3.x line (3.11, 3.12, 3.13, etc.). There is no Python 4 to set as a default on any system.
+
+ANSWER: FAIL

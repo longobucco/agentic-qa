@@ -1,0 +1,8 @@
+{
+  "id": "ESPN--11",
+  "bucket": "ESPN",
+  "web_name": "ESPN",
+  "ques": "How many NBA teams are there and list all the teams with 'New' in their name.",
+  "web": "https://www.espn.com/",
+  "answer": "There are 30 NBA teams. The teams with 'New' in their name are: New Orleans Pelicans and New York Knicks."
+}

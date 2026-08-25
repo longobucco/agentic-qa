@@ -1,0 +1,8 @@
+{
+  "id": "BBC News--6",
+  "bucket": "BBC News",
+  "web_name": "BBC News",
+  "ques": "Find the top story from BBC News in the technology section for today.",
+  "web": "https://www.bbc.com/news/",
+  "answer": "The top story in BBC News Technology today is \"IBM hails new 'block of flats' design breakthrough for ultra tiny chips\" \u2014 IBM says it has created the world's first known chip technology below 1 nanometre, though it will be some time before it's ready for production."
+}

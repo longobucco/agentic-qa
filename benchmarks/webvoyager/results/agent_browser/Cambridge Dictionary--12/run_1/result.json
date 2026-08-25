@@ -1,0 +1,8 @@
+{
+  "id": "Cambridge Dictionary--12",
+  "bucket": "Cambridge Dictionary",
+  "web_name": "Cambridge Dictionary",
+  "ques": "Find the pronunciation, definition, and a sample sentence for the word \"resilience\" in the Cambridge Dictionary.",
+  "web": "https://dictionary.cambridge.org/",
+  "answer": "BLOCKED \u2014 Cambridge Dictionary is behind a Cloudflare \"Verify you are human\" challenge that the headless browser could not pass, so the live entry for \"resilience\" could not be retrieved (see /shots/final.png). Unverified from knowledge: pronunciation UK /r\u026a\u02c8z\u026al.i.\u0259ns/, US /r\u026a\u02c8z\u026al.j\u0259ns/; definition \"the ability to be happy, successful, etc. again after something difficult or bad has happened\"; example \"the resilience of the human body.\""
+}

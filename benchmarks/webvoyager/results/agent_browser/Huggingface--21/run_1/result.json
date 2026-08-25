@@ -1,0 +1,8 @@
+{
+  "id": "Huggingface--21",
+  "bucket": "Huggingface",
+  "web_name": "Huggingface",
+  "ques": "Look up the tour about how to use the 'pipeline' feature in the Hugging Face Transformers library for sentiment analysis, and identify the default model it uses.",
+  "web": "https://huggingface.co/",
+  "answer": "The default model is `distilbert-base-uncased-finetuned-sst-2-english` (full Hub ID: `distilbert/distilbert-base-uncased-finetuned-sst-2-english`), a DistilBERT base uncased model fine-tuned on SST-2 for sentiment/text classification."
+}

@@ -1,0 +1,3 @@
+The video has been successfully processed and saved. The file `1984_Apple_Macintosh_Commercial.mp4` (2.70 MB) now exists on the Desktop at `/home/user/Desktop/1984_Apple_Macintosh_Commercial.mp4`. The original `flipped_1984_Apple_Macintosh_Commercial.mp4` was vertically flipped using ffmpeg to turn it right-side up.
+
+ANSWER: DONE

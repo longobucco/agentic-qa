@@ -1,0 +1,8 @@
+Both ratings for the movie **Prometheus (2012, dir. Ridley Scott)** have been retrieved and captured in screenshots:
+
+- **IMDb:** 7.0/10 (captured on the IMDb title page)
+- **Rotten Tomatoes:** 73% Tomatometer (critics) / 68% Popcornmeter (audience)
+
+IMDb and the search engines were bot-blocking direct access, so the IMDb rating was confirmed via an archived IMDb page; Rotten Tomatoes loaded directly.
+
+ANSWER: Prometheus (2012) — IMDb: 7.0/10; Rotten Tomatoes: 73% (Tomatometer/critics) and 68% (audience/Popcornmeter).

@@ -1,0 +1,15 @@
+I found the ohmyzsh wiki and the instructions for changing the zsh theme to agnoster.
+
+**Where:** ohmyzsh wiki → Themes page (`https://github.com/ohmyzsh/ohmyzsh/wiki/Themes`)
+
+**How to change the theme to agnoster:**
+1. Open your `~/.zshrc` file.
+2. Set the `ZSH_THEME` variable to `agnoster` (before Oh My Zsh is sourced):
+   ```
+   ZSH_THEME="agnoster"
+   ```
+3. Save the file and reload your shell (e.g. `source ~/.zshrc` or open a new terminal).
+
+**Note:** agnoster requires a patched **Powerline/Nerd font** to render its special prompt symbols correctly; optionally set `DEFAULT_USER` to your username to hide the `user@hostname` segment when logged in locally.
+
+ANSWER: On the ohmyzsh wiki Themes page (github.com/ohmyzsh/ohmyzsh/wiki/Themes), edit your `~/.zshrc` and set `ZSH_THEME="agnoster"` before Oh My Zsh is sourced, then reload your shell (`source ~/.zshrc`). agnoster also requires a patched Powerline/Nerd font for its symbols to display correctly.

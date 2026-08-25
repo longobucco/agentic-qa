@@ -1,0 +1,3 @@
+The formula `=D3*24*F3` converts the time value (7:40, stored as a fraction of a day) into decimal hours by multiplying by 24, then multiplies by the hourly rate of 25, giving the correct total earned of 191.67. Saved in xlsx format.
+
+ANSWER: 191.6666667 (formula =D3*24*F3 in cell E3)

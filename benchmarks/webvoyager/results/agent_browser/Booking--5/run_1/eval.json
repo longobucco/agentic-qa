@@ -1,0 +1,5 @@
+{
+  "id": "Booking--5",
+  "verdict": "FAILURE",
+  "reason": "Bali location with Free WiFi and air conditioning filters were applied, but the required Jun 1\u20134, 2026 dates were never set (date field still shows the placeholder), so the multi-part task is incomplete."
+}

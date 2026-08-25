@@ -1,0 +1,5 @@
+{
+  "id": "Booking--8",
+  "verdict": "FAILURE",
+  "reason": "The agent ran out of turns with no answer produced and the final screenshot shows only the Chennai search page with the date picker open on June/July 2026, never setting the required December dates, applying free-cancellation filter, or identifying any hotel."
+}

@@ -1,0 +1,3 @@
+I navigated to LeBron James' career stats page on ESPN and located the "Regular Season Averages" table. The **Career** row shows GP (Games Played) = **1622** (with 1620 games started).
+
+ANSWER: LeBron James has played 1,622 regular-season games in his NBA career so far (per his ESPN career stats page).

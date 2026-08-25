@@ -1,0 +1,9 @@
+The task is complete. VS Code automatically reloaded the file, and the Find widget now shows "No results" for "text" - confirming all occurrences have been replaced. The document now shows:
+
+- "texts" → "tests"
+- "text" → "test"  
+- "texting" → "testing"
+
+All 10 occurrences of "text" have been successfully changed to "test" throughout the document.
+
+ANSWER: DONE

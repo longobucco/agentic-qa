@@ -1,0 +1,7 @@
+{
+  "id": "2a729ded-3296-423d-aec4-7dd55ed5fbb3",
+  "verdict": "FAILURE",
+  "reason": "no eval_state captured (official eval errored: ConnectionError: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer')))",
+  "source": "offline_fallback",
+  "gold_sha256": {}
+}

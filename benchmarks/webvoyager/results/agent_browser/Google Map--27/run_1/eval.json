@@ -1,0 +1,5 @@
+{
+  "id": "Google Map--27",
+  "verdict": "SUCCESS",
+  "reason": "The map clearly displays 7 red Target store markers (6 in the north/central cluster plus 1 to the lower-left), matching the agent's reported count of 7."
+}

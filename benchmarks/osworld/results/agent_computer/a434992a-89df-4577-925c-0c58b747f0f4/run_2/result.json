@@ -1,0 +1,59 @@
+{
+  "id": "a434992a-89df-4577-925c-0c58b747f0f4",
+  "bucket": "libreoffice_impress",
+  "instruction": "Change the font size of the content to 12, and change the font color to orange. Change the slide's background to red.",
+  "answer": "DONE",
+  "eval_state": "<binary:24447 bytes at 16_2.pptx>",
+  "provenance": {
+    "task_sha256": "3a17927d2b02cab39710eab4fd84c40ff7898fc33d8546c1af43ca9862108f54",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-83b1b105-2c7e-4b33-afa0-fb1870983258.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-21T11:07:56.678755+00:00",
+    "finished_at": "2026-08-21T11:10:06.896256+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 41,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 1.11088075,
+  "agent_input_tokens": 3468,
+  "agent_output_tokens": 4631,
+  "agent_cache_read_tokens": 1369146,
+  "agent_cache_creation_tokens": 46147,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 4714,
+      "outputTokens": 12,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0047740000000000005,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 3468,
+      "outputTokens": 4631,
+      "cacheReadInputTokens": 1369146,
+      "cacheCreationInputTokens": 46147,
+      "webSearchRequests": 0,
+      "costUSD": 1.10610675,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 125554,
+  "agent_duration_api_ms": 114762,
+  "agent_session_id": "df6956e3-0921-48a1-89bd-9fd27030063d",
+  "agent_uuid": "ae409d5c-9320-4ebe-bf9c-f306de1518eb"
+}

@@ -1,0 +1,3 @@
+The task is complete. The Impress file (`wssf-project-plan-on-a-page.pptx`) was successfully exported to PNG and saved as `res.png` on the Desktop using LibreOffice's default PNG export settings.
+
+ANSWER: DONE

@@ -1,0 +1,59 @@
+{
+  "id": "6766f2b8-8a72-417f-a9e5-56fcaa735837",
+  "bucket": "chrome",
+  "instruction": "Could you help me unzip the downloaded extension file from /home/user/Desktop/ to /home/user/Desktop/ and configure it in Chrome's extensions?",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "fa58f6ae449c02e09663f318bbedc064b20eb534b0821408a9093a55e74195a7",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-715ff387-5ee2-460e-b0ba-fc776f9ee85f.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-12T19:39:25.224747+00:00",
+    "finished_at": "2026-08-12T19:47:48.468912+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 51,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 1.3402572,
+  "agent_input_tokens": 62,
+  "agent_output_tokens": 19246,
+  "agent_cache_read_tokens": 2428879,
+  "agent_cache_creation_tokens": 85818,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 825,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0009,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 62,
+      "outputTokens": 19246,
+      "cacheReadInputTokens": 2428879,
+      "cacheCreationInputTokens": 85818,
+      "webSearchRequests": 0,
+      "costUSD": 1.3393571999999998,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 501181,
+  "agent_duration_api_ms": 471641,
+  "agent_session_id": "ec1a9a8d-d550-4176-bc72-2eb08a9f878b",
+  "agent_uuid": "4c0c6245-f3f2-4cfe-8771-9100ebc93da1"
+}

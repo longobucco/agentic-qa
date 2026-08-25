@@ -1,0 +1,59 @@
+{
+  "id": "4f07fbe9-70de-4927-a4d5-bb28bc12c52c",
+  "bucket": "libreoffice_calc",
+  "instruction": "Here I want to use the numerical value from a cell in the text. I can set its number of decimal digits to 2 in the original value cell but don't know how to fix it in the text as well. Please help me to do this. Finish the work and don't touch irrelevant regions, even if they are blank.",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "a922f704b34519d6464b2e468465cc8a4e214589710bcd321c9fb8a939190893",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-03a2e8ab-2c64-4d00-8a46-6e9fbe2b2b7e.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-13T00:04:21.615869+00:00",
+    "finished_at": "2026-08-13T03:44:22.815951+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 55,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.7327202500000001,
+  "agent_input_tokens": 56,
+  "agent_output_tokens": 3624,
+  "agent_cache_read_tokens": 1793013,
+  "agent_cache_creation_tokens": 23155,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 863,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0009580000000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 60,
+      "outputTokens": 4454,
+      "cacheReadInputTokens": 1926470,
+      "cacheCreationInputTokens": 23155,
+      "webSearchRequests": 0,
+      "costUSD": 0.7317622500000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 709425,
+  "agent_duration_api_ms": 279215,
+  "agent_session_id": "d06e90f4-3220-41dd-a1da-5e11919019ec",
+  "agent_uuid": "75f15caa-5d73-4360-9824-1fa4362994cd"
+}

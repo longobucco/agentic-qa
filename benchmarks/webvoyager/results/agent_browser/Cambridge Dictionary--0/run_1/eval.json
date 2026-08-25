@@ -1,0 +1,5 @@
+{
+  "id": "Cambridge Dictionary--0",
+  "verdict": "FAILURE",
+  "reason": "All screenshots end on a Cloudflare security-verification block page with the search never executed, so the pronunciation and definition were never actually looked up on the site."
+}

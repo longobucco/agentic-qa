@@ -1,0 +1,59 @@
+{
+  "id": "fba2c100-79e8-42df-ae74-b592418d54f4",
+  "bucket": "vlc",
+  "instruction": "Snap a photo of the current video scene, save it as 'interstellar.png', and put it on the Desktop, please.",
+  "answer": "DONE",
+  "eval_state": "<binary:591821 bytes at interstellar.png>",
+  "provenance": {
+    "task_sha256": "5967a268c060c5596939a504c6e7bfeec429f7c407a1bbc70ec1d9ce2177f881",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-e8b1cbdd-ab12-4cdc-bbab-1dbf4ca05dc2.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-18T15:09:01.491259+00:00",
+    "finished_at": "2026-08-18T15:12:15.082513+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 18,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.7623044999999999,
+  "agent_input_tokens": 3370,
+  "agent_output_tokens": 11391,
+  "agent_cache_read_tokens": 499316,
+  "agent_cache_creation_tokens": 33110,
+  "agent_model_usage": {
+    "claude-opus-4-8": {
+      "inputTokens": 3370,
+      "outputTokens": 11391,
+      "cacheReadInputTokens": 499316,
+      "cacheCreationInputTokens": 33110,
+      "webSearchRequests": 0,
+      "costUSD": 0.7582205,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    },
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 4004,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.004084,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 191309,
+  "agent_duration_api_ms": 185655,
+  "agent_session_id": "446390ba-23d8-4fd4-baf8-d18c7c9cf2c0",
+  "agent_uuid": "a62822e8-840b-43bc-be7c-12a86a4dbf3d"
+}

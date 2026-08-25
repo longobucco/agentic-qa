@@ -1,0 +1,8 @@
+{
+  "id": "Booking--32",
+  "bucket": "Booking",
+  "web_name": "Booking",
+  "ques": "Look for hotels in Sydney from February 24 to February 27, 2027, on Booking. Once the Swimming Pool and Airport Shuttle filters are applied, what is the total number of hotels available?",
+  "web": "https://www.booking.com/",
+  "answer": "Could not be determined \u2014 the Swimming Pool and Airport Shuttle filters are unavailable in this environment. Every Sydney search redirects to the static city page (booking.com/city/au/sydney.html), which only offers Star Rating and Review score filters and shows just the unfiltered total of 4,395 Sydney hotels; the interactive search-results page with facility filters renders empty, so no filtered hotel count could be retrieved."
+}

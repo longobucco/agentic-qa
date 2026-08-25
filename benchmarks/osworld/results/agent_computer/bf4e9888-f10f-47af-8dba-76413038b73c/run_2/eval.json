@@ -1,0 +1,10 @@
+{
+  "id": "bf4e9888-f10f-47af-8dba-76413038b73c",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official compare_pptx_files -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "4.3-Template_4.29.2016_Gold.pptx": "eef477faec48e2c9067092410d0f3560dccdd7f3509cc0fd5211a330f0ef08cc"
+  }
+}

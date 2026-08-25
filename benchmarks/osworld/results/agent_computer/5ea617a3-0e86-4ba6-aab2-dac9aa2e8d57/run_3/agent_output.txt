@@ -1,0 +1,3 @@
+The file `poster_party_night.webp` has been successfully restored from the Trash back to its original location at `/home/user/Desktop/poster_party_night.webp`. The trash info file was also cleaned up.
+
+ANSWER: DONE

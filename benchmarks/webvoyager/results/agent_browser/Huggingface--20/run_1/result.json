@@ -1,0 +1,8 @@
+{
+  "id": "Huggingface--20",
+  "bucket": "Huggingface",
+  "web_name": "Huggingface",
+  "ques": "Locate a pre-trained natural language processing model on Hugging Face that specializes in named entity recognition (NER), confirm that the model was last updated in 2024 and has 1M+ downloads.",
+  "web": "https://huggingface.co/",
+  "answer": "dslim/bert-base-NER \u2014 a BERT-based named entity recognition (Token Classification) model on Hugging Face. Confirmed last updated Oct 8, 2024 and 1,825,052 (\u22481.83M) downloads, satisfying the 2024-update and 1M+ download criteria."
+}

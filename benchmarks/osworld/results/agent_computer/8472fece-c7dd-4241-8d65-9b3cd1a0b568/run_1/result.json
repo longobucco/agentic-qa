@@ -1,0 +1,59 @@
+{
+  "id": "8472fece-c7dd-4241-8d65-9b3cd1a0b568",
+  "bucket": "libreoffice_writer",
+  "instruction": "I am writing a word list for a dyslexic kid. To ease things for him, I want to use red for words start with vowels and blue for those start with non-vowels. Can you do this for me? I'm doing it manually, and it is a pain.",
+  "answer": "DONE",
+  "eval_state": "<binary:10740 bytes at Dolch_Sight_Words_Primer.docx>",
+  "provenance": {
+    "task_sha256": "85f6ca6700b214e429b204382525ccb104b334bd75d8fa842bffd44fe260d83a",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-34e17575-4c6b-4cd6-9cd8-2431bae99759.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-13T05:33:48.198819+00:00",
+    "finished_at": "2026-08-13T05:49:33.269348+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 101,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 2.55080935,
+  "agent_input_tokens": 116,
+  "agent_output_tokens": 23541,
+  "agent_cache_read_tokens": 6197802,
+  "agent_cache_creation_tokens": 89885,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 852,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.000937,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 116,
+      "outputTokens": 23541,
+      "cacheReadInputTokens": 6197802,
+      "cacheCreationInputTokens": 89885,
+      "webSearchRequests": 0,
+      "costUSD": 2.5498723500000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 710378,
+  "agent_duration_api_ms": 622263,
+  "agent_session_id": "b68906ce-1fde-4bfa-b4b5-c40441719f06",
+  "agent_uuid": "81622493-254e-452a-8bc0-d4fe1947e343"
+}

@@ -1,0 +1,59 @@
+{
+  "id": "cb130f0d-d36f-4302-9838-b3baf46139b6",
+  "bucket": "vlc",
+  "instruction": "Automatically adjust the brightness and contrast of this video to match my room's lighting.",
+  "answer": "FAIL",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "9317801c07a4cc36531302908dc8ea568e9b1fb4d861a24d05aa72277a9f1fda",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-5dc1c2b5-66ae-44e3-945d-5690a01e2c0c.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-09T17:59:45.691954+00:00",
+    "finished_at": "2026-08-09T18:00:07.313799+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 4,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.0718236,
+  "agent_input_tokens": 7,
+  "agent_output_tokens": 717,
+  "agent_cache_read_tokens": 69927,
+  "agent_cache_creation_tokens": 10370,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1107,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0011819999999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 7,
+      "outputTokens": 717,
+      "cacheReadInputTokens": 69927,
+      "cacheCreationInputTokens": 10370,
+      "webSearchRequests": 0,
+      "costUSD": 0.0706416,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 19865,
+  "agent_duration_api_ms": 21434,
+  "agent_session_id": "ceb6efa2-8cc1-423e-8604-47459808dc9c",
+  "agent_uuid": "c450736b-5ce3-4403-a730-d104d6ea26b3"
+}

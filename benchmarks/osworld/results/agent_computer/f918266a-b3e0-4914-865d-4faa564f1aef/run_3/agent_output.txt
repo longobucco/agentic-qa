@@ -1,0 +1,3 @@
+The code is completed (added the missing `arr[j+1] = arr[j]` line in the insertion sort), executed, and its output saved to `log.txt` on the desktop.
+
+ANSWER: 5\n6\n11\n12\n13

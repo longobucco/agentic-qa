@@ -1,0 +1,59 @@
+{
+  "id": "72b810ef-4156-4d09-8f08-a0cf57e7cefe",
+  "bucket": "libreoffice_writer",
+  "instruction": "I am peer-reviewing my friend's course outline. I think the last paragraph is redundant so I want to add strike-through on words in the last paragraph. Can you do this for me?",
+  "answer": "FAIL",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "3e393770612bdc223a348587bd3ed659debbfd47d90ea35dd75d511bbcf28615",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-3e12efaf-36e3-4718-b891-49f88d9c3732.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-20T04:30:21.433362+00:00",
+    "finished_at": "2026-08-20T05:54:34.511239+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 18,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.83753125,
+  "agent_input_tokens": 2562,
+  "agent_output_tokens": 2834,
+  "agent_cache_read_tokens": 761752,
+  "agent_cache_creation_tokens": 54763,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 4728,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0048130000000000004,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 2564,
+      "outputTokens": 2996,
+      "cacheReadInputTokens": 805459,
+      "cacheCreationInputTokens": 54763,
+      "webSearchRequests": 0,
+      "costUSD": 0.83271825,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 302490,
+  "agent_duration_api_ms": 262505,
+  "agent_session_id": "4a01b404-725f-449d-bb85-730d30013580",
+  "agent_uuid": "de7d2d1a-3856-4cd0-af7f-f1e5ba343750"
+}

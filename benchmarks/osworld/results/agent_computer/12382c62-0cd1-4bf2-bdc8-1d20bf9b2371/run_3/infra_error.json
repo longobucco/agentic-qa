@@ -1,0 +1,74 @@
+[
+  {
+    "id": "12382c62-0cd1-4bf2-bdc8-1d20bf9b2371",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-12T23:29:57+0200"
+  },
+  {
+    "id": "12382c62-0cd1-4bf2-bdc8-1d20bf9b2371",
+    "run": 3,
+    "outcome": "INFRA_FLAKE",
+    "error_type": "FileNotFoundError",
+    "error": "[Errno 2] No such file or directory: 'claude'",
+    "elapsed_s": 9.2,
+    "at": "2026-08-13T14:27:53+0200"
+  },
+  {
+    "id": "12382c62-0cd1-4bf2-bdc8-1d20bf9b2371",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-14T06:57:50+0200"
+  },
+  {
+    "id": "12382c62-0cd1-4bf2-bdc8-1d20bf9b2371",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-14T12:48:46+0200"
+  },
+  {
+    "id": "12382c62-0cd1-4bf2-bdc8-1d20bf9b2371",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-15T06:29:46+0200"
+  },
+  {
+    "id": "12382c62-0cd1-4bf2-bdc8-1d20bf9b2371",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-15T20:25:22+0200"
+  },
+  {
+    "id": "12382c62-0cd1-4bf2-bdc8-1d20bf9b2371",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-16T07:17:46+0200"
+  },
+  {
+    "id": "12382c62-0cd1-4bf2-bdc8-1d20bf9b2371",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-16T17:33:21+0200"
+  },
+  {
+    "id": "12382c62-0cd1-4bf2-bdc8-1d20bf9b2371",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-18T18:13:48+0200"
+  },
+  {
+    "id": "12382c62-0cd1-4bf2-bdc8-1d20bf9b2371",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-19T13:02:41+0200"
+  }
+]

@@ -1,0 +1,59 @@
+{
+  "id": "9d425400-e9b2-4424-9a4b-d4c7abac4140",
+  "bucket": "vscode",
+  "instruction": "I want to make the tabs wrapped over multiple lines when exceeding available space, please help modify the setting of VS Code.",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "f285114ebac41569626c8375c49039d54727535def65f86cc8b0e20ff7c6f235",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-7bb90139-6d5a-4c7b-9e5b-3de1db4f634e.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-19T11:22:52.636836+00:00",
+    "finished_at": "2026-08-19T11:24:17.651324+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 24,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.563038,
+  "agent_input_tokens": 3378,
+  "agent_output_tokens": 3232,
+  "agent_cache_read_tokens": 616395,
+  "agent_cache_creation_tokens": 24646,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3028,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.003113,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 3378,
+      "outputTokens": 3232,
+      "cacheReadInputTokens": 616395,
+      "cacheCreationInputTokens": 24646,
+      "webSearchRequests": 0,
+      "costUSD": 0.559925,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 82686,
+  "agent_duration_api_ms": 76479,
+  "agent_session_id": "6ef22760-5184-4c28-893a-b5097e7ccff4",
+  "agent_uuid": "d49241f2-0c69-4060-87d0-c72f33990e68"
+}

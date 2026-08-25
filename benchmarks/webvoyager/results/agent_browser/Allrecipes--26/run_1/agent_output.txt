@@ -1,0 +1,14 @@
+I was unable to complete this task. Allrecipes is blocking access from this environment: every request to `allrecipes.com` (homepage, search, and recipe pages) returns **HTTP 402** from their Cloudflare edge, rendering only a "If you are a reader experiencing an access issue, please contact support@people.inc" notice instead of any site content.
+
+What I tried:
+- Opened the homepage → access-issue page.
+- Opened the search URL (`/search?q=high protein vegetarian chili`) → same access-issue page.
+- Reloaded the homepage → same.
+- Verified at the HTTP level with a real browser User-Agent: `HTTP/2 402`, `server: cloudflare`.
+- Retried while carrying the Cloudflare `__cf_bm` bot cookie across requests → still `402` on both attempts.
+
+This is a deliberate server-side block (not a cookie/consent banner that can be dismissed), so there is no recipe content available to read. I will not fabricate ingredients, cooking time, or steps, since the task requires real data from a recipe that actually meets the criteria (≥50 reviews, ≥4 stars), and I could not load any recipe.
+
+If you can route this container through a different IP/region (the block is hitting the Madrid Cloudflare edge — `cf-ray: ...-MAD`) or supply credentials/a non-blocked network, I can rerun the search immediately.
+
+ANSWER: Unable to complete — Allrecipes returns HTTP 402 (Cloudflare access block) for all pages from this environment, serving only a "reader access issue" notice instead of recipe content; no recipe could be loaded or read.

@@ -1,0 +1,59 @@
+{
+  "id": "0810415c-bde4-4443-9047-d5f70165a697",
+  "bucket": "libreoffice_writer",
+  "instruction": "Make the line spacing of first two paragraph into double line spacing",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "6f4cb52e25ef33e76bcfd387a5c5c7321d8aa9e1e15437ff9b5bffcfa339cc93",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:300565e6d5065a6277d7154071c581b4a72adfcb68d4726564545c9b05798a3c",
+    "controller_url": "https://5000-f18dd202-6d37-4e04-bfbb-599e6ebbaa9e.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-04T21:05:37.099883+00:00",
+    "finished_at": "2026-08-04T21:10:56.738251+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 60,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 1.1093245999999997,
+  "agent_input_tokens": 75,
+  "agent_output_tokens": 8234,
+  "agent_cache_read_tokens": 2548332,
+  "agent_cache_creation_tokens": 58732,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 755,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.000845,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 75,
+      "outputTokens": 8234,
+      "cacheReadInputTokens": 2548332,
+      "cacheCreationInputTokens": 58732,
+      "webSearchRequests": 0,
+      "costUSD": 1.1084795999999997,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 317677,
+  "agent_duration_api_ms": 297603,
+  "agent_session_id": "4ab27bf1-787f-4c71-bfbf-65f5573dc866",
+  "agent_uuid": "9e99626e-7c11-48cf-a3d9-659b124e5c94"
+}

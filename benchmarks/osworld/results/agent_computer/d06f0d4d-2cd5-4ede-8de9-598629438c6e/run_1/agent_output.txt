@@ -1,0 +1,12 @@
+The volume slider has been successfully changed to a black-ish color. Looking at the bottom right of VLC, the slider that was previously bright green is now dark/black.
+
+The task is complete:
+1. Launched VLC as a non-root user
+2. Opened Advanced Preferences (Ctrl+P → All → Interface → Main interfaces → Qt)
+3. Found "Define the colors of the volume slider" 
+4. Changed the value from the default green (`15;245;30;...`) to dark black values (`0;0;0;20;20;20;10;10;10`)
+5. Saved the config and restarted VLC to apply it
+
+The VLC configuration now has `qt-slider-colours=0;0;0;20;20;20;10;10;10` saved in `/home/vlcuser/.config/vlc/vlcrc`, making the volume slider black-ish for comfortable low-light usage.
+
+ANSWER: DONE

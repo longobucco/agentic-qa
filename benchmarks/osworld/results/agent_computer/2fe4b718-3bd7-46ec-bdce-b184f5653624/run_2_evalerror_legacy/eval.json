@@ -1,0 +1,7 @@
+{
+  "id": "2fe4b718-3bd7-46ec-bdce-b184f5653624",
+  "verdict": "FAILURE",
+  "reason": "metric 'compare_images' not wired (official eval errored: ConnectionError: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer')))",
+  "source": "offline_fallback",
+  "gold_sha256": {}
+}

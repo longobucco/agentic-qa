@@ -1,0 +1,8 @@
+{
+  "id": "Wolfram Alpha--25",
+  "bucket": "Wolfram Alpha",
+  "web_name": "Wolfram Alpha",
+  "ques": "Calculate the final position and velocity of a projectile launched at 45 degrees with an initial speed of 30 m/s after 3 seconds.",
+  "web": "https://www.wolframalpha.com/",
+  "answer": "After 3 s, position \u2248 (63.6 m horizontal, 19.5 m vertical); velocity components v\u2093 \u2248 21.2 m/s, v_y \u2248 \u22128.22 m/s (descending), giving a speed of \u2248 22.75 m/s."
+}

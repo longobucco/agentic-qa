@@ -1,0 +1,3 @@
+The file has been saved. The "Profit" column (column D) has been added right next to the COGS column with the header "Profit" and values calculated as Sales - COGS for each of the 10 weeks.
+
+ANSWER: DONE

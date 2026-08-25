@@ -1,0 +1,10 @@
+{
+  "id": "bb83cab4-e5c7-42c7-a67b-e46068032b86",
+  "verdict": "FAILURE",
+  "reward": 0.9615384615384616,
+  "reason": "official compare_docx_files -> 0.96",
+  "source": "official",
+  "gold_sha256": {
+    "script_Gold.docx": "1fbe947c92426690102971084a2cccfbd5f483b903bc597ebe94fc04c780d981"
+  }
+}

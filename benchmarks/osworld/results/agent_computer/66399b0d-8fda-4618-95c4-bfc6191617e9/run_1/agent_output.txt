@@ -1,0 +1,3 @@
+The file has been saved successfully. The 7×5 empty table has been inserted at the cursor position. I can see it spanning across pages 2 and 3, with 7 columns visible and 5 rows total (3 rows on page 2 and 2 rows on page 3), confirmed by the status bar showing "57:G5" (column G = 7th column, row 5).
+
+ANSWER: DONE

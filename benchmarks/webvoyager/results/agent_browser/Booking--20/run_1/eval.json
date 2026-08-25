@@ -1,0 +1,5 @@
+{
+  "id": "Booking--20",
+  "verdict": "FAILURE",
+  "reason": "The agent ran out of turns and never located a qualifying Rome hotel \u2014 the final screenshot shows only the Booking.com homepage with an empty destination field and default dates, with no search results or applied criteria."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "Huggingface--15",
+  "bucket": "Huggingface",
+  "web_name": "Huggingface",
+  "ques": "Identify the most downloaded models on Hugging face that use the PaddlePaddle library.",
+  "web": "https://huggingface.co/",
+  "answer": "The most downloaded Hugging Face model using the PaddlePaddle library is **PaddlePaddle/PP-Chart2Table** (Image-to-Text, ~6.14k downloads). The next most downloaded are logasanjeev/indian-id-validator (~1.73k) and PaddlePaddle/PP-DocBee2-3B (~175)."
+}

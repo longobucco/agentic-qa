@@ -1,0 +1,55 @@
+[
+  {
+    "id": "39be0d19-634d-4475-8768-09c130f5425d",
+    "run": 2,
+    "outcome": "INFRA_FLAKE",
+    "error_type": "DaytonaConnectionError",
+    "error": "Failed to create sandbox: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))",
+    "elapsed_s": 687.0,
+    "at": "2026-08-13T12:10:04+0200"
+  },
+  {
+    "id": "39be0d19-634d-4475-8768-09c130f5425d",
+    "run": 2,
+    "outcome": "INFRA_FLAKE",
+    "error_type": "FileNotFoundError",
+    "error": "[Errno 2] No such file or directory: 'claude'",
+    "elapsed_s": 10.2,
+    "at": "2026-08-13T15:44:09+0200"
+  },
+  {
+    "id": "39be0d19-634d-4475-8768-09c130f5425d",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-15T16:21:41+0200"
+  },
+  {
+    "id": "39be0d19-634d-4475-8768-09c130f5425d",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-16T05:05:01+0200"
+  },
+  {
+    "id": "39be0d19-634d-4475-8768-09c130f5425d",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-16T15:22:56+0200"
+  },
+  {
+    "id": "39be0d19-634d-4475-8768-09c130f5425d",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-16T23:21:31+0200"
+  },
+  {
+    "id": "39be0d19-634d-4475-8768-09c130f5425d",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-18T10:35:32+0200"
+  }
+]

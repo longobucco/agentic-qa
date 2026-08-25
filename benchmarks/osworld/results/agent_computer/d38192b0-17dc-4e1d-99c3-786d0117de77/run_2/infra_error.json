@@ -1,0 +1,67 @@
+[
+  {
+    "id": "d38192b0-17dc-4e1d-99c3-786d0117de77",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-13T09:33:09+0200"
+  },
+  {
+    "id": "d38192b0-17dc-4e1d-99c3-786d0117de77",
+    "run": 2,
+    "outcome": "INFRA_FLAKE",
+    "error_type": "FileNotFoundError",
+    "error": "[Errno 2] No such file or directory: 'claude'",
+    "elapsed_s": 12.9,
+    "at": "2026-08-13T15:14:16+0200"
+  },
+  {
+    "id": "d38192b0-17dc-4e1d-99c3-786d0117de77",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-14T07:17:17+0200"
+  },
+  {
+    "id": "d38192b0-17dc-4e1d-99c3-786d0117de77",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-14T16:32:21+0200"
+  },
+  {
+    "id": "d38192b0-17dc-4e1d-99c3-786d0117de77",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-15T09:59:51+0200"
+  },
+  {
+    "id": "d38192b0-17dc-4e1d-99c3-786d0117de77",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-15T21:58:31+0200"
+  },
+  {
+    "id": "d38192b0-17dc-4e1d-99c3-786d0117de77",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-16T10:20:53+0200"
+  },
+  {
+    "id": "d38192b0-17dc-4e1d-99c3-786d0117de77",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-16T20:24:14+0200"
+  },
+  {
+    "id": "d38192b0-17dc-4e1d-99c3-786d0117de77",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-18T19:01:07+0200"
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "id": "98e8e339-5f91-4ed2-b2b2-12647cb134f4",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official compare_docx_files -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "concat_gold.docx": "65185ab2f4c60c69e76820e0bebbf87915a11988f47b7d9d47c6d512a4d68af5"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "id": "Allrecipes--8",
+  "bucket": "Allrecipes",
+  "web_name": "Allrecipes",
+  "ques": "Search for a recipe for Beef Wellington on Allrecipes that has at least 200 reviews and an average rating of 4.5 stars or higher. List the main ingredients required for the dish.",
+  "web": "https://www.allrecipes.com/",
+  "answer": "Unable to complete \u2014 Allrecipes is blocking this environment's IP (HTTP 402 \"access issue\" page on every URL, including the homepage, search, and direct recipe links), so no Beef Wellington recipe or its ingredients could be accessed or verified."
+}

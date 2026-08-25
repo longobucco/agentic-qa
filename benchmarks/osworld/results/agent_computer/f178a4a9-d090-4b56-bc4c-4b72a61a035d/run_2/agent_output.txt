@@ -1,0 +1,3 @@
+The config file now has `Standard` = "Times New Roman" at the correct path `/home/user/.config/libreoffice/4/user/registrymodifications.xcu` under `/org.openoffice.Office.Writer/DefaultFont`. The task is complete.
+
+ANSWER: DONE

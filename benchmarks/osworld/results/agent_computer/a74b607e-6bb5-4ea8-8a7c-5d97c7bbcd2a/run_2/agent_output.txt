@@ -1,0 +1,3 @@
+The extension "Hello Extensions 1.0" is now installed and enabled, with the toast "Extension loaded" confirming success.
+
+ANSWER: DONE

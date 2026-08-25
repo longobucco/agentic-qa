@@ -1,0 +1,3 @@
+The music video "Rick Astley - Never Gonna Give You Up" is now playing in VLC. The error dialog was dismissed and the video is playing at 02:01/03:32 with Rick Astley visible on screen.
+
+ANSWER: DONE

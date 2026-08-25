@@ -1,0 +1,10 @@
+{
+  "id": "8df7e444-8e06-4f93-8a1a-c5c974269d82",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official compare_zip_files -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "Recruitment_and_retention_of_health_professionals_across_Europe_Gold.zip": "69b9deb94f48de827cb7ae29d17728a88b34add9fb726407a2cf843bdab3d2bf"
+  }
+}

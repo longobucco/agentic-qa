@@ -1,0 +1,8 @@
+{
+  "id": "BBC News--2",
+  "bucket": "BBC News",
+  "web_name": "BBC News",
+  "ques": "Read the latest article regarding the environmental impacts of deforestation published within the last two days.",
+  "web": "https://www.bbc.com/news/",
+  "answer": "The latest deforestation-related article on BBC is \"'Everything has its own order and purpose': The rainforest 'farms' defying modern agriculture\" by Mar\u00eda Paula Rubiano A. (published ~7 days ago \u2014 no article on the environmental impacts of deforestation was published within the strict last two days). It covers the Colombian Amazon's indigenous chagra farming system, which stores more carbon than monoculture plantations, returns plots to rainforest after ~5 years, and helps fight deforestation, while itself being threatened by deforestation, gold mining and climate change."
+}

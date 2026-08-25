@@ -1,0 +1,8 @@
+{
+  "id": "af630914-714e-4a24-a7bb-f9af687d3b91",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official check_font_size -> 0.00",
+  "source": "official",
+  "gold_sha256": {}
+}

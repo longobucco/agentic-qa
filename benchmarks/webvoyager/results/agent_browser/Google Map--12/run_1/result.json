@@ -1,0 +1,8 @@
+{
+  "id": "Google Map--12",
+  "bucket": "Google Map",
+  "web_name": "Google Map",
+  "ques": "Find 5 places that serve burgers near 44012 zip code and sort these 5 places by highest rating.",
+  "web": "https://www.google.com/maps/",
+  "answer": "5 burger places near 44012, sorted by highest rating: 1) Edacious Kitchen + Bar (4.7), 2) Jake's On The Lake (4.6), 3) Legacy Restaurant & Grille (4.6), 4) Parker's Grille & Tavern (4.5), 5) Hecks of Avon (4.3)"
+}

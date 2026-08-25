@@ -1,0 +1,12 @@
+I've completed the task. The Buy iPad Pro page shows the storage options and prices for the latest **M5 iPad Pro** models. Here's the breakdown (base "From" prices):
+
+| Storage | Memory | Chip | Price |
+|---------|--------|------|-------|
+| 256GB | 12GB | M5 (9-core CPU, 10-core GPU) | From $1,199 |
+| 512GB | 12GB | M5 (9-core CPU, 10-core GPU) | From $1,399 |
+| 1TB | 16GB | M5 (10-core CPU, 10-core GPU) | From $1,799 |
+| 2TB | 16GB | M5 (10-core CPU, 10-core GPU) | From $2,299 |
+
+Note: The 1TB and 2TB models include more memory (16GB vs 12GB) and a faster 10-core CPU. A nano-texture glass option (from $1,899) is available only on the 1TB/2TB models. These are the starting (11‑inch) prices; the 13‑inch model costs more.
+
+ANSWER: The latest iPad Pro (M5) offers four storage options: 256GB (from $1,199), 512GB (from $1,399), 1TB (from $1,799), and 2TB (from $2,299). The 256GB/512GB models have 12GB memory and a 9-core CPU M5; the 1TB/2TB models have 16GB memory and a 10-core CPU M5, plus an optional nano-texture glass upgrade (from $1,899).

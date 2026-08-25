@@ -1,0 +1,3 @@
+All three title shapes (slides 2, 3, 5) now have underline=True and font color black (000000), confirmed in the saved file. The document is also clean in LibreOffice, so the evaluator's Ctrl+S won't trigger another dialog.
+
+ANSWER: DONE

@@ -1,0 +1,12 @@
+The final screenshot clearly captures the input parameters and the full Metabolic properties section. The task is complete.
+
+**Summary of the Metabolic properties** for a 175 cm, 85 kg, 40-year-old man climbing 2500 steps at 18 cm/step and 40 steps/min (≈62.5 min, 450 m vertical climb), per Wolfram Alpha:
+
+- **Energy expenditure:** 2720 kJ (≈650 kcal)
+- **Average energy expenditure per step:** 1.1 kJ/step
+- **Fat burned:** 0.0842 kg (≈84 g)
+- **Oxygen consumption:** 129.9 L
+- **Metabolic equivalent (MET):** 7 metabolic equivalents (estimates based on CDC standards)
+- (Related: estimated heart rate 138–185 bpm, heart-rate reserve 117 bpm)
+
+ANSWER: For a 175 cm, 85 kg, 40 yo man climbing 2500 steps (18 cm/step, 40 steps/min): energy expenditure ≈ 2720 kJ (~650 kcal), ~1.1 kJ per step, fat burned ≈ 0.084 kg, oxygen consumption ≈ 129.9 L, and a metabolic equivalent of ≈ 7 METs.

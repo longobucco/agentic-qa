@@ -1,0 +1,10 @@
+Both files are confirmed:
+
+- `/home/user/paper01.pdf` — valid PDF (6 pages), BERT paper downloaded from arxiv
+- `/home/user/ans.docx` — contains "TinyBERT: Distilling BERT for Natural Language Understanding"
+
+**Summary:**
+- The first paper in the spreadsheet is **BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding** (2018), downloaded as `paper01.pdf`.
+- Among the 5 papers in the list, **TinyBERT: Distilling BERT for Natural Language Understanding** (2019) is the paper that cites BERT — the other three (Attention Is All You Need, GLUE, ELMo) were all published *before* BERT and could not cite it. TinyBERT's title itself references BERT and the paper builds directly upon it.
+
+ANSWER: TinyBERT: Distilling BERT for Natural Language Understanding

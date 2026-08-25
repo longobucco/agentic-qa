@@ -1,0 +1,59 @@
+{
+  "id": "045bf3ff-9077-4b86-b483-a1040a949cff",
+  "bucket": "gimp",
+  "instruction": "Could you turn my image into CYMK mode within GIMP ?",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "8429f109f739d1b6d2ae078a2a0e7c64d1ca3d1a6c567b3765893ea25f332b6f",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-ba3fbac3-d7f3-4814-b5b2-09bd42f7e2f7.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-08T15:49:52.302912+00:00",
+    "finished_at": "2026-08-08T16:02:43.119239+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 91,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 2.4190425500000003,
+  "agent_input_tokens": 104,
+  "agent_output_tokens": 27556,
+  "agent_cache_read_tokens": 5417711,
+  "agent_cache_creation_tokens": 100955,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1401,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001496,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 104,
+      "outputTokens": 27556,
+      "cacheReadInputTokens": 5417711,
+      "cacheCreationInputTokens": 100955,
+      "webSearchRequests": 0,
+      "costUSD": 2.4175465500000004,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 768562,
+  "agent_duration_api_ms": 692558,
+  "agent_session_id": "a167bc20-5eda-4cb6-a2b2-03c305700d5c",
+  "agent_uuid": "76d0f2b0-3b63-4da5-94b0-059a405a6776"
+}

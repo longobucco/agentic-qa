@@ -1,0 +1,1 @@
+The space is taking a while to boot on GPU. The background poll (`b7pds320v`) will run until the space reports "Running" (or up to ~3 minutes) and re-invoke me on completion. Waiting for that signal before driving the chat.

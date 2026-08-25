@@ -1,0 +1,5 @@
+I completed the task. The Transformers Quick Tour demonstrates the `pipeline` feature using sentiment analysis as its example: `classifier = pipeline("sentiment-analysis")`. The tour explains this downloads and caches a default pretrained model for sentiment analysis. Following the "pretrained model" link confirmed that default model is DistilBERT base uncased finetuned on SST-2 (Text Classification, apache-2.0).
+
+Screenshots captured: step_1 (homepage), step_2 (Quick Tour sentiment-analysis pipeline section), step_3 (Quick Tour), and final.png (the default model page).
+
+ANSWER: The default model is `distilbert-base-uncased-finetuned-sst-2-english` (full Hub ID: `distilbert/distilbert-base-uncased-finetuned-sst-2-english`), a DistilBERT base uncased model fine-tuned on SST-2 for sentiment/text classification.

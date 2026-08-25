@@ -1,0 +1,59 @@
+{
+  "id": "a9f325aa-8c05-4e4f-8341-9e4358565f4f",
+  "bucket": "libreoffice calc",
+  "instruction": "I want to copy the movie titles in 'Garbage Movie Titles' column to the 'Clean Movie Titles' column. But please remove the adundant whitespaces and canonicalize the letter cases by capitalizing the first letter of each words and leave other letters as lower case. Finish the work and don't touch irrelevant regions, even if they are blank.",
+  "answer": "DONE",
+  "eval_state": "<binary:6478 bytes at Movie_title_garbage_clean.xlsx>",
+  "provenance": {
+    "task_sha256": "77a6acdf7abba0b3d2cc14d612d8e3074e7a775eacb3c056c0599e78d97e7cba",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-e8816f75-60b6-475b-8418-b30634cc71a6.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-23T02:22:36.672474+00:00",
+    "finished_at": "2026-08-23T02:36:44.457243+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 77,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 2.034969850000001,
+  "agent_input_tokens": 206,
+  "agent_output_tokens": 36998,
+  "agent_cache_read_tokens": 4020137,
+  "agent_cache_creation_tokens": 72061,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3042,
+      "outputTokens": 14,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.003112,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 206,
+      "outputTokens": 36998,
+      "cacheReadInputTokens": 4020137,
+      "cacheCreationInputTokens": 72061,
+      "webSearchRequests": 0,
+      "costUSD": 2.0318578500000006,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 845567,
+  "agent_duration_api_ms": 763821,
+  "agent_session_id": "9578643b-b392-4a9a-b81f-5e94b62a7b8a",
+  "agent_uuid": "b959212f-3cf4-4cc2-80bc-06b42915792f"
+}

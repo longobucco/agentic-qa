@@ -1,0 +1,8 @@
+{
+  "id": "0e47de2a-32e0-456c-a366-8c607ef7a9d2",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official has_page_numbers_in_footers -> 0.00",
+  "source": "official",
+  "gold_sha256": {}
+}

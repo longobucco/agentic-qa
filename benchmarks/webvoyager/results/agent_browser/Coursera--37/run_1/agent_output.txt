@@ -1,0 +1,9 @@
+I browsed the Coursera homepage and searched the catalog for free courses. The results include several courses explicitly marked **"Status: Free"** (not just free trial). Here are three (plus a couple more) free courses available on Coursera:
+
+1. **Getting Started with Microsoft Excel** — Coursera (Guided Project, 4.6★) — *Status: Free*
+2. **Business Analysis & Process Management** — Coursera (Guided Project, 4.5★) — *Status: Free*
+3. **Build a free website with WordPress** — Coursera (Guided Project, 4.5★) — *Status: Free*
+4. **Google Ads for Beginners** — Coursera (Guided Project, 4.4★) — *Status: Free*
+5. **Using Basic Formulas and Functions in Microsoft Excel** — Coursera (Guided Project, 4.6★) — *Status: Free*
+
+ANSWER: Three free courses on Coursera (marked "Status: Free"): 1) Getting Started with Microsoft Excel (Coursera), 2) Business Analysis & Process Management (Coursera), 3) Build a free website with WordPress (Coursera). Additional free options include Google Ads for Beginners and Using Basic Formulas and Functions in Microsoft Excel.

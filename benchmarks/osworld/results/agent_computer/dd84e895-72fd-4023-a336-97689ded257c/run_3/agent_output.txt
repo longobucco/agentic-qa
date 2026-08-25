@@ -1,0 +1,11 @@
+Both emails in the Bills folder are now starred - I can see the orange star icons on the right side of both email rows:
+1. "AWS" (Amazon Web Services Invoice) - starred ⭐
+2. "X (formerly Twitter)" (receipt) - starred ⭐
+
+The task was completed by:
+1. Locating the Bills mbox file at `/home/user/.thunderbird/t5q2a5hp.default-release/Mail/Local Folders/Bills`
+2. Modifying the `X-Mozilla-Status` header from `0001` to `0005` for both emails (setting the flagged/starred bit 0x0004)
+3. Deleting the `.msf` cache file so Thunderbird rebuilt the index from the mbox
+4. Opening Thunderbird with the user's profile to verify - both emails show orange stars
+
+ANSWER: DONE

@@ -1,0 +1,9 @@
+The task is complete. I have:
+
+1. Read the `bubble_Sort_tutorial.docx` to understand the algorithm and expected output
+2. Extracted `bubbleSort.py` from `bubbleSort.zip` on the Desktop
+3. Implemented the optimized `bubbleSort` function with a `swapped` flag optimization (stops early if the array is already sorted)
+4. Ran the script — output: `Sorted array: 11 12 22 25 34 64 90 ` (matches the tutorial's expected output for input `[64, 34, 25, 12, 22, 11, 90]`)
+5. Saved the output to `/home/user/Desktop/res.txt`
+
+ANSWER: DONE

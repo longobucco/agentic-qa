@@ -1,0 +1,3 @@
+The file has been written successfully. The content of `output.txt` is `1<br/>\n2<br/>\n3<br/>` — each line from the input "1\n2\n3" now has `<br/>` appended to its end.
+
+ANSWER: DONE

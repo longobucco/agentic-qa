@@ -1,0 +1,5 @@
+The task is complete. The iPad mini specs page (Tech Specs → Video Recording) confirms the maximum video recording resolution.
+
+The latest iPad mini (A17 Pro) supports **4K video recording** as its maximum resolution — specifically "4K video recording at 24 fps, 25 fps, 30 fps, or 60 fps" on the rear camera.
+
+ANSWER: 4K (4K video recording at 24, 25, 30, or 60 fps)

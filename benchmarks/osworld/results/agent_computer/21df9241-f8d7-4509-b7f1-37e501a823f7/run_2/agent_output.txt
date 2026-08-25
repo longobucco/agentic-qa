@@ -1,0 +1,3 @@
+The task is complete. I entered the representations in Column B (millions with "M") and Column C (billions with "B"), rounded to one decimal place with half rounded up (e.g. 0.15 → 0.2 B), each with a space between the digits and the unit, then saved in xlsx format.
+
+ANSWER: DONE

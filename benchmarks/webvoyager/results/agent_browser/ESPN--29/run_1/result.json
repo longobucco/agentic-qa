@@ -1,0 +1,8 @@
+{
+  "id": "ESPN--29",
+  "bucket": "ESPN",
+  "web_name": "ESPN",
+  "ques": "Identify today's top headline in the Soccer section of ESPN, and summarize the main points of that article.",
+  "web": "https://www.espn.com/",
+  "answer": "ESPN Soccer's top headline is the lead \"World Cup Daily LIVE\" blog \u2014 \"World Cup LIVE: Haaland on bench as Norway, France battle to win Group I.\" It covers the final 2026 World Cup group-stage matchdays: Group I (Norway vs. France for top spot, with Haaland benched; Senegal vs. Iraq for third), Group H (Cape Verde vs. Saudi Arabia, Spain vs. Uruguay), and Group G (Egypt vs. Iran, New Zealand vs. Belgium), plus surrounding news such as Lamine Yamal receiving a WWE belt and positive USMNT contract-extension talks with coach Mauricio Pochettino ahead of the U.S.'s round-of-32 game vs. Bosnia-Herzegovina."
+}

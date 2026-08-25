@@ -1,0 +1,8 @@
+{
+  "id": "BBC News--10",
+  "bucket": "BBC News",
+  "web_name": "BBC News",
+  "ques": "Identify the main headlines covering the UK's plan to tackle climate change on BBC News.",
+  "web": "https://www.bbc.com/news/",
+  "answer": "On BBC News, the main headlines covering the UK's plan to tackle climate change are led by \"Heat pump growth stalls as government support cut, warns climate watchdog\" (Climate Change Committee criticising cuts to a key government grant scheme), alongside \"Scotland's greenhouse gas emissions fall slightly as progress slows,\" \"Wales' emissions fall significantly after steelworks changes,\" \"Campaigners consider appeal after Gatwick bids fail\" (climate vs. airport expansion), and adaptation pieces like \"Air conditioning needed in schools, says mayor\" and \"Farmers struggling to plan for extreme weather.\""
+}

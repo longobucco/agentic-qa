@@ -1,0 +1,8 @@
+{
+  "id": "Wolfram Alpha--3",
+  "bucket": "Wolfram Alpha",
+  "web_name": "Wolfram Alpha",
+  "ques": "Let g(x) be the integral of x^2 cos(2x). Write the expression of g(x).",
+  "web": "https://www.wolframalpha.com/",
+  "answer": "g(x) = (1/4)((2x\u00b2 \u2212 1)sin(2x) + 2x cos(2x)) + C"
+}

@@ -1,0 +1,8 @@
+{
+  "id": "GitHub--38",
+  "bucket": "GitHub",
+  "web_name": "GitHub",
+  "ques": "Identify and report the most popular (by stars) open-source repo related to cybersecurity on GitHub.",
+  "web": "https://github.com/",
+  "answer": "sherlock-project/sherlock \u2014 ~85.6k stars (an open-source OSINT/cybersecurity tool that hunts down social media accounts by username across 400+ social networks)."
+}

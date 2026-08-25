@@ -1,0 +1,59 @@
+{
+  "id": "1273e544-688f-496b-8d89-3e0f40aa0606",
+  "bucket": "libreoffice_calc",
+  "instruction": "Copy the \"Revenue\" column along with the header to a new sheet named \"Sheet2\".",
+  "answer": "DONE",
+  "eval_state": "<binary:6912 bytes at NetIncome.xlsx>",
+  "provenance": {
+    "task_sha256": "7df62d5e05f5069644d9b24a041a6c44827833c4d46c24e48667cb72138e8ba3",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-0ec98ac9-720b-46c5-b6ff-1451488fc4f7.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-19T20:20:44.242545+00:00",
+    "finished_at": "2026-08-19T20:21:52.348427+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 23,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.5493595000000001,
+  "agent_input_tokens": 3380,
+  "agent_output_tokens": 2436,
+  "agent_cache_read_tokens": 606215,
+  "agent_cache_creation_tokens": 26148,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 4957,
+      "outputTokens": 14,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.005026999999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 3380,
+      "outputTokens": 2436,
+      "cacheReadInputTokens": 606215,
+      "cacheCreationInputTokens": 26148,
+      "webSearchRequests": 0,
+      "costUSD": 0.5443325000000001,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 65918,
+  "agent_duration_api_ms": 60296,
+  "agent_session_id": "7e5a873b-a2bd-4bee-b017-cfc04872cd8f",
+  "agent_uuid": "cbcc78df-ef99-4439-a84f-b41bf1115c90"
+}

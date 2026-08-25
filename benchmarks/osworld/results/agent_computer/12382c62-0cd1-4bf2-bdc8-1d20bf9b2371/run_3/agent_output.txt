@@ -1,0 +1,3 @@
+The chart is verified: a clustered column chart (type `col`, grouping `clustered`) on a new sheet named "Sheet2", titled "Sales & COGS", with two series (Sales and COGS) across all 10 weeks.
+
+ANSWER: DONE

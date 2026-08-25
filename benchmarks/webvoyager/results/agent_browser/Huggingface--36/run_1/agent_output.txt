@@ -1,0 +1,46 @@
+I've captured the pricing page. Here's my summary of HuggingFace's payment plans.
+
+## HuggingFace Pricing — Payment Plans Summary
+
+HuggingFace offers **three subscription tiers** plus **usage-based pricing** for compute and storage.
+
+### Subscription Plans
+
+**1. PRO Account — $9/month**
+*Boost your personal HF experience.* Advantages:
+- 10× private storage & 2× public storage capacity
+- 20× included inference credits
+- 8× ZeroGPU quota + highest queue priority
+- Spaces Dev Mode & ZeroGPU Spaces hosting
+- Personal blog publishing
+- Dataset Viewer for private datasets
+- PRO badge to show support
+
+**2. Team — $20/month per user** *(Most popular)*
+*Instant setup for growing teams.* Advantages:
+- SSO support (SAML & OIDC)
+- Data location control via Storage Regions
+- Audit Logs for action reviews
+- Granular access control with Resource Groups
+- Repository usage Analytics
+- Advanced auth policies & visibility controls
+- Centralized token control and approvals
+- Dataset Viewer for private datasets + advanced Spaces compute
+- All members get ZeroGPU & Inference Providers PRO benefits
+
+**3. Enterprise — $50/month per user**
+*Custom onboarding + enterprise features.* Advantages:
+- **All Team benefits**, plus:
+- Highest storage, bandwidth & API rate limits
+- Automated user management with SCIM provisioning
+- Advanced security and access controls
+- Managed billing with annual commitments
+- Legal and Compliance processes
+- Dedicated support
+
+### Usage-Based Pricing (pay-as-you-go)
+- **Storage:** Volume-based, **$8–12/TB/month** (cheaper than AWS S3 $23 / Backblaze $15); egress & CDN included; volume discounts up to −33% at 500TB+.
+- **Spaces Hardware:** On-demand GPU **starting at $0** (CPU Basic & ZeroGPU free; up to 8× A100 at $20/hr).
+- **Inference Endpoints:** Dedicated, autoscaling inference **starting at $0.033/hour** (no cold starts).
+
+ANSWER: HuggingFace pricing has 3 subscription plans plus usage-based options. (1) **PRO — $9/mo**: personal boost — 10× private/2× public storage, 20× inference credits, 8× ZeroGPU quota + priority, Spaces Dev Mode, blog publishing, private Dataset Viewer, PRO badge. (2) **Team — $20/mo per user** (most popular): for orgs — SSO (SAML/OIDC), Storage Regions, Audit Logs, Resource Groups, Analytics, advanced auth/token controls, plus PRO benefits for all members. (3) **Enterprise — $50/mo per user**: all Team features plus highest limits, SCIM provisioning, advanced security, managed/annual billing, compliance processes, and dedicated support. Additionally: Storage at $8–12/TB/mo (egress/CDN included), Spaces GPU hardware on-demand starting at $0 (free CPU/ZeroGPU tiers), and dedicated Inference Endpoints from $0.033/hour.

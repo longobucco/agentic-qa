@@ -1,0 +1,5 @@
+{
+  "id": "ESPN--27",
+  "verdict": "SUCCESS",
+  "reason": "The screenshot confirms ESPN's Teams search for 'golden' was performed, showing many Golden-named teams with the Vegas Golden Knights as the sole NHL team, matching the agent's answer of 1 NHL team."
+}

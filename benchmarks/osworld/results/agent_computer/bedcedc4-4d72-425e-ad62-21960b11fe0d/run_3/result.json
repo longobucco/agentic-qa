@@ -1,0 +1,59 @@
+{
+  "id": "bedcedc4-4d72-425e-ad62-21960b11fe0d",
+  "bucket": "os",
+  "instruction": "Could you set the 'Dim screen when inactive' to off in setting?",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "a868462b50d73aa50a0b273d7e0e2e6d49f1d0c468083367bf77dc6af163af3c",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-a098a766-df32-4e94-9625-a71f16ad9ab9.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-23T12:55:57.364064+00:00",
+    "finished_at": "2026-08-23T13:06:19.472644+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 63,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 1.4376142499999998,
+  "agent_input_tokens": 66,
+  "agent_output_tokens": 22020,
+  "agent_cache_read_tokens": 2988110,
+  "agent_cache_creation_tokens": 55607,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2082,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002157,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 66,
+      "outputTokens": 22020,
+      "cacheReadInputTokens": 2988110,
+      "cacheCreationInputTokens": 55607,
+      "webSearchRequests": 0,
+      "costUSD": 1.4354572499999998,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 619637,
+  "agent_duration_api_ms": 594467,
+  "agent_session_id": "38324390-3fdc-437d-9b23-1f71275c0b35",
+  "agent_uuid": "68d8cf50-5b82-4217-ba85-781a8e26e828"
+}

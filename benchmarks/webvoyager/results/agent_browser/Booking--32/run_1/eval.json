@@ -1,0 +1,5 @@
+{
+  "id": "Booking--32",
+  "verdict": "FAILURE",
+  "reason": "The filters were never applied and no filtered hotel count was obtained; the final screenshot only shows the unfiltered total of 4,395 Sydney hotels, and the agent explicitly states the result could not be determined."
+}

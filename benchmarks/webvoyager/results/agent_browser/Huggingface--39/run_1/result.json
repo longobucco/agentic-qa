@@ -1,0 +1,8 @@
+{
+  "id": "Huggingface--39",
+  "bucket": "Huggingface",
+  "web_name": "Huggingface",
+  "ques": "Investigate in the Hugging Face documentation how to utilize the 'Trainer' API for training a model on a custom dataset, and note the configurable parameters of the Trainer class.",
+  "web": "https://huggingface.co/",
+  "answer": "The Transformers `Trainer` (docs at huggingface.co/docs/transformers/main_classes/trainer) trains a model on a custom dataset by passing a `datasets.Dataset` as `train_dataset`/`eval_dataset` along with a model, a `TrainingArguments` (`args`) config, and a `processing_class` (tokenizer), then calling `trainer.train()`. The `Trainer` class has 13 configurable constructor parameters: model, args, data_collator, train_dataset, eval_dataset, processing_class, model_init, compute_loss_func, compute_metrics, callbacks, optimizers, optimizer_cls_and_kwargs, and preprocess_logits_for_metrics."
+}

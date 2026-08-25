@@ -1,0 +1,8 @@
+The file saved without a format dialog this time, confirming it was saved in PowerPoint format. The task is complete.
+
+Looking at the slide, the table on Page 3 has been successfully moved to the bottom of the slide:
+- The table is now positioned at Y=6.29" on a 7.5" tall slide
+- The table height is 1.21", so it sits exactly at the bottom edge
+- The slide thumbnail in the panel shows the table at the bottom
+
+ANSWER: DONE

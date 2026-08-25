@@ -1,0 +1,59 @@
+{
+  "id": "9219480b-3aed-47fc-8bac-d2cffc5849f7",
+  "bucket": "vs_code",
+  "instruction": "Hi, I recently playing with developing a small python-based tetris game. While I have finished most of the part, something is wrong under some cases when I press up to rotate, the whole program will crash, please run the code for me and fix the bugs of code.",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "8eb155aae13b6315bc427e0633b8bc3815d2487e8f07f3c8c84c4281e6a58f4a",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-fb3cc10f-b9aa-413b-87b4-c210018b60f3.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-23T16:51:34.092012+00:00",
+    "finished_at": "2026-08-23T17:01:43.033774+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 50,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 1.0911158499999996,
+  "agent_input_tokens": 234,
+  "agent_output_tokens": 20795,
+  "agent_cache_read_tokens": 1942677,
+  "agent_cache_creation_tokens": 51669,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1847,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001927,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 234,
+      "outputTokens": 20795,
+      "cacheReadInputTokens": 1942677,
+      "cacheCreationInputTokens": 51669,
+      "webSearchRequests": 0,
+      "costUSD": 1.0891888499999995,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 601771,
+  "agent_duration_api_ms": 426347,
+  "agent_session_id": "bd268427-1ccf-4775-b0a1-a7f621f814f6",
+  "agent_uuid": "54b87291-201a-46ea-b5ac-35fe49b65939"
+}

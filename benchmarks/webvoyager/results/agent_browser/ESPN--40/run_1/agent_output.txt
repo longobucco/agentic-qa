@@ -1,0 +1,10 @@
+The final screenshot is captured, clearly showing ESPN's official description of ESPN+ (now the "ESPN Select Plan"). 
+
+Note: ESPN's canonical ESPN+ landing page (`plus.espn.com` / `espn.com/espnplus/`) is geo-blocked in this environment — it returns "Access Denied" or hard-redirects to ESPN UK regardless of geo. Only ESPN story/article pages load US content, so I used ESPN's official explainer article ("What is the new ESPN DTC service?") on espn.com, which describes ESPN+ directly. Required screenshots saved: `/shots/step_1.png`, `step_2.png`, `step_3.png`, and `/shots/final.png`.
+
+**Brief summary of what ESPN+ is used for** (per ESPN's official page):
+ESPN+ is ESPN's paid streaming service used to watch live sports and exclusive content. It provides access to **more than 32,000 live sports events annually** — top-tier soccer, PGA Tour golf, NHL, UFC, tennis, a selection of college sports, PLL, UFL and other leagues — plus a **robust library of exclusive studio shows, on-demand replays, and acclaimed ESPN original content**. In ESPN's new direct-to-consumer setup, this ESPN+ content is delivered through the **ESPN Select Plan** ($11.99/mo or $119.99/yr), and is also bundled into the higher-tier ESPN Unlimited Plan and Disney+/Hulu bundles. The enhanced ESPN app additionally integrates tools like game stats, betting info, fantasy sports, multiview, and a personalized "SportsCenter For You."
+
+Sources: [ESPN — What is the new ESPN DTC service? Plans, costs, key facts](https://www.espn.com/espn/story/_/id/45989279/what-new-espn-dtc-service-plans-costs-key-facts), [plus.espn.com](https://plus.espn.com/)
+
+ANSWER: ESPN+ is ESPN's paid streaming service for live sports and exclusive content — it offers 30,000+ live events a year (soccer, PGA Tour golf, NHL, UFC, tennis, college sports, PLL/UFL and more), plus exclusive studio shows, on-demand replays, and ESPN original content; it is now delivered via the ESPN Select Plan within ESPN's direct-to-consumer service.

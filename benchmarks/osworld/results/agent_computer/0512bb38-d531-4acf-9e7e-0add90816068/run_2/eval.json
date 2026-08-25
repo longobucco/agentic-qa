@@ -1,0 +1,7 @@
+{
+  "id": "0512bb38-d531-4acf-9e7e-0add90816068",
+  "verdict": "EVAL_ERROR",
+  "reason": "eval_state='undefined_publisher.test\\n' (official eval errored: JSONDecodeError: Expecting value: line 1 column 1 (char 0))",
+  "source": "offline_fallback",
+  "gold_sha256": {}
+}

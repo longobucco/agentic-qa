@@ -1,0 +1,59 @@
+{
+  "id": "480bcfea-d68f-4aaa-a0a9-2589ef319381",
+  "bucket": "chrome",
+  "instruction": "I do not like the design of the new 2023 chrome UI. I want to keep using the original one. Can you disable the new 2023 version chrome UI for me? ",
+  "answer": "FAIL",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "c6b551494865688e3b5dbd3eab6dc644b83977bb651b49d4ea73ec7999b1802e",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:300565e6d5065a6277d7154071c581b4a72adfcb68d4726564545c9b05798a3c",
+    "controller_url": "https://5000-a8b3c4d2-5672-4ae3-919f-0837a4554ff2.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-05T08:18:36.482931+00:00",
+    "finished_at": "2026-08-05T08:22:16.105401+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 35,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.5140444500000001,
+  "agent_input_tokens": 42,
+  "agent_output_tokens": 6909,
+  "agent_cache_read_tokens": 1028954,
+  "agent_cache_creation_tokens": 26847,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 831,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.000921,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 42,
+      "outputTokens": 6909,
+      "cacheReadInputTokens": 1028954,
+      "cacheCreationInputTokens": 26847,
+      "webSearchRequests": 0,
+      "costUSD": 0.51312345,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 218010,
+  "agent_duration_api_ms": 209481,
+  "agent_session_id": "f8ff678d-0e32-4ea5-b5b5-403998dcf18d",
+  "agent_uuid": "46d68078-f267-404e-8a8a-c69c617fee65"
+}

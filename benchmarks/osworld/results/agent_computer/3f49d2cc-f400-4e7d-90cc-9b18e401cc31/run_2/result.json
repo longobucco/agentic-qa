@@ -1,0 +1,59 @@
+{
+  "id": "3f49d2cc-f400-4e7d-90cc-9b18e401cc31",
+  "bucket": "thunderbird",
+  "instruction": "I've got a bunch of email accounts in Thunderbird, and it's a hassle to check them one by one. Can you show me how to set up a unified inbox so I can see all my emails in one place?",
+  "answer": "DONE",
+  "eval_state": "{\"chrome://messenger/content/messenger.xhtml\":{\"toolbar-menubar\":{\"autohide\":\"true\"},\"task-tree-filtergroup\":{\"value\":\"throughcurrent\"},\"unifinder-search-results-tree-col-title\":{\"ordinal\":\"1\"},\"unifinder-search-results-tree-col-startdate\":{\"ordinal\":\"3\"},\"unifinder-search-results-tree-col-enddate\":{\"ordinal\":\"5\"},\"unifinder-search-results-tree-col-categories\":{\"ordinal\":\"7\"},\"unifinder-search-results-tree-col-location\":{\"ordinal\":\"9\"},\"unifinder-search-results-tree-col-status\":{\"ordinal\":\"11\"},\"unifinder-search-results-tree-col-calendarname\":{\"ordinal\":\"13\"},\"messengerWindow\":{\"sizemode\":\"maximized\",\"screenX\":\"44\",\"screenY\":\"4\",\"width\":\"1129\",\"height\":\"1275\"},\"today-pane-splitter\":{\"hidden\":\"true\"},\"today-none-box\":{\"collapsed\":\"true\"},\"today-minimonth-box\":{\"collapsed\":\"true\"},\"todo-tab-panel\":{\"collapsed\":\"true\"},\"agenda-panel\":{\"collapsed\":\"-moz-missing\\n\",\"collapsedinmodes\":\"calendar\"},\"mini-day-box\":{\"collapsed\":\"-moz-missing\\n\"},\"folderTree\":{\"mode\":\"all\"},\"quickFilterBar\":{\"collapsed\":\"true\"},\"messagepaneboxwrapper\":{\"collapsed\":\"false\",\"width\":\"877\"},\"spacesToolbar\":{\"hidden\":\"false\"},\"calendar-task-tree\":{\"widths\":\"21 21 21 21 21 21 21 21 21 21 21 21\",\"ordinals\":\"1 3 5 7 9 11 13 15 17 19 21 23\"},\"unifinder-todo-tree\":{\"widths\":\"0 0 0 0 0 0 0 0 0 0 0 0\",\"ordinals\":\"1 1 1 1 1 1 1 1 1 1 1 1\"},\"threadPane\":{\"view\":\"cards\"}},\"chrome://messenger/content/messengercompose/messengercompose.xhtml\":{\"msgcomposeWindow\":{\"screenX\":\"167\",\"screenY\":\"123\",\"width\":\"860\",\"height\":\"800\",\"sizemode\":\"normal\"}}}",
+  "provenance": {
+    "task_sha256": "e236cddd6fdffafca4a034fdf20ff9a52747815ad4574e70539e25f7c0bd82c8",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-ad41f572-4762-4f03-8a03-4f3ce4689bf8.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-20T08:26:53.835680+00:00",
+    "finished_at": "2026-08-20T08:28:22.060210+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 22,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.68556425,
+  "agent_input_tokens": 3305,
+  "agent_output_tokens": 3054,
+  "agent_cache_read_tokens": 639361,
+  "agent_cache_creation_tokens": 42911,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 4735,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.004815,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 3305,
+      "outputTokens": 3054,
+      "cacheReadInputTokens": 639361,
+      "cacheCreationInputTokens": 42911,
+      "webSearchRequests": 0,
+      "costUSD": 0.68074925,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 85703,
+  "agent_duration_api_ms": 78059,
+  "agent_session_id": "728b964e-f0ae-41aa-8776-18f41e8cbab6",
+  "agent_uuid": "5171982f-5eda-4308-9419-329e9249ed97"
+}

@@ -1,0 +1,5 @@
+workspace1.code-workspace now contains both folders (project1 and project2). Both workspaces are now open simultaneously in the same VS Code window. The Explorer shows both project1 and project2 under "WORKSPACE1 (WORKSPACE)".
+
+The task is complete - both workspace1.code-workspace (with project1) and workspace2.code-workspace (with project2) are now accessible simultaneously in the same VS Code window through VS Code's multi-root workspace feature.
+
+ANSWER: DONE

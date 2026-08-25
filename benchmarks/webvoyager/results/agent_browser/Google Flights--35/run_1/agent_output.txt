@@ -1,0 +1,10 @@
+I have completed the task. On the Cheapest-sorted results for a one-way Cairo (CAI) → Montreal (YUL) flight on July 21, 2026, the lowest-priced option is confirmed at the top of the list.
+
+**Lowest-priced flight:**
+- **Price:** €422
+- **Airline:** Royal Jordanian
+- **Stops:** 1 stop (layover 4 hr 1 min in Amman, Queen Alia Intl)
+- **Total travel time:** 16 hr 30 min
+- Departs Cairo 9:40 PM Jul 21 → arrives Montréal-Trudeau 7:10 AM Jul 22
+
+ANSWER: The lowest-priced one-way Cairo→Montreal flight on July 21, 2026 is €422 on Royal Jordanian, with 1 stop (4 hr 1 min layover in Amman) and a total travel time of 16 hr 30 min.

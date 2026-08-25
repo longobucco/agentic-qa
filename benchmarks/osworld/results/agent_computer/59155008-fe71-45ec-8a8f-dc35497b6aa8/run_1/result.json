@@ -1,0 +1,19 @@
+{
+  "id": "59155008-fe71-45ec-8a8f-dc35497b6aa8",
+  "bucket": "chrome",
+  "instruction": "What are the similar names to the name carl",
+  "answer": "",
+  "setup_error": "config setup failed: Setup step 3 failed: _chrome_open_tabs_setup - BrowserType.connect_over_cdp: connect ECONNREFUSED ::ffff:62.0.58.94:9222\nCall log:\n  - <ws preparing> retrieving websocket url from http://5000-bd352c88-5904-4d7b-a316-38a58173bd57.daytonaproxy01.eu:9222\n",
+  "provenance": {
+    "task_sha256": "1127689fe71de97e6e830548c27347a399d5868b8f76a0929009589df092fa94",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-bd352c88-5904-4d7b-a316-38a58173bd57.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-20T16:17:05.178107+00:00",
+    "finished_at": "2026-08-20T16:17:05.178457+00:00"
+  }
+}

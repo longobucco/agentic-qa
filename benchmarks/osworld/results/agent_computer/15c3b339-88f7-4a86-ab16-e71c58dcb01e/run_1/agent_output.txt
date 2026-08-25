@@ -1,0 +1,8 @@
+All three fields are now filled in correctly:
+- **Your full name**: Anonym X
+- **Email address**: anonym-x2024@outlook.com
+- **Password**: (filled with dots - "password")
+
+The form is ready with all the information filled in. Thunderbird has also detected the email provider and the "Continue" button is now active (blue), with a "Configure manually" link also appearing. The page is left as-is for you to check manually.
+
+ANSWER: DONE

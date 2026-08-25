@@ -1,0 +1,8 @@
+{
+  "id": "ArXiv--26",
+  "bucket": "ArXiv",
+  "web_name": "ArXiv",
+  "ques": "Search for papers related to 'climate change modeling' on ArXiv and find out how many have been published in the Earth and Planetary Astrophysics (astro-ph.EP) category in the last month.",
+  "web": "https://arxiv.org/",
+  "answer": "0 \u2014 No papers matching \"climate change modeling\" were published in the astro-ph.EP (Earth and Planetary Astrophysics) category in the last month (2026-05-26 to 2026-06-26). The most recent matching paper dates to March 2026; there are 25 such papers across all dates."
+}

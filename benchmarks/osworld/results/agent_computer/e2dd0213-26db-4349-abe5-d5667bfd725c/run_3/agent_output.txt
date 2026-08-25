@@ -1,0 +1,8 @@
+The task is complete. The "Thanks World" text box has been successfully moved to the left side of the canvas. The status bar confirms: "Image saved to '/home/user/Desktop/orange_background.xcf'" and the title bar no longer shows the asterisk (*) indicating unsaved changes.
+
+The text layer was moved by:
+1. Identifying the "Lock position and size" lock icon in the layers panel
+2. Clicking it to unlock the layer's position
+3. Using Shift+drag to move the active text layer to the left side
+
+ANSWER: DONE

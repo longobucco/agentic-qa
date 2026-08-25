@@ -1,0 +1,8 @@
+{
+  "id": "Huggingface--19",
+  "bucket": "Huggingface",
+  "web_name": "Huggingface",
+  "ques": "Explore and summarize the features of the most recent open-source NLP model released by Hugging Face for English text summarization.",
+  "web": "https://huggingface.co/",
+  "answer": "The most recent open-source English summarization model on Hugging Face is medodeyaa/dentor-biobart (updated ~10 days ago). Key features: a BART/BioBART-based biomedical sequence-to-sequence (text2text-generation) summarization model for English, ~0.2B (200M) parameters, F32 tensors, built with Transformers/PyTorch/Safetensors, released under the Apache-2.0 license. It uses BioBART V2's new biomedical vocabulary (paper arXiv:2204.03905), is usable via the `summarization` pipeline or AutoModelForSeq2SeqLM, had 137 downloads last month, and is not yet hosted by an Inference Provider."
+}

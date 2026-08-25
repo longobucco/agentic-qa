@@ -1,0 +1,8 @@
+{
+  "id": "ESPN--12",
+  "bucket": "ESPN",
+  "web_name": "ESPN",
+  "ques": "The first three Top Headlines in the current ESPN home page correspond to which sports leagues?",
+  "web": "https://www.espn.com/",
+  "answer": "The page served is ESPN Deportes (geo-redirected from www.espn.com to Spain's Spanish edition), where the \"Top Headlines\" module is \"TITULARES\". Its first three headlines all correspond to SOCCER/FOOTBALL \u2014 specifically the FIFA World Cup 2026 and Mexico's national team (1: World Cup round-of-16 bracket; 2: FIFA ranking, Mexico beats Czechia; 3: FMF/Mexican federation). All three are the same sport (soccer), not three distinct leagues."
+}

@@ -1,0 +1,5 @@
+E3 now shows 191.6666667 (7:40 = 7.6667 hours × 25 = 191.67), and the file was saved in xlsx format.
+
+The correct product is obtained by converting the time value to hours by multiplying by 24 (`=D3*24*F3`), because LibreOffice stores time as a fraction of a day.
+
+ANSWER: 191.6666667 (formula `=D3*24*F3`)

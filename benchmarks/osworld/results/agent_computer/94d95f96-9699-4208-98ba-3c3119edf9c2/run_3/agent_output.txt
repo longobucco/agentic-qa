@@ -1,0 +1,5 @@
+Spotify is confirmed installed at `/Applications/Spotify.app` on macOS.
+
+**Summary:** I ran `brew install --cask spotify` on your macOS system. Homebrew reported that the latest version of Spotify was already installed. The app exists at `/Applications/Spotify.app` and is ready to use.
+
+ANSWER: DONE

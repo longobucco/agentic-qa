@@ -1,0 +1,59 @@
+{
+  "id": "af630914-714e-4a24-a7bb-f9af687d3b91",
+  "bucket": "chrome",
+  "instruction": "My grandmother has been using the Chrome lately and told me that the font size is way too small for her poor eyesight. Could you set the default font size to the largest for her?",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "973f5a3757e14df62d20f8824ed91f39be29e6bfb7a0cd0095f2ad2c7e2630ed",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-60782640-036d-4e75-9bf5-b8e25fcf8932.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-11T18:37:06.218508+00:00",
+    "finished_at": "2026-08-11T18:37:43.256724+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 10,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.1215019,
+  "agent_input_tokens": 17,
+  "agent_output_tokens": 1061,
+  "agent_cache_read_tokens": 213678,
+  "agent_cache_creation_tokens": 10806,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 830,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.00091,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 17,
+      "outputTokens": 1061,
+      "cacheReadInputTokens": 213678,
+      "cacheCreationInputTokens": 10806,
+      "webSearchRequests": 0,
+      "costUSD": 0.1205919,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 35327,
+  "agent_duration_api_ms": 34772,
+  "agent_session_id": "872994c8-7676-4f2c-b96b-8410faf32a99",
+  "agent_uuid": "9f7b7087-471b-48bd-b191-21331f7a40a5"
+}

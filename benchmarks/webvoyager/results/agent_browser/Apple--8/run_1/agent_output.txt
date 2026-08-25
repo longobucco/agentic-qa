@@ -1,0 +1,10 @@
+The task is complete. I identified the latest iPad model from Apple's official site and captured its specifications.
+
+**Latest iPad model: iPad Pro (M5)** — marked "New" on Apple's compare page, with the newest Apple M5 chip. Available in 11-inch and 13-inch sizes.
+
+**Specifications:**
+- **Storage options:** 256GB, 512GB, 1TB, 2TB
+- **Processor:** Apple M5 chip — 9-core CPU (256GB/512GB models) or 10-core CPU (1TB/2TB models), 10-core GPU with Neural Accelerators and hardware-accelerated ray tracing, 16-core Neural Engine, 153GB/s memory bandwidth, 12GB unified memory (256GB/512GB) or 16GB (1TB/2TB)
+- **Display:** Ultra Retina XDR display (Tandem OLED); 2420×1668 (11-inch) / 2752×2064 (13-inch) at 264 ppi; ProMotion adaptive refresh 10Hz–120Hz; P3 wide color; True Tone; fully laminated, antireflective, fingerprint-resistant coating; nano-texture glass option on 1TB/2TB models; 1000 nits SDR/full-screen XDR brightness, 1600 nits HDR peak, 1 nit minimum; 2,000,000:1 contrast ratio; supports Apple Pencil Pro
+
+ANSWER: The latest iPad is the iPad Pro (M5) (11" and 13"). Storage: 256GB / 512GB / 1TB / 2TB. Processor: Apple M5 chip (9- or 10-core CPU depending on storage, 10-core GPU with ray tracing, 16-core Neural Engine, 12–16GB RAM). Display: Ultra Retina XDR Tandem OLED, 2420×1668 (11") / 2752×2064 (13") at 264 ppi, ProMotion 10–120Hz, P3 wide color, True Tone, antireflective coating, nano-texture glass option (1TB/2TB), up to 1600 nits HDR peak, 2,000,000:1 contrast.

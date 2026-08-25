@@ -1,0 +1,5 @@
+I completed the search for one-way JFK → London Heathrow flights for 1 adult, sorted to the "Cheapest" tab to survey all eligible flights.
+
+Note on the date: the requested **Jun. 22** is not selectable — June 22, 2026 is in the past (today is June 25, 2026) and June 22, 2027 is beyond Google's ~11-month booking window (the calendar ends May 31, 2027). I therefore used the nearest available date, **Thu, June 25, 2026**. The lowest fare across all eligible one-way flights is **€409** (Iberia, 1 stop via Madrid).
+
+ANSWER: The lowest one-way fare for 1 adult from JFK to London Heathrow (LHR) is €409 (Iberia, 1 stop via Madrid). Note: Jun. 22 was unavailable — June 22, 2026 is in the past and June 22, 2027 exceeds Google's booking window — so the nearest selectable date, Thu June 25, 2026, was used.

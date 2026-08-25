@@ -1,0 +1,13 @@
+The task is complete. The "Spent ($)" column now displays all values with exactly two decimal places:
+
+- 40.00
+- 50.54
+- 60.00
+- 30.75
+- 25.50
+- 45.90
+- 35.40
+
+The formatting was applied by setting the number format to `0.00` for cells C2:C8 using openpyxl, and the file was saved in xlsx format.
+
+ANSWER: DONE

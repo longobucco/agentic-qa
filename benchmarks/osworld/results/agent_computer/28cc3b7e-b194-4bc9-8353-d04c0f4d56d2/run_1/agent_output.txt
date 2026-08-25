@@ -1,0 +1,3 @@
+The guest execution environment has become unreachable. After my initial inspection (no audio daemon running — `pactl` connection refused, no `amixer`, PulseAudio not started in this headless `:99` display), an attempt to start PulseAudio appears to have taken down the guest agent server. Since then, every guest-touching tool (`screenshot`, `a11y_tree`, `run_python`, `click`, etc.) has returned `Connection refused` for over 8 minutes of retries, while only the locally-handled `wait()` responds. The sandbox is not recovering, so I can neither apply nor verify the volume change.
+
+ANSWER: FAIL

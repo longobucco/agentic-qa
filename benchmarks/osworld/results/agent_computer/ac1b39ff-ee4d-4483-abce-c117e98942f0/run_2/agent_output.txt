@@ -1,0 +1,5 @@
+The table has been successfully moved to the bottom of slide 3. The table with numbers 1-9 is now positioned at the very bottom of the slide, with the "Movie List" title and text content above it.
+
+The task is complete - the table on Page 3 has been moved to the bottom of the slide by using python-pptx to set the table's top position to 6.29" (which places its bottom edge at exactly 7.5", the slide's bottom boundary).
+
+ANSWER: DONE

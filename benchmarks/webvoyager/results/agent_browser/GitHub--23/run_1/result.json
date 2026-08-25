@@ -1,0 +1,8 @@
+{
+  "id": "GitHub--23",
+  "bucket": "GitHub",
+  "web_name": "GitHub",
+  "ques": "Find the wiki page of ohmyzsh on GitHub and tell me how to change the theme of zsh to agnoster.",
+  "web": "https://github.com/",
+  "answer": "On the ohmyzsh wiki Themes page (github.com/ohmyzsh/ohmyzsh/wiki/Themes), edit your `~/.zshrc` and set `ZSH_THEME=\"agnoster\"` before Oh My Zsh is sourced, then reload your shell (`source ~/.zshrc`). agnoster also requires a patched Powerline/Nerd font for its symbols to display correctly."
+}

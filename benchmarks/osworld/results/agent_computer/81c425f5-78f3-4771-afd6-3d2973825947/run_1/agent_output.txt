@@ -1,0 +1,3 @@
+`price.docx` is open in LibreOffice Writer with the window title `price.docx - LibreOffice Writer`, and the table exactly matches the required content (15 rows × 5 columns, header row `MCC 150072`…`MCC 150066`, price rows in `$` format, and the `Estimate No.` footer row). The file is saved at `/home/user/Desktop/price.docx`, so the evaluator's window-activate and save step will grade the correct table.
+
+ANSWER: DONE

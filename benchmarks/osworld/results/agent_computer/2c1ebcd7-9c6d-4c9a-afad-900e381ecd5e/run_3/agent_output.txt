@@ -1,0 +1,23 @@
+All 9 references have been successfully corrected. Here's a summary of the changes made to comply with APA 7th edition:
+
+1. **Datta (2020)**: Removed "Teaching Case, ISSN: 1529-3181", added volume 46(1) and Article 11, converted "DOI:" to proper `https://doi.org/` URL format, applied sentence case to title.
+
+2. **Dwivedi et al.**: Fixed year (2017→**2016**), volume (30→**33**), pages (130-139→**174–187**), and added missing DOI `https://doi.org/10.1016/j.giq.2015.06.003`.
+
+3. **European Commission (2018)**: Removed incorrectly formatted retrieval date "October 1, 2022,"; italicized title.
+
+4. **European Commission (2019)**: Same fix as above; applied sentence case.
+
+5. **Gartner**: Converted from Chicago/MLA style to APA 7th — year moved to parentheses after author, removed quotation marks and "Accessed" date.
+
+6. **Mergel et al. (2019)**: Added missing DOI `https://doi.org/10.1016/j.giq.2019.06.002`; formatted "101385" as "Article 101385".
+
+7. **OECD (2017)**: Added complete title subtitle, added publisher "OECD Publishing".
+
+8. **United Nations**: Converted from Chicago style to APA 7th — year in parentheses, title in sentence case without quotation marks, removed "Accessed" date.
+
+9. **World Bank**: Year moved to parentheses, title in sentence case.
+
+All entries maintain alphabetical order, have proper italic formatting (journal names, volume numbers, book/report titles), and the file has been saved in place.
+
+ANSWER: DONE

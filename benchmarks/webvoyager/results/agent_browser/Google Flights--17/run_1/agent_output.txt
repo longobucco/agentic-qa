@@ -1,0 +1,5 @@
+I've completed the task. The flight search for New York → Paris, departing June 27, 2026 and returning July 10, 2026, sorted by Cheapest, shows the cheapest round-trip fare at the top.
+
+**Cheapest round-trip flight:** €778 total — United, nonstop, departing Newark (EWR) at 5:40 PM on Sat, June 27 and arriving Paris Charles de Gaulle (CDG) at 7:05 AM on Sun, June 28.
+
+ANSWER: The cheapest round-trip flight from New York to Paris (depart June 27, 2026; return July 10, 2026) is €778 total — a nonstop United flight departing Newark (EWR) at 5:40 PM and arriving Paris CDG at 7:05 AM.

@@ -1,0 +1,8 @@
+{
+  "id": "GitHub--28",
+  "bucket": "GitHub",
+  "web_name": "GitHub",
+  "ques": "Identify the most starred JavaScript repositories on GitHub that were created after 2023-12-29.",
+  "web": "https://github.com/",
+  "answer": "The most starred JavaScript repos created after 2023-12-29 are: 1) polyfillpolyfill/fetch (684\u2605), 2) polyfillpolyfill/polyfill-library (674\u2605), 3) gh0stintheshe11/Stats-SVG (630\u2605), 4) OrionReed/dom3d (518\u2605), 5) potahtml/mpa-archive (475\u2605)."
+}

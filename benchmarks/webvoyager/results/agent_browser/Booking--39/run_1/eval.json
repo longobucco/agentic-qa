@@ -1,0 +1,5 @@
+{
+  "id": "Booking--39",
+  "verdict": "FAILURE",
+  "reason": "The agent hit max turns and produced no answer; the final 1 Hotel Toronto page confirms parking and dates but never shows the hotel is pet-friendly, so not all required criteria are satisfied."
+}

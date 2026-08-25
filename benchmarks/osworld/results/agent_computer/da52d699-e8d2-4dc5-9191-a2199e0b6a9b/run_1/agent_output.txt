@@ -1,0 +1,7 @@
+The document has been saved with "Out of the Silent Planet" written in it. The file `book_list_result.docx` now contains the title of the book with the slowest reading pace.
+
+To summarize what I found:
+- Using howlongtoread.com word counts divided by days taken to read each book:
+- **Out of the Silent Planet** (C.S. Lewis): 66,453 words ÷ 36 days = **1,845.92 words/day** — the slowest reading pace among all 10 books
+
+ANSWER: Out of the Silent Planet

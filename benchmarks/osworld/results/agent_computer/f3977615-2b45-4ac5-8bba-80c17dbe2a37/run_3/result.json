@@ -1,0 +1,59 @@
+{
+  "id": "f3977615-2b45-4ac5-8bba-80c17dbe2a37",
+  "bucket": "vlc",
+  "instruction": "I want to watch two or more videos in same time on VLC. I tried to run multiple instances of VLC. It worked but can't play videos on those new instances. When I play video it plays on first instance instead of new instance.\nIs there any way to solve this problem?",
+  "answer": "Yes. In VLC go to Tools \u2192 Preferences \u2192 Interface and turn OFF \"Use only one instance when started from file manager\" (and \"Allow only one instance\"). This sets `one-instance-when-started-from-file=0` in ~/.config/vlc/vlcrc, so each new VLC instance plays its own video instead of sending it to the first instance. DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "279d67beaab02388ff606eb8467cbd9e28603289b00a392641346f685f3b9e7f",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-d7f59eed-32f4-41da-b872-a93111f8d5e6.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-19T12:17:08.611945+00:00",
+    "finished_at": "2026-08-19T12:20:37.254302+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 14,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.43171774999999996,
+  "agent_input_tokens": 3240,
+  "agent_output_tokens": 5623,
+  "agent_cache_read_tokens": 314775,
+  "agent_cache_creation_tokens": 18305,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3064,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.003149,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 3240,
+      "outputTokens": 5623,
+      "cacheReadInputTokens": 314775,
+      "cacheCreationInputTokens": 18305,
+      "webSearchRequests": 0,
+      "costUSD": 0.42856874999999994,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 207409,
+  "agent_duration_api_ms": 93323,
+  "agent_session_id": "b0802233-2c78-41f2-83cf-ce3f2959ff00",
+  "agent_uuid": "abeec98a-f120-4d97-aedb-b7ae8899cee1"
+}

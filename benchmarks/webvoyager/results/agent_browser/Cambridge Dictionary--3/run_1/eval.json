@@ -1,0 +1,5 @@
+{
+  "id": "Cambridge Dictionary--3",
+  "verdict": "FAILURE",
+  "reason": "The agent was blocked by a Cloudflare bot-verification page and never displayed the definition, pronunciation, or examples for 'zeitgeist,' nor did it produce any answer."
+}

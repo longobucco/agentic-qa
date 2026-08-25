@@ -1,0 +1,8 @@
+{
+  "id": "Google Search--27",
+  "bucket": "Google Search",
+  "web_name": "Google Search",
+  "ques": "Check the current air quality index in Paris.",
+  "web": "https://www.google.com/",
+  "answer": "Paris current air quality is US AQI 61 \u2014 \"Moderate\" (main pollutant PM2.5 at 14.5 \u00b5g/m\u00b3), as of 23:00 local time on Jun 26 (source: IQAir)."
+}

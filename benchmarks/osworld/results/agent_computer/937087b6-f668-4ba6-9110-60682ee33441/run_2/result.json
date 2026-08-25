@@ -1,0 +1,59 @@
+{
+  "id": "937087b6-f668-4ba6-9110-60682ee33441",
+  "bucket": "vlc",
+  "instruction": "I am currently using a ubuntu system. Could you help me set the default video player as VLC?",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "c0253deb8b5f7270250817c0c4494445a843ad7d9190e867b0ab4b1673412a03",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-f4103ac7-2d3b-47e8-a105-28d8cd9b1a2c.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-23T11:40:56.818095+00:00",
+    "finished_at": "2026-08-23T11:44:16.113194+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 20,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.44613650000000005,
+  "agent_input_tokens": 29,
+  "agent_output_tokens": 9912,
+  "agent_cache_read_tokens": 577745,
+  "agent_cache_creation_tokens": 32500,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2086,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002171,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 29,
+      "outputTokens": 9912,
+      "cacheReadInputTokens": 577745,
+      "cacheCreationInputTokens": 32500,
+      "webSearchRequests": 0,
+      "costUSD": 0.4439655,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 196928,
+  "agent_duration_api_ms": 189742,
+  "agent_session_id": "d8517102-be2e-46bb-a6f3-12a8d8c5abde",
+  "agent_uuid": "69553fb8-ab31-456c-a202-18aa75a2fda2"
+}

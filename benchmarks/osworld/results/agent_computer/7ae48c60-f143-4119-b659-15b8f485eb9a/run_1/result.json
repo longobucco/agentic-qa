@@ -1,0 +1,59 @@
+{
+  "id": "7ae48c60-f143-4119-b659-15b8f485eb9a",
+  "bucket": "libreoffice_impress",
+  "instruction": "Change picture's height to 20, 30, 25cm on slide 3, 4, 6 respectively.",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "b989679b576cbdff408104a493d20ce8ba9a7557fbc450a8d38fce3cc0f7a70c",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-2bb35914-58e9-4828-a39f-c5634c8ad9c7.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-15T01:18:02.618676+00:00",
+    "finished_at": "2026-08-15T01:34:38.314063+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 143,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 4.750397950000002,
+  "agent_input_tokens": 160,
+  "agent_output_tokens": 37769,
+  "agent_cache_read_tokens": 12136214,
+  "agent_cache_creation_tokens": 143661,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3715,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.00379,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 160,
+      "outputTokens": 37769,
+      "cacheReadInputTokens": 12136214,
+      "cacheCreationInputTokens": 143661,
+      "webSearchRequests": 0,
+      "costUSD": 4.746607950000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 994109,
+  "agent_duration_api_ms": 953300,
+  "agent_session_id": "875932e0-d116-4743-8667-47db554179af",
+  "agent_uuid": "59260ff5-84e1-4ebc-979b-a81c2f049f60"
+}

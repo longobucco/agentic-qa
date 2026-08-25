@@ -1,0 +1,7 @@
+The file has been saved successfully in Excel format. The task is complete:
+
+1. **Revenue column added to Sheet1** (column G): Calculated using `VLOOKUP(product, 'Retail Price'!A:B, 2, 0) * Quantity * (1 - Discount)` for each row.
+
+2. **Pivot Table created in Sheet2**: Summarizes total revenue by product with columns "Product" and "Revenue", showing aggregated totals for all 15 distinct products (Aspen: 2262.91, Bellen: 173.57, Bower Aussie Round: 258, Carlota Doublers: 590.25, Crested Beaut: 651.58, Fire Aspen: 1344.75, Fun Fly: 508.22, GelFast: 24, Manu LD: 1000, Manu MTA: 117.72, Quad: 3233.71, Sunset: 1105, Sunshine: 565.08, Sunspot: 560, Yanaki: 590.37).
+
+ANSWER: DONE

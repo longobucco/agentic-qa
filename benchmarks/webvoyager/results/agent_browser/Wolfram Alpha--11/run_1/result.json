@@ -1,0 +1,8 @@
+{
+  "id": "Wolfram Alpha--11",
+  "bucket": "Wolfram Alpha",
+  "web_name": "Wolfram Alpha",
+  "ques": "Show the electrical resistivity of UNS A92024 and UNS G10800 at 20 degrees Celsius.",
+  "web": "https://www.wolframalpha.com/",
+  "answer": "At 20 \u00b0C, UNS A92024 (aluminum alloy 2024) has an electrical resistivity of 4.9\u00d710\u207b\u2076 \u03a9\u00b7cm (\u22484.865 \u03bc\u03a9\u00b7cm = 4.865\u00d710\u207b\u2078 \u03a9\u00b7m), while UNS G10800 (1080 carbon steel) has an electrical resistivity of 1.8\u00d710\u207b\u2075 \u03a9\u00b7cm (\u224818 \u03bc\u03a9\u00b7cm = 1.8\u00d710\u207b\u2077 \u03a9\u00b7m)."
+}

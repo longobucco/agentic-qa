@@ -1,0 +1,3 @@
+The search completed successfully. Google Maps returned a list of bicycle parking locations near the Empire State Building.
+
+ANSWER: Search completed for bicycle parking near the Empire State Building. Google Maps returned multiple results, including dedicated bike parking spots such as "Bike Parking" (104 W 38th St, 5.0★), "Oonee Secure Bike Parking Pod" (W 42nd St, 4.3★, open 24h), "Parking Lot for Bicycles" (4.0★), "Bike Parking - 358 W. 44th Street" (5.0★), and "Cycle Garage" (330 E 8th St, 4.5★), along with several nearby parking garages.

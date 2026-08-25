@@ -1,0 +1,3 @@
+I searched ArXiv's Advanced Search for **SimCSE** in **All fields** and examined the "originally announced" date of all 62 matching articles. Exactly **4** were originally announced in October 2023 (confirmed both by extracting every result's announcement month and by a programmatic count). I highlighted those four results on the page in the final screenshot.
+
+ANSWER: 4

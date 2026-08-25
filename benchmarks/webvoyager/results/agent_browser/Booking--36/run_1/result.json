@@ -1,0 +1,8 @@
+{
+  "id": "Booking--36",
+  "bucket": "Booking",
+  "web_name": "Booking",
+  "ques": "Search for a budget hotel in Rome under $100 per night for one adult from July 20 to July 23, 2026. Sort the results by price, identify if any of top three results offer breakfast.",
+  "web": "https://www.booking.com/",
+  "answer": ""
+}

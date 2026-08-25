@@ -1,0 +1,8 @@
+{
+  "id": "0f84bef9-9790-432e-92b7-eece357603fb",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official check_presenter_console_disable -> 0.00",
+  "source": "official",
+  "gold_sha256": {}
+}

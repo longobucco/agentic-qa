@@ -1,0 +1,3 @@
+All uppercase text has been converted to lowercase throughout the document (title, body paragraphs, and table cells), and the file has been saved in its original .docx format.
+
+ANSWER: DONE

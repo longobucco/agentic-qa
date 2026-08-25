@@ -1,0 +1,5 @@
+{
+  "id": "ESPN--20",
+  "verdict": "FAILURE",
+  "reason": "The assists leader (Joki\u0107 10.7) is verified, but no screenshot shows a rebounds leaderboard\u2014the agent's claimed rebounds figure (12.9 RPG) is uncorroborated and it falsely cited final.png (which shows blocks, not rebounds), leaving the rebounds half of the task unverifiable."
+}

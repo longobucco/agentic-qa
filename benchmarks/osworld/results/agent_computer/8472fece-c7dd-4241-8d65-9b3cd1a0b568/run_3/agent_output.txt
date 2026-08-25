@@ -1,0 +1,7 @@
+The task is complete. The document now shows the word list with proper color coding:
+- **Red** words like "all", "am", "are", "at", "eat", "on", "our" — starting with vowels (a, e, i, o, u)
+- **Blue** words like "do", "four", "get", "no", "now", "say", "she", "want", "was", "well" — starting with non-vowels
+
+The file was saved automatically by the python-docx script.
+
+ANSWER: DONE

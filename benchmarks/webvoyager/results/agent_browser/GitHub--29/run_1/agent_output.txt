@@ -1,0 +1,14 @@
+I've completed the task. Here's what the GitHub Pricing page shows:
+
+**Private repositories comparison (Free vs Pro):**
+
+| Plan | Max private repositories |
+|------|--------------------------|
+| **Free** | Unlimited |
+| **Pro** | Unlimited |
+
+Both plans allow an **unlimited** number of private repositories — there is no numerical cap on either, so they are equal on this metric. (Note: GitHub's current pricing page lists individual plans as **Free**, **Team** — the $4/user/month tier that succeeded the old "Pro" plan — and **Enterprise**. The Free plan card states "Unlimited public/private repositories," and the comparison table confirms "Unlimited" private repositories for every plan.)
+
+The difference between Free and Pro/Team is not the repository count but the collaboration/management features (e.g., repository rules, multiple PR reviewers, code owners, Codespaces access, more CI/CD minutes and storage).
+
+ANSWER: Both are Unlimited — GitHub's Free and Pro (now the $4/user/mo Team) plans each allow an unlimited number of private repositories, with no maximum cap; they differ only in features, not in private-repo count.

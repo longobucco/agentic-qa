@@ -1,0 +1,3 @@
+The `~/.vimrc` file now contains `set number`, which enables absolute line numbers by default for all future Vim sessions on this machine.
+
+ANSWER: Added `set number` to /root/.vimrc — this enables absolute line numbers as the default in Vim.

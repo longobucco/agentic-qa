@@ -1,0 +1,3 @@
+The keyboard shortcut `ctrl+j` has been successfully assigned to the "View: Focus Active Editor Group" command (`workbench.action.focusActiveEditorGroup`). The Keybinding column now shows "Ctrl + J" and the Source shows "User", confirming the binding was saved.
+
+ANSWER: DONE

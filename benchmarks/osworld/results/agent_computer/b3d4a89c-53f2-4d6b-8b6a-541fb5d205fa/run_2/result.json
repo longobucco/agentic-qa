@@ -1,0 +1,59 @@
+{
+  "id": "b3d4a89c-53f2-4d6b-8b6a-541fb5d205fa",
+  "bucket": "os",
+  "instruction": "I want to switch on the Bluetooth. Can you help me?",
+  "answer": "FAIL",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "45411bae4a0ccbb82d43726bd24c52a20afc5dbfbec97895a9f9ff5d3f4973f8",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-8083f424-021e-41fc-b9ee-5877df99fbc4.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-21T14:07:57.808438+00:00",
+    "finished_at": "2026-08-21T14:09:44.267416+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 18,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.5961945,
+  "agent_input_tokens": 3298,
+  "agent_output_tokens": 5597,
+  "agent_cache_read_tokens": 504867,
+  "agent_cache_creation_tokens": 29212,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 4701,
+      "outputTokens": 14,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.004771,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 3298,
+      "outputTokens": 5597,
+      "cacheReadInputTokens": 504867,
+      "cacheCreationInputTokens": 29212,
+      "webSearchRequests": 0,
+      "costUSD": 0.5914235,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 103884,
+  "agent_duration_api_ms": 98702,
+  "agent_session_id": "8013a2b2-78fe-41ca-bb76-16a155348939",
+  "agent_uuid": "66fc644b-d972-40f2-a807-129827b4a681"
+}

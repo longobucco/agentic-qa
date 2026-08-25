@@ -1,0 +1,12 @@
+All three images were successfully batch processed. The file sizes changed (confirming modifications):
+- heron.jpeg: 181,651 → 212,963 bytes
+- panda.jpeg: 962,427 → 1,435,433 bytes  
+- squirrel.jpeg: 671,691 → 1,000,162 bytes
+
+The task is complete. I used GIMP's command-line batch mode (`gimp -i -b`) with a Script-Fu script that:
+1. Loaded all 3 desktop images (heron.jpeg, panda.jpeg, squirrel.jpeg) in a loop
+2. Applied `gimp-brightness-contrast` with brightness=50 to each image
+3. Saved each image back to disk
+4. Processed all images in a single batch operation instead of adjusting individually in GIMP
+
+ANSWER: DONE

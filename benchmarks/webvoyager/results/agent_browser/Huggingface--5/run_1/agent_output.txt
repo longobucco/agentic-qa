@@ -1,0 +1,5 @@
+I found a recipe generation model on Hugging Face and retrieved its details from the model page.
+
+The model is **flax-community/t5-recipe-generation** (also known as "Chef Transformer"), the top trending recipe-generation result, fine-tuned on the RecipeNLG dataset. The right-hand model panel shows: Model size **0.2B params** and Tensor type **F32** (Safetensors format).
+
+ANSWER: Name: flax-community/t5-recipe-generation (Chef Transformer, T5); Model size: 0.2B params; Tensor type: F32

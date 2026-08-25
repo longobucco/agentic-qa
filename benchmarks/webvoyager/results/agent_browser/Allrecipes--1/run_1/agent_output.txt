@@ -1,0 +1,7 @@
+I was unable to complete the task. The target site, AllRecipes (operated by People Inc), is returning an IP-level access block on **every** URL I tried — the homepage, the search page (`/search?q=vegetarian zucchini lasagna`), and a direct recipe page all serve the same notice:
+
+> "If you are a reader experiencing an access issue, please contact support@people.inc..."
+
+This is a hard block against the container's IP/bot signature, not a cookie banner or rate-limit (it persisted after waiting and retrying). No recipe content, ratings, or search results are reachable, so I cannot identify a specific qualifying recipe from the live site.
+
+ANSWER: Unable to complete — allrecipes.com is blocking the container's IP with a "People Inc access issue" page on all URLs (homepage, search, and recipe pages), so no vegetarian zucchini lasagna recipe or its rating could be accessed.

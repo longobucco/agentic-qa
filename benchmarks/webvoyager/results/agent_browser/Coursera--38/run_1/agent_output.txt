@@ -1,0 +1,9 @@
+I filtered Coursera's partners page (coursera.org/partners) by country = Australia, which returned exactly 5 partners (all universities, no companies):
+
+- **Macquarie University**
+- **The University of Melbourne**
+- **The University of Sydney**
+- **University of Western Australia**
+- **UNSW Sydney (The University of New South Wales)**
+
+ANSWER: Coursera's partners from Australia are 5, all universities (no companies): Macquarie University, The University of Melbourne, The University of Sydney, University of Western Australia, and UNSW Sydney (The University of New South Wales).

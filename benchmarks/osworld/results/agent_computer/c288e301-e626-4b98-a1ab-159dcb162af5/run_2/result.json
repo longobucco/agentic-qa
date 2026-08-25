@@ -1,0 +1,59 @@
+{
+  "id": "c288e301-e626-4b98-a1ab-159dcb162af5",
+  "bucket": "os",
+  "instruction": "Please set the default Python version to Python4 on my Ubuntu system.",
+  "answer": "FAIL",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "8aafbe3817f63e6cb684fd600d12ef8ebdb1dcee44c83c4037fd5e53d475f4fb",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-63fd7331-3086-4910-9747-e255d41070f0.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-23T18:12:37.258613+00:00",
+    "finished_at": "2026-08-23T18:12:44.723854+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 1,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.0111545,
+  "agent_input_tokens": 2,
+  "agent_output_tokens": 215,
+  "agent_cache_read_tokens": 20145,
+  "agent_cache_creation_tokens": 0,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1805,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.00188,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 2,
+      "outputTokens": 215,
+      "cacheReadInputTokens": 20145,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0092745,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 5324,
+  "agent_duration_api_ms": 6322,
+  "agent_session_id": "dca93994-c765-4621-b80b-5c8144d45019",
+  "agent_uuid": "2b16b9d6-aaaf-4624-8db6-f8e244cc076c"
+}

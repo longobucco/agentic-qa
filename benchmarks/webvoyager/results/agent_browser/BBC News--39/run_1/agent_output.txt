@@ -1,0 +1,15 @@
+The final screenshot is saved and clearly shows the Newcastle table with the two 13-runner races.
+
+I checked the Horse Racing results in the BBC Sport section for **yesterday, Thursday 25 June 2026**. There were 5 meetings, and I browsed every race in each:
+
+| Meeting | Races | Max runners in a single race |
+|---|---|---|
+| Hamilton | 7 | 8 |
+| Leicester | 6 | 8 |
+| Newcastle | 8 | **13** |
+| Newmarket | 6 | 9 |
+| Nottingham | 6 | 8 |
+
+The race with the highest number of runners was at **Newcastle (13 runners)** — in fact two races tied at 13: the **14:02 JenningsBet In North Shields Handicap** (won by Surgeon Commander) and the **18:07 Fly From Newcastle Airport Handicap** (won by Sassy Glory).
+
+ANSWER: Newcastle had the race(s) with the highest number of runners yesterday (Thu 25 June 2026) — 13 runners, in both the 14:02 "JenningsBet In North Shields Handicap" and the 18:07 "Fly From Newcastle Airport Handicap".

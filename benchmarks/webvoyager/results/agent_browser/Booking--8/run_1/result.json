@@ -1,0 +1,8 @@
+{
+  "id": "Booking--8",
+  "bucket": "Booking",
+  "web_name": "Booking",
+  "ques": "Get the hotel with highest review score and free cancelation in Chennai for 20/12/2026 - 21/12/2026.",
+  "web": "https://www.booking.com/",
+  "answer": ""
+}

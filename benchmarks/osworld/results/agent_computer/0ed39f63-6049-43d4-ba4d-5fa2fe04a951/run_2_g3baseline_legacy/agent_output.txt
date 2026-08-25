@@ -1,0 +1,8 @@
+The task is complete. The file has been saved (no unsaved dot in the tab title). All occurrences of "text" in the document have been successfully replaced with "test":
+- "texts" → "tests"
+- "text" → "test" 
+- "texting" → "testing"
+
+The document now shows "tests", "test", "testing" throughout instead of the original "text" variants.
+
+ANSWER: DONE

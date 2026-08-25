@@ -1,0 +1,8 @@
+{
+  "id": "Google Search--8",
+  "bucket": "Google Search",
+  "web_name": "Google Search",
+  "ques": "Find the video on YouTube: 'Oscars 2023: Must-See Moments!'. Tell me who the first comment displayed under that video belongs to, and how many thumbs up and replies it has.",
+  "web": "https://www.google.com/",
+  "answer": "The first comment belongs to @HotFuzzGoonayorum (\"They really just went and won everything everywhere all at once\") and it has 400 thumbs up (likes) and 0 replies."
+}

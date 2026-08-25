@@ -1,0 +1,3 @@
+`res.png` has been successfully created on the Desktop. The Impress file was exported to PNG using LibreOffice's headless conversion and renamed to `res.png`.
+
+ANSWER: DONE

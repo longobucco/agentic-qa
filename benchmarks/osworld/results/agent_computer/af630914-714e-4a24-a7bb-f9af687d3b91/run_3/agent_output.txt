@@ -1,0 +1,3 @@
+The font size slider is now at 72 (the maximum "Huge" setting), with the slider fully at the right end. The preview shows very large text at size 72. The default font size has been set to the largest possible value.
+
+ANSWER: DONE

@@ -1,0 +1,9 @@
+The final screenshot shows the "Online Bachelor's Degree Programs" page with the degree cards visible. The task is complete.
+
+I navigated to Coursera's online degrees section and browsed the Bachelor's Degrees category. Three Bachelor's degree programmes listed there:
+
+1. **Bachelor of Science in Computer Science** — University of London
+2. **Bachelor of Science in Psychology** — O.P. Jindal Global University
+3. **Bachelor of Science in Business Administration** — University of London
+
+ANSWER: Three Bachelor's degree programmes on Coursera's online degrees section: (1) Bachelor of Science in Computer Science — University of London; (2) Bachelor of Science in Psychology — O.P. Jindal Global University; (3) Bachelor of Science in Business Administration — University of London.

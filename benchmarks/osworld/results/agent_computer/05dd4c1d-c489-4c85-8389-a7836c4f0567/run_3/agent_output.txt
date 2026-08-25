@@ -1,0 +1,8 @@
+All alignments are correct:
+- **Slide 3**: All textboxes → RIGHT ✓
+- **Slide 4**: All textboxes → CENTER ✓  
+- **Slide 5**: All textboxes → LEFT ✓
+
+The file has been saved at `/home/user/Desktop/38_1.pptx` with the correct text alignments applied to all textboxes on slides 3, 4, and 5.
+
+ANSWER: DONE

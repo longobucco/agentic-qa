@@ -1,0 +1,8 @@
+{
+  "id": "Apple--25",
+  "bucket": "Apple",
+  "web_name": "Apple",
+  "ques": "On the Apple website, look up the processor for the latest model of the Apple TV.",
+  "web": "https://www.apple.com/",
+  "answer": "The latest Apple TV (Apple TV 4K, 3rd generation) uses the A15 Bionic chip."
+}

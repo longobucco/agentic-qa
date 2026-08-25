@@ -1,0 +1,8 @@
+Both tasks are complete and verified:
+
+1. **Purple background**: The slide has a purple background color (visible in the slide preview)
+2. **Title in notes**: "Should You Consider Studying Abroad?" appears in the notes section below the slide
+
+The file was saved automatically by the macro.
+
+ANSWER: DONE

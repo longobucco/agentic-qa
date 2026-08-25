@@ -1,0 +1,3 @@
+The slide orientation has been successfully changed to Portrait. The Properties panel now shows "Orientation: Portrait" and the slide is displayed upright (taller than wide) instead of sideways. The task is complete.
+
+ANSWER: DONE

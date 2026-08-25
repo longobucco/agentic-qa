@@ -1,0 +1,3 @@
+The saved file confirms all 21 rows are correctly split: original data in column A is untouched, and First Name, Last Name, and Rank are properly populated in columns B, C, and D (including the corrected "East" in row 12).
+
+ANSWER: DONE

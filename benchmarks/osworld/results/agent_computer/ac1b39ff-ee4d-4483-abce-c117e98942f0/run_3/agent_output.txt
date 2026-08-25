@@ -1,0 +1,9 @@
+The file has been saved successfully. The dialog is gone and the slide now shows the table at the bottom of the slide. Looking at the screenshot, I can confirm:
+
+1. The "Movie List" title is at the top
+2. The text content is in the middle
+3. The table (with numbers 1-9) is now positioned at the **bottom** of the slide at Y=6.29" (which places the bottom edge of the table at exactly the bottom of the 7.5" slide)
+
+The task has been completed successfully — the table on Page 3 has been moved to the bottom of the slide and the file has been saved.
+
+ANSWER: DONE

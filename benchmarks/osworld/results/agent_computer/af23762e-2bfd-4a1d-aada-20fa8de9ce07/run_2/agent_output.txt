@@ -1,0 +1,17 @@
+The task is complete. Using LibreOffice Impress's "Summary Slide" feature (the `.uno:SummaryPage` command), I created a new slide (slide 13) that contains a bulleted list summarizing the titles of all the presentation's slides:
+
+- Forests
+- Today's lesson:
+- Discuss:
+- QUIZ - FORESTS
+- Discuss:
+- Why are forests disappearing?
+- Find some more reasons:
+- Why do we need forests?
+- What's the solution?
+- Writing
+- Homework:
+
+The file was saved in the original .pptx format.
+
+ANSWER: DONE

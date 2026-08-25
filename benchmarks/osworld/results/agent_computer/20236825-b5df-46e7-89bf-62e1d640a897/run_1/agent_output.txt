@@ -1,0 +1,17 @@
+The task is complete. Here's what I did:
+
+1. **Observed** the desktop — LibreOffice Writer was open with `Bubble_Sort_tutorial.docx` showing the Bubble Sort algorithm.
+2. **Extracted** `bubbleSort.zip` from the Desktop to get `bubbleSort.py`.
+3. **Implemented** the optimized `bubbleSort` function using a swapped flag for early termination:
+   - Outer loop runs `n-1` times
+   - Inner loop compares adjacent elements and swaps if out of order
+   - If no swaps occur in a pass, the array is already sorted and we break early
+4. **Ran** the script and saved the output to `res.txt` on the Desktop.
+
+The sorted output of `[64, 34, 25, 12, 22, 11, 90]` is:
+```
+Sorted array:
+11 12 22 25 34 64 90 
+```
+
+ANSWER: DONE

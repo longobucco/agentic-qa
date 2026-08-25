@@ -1,0 +1,8 @@
+I found the "Resolve merge conflicts" course in GitHub Skills (skills/resolve-merge-conflicts) and read its README describing what learners do.
+
+The course teaches why conflicts happen and how to resolve them. In the exercise, learners use a web editor to fix conflicting changes in a Markdown file. Specifically, the README states "In this exercise, you will:" perform these actions:
+1. Learn the causes of a merge conflict
+2. The tools for resolving a merge conflict
+3. When and how to resolve a merge conflict
+
+ANSWER: The "Resolve merge conflicts" course (GitHub Skills repo skills/resolve-merge-conflicts) teaches why conflicts happen and how to resolve them. Learners perform these actions: (1) learn the causes of a merge conflict, (2) learn the tools for resolving a merge conflict, and (3) learn when and how to resolve a merge conflict — using a web editor to fix conflicting changes in a Markdown file (a ~30-minute, beginner exercise prerequisite: Introduction to GitHub).

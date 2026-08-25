@@ -1,0 +1,11 @@
+{
+  "id": "68a25bd4-59c7-4f4d-975e-da0c8509c848",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official ['compare_pdfs', 'compare_docx_files'] -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "paper01_Gold.pdf": "5692a5514787a8c6727b4ff3b726a3385798bc68e12138d1d4af83947e2acf6e",
+    "ans_Gold.docx": "bda9241a603fd751d3b428c7773b8b59da9fe40981cfdc7703461de5bd7669de"
+  }
+}

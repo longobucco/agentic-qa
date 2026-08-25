@@ -1,0 +1,8 @@
+{
+  "id": "12086550-11c0-466b-b367-1d9e75b3910e",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official is_expected_active_tab_approximate -> 0.00",
+  "source": "official",
+  "gold_sha256": {}
+}

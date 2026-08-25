@@ -1,0 +1,59 @@
+{
+  "id": "1e8df695-bd1b-45b3-b557-e7d599cf7597",
+  "bucket": "libreoffice_calc",
+  "instruction": "Add a new column named \"Profit\" right next to the 'CGOS' column and calculate the profit for each week by subtracting \"COGS\" from \"Sales\" in that column.",
+  "answer": "DONE",
+  "eval_state": "<binary:9162 bytes at WeeklySales.xlsx>",
+  "provenance": {
+    "task_sha256": "87c94b28e43a64fc1e0d21cc61289d539e22d93b1a893ca831da4e5719eb9afb",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-49792865-8475-4156-a73a-fa0adf5c7599.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-15T20:42:01.979196+00:00",
+    "finished_at": "2026-08-15T20:43:04.930116+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 19,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.26364135,
+  "agent_input_tokens": 28,
+  "agent_output_tokens": 2072,
+  "agent_cache_read_tokens": 531917,
+  "agent_cache_creation_tokens": 18555,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3251,
+      "outputTokens": 14,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.003321,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 28,
+      "outputTokens": 2072,
+      "cacheReadInputTokens": 531917,
+      "cacheCreationInputTokens": 18555,
+      "webSearchRequests": 0,
+      "costUSD": 0.26032035000000003,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 60630,
+  "agent_duration_api_ms": 55945,
+  "agent_session_id": "015bb9f9-bf3e-4b56-bb79-708210c3fb56",
+  "agent_uuid": "9b2d65e3-5bff-44e4-80da-b93b3b3b7193"
+}

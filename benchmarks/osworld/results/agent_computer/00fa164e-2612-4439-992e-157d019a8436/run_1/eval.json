@@ -1,0 +1,9 @@
+{
+  "id": "00fa164e-2612-4439-992e-157d019a8436",
+  "verdict": "EVAL_ERROR",
+  "reason": "eval_state='<binary:6862 bytes at awe_desk_env.docx>' (official eval errored: TypeError: compare_docx_tables() got an unexpected keyword argument 'ignore_case_rows')",
+  "source": "offline_fallback",
+  "gold_sha256": {
+    "awe_desk_env_gt.docx": "994c061df9dd8aa011786b4ae8334ca2581058270634fae47583489e0fe6a64c"
+  }
+}

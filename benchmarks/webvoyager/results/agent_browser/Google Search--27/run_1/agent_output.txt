@@ -1,0 +1,5 @@
+The screenshot lives inside the container (the harness collects it). I've confirmed the AQI data directly from the page's accessibility tree. The task is complete.
+
+The current air quality in Paris per IQAir (23:00 local time, Jun 26): **US AQI⁺ of 61 — "Moderate"**, with main pollutant PM2.5 at 14.5 µg/m³.
+
+ANSWER: Paris current air quality is US AQI 61 — "Moderate" (main pollutant PM2.5 at 14.5 µg/m³), as of 23:00 local time on Jun 26 (source: IQAir).

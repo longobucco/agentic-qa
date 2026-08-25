@@ -1,0 +1,7 @@
+The file has been saved successfully. The dialog is gone and I can see slide 2 now has:
+- The title "Note" displayed right-aligned in the title area (visible in the top-right of the slide)
+- Status bar shows "Title text 'Note' 'PlaceHolder 1' selected"
+
+The task is complete. Slide 2 now has a right-aligned title "Note".
+
+ANSWER: DONE

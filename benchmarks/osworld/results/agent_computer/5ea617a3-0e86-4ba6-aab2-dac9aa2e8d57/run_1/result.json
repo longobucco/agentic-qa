@@ -1,0 +1,59 @@
+{
+  "id": "5ea617a3-0e86-4ba6-aab2-dac9aa2e8d57",
+  "bucket": "os",
+  "instruction": "I am currently using an Ubuntu system, and I have wrongly deleted a poster of party night. Could you help me recover it from the Trash?",
+  "answer": "DONE",
+  "eval_state": "",
+  "provenance": {
+    "task_sha256": "a449af83de1ff35801f0e4993b72019f8815dd40c1ecc1959cdf6115c4a538b6",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-ef4b49dc-dfd9-4679-b00e-15b1193feb85.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-24T23:17:54.260234+00:00",
+    "finished_at": "2026-08-24T23:18:47.335757+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 20,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.24723499999999998,
+  "agent_input_tokens": 29,
+  "agent_output_tokens": 2062,
+  "agent_cache_read_tokens": 518095,
+  "agent_cache_creation_tokens": 15730,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1722,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001802,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 29,
+      "outputTokens": 2062,
+      "cacheReadInputTokens": 518095,
+      "cacheCreationInputTokens": 15730,
+      "webSearchRequests": 0,
+      "costUSD": 0.24543299999999998,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 50871,
+  "agent_duration_api_ms": 45642,
+  "agent_session_id": "339500a4-413c-4c4f-848a-881bf241d996",
+  "agent_uuid": "2bf18095-7762-48fb-b56b-7614d0d730c0"
+}

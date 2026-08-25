@@ -1,0 +1,18 @@
+The file has been saved successfully. Sheet2 now contains all the required content:
+
+1. **Row 1**: "Demographic Profile" in merged cell A1:C1 with blue (#0000FF) fill and bold white text
+2. **Row 2**: blank separator
+3. **Rows 3-7**: Sex pivot table (Female: 17/42.50%, Male: 23/57.50%, Total: 40)
+4. **Row 8**: blank separator
+5. **Rows 9-14**: Civil Status pivot table (Married: 11/27.50%, Single: 12/30%, Widow: 17/42.50%, Total: 40)
+6. **Row 15**: blank separator
+7. **Rows 16-21**: Highest Educational Attainment pivot table (Elementary: 13/32.50%, Junior High: 15/37.50%, Senior High: 12/30%, Total: 40)
+
+All requirements are fulfilled:
+- Sheet2 created with correct name ✓
+- A1:C1 merged with "Demographic Profile" ✓
+- Blue (#0000FF) fill with bold white text ✓
+- Three pivot tables showing percentages for each demographic variable ✓
+- Tables stacked with blank lines between them ✓
+
+ANSWER: DONE

@@ -1,0 +1,59 @@
+{
+  "id": "f9be0997-4b7c-45c5-b05c-4612b44a6118",
+  "bucket": "os",
+  "instruction": "I am currently working on a ubuntu system but I do not want the notifications to bother me. Can you help me to switch to 'Do not disturb mode'?",
+  "answer": "DONE",
+  "eval_state": "false\n",
+  "provenance": {
+    "task_sha256": "e0529db5c5565f786c1dd394d2e6467cde620f1d16f5fc3fbb2c2741bf9b7719",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-b92c7956-ec53-44b4-b447-6704f625129b.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-22T03:11:54.588590+00:00",
+    "finished_at": "2026-08-22T03:12:23.603195+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 7,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.21293075,
+  "agent_input_tokens": 3143,
+  "agent_output_tokens": 1220,
+  "agent_cache_read_tokens": 149263,
+  "agent_cache_creation_tokens": 13965,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 4723,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.004803,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 3143,
+      "outputTokens": 1220,
+      "cacheReadInputTokens": 149263,
+      "cacheCreationInputTokens": 13965,
+      "webSearchRequests": 0,
+      "costUSD": 0.20812775,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 27068,
+  "agent_duration_api_ms": 27023,
+  "agent_session_id": "411a5c26-fe1f-4f72-9ef9-2b59cb0c23a3",
+  "agent_uuid": "3c6d51ca-27f1-48b8-914c-e642e7a0e6f4"
+}

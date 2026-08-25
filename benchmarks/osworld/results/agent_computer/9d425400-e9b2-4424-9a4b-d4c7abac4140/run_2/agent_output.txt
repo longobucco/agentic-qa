@@ -1,0 +1,3 @@
+The setting `"workbench.editor.wrapTabs": true` has been added to the user settings.json and saved (no dirty indicator on the tab). This enables tabs wrapping over multiple lines when they exceed the available space.
+
+ANSWER: DONE

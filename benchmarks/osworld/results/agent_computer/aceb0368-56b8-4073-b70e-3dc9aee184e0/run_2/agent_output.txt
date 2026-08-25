@@ -1,0 +1,17 @@
+The file format dialog was dismissed and the grades.xlsx is now saved in Excel format. The spreadsheet shows all 10 students with their correct scores filled in. The task is complete.
+
+The grades recorded are:
+- **Linda Garcia**: 70 (already filled, Q2, Q6, Q8 wrong)
+- **Richard Smith**: 70 (Q3, Q6, Q8 wrong)
+- **Jennifer Rodriguez**: 70 (Q5, Q6, Q8 wrong)
+- **Michael Gonzalez**: 80 (Q1, Q8 wrong)
+- **Mary Williams**: 80 (Q5, Q10 wrong)
+- **Joseph Thomas**: 60 (Q4, Q6, Q7, Q9 wrong)
+- **James Martinez**: 60 (Q2, Q6, Q8, Q10 wrong)
+- **Barbara Wilson**: 90 (Q3 wrong)
+- **Karen Davis**: 50 (Q1, Q3, Q5, Q8, Q10 wrong)
+- **David Brown**: 100 (all correct)
+
+Based on the answer key (Q1=D, Q2=A, Q3=C, Q4=D, Q5=B, Q6=C, Q7=C, Q8=D, Q9=D, Q10=D), each correct answer scored 10 points.
+
+ANSWER: DONE

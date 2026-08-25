@@ -1,0 +1,3 @@
+I enabled AutoRecovery (auto-save) with an interval of 3 minutes and clicked OK to apply the setting.
+
+ANSWER: DONE

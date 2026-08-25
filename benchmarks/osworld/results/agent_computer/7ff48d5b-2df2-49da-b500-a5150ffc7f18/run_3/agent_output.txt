@@ -1,0 +1,3 @@
+The document has been saved successfully in Word format. It now contains a title plus 5 addresses of 24-hour self-service check-in (endorsement) machines in Futian District, Shenzhen, written in Chinese (status bar confirms "Chinese (simplified)", 179 characters). The boxes are only a display artifact of the "Aptos" font lacking CJK glyphs — the stored text is correct Unicode.
+
+ANSWER: DONE

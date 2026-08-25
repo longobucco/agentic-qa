@@ -1,0 +1,7 @@
+I completed the task. I navigated to Hugging Face's Question Answering models, selected a well-known pre-trained example, and read its model card to confirm the supported language.
+
+**Example model:** `deepset/roberta-base-squad2` — a RoBERTa-base model fine-tuned on the SQuAD 2.0 dataset for Extractive Question Answering (509k+ downloads, 946 likes).
+
+**Languages supported:** The model card's Overview section explicitly lists **Language: English**, and the model's metadata tag is also marked "English." So this QA model supports a single language: **English**.
+
+ANSWER: An example pre-trained question-answering model on Hugging Face is `deepset/roberta-base-squad2` (RoBERTa-base fine-tuned on SQuAD 2.0 for extractive QA). According to its model card, it supports one language: English.

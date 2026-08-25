@@ -1,0 +1,5 @@
+The setting is now confirmed. The radio button for **"Delete data sites have saved to your device when you close all windows"** is now selected (shown with the blue filled circle). The first option "Allow sites to save data on your device" is now unselected.
+
+Chrome will now automatically delete browsing data (cookies, site data, etc.) every time you close all Chrome windows.
+
+ANSWER: DONE

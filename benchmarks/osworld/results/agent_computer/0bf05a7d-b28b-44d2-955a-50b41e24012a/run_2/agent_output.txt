@@ -1,0 +1,3 @@
+The file has been saved successfully. All 29 rows in the "New 7 Digit ID" column (D2:D30) now contain the zero-padded 7-digit text values copied from the "Old ID" column. The formula bar confirms these are plain text values (showing `'0000076` with the apostrophe indicating a text string, not a formula).
+
+ANSWER: DONE

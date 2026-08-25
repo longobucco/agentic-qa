@@ -1,0 +1,9 @@
+The file has been saved successfully. The dialog is gone and the spreadsheet now shows all three professors with their email addresses filled in column F:
+
+- **Qi Liu** (F3): `liuqi@cs.hku.hk`
+- **Tao Yu** (F4): `tao.yu.nlp@gmail.com`
+- **Lingpeng Kong** (F5): `lpk@cs.hku.hk`
+
+The form has been completed with the email addresses found from each professor's homepage, and the file has been saved in Excel format.
+
+ANSWER: DONE

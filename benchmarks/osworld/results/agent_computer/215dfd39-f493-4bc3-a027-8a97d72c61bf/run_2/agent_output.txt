@@ -1,0 +1,3 @@
+The VLC configuration has been successfully saved. The `vlcrc` file now contains `qt-bgcone=0`, which disables the background cone icon in VLC's splash screen. This was confirmed both in the preferences GUI (checkbox was unchecked) and in the saved configuration file.
+
+ANSWER: DONE

@@ -1,0 +1,6 @@
+The time zone is now confirmed set to UTC+0:
+- `/etc/localtime` → `/usr/share/zoneinfo/Etc/UTC`
+- `/etc/timezone` = `Etc/UTC`
+- `date` reports `+0000 UTC` (offset 0 seconds)
+
+ANSWER: DONE

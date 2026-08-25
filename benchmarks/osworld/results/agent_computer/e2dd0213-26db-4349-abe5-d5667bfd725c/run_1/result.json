@@ -1,0 +1,59 @@
+{
+  "id": "e2dd0213-26db-4349-abe5-d5667bfd725c",
+  "bucket": "gimp",
+  "instruction": "Can you assist me in moving the text box to the left side? I keep accidentally selecting the image layer beneath it.",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "e6276ff8542e225fec0e47bfa8e148580d3192c4981ba54725d90846ff656b6e",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-26168634-976e-4cd5-9b19-d5b9ac933c32.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-18T07:35:22.524981+00:00",
+    "finished_at": "2026-08-18T07:38:29.617994+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 34,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.8944952499999999,
+  "agent_input_tokens": 3646,
+  "agent_output_tokens": 4817,
+  "agent_cache_read_tokens": 1051477,
+  "agent_cache_creation_tokens": 36163,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3998,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.004083,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 3646,
+      "outputTokens": 4817,
+      "cacheReadInputTokens": 1051477,
+      "cacheCreationInputTokens": 36163,
+      "webSearchRequests": 0,
+      "costUSD": 0.8904122499999998,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 182691,
+  "agent_duration_api_ms": 136521,
+  "agent_session_id": "d690c0d9-d75c-4579-a2c5-06647ee4966f",
+  "agent_uuid": "8fbc410b-e689-4f35-bbbf-b8c3a01e89ed"
+}

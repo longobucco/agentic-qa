@@ -1,0 +1,8 @@
+{
+  "id": "Google Search--42",
+  "bucket": "Google Search",
+  "web_name": "Google Search",
+  "ques": " Use Google Search to find an article that explains the major differences between American English and British English.",
+  "web": "https://www.google.com/",
+  "answer": "Could not complete \u2014 Google Search is blocked by a reCAPTCHA \"unusual traffic\" wall on this environment's IP (139.47.116.226); the headless browser is flagged and the checkbox escalates to an image challenge I will not bypass. No Google results page could be reached."
+}

@@ -1,0 +1,7 @@
+The fix is verified. 
+
+The bug: the snake head always sits on a grid aligned to `SNAKE_SIZE` (10px), starting at (300, 200) and moving in 10px steps. But `Food.__init__` chose a random *pixel* position (any integer 0–590 / 0–390), which is almost never a multiple of 10 — so `snake.positions[0] == food.position` could essentially never be true. The `respawn()` method already snapped to the grid; only the initial spawn didn't.
+
+I aligned `Food.__init__` to the same grid logic as `respawn()`, and confirmed via simulation that every food position is now grid-aligned, in bounds, and thus reachable by the snake head.
+
+ANSWER: DONE — Fixed `/home/user/Desktop/snake/food.py`: the food's initial position in `__init__` was a random unaligned pixel coordinate, so it never matched the snake's grid-aligned head. Changed it to snap to the `SNAKE_SIZE` grid (same as `respawn()`), so the snake can now eat the food.

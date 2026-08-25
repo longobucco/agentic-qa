@@ -1,0 +1,3 @@
+Conda 26.5.3 is now accessible from any new bash shell. The conda command works correctly when sourcing `.bashrc`. The task is complete.
+
+ANSWER: DONE

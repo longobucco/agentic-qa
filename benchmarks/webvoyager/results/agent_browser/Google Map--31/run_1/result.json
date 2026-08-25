@@ -1,0 +1,8 @@
+{
+  "id": "Google Map--31",
+  "bucket": "Google Map",
+  "web_name": "Google Map",
+  "ques": "First search New York's Central Park Zoo on Google Map, and then find the way to share the map. What is the generated sharing link?",
+  "web": "https://www.google.com/maps/",
+  "answer": "https://maps.app.goo.gl/gJFpJcTUE8DS3RZLA"
+}

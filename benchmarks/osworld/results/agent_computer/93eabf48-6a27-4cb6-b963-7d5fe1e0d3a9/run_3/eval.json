@@ -1,0 +1,7 @@
+{
+  "id": "93eabf48-6a27-4cb6-b963-7d5fe1e0d3a9",
+  "verdict": "EVAL_ERROR",
+  "reason": "no eval_state captured (official eval errored: AttributeError: module 'desktop_env.evaluators.getters' has no attribute 'get_chrome_appearance_mode_ui')",
+  "source": "offline_fallback",
+  "gold_sha256": {}
+}

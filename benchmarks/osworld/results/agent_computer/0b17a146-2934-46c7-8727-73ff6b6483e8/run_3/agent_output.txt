@@ -1,0 +1,3 @@
+The dialog is closed and the document has been saved. I can clearly see the "H₂O—Soak up the Science" heading with the "2" successfully formatted as a subscript. The task is complete.
+
+ANSWER: DONE

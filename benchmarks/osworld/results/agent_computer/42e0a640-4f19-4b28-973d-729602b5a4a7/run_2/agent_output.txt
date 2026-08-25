@@ -1,0 +1,7 @@
+Sheet2 is now visible and correctly shows:
+- Row 1: **"Total Revenue"** (A1) and **"Total Expenses"** (B1) as column headers (truncated in display but full in formula bar)
+- Row 2: **867786** (A2) and **411686** (B2) as the sum values
+
+The status bar at the bottom shows "Sheet 2 of 2" confirming I'm on Sheet2. The task is complete.
+
+ANSWER: DONE

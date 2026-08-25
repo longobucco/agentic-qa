@@ -1,0 +1,59 @@
+{
+  "id": "2bd59342-0664-4ccb-ba87-79379096cc08",
+  "bucket": "libreoffice_calc",
+  "instruction": "Make sparkline charts for each order id with the data from Jan to Mar in the \"Chart\" column.",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "e17155950bafa844c39c04349797df15bfa8442e0f9e9bcaec4f0ef4c672fdcd",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:300565e6d5065a6277d7154071c581b4a72adfcb68d4726564545c9b05798a3c",
+    "controller_url": "https://5000-f7d2a3bd-3b49-4312-b981-ab96d7f3d896.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-04T17:46:16.838741+00:00",
+    "finished_at": "2026-08-04T17:56:37.645222+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 80,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 1.8383856499999995,
+  "agent_input_tokens": 95,
+  "agent_output_tokens": 20464,
+  "agent_cache_read_tokens": 4152448,
+  "agent_cache_creation_tokens": 75883,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 765,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0008449999999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 95,
+      "outputTokens": 20464,
+      "cacheReadInputTokens": 4152448,
+      "cacheCreationInputTokens": 75883,
+      "webSearchRequests": 0,
+      "costUSD": 1.8375406499999996,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 618532,
+  "agent_duration_api_ms": 586916,
+  "agent_session_id": "0d523a1f-f93a-40b2-aeee-29a79b77f197",
+  "agent_uuid": "ebe75ba5-2493-4e95-987e-73a12ebfd67f"
+}

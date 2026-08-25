@@ -1,0 +1,5 @@
+The file has been saved successfully. The status bar shows "Image exported to '/home/user/Desktop/berries.png'" and the title bar now shows "*[berries] (overwritten)" confirming the file was saved with the contrast boost applied.
+
+The contrast has been successfully boosted in the berries image using GIMP's Brightness-Contrast tool with Contrast=50 and Brightness=0, and the result has been saved to the original file.
+
+ANSWER: DONE

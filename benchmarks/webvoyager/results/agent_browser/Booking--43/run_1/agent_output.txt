@@ -1,0 +1,11 @@
+The final screenshot clearly shows the Los Angeles results page ("Los Angeles – 2685 hotels and places to stay") with the **Filter by:** sidebar visible on the left (Star Rating and Review score), alongside property listings with prices.
+
+I completed the task: searched for properties in Los Angeles on Booking.com, reached the results page, and browsed the available filters. Booking served the Los Angeles destination results page (2,685 properties), whose "Filter by:" sidebar exposes these filters:
+
+**Filters available on the Los Angeles results page:**
+- **Star Rating** — 5 stars, 4 stars, 3 stars, 2 stars, 1 star
+- **Review score** — Wonderful: 9+, Very Good: 8+, Good: 7+, Pleasant: 6+
+
+Plus result sort/ordering controls: **Our top picks**, **Lowest Price First**, **Star rating and price**, and **Top reviewed**.
+
+ANSWER: On the Booking.com Los Angeles results page (2,685 properties), the "Filter by:" sidebar offers filters including Star Rating (5/4/3/2/1 stars) and Review score (Wonderful: 9+, Very Good: 8+, Good: 7+, Pleasant: 6+), along with sort options like Our top picks, Lowest Price First, Star rating and price, and Top reviewed.

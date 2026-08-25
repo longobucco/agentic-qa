@@ -1,0 +1,25 @@
+I've gathered the complete schedule for February 25, 2026, and the current conference standings. Both screenshots are saved. Here's the summary.
+
+## NBA Schedule — Wednesday, February 25, 2026
+
+There were **11 games** that day. Below is each matchup (home team after "@") with each team's **current conference standing (seed)** per ESPN's 2025‑26 standings:
+
+| Matchup | Away — standing | Home — standing |
+|---|---|---|
+| PHI @ IND | Philadelphia — **East #7** | Indiana — **East #14** |
+| WSH @ ATL | Washington — **East #15** | Atlanta — **East #6** |
+| DAL @ BKN | Dallas — **West #12** | Brooklyn — **East #13** |
+| OKC @ TOR | Oklahoma City — **West #1** | Toronto — **East #5** |
+| NY @ CLE | New York — **East #3** | Cleveland — **East #4** |
+| CHA @ CHI | Charlotte — **East #9** | Chicago — **East #12** |
+| MIA @ MIL | Miami — **East #10** | Milwaukee — **East #11** |
+| GS @ NO | Golden State — **West #10** | New Orleans — **West #11** |
+| BOS @ PHX | Boston — **East #2** | Phoenix — **West #8** |
+| MIN @ POR | Minnesota — **West #6** | Portland — **West #7** |
+| ORL @ LAL | Orlando — **East #8** | LA Lakers — **West #4** |
+
+**Reference — current conference standings (seed order):**
+- **East:** 1 Detroit (60‑22), 2 Boston (56‑26), 3 New York (53‑29), 4 Cleveland (52‑30), 5 Toronto, 6 Atlanta, 7 Philadelphia, 8 Orlando, 9 Charlotte, 10 Miami, 11 Milwaukee, 12 Chicago, 13 Brooklyn, 14 Indiana, 15 Washington
+- **West:** 1 Oklahoma City (64‑18), 2 San Antonio (62‑20), 3 Denver, 4 LA Lakers, 5 Houston, 6 Minnesota, 7 Portland, 8 Phoenix, 9 LA Clippers, 10 Golden State, 11 New Orleans, 12 Dallas, 13 Memphis, 14 Sacramento, 15 Utah
+
+ANSWER: On Feb 25, 2026 there were 11 NBA games. Matchups with each team's current conference seed — PHI(E#7)@IND(E#14); WSH(E#15)@ATL(E#6); DAL(W#12)@BKN(E#13); OKC(W#1)@TOR(E#5); NY(E#3)@CLE(E#4); CHA(E#9)@CHI(E#12); MIA(E#10)@MIL(E#11); GS(W#10)@NO(W#11); BOS(E#2)@PHX(W#8); MIN(W#6)@POR(W#7); ORL(E#8)@LAL(W#4).

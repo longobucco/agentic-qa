@@ -1,0 +1,8 @@
+{
+  "id": "Google Search--34",
+  "bucket": "Google Search",
+  "web_name": "Google Search",
+  "ques": "Determine the distance from Earth to Mars as of today's date.",
+  "web": "https://www.google.com/",
+  "answer": "As of today (27 June 2026), the distance from Earth to Mars is approximately 2.12 AU \u2014 about 317 million km (\u2248197 million miles), or 17.62 light-minutes (per in-the-sky.org's ephemeris)."
+}

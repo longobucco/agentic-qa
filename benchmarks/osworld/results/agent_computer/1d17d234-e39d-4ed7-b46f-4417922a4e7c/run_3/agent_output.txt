@@ -1,0 +1,3 @@
+The task is complete and saved. Sheet2 was created with A1:C1 merged containing "Investment Summary", A2:B2 merged with "High Interest Rate", and C2:D2 merged with "Low Interest Rate".
+
+ANSWER: DONE

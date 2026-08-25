@@ -1,0 +1,3 @@
+The `percy.vscode-numpy-viewer` extension is now installed. This extension provides visualization of all NumPy arrays in the current Python file within VS Code — exactly what the task requires. The task is complete.
+
+ANSWER: DONE

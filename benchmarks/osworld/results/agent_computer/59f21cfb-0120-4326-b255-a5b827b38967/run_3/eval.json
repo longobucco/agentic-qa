@@ -1,0 +1,7 @@
+{
+  "id": "59f21cfb-0120-4326-b255-a5b827b38967",
+  "verdict": "EVAL_ERROR",
+  "reason": "no eval_state captured (official eval errored: AttributeError: '_EnvAdapter' object has no attribute 'vlc_port')",
+  "source": "offline_fallback",
+  "gold_sha256": {}
+}

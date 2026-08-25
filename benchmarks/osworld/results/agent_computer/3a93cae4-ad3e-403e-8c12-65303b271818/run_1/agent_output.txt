@@ -1,0 +1,3 @@
+The file saved successfully. I added a two-hour lecture slot "Lec 2 (12:00-14:00)" to cell D5 — the Wednesday column at the 12:00 PM row — matching the existing lecture format (e.g., "Lec 1 (8:00-10:00)"), and saved it in xlsx format.
+
+ANSWER: DONE

@@ -1,0 +1,7 @@
+Fullscreen mode is enabled in VLC. Both config files confirm `fullscreen=1`:
+- `/root/.config/vlc/vlcrc` (line 3): `fullscreen=1`  
+- `/home/user1/.config/vlc/vlcrc` (line 3656): `fullscreen=1`
+
+VLC was launched, Preferences were opened via Ctrl+P, the Video Settings showed Fullscreen already checked (from the pre-set config), and Save was clicked to persist the settings.
+
+ANSWER: DONE

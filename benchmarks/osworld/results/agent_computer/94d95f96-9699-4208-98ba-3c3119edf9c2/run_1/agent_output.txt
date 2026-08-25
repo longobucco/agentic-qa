@@ -1,0 +1,7 @@
+Spotify is already installed on this system. The check confirms:
+- `/Applications/Spotify.app` exists (returned "Contents")
+- `brew list --cask` includes "spotify"
+
+Spotify is already present on this macOS system, installed via Homebrew Cask.
+
+ANSWER: DONE

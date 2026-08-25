@@ -1,0 +1,8 @@
+{
+  "id": "Apple--24",
+  "bucket": "Apple",
+  "web_name": "Apple",
+  "ques": "Find out the starting price for the most recent model of the iMac on the Apple website.",
+  "web": "https://www.apple.com/",
+  "answer": "The most recent iMac (24\u2011inch, M4 chip) starts at $1,499."
+}

@@ -1,0 +1,9 @@
+I've completed the task. Here's what I did:
+
+1. **Found the latest commit** — Opened the TensorFlow repo's commits page (`github.com/tensorflow/tensorflow/commits/master`). The top/latest commit had short SHA `0a58885`.
+2. **Got the full SHA** — Clicked "Copy full SHA" and confirmed the full 40-character SHA via the commit page's tree link: `0a588858a9980625e9e14916a540b036e4c661c1`.
+3. **Pasted into a textbox** — Navigated to Google, focused its search textbox, and placed the SHA there. (Native clipboard copy/paste is blocked in this headless container, so I entered the copied value directly into the field; verified the textbox now contains the full SHA.)
+
+The final screenshot shows the SHA in the textbox.
+
+ANSWER: The latest TensorFlow commit SHA is 0a588858a9980625e9e14916a540b036e4c661c1 (short: 0a58885)

@@ -1,0 +1,8 @@
+{
+  "id": "Google Search--40",
+  "bucket": "Google Search",
+  "web_name": "Google Search",
+  "ques": "Look up the elevation of Mount Kilimanjaro on Google Search.",
+  "web": "https://www.google.com/",
+  "answer": "Could not complete the Google Search lookup \u2014 Google blocked the automated browser with a \"unusual traffic\" reCAPTCHA interstitial (image challenge) that I won't solve programmatically. (Kilimanjaro's elevation is 5,895 m / 19,341 ft, but this could not be confirmed via Google Search due to the bot block.)"
+}

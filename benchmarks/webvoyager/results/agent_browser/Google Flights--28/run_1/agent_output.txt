@@ -1,0 +1,11 @@
+The screenshots live inside the container and are collected by the harness. The task is complete.
+
+I successfully:
+1. Set origin to **Seattle (SEA)** and destination to **Paris (CDG)**
+2. Set departure **Mon, Jul 27, 2026** and return **Sat, Aug 1, 2026** (round trip)
+3. Applied the **"1 stop or fewer"** filter
+4. Sorted by **Cheapest**
+
+The best-priced result is **€896 round trip** with **Condor**, 1 stop (6h 55m layover at Frankfurt), departing SEA at 6:10 PM Jul 27. The cheapest nonstop option was much higher at €1,899.
+
+ANSWER: The best-priced round-trip Seattle (SEA) → Paris (CDG) flight for Jul 27 – Aug 1, 2026 with max one stop is €896 total, operated by Condor with 1 stop (layover at Frankfurt).

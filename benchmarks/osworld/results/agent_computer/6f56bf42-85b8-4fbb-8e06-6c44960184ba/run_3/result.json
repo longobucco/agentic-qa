@@ -1,0 +1,59 @@
+{
+  "id": "6f56bf42-85b8-4fbb-8e06-6c44960184ba",
+  "bucket": "os",
+  "instruction": "Copies file 'file1' to each of directories 'dir1', 'dir2', 'dir3'.",
+  "answer": "DONE",
+  "eval_state": "",
+  "provenance": {
+    "task_sha256": "5e860c74978dc5e8d0c769aca1395f8cc3e4ed23ce8c72a329f06f67b0d805cf",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-037b8d10-39b5-474c-b2de-94625086c635.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-25T03:57:58.213115+00:00",
+    "finished_at": "2026-08-25T03:58:35.928413+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 9,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.09978419999999999,
+  "agent_input_tokens": 14,
+  "agent_output_tokens": 1373,
+  "agent_cache_read_tokens": 192679,
+  "agent_cache_creation_tokens": 5358,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1176,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001251,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 14,
+      "outputTokens": 1373,
+      "cacheReadInputTokens": 192679,
+      "cacheCreationInputTokens": 5358,
+      "webSearchRequests": 0,
+      "costUSD": 0.09853319999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 36242,
+  "agent_duration_api_ms": 35028,
+  "agent_session_id": "2fe534fe-d0b7-4e7d-b3e6-c9467dc28dab",
+  "agent_uuid": "991c0a19-5297-4f53-9bbf-2fbb17fa196e"
+}

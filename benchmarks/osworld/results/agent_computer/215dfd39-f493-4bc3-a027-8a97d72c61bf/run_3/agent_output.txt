@@ -1,0 +1,7 @@
+The VLC configuration file at `/root/.config/vlc/vlcrc` has been created with `qt-bgcone=0` in the `[qt]` section, which disables the cone icon (VLC's traffic cone logo) that appears in the splash/background area when no media is playing.
+
+The config is confirmed:
+- File: `/root/.config/vlc/vlcrc`  
+- Setting: `qt-bgcone=0` under `[qt]` section
+
+ANSWER: DONE

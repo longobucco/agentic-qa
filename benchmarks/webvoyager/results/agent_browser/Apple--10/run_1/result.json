@@ -1,0 +1,8 @@
+{
+  "id": "Apple--10",
+  "bucket": "Apple",
+  "web_name": "Apple",
+  "ques": "Find information on the latest (as of today's date) MacBook model, including its key features such as processor type, memory size, and storage capacity.",
+  "web": "https://www.apple.com/",
+  "answer": "The latest MacBook model is the MacBook Pro with the M5 chip family (M5, M5 Pro, M5 Max). Base Apple M5: 10-core CPU (4 super + 6 efficiency) and 10-core GPU; memory 16GB/24GB/32GB unified; storage 1TB SSD (configurable to 2TB/4TB). Higher-end M5 Pro/M5 Max scale up to an 18-core CPU, 40-core GPU, up to 128GB unified memory, and up to 8TB SSD."
+}

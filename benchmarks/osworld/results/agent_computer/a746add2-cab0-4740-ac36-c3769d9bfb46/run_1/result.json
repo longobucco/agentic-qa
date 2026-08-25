@@ -1,0 +1,59 @@
+{
+  "id": "a746add2-cab0-4740-ac36-c3769d9bfb46",
+  "bucket": "gimp",
+  "instruction": "Help me open up the Vignette filter window.",
+  "answer": "DONE",
+  "eval_state": "",
+  "provenance": {
+    "task_sha256": "9cc7b283c743206a9685edd9c047a2a790817d3d3978dd8fa4ccf5bdbd925a8b",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-7d411993-072c-4504-9755-c2843bd0fa2c.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-22T20:34:17.883856+00:00",
+    "finished_at": "2026-08-22T20:47:37.046506+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 79,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 2.3005209,
+  "agent_input_tokens": 88,
+  "agent_output_tokens": 39657,
+  "agent_cache_read_tokens": 4611013,
+  "agent_cache_creation_tokens": 85080,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2973,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.003048,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 88,
+      "outputTokens": 39657,
+      "cacheReadInputTokens": 4611013,
+      "cacheCreationInputTokens": 85080,
+      "webSearchRequests": 0,
+      "costUSD": 2.2974729000000003,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 796136,
+  "agent_duration_api_ms": 720675,
+  "agent_session_id": "0aefd73a-c50b-4d5f-9548-e1debe7499dc",
+  "agent_uuid": "336dcc91-b067-4c25-8aec-62acb833d603"
+}

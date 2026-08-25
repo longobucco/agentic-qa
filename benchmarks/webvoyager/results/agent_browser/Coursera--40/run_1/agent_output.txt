@@ -1,0 +1,20 @@
+I browsed both Coursera for Business and Coursera for Teams pages and captured screenshots. Here's a summary of their advantages.
+
+**Coursera for Business** (the broader enterprise platform):
+- **Verified, applied skills** — real projects, secure labs, and AI playgrounds to practice hands-on
+- **Industry credibility** — globally recognized credentials from 325+ university and industry partners (Stanford, Google, IBM, AWS, Microsoft), plus 20,000+ courses and 200+ Professional Certificates
+- **Learning accelerated by AI** — personalized AI guidance for every learner, AI-powered role-play simulations, and native integrations with Claude, Copilot, and ChatGPT (plus MCP server support)
+- **Role-based learning paths** tailored to specific roles, teams, and business priorities
+- **Measurable proficiency & visibility** — assessments, credentials, and an admin dashboard to track progress, proficiency, and ROI across teams
+- **Built for every scale** — Teams plan for smaller groups and an Enterprise plan (500+ learners) adding SSO/API/LMS integrations and a dedicated customer success manager. Named a Leader in The Forrester Wave; trusted by 6,500+ companies.
+
+**Coursera for Teams** (the self-service plan for 2–499 learners):
+- **Fast, easy setup** — from purchase to learning in one day, no sales process needed
+- **Full enterprise content library** — 12,000+ courses, 140+ certificates, 1,500+ hands-on labs, plus globally recognized Professional Certificates
+- **Proven business impact** — cites 25% more productivity, 38% higher retention, and 97% engagement in non-mandatory training
+- **Customizable, AI-powered learning** — tailored, multilingual, role-specific learning paths and admin tools to track team progress
+- **Flexible & low-commitment** — transparent pricing, quarterly or annual billing, license transfers (reassign up to 10% per cycle), add seats anytime with prorated pricing, volume discounts at 25+ licenses, multiple payment options, and a 14-day refund guarantee
+
+In short: **Coursera for Teams** is the streamlined, self-service, low-commitment option for smaller teams (2–499) that want fast access to the full catalog, while **Coursera for Business/Enterprise** layers on deeper AI tooling, role-based programs, analytics, integrations (SSO/API/LMS), and dedicated support for upskilling at large scale.
+
+ANSWER: Coursera for Business is the full enterprise platform — 20,000+ courses and 200+ certificates from 325+ partners (Stanford, Google, IBM), AI-accelerated learning (personalized guidance, role-play simulations, Claude/Copilot/ChatGPT integrations), role-based learning paths, measurable proficiency, admin dashboards/analytics, and scalable plans up to Enterprise (SSO/API/LMS integrations + dedicated success manager). Coursera for Teams is its self-service plan for 2–499 learners: same-day setup, full 12,000+ course library and Professional Certificates, AI-powered customizable multilingual learning paths, progress tracking, and flexible low-commitment terms (transparent pricing, quarterly/annual billing, license transfers, prorated add-ons, volume discounts, 14-day refund) — citing 25% more productivity, 38% higher retention, and 97% training engagement.

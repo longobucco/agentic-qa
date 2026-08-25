@@ -1,0 +1,5 @@
+The cropped.png was successfully created. The original cola.png was 1233×1280 pixels, and after removing the top 20% (256 pixels), the resulting cropped.png is 1233×1024 pixels — exactly 80% of the original height.
+
+GIMP was launched from the command line in batch mode (`gimp -i -b`) to crop the top 20% off cola.png and save the result as cropped.png on the Linux desktop.
+
+ANSWER: DONE

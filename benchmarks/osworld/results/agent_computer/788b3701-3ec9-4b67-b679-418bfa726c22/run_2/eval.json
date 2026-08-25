@@ -1,0 +1,10 @@
+{
+  "id": "788b3701-3ec9-4b67-b679-418bfa726c22",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official diff_text_file -> 0.00",
+  "source": "official",
+  "gold_sha256": {
+    "real.tex": "648849de03984bfaeaac2be87fdbbba9ff66cfdd430165edf5655ebef1d8ac5d"
+  }
+}

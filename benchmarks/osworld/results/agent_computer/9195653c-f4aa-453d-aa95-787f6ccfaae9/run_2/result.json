@@ -1,0 +1,59 @@
+{
+  "id": "9195653c-f4aa-453d-aa95-787f6ccfaae9",
+  "bucket": "vlc",
+  "instruction": "I like watching movies (using VLC) on my laptop and sometimes the volume is too low for my taste even when the volume in VLC is set to the maximum of 125% on the volume control. Can you increase the max volume of the video to the 200% of the original volume?",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "c593e4c056103cbbe69276ce8e0c25518a519972b342bde7a0d84666a2170ce9",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-2fc05843-1036-484d-9174-4a7d4a6074f8.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-18T07:43:17.755194+00:00",
+    "finished_at": "2026-08-18T07:46:03.718395+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 17,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.6644470000000001,
+  "agent_input_tokens": 3246,
+  "agent_output_tokens": 8939,
+  "agent_cache_read_tokens": 439242,
+  "agent_cache_creation_tokens": 32160,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 4036,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.004121,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 3246,
+      "outputTokens": 8939,
+      "cacheReadInputTokens": 439242,
+      "cacheCreationInputTokens": 32160,
+      "webSearchRequests": 0,
+      "costUSD": 0.6603260000000001,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 163697,
+  "agent_duration_api_ms": 147814,
+  "agent_session_id": "4eba2338-0685-441a-81b3-ae9ccdac195b",
+  "agent_uuid": "bc42e418-b8fb-45c6-af7d-80266755d339"
+}

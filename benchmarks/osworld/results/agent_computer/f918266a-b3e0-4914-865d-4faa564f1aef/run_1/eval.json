@@ -1,0 +1,10 @@
+{
+  "id": "f918266a-b3e0-4914-865d-4faa564f1aef",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official compare_text_file -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "log_Gold.txt": "936a6de07f8d181e921dd725984f254472ed23563e9dee5706d0ec94b489de8f"
+  }
+}

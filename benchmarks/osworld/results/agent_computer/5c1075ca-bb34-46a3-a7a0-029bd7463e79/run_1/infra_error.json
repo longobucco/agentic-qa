@@ -1,0 +1,88 @@
+[
+  {
+    "id": "5c1075ca-bb34-46a3-a7a0-029bd7463e79",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-20T18:22:51+0200"
+  },
+  {
+    "id": "5c1075ca-bb34-46a3-a7a0-029bd7463e79",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-22T14:54:24+0200"
+  },
+  {
+    "id": "5c1075ca-bb34-46a3-a7a0-029bd7463e79",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-23T02:08:11+0200"
+  },
+  {
+    "id": "5c1075ca-bb34-46a3-a7a0-029bd7463e79",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-23T12:12:09+0200"
+  },
+  {
+    "id": "5c1075ca-bb34-46a3-a7a0-029bd7463e79",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-23T17:20:42+0200"
+  },
+  {
+    "id": "5c1075ca-bb34-46a3-a7a0-029bd7463e79",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-23T22:26:06+0200"
+  },
+  {
+    "id": "5c1075ca-bb34-46a3-a7a0-029bd7463e79",
+    "run": 1,
+    "outcome": "INFRA_FLAKE",
+    "error_type": "RuntimeError",
+    "error": "sandbox provisioning/setup exceeded 600s -- treated as a hang, not a legitimate wait (observed live: sandbox auto-stopped mid-provisioning, then the SDK's exec blocked against the stopped VM forever)",
+    "elapsed_s": 14857.7,
+    "at": "2026-08-24T09:37:59+0200"
+  },
+  {
+    "id": "5c1075ca-bb34-46a3-a7a0-029bd7463e79",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-24T12:40:09+0200"
+  },
+  {
+    "id": "5c1075ca-bb34-46a3-a7a0-029bd7463e79",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-24T15:53:28+0200"
+  },
+  {
+    "id": "5c1075ca-bb34-46a3-a7a0-029bd7463e79",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-24T18:52:22+0200"
+  },
+  {
+    "id": "5c1075ca-bb34-46a3-a7a0-029bd7463e79",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-25T02:57:54+0200"
+  },
+  {
+    "id": "5c1075ca-bb34-46a3-a7a0-029bd7463e79",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-25T04:38:52+0200"
+  }
+]

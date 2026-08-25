@@ -1,0 +1,5 @@
+{
+  "id": "Huggingface--33",
+  "verdict": "SUCCESS",
+  "reason": "Screenshots confirm three Hugging Face docs (Transformers 161,943; Diffusers 33,941; Datasets 21,657) with GitHub star counts exactly matching the response."
+}

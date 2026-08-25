@@ -1,0 +1,59 @@
+{
+  "id": "53ad5833-3455-407b-bbc6-45b4c79ab8fb",
+  "bucket": "vscode",
+  "instruction": "Please help me use VS Code to open the \"project\" in the \"user\" folder under \"home\".",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "0352a97d32923236e7b50c136e4fe93b9f2e6fc4adaa86ecf6a3f7f2608a4be9",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-612a4929-fd5f-43ee-abc7-b57f8759049d.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-10T13:58:54.744347+00:00",
+    "finished_at": "2026-08-10T14:06:40.241647+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 61,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 1.2149669500000002,
+  "agent_input_tokens": 78,
+  "agent_output_tokens": 12230,
+  "agent_cache_read_tokens": 2651504,
+  "agent_cache_creation_tokens": 62653,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 813,
+      "outputTokens": 14,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.000883,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 78,
+      "outputTokens": 12230,
+      "cacheReadInputTokens": 2651504,
+      "cacheCreationInputTokens": 62653,
+      "webSearchRequests": 0,
+      "costUSD": 1.2140839500000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 462934,
+  "agent_duration_api_ms": 434088,
+  "agent_session_id": "b424ef0b-343f-4da1-81b8-2ad5a405f432",
+  "agent_uuid": "52100fd8-2194-4ef4-b1d3-ea3480991d20"
+}

@@ -1,0 +1,5 @@
+{
+  "id": "Wolfram Alpha--16",
+  "verdict": "SUCCESS",
+  "reason": "The screenshot shows Wolfram Alpha computed all required parameters (male, 40 yr, 175 cm, 90\u219273 kg, 1500 Cal/d) and displays the answer of 3 months 6 days to lose 17 kg, matching the agent's response."
+}

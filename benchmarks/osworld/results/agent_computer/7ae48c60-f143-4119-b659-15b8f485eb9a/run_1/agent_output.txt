@@ -1,0 +1,10 @@
+Slide 6 picture shows 19.07 x 9.84". 9.84" = 24.99cm ≈ 25cm ✓
+
+All three heights have been successfully changed:
+- **Slide 3**: Height = 7.87" ≈ **20cm** ✓
+- **Slide 4**: Height = 11.81" ≈ **30cm** ✓  
+- **Slide 6**: Height = 9.84" ≈ **25cm** ✓
+
+The file was already saved by python-pptx with the exact values (20cm, 30cm, 25cm). The task is complete.
+
+ANSWER: DONE

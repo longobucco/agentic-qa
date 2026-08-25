@@ -1,0 +1,10 @@
+I cannot complete this task. Allrecipes is fully blocking access from this environment.
+
+**What I found:**
+- Every URL on `allrecipes.com` (homepage, `/search?q=greek+salad`, and a direct recipe page) returns the identical "If you are a reader experiencing an access issue…" page.
+- A raw request confirmed the server responds with **HTTP 402** behind Cloudflare (cf-ray datacenter `MAD`). This is a server-side IP/region access block from the site's owner (People Inc.), not a cookie/consent banner that can be dismissed or worked around through normal browsing.
+- No recipe data (prep time, review counts, cheese, or dressing) is served to this client at all.
+
+I won't fabricate a recipe to fill in the requested fields, since none of the page content was actually accessible. To complete this task, the run would need to be retried from a network/IP that Allrecipes does not block.
+
+ANSWER: Unable to complete — Allrecipes returns an HTTP 402 access-block page (Cloudflare/People Inc.) for all URLs from this environment, so no Greek salad recipe, prep time, review count, cheese, or dressing could be retrieved.

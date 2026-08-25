@@ -1,0 +1,9 @@
+All 12 `.doc` files have been successfully converted to PDF. The command used was:
+
+```
+cd /home/user/Desktop && libreoffice --headless --convert-to pdf *.doc
+```
+
+This converted all `.doc` files at once using LibreOffice in headless mode, producing 12 PDF files in the Desktop directory.
+
+ANSWER: DONE

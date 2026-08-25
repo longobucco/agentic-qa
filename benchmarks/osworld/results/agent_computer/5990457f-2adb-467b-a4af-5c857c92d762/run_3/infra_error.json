@@ -1,0 +1,102 @@
+[
+  {
+    "id": "5990457f-2adb-467b-a4af-5c857c92d762",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-12T23:28:42+0200"
+  },
+  {
+    "id": "5990457f-2adb-467b-a4af-5c857c92d762",
+    "run": 3,
+    "outcome": "INFRA_FLAKE",
+    "error_type": "FileNotFoundError",
+    "error": "[Errno 2] No such file or directory: 'claude'",
+    "elapsed_s": 11.5,
+    "at": "2026-08-13T14:22:22+0200"
+  },
+  {
+    "id": "5990457f-2adb-467b-a4af-5c857c92d762",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-14T06:56:23+0200"
+  },
+  {
+    "id": "5990457f-2adb-467b-a4af-5c857c92d762",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-14T12:37:15+0200"
+  },
+  {
+    "id": "5990457f-2adb-467b-a4af-5c857c92d762",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-15T06:18:05+0200"
+  },
+  {
+    "id": "5990457f-2adb-467b-a4af-5c857c92d762",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-15T20:13:52+0200"
+  },
+  {
+    "id": "5990457f-2adb-467b-a4af-5c857c92d762",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-16T07:06:07+0200"
+  },
+  {
+    "id": "5990457f-2adb-467b-a4af-5c857c92d762",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-16T17:21:54+0200"
+  },
+  {
+    "id": "5990457f-2adb-467b-a4af-5c857c92d762",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-18T18:02:23+0200"
+  },
+  {
+    "id": "5990457f-2adb-467b-a4af-5c857c92d762",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-19T12:51:07+0200"
+  },
+  {
+    "id": "5990457f-2adb-467b-a4af-5c857c92d762",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-19T23:11:36+0200"
+  },
+  {
+    "id": "5990457f-2adb-467b-a4af-5c857c92d762",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-20T11:02:05+0200"
+  },
+  {
+    "id": "5990457f-2adb-467b-a4af-5c857c92d762",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-22T11:21:58+0200"
+  },
+  {
+    "id": "5990457f-2adb-467b-a4af-5c857c92d762",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-22T22:28:55+0200"
+  }
+]

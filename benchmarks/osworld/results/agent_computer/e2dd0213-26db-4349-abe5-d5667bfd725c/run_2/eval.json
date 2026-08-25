@@ -1,0 +1,8 @@
+{
+  "id": "e2dd0213-26db-4349-abe5-d5667bfd725c",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official check_textbox_on_leftside -> 0.00",
+  "source": "official",
+  "gold_sha256": {}
+}

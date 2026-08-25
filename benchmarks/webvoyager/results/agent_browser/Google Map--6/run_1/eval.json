@@ -1,0 +1,5 @@
+{
+  "id": "Google Map--6",
+  "verdict": "SUCCESS",
+  "reason": "The screenshot confirms Google Maps returned the complete list (end-of-list reached) of 3 Uniqlo locations matching the agent's response, including the permanently closed one."
+}

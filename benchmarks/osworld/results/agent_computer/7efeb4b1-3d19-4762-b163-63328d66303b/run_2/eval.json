@@ -1,0 +1,10 @@
+{
+  "id": "7efeb4b1-3d19-4762-b163-63328d66303b",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official compare_table -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "Order_Sales_Serial#_gold.xlsx": "9103bfbba0dc71f4f4904f75ebcfdba18a5624aefd142b201fa7cdb42f1f82cd"
+  }
+}

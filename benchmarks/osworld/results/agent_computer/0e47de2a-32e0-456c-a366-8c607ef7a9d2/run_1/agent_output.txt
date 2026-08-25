@@ -1,0 +1,8 @@
+The task is complete. The document has been saved successfully. I can see:
+- The footer is now active (style shows "Footer")
+- Page number "3" is visible at the bottom left of the current page
+- The document was saved in Word 2007-365 format
+
+The page number field has been added to the footer (bottom left position) which will automatically display the correct page number on every page of the document.
+
+ANSWER: DONE

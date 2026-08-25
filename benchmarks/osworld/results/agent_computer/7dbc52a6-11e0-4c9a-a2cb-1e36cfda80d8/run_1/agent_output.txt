@@ -1,0 +1,6 @@
+The task is complete. On page 2:
+1. The title "Team Members" is now **bold** (visible in the slide)
+2. A note with the text "Team Members" (same as the title) was added to the notes area
+3. The file was saved in PowerPoint format
+
+ANSWER: DONE

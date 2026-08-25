@@ -1,0 +1,10 @@
+{
+  "id": "7e429b8d-a3f0-4ed0-9b58-08957d00b127",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official compare_table -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "VLOOKUP_Fill_the_form_gold.xlsx": "c16a639cbbe421d20c4250a49f12fa27680b874e060dc54cef93ebaea3144321"
+  }
+}
