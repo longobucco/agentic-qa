@@ -1,0 +1,5 @@
+{
+  "id": "Wolfram Alpha--15",
+  "verdict": "FAILURE",
+  "reason": "The screenshots never display a 'blood relationship fraction' value, and the agent's reported 1/32 is inconsistent with the on-screen relation 'first cousin once removed' (whose fraction is 1/16), so the task's required output is neither shown nor correct."
+}

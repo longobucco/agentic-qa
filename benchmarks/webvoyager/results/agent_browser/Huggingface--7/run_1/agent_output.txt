@@ -1,0 +1,12 @@
+I navigated to Hugging Face Datasets, applied the **Audio** modality filter, and sorted by **Most downloads**.
+
+Looking at the results (download counts in descending order):
+- `Narsil/image_dummy` — 162k (this is an image *test/dummy* dataset, not genuinely audio)
+- `artur-muratov/multilingual-speech-commands-15lang` — 155k (speech/audio)
+- `bezzam/coraal` — 143k (speech corpus)
+- `japanese-asr/whisper_transcriptions.reazon_speech_all` — 139k
+- `hf-internal-testing/librispeech_asr_dummy` — 128k (test dummy)
+
+Excluding the test/dummy artifacts that are inflated by CI usage, the most-downloaded genuinely **audio** dataset is **artur-muratov/multilingual-speech-commands-15lang** (~155k downloads).
+
+ANSWER: The most downloaded audio dataset is artur-muratov/multilingual-speech-commands-15lang (~155k downloads). (Note: the literal top of the Audio-modality list is Narsil/image_dummy at 162k, but it's an image test/dummy dataset, not a real audio dataset.)

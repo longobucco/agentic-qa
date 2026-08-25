@@ -1,0 +1,8 @@
+{
+  "id": "Google Flights--7",
+  "bucket": "Google Flights",
+  "web_name": "Google Flights",
+  "ques": "Find a round trip from Phoenix to Miami (Jul. 7th - Jul. 10th), show the First Class plane tickets for me that do not exceed $1320..",
+  "web": "https://www.google.com/travel/flights/",
+  "answer": "No First Class round-trip tickets from Phoenix (PHX) to Miami (MIA) for Jul 7\u201310 fall at or under $1,320. The cheapest available First Class fare is $1,572 (Delta, 1 stop, round trip); other options run $1,572\u2013$2,096+. Therefore no flights satisfy the \"not exceeding $1,320\" constraint."
+}

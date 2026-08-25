@@ -1,0 +1,8 @@
+{
+  "id": "Google Map--19",
+  "bucket": "Google Map",
+  "web_name": "Google Map",
+  "ques": "I will arrive Pittsburgh Airport soon. Provide the name of the Hilton hotel closest to the airport. Then, tell me the the walking time to the nearest supermarket from the hotel.",
+  "web": "https://www.google.com/maps/",
+  "answer": "The closest Hilton hotel to Pittsburgh International Airport is the DoubleTree by Hilton Hotel Pittsburgh Airport (8402 University Blvd, Moon Township). The walking time from that hotel to the nearest supermarket (Walmart Supercenter, 7500 University Blvd) is about 17 minutes (0.8 mi)."
+}

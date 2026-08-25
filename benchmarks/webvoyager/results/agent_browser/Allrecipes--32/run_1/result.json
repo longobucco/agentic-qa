@@ -1,0 +1,8 @@
+{
+  "id": "Allrecipes--32",
+  "bucket": "Allrecipes",
+  "web_name": "Allrecipes",
+  "ques": "Find a high-rated beef stew recipe on Allrecipes that requires a slow cooker and has at least 30 reviews. Detail the cooking time and the first five ingredients listed in the recipe.",
+  "web": "https://www.allrecipes.com/",
+  "answer": "Unable to complete \u2014 Allrecipes is blocking this IP with an access-denied page on all pages (homepage, search, and direct recipe URLs), so no beef stew recipe, cooking time, or ingredient list could be retrieved."
+}

@@ -1,0 +1,12 @@
+Task complete. After searching for a USB-C hub and sorting by **Best Sellers**, I selected the top-ranked result, which satisfies every requirement:
+
+- **Product:** UANTIN USB C Hub 7-in-1 Multiport Adapter
+- **MacBook Pro compatible:** ✓ (explicitly for MacBook Mac Pro/Air)
+- **Ports:** 7-in-1 (≥4) — 4K HDMI, 100W PD, SD/TF card reader, 3× USB-A
+- **HDMI:** ✓ (4K HDMI)
+- **SD card reader:** ✓ (SD/TF)
+- **Price:** EUR 7.48 (well under $50)
+
+It's the #1 Best Seller listing (1,247 ratings) and I opened its product page to select it.
+
+ANSWER: Selected the UANTIN USB C Hub 7-in-1 Multiport Adapter (4K HDMI, 100W PD, SD/TF card reader, 3 USB-A — MacBook Pro/Air compatible) at EUR7.48 (under $50), the top result after sorting by Best Sellers.

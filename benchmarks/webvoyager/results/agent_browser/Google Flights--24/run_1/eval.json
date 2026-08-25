@@ -1,0 +1,5 @@
+{
+  "id": "Google Flights--24",
+  "verdict": "FAILURE",
+  "reason": "The results page only ever displays 'Oops, something went wrong' with no flights, prices, or selected option, so the price comparison and fewest-stops selection were never accomplished."
+}

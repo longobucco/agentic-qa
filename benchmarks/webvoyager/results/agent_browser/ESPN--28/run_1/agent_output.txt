@@ -1,0 +1,7 @@
+I've confirmed the data from ESPN's MLB Teams page, which lists all teams by division.
+
+**MLB Teams:** There are **30 MLB teams** (15 American League + 15 National League, across 6 divisions of 5 teams each).
+
+**Teams with "City" in their name:** Only **1** — the **Kansas City Royals** (AL Central).
+
+ANSWER: There are 30 MLB teams. The only team with "City" in its name is the Kansas City Royals.

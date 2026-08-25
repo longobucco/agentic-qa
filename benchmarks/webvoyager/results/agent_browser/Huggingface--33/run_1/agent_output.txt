@@ -1,0 +1,9 @@
+I listed three Hugging Face docs from the documentation hub and read the GitHub stars badge on each library's doc page:
+
+- **Transformers** — 161,943 ⭐
+- **Diffusers** — 33,941 ⭐
+- **Datasets** — 21,657 ⭐
+
+Combined, these three docs have earned **217,541** GitHub stars.
+
+ANSWER: Three Hugging Face docs and their GitHub stars — Transformers: 161,943; Diffusers: 33,941; Datasets: 21,657 (total ≈ 217,541 stars).

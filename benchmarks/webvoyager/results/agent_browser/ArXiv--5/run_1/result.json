@@ -1,0 +1,8 @@
+{
+  "id": "ArXiv--5",
+  "bucket": "ArXiv",
+  "web_name": "ArXiv",
+  "ques": "Search papers about \"quantum computing\" which has been submitted to the Quantum Physics category on ArXiv. How many results in total. What if search in all archives?",
+  "web": "https://arxiv.org/",
+  "answer": "Searching \"quantum computing\" in the Quantum Physics (quant-ph) category returns 34,380 results in total; searching across all archives returns 56,005 results."
+}

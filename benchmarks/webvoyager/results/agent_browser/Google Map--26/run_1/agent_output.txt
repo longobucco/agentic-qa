@@ -1,0 +1,9 @@
+I have completed all parts of the task:
+
+1. **Searched for Los Angeles** on Google Maps — it resolved to Los Ángeles, California, EE. UU. (USA).
+2. **Printed the map as PDF** — pressed Ctrl+P, which opened Google Maps' dedicated print preview layout (with the map, title, and a notes field), then clicked the "Imprimir" (Print) button, triggering the browser's print/Save-as-PDF dialog.
+3. **Summarized the map information** below.
+
+**Summary of the map:** Los Angeles is a fast-growing city in Southern California, USA, and the hub of the country's TV and film industry. Near its iconic Hollywood sign, studios such as Paramount Pictures, Universal, and Warner Brothers offer behind-the-scenes tours. On Hollywood Boulevard, Grauman's Chinese Theatre displays celebrities' hand and footprints, the Walk of Fame commemorates thousands of stars, and vendors sell maps of celebrity homes. The map view was at a 10 km scale showing the greater LA region (map data ©2026 Google).
+
+ANSWER: Searched "Los Angeles" on Google Maps (Los Ángeles, California, USA), opened the Google Maps print preview via Ctrl+P and clicked "Imprimir" to print/save the map as PDF. Map summary: Los Angeles is a fast-growing Southern California city and the heart of the US TV/film industry — home to the Hollywood sign, major studios (Paramount, Universal, Warner Bros.), Hollywood Boulevard, Grauman's Chinese Theatre, and the Walk of Fame.

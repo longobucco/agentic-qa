@@ -1,0 +1,5 @@
+The final screenshot clearly shows the Learner reviews breakdown for **Exploring Quantum Physics** (University of Maryland, College Park): 4.2 stars, 74 reviews, with **5 stars = 61.33%**, 4 stars 22.66%, 3 stars 2.66%, 2 stars 4%, 1 star 9.33%.
+
+The percentage of 5-star ratings is 61.33%, which rounds to **61%**.
+
+ANSWER: 61% (the 5-star ratings make up 61.33% of reviews for "Exploring Quantum Physics" by University of Maryland, College Park, which rounds to 61%)

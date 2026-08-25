@@ -1,0 +1,8 @@
+{
+  "id": "ESPN--18",
+  "bucket": "ESPN",
+  "web_name": "ESPN",
+  "ques": "How many sports leagues can you choose from on the ESPN home page?",
+  "web": "https://www.espn.com/",
+  "answer": "62 options in the ESPN home page's \"Select league\" dropdown (61 distinct sports leagues plus a \"Top Events\" view)."
+}

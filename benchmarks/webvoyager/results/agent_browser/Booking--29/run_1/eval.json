@@ -1,0 +1,5 @@
+{
+  "id": "Booking--29",
+  "verdict": "FAILURE",
+  "reason": "The agent ran out of turns with no answer, and the final screenshot shows an unfiltered Toronto list of 1503 hotels with neither the 8+ rating nor fitness-center filters applied, so the task was not completed."
+}

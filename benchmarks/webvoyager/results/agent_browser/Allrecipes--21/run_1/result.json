@@ -1,0 +1,8 @@
+{
+  "id": "Allrecipes--21",
+  "bucket": "Allrecipes",
+  "web_name": "Allrecipes",
+  "ques": "Locate a high-rated recipe for gluten-free brownies on Allrecipes with at least 50 reviews. List the main ingredients and the total time required for preparation and cooking.",
+  "web": "https://www.allrecipes.com/",
+  "answer": "Unable to complete \u2014 allrecipes.com is hard-blocking this container's IP (People Inc. \"access issue\" page on every URL, including the homepage, search, and direct recipe links), so no gluten-free brownie recipe, ingredients, or total time could be retrieved."
+}

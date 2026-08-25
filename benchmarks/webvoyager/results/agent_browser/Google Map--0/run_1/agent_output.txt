@@ -1,0 +1,11 @@
+I found 5 beauty salons in Seattle, WA with ratings strictly greater than 4.8, verified across two Google Maps searches:
+
+1. **YSA Beauty Studio** — 5.0 ★ (1416 NW Ballard Way)
+2. **Lady Neptune Hair Salon** — 5.0 ★ (5611 University Wy NE)
+3. **19th Avenue Salon (AVEDA)** — 4.9 ★ (542 19th Ave E)
+4. **Salon Mérite** — 4.9 ★ (2315 E John St)
+5. **Antonio Salon** — 4.9 ★ (113 Virginia St)
+
+(Others like Vann Studio Salon, Fix Salon, Ella and Oz, and Scream Salon were exactly 4.8 — not strictly greater — so excluded.)
+
+ANSWER: 5 Seattle beauty salons rated above 4.8 — YSA Beauty Studio (5.0), Lady Neptune Hair Salon (5.0), 19th Avenue Salon/AVEDA (4.9), Salon Mérite (4.9), and Antonio Salon (4.9).

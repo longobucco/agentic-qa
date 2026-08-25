@@ -1,0 +1,8 @@
+{
+  "id": "Wolfram Alpha--5",
+  "bucket": "Wolfram Alpha",
+  "web_name": "Wolfram Alpha",
+  "ques": "Show the solution of y\"(z) + sin(y(z)) = 0 from wolframalpha.",
+  "web": "https://www.wolframalpha.com/",
+  "answer": "WolframAlpha classifies y''(z) + sin(y(z)) = 0 as a second-order nonlinear ODE (the pendulum equation) and gives the solution y(z) = \u00b12\u00b7am( \u00bd\u00b7\u221a((c\u2081 + 2)(z + c\u2082)\u00b2), 4/(c\u2081 + 2) ), where am(x, m) is the Jacobi amplitude function and c\u2081, c\u2082 are arbitrary constants."
+}

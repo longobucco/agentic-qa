@@ -1,0 +1,5 @@
+{
+  "id": "ESPN--23",
+  "verdict": "SUCCESS",
+  "reason": "The box score screenshot confirms the final score (Knicks 132, Heat 125) and displays the per-player rebound stats supporting the reported top rebounder, satisfying both parts of the task."
+}

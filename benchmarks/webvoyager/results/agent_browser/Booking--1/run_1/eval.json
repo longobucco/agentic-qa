@@ -1,0 +1,5 @@
+{
+  "id": "Booking--1",
+  "verdict": "FAILURE",
+  "reason": "The agent ran out of turns without completing a search; the final screenshot shows only the empty Jakarta search page with no hotel results, price, or answer produced."
+}

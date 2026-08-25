@@ -1,0 +1,8 @@
+{
+  "id": "ArXiv--2",
+  "bucket": "ArXiv",
+  "web_name": "ArXiv",
+  "ques": "Look up the most recent papers related to 'cs.CL', select one and show its abstract.",
+  "web": "https://arxiv.org/",
+  "answer": "Selected the most recent cs.CL paper, \"Real-Time Voice AI Hears but Does Not Listen\" (arXiv:2606.26083, submitted 24 Jun 2026, by Martijn Bartelds, Federico Bianchi, James Zou). Its abstract reports that four leading real-time voice AI systems (OpenAI GPT Realtime 2, Google Gemini 3.1 Flash Live, Alibaba Qwen3.5 Omni Plus/Flash) act on the literal words while ignoring vocal delivery (distress, fear, sarcasm) even when they can perceive it \u2014 a disconnect the authors call the \"emotional intelligence gap\" of voice AI."
+}

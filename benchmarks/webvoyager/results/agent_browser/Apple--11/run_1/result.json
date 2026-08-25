@@ -1,0 +1,8 @@
+{
+  "id": "Apple--11",
+  "bucket": "Apple",
+  "web_name": "Apple",
+  "ques": "Get information about the latest iPad model released by Apple, including its release date, base storage capacity, and starting price available on Apple's official website.",
+  "web": "https://www.apple.com/",
+  "answer": "The latest iPad model is the iPad Air with M4 chip (marked \"New\" on apple.com). Release date: March 11, 2026. Base storage capacity: 128GB. Starting price: $749 (11-inch model) on Apple's official US website."
+}

@@ -1,0 +1,3 @@
+The latest model specializing in fake news detection on Hugging Face (sorting models matching "fake news" by recently created) is **`helalsalloum/arabic-fake-news-model`**. Its files page and commit history show its most recent commit ("Upload best_model.pt with huggingface_hub", VERIFIED) was made **about 13 hours ago (≈ June 27, 2026)** — the date of its last update.
+
+ANSWER: The latest fake-news detection model is "helalsalloum/arabic-fake-news-model", last updated about 13 hours ago (≈ 2026-06-27).

@@ -1,0 +1,8 @@
+{
+  "id": "ESPN--16",
+  "bucket": "ESPN",
+  "web_name": "ESPN",
+  "ques": "Check the schedule for the NBA game on February 25, 2026, and provide the teams that are playing and their current standings in their respective conferences.",
+  "web": "https://www.espn.com/",
+  "answer": "On Feb 25, 2026 there were 11 NBA games. Matchups with each team's current conference seed \u2014 PHI(E#7)@IND(E#14); WSH(E#15)@ATL(E#6); DAL(W#12)@BKN(E#13); OKC(W#1)@TOR(E#5); NY(E#3)@CLE(E#4); CHA(E#9)@CHI(E#12); MIA(E#10)@MIL(E#11); GS(W#10)@NO(W#11); BOS(E#2)@PHX(W#8); MIN(W#6)@POR(W#7); ORL(E#8)@LAL(W#4)."
+}

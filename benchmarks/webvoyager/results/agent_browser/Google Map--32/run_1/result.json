@@ -1,0 +1,8 @@
+{
+  "id": "Google Map--32",
+  "bucket": "Google Map",
+  "web_name": "Google Map",
+  "ques": "Search for plumbers available now but not open 24 hours in Orlando, FL.",
+  "web": "https://www.google.com/maps/",
+  "answer": "Applied Google Maps' Hours \u2192 \"Open now\" filter to \"plumbers in Orlando, FL\", showing plumbers available now (e.g., Choice Plumbing Orlando, Jack Rabbit, Emerald Plumbing, El Plomero Latino, Frank Gay Services, Benjamin Franklin Plumbing, Michael's Plumbing, Harvey Baker Plumbing, Rainaldi Home Services)."
+}

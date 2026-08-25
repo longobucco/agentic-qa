@@ -1,0 +1,8 @@
+{
+  "id": "Allrecipes--2",
+  "bucket": "Allrecipes",
+  "web_name": "Allrecipes",
+  "ques": "Find a recipe for a vegetarian lasagna under 600 calories per serving that has a prep time of less than 1 hour.",
+  "web": "https://www.allrecipes.com/",
+  "answer": "Unable to complete \u2014 allrecipes.com is blocking this container's IP with an HTTP 402 \"access issue\" page on every URL (homepage, search, and recipe pages), so no recipe could be loaded or evaluated."
+}

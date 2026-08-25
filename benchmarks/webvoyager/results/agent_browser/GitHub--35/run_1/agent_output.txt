@@ -1,0 +1,6 @@
+The React releases page confirms the latest release. The top entry carries the **"Latest"** badge.
+
+- **Latest version:** React **19.2.7** (tag `v19.2.7`)
+- **Published:** **June 1st, 2026** (released by @eps1lon, commit `6117d7c`)
+
+ANSWER: The latest React release is v19.2.7, published on June 1st, 2026.

@@ -1,0 +1,3 @@
+The task is complete. I searched Google Flights for a one-way Calgary → New York flight on January 1st, then sorted the results by carbon emissions. The flight with the lowest CO₂ emissions is clearly identified as the top result.
+
+ANSWER: The one-way flight with the lowest carbon dioxide emissions is the WestJet (Delta) nonstop from Calgary (YYC) to New York (JFK) on Fri, Jan 1, departing 9:50 AM and arriving 3:36 PM (3 hr 46 min), at 222 kg CO₂e (−32% vs. typical), priced from €176.

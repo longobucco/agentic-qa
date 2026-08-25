@@ -1,0 +1,5 @@
+{
+  "id": "Huggingface--11",
+  "verdict": "SUCCESS",
+  "reason": "Screenshots show the Image-to-Video task filtered and sorted by 'Recently updated' with geceff/Wan2.2-Custom-Models-GGUF (updated ~2 hours ago) as the top result, and the model page confirms the summarized features (Tesla-T4-optimized Wan2.2 I2V GGUF/Lightning, ComfyUI settings, high/low-noise variants)."
+}

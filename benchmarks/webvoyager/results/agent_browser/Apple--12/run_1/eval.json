@@ -1,0 +1,5 @@
+{
+  "id": "Apple--12",
+  "verdict": "SUCCESS",
+  "reason": "The agent reached Apple's official Service and Repair page and provided two valid repair methods (Apple store/Authorized Service Provider and Self Service Repair) that are not contradicted by the screenshot."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "BBC News--0",
+  "bucket": "BBC News",
+  "web_name": "BBC News",
+  "ques": "Find a report on the BBC News website about recent developments in renewable energy technologies in the UK.",
+  "web": "https://www.bbc.com/news/",
+  "answer": "BBC News report \"Can a 'secret sauce' help store renewable energy?\" (11 June 2026) \u2014 on RheEnergise's high-density pumped-hydro energy storage pilot at Cornwood, Devon, UK, a recent renewable energy technology development that uses a fluid 2.5x denser than water to turn hills into \"giant batteries,\" backed by an \u00a38.25m UK government Net Zero contract."
+}

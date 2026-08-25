@@ -1,0 +1,8 @@
+{
+  "id": "Huggingface--0",
+  "bucket": "Huggingface",
+  "web_name": "Huggingface",
+  "ques": "Find a pre-trained natural language processing model on Hugging Face that can perform sentiment analysis, and make sure the model's last update is within March 2023.",
+  "web": "https://huggingface.co/",
+  "answer": "Jean-Baptiste/roberta-large-financial-news-sentiment-en \u2014 a RoBERTa-large NLP sentiment-analysis (text-classification) model, last updated Mar 22, 2023."
+}

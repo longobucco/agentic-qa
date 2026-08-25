@@ -1,0 +1,8 @@
+{
+  "id": "Google Flights--17",
+  "bucket": "Google Flights",
+  "web_name": "Google Flights",
+  "ques": "Find the cheapest round-trip flight from New York to Paris leaving on June 27, 2026, and returning on July 10, 2026.",
+  "web": "https://www.google.com/travel/flights/",
+  "answer": "The cheapest round-trip flight from New York to Paris (depart June 27, 2026; return July 10, 2026) is \u20ac778 total \u2014 a nonstop United flight departing Newark (EWR) at 5:40 PM and arriving Paris CDG at 7:05 AM."
+}

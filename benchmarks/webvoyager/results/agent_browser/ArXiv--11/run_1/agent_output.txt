@@ -1,0 +1,17 @@
+Based on arXiv's FAQ page **"Submissions in Languages Other Than English and Multiple-Language Submissions"** (https://arxiv.org/faq/multilang.html):
+
+- **Do you need a multi-language abstract?** Yes. arXiv accepts non-English submissions but requires that every submission include an **English version of the abstract**, prepared so the English and alternate-language abstracts follow one another (kept as plain ASCII text, no TeX/HTML formatting).
+- **Separator between the multiple abstracts:** a line of **five dashes `-----`**, with a **blank line before and after** it.
+
+Example as documented:
+```
+English version of abstract for your important paper.
+
+-----
+
+Other language version of abstract for your important paper.
+```
+
+Sources: [Non-English submissions FAQ (current)](https://info.arxiv.org/help/faq/multilang.html), [Multilingual abstract guidance](https://arxiv.org/faq/multilang.html)
+
+ANSWER: Yes — for non-English submissions you must include an English version of the abstract alongside the other-language abstract. The separator between the multiple abstracts is a line of five dashes "-----" (with a blank line before and after it).

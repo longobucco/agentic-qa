@@ -1,0 +1,8 @@
+{
+  "id": "Coursera--7",
+  "bucket": "Coursera",
+  "web_name": "Coursera",
+  "ques": "Find a course on Coursera that teaches Reinforcement Learning for Intermediate with a rating of at least 4.5. Provide the name of the course, the institution offering it, and the number of reviews it has received.",
+  "web": "https://www.coursera.org/",
+  "answer": "Fundamentals of Reinforcement Learning \u2014 offered by the University of Alberta (Intermediate level), rated 4.8/5 with 2.9K reviews."
+}

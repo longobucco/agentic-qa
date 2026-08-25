@@ -1,0 +1,11 @@
+I have confirmed the answer directly from Wikipedia's Alpha Centauri article (Google and Bing were both blocking automated access with captchas).
+
+**Findings:**
+- The **closest star system to the Solar System is Alpha Centauri** — a triple star system consisting of Rigil Kentaurus (α Centauri A), Toliman (α Centauri B), and **Proxima Centauri** (α Centauri C). Proxima Centauri is the single closest star to the Sun, at ~4.24 light-years.
+- **Discovered planets**, all orbiting Proxima Centauri:
+  - **Proxima Centauri b** — confirmed (Earth-mass planet in the habitable zone)
+  - **Proxima Centauri d** — confirmed (sub-Earth)
+  - **Proxima Centauri c** — a possible but disputed/candidate third planet
+  - (A Saturn-mass candidate around Rigil Kentaurus / α Cen A, and the former α Centauri Bb candidate, remain unconfirmed.)
+
+ANSWER: The closest star system to the Solar System is Alpha Centauri (a triple system: Rigil Kentaurus/α Cen A, Toliman/α Cen B, and Proxima Centauri/α Cen C, ~4.24 ly away). Its discovered planets all orbit Proxima Centauri: Proxima Centauri b and Proxima Centauri d (both confirmed), plus the disputed candidate Proxima Centauri c.

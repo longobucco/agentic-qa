@@ -1,0 +1,5 @@
+{
+  "id": "Google Map--15",
+  "verdict": "FAILURE",
+  "reason": "The agent provided only star ratings and admits the written reviews weren't viewable, so the required 'summarize what people are saying' sub-task is unaccomplished, and the screenshots show no review content to support it."
+}

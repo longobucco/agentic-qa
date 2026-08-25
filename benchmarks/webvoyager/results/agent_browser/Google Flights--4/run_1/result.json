@@ -1,0 +1,8 @@
+{
+  "id": "Google Flights--4",
+  "bucket": "Google Flights",
+  "web_name": "Google Flights",
+  "ques": "Search for one-way flights from New York to London on Dec. 26th and filter the results to show only non-stop flights.",
+  "web": "https://www.google.com/travel/flights/",
+  "answer": "One-way flights from New York to London on Dec 26 are shown, filtered to nonstop only \u2014 26 nonstop results (from \u20ac277 via United, British Airways, Delta; JFK/EWR to London Heathrow)."
+}

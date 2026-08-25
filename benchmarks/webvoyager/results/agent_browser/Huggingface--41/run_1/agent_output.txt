@@ -1,0 +1,16 @@
+The task is complete. I found the answer on Hugging Face.
+
+**Highest-download Text-to-3D model:** `microsoft/TRELLIS-text-xlarge` — the top result when filtering models by `Text-to-3D` and sorting by downloads (~7.2k / 7,196 downloads last month).
+
+**Spaces using the model:** Yes — the model card lists **9 Spaces** that use it, including:
+- yejunliang23/ShapLLM-Omni
+- PUM4CH3N/TRELLIS_TextTo3D
+- souging/TRELLIS_TextTo3D
+- PlagueEvgeny/TextTo3D
+- mlactimel/tr
+- RihemXX/TRELLIS_TextTo3D
+- wupulalu/ShapLLM-Omni
+- anshulm239/3D-test
+- (+1 more)
+
+ANSWER: The Text-to-3D model with the highest downloads is microsoft/TRELLIS-text-xlarge (~7.2k / 7,196 downloads last month). Yes, there are Spaces that use it — 9 Spaces, including yejunliang23/ShapLLM-Omni, PUM4CH3N/TRELLIS_TextTo3D, souging/TRELLIS_TextTo3D, PlagueEvgeny/TextTo3D, mlactimel/tr, RihemXX/TRELLIS_TextTo3D, wupulalu/ShapLLM-Omni, and anshulm239/3D-test (+1 more).

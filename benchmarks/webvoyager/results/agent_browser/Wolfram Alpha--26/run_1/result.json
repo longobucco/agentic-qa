@@ -1,0 +1,8 @@
+{
+  "id": "Wolfram Alpha--26",
+  "bucket": "Wolfram Alpha",
+  "web_name": "Wolfram Alpha",
+  "ques": "Convert 15 kilograms of sulfuric acid to moles and display the percentage composition of H, S, and O by weight.",
+  "web": "https://www.wolframalpha.com/",
+  "answer": "15 kg of sulfuric acid \u2248 153 mol; mass composition by weight: H 2.1% (0.308 kg), O 65.2% (9.788 kg), S 32.7% (4.904 kg)."
+}

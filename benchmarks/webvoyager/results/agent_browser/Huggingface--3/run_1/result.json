@@ -1,0 +1,8 @@
+{
+  "id": "Huggingface--3",
+  "bucket": "Huggingface",
+  "web_name": "Huggingface",
+  "ques": "Look up a model with a license of cc-by-sa-4.0 with the most likes on Hugging face.",
+  "web": "https://huggingface.co/",
+  "answer": "replit/replit-code-v1-3b \u2014 the cc-by-sa-4.0 licensed model with the most likes on Hugging Face (743 likes)."
+}

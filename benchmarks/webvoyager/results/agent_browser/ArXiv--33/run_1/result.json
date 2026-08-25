@@ -1,0 +1,8 @@
+{
+  "id": "ArXiv--33",
+  "bucket": "ArXiv",
+  "web_name": "ArXiv",
+  "ques": "Query ArXiv for the latest research article in the category of Systems and Control under Computer Science. Summarize the main objective or hypothesis presented in the paper and provide the names of the authors.",
+  "web": "https://arxiv.org/",
+  "answer": "Latest eess.SY (Systems & Control) article: \"Jet impingement cooling with multi-stage ducted electroaerodynamic actuators\" (arXiv:2606.27338) by Quinna Nguyen, C. Luke Nelson, and Daniel S. Drew. Objective/hypothesis: demonstrate that compact, multi-stage ducted electroaerodynamic (EAD) plasma jet arrays \u2014 silent, solid-state, no moving parts \u2014 can serve as a fan-replacement jet-impingement cooling solution for mobile/high-performance electronics, providing the first rigorous experimental and system-level validation that such arrays match a conventional fan's thermal performance (even on a commercial edge AI device under inference workloads) at a fraction of the volume, weight, power, and noise."
+}

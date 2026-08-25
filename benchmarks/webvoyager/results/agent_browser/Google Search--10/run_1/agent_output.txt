@@ -1,0 +1,22 @@
+I've completed the task across both Billboard and Spotify-stream data.
+
+**#1 weekly-charts artist (Billboard Artist 100, week of June 27, 2026): Olivia Rodrigo**
+
+Her **10 most-played songs (all-time Spotify streams, per kworb, updated 2026/06/25):**
+
+| # | Song | Streams |
+|---|------|---------|
+| 1 | drivers license | 2,877,155,174 |
+| 2 | good 4 u | 2,671,662,904 |
+| 3 | traitor | 2,361,999,378 |
+| 4 | deja vu | 2,319,909,114 |
+| 5 | vampire | 1,676,406,568 |
+| 6 | happier | 1,665,709,087 |
+| 7 | favorite crime | 1,558,558,309 |
+| 8 | jealousy, jealousy | 1,278,779,842 |
+| 9 | All I Want (From "HSMTMTS") | 1,166,842,307 |
+| 10 | brutal | 848,285,651 |
+
+Note: Spotify's own "Popular" tab (anonymous, top 5 only) currently surfaces her newest album's tracks (drop dead, the cure, etc.), but those reflect *recent* popularity; the list above is the true all-time "most played until now."
+
+ANSWER: Billboard's #1 weekly-ranked artist (Artist 100, week of June 27, 2026) is Olivia Rodrigo. Her 10 most-played songs to date (by total Spotify streams): 1) drivers license 2) good 4 u 3) traitor 4) deja vu 5) vampire 6) happier 7) favorite crime 8) jealousy, jealousy 9) All I Want (From "HSMTMTS") 10) brutal.

@@ -1,0 +1,5 @@
+{
+  "id": "Google Search--33",
+  "verdict": "FAILURE",
+  "reason": "The final screenshot shows the agent stuck on a Google cookie-consent dialog rather than a textbox with the SHA pasted, so the required paste step is not demonstrated and the reported SHA cannot be verified from the legible screenshots."
+}

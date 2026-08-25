@@ -1,0 +1,8 @@
+{
+  "id": "Booking--3",
+  "bucket": "Booking",
+  "web_name": "Booking",
+  "ques": "Find a hotel with 4 star and above rating in Los Angeles for 3 days from Jul 18th.",
+  "web": "https://www.booking.com/",
+  "answer": ""
+}

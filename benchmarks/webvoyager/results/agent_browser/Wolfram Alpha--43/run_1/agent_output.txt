@@ -1,0 +1,18 @@
+I've completed the task. Here's what I found on Wolfram|Alpha for "order 6 polyomino":
+
+**Counts table (from Wolfram|Alpha):**
+- Ignoring orientation (1-sided): 60
+- **Including orientation (2-sided): 35**
+
+So there are **35** combinations for a 2-sided polyomino of order 6 (hexominoes).
+
+**Counting shapes with only 2 rows:** I examined all 35 displayed shapes (cropping and enlarging each row to count their vertical extent). Excluding the single 1-row straight bar and all the 3-row shapes, exactly **12** of them fit in just 2 rows:
+- Row 1: 3 shapes (5-bar with one cell on top)
+- Row 2: 4 shapes (the "P", two "U" variants, and top-middle shape)
+- Row 3: 1 shape (offset 2+4)
+- Row 5: 3 shapes (the solid 2×3 rectangle + two others)
+- Row 6: 1 shape (the wide 3+3 offset "Z")
+
+This matches a direct combinatorial enumeration of free hexominoes with bounding-box height 2 (1 in a 2×3 box + 6 in 2×4 + 5 in 2×5 = 12).
+
+ANSWER: 35 combinations (2-sided hexominoes); 12 of them have only 2 rows.

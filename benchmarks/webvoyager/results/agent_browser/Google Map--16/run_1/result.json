@@ -1,0 +1,8 @@
+{
+  "id": "Google Map--16",
+  "bucket": "Google Map",
+  "web_name": "Google Map",
+  "ques": "Find EV charging supported parking closest to Smithsonian museum.",
+  "web": "https://www.google.com/maps/",
+  "answer": "The closest EV-charging-supported parking to the Smithsonian is the L'Enfant Plaza parking garage (Blink Charging Station, 500 L'Enfant Plaza SW, Washington, DC 20024) \u2014 open 24h, ~0.4 mi / 10-min walk (2-min drive) from the Smithsonian Institution Building."
+}

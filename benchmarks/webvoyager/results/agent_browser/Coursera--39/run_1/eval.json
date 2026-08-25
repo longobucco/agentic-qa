@@ -1,0 +1,5 @@
+{
+  "id": "Coursera--39",
+  "verdict": "FAILURE",
+  "reason": "No answer was produced and the final screenshot is blank, with only a Coursera search-results page captured \u2014 the agent never reached the course's module 2 nor listed any video names."
+}

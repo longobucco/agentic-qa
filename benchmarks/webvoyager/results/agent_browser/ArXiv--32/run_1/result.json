@@ -1,0 +1,8 @@
+{
+  "id": "ArXiv--32",
+  "bucket": "ArXiv",
+  "web_name": "ArXiv",
+  "ques": "Locate the latest paper on ArXiv within the 'Nonlinear Sciences - Chaotic Dynamics' category, summarize the abstract and note the submission date.",
+  "web": "https://arxiv.org/",
+  "answer": "The latest nlin.CD (Chaotic Dynamics) paper is \"Emergence of Gamma-Type Upward-Phase Statistics in the Collatz Map: An Effective Poisson Process Mechanism\" (arXiv:2606.26811) by Weicheng Fu, Xiaobin Liu, Yisen Wang, submitted 25 Jun 2026 (appears in the Fri, 26 Jun 2026 listing). Abstract summary: It models the upward phases of the odd-compressed (Syracuse) Collatz map as a homogeneous Poisson process to explain why the number of upward phases follows an approximate Gamma distribution, deriving closed-form parameters (constant scale \u03b8 \u2248 11.61 and a shape K growing logarithmically with the initial value), analyzing periodic-orbit constraints, and validating the theory numerically for L = 10\u2075\u201310\u00b9\u2075 with relative errors under 3%."
+}

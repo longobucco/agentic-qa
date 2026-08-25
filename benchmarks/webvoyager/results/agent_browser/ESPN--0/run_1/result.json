@@ -1,0 +1,8 @@
+{
+  "id": "ESPN--0",
+  "bucket": "ESPN",
+  "web_name": "ESPN",
+  "ques": "Look up the current standings for the NBA Eastern Conference on ESPN.",
+  "web": "https://www.espn.com/",
+  "answer": "The Detroit Pistons lead the NBA Eastern Conference (60-22, .732), followed by Boston (56-26), New York (53-29), Cleveland (52-30), Toronto (46-36), Atlanta (46-36), Philadelphia (45-37), Orlando (45-37), Charlotte (44-38), Miami (43-39), Milwaukee (32-50), Chicago (31-51), Brooklyn (20-62), Indiana (19-63), and Washington (17-65)."
+}

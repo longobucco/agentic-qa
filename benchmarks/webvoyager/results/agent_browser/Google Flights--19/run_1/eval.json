@@ -1,0 +1,5 @@
+{
+  "id": "Google Flights--19",
+  "verdict": "FAILURE",
+  "reason": "All screenshots show a persistent 'Oops, something went wrong' error on Google Flights with no flight results, so no cheapest flight, airline, travel time, or layover information was retrieved."
+}

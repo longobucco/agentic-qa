@@ -1,0 +1,8 @@
+{
+  "id": "Allrecipes--40",
+  "bucket": "Allrecipes",
+  "web_name": "Allrecipes",
+  "ques": "Browse the about us section of Allrecipes for a brief introduction to The Allrecipes Allstars.",
+  "web": "https://www.allrecipes.com/",
+  "answer": "Unable to access the Allrecipes About Us / Allstars content \u2014 the live site (People Inc.) is hard-blocking this environment's IP with an access-denied page on every URL, so the requested introduction to The Allrecipes Allstars could not be retrieved."
+}

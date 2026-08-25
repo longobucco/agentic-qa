@@ -1,0 +1,7 @@
+I was unable to complete the task. The AllRecipes site (operated by People Inc.) is **hard-blocking this container's IP address**. Every URL I tried — the homepage (`www.allrecipes.com` and `allrecipes.com`), the search page (`/search?q=vegetarian+lasagna`), and a direct recipe page — returned only an access-issue page:
+
+> "If you are a reader experiencing an access issue, please contact support@people.inc... you may include your IP address."
+
+No recipe content, search box, or navigation is reachable, so I cannot browse to or verify any vegetarian lasagna recipe (reviews, rating, or servings) on the live site. This is a server-side IP block, not something dismissible via cookie banners or fixable by reloading/retrying different URL variants (all attempts produced identical results).
+
+ANSWER: Unable to complete — allrecipes.com is blocking this container's IP on every page (homepage, search, and recipe URLs all return a "reader experiencing an access issue" block), so no vegetarian lasagna recipe could be accessed or verified.

@@ -1,0 +1,8 @@
+{
+  "id": "ArXiv--14",
+  "bucket": "ArXiv",
+  "web_name": "ArXiv",
+  "ques": "On ArXiv, how many articles have 'SimCSE' in the article and are originally announced in October 2023?",
+  "web": "https://arxiv.org/",
+  "answer": "4"
+}

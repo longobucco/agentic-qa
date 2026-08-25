@@ -1,0 +1,5 @@
+{
+  "id": "Google Flights--13",
+  "verdict": "SUCCESS",
+  "reason": "Screenshots show Google Flights with the correct route (NYC\u2192Tokyo), dates (Jul 10\u201324), round trip, sorted by cheapest, and the lowest option is Qatar Airways \u20ac1,318 (1 stop via DOH, JFK\u2192NRT, 42h50m), exactly matching the response."
+}

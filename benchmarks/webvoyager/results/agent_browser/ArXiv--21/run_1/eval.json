@@ -1,0 +1,5 @@
+{
+  "id": "ArXiv--21",
+  "verdict": "SUCCESS",
+  "reason": "The final screenshot shows ArXiv Advanced Search results with the correct query, Computer Science classification, and last-week date range (2026-06-19 to 2026-06-26) displaying 'Showing 1\u201313 of 13 results', confirming the reported count of 13 papers."
+}

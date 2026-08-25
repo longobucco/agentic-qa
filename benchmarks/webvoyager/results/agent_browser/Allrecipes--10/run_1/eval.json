@@ -1,0 +1,5 @@
+{
+  "id": "Allrecipes--10",
+  "verdict": "FAILURE",
+  "reason": "Both screenshots show an Allrecipes access-block error page rather than the 1960s recipe collection, and no recipe name or times were captured or answered."
+}

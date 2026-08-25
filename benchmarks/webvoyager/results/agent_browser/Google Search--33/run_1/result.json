@@ -1,0 +1,8 @@
+{
+  "id": "Google Search--33",
+  "bucket": "Google Search",
+  "web_name": "Google Search",
+  "ques": "Find and copy the SHA of the latest commit in the TensorFlow repository on GitHub, then find a textbox to paste and tell me what the SHA is.",
+  "web": "https://www.google.com/",
+  "answer": "The latest TensorFlow commit SHA is 0a588858a9980625e9e14916a540b036e4c661c1 (short: 0a58885)"
+}

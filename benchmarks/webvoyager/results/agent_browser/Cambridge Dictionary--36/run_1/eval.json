@@ -1,0 +1,5 @@
+{
+  "id": "Cambridge Dictionary--36",
+  "verdict": "FAILURE",
+  "reason": "The final screenshots show only a Cloudflare bot-verification page on dictionary.cambridge.org, with no indirect-speech guidelines or direct\u2192indirect examples ever reached."
+}

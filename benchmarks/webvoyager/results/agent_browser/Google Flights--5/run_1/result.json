@@ -1,0 +1,8 @@
+{
+  "id": "Google Flights--5",
+  "bucket": "Google Flights",
+  "web_name": "Google Flights",
+  "ques": "Find flights from Chicago to London on 20 December and return on 23 December.",
+  "web": "https://www.google.com/travel/flights/",
+  "answer": "Round-trip flights from Chicago (ORD) to London (LHR) departing Sun Dec 20 and returning Wed Dec 23 are available. Best options start at \u20ac953 (Air Canada/United, 1 stop, 10 hr); the cheapest nonstop is United at \u20ac1,073 (8 hr 10 min); the overall cheapest is \u20ac885 (Scandinavian Airlines, 1 stop)."
+}

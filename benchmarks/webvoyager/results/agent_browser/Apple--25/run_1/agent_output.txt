@@ -1,0 +1,3 @@
+The latest Apple TV model — the **Apple TV 4K (3rd generation)** — is powered by the **A15 Bionic chip**. The Apple TV 4K page's comparison section confirms this for both configurations (Wi-Fi at $199 and Wi-Fi + Ethernet at $249), each listing the A15 Bionic chip as its processor.
+
+ANSWER: The latest Apple TV (Apple TV 4K, 3rd generation) uses the A15 Bionic chip.

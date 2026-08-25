@@ -1,0 +1,5 @@
+{
+  "id": "Google Map--32",
+  "verdict": "FAILURE",
+  "reason": "The agent only applied the 'Open now' filter and the results still include 24-hour plumbers (e.g., Lapin Services shows 'Abierto las 24 horas'), so the required 'not open 24 hours' constraint was not satisfied."
+}

@@ -1,0 +1,3 @@
+The task is complete. I searched for round-trip flights from Helsinki to New Delhi, departing Tue, Jul 28, 2026 and returning Tue, Aug 4, 2026, then applied the price filter "up to $1,000" (in USD). The filtered results display only flights under $1000, with the top result being a $922 round-trip (Finnair + British Airways, 1 stop via London Heathrow).
+
+ANSWER: Round-trip Helsinki (HEL) → New Delhi (DEL), Jul 28 – Aug 4, 2026, filtered to under $1,000 (USD). The matching flight shown is $922 round trip (Finnair + British Airways, 1 stop, 13 hr 30 min); the "up to $1,000" price filter is active.

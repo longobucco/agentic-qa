@@ -1,0 +1,5 @@
+{
+  "id": "Cambridge Dictionary--29",
+  "verdict": "FAILURE",
+  "reason": "Screenshots show only a Cloudflare human-verification page; the agent never reached the Plus Image quizzes nor obtained any quiz score."
+}

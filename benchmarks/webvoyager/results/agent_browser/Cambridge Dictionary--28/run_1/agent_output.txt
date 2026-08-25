@@ -1,0 +1,5 @@
+I was unable to complete the lookup on the live site. Every page on `dictionary.cambridge.org` (homepage, `/thesaurus/`, and the direct thesaurus search URL for "feel giddy") returned a Cloudflare "Verify you are human" security challenge. I clicked the verification checkbox multiple times across several reloads and waited extended periods, but the challenge kept looping back ("Performing security verification" → checkbox → repeat) and never cleared for this headless Chromium browser. The final screenshot shows the blocked Cloudflare challenge state.
+
+Because the live Thesaurus page never loaded, I could not read the synonyms it provides, and I won't fabricate them.
+
+ANSWER: Could not complete — dictionary.cambridge.org is blocked by a persistent Cloudflare "Verify you are human" challenge that the headless browser cannot pass, so the Thesaurus entry for "feel giddy" never loaded and its synonyms could not be retrieved.

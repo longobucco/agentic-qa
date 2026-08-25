@@ -1,0 +1,3 @@
+I've successfully navigated to ESPN's Philadelphia 76ers Injuries page. The page (under the team's "Injuries" tab, data provided by Rotowire) currently shows "No Data Available," since it's the NBA off-season — the 2026 NBA Draft is underway, so there are no active injuries listed for the team at this time.
+
+ANSWER: The ESPN Philadelphia 76ers Injuries page currently shows "No Data Available" — there are no injuries listed for the 76ers at this time (it's the NBA off-season, with the 2026 NBA Draft underway).

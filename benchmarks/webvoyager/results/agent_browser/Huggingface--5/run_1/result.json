@@ -1,0 +1,8 @@
+{
+  "id": "Huggingface--5",
+  "bucket": "Huggingface",
+  "web_name": "Huggingface",
+  "ques": "Find a model released on Hugging Face for recipe generation. Retrieve the information of the model, including its name, model size and tensor type.",
+  "web": "https://huggingface.co/",
+  "answer": "Name: flax-community/t5-recipe-generation (Chef Transformer, T5); Model size: 0.2B params; Tensor type: F32"
+}

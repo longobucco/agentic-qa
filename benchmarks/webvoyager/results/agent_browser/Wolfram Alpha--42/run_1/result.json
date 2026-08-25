@@ -1,0 +1,8 @@
+{
+  "id": "Wolfram Alpha--42",
+  "bucket": "Wolfram Alpha",
+  "web_name": "Wolfram Alpha",
+  "ques": "What is the raw memory of a 100.2\" * 123.5\" true colour picture at 72 ppi?",
+  "web": "https://www.wolframalpha.com/",
+  "answer": "About 1.92451\u00d710\u2078 bytes \u2248 192.451 MB (megabytes), equivalently \u2248183.536 MiB or \u22481.53961\u00d710\u2079 bits."
+}

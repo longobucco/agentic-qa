@@ -1,0 +1,8 @@
+{
+  "id": "Google Map--39",
+  "bucket": "Google Map",
+  "web_name": "Google Map",
+  "ques": "Find a route from Miami to New Orleans, and provide the detailed route information.",
+  "web": "https://www.google.com/maps/",
+  "answer": "Driving route Miami \u2192 New Orleans: 12 h 41 min, 868 miles via I-10 W (fastest, has tolls, destination in a different time zone). Steps: (1) Take I-95 N \u2014 6 min (1.4 mi); (2) Take Florida's Tpke, I-75 N and I-10 W toward Cleveland Ave, exit 235B from I-10 W \u2014 12 h 14 min (866 mi); (3) Continue on Cleveland Ave to Loyola Ave \u2014 4 min (0.7 mi), arriving New Orleans, LA."
+}

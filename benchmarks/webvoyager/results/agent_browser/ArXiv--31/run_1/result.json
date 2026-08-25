@@ -1,0 +1,8 @@
+{
+  "id": "ArXiv--31",
+  "bucket": "ArXiv",
+  "web_name": "ArXiv",
+  "ques": "Search ArXiv for papers with 'Graph Neural Networks' in the abstract that were submitted between Jan 1, 2024, and Jan 3, 2024, and determine how many of these papers have more than five authors.",
+  "web": "https://arxiv.org/",
+  "answer": "2 papers have more than five authors (arXiv:2401.00755 with 7 authors and arXiv:2304.14274 with 9 authors), out of 5 total matching papers."
+}

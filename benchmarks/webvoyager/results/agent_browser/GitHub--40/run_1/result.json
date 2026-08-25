@@ -1,0 +1,8 @@
+{
+  "id": "GitHub--40",
+  "bucket": "GitHub",
+  "web_name": "GitHub",
+  "ques": "Select Sign up on the GitHub homepage to see if email 'test123@gmail.com' already exists.",
+  "web": "https://github.com/",
+  "answer": "Yes, the email 'test123@gmail.com' already exists \u2014 GitHub's sign-up form shows \"The email you have provided is already associated with an account.\""
+}

@@ -1,0 +1,7 @@
+I was unable to complete the task. Allrecipes is completely inaccessible from this container's IP address. Every URL I tried — the homepage (`/`), the search page (`/search?q=baked+salmon`), and a direct recipe page — returned an identical access-block page:
+
+> "If you are a reader experiencing an access issue, please contact support@people.inc..."
+
+This is a hard server-side IP/bot block from the site's operator (People Inc), not a cookie or consent banner that can be dismissed, and not a transient error. No recipe content (ratings, reviews, ingredients, or cooking times) was reachable, so I cannot identify a qualifying baked salmon recipe or its seasoning/cooking time.
+
+ANSWER: Unable to complete — allrecipes.com is blocked from this environment (server returns an "access issue" page for all URLs), so no baked salmon recipe data (rating, reviews, seasoning, or cooking time) could be retrieved.

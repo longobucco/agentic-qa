@@ -1,0 +1,5 @@
+{
+  "id": "Apple--16",
+  "verdict": "FAILURE",
+  "reason": "Screenshots confirm there are 2 types of AirPods (3rd generation) but show no prices for either, and the agent admits the page no longer displays prices, so the required price-difference part is unverified and sourced from outside knowledge rather than the Apple website."
+}

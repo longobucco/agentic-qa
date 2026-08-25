@@ -1,0 +1,5 @@
+{
+  "id": "Allrecipes--6",
+  "verdict": "FAILURE",
+  "reason": "Every screenshot shows an Allrecipes access-block page with no recipe, rating, or review data, so no qualifying vegetarian lasagna recipe was found."
+}

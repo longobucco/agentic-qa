@@ -1,0 +1,8 @@
+{
+  "id": "Wolfram Alpha--21",
+  "bucket": "Wolfram Alpha",
+  "web_name": "Wolfram Alpha",
+  "ques": "Calculate (1+0.1*i)^8 + (1\u22120.2*i)^8  where i is a complex number.",
+  "web": "https://www.wolframalpha.com/",
+  "answer": "0.717183 \u2212 0.425258 i (approximately; in polar form \u2248 0.833784\u00b7e^(\u22120.535225 i))"
+}

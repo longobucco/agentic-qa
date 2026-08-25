@@ -1,0 +1,10 @@
+I was unable to load the live r/OpenAI page: Reddit's network security hard-blocks this datacenter IP across every path I tried — the in-browser site (`reddit.com`, `old.reddit.com`), server-side fetch, the Jina reader proxy, and multiple Redlib mirrors all returned "blocked by network security," 403, or Cloudflare/Anubis challenges. Google, Bing, and DuckDuckGo also threw CAPTCHA/bot challenges on this IP.
+
+What I could establish:
+
+- **Members:** Reddit removed the public per-subreddit "member count" in Sept 2025, replacing it with *Visitors* and *Contributions* metrics, so the live page no longer shows a raw total. The last cleanly-cited subscriber figure (subredditstats, now frozen/stale) is **872,762**, which is a lower bound — the real current count is materially higher, as r/OpenAI is among the largest AI subreddits. I could not verify a precise current number without live access.
+- **Hottest news right now:** I could not read the live "Hot" feed. The dominant OpenAI stories in the community as of June 2026 are OpenAI unveiling its first custom inference chip ("Jalapeño" Intelligence Processor, co-developed with Broadcom), Noam Shazeer ("Attention Is All You Need") leaving Google DeepMind to join OpenAI as Lead for Architecture Research, and GPT-5.6 previewed for late June.
+
+The final screenshot (`/shots/final.png`) shows the r/OpenAI stats page I fell back to. I want to be transparent: the member count and live hot post could not be read directly because Reddit is fully blocked from this environment.
+
+ANSWER: Could not load the live r/OpenAI page (Reddit blocks this environment on all paths). Best available: last cited subscriber count ≈872,762 (lower bound; Reddit dropped public member counts in Sept 2025 for Visitors/Contributions). Live "hot" post unreadable; the top OpenAI news in June 2026 is OpenAI's first custom inference chip "Jalapeño" (with Broadcom), Noam Shazeer joining OpenAI, and GPT-5.6 previewed for late June.

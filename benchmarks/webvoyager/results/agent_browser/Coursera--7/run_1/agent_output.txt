@@ -1,0 +1,7 @@
+I have all the required information confirmed from the Coursera search results.
+
+The search for "Reinforcement Learning" returned several Intermediate-level offerings rated ≥ 4.5. The best match that is an actual **Course** at **Intermediate** level with a rating of at least 4.5 is **Fundamentals of Reinforcement Learning** by the University of Alberta — rated **4.8 out of 5** with **2.9K reviews** (Intermediate · Course).
+
+(Other qualifying Intermediate options included the "Reinforcement Learning" specialization by University of Alberta — 4.7, 3.6K reviews — and IBM's "Deep Learning and Reinforcement Learning" — 4.6, 300 reviews.)
+
+ANSWER: Fundamentals of Reinforcement Learning — offered by the University of Alberta (Intermediate level), rated 4.8/5 with 2.9K reviews.

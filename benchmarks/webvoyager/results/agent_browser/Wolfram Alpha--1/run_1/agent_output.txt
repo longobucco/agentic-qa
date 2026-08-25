@@ -1,0 +1,3 @@
+Wolfram Alpha returned a "Defining inequalities" section for the pentagram (interpreted as a lamina). A constraint from that set of inequalities is, e.g., `2a + 3√5·x + 5x ≥ √(2(5+√5))·y`.
+
+ANSWER: One constraint from the pentagram's defining inequalities is: 2a + 3√5·x + 5x ≥ √(2(5+√5))·y (with the variable constraint a > 0). This is one conjunct of Wolfram|Alpha's full "Defining inequalities" set for the pentagram lamina.

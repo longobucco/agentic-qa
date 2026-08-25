@@ -1,0 +1,8 @@
+{
+  "id": "Allrecipes--14",
+  "bucket": "Allrecipes",
+  "web_name": "Allrecipes",
+  "ques": "Search for a recipe that includes \"chicken breast\" and \"quinoa\" with preparation time under 30 minutes on Allrecipes.",
+  "web": "https://www.allrecipes.com/",
+  "answer": "Could not complete \u2014 Allrecipes returned an IP/network-level access-block page (from parent company People Inc) on every request, serving no searchable content; the site is inaccessible from this environment."
+}

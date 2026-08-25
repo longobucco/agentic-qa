@@ -1,0 +1,6 @@
+I successfully completed the task. On WolframAlpha, I queried "Albert Einstein curve parametric equations", which produced:
+- **Input interpretation:** first Albert Einstein curve (popular curve) | parametric equations
+- **Result:** the full parametric equations x(t) and y(t) (a piecewise Fourier sine series using Heaviside step functions)
+- **Plot:** the rendered Albert Einstein curve
+
+ANSWER: Plotted the Albert Einstein curve on WolframAlpha via its parametric equations — x(t) and y(t) are given as a piecewise Fourier sine series (using Heaviside θ step functions), and the result page shows both these parametric equations and the rendered plot of Einstein's face/portrait curve.

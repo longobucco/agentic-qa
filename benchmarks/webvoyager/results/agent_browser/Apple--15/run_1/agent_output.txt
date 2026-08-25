@@ -1,0 +1,5 @@
+The final screenshot captures the Customizations panel showing the Keyboard option for the 14-inch MacBook Pro.
+
+I navigated to Apple's 14-inch MacBook Pro buy/customize page. In the Customizations section, the **Keyboard** option is listed as "Available in 20 languages" — i.e., 20 different keyboard layout/type options. (On the current site the M5 chip selection is gated, so the per-option configurator can't be expanded further, but the keyboard availability is surfaced directly in the customization summary.)
+
+ANSWER: 20

@@ -1,0 +1,5 @@
+{
+  "id": "Booking--30",
+  "verdict": "FAILURE",
+  "reason": "The agent ran out of turns without producing an answer; the final screenshots show no filtered results\u2014just the homepage calendar\u2014and the required Breakfast/Fitness-filtered hotel count is never reached or reported."
+}

@@ -1,0 +1,1 @@
+I'll wait for the background poller to finish — the monitor will notify me when the access block lifts or all 12 attempts are exhausted (~4 min total).

@@ -1,0 +1,5 @@
+{
+  "id": "Wolfram Alpha--19",
+  "verdict": "SUCCESS",
+  "reason": "The Wolfram Alpha screenshot shows the time-to-sunburn table for SPF 5, 11:00 am, Australia with skin type I = 2.5 h, II = 3.5 h, and III/IV marked 'sunburn unlikely', matching the agent's response."
+}

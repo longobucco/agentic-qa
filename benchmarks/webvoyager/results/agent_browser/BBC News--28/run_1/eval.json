@@ -1,0 +1,5 @@
+{
+  "id": "BBC News--28",
+  "verdict": "SUCCESS",
+  "reason": "The screenshot confirms the agent reached BBC's Market Data page and accurately reported its current state\u2014the feeds were discontinued on 26 November 2024 with no data provider named on the page."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "ESPN--41",
+  "bucket": "ESPN",
+  "web_name": "ESPN",
+  "ques": "Find out which four teams the NFC North contains in the NFL on ESPN.",
+  "web": "https://www.espn.com/",
+  "answer": "The NFC North contains four teams: the Chicago Bears, Green Bay Packers, Minnesota Vikings, and Detroit Lions."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "Wolfram Alpha--45",
+  "bucket": "Wolfram Alpha",
+  "web_name": "Wolfram Alpha",
+  "ques": "A 175cm tall, 85kg, 40yo man climbs 2500 steps at about 18cm per step and 40 steps per minute. summarise the Metabolic properties.",
+  "web": "https://www.wolframalpha.com/",
+  "answer": "For a 175 cm, 85 kg, 40 yo man climbing 2500 steps (18 cm/step, 40 steps/min): energy expenditure \u2248 2720 kJ (~650 kcal), ~1.1 kJ per step, fat burned \u2248 0.084 kg, oxygen consumption \u2248 129.9 L, and a metabolic equivalent of \u2248 7 METs."
+}

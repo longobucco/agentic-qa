@@ -1,0 +1,3 @@
+I was unable to complete the search. Allrecipes (via its parent company People Inc) is returning a network/IP-level **access-block page** for every request from this environment — both the homepage and the direct search URL. I confirmed this across multiple reloads over ~30 seconds; the only content the site serves is an "access issue" notice with a support contact, with no search box, cookie banner, or JS challenge to interact with. This is an IP block on the container, not something the browser agent can navigate around.
+
+ANSWER: Could not complete — Allrecipes returned an IP/network-level access-block page (from parent company People Inc) on every request, serving no searchable content; the site is inaccessible from this environment.

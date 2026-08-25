@@ -1,0 +1,8 @@
+{
+  "id": "Allrecipes--37",
+  "bucket": "Allrecipes",
+  "web_name": "Allrecipes",
+  "ques": "Search for a Greek salad recipe on Allrecipes that has a prep time of under 25 minutes and more than 15 reviews. Include the primary cheese used and the type of dressing recommended.",
+  "web": "https://www.allrecipes.com/",
+  "answer": "Unable to complete \u2014 Allrecipes returns an HTTP 402 access-block page (Cloudflare/People Inc.) for all URLs from this environment, so no Greek salad recipe, prep time, review count, cheese, or dressing could be retrieved."
+}

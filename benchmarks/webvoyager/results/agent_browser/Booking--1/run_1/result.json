@@ -1,0 +1,8 @@
+{
+  "id": "Booking--1",
+  "bucket": "Booking",
+  "web_name": "Booking",
+  "ques": "Find the cheapest available hotel room for a three night stay from 1st Jun in Jakarta. The room is for 2 adults, just answer the cheapest hotel room and the price.",
+  "web": "https://www.booking.com/",
+  "answer": ""
+}

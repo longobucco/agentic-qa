@@ -1,0 +1,8 @@
+{
+  "id": "Apple--30",
+  "bucket": "Apple",
+  "web_name": "Apple",
+  "ques": "Check the storage options and prices for the latest iPad Pro models on Apple's website.",
+  "web": "https://www.apple.com/",
+  "answer": "The latest iPad Pro (M5) offers four storage options: 256GB (from $1,199), 512GB (from $1,399), 1TB (from $1,799), and 2TB (from $2,299). The 256GB/512GB models have 12GB memory and a 9-core CPU M5; the 1TB/2TB models have 16GB memory and a 10-core CPU M5, plus an optional nano-texture glass upgrade (from $1,899)."
+}

@@ -1,0 +1,3 @@
+I've located the Battery and Power section in the MacBook Air Tech Specs. The latest MacBook Air (Apple M5, testing conducted by Apple in January 2026) lists under **Battery and Power**: "Up to 18 hours video streaming" and "Up to 15 hours wireless web." Wireless web is Apple's measure for web browsing battery life (tested by browsing 25 popular websites over Wi‑Fi).
+
+ANSWER: Up to 15 hours of wireless web browsing (the latest MacBook Air with Apple M5 has a 53.8‑watt‑hour battery rated for up to 15 hours of wireless web browsing, and up to 18 hours of video streaming).

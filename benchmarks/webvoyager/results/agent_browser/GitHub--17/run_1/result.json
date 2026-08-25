@@ -1,0 +1,8 @@
+{
+  "id": "GitHub--17",
+  "bucket": "GitHub",
+  "web_name": "GitHub",
+  "ques": "Locate a C++ project on GitHub that has been recently updated in the last week and has at least 500 stars, then describe its main purpose.",
+  "web": "https://github.com/",
+  "answer": "tensorflow/tensorflow \u2014 a C++ project with ~196k stars, updated minutes ago (within the last week). Its main purpose is to serve as an open-source, end-to-end machine learning framework for building, training, and deploying machine learning and deep neural network models across many platforms (CPU/GPU/TPU), from research to production."
+}

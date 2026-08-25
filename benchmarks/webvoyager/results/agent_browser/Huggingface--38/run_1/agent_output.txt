@@ -1,0 +1,18 @@
+I've investigated the transformers documentation on adding new tokens to a tokenizer. The relevant page is the **Tokenizer** main-class reference (`huggingface.co/docs/transformers/main_classes/tokenizer`).
+
+Key findings — to add new tokens to a tokenizer:
+
+- **`tokenizer.add_tokens([...])`** — adds a list of new regular tokens to the vocabulary (appended to the end), independent of the underlying algorithm (BPE, SentencePiece, etc.). Returns the number of tokens actually added.
+- **`tokenizer.add_special_tokens({...})`** — adds new *special* tokens (e.g. `cls_token`, `pad_token`, or custom ones via `additional_special_tokens`).
+- **Crucial follow-up:** after adding tokens you must resize the model's embedding matrix with **`model.resize_token_embeddings(len(tokenizer))`** so it matches the new vocabulary size (it expects the full new vocabulary length).
+
+Example from the docs:
+```python
+tokenizer = BertTokenizerFast.from_pretrained("google-bert/bert-base-uncased")
+model = BertModel.from_pretrained("google-bert/bert-base-uncased")
+
+num_added_toks = tokenizer.add_tokens(["new_tok1", "my_new-tok2"])
+model.resize_token_embeddings(len(tokenizer))
+```
+
+ANSWER: In the Transformers docs (Tokenizer main-class reference), you add new tokens with `tokenizer.add_tokens([...])` for regular tokens or `tokenizer.add_special_tokens({...})` for special tokens, then resize the model embeddings with `model.resize_token_embeddings(len(tokenizer))` to match the enlarged vocabulary.

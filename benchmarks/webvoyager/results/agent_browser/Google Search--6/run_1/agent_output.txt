@@ -1,0 +1,5 @@
+I've completed the task. The browser is now showing the trending searches for **Columbus OH** on Google Trends, set to the longest available period (Past 7 days). Note: Google Trends' "Trending now" view caps its time range at Past 7 days, so a true "monthly" period isn't selectable in this interface — I selected the closest available option.
+
+Top trending searches in Columbus include: fifa world cup 2026 standings, ecuador vs germany, valeri nichushkin, columbus blue jackets, tornado warning, gta 6, and pizza (little caesars).
+
+ANSWER: Browsed Google Trends "Trending now" for Columbus OH. The interface's longest period is Past 7 days (no monthly option exists), so I set that. Top trends: fifa world cup 2026 standings, ecuador vs germany, valeri nichushkin, columbus blue jackets, tornado warning, gta 6, pizza.

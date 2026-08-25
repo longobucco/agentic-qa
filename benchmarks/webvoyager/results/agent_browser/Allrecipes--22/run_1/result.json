@@ -1,0 +1,8 @@
+{
+  "id": "Allrecipes--22",
+  "bucket": "Allrecipes",
+  "web_name": "Allrecipes",
+  "ques": "Find a recipe for a healthy avocado salad on Allrecipes that has a preparation time of less than 20 minutes and more than 30 user reviews. Include the nutritional information per serving.",
+  "web": "https://www.allrecipes.com/",
+  "answer": "Unable to complete \u2014 Allrecipes (People Inc.) is blocking this environment's IP address; every URL returns an \"access issue\" page, so no recipe, prep time, review count, or nutrition data could be retrieved."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "Cambridge Dictionary--20",
+  "bucket": "Cambridge Dictionary",
+  "web_name": "Cambridge Dictionary",
+  "ques": "Look up the definition, pronunciation (both UK and US), and find one example sentence for the word \"altruism\" in the Cambridge Dictionary.",
+  "web": "https://dictionary.cambridge.org/",
+  "answer": "Could not complete the lookup \u2014 dictionary.cambridge.org blocked the automated browser with a looping Cloudflare \"Performing security verification\" challenge that the headless session could not pass, so the definition/pronunciation/example page never loaded."
+}

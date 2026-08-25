@@ -1,0 +1,5 @@
+{
+  "id": "GitHub--23",
+  "verdict": "SUCCESS",
+  "reason": "Screenshots show the ohmyzsh GitHub wiki Themes page, and the response correctly explains setting ZSH_THEME=\"agnoster\" in ~/.zshrc and reloading, matching the page's documented method."
+}

@@ -1,0 +1,3 @@
+The task is complete. Wolfram Alpha simplified the 6-term polynomial into a 3-term form.
+
+ANSWER: (x − 4)^5 + 3(x − 4)^3 + 7

@@ -1,0 +1,5 @@
+The task is complete. Using ESPN's NBA player salaries page for the 2023-24 season (year/2024) filtered/sorted by salary, I identified the highest-paid Boston Celtics player.
+
+On the league-wide list sorted in descending salary order, the first Boston Celtic to appear is **Jrue Holiday** ($36,861,707), ranked 23rd in the entire NBA. The next Celtics are Kristaps Porzingis ($36,016,200) and Jayson Tatum ($32,600,060) — both lower — confirming Holiday as the team's top earner.
+
+ANSWER: Jrue Holiday had the highest salary on the 2023-24 Boston Celtics roster at $36,861,707.

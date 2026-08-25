@@ -1,0 +1,3 @@
+The ESPN NBA Teams page lists all 30 NBA teams. Of those, two contain "New" in their name: **New Orleans Pelicans** and **New York Knicks**.
+
+ANSWER: There are 30 NBA teams. The teams with 'New' in their name are: New Orleans Pelicans and New York Knicks.

@@ -1,0 +1,8 @@
+{
+  "id": "BBC News--25",
+  "bucket": "BBC News",
+  "web_name": "BBC News",
+  "ques": "Find the most recent sports analysis article on BBC News related to the English Premier League and summarize its key insights.",
+  "web": "https://www.bbc.com/news/",
+  "answer": "The most recent BBC Sport Premier League analysis is \"Anderson's journey to England star and potential record signing\" (updated 25 June 2026). It analyses Elliot Anderson's rise from Newcastle's academy/Wallsend Boys' Club to England, and his impending club-record \u00a3116m (possibly \u00a3130m) transfer from Nottingham Forest to Manchester City. Key insights: Newcastle were forced to sell him cheaply (\u00a330m) in 2024 over PSR rules; he chose England over Scotland and is now central to Tuchel's World Cup side; and his elite 2025-26 stats (most Premier League touches at 3,300, most possessions won at 306, most duels won at 297, most fouls drawn at 80) justify the record fee, with City lining him up under expected new coach Enzo Maresca."
+}

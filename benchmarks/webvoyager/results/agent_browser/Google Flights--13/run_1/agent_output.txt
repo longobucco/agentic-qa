@@ -1,0 +1,5 @@
+I've completed the task. On Google Flights I set the route New York City → Tokyo, departure July 10, 2026, return July 24, 2026, round trip, and sorted by **Cheapest**. The fully-loaded results (12 results) confirm the lowest-priced round-trip option.
+
+The cheapest round-trip option is **Qatar Airways at €1,318** (round trip total) — 1 stop, departing JFK at 11:20 AM on Fri, Jul 10 and arriving at Tokyo Narita (NRT) on Sun, Jul 12, with a 20 hr 10 min overnight layover in Doha (DOH), total duration 42 hr 50 min. (The cheapest nonstop option was American/JAL at €1,667.)
+
+ANSWER: The cheapest round-trip NYC→Tokyo flight for Jul 10–24, 2026 is Qatar Airways at €1,318 round trip (1 stop via Doha, JFK→NRT, ~42h 50m total).

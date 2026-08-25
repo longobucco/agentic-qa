@@ -1,0 +1,5 @@
+{
+  "id": "GitHub--20",
+  "verdict": "SUCCESS",
+  "reason": "The final screenshots show GitHub Copilot's official FAQ open with the relevant question expanded, displaying the text 'All plans are supported in GitHub Copilot in GitHub Mobile,' which matches the agent's response and satisfies the task."
+}

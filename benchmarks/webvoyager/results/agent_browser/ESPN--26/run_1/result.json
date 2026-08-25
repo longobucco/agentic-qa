@@ -1,0 +1,8 @@
+{
+  "id": "ESPN--26",
+  "bucket": "ESPN",
+  "web_name": "ESPN",
+  "ques": "Find information on ESPN NBA schedule. Tell me yesterday's matchups in which the loser high was higher than the winner high.",
+  "web": "https://www.espn.com/",
+  "answer": "There were no NBA games yesterday (Thursday, June 25, 2026) \u2014 the ESPN NBA Schedule shows \"No Data Available\" for that date, as the season ended with the NBA Finals on June 14, 2026. Therefore there are no matchups in which the loser high was higher than the winner high."
+}

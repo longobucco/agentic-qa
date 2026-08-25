@@ -1,0 +1,9 @@
+I found a course that satisfies all the task criteria.
+
+The course **"Ethics of Artificial Intelligence"** by **Politecnico di Milano** is a clear match:
+- **Topic**: Artificial intelligence ethics
+- **Duration**: 4 hours to complete (well under 20 hours)
+- **Rating**: 4.8 out of 5 stars (320 reviews) — exceeds the 4+ star requirement
+- **Level**: Beginner
+
+ANSWER: "Ethics of Artificial Intelligence" by Politecnico di Milano — 4.8 stars (320 reviews), 4 hours to complete (under 20 hours).

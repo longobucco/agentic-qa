@@ -1,0 +1,5 @@
+I was unable to complete the task because **Allrecipes is blocking this environment's IP**. Every URL on `allrecipes.com` — the homepage, the search results page, and individual recipe pages — returns an HTTP **402 "access issue"** page instead of any content, via both the headless browser and a direct curl. I retried multiple times across several minutes and the block was consistent, so it is an IP/bot-level CDN block, not an intermittent rate limit.
+
+Because no recipe data is actually retrievable from the live site, I can't truthfully report a specific recipe's prep time, rating, or calories — fabricating those from memory would misrepresent what the live site returned. The final screenshot captures the block page.
+
+ANSWER: Unable to complete — Allrecipes blocked all requests from this environment (HTTP 402 "access issue" page on every URL, including the homepage, search, and recipe pages), so no recipe, rating, prep time, or calorie data could be retrieved from the live site.

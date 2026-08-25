@@ -1,0 +1,5 @@
+The final screenshot confirms success: a green "Added to cart" checkmark, the item details (Size: 128GB, Color: Pacific Blue, Renewed), Cart Subtotal $307.00, and the cart icon showing 1 item.
+
+The task is complete. I found the Apple iPhone 12 Pro, 128GB, Pacific Blue and added it to the cart (after resolving a shipping-location block by setting a US delivery ZIP code, and declining the optional protection plan).
+
+ANSWER: Added "Apple iPhone 12 Pro, 128GB, Pacific Blue (Renewed)" to the cart — cart now shows 1 item, subtotal $307.00.

@@ -1,0 +1,5 @@
+The task is complete. I searched for "Data Analysis" on Coursera, applied the **Beginner level** and **1–3 Months duration** filters (both confirmed active — "Filter & Sort (2)" with the "Beginner" and "1-3 Months" chips visible), and enumerated the matching results.
+
+The live blended search page does not display a single numeric total; instead it renders the full matching set, which I counted by enumerating every course card labeled "Beginner · … · 1 - 3 Months". The count was stable at **24** after scrolling to the bottom (no pagination or load-more) — comprising 19 courses and 5 specializations.
+
+ANSWER: 24 courses match the filters (Beginner Level + 1–3 Months duration) for the 'Data Analysis' search on Coursera.

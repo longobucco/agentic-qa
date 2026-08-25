@@ -1,0 +1,3 @@
+The query was computed successfully. WolframAlpha interpreted it as the arc length integral ∫₀³ √(1 + (4 − 6x + 6x²)²) dx and returned the result.
+
+ANSWER: The arc length of y = 2x³ − 3x² + 4x − 5 from x = 0 to x = 3 is approximately 39.24992727 (≈ 39.25).

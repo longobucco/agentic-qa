@@ -1,0 +1,5 @@
+{
+  "id": "Google Map--40",
+  "verdict": "FAILURE",
+  "reason": "The restaurant was correctly found (Boston Sail Loft, 4.6\u2605), but the second required part\u2014checking a one-star review\u2014was never accomplished, with no review content shown in any screenshot and the agent itself admitting it could not read the review."
+}

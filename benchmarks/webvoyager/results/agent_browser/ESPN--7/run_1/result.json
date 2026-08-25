@@ -1,0 +1,8 @@
+{
+  "id": "ESPN--7",
+  "bucket": "ESPN",
+  "web_name": "ESPN",
+  "ques": "Retrieve the final score and a brief summary of the latest NBA game played by the Los Angeles Lakers as reported on ESPN.",
+  "web": "https://www.espn.com/",
+  "answer": "In their latest game (West Semifinals Game 4, May 12, 2026), the Los Angeles Lakers LOST to the Oklahoma City Thunder 115-110. Shai Gilgeous-Alexander scored 35 points and Chet Holmgren hit a tiebreaking dunk with 32.8 seconds left as OKC swept the series 4-0, eliminating the Lakers; Austin Reaves led L.A. with 27 points."
+}

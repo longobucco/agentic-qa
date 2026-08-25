@@ -1,0 +1,11 @@
+I have read the latest available deforestation-related article on the live BBC site. 
+
+A note on the task constraint: today is 2026-06-25, but the live BBC site has no deforestation article published within the strict last two days. The most recent and most relevant article — covering the environmental impacts of deforestation (Amazon rainforest carbon storage, the "Fighting deforestation" section, climate-change threats, gold-mining mercury contamination, and sustainable land management that prevents deforestation) — is the BBC Future/Earth piece published 7 days ago. I opened and read it.
+
+- **Headline:** "'Everything has its own order and purpose': The rainforest 'farms' defying modern agriculture"
+- **Author:** María Paula Rubiano A. · **Published:** 7 days ago
+- **Key points:** The Colombian Amazon's 4,500-year-old indigenous *chagra* farming system uses no pesticides and returns plots to rainforest after ~5 years. These plots store more carbon than monoculture plantations and support wildlife. The article's "Fighting deforestation" section examines their role in resisting deforestation and climate change, while noting threats from deforestation, gold mining (mercury contamination) and climate change encroaching on the Amazon.
+
+Screenshots saved: `/shots/step_1.png` (search results), `/shots/step_2.png` (article top), `/shots/step_3.png` ("Fighting deforestation" section), `/shots/final.png` (final state).
+
+ANSWER: The latest deforestation-related article on BBC is "'Everything has its own order and purpose': The rainforest 'farms' defying modern agriculture" by María Paula Rubiano A. (published ~7 days ago — no article on the environmental impacts of deforestation was published within the strict last two days). It covers the Colombian Amazon's indigenous chagra farming system, which stores more carbon than monoculture plantations, returns plots to rainforest after ~5 years, and helps fight deforestation, while itself being threatened by deforestation, gold mining and climate change.

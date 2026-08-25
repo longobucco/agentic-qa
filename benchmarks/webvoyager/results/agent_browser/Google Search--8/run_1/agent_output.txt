@@ -1,0 +1,5 @@
+The final screenshot now clearly shows the comments section with the first comment at the top. 
+
+From both the accessibility snapshot and the screenshot, the first comment displayed under the video "Oscars 2023: Must-See Moments!" (1.3M views, 464 Comments) is from **@HotFuzzGoonayorum**, posted 3 years ago: *"They really just went and won everything everywhere all at once"* — with **400** likes (thumbs up) and **0** replies (no replies indicator appears on it, unlike the comments below it which show "12 replies", "4 replies", etc.).
+
+ANSWER: The first comment belongs to @HotFuzzGoonayorum ("They really just went and won everything everywhere all at once") and it has 400 thumbs up (likes) and 0 replies.

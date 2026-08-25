@@ -1,0 +1,8 @@
+{
+  "id": "BBC News--20",
+  "bucket": "BBC News",
+  "web_name": "BBC News",
+  "ques": "Find the latest article in the Green Living section on BBC News and provide a summary of its main points.",
+  "web": "https://www.bbc.com/news/",
+  "answer": "The latest (featured) article in BBC News' Green Living section is \"This machine turns carbon dioxide into fuel\" (19 March 2025). Main points: University of Cambridge researchers have devised a way to capture CO\u2082 from the air and convert it into a fuel called syngas, creating a carbon-neutral energy cycle; however, the technology is still being developed and is not yet publicly available."
+}

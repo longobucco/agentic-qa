@@ -1,0 +1,5 @@
+{
+  "id": "Google Search--31",
+  "verdict": "SUCCESS",
+  "reason": "The final screenshot displays Ronaldo's per-season career statistics table on Wikipedia, and the agent correctly identified the 2014\u201315 season (61 goals) as his highest-scoring single season, satisfying the task."
+}

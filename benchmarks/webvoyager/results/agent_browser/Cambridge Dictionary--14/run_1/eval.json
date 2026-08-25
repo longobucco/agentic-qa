@@ -1,0 +1,5 @@
+{
+  "id": "Cambridge Dictionary--14",
+  "verdict": "FAILURE",
+  "reason": "The agent was blocked by a Cloudflare human-verification challenge and never reached the dictionary entry, so no pronunciation, definition, or example sentence for 'concatenate' was retrieved."
+}

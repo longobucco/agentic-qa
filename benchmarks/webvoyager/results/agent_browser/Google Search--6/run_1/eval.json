@@ -1,0 +1,5 @@
+{
+  "id": "Google Search--6",
+  "verdict": "FAILURE",
+  "reason": "The screenshot shows trending searches for Columbus OH filtered to 'Past 7 days' (weekly), not the monthly period the task explicitly required."
+}

@@ -1,0 +1,5 @@
+The task is complete. Wolfram Alpha interpreted the query as the determinant of `HilbertMatrix[6]` and computed the exact result.
+
+The determinant of a 6×6 Hilbert matrix is **1/186313420339200000** ≈ 5.3672×10⁻¹⁸.
+
+ANSWER: 1/186313420339200000 (≈ 5.367 × 10⁻¹⁸)

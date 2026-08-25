@@ -1,0 +1,8 @@
+{
+  "id": "Allrecipes--12",
+  "bucket": "Allrecipes",
+  "web_name": "Allrecipes",
+  "ques": "Search for a popular cookie recipe on Allrecipes with more than 1000 reviews and a rating of 4.5 stars or better. Provide the list of ingredients needed.",
+  "web": "https://www.allrecipes.com/",
+  "answer": "Unable to complete \u2014 allrecipes.com is returning a server-side access-denied page (IP/bot block by people.inc) for all URLs (homepage, search, and direct recipe pages), so no cookie recipe or ingredient list could be retrieved."
+}

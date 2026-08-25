@@ -1,0 +1,8 @@
+The GitHub Pricing comparison confirms the GitHub Packages storage per plan:
+- **Free:** 500 MB
+- **Team:** 2 GB
+- **Enterprise:** 50 GB
+
+Enterprise (50 GB) minus Team (2 GB) = **48 GB more** package storage.
+
+ANSWER: 48GB more — GitHub Enterprise includes 50GB of Packages storage versus 2GB for Team.

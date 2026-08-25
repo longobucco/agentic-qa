@@ -1,0 +1,5 @@
+{
+  "id": "Google Map--33",
+  "verdict": "FAILURE",
+  "reason": "The agent did not determine which star level has the least proportion of reviews (Part 1), as the review histogram was unavailable in the signed-out limited view, leaving a required part of the multi-part task unsatisfied."
+}

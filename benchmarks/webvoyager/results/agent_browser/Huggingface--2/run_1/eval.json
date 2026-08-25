@@ -1,0 +1,5 @@
+{
+  "id": "Huggingface--2",
+  "verdict": "SUCCESS",
+  "reason": "The screenshot shows the Translation-filtered Hugging Face models page with the three named Tencent Hy-MT2 translation models at the top, recently updated (~1 month) and popular, satisfying all parts of the task."
+}

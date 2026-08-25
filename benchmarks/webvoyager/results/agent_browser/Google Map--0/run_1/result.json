@@ -1,0 +1,8 @@
+{
+  "id": "Google Map--0",
+  "bucket": "Google Map",
+  "web_name": "Google Map",
+  "ques": "Find 5 beauty salons with ratings greater than 4.8 in Seattle, WA.",
+  "web": "https://www.google.com/maps/",
+  "answer": "5 Seattle beauty salons rated above 4.8 \u2014 YSA Beauty Studio (5.0), Lady Neptune Hair Salon (5.0), 19th Avenue Salon/AVEDA (4.9), Salon M\u00e9rite (4.9), and Antonio Salon (4.9)."
+}

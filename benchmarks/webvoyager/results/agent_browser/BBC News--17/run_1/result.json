@@ -1,0 +1,8 @@
+{
+  "id": "BBC News--17",
+  "bucket": "BBC News",
+  "web_name": "BBC News",
+  "ques": "How many War related sections are currently in BBC News.",
+  "web": "https://www.bbc.com/news/",
+  "answer": "0 \u2014 there are currently no War-related sections in BBC News. The News navigation consists of US & Canada, UK, Africa, Asia, Australia, Europe, Latin America, Middle East, In Pictures, BBC InDepth, and BBC Verify, none of which is a war section."
+}

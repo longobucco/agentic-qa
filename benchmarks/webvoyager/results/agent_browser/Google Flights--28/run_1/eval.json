@@ -1,0 +1,5 @@
+{
+  "id": "Google Flights--28",
+  "verdict": "SUCCESS",
+  "reason": "The screenshot shows Seattle\u2192Paris round-trip for Jul 27\u2013Aug 1 with the '1 stop or fewer' filter and Cheapest sort, where the top result is the \u20ac896 Condor flight with a Frankfurt layover exactly as stated in the response."
+}

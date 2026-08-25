@@ -1,0 +1,8 @@
+{
+  "id": "ArXiv--24",
+  "bucket": "ArXiv",
+  "web_name": "ArXiv",
+  "ques": "Identify the most recent paper related to 'graph neural networks' on ArXiv and determine the affiliation of the first author.",
+  "web": "https://arxiv.org/",
+  "answer": "The most recent ArXiv paper on graph neural networks is \"Graph Neural Networks Applications Across Domains: All Insights You Need\" (arXiv:2606.27202, submitted 25 June 2026). Its first author, Abderaouf Bahi, is affiliated with the Computer Science and Applied Mathematics Laboratory (LIMA), Faculty of Science and Technology, Chadli Bendjedid University, El Tarf 36000, Algeria."
+}

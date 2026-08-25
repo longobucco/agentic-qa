@@ -1,0 +1,5 @@
+{
+  "id": "Amazon--30",
+  "verdict": "FAILURE",
+  "reason": "The only screenshot is a single product page that cannot prove the book is the highest-rated 2026 fiction with 50+ reviews, and the agent's own method filtered only the last 90 days rather than all of 2026, leaving the superlative requirement unverified."
+}

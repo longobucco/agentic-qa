@@ -1,0 +1,5 @@
+The screenshot lives inside the container (the harness collects it from `/shots`), so it isn't on the host filesystem — that's expected.
+
+I successfully searched Google Maps for Big Bend National Park and its place panel opened, displaying the basic information. Note that Google Maps served a "limited view" (no sign-in), so the basic info shown in the panel is the name, location, and country.
+
+ANSWER: Big Bend National Park — a national park / natural reserve located in Texas 79834, United States (EE. UU.). Its Google Maps place panel (limited view) shows the basic information: Name: "Big Bend National Park"; Region/Address: Texas 79834; Country: USA. Available actions include Directions, Save, Nearby, Send to phone, and Share.

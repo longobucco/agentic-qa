@@ -1,0 +1,8 @@
+{
+  "id": "Allrecipes--23",
+  "bucket": "Allrecipes",
+  "web_name": "Allrecipes",
+  "ques": "Search Allrecipes for a baked lemon chicken recipe that has a prep time under 45 minutes, with at least a 4.5-star rating based on user reviews, and over 200 reviews. List the primary ingredients required.",
+  "web": "https://www.allrecipes.com/",
+  "answer": "Unable to complete \u2014 Allrecipes blocked all access from this environment (every page, including the homepage, search, and direct recipe URLs, returned a \"People Inc.\" access-issue/IP-block page with no recipe content), so no baked lemon chicken recipe or its ingredients could be retrieved."
+}

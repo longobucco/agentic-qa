@@ -1,0 +1,9 @@
+I was unable to complete the lookup on the live site. After the homepage initially loaded and I entered the search for "sustainability," `dictionary.cambridge.org` triggered a Cloudflare "Verify you are human" Turnstile challenge that the headless Chromium could not pass. It cycled indefinitely between the verification checkbox and the "Verifying you are human…" interstitial across multiple attempts (direct navigation to the word page, reloading the homepage, single long uninterrupted waits, and re-clicking the checkbox), and eventually the block applied to the whole domain. This is a bot-detection wall I can't legitimately bypass, so the final screenshot shows the Cloudflare challenge rather than the dictionary entry.
+
+For reference, the Cambridge Dictionary entry for *sustainability* is:
+- **Pronunciation:** UK /səˌsteɪ.nəˈbɪl.ə.ti/ · US /səˌsteɪ.nəˈbɪl.ə.t̬i/
+- **Definition:** the quality of being able to continue over a period of time; (specifically) the quality of causing little or no damage to the environment and therefore able to continue for a long time.
+
+Note: I could not verify this against the live page because the site blocked the browser.
+
+ANSWER: Could not retrieve from the live site — dictionary.cambridge.org served a Cloudflare "Verify you are human" challenge that the headless browser could not pass (final.png shows the block). Per the Cambridge Dictionary, "sustainability" is pronounced UK /səˌsteɪ.nəˈbɪl.ə.ti/, US /səˌsteɪ.nəˈbɪl.ə.t̬i/ and is defined as "the quality of being able to continue over a period of time," especially causing little or no environmental damage so it can continue long-term.

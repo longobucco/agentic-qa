@@ -1,0 +1,8 @@
+{
+  "id": "BBC News--27",
+  "bucket": "BBC News",
+  "web_name": "BBC News",
+  "ques": "Find the most recent article on BBC News about archaeological discoveries and summarize the main findings and their significance.",
+  "web": "https://www.bbc.com/news/",
+  "answer": "The most recent BBC News archaeology article is \"Archaeologists' surprise at uncovering WW1 trenches\" (5 days ago). While excavating the ruins of a 15th-Century royal palace in Ampthill Great Park, Bedfordshire (home to Henry VIII and Catherine of Aragon), a DigVentures team expecting to find Tudor stables/a banqueting hall instead unexpectedly uncovered World War One training trenches \u2014 with sandbags and telegraph wires \u2014 that match a 1915 photo of the site. They plan a 3D model of the trenches. Significance: it shows how ground scans can be misleading, links the site's Tudor and WW1 history, and has deep local resonance as residents recall relatives who trained there."
+}

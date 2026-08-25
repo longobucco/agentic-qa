@@ -1,0 +1,8 @@
+{
+  "id": "Booking--24",
+  "bucket": "Booking",
+  "web_name": "Booking",
+  "ques": "Find a hotel in Barcelona for a stay from February 25-28, 2027. Please sort the results by distance from the beach and make sure they offer free Wi-Fi and breakfast.",
+  "web": "https://www.booking.com/",
+  "answer": "Searched Barcelona hotels for Feb 25\u201328, 2027 (3,912 properties shown with dates set). The free Wi-Fi/breakfast filters and \"distance from beach\" sort could not be applied because this booking.com environment redirects all search-results requests to the static Barcelona city page, which only provides Star-rating and Review-score filters and four non-beach sort options."
+}

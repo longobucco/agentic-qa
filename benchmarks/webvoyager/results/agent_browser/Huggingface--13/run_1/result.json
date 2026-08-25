@@ -1,0 +1,8 @@
+{
+  "id": "Huggingface--13",
+  "bucket": "Huggingface",
+  "web_name": "Huggingface",
+  "ques": "Search for LLaMA in the huggingface doc, what type is the spaces_between_special_tokens parameter in LlamaTokenizer and what is its default value.",
+  "web": "https://huggingface.co/",
+  "answer": "In `LlamaTokenizer`, the `spaces_between_special_tokens` parameter is of type `bool` (optional) and its default value is `False`."
+}

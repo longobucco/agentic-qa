@@ -1,0 +1,14 @@
+I was unable to complete the task because **Allrecipes is blocking all access** from this environment.
+
+What I tried:
+- Opened `https://www.allrecipes.com/` → block page
+- Opened `https://www.allrecipes.com/recipes/79/desserts/` → block page
+- Retried the homepage twice, including after a 25-second wait → still blocked
+
+What the site returns: every request gets **HTTP 402** from Cloudflare (`server: cloudflare`) with a People Inc "If you are a reader experiencing an access issue…" page. This is a deliberate edge-level/IP block on the entire `allrecipes.com` domain — not a cookie banner, login wall, or JS challenge I can dismiss or click through. No recipe content, search, or filters are reachable.
+
+I deliberately did **not** fabricate a recipe (name, ingredients, instructions), since the task requires sourcing a real recipe from Allrecipes and the live site is inaccessible. The constraint to "stay on the task's website" rules out substituting another recipe source.
+
+To proceed, the environment would need an egress IP that isn't blocked by People Inc/Cloudflare (e.g., a different proxy/region), after which the same approach — Desserts category → filter prep time <30 min + chocolate + ≥4 stars → open a recipe → read ingredients and steps — would work.
+
+ANSWER: Unable to complete — allrecipes.com is returning an HTTP 402 Cloudflare/People Inc access-block page for every request from this environment, so no dessert recipe could be retrieved.

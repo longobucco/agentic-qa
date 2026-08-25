@@ -1,0 +1,7 @@
+Wolfram Alpha computed the indefinite integral. The result shown is:
+
+**g(x) = ¼·((2x² − 1)·sin(2x) + 2x·cos(2x)) + C**
+
+Equivalently expanded: g(x) = ½·x²·sin(2x) − ¼·sin(2x) + ½·x·cos(2x) + C
+
+ANSWER: g(x) = (1/4)((2x² − 1)sin(2x) + 2x cos(2x)) + C

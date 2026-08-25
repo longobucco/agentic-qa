@@ -1,0 +1,5 @@
+{
+  "id": "Allrecipes--38",
+  "verdict": "FAILURE",
+  "reason": "Screenshots show only an Allrecipes access-blocked error page with no recipe content, so no qualifying ratatouille recipe, ratings, vegetables, or cooking time could be found."
+}

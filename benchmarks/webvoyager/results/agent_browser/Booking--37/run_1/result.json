@@ -1,0 +1,8 @@
+{
+  "id": "Booking--37",
+  "bucket": "Booking",
+  "web_name": "Booking",
+  "ques": "Search for a resort (not hotel) in Bali, detailing the available dates between July 20, 2026, and July 25, 2026, and checking any provided tour or cultural experiences.",
+  "web": "https://www.booking.com/",
+  "answer": ""
+}

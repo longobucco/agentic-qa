@@ -1,0 +1,10 @@
+The task is complete. Google Maps returned a list of bus stops in Ypsilanti, MI, and the final state is captured.
+
+Bus stops identified in Ypsilanti, MI include:
+1. **Ypsilanti Transit Center** (220 Pearl St)
+2. **Michigan + Mansfield**
+3. **Tyler + Nash**
+
+(Others visible: S-Washtenaw east of Berkeley, Ellsworth + Michigan, MacArthur + Harris, Ypsilanti Township Civic Center)
+
+ANSWER: Three bus stops in Ypsilanti, MI are: (1) Ypsilanti Transit Center (220 Pearl St), (2) Michigan + Mansfield, and (3) Tyler + Nash.

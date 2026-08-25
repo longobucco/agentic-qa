@@ -1,0 +1,8 @@
+{
+  "id": "GitHub--12",
+  "bucket": "GitHub",
+  "web_name": "GitHub",
+  "ques": "Retrieve the latest release from the 'electron/electron' repository on GitHub and note down the release version number and date.",
+  "web": "https://github.com/",
+  "answer": "The latest release of electron/electron is **v42.5.0**, published 2 days ago (approximately June 24, 2026)."
+}

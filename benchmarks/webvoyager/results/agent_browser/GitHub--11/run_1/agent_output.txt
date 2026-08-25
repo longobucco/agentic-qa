@@ -1,0 +1,11 @@
+I found a newly created open-source climate change project on GitHub from January 2023. Here are the details:
+
+**Project:** `bartek537/forest` (264 stars, 21 forks)
+
+**Main programming language:** Kotlin (100.0%)
+
+**Description:** "A step counter app, which helps its users stay healthy and fight the climate change."
+
+It's an Android app that tracks your daily step count, burned calories, distance traveled, and CO₂ saved — gamifying walking to motivate users toward a lower-carbon lifestyle. Topics include `android`, `kotlin`, `room`, `mvvm`, `clean-architecture`, `step-counter`, and `material-you`.
+
+ANSWER: bartek537/forest — Main language: Kotlin (100%). Description: "A step counter app, which helps its users stay healthy and fight the climate change." (an Android app tracking steps, calories, distance, and CO₂ saved; created January 2023, 264 stars).

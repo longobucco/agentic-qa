@@ -1,0 +1,5 @@
+{
+  "id": "Wolfram Alpha--33",
+  "verdict": "FAILURE",
+  "reason": "The screenshot only shows Itaipu Dam's structural data (location, type, river, dimensions) with no electrical energy output or power generation figure, so the response's claimed 89.5 TWh/14 GW is unverifiable and unsupported by the ground-truth evidence."
+}

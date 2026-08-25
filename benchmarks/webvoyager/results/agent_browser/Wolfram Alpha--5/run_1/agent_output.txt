@@ -1,0 +1,3 @@
+The task is complete. WolframAlpha computed and displayed the solution to the differential equation in the "Differential equation solutions" pod.
+
+ANSWER: WolframAlpha classifies y''(z) + sin(y(z)) = 0 as a second-order nonlinear ODE (the pendulum equation) and gives the solution y(z) = ±2·am( ½·√((c₁ + 2)(z + c₂)²), 4/(c₁ + 2) ), where am(x, m) is the Jacobi amplitude function and c₁, c₂ are arbitrary constants.

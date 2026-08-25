@@ -1,0 +1,8 @@
+I've completed the task. Using ArXiv's advanced search, I filtered for:
+- **Keyword:** "autonomous vehicles" (all fields, exact phrase)
+- **Subject classification:** Electrical Engineering and Systems Science (eess)
+- **Date range:** 2026-06-15 to 2026-06-21 (last week, given today is 2026-06-26)
+
+The results header reads **"Showing 1–5 of 5 results"**, with five distinct articles (arXiv:2606.21486, 2606.21154, 2606.19267, 2606.17562, 2606.16374).
+
+ANSWER: 5 articles

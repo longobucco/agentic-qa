@@ -1,0 +1,8 @@
+{
+  "id": "Coursera--6",
+  "bucket": "Coursera",
+  "web_name": "Coursera",
+  "ques": "Identify a course on Coursera related to 'Artificial Intelligence for Healthcare' and note the course duration along with the number of quizzes in Assessments.",
+  "web": "https://www.coursera.org/",
+  "answer": "Course: \"Foundations of AI in Healthcare\" (part of the Artificial Intelligence for Healthcare Specialization on Coursera). Duration: 8 hours to complete (4 modules). Assessments: 13 (listed as \"13 assignments\" under Details to know \u2192 Assessments; Coursera labels these as assignments rather than quizzes)."
+}

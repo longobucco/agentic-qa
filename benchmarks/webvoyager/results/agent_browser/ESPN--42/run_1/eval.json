@@ -1,0 +1,5 @@
+{
+  "id": "ESPN--42",
+  "verdict": "FAILURE",
+  "reason": "The agent reported teams with a 5-11 record, which does not have equal wins and losses (5 \u2260 11), failing the task's requirement to find teams whose wins equal their losses."
+}

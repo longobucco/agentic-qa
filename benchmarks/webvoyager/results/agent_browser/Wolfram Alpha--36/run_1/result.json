@@ -1,0 +1,8 @@
+{
+  "id": "Wolfram Alpha--36",
+  "bucket": "Wolfram Alpha",
+  "web_name": "Wolfram Alpha",
+  "ques": "Determine the convergence or divergence of the series \u03a3 (n=1 to \u221e) of 1/(n^3 + 1).",
+  "web": "https://www.wolframalpha.com/",
+  "answer": "The series \u03a3 (n=1 to \u221e) 1/(n\u00b3 + 1) CONVERGES (to \u2248 0.68650). WolframAlpha's \"Sum convergence\" result confirms it converges \u2014 as expected, since 1/(n\u00b3+1) behaves like 1/n\u00b3, a convergent p-series with p = 3 > 1."
+}

@@ -1,0 +1,5 @@
+{
+  "id": "ESPN--11",
+  "verdict": "SUCCESS",
+  "reason": "The agent reached ESPN's NBA Teams page and correctly reported 30 teams with the two 'New' teams (New Orleans Pelicans, New York Knicks), consistent with the screenshot showing the teams listing including the New York Knicks."
+}

@@ -1,0 +1,5 @@
+{
+  "id": "Google Flights--33",
+  "verdict": "SUCCESS",
+  "reason": "The screenshots show a one-way Shanghai\u2192Vancouver search for Mon Jul 27 (2026) with results sorted by emissions, and the response's CO\u2082 comparison (488 kg Air Canada lowest through 725 kg Cathay highest) matches the displayed values exactly."
+}

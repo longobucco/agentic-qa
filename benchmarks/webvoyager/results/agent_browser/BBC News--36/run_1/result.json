@@ -1,0 +1,8 @@
+{
+  "id": "BBC News--36",
+  "bucket": "BBC News",
+  "web_name": "BBC News",
+  "ques": "Look up recent articles in the Africa news section in World, summarize what topics most of these news are about",
+  "web": "https://www.bbc.com/news/",
+  "answer": "Most recent BBC Africa news falls into four main topics: (1) the 2026 World Cup / African football \u2014 the biggest theme (Ivory Coast, South Africa, Morocco, Ghana, Egypt, Algeria, Senegal); (2) politics, conflict and geopolitics \u2014 Sudan's war and conflict-related sexual violence, Niger quitting the ICC as \"neo-colonialist,\" US sanctions on a Rwanda gold refinery over DR Congo minerals, and Kenya's deadly-protest anniversary; (3) crime, corruption and justice \u2014 South Africa's police-corruption scandal, Kenya's school-fire murder charges, and a Zambia ex-president legal battle; and (4) health \u2014 the ongoing Ebola outbreak in DR Congo."
+}
