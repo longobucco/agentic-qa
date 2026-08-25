@@ -1,1 +1,6 @@
-You've hit your session limit · resets 10:20am (Europe/Rome)
+The task is complete. I:
+1. Opened a terminal (xterm) using Ctrl+Alt+T
+2. Ran `ls /home/user` which showed `Desktop` as the output
+3. Took a screenshot of the terminal showing the command output and saved it as `/home/user/Desktop/ls.png`
+
+ANSWER: DONE

@@ -1,1 +1,7 @@
-You've hit your session limit · resets 10:20am (Europe/Rome)
+The file `ls.png` exists on the Desktop (9590 bytes). The task is complete:
+
+1. Opened an xterm terminal
+2. Ran `ls /home/user` which showed `Desktop` as the output
+3. Captured a screenshot of the terminal window and saved it as `/home/user/Desktop/ls.png`
+
+ANSWER: DONE
