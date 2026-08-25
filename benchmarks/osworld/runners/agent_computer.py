@@ -10,6 +10,7 @@ import tempfile
 import time
 from concurrent.futures import ThreadPoolExecutor, TimeoutError as FutureTimeoutError
 from datetime import datetime, timezone
+from pathlib import Path
 
 import requests
 
@@ -238,6 +239,27 @@ def _rate_limit_result_rec(task, meta):
             "instruction": task["instruction"], "answer": "", **telemetry}
 
 
+def _save_conversation_transcript(meta, out):
+    """Copy Claude Code's own session transcript -- the full turn-by-turn conversation,
+    including every tool call and result, not just the final answer -- into this run's output
+    dir as conversation.jsonl. Claude Code already writes one per `-p` invocation to
+    ~/.claude/projects/<encoded-cwd>/<session_id>.jsonl, keyed by the same session_id already
+    captured in agent_telemetry; this is a copy of data that already exists, not a new capture
+    mechanism (no change to the claude invocation itself). Globs by session_id rather than
+    reconstructing the cwd-encoding scheme (undocumented, could change) for robustness.
+    Best-effort: a missing/rotated transcript must never fail the run. Added 2026-08-24, applies
+    to runs from here forward only -- not backfilled onto already-completed tasks."""
+    session_id = meta.get("session_id")
+    if not session_id:
+        return
+    try:
+        matches = list(Path.home().glob(f".claude/projects/*/{session_id}.jsonl"))
+        if matches:
+            shutil.copyfile(matches[0], out / "conversation.jsonl")
+    except OSError:
+        pass
+
+
 def _rate_limit_infra_rec(task, api_error_status):
     """Deliberately NOT eval.json (see write_infra_error): a subscription session limit is
     transient on a fixed reset clock, not evidence of agent success or failure. Written so
@@ -297,12 +319,14 @@ def run(task, *, env, out, refs=None, dry=False):
         result_rec["provenance"] = _provenance(task, ctrl, started_at)
         results_io.write_result(out, result_rec)
         results_io.write_infra_error(out, _rate_limit_infra_rec(task, api_error_status))
+        _save_conversation_transcript(meta, out)
         return ""
 
     text = meta.get("result", "")
     answer = extract_answer(text)
     clean_finish = _clean_finish(meta, answer)
     results_io.write_output(out, text)
+    _save_conversation_transcript(meta, out)
 
     eval_state = _bounded("eval-state capture", _capture_eval_state, ctrl, task, out) if ctrl else None
     telemetry = _agent_telemetry(meta)

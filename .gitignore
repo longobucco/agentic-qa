@@ -185,3 +185,10 @@ benchmarks/osworld/results/agent_computer/*/run_*/*
 !benchmarks/osworld/results/agent_computer/*/run_*/infra_error.json
 !benchmarks/osworld/results/agent_computer/*/run_*/agent_output.txt
 !benchmarks/osworld/results/agent_computer/*/run_*/final.png
+
+# conversation.jsonl (2026-08-24): a copy of Claude Code's own full session transcript --
+# every turn and tool call, not just the final answer -- saved per run for deep debugging.
+# Already excluded by the allowlist above (not in the "!" list); named explicitly here too
+# since it can run several MB per run and is the most likely accidental-commit candidate of
+# the bunch.
+benchmarks/osworld/results/agent_computer/*/run_*/conversation.jsonl
