@@ -58,9 +58,24 @@ def _run_raw(cmd, *, timeout, env=None) -> str:
     `subprocess.run(..., timeout=...)` only kills the direct child on TimeoutExpired, so the
     orphaned grandchild keeps the pipe open and `communicate()` blocks forever waiting for EOF
     that never comes -- froze an unattended --runs campaign on ONE task for 7+ hours with no
-    recovery, well past `timeout`."""
+    recovery, well past `timeout`.
+
+    `stdin=DEVNULL` is deliberate, not a default: every batch driver in this repo (including
+    g3_full_overnight_driver.sh, the one the G3-full campaign actually ran under) loops
+    `while read tid; do ...claude...; done < IDS_FILE` -- the loop body's stdin is the ids
+    file, positioned mid-file after the shell's own `read` consumes one line. Without an
+    explicit redirect here, `claude -p` inherits that fd; seeing a non-tty stdin, it reads
+    whatever's left and folds it into the model's actual input as extra context -- invisible
+    in `ps`/argv (the leak isn't a cmd argument), only visible in the captured
+    conversation.jsonl transcript. Found live 2026-08-26 re-deriving conversation captures:
+    the leaked tail is the rest of that pass's task-id list, sitting right after the real
+    TASK instruction. Confirmed on both a fresh capture and one from the original 2026-08-24
+    campaign, so this predates today's batch -- an unknown slice of the whole campaign's
+    prompts carry a trailing, uninstructed list of sibling task ids. Likely inert (no
+    imperative attached) but real contamination; DEVNULL severs it at the source so it can't
+    recur regardless of what shell pattern a future driver uses."""
     proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True,
-                             env=env, start_new_session=True)
+                             stdin=subprocess.DEVNULL, env=env, start_new_session=True)
     try:
         stdout, _ = proc.communicate(timeout=timeout)
         return stdout

@@ -1,0 +1,25 @@
+{
+  "generated_at": "2026-08-27T06:41:57.358913+00:00",
+  "pre_registered_sample": {
+    "n_tasks": 46,
+    "n_population_tasks": 46,
+    "n_runs_scored": 133,
+    "n_success": 49,
+    "n_environment_error": 3,
+    "n_eval_error_dropped": 5,
+    "excluding_env_errors": 0.3769,
+    "counting_env_as_failure": 0.3684,
+    "scissor_pp": 0.85
+  },
+  "full_runnable_population": {
+    "n_tasks": 327,
+    "n_population_tasks": 358,
+    "n_runs_scored": 829,
+    "n_success": 365,
+    "n_environment_error": 73,
+    "n_eval_error_dropped": 148,
+    "excluding_env_errors": 0.4828,
+    "counting_env_as_failure": 0.4403,
+    "scissor_pp": 4.25
+  }
+}
