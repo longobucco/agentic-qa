@@ -7,6 +7,11 @@ venv/
 # Logs
 logs
 *.log
+
+# scripts/*.out: raw stdout dumps from one-off batch drivers -- redundant with the matching
+# *.log (concise progress) and with results/ (the authoritative eval.json/result.json data);
+# mostly evaluator debug spam, not a useful artifact on its own. Scoped to scripts/ only.
+scripts/*.out
 npm-debug.log*
 
 # Playwright MCP scratch output (console logs, page accessibility-tree snapshots) -- unrelated
