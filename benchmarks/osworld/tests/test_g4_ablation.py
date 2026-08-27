@@ -17,10 +17,10 @@ def _write_run(base, task_id, run_idx, verdict):
 
 def test_scissor_returns_well_formed_report():
     r = g4.scissor()
-    for k in ("n_tasks", "n_sample_tasks", "n_runs_scored", "n_success",
+    for k in ("n_tasks", "n_population_tasks", "n_runs_scored", "n_success",
               "n_environment_error", "n_eval_error_dropped"):
         assert k in r
-    assert r["n_tasks"] <= r["n_sample_tasks"]
+    assert r["n_tasks"] <= r["n_population_tasks"]
 
 
 def test_eval_error_excluded_from_both_conventions():
@@ -69,6 +69,25 @@ def test_scoped_to_current_sample_ignores_other_task_dirs():
     r = g4.scissor(results_dir=d)
     assert r["n_tasks"] == 1
     assert r["n_runs_scored"] == 1
+
+
+def test_scissor_full_covers_tasks_outside_the_pre_registered_sample():
+    """The 2026-08-25 extension: scissor_full() must see a task that scissor() (scoped to
+    g3_sample.sample()) deliberately excludes -- otherwise it's not actually a wider scope,
+    just the same one renamed. Uses a real runnable-but-not-in-sample id rather than a fake
+    one, since scissor_full() filters by benchmarks.osworld.tasks.load_tasks(), not a
+    synthetic allowlist."""
+    from benchmarks.osworld import tasks as tasks_mod
+    sample_ids = set(sample())
+    runnable_ids = [t["id"] for t in tasks_mod.load_tasks()]
+    not_in_sample = next(tid for tid in runnable_ids if tid not in sample_ids)
+    d = Path(tempfile.mkdtemp(prefix="osw_test_"))
+    _write_run(d, not_in_sample, 1, "SUCCESS")
+    r_sample = g4.scissor(results_dir=d)
+    r_full = g4.scissor_full(results_dir=d)
+    assert r_sample["n_tasks"] == 0          # invisible to the pre-registered scope
+    assert r_full["n_tasks"] == 1            # visible to the full-population scope
+    assert r_full["n_population_tasks"] == len(runnable_ids)
 
 
 def main():
