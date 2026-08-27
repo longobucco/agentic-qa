@@ -1,5 +1,1 @@
-The "Favorites" folder has been successfully created in the Bookmarks bar. I can see it in:
-1. The bookmarks bar at the top of the browser (showing "Favorites" next to the apps icon)
-2. The Bookmarks Manager main panel showing the "Favorites" folder inside "Bookmarks bar"
-
-ANSWER: DONE
+You've hit your session limit · resets 11:20pm (Europe/Rome)

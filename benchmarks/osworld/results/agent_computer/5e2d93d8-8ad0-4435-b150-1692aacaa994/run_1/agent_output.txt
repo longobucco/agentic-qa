@@ -1,3 +1,16 @@
-The workspace was saved successfully. The Explorer now shows "PROJECT (WORKSPACE)" with a `project.code-workspace` file, the title bar reads "project (Workspace) [Superuser]", and the Recent list shows "project /home/user". The workspace file was created at `/home/user/project/project.code-workspace`.
+The workspace was successfully saved. The file `/home/user/project/project.code-workspace` contains:
+
+```json
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {}
+}
+```
+
+The workspace named "project" has been saved at `/home/user/project/` as a VS Code `.code-workspace` file, with the current project folder included.
 
 ANSWER: DONE

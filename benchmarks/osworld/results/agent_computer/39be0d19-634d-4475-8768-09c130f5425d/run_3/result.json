@@ -3,21 +3,21 @@
   "bucket": "libreoffice_impress",
   "instruction": "In the \"Features\" slide, insert a table with 5 rows and 2 columns.",
   "answer": "DONE",
-  "eval_state": "<binary:352447 bytes at 41_3.pptx>",
+  "eval_state": "<binary:352444 bytes at 41_3.pptx>",
   "provenance": {
     "task_sha256": "04181f270672baa1df05c50cd772fdb97c969f232c5585962cddf74832a4a1d4",
     "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
-    "controller_url": "https://5000-446e9436-1904-4f0f-9ff4-024a1073de55.daytonaproxy01.eu",
+    "controller_url": "https://5000-de48d3b3-7088-4c25-ad69-cad556094006.daytonaproxy01.eu",
     "release": "verified",
     "max_turns": 150,
-    "task_timeout": 3600,
+    "task_timeout": 2700,
     "observation": "screenshot+a11y",
     "action_space": "pyautogui",
-    "started_at": "2026-08-13T10:10:13.874014+00:00",
-    "finished_at": "2026-08-13T10:17:47.882579+00:00"
+    "started_at": "2026-08-26T09:09:42.173320+00:00",
+    "finished_at": "2026-08-26T09:15:52.361572+00:00"
   },
   "agent_clean_finish": true,
-  "agent_num_turns": 68,
+  "agent_num_turns": 69,
   "agent_stop_reason": "end_turn",
   "agent_terminal_reason": "completed",
   "agent_subtype": "success",
@@ -25,11 +25,11 @@
   "agent_errors": null,
   "agent_api_error_status": null,
   "agent_permission_denials": [],
-  "agent_cost_usd": 1.24665505,
-  "agent_input_tokens": 77,
-  "agent_output_tokens": 10188,
-  "agent_cache_read_tokens": 2908286,
-  "agent_cache_creation_tokens": 58731,
+  "agent_cost_usd": 1.2195043000000008,
+  "agent_input_tokens": 76,
+  "agent_output_tokens": 9867,
+  "agent_cache_read_tokens": 2939456,
+  "agent_cache_creation_tokens": 50282,
   "agent_model_usage": {
     "claude-haiku-4-5-20251001": {
       "inputTokens": 812,
@@ -42,18 +42,18 @@
       "maxOutputTokens": 32000
     },
     "claude-sonnet-4-6": {
-      "inputTokens": 77,
-      "outputTokens": 10188,
-      "cacheReadInputTokens": 2908286,
-      "cacheCreationInputTokens": 58731,
+      "inputTokens": 76,
+      "outputTokens": 9867,
+      "cacheReadInputTokens": 2939456,
+      "cacheCreationInputTokens": 50282,
       "webSearchRequests": 0,
-      "costUSD": 1.24577805,
+      "costUSD": 1.2186273000000007,
       "contextWindow": 200000,
       "maxOutputTokens": 32000
     }
   },
-  "agent_duration_ms": 450841,
-  "agent_duration_api_ms": 430995,
-  "agent_session_id": "9988670b-c521-498f-a8ed-6b487436f18c",
-  "agent_uuid": "b4b5ef3e-fb20-4188-b697-0067b1bc3e5f"
+  "agent_duration_ms": 367519,
+  "agent_duration_api_ms": 348925,
+  "agent_session_id": "52129419-d8c6-4ecb-9672-441e18c52389",
+  "agent_uuid": "4fd3923b-4a8d-4b22-8615-5c1f39635b3b"
 }

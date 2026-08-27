@@ -1,5 +1,3 @@
-The task has been completed successfully. The file has been saved and the slide now contains:
-- The original paragraph text about art
-- A new bullet point "• New bullet point" added below the content
+The file has been saved successfully. The slide now shows the bullet point "• New bullet point" added to the content area. The task is complete.
 
 ANSWER: DONE

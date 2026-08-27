@@ -1,3 +1,1 @@
-The file has been saved (the dot indicator is gone from the tab). All 10 occurrences of "text" have been replaced with "test" and the file is saved. The document now shows "tests", "test", "testing" etc. instead of "texts", "text", "texting" etc.
-
-ANSWER: DONE
+You've hit your session limit · resets 1:10pm (Europe/Rome)

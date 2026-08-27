@@ -1,0 +1,75 @@
+{
+  "generated_at": "2026-08-25T11:15:49.181060+00:00",
+  "n_tasks": 369,
+  "totals": {
+    "test_execution": 334,
+    "oracle_verification": 7,
+    "infeasibility_recognition": 27,
+    "bug_reproduction": 1
+  },
+  "totals_pct": {
+    "test_execution": 90.51,
+    "oracle_verification": 1.9,
+    "infeasibility_recognition": 7.32,
+    "bug_reproduction": 0.27
+  },
+  "per_app": {
+    "chrome": {
+      "test_execution": 57,
+      "oracle_verification": 2,
+      "infeasibility_recognition": 3
+    },
+    "gimp": {
+      "test_execution": 23,
+      "infeasibility_recognition": 9
+    },
+    "libreoffice calc": {
+      "test_execution": 18
+    },
+    "libreoffice_calc": {
+      "test_execution": 45,
+      "infeasibility_recognition": 2,
+      "oracle_verification": 1
+    },
+    "libreoffice_impress": {
+      "test_execution": 50,
+      "oracle_verification": 1
+    },
+    "libreoffice_writer": {
+      "test_execution": 34,
+      "oracle_verification": 1,
+      "infeasibility_recognition": 1
+    },
+    "os": {
+      "test_execution": 39,
+      "infeasibility_recognition": 5
+    },
+    "vlc": {
+      "test_execution": 16,
+      "oracle_verification": 1,
+      "infeasibility_recognition": 2
+    },
+    "thunderbird": {
+      "test_execution": 26,
+      "infeasibility_recognition": 1
+    },
+    "vscode": {
+      "test_execution": 22,
+      "infeasibility_recognition": 4
+    },
+    "misc": {
+      "test_execution": 1
+    },
+    "vs_code": {
+      "test_execution": 1,
+      "bug_reproduction": 1,
+      "oracle_verification": 1
+    },
+    "OS": {
+      "test_execution": 1
+    },
+    "calc": {
+      "test_execution": 1
+    }
+  }
+}

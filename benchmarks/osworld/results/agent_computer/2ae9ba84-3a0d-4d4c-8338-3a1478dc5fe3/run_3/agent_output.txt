@@ -1,3 +1,3 @@
-The Chrome profile username has been successfully set to "Thomas". The name field shows "Thomas" and the change has been saved (Chrome auto-saves profile name changes).
+The profile name field now shows "Thomas" and the change appears to be saved (the field is still focused with the name "Thomas"). The Chrome profile username has been successfully changed to "Thomas".
 
 ANSWER: DONE

@@ -1,9 +1,8 @@
 {
   "id": "c2751594-0cd5-4088-be1b-b5f2f9ec97c4",
-  "verdict": "SUCCESS",
-  "reward": 1.0,
-  "reason": "official compare_images -> 1.00",
-  "source": "official",
+  "verdict": "EVAL_ERROR",
+  "reason": "no eval_state captured (official eval errored: UnidentifiedImageError: cannot identify image file '/private/var/folders/pt/6ks9wfnx3vg4_1j8tvp1bgsr0000gn/T/osw_gold_fk6tnmmp/background.png')",
+  "source": "offline_fallback",
   "gold_sha256": {
     "gold_background.png": "1b19ee9db539d8eeabe3deab4e7579aeba472afad1dbd9538fd110830ab9ca0c"
   }

@@ -1,0 +1,16 @@
+[
+  {
+    "id": "3680a5ee-6870-426a-a997-eba929a0d25c",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-26T00:26:04+0200"
+  },
+  {
+    "id": "3680a5ee-6870-426a-a997-eba929a0d25c",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-26T18:11:48+0200"
+  }
+]

@@ -1,3 +1,3 @@
-I enabled AutoRecovery (auto-save) with an interval of 3 minutes and clicked OK to apply the setting.
+The Options dialog has closed successfully. The auto-save settings have been applied — LibreOffice Impress will now automatically save recovery information every 3 minutes.
 
 ANSWER: DONE

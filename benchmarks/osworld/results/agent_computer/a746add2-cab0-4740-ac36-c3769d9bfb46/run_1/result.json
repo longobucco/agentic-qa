@@ -7,17 +7,17 @@
   "provenance": {
     "task_sha256": "9cc7b283c743206a9685edd9c047a2a790817d3d3978dd8fa4ccf5bdbd925a8b",
     "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
-    "controller_url": "https://5000-7d411993-072c-4504-9755-c2843bd0fa2c.daytonaproxy01.eu",
+    "controller_url": "https://5000-8a957020-e076-4efc-b533-bbb67997517f.daytonaproxy01.eu",
     "release": "verified",
     "max_turns": 150,
     "task_timeout": 2700,
     "observation": "screenshot+a11y",
     "action_space": "pyautogui",
-    "started_at": "2026-08-22T20:34:17.883856+00:00",
-    "finished_at": "2026-08-22T20:47:37.046506+00:00"
+    "started_at": "2026-08-26T13:02:41.835836+00:00",
+    "finished_at": "2026-08-26T13:22:31.084054+00:00"
   },
   "agent_clean_finish": true,
-  "agent_num_turns": 79,
+  "agent_num_turns": 124,
   "agent_stop_reason": "end_turn",
   "agent_terminal_reason": "completed",
   "agent_subtype": "success",
@@ -25,35 +25,35 @@
   "agent_errors": null,
   "agent_api_error_status": null,
   "agent_permission_denials": [],
-  "agent_cost_usd": 2.3005209,
-  "agent_input_tokens": 88,
-  "agent_output_tokens": 39657,
-  "agent_cache_read_tokens": 4611013,
-  "agent_cache_creation_tokens": 85080,
+  "agent_cost_usd": 3.6470183,
+  "agent_input_tokens": 155,
+  "agent_output_tokens": 30456,
+  "agent_cache_read_tokens": 9201801,
+  "agent_cache_creation_tokens": 114212,
   "agent_model_usage": {
     "claude-haiku-4-5-20251001": {
-      "inputTokens": 2973,
+      "inputTokens": 803,
       "outputTokens": 15,
       "cacheReadInputTokens": 0,
       "cacheCreationInputTokens": 0,
       "webSearchRequests": 0,
-      "costUSD": 0.003048,
+      "costUSD": 0.000878,
       "contextWindow": 200000,
       "maxOutputTokens": 32000
     },
     "claude-sonnet-4-6": {
-      "inputTokens": 88,
-      "outputTokens": 39657,
-      "cacheReadInputTokens": 4611013,
-      "cacheCreationInputTokens": 85080,
+      "inputTokens": 155,
+      "outputTokens": 30456,
+      "cacheReadInputTokens": 9201801,
+      "cacheCreationInputTokens": 114212,
       "webSearchRequests": 0,
-      "costUSD": 2.2974729000000003,
+      "costUSD": 3.6461403,
       "contextWindow": 200000,
       "maxOutputTokens": 32000
     }
   },
-  "agent_duration_ms": 796136,
-  "agent_duration_api_ms": 720675,
-  "agent_session_id": "0aefd73a-c50b-4d5f-9548-e1debe7499dc",
-  "agent_uuid": "336dcc91-b067-4c25-8aec-62acb833d603"
+  "agent_duration_ms": 1186590,
+  "agent_duration_api_ms": 1072140,
+  "agent_session_id": "f11d1478-9154-4fde-ab13-f8e1d9c0165b",
+  "agent_uuid": "a506b64b-fe0a-41d9-ae69-503b31ec810c"
 }

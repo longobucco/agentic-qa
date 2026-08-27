@@ -1,8 +1,7 @@
-The file saved without a format dialog this time, confirming it was saved in PowerPoint format. The task is complete.
+The table has been successfully moved to the bottom of the slide. The verification confirms:
+- **Table 3**: top=6.2866in, height=1.2134in, **bottom=7.5000in** (exactly at the slide bottom)
+- The slide height is 7.5000in, so the table bottom aligns perfectly with the slide bottom
 
-Looking at the slide, the table on Page 3 has been successfully moved to the bottom of the slide:
-- The table is now positioned at Y=6.29" on a 7.5" tall slide
-- The table height is 1.21", so it sits exactly at the bottom edge
-- The slide thumbnail in the panel shows the table at the bottom
+The table is now positioned at the very bottom of Slide 3, as confirmed both by the python-pptx verification and the LibreOffice Impress visual display.
 
 ANSWER: DONE

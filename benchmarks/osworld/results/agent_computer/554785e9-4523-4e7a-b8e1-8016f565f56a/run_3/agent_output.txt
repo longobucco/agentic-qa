@@ -1,1 +1,1 @@
-API Error: The socket connection was closed unexpectedly. For more information, pass `verbose: true` in the second argument to fetch()
+You've hit your session limit · resets 6:20pm (Europe/Rome)

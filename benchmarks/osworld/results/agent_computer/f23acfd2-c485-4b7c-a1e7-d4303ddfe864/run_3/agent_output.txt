@@ -1,3 +1,3 @@
-The file has been saved. The slide now shows the original content followed by a bullet point "• New bullet point". The task is complete.
+The file has been saved. The slide now shows the original paragraph text followed by a bullet point "• New bullet point". The task is complete.
 
 ANSWER: DONE

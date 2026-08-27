@@ -1,3 +1,1 @@
-I now have the complete answer confirmed from the LibreOffice Impress Options dialog.
-
-ANSWER: To disable the Presenter Console (which shows the current slide and next slide on one screen), go to **Tools → Options → LibreOffice Impress → General**. In the "Presentation" section on the right side, uncheck **"Enable Presenter Console"**. After unchecking it and clicking OK, LibreOffice Impress will use only one monitor showing just the presentation to the audience, freeing up the other screen for other purposes.
+You've hit your session limit · resets 1:10pm (Europe/Rome)
