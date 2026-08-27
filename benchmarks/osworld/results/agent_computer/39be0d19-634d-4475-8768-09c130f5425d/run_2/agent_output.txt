@@ -1,3 +1,10 @@
-The table with 5 rows and 2 columns has been inserted into the Features slide and the file is saved (title shows no modification indicator).
+The file format dialog is dismissed and the table is visible in the "Features" slide. The table has 5 rows and 2 columns with the banded row styling visible. The file has been saved (no asterisk in title bar).
+
+Looking at the final state:
+- Slide 3 is "Features" 
+- A table with 5 rows and 2 columns has been inserted
+- The file is saved in PowerPoint format
+
+The task is complete.
 
 ANSWER: DONE

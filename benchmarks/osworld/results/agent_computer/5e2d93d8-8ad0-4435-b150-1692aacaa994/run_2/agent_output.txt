@@ -1,3 +1,7 @@
-The workspace was saved successfully. The title bar now shows "project (Workspace)", the explorer shows "PROJECT (WORKSPACE)" with a `project.code-workspace` file, and the Recent list shows "project /home/user". The workspace file was created at `/home/user/project/project.code-workspace`.
+The workspace has been saved successfully. I can see:
+- The title bar now shows **"project (Workspace) [Superuser]"**
+- The Explorer shows **"PROJECT (WORKSPACE)"** 
+- The file **"project.code-workspace"** is now visible in the file list
+- The workspace was saved to `/home/user/project/`
 
 ANSWER: DONE

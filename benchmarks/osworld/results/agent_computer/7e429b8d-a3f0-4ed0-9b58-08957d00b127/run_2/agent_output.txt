@@ -1,3 +1,15 @@
-The Officer Name column is filled correctly via VLOOKUP, and the file was saved (Keep xlsx format confirmed with Enter). Each HeadOffice now maps to its branch officer.
+The file has been saved successfully. The task is complete. All Officer Names have been filled in column F using VLOOKUP formulas based on the HeadOffice (branch name) in column E:
+
+- Adajan → Surat → **A. B. Bose**
+- Bedi Port → Jamnagar → **G. H. Harris**
+- Katargam → Surat → **A. B. Bose**
+- Vastral → Ahmedabad → **C. D. Dey**
+- Ghogha Circle → Bhavnagar → **K. L. Lathiya**
+- Shasthi Nagar → Jamnagar → **G. H. Harris**
+- AlkaPuri → Vadodara → **E. F. Frank**
+- Akota → Vadodara → **E. F. Frank**
+- Ghumli → Porbandar → **I. J. Jain**
+- Kirti Mandir → Porbandar → **I. J. Jain**
+- Sarai Khwaja → Jamnagar → **G. H. Harris**
 
 ANSWER: DONE

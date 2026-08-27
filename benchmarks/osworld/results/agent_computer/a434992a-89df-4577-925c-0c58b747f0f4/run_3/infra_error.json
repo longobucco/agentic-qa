@@ -1,0 +1,16 @@
+[
+  {
+    "id": "a434992a-89df-4577-925c-0c58b747f0f4",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-25T14:47:14+0200"
+  },
+  {
+    "id": "a434992a-89df-4577-925c-0c58b747f0f4",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-26T11:35:33+0200"
+  }
+]

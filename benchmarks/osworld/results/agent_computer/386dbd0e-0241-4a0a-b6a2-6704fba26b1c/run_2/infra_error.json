@@ -46,5 +46,14 @@
     "error_type": "APIError",
     "error": "api_error_status=429",
     "at": "2026-08-16T23:32:15+0200"
+  },
+  {
+    "id": "386dbd0e-0241-4a0a-b6a2-6704fba26b1c",
+    "run": 2,
+    "outcome": "INFRA_FLAKE",
+    "error_type": "RuntimeError",
+    "error": "sandbox provisioning/setup exceeded 600s -- treated as a hang, not a legitimate wait (observed live: sandbox auto-stopped mid-provisioning, then the SDK's exec blocked against the stopped VM forever)",
+    "elapsed_s": 600.2,
+    "at": "2026-08-25T15:32:03+0200"
   }
 ]

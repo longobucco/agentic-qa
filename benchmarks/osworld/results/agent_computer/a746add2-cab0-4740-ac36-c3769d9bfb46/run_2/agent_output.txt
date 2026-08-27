@@ -1,3 +1,3 @@
-The Vignette filter window has successfully opened in GIMP. I can see the Vignette dialog with controls for Shape, Radius, Softness, Proportional, Center X, Center Y, and Blending Options, with a preview of the vignette effect applied to the dog image.
+The osworld tools (screenshot, click, key, run_python) have all been returning HTTP 400 Bad Request errors for an extended period despite multiple retries and long waits. The `wait` tool still works but all VM-interaction tools are unresponsive. The system appears to be in an unrecoverable broken state.
 
-ANSWER: DONE
+ANSWER: FAIL

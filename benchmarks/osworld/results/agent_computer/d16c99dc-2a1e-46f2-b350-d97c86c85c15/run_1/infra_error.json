@@ -21,5 +21,12 @@
     "error_type": "APIError",
     "error": "api_error_status=429",
     "at": "2026-08-14T07:02:45+0200"
+  },
+  {
+    "id": "d16c99dc-2a1e-46f2-b350-d97c86c85c15",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-25T23:04:32+0200"
   }
 ]

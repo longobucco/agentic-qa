@@ -1,5 +1,9 @@
-Both folders are confirmed on disk (COMPANY and UNIVERSITY mbox + .msf files) under the Local Folders account, and they display correctly in Thunderbird's folder pane.
+Both folders have been created successfully. The left folder pane now shows under "Local Folders":
+- Trash
+- Outbox
+- **COMPANY**
+- **UNIVERSITY**
 
-The task is complete: I created a proper Local Folders account (which didn't exist initially) and added the two requested local folders, COMPANY and UNIVERSITY.
+Both local folders COMPANY and UNIVERSITY have been created in Thunderbird's Local Folders.
 
 ANSWER: DONE

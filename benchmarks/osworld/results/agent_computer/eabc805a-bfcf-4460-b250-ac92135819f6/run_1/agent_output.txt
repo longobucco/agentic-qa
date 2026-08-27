@@ -1,3 +1,1 @@
-The Python extension (`ms-python.python` v2026.4.0) was successfully installed, along with its dependencies.
-
-ANSWER: DONE
+You've hit your session limit · resets 1:10pm (Europe/Rome)
