@@ -40,6 +40,22 @@ def _mcp_config(controller_url):
     return f.name
 
 
+def _extra_flags():
+    """Extra claude CLI flags for the G5 tool-restriction arms (config.ENFORCE_SANDBOX, idea
+    #10; config.RESTRICT_RUN_PYTHON, idea #11). Both use --disallowedTools, a real deny list
+    (unlike --allowedTools, which only suppresses the confirmation prompt without restricting
+    availability -- see ENFORCE_SANDBOX's own comment in config.py) -- combined into one flag
+    list rather than two separate ones so --strict-mcp-config appears at most once."""
+    disallowed = []
+    if config.ENFORCE_SANDBOX:
+        disallowed += ["Bash", "WebSearch", "WebFetch"]
+    if config.RESTRICT_RUN_PYTHON:
+        disallowed += ["mcp__osworld__run_python"]
+    if not disallowed:
+        return None
+    return ["--disallowedTools", *disallowed, "--strict-mcp-config"]
+
+
 def _action_history(answer):
     # OSWorld marks infeasible tasks by a final FAIL action; map our answer onto that
     a = (answer or "").strip().upper()
@@ -164,24 +180,49 @@ def _annotate_incidental(rec, clean_finish):
     return rec
 
 
-_EVAL_RETRY_ATTEMPTS = 3
-_EVAL_RETRY_DELAY_S = 5
+_EVAL_RETRY_ATTEMPTS = 4
+_EVAL_RETRY_BASE_DELAY_S = 5
+
+# Transient scoring failures worth another attempt: all of these are the Daytona proxy
+# misbehaving under load right after a long agent session, never a real verdict.
+#   - ConnectionError: bare ConnectionResetError(54, ...) from the proxy. Observed often
+#     (>1/3 of scoring attempts in the first G3 batch); this was the original reason for
+#     retrying at all.
+#   - JSONDecodeError: the single largest cause of lost runs in the whole G3 campaign --
+#     96 of 150 EVAL_ERROR, across 33 tasks (inventory 2026-09-04). It surfaces because
+#     upstream's PythonController does `if response.status_code == 200: return
+#     response.json()`, so a 200 carrying an empty or HTML body raises straight out of
+#     desktop_env instead of being retried in there. Catching json.JSONDecodeError covers
+#     requests.exceptions.JSONDecodeError too -- it subclasses it (verified on requests
+#     2.34.2), so listing only the stdlib one is deliberate, not an oversight.
+#   - Timeout / ChunkedEncodingError: same proxy, cut mid-response.
+_TRANSIENT_EVAL_ERRORS = (
+    requests.exceptions.ConnectionError,
+    requests.exceptions.Timeout,
+    requests.exceptions.ChunkedEncodingError,
+    json.JSONDecodeError,
+)
 
 
 def _evaluate_with_retry(url, task, action_history, cache_dir):
-    """Retry the official evaluator on a bare connection reset. Observed live, often
-    (>1/3 of scoring attempts in the first G3 batch): requests.exceptions.ConnectionError
-    wrapping ConnectionResetError(54, ...) against the Daytona proxy, always right after a
-    long agent session -- looks like proxy instability under sustained load, not a
-    deterministic evaluator failure, so it's worth a few retries before falling back."""
+    """Retry the official evaluator on a transient proxy failure (_TRANSIENT_EVAL_ERRORS).
+
+    Backoff is exponential (5s, 15s, 45s) rather than the flat 5s this used to use: the
+    proxy needs time to recover after a long session, and a fixed short gap just retried
+    back into the same bad window. Worst case adds 65s, well inside _POST_RUN_TIMEOUT_S.
+
+    Repeating the scoring attempt is safe: the evaluator's postconfig steps are idempotent
+    and its getters only READ desktop state, so a retry re-reads the same desktop rather
+    than mutating what it is about to grade.
+    """
     last_err = None
     for attempt in range(_EVAL_RETRY_ATTEMPTS):
         try:
             return osworld_eval.evaluate_official(url, task, action_history, cache_dir=cache_dir)
-        except requests.exceptions.ConnectionError as e:
+        except _TRANSIENT_EVAL_ERRORS as e:
             last_err = e
             if attempt < _EVAL_RETRY_ATTEMPTS - 1:
-                time.sleep(_EVAL_RETRY_DELAY_S)
+                time.sleep(_EVAL_RETRY_BASE_DELAY_S * (3 ** attempt))
     raise last_err
 
 
@@ -239,7 +280,7 @@ def _rate_limit_result_rec(task, meta):
             "instruction": task["instruction"], "answer": "", **telemetry}
 
 
-def _save_conversation_transcript(meta, out):
+def _save_conversation_transcript(meta, out, task_id=None):
     """Copy Claude Code's own session transcript -- the full turn-by-turn conversation,
     including every tool call and result, not just the final answer -- into this run's output
     dir as conversation.jsonl. Claude Code already writes one per `-p` invocation to
@@ -247,17 +288,42 @@ def _save_conversation_transcript(meta, out):
     captured in agent_telemetry; this is a copy of data that already exists, not a new capture
     mechanism (no change to the claude invocation itself). Globs by session_id rather than
     reconstructing the cwd-encoding scheme (undocumented, could change) for robustness.
-    Best-effort: a missing/rotated transcript must never fail the run. Added 2026-08-24, applies
-    to runs from here forward only -- not backfilled onto already-completed tasks."""
+    Added 2026-08-24, applies to runs from here forward only -- not backfilled.
+
+    Still best-effort -- a missing/rotated transcript must never fail an otherwise good run --
+    but no longer SILENTLY best-effort. It returns a status the caller folds into result.json
+    and prints a warning on failure.
+
+    Why this matters enough to instrument: the transcript is the ONLY evidence of what the
+    agent actually did. Nothing else on disk records it -- `agent_permission_denials` is
+    structurally always empty under --dangerously-skip-permissions, and agent_output.txt holds
+    only the final answer (verified 2026-09-04: neither surfaces a single one of the 5 tasks
+    that genuinely reached the host). A run whose transcript silently failed to copy is a run
+    whose tool use is unverifiable forever, and the earlier version swallowed exactly that.
+    Recording the status per run means coverage is one scan of result.json away instead of a
+    forensic pass over driver logs that may have already rotated."""
     session_id = meta.get("session_id")
+    where = f"{task_id or '?'} -> {out.name}"
     if not session_id:
-        return
+        print(f"[osworld] WARNING transcript not saved ({where}): no session_id in the CLI "
+              f"envelope, nothing to look up")
+        return {"transcript_saved": False, "transcript_error": "no session_id"}
     try:
         matches = list(Path.home().glob(f".claude/projects/*/{session_id}.jsonl"))
-        if matches:
-            shutil.copyfile(matches[0], out / "conversation.jsonl")
-    except OSError:
-        pass
+    except OSError as e:
+        print(f"[osworld] WARNING transcript not saved ({where}): glob failed: {e}")
+        return {"transcript_saved": False, "transcript_error": f"glob failed: {e}"}
+    if not matches:
+        print(f"[osworld] WARNING transcript not saved ({where}): no transcript on disk for "
+              f"session {session_id} (rotated, or written under an unexpected path)")
+        return {"transcript_saved": False, "transcript_error": f"no file for {session_id}"}
+    try:
+        dest = out / "conversation.jsonl"
+        shutil.copyfile(matches[0], dest)
+        return {"transcript_saved": True, "transcript_bytes": dest.stat().st_size}
+    except OSError as e:
+        print(f"[osworld] WARNING transcript not saved ({where}): copy failed: {e}")
+        return {"transcript_saved": False, "transcript_error": f"copy failed: {e}"}
 
 
 def _rate_limit_infra_rec(task, api_error_status):
@@ -290,6 +356,7 @@ def run(task, *, env, out, refs=None, dry=False):
         max_turns=config.MAX_TURNS,
         mcp_config=mcp_config_path,
         allowed_tools=OSWORLD_TOOLS,
+        extra=_extra_flags(),
     )
     if dry:
         print("DRY-RUN command:\n ", preview(cmd))
@@ -317,16 +384,20 @@ def run(task, *, env, out, refs=None, dry=False):
         results_io.write_output(out, meta.get("result", ""))
         result_rec = _rate_limit_result_rec(task, meta)
         result_rec["provenance"] = _provenance(task, ctrl, started_at)
+        # capture BEFORE write_result so the transcript status rides in the record rather
+        # than being lost -- a rate-limited run legitimately has no tool calls, so its
+        # transcript is a stub, and only this flag distinguishes "stub because throttled"
+        # from "transcript failed to copy".
+        result_rec.update(_save_conversation_transcript(meta, out, task["id"]))
         results_io.write_result(out, result_rec)
         results_io.write_infra_error(out, _rate_limit_infra_rec(task, api_error_status))
-        _save_conversation_transcript(meta, out)
         return ""
 
     text = meta.get("result", "")
     answer = extract_answer(text)
     clean_finish = _clean_finish(meta, answer)
     results_io.write_output(out, text)
-    _save_conversation_transcript(meta, out)
+    transcript = _save_conversation_transcript(meta, out, task["id"])
 
     eval_state = _bounded("eval-state capture", _capture_eval_state, ctrl, task, out) if ctrl else None
     telemetry = _agent_telemetry(meta)
@@ -338,6 +409,7 @@ def run(task, *, env, out, refs=None, dry=False):
         "answer": answer,
         "eval_state": eval_state,
         "provenance": _provenance(task, ctrl, started_at),
+        **transcript,
         **telemetry,
     })
     rec = _annotate_incidental(_bounded("scoring", _score, ctrl, task, answer, out), clean_finish)
