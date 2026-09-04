@@ -1,4 +1,5 @@
 """Judge unit tests (no desktop, no LLM):  python -m benchmarks.osworld.tests.test_evaluate"""
+import builtins
 import json
 import tempfile
 from pathlib import Path
@@ -42,9 +43,40 @@ def test_reward_to_verdict():
 
 
 def test_official_eval_none_without_desktop_env():
-    # desktop_env isn't installed here -> delegation returns None so the runner falls back
+    """Contract: no importable desktop_env -> return None, so the runner falls back to the
+    offline checker instead of raising.
+
+    Simulates the missing import rather than relying on desktop_env being absent from the
+    environment. The original version just asserted the None and passed only because
+    desktop_env wasn't installed yet; once it was, the call ran for real against a
+    deliberately incomplete spec and died on KeyError('path') deep inside an official
+    getter -- a test that no longer exercised its own stated contract, and would have
+    masked a regression in the fallback path."""
     task = {"evaluator": {"func": "compare_table", "result": {"type": "vm_file"}}}
-    assert osworld_eval.evaluate_official("http://localhost:5000", task, ["done"]) is None
+    real_import = builtins.__import__
+
+    def no_desktop_env(name, *args, **kwargs):
+        if name.startswith("desktop_env"):
+            raise ImportError("simulated: desktop_env not installed")
+        return real_import(name, *args, **kwargs)
+
+    builtins.__import__ = no_desktop_env
+    try:
+        assert osworld_eval.evaluate_official("http://localhost:5000", task, ["done"]) is None
+    finally:
+        builtins.__import__ = real_import
+
+
+def test_official_eval_adapter_exposes_attributes_getters_read():
+    """The official getters read ports/flags straight off the env object; a missing one
+    raises AttributeError *inside* the getter, which the runner files as EVAL_ERROR. A
+    missing `vlc_port` alone cost 6 runs across 2 vlc tasks in the G3 campaign, so pin the
+    whole set rather than re-discovering them one failed task at a time."""
+    env = osworld_eval._EnvAdapter(
+        controller=None, controller_url="https://host:5000", action_history=[])
+    for attr, expected in (("vm_platform", "Linux"), ("chromium_port", 9222),
+                           ("vlc_port", 8080), ("current_use_proxy", False)):
+        assert getattr(env, attr) == expected, attr
 
 
 def main():

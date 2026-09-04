@@ -111,6 +111,17 @@ class _EnvAdapter:
         # chrome.py::get_default_search_engine) -- "Ubuntu" matches none and raises.
         # Found live on chrome-bucket tasks.
         self.vm_platform = "Linux"
+        # Ports/flags the official getters read straight off the env. Values match
+        # DesktopEnv's own defaults (desktop_env.py:148-153) -- our sandbox exposes the
+        # guest's own ports, so the upstream defaults are the correct ones here, not the
+        # per-provider overrides DesktopEnv computes for port-mapped Docker.
+        # Omitting them raised AttributeError *inside* the getter, which the runner then
+        # filed as EVAL_ERROR: 6 runs across 2 vlc tasks lost to a missing `vlc_port`
+        # alone (inventory 2026-09-04). chromium_port is read in 9 places and
+        # current_use_proxy in 2, so both were latent failures waiting on the right task.
+        self.chromium_port = 9222
+        self.vlc_port = 8080
+        self.current_use_proxy = False
         self.action_history = action_history
         self.controller = controller
 
