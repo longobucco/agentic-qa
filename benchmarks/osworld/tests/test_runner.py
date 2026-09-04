@@ -2,9 +2,12 @@
 gold-hashing logic in runners/agent_computer.py (pure, no desktop/LLM):
   python -m benchmarks.osworld.tests.test_runner
 """
+import tempfile
+from pathlib import Path
+
 from benchmarks.osworld.runners.agent_computer import (
     _agent_telemetry, _annotate_incidental, _clean_finish, _environment_error_rec,
-    _rate_limit_infra_rec, _rate_limit_result_rec, _score,
+    _rate_limit_infra_rec, _rate_limit_result_rec, _save_conversation_transcript, _score,
 )
 
 
@@ -151,6 +154,41 @@ def test_rate_limit_infra_rec_carries_the_status_code():
     assert rec["outcome"] == "RATE_LIMITED"
     assert rec["id"] == "t1"
     assert "429" in rec["error"]
+
+
+def test_transcript_status_reports_missing_session_id():
+    """No session_id -> report it instead of returning silently. Was a bare `return`."""
+    st = _save_conversation_transcript({}, Path(tempfile.mkdtemp(prefix="osw_t_")), "task-x")
+    assert st["transcript_saved"] is False
+    assert "session" in st["transcript_error"]
+
+
+def test_transcript_status_reports_missing_file():
+    """A session_id with no transcript on disk (rotated / unexpected path) must be visible:
+    this is the case that silently produced unverifiable runs before 2026-09-04."""
+    st = _save_conversation_transcript(
+        {"session_id": "definitely-not-a-real-session-id"},
+        Path(tempfile.mkdtemp(prefix="osw_t_")), "task-x")
+    assert st["transcript_saved"] is False
+    assert "definitely-not-a-real-session-id" in st["transcript_error"]
+
+
+def test_transcript_status_on_success(monkeypatch=None):
+    """Happy path records the byte size, so a stub is distinguishable from a real capture."""
+    home = Path(tempfile.mkdtemp(prefix="osw_home_"))
+    proj = home / ".claude" / "projects" / "p"
+    proj.mkdir(parents=True)
+    (proj / "sess123.jsonl").write_text('{"type":"x"}\n')
+    out = Path(tempfile.mkdtemp(prefix="osw_t_"))
+    real_home = Path.home
+    Path.home = staticmethod(lambda: home)
+    try:
+        st = _save_conversation_transcript({"session_id": "sess123"}, out, "task-x")
+    finally:
+        Path.home = real_home
+    assert st["transcript_saved"] is True
+    assert st["transcript_bytes"] == len('{"type":"x"}\n')
+    assert (out / "conversation.jsonl").exists()
 
 
 def main():
