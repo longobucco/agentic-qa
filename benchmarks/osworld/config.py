@@ -17,6 +17,31 @@ TASK_TIMEOUT = int(os.environ.get("OSW_TASK_TIMEOUT", "3600"))
 
 OBSERVATION = os.environ.get("OSW_OBSERVATION", "screenshot+a11y")
 ACTION_SPACE = os.environ.get("OSW_ACTION_SPACE", "pyautogui")
+# G5 ARM_SELF_VERIFY (docs/g5-arm-self-verify-plan.md): appends a mandatory re-observe-and-check
+# step to the prompt before the final ANSWER, targeting G8's false-completion and
+# infeasibility-blindness findings. Off by default -- opt in per-run, not a permanent prompt change.
+SELF_VERIFY = os.environ.get("OSW_SELF_VERIFY", "0") == "1"
+# G5 idea #10 (docs/g5-arm-sandbox-enforcement-plan.md): the real fix for the artifact's
+# sandbox-escape finding -- `--allowedTools` only suppresses the confirmation prompt, it doesn't
+# restrict availability. `--disallowedTools Bash WebSearch WebFetch` + `--strict-mcp-config`
+# (drops any MCP server not in --mcp-config, closing the "second, unrelated Playwright MCP
+# server" half of the same finding) genuinely blocks the escape while leaving the OSWorld MCP
+# tools intact -- verified live 2026-08-30 against a dummy MCP server: honest refusal, real
+# ToolSearch "not found", no confabulation. `--tools ""` (tried first) was rejected: it also
+# disables the legitimate MCP tools, not just Bash/Read/WebSearch, which starves the agent of
+# any real capability and reliably produces confabulated fake tool calls instead -- see
+# docs/finding-confabulation-under-tool-denial.md. Off by default -- opt in per-run.
+ENFORCE_SANDBOX = os.environ.get("OSW_ENFORCE_SANDBOX", "0") == "1"
+# G5 idea #11 (docs/g5-arm-restrict-run-python-plan.md): run_python (free-form pyautogui code) is
+# called nearly as often as screenshot across real transcripts (2415 vs 3105 calls, 198
+# transcripts, analysis/g5_run_python_usage.py) -- the agent defaults to scripting instead of the
+# discrete click/type/key tools the harness is built to measure. `--disallowedTools
+# mcp__osworld__run_python` removes just that one MCP tool from the toolset the model is even
+# offered, leaving the other 10 OSWorld tools untouched -- verified live 2026-08-30 against a
+# dummy MCP server: the model reports run_python as genuinely absent, no confabulated substitute,
+# same clean-denial mechanism idea #10 already validated for Bash/WebSearch/WebFetch. Off by
+# default -- opt in per-run.
+RESTRICT_RUN_PYTHON = os.environ.get("OSW_RESTRICT_RUN_PYTHON", "0") == "1"
 
 IMAGE = os.environ.get(   # pinned by digest -- Daytona caches images by tag, not :latest
     "OSW_IMAGE",
