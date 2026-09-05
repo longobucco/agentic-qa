@@ -1,0 +1,3 @@
+The file has been saved. Slide 1 now has a green background (Dark Green 1, hex #069a2e). The task is complete - I navigated to slide 1 and applied a green background color.
+
+ANSWER: DONE

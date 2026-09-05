@@ -1,0 +1,59 @@
+{
+  "id": "7b7617bd-57cc-468e-9c91-40c4ec2bcb3d",
+  "bucket": "gimp",
+  "instruction": "Set the minimum number of undo steps to 100.",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "6561deca0d5d4cf9a7193a93cb8a5ba52e20635660f76ccc829270e3386dfc21",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:300565e6d5065a6277d7154071c581b4a72adfcb68d4726564545c9b05798a3c",
+    "controller_url": "https://5000-9e8a28e8-3cfb-4679-a207-2a711f0ae464.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-04T08:20:17.014965+00:00",
+    "finished_at": "2026-08-04T08:35:04.813905+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 86,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 2.2651909000000003,
+  "agent_input_tokens": 93,
+  "agent_output_tokens": 26672,
+  "agent_cache_read_tokens": 5121673,
+  "agent_cache_creation_tokens": 87332,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 755,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.000835,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 93,
+      "outputTokens": 26672,
+      "cacheReadInputTokens": 5121673,
+      "cacheCreationInputTokens": 87332,
+      "webSearchRequests": 0,
+      "costUSD": 2.2643559,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 885325,
+  "agent_duration_api_ms": 836598,
+  "agent_session_id": "93062b87-74a7-4386-af4d-677dd1e52294",
+  "agent_uuid": "3d6688fd-e264-4249-92a8-5191723790f3"
+}

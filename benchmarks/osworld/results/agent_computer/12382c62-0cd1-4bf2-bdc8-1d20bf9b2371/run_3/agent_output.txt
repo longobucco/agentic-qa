@@ -1,3 +1,10 @@
-The chart is verified: a clustered column chart (type `col`, grouping `clustered`) on a new sheet named "Sheet2", titled "Sales & COGS", with two series (Sales and COGS) across all 10 weeks.
+The file has been saved successfully. The task is complete:
+
+1. **Sheet2 was created** - visible in the tab at the bottom
+2. **A clustered column chart** is embedded in Sheet2 showing Sales (blue bars) and COGS (orange/red bars) for each week (Week 1-10)
+3. **Chart title is "Sales & COGS"** - visible at the top of the chart
+4. **File saved** in Excel format (.xlsx)
+
+The chart clearly shows both Sales and COGS as clustered columns side-by-side for each of the 10 weeks, which is exactly what was requested.
 
 ANSWER: DONE

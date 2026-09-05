@@ -1,0 +1,59 @@
+{
+  "id": "53ad5833-3455-407b-bbc6-45b4c79ab8fb",
+  "bucket": "vscode",
+  "instruction": "Please help me use VS Code to open the \"project\" in the \"user\" folder under \"home\".",
+  "answer": "",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "0352a97d32923236e7b50c136e4fe93b9f2e6fc4adaa86ecf6a3f7f2608a4be9",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-14c02ac2-50b0-45be-be8a-19f93296aff6.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-10T14:07:13.091741+00:00",
+    "finished_at": "2026-08-10T14:25:20.674842+00:00"
+  },
+  "agent_clean_finish": false,
+  "agent_num_turns": 27,
+  "agent_stop_reason": "stop_sequence",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": true,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.36979195,
+  "agent_input_tokens": 35,
+  "agent_output_tokens": 2630,
+  "agent_cache_read_tokens": 750784,
+  "agent_cache_creation_tokens": 27765,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 813,
+      "outputTokens": 14,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.000883,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 35,
+      "outputTokens": 2630,
+      "cacheReadInputTokens": 750784,
+      "cacheCreationInputTokens": 27765,
+      "webSearchRequests": 0,
+      "costUSD": 0.36890895,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 184259,
+  "agent_duration_api_ms": 102584,
+  "agent_session_id": "0381c269-3296-4552-b46d-38adaf8c2f8a",
+  "agent_uuid": "4c6e701a-2f55-4751-9247-fe3259ad963c"
+}

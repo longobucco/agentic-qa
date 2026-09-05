@@ -1,3 +1,3 @@
-The document has been saved. The heading "Guidelines on drawing up a Constitution" is now clearly center-aligned on the page, and the file has been saved in Word format.
+The heading "Guidelines on drawing up a Constitution" has been successfully center-aligned in LibreOffice Writer and the document has been saved in Word format.
 
 ANSWER: DONE

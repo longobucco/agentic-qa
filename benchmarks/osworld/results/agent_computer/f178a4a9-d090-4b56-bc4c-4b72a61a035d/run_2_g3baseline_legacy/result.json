@@ -1,0 +1,59 @@
+{
+  "id": "f178a4a9-d090-4b56-bc4c-4b72a61a035d",
+  "bucket": "libreoffice_writer",
+  "instruction": "Make Times New Roman the default Font",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "c0c135fa3b12c42cd6fa5a1a1ebbd4e1911e267dc11f958aa3f13f272652fe22",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-971d461f-1076-4ca7-997e-5740634f9186.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-26T17:48:23.206661+00:00",
+    "finished_at": "2026-08-26T18:02:07.730128+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 99,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 2.9547109499999986,
+  "agent_input_tokens": 110,
+  "agent_output_tokens": 32240,
+  "agent_cache_read_tokens": 6847689,
+  "agent_cache_creation_tokens": 110827,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 798,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.000873,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 110,
+      "outputTokens": 32240,
+      "cacheReadInputTokens": 6847689,
+      "cacheCreationInputTokens": 110827,
+      "webSearchRequests": 0,
+      "costUSD": 2.9538379499999987,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 821407,
+  "agent_duration_api_ms": 783657,
+  "agent_session_id": "ed9ccbc1-a4e5-4bbb-b3a9-148c782f4972",
+  "agent_uuid": "d4fe34d5-c0b3-497b-89f9-e62fba1382c1"
+}

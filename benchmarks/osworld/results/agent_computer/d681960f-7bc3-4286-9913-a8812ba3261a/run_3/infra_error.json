@@ -75,5 +75,46 @@
     "error_type": "APIError",
     "error": "api_error_status=429",
     "at": "2026-08-25T04:27:44+0200"
+  },
+  {
+    "id": "d681960f-7bc3-4286-9913-a8812ba3261a",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-30T13:40:49+0200"
+  },
+  {
+    "id": "d681960f-7bc3-4286-9913-a8812ba3261a",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-30T17:29:57+0200"
+  },
+  {
+    "id": "d681960f-7bc3-4286-9913-a8812ba3261a",
+    "run": 3,
+    "outcome": "INFRA_FLAKE",
+    "error_type": "DaytonaError",
+    "error": "Failed to create sandbox: HTTPSConnectionPool(host='app.daytona.io', port=443): Max retries exceeded with url: /api/sandbox (Caused by NameResolutionError(\"HTTPSConnection(host='app.daytona.io', port=443): Failed to resolve 'app.daytona.io' ([Errno 8] nodename nor servname provided, or not known)\"))",
+    "elapsed_s": 0.0,
+    "at": "2026-08-30T21:51:59+0200"
+  },
+  {
+    "id": "d681960f-7bc3-4286-9913-a8812ba3261a",
+    "run": 3,
+    "outcome": "INFRA_FLAKE",
+    "error_type": "DaytonaError",
+    "error": "Failed to execute command: HTTPSConnectionPool(host='proxy.app-eu.daytona.io', port=443): Max retries exceeded with url: /toolbox/fba72285-9af7-4f63-96cb-f2c927f5a606/process/execute (Caused by NameResolutionError(\"HTTPSConnection(host='proxy.app-eu.daytona.io', port=443): Failed to resolve 'proxy.app-eu.daytona.io' ([Errno 8] nodename nor servname provided, or not known)\"))",
+    "elapsed_s": 3.9,
+    "at": "2026-08-30T21:53:48+0200"
+  },
+  {
+    "id": "d681960f-7bc3-4286-9913-a8812ba3261a",
+    "run": 3,
+    "outcome": "INFRA_FLAKE",
+    "error_type": "DaytonaError",
+    "error": "Failed to execute command: HTTPSConnectionPool(host='proxy.app-eu.daytona.io', port=443): Max retries exceeded with url: /toolbox/9ecc9f97-08bc-4669-b6a3-5f6050b850f2/process/execute (Caused by NameResolutionError(\"HTTPSConnection(host='proxy.app-eu.daytona.io', port=443): Failed to resolve 'proxy.app-eu.daytona.io' ([Errno 8] nodename nor servname provided, or not known)\"))",
+    "elapsed_s": 4.6,
+    "at": "2026-08-30T23:18:03+0200"
   }
 ]

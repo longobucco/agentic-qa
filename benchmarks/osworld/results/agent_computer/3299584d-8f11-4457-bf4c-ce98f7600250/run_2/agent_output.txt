@@ -1,9 +1,1 @@
-This is a knowledge question about Chrome's startup behavior, not a desktop automation task requiring screen interaction.
-
-The answer: Clearing cache doesn't affect Chrome's startup page setting. The site keeps opening because Chrome is configured to open that specific URL on startup.
-
-**Fix:** Go to Chrome Settings → On startup → change from "Open a specific page or set of pages" (which has funbrain.com listed) to **"Open the New Tab page"** or **"Continue where you left off"**. Remove funbrain.com from the startup pages list.
-
-Also check: Chrome menu (⋮) → Settings → Appearance → **Homepage** — make sure it's not set to funbrain.com there either.
-
-ANSWER: Change Chrome's startup page setting. Go to Chrome Settings > On startup > select "Open the New Tab page" instead of "Open a specific page or set of pages," and remove funbrain.com from the startup pages list. Clearing cache does not affect startup page settings.
+You've hit your session limit · resets 6:30am (Europe/Rome)

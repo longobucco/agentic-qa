@@ -1,14 +1,1 @@
-The formula bar confirms cell B2 contains `=(Sheet1.B3-Sheet1.B2)/Sheet1.B2*100`, which is the correct percentage change formula for Current Assets from 2014 to 2015.
-
-The task is complete. Sheet2 has been created with:
-- **Row 1**: Headers - "Year", "CA changes", "FA changes", "OA changes"
-- **Rows 2-6**: Years 2015-2019 with their percentage annual changes calculated from Sheet1 data:
-  - 2015: CA +10.15%, FA -4.96%, OA -1.68%
-  - 2016: CA +7.22%, FA -5.56%, OA +5.85%
-  - 2017: CA +13.42%, FA -5.93%, OA +7.65%
-  - 2018: CA +6.46%, FA -6.68%, OA +0.47%
-  - 2019: CA +6.55%, FA -7.46%, OA +1.44%
-
-The file has been saved in Excel format.
-
-ANSWER: DONE
+You've hit your session limit · resets 3:10pm (Europe/Rome)

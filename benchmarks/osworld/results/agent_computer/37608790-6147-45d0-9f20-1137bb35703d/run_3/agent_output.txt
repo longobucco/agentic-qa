@@ -1,3 +1,10 @@
-The file has been saved in xlsx format. All 21 rows are split correctly into First Name, Last Name, and Rank columns, with the original data in column A untouched and the autocomplete error on row 12 (East) fixed.
+The file was saved successfully. The task is complete. All 21 employees have been correctly split:
+
+- **Column A** (original data): Preserved unchanged
+- **Column B** (First Name): All first names correctly filled
+- **Column C** (Last Name): All last names correctly filled (including the fix for Kanye East → "East" not "Eastwood")
+- **Column D** (Rank): All ranks correctly filled
+
+The spreadsheet now has all 21 employee records properly split from the mixed "Employee Data" column into the three separate columns.
 
 ANSWER: DONE

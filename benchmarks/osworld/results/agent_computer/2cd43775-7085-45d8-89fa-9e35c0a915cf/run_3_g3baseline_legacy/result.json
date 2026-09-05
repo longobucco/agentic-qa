@@ -1,0 +1,59 @@
+{
+  "id": "2cd43775-7085-45d8-89fa-9e35c0a915cf",
+  "bucket": "libreoffice_impress",
+  "instruction": "Enable auto-save every 3min for me, so that I don't need to hit \"ctrl-s\" that much",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "eff72cdad148cdc0a5ae5e03f6197ccb5e9171737c02532e6965165d9ff2e697",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-4203a322-eaaa-4806-9390-8574a5d1e1d0.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-26T08:42:17.161854+00:00",
+    "finished_at": "2026-08-26T08:50:55.427663+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 90,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 1.9414693999999997,
+  "agent_input_tokens": 103,
+  "agent_output_tokens": 12294,
+  "agent_cache_read_tokens": 4907078,
+  "agent_cache_creation_tokens": 75660,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 817,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.000902,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 103,
+      "outputTokens": 12294,
+      "cacheReadInputTokens": 4907078,
+      "cacheCreationInputTokens": 75660,
+      "webSearchRequests": 0,
+      "costUSD": 1.9405673999999997,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 513650,
+  "agent_duration_api_ms": 479903,
+  "agent_session_id": "08ad48af-eae0-43e2-82f1-cc368ec43ea7",
+  "agent_uuid": "c5916e32-19e9-462e-8e4b-52a229cf859a"
+}

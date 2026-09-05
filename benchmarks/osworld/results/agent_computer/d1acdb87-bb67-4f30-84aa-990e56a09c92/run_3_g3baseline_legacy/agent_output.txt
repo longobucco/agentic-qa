@@ -1,0 +1,11 @@
+The form has been successfully filled in. All 5 Hong Kong restaurants from the `restaurants.txt` file have been looked up on Google Maps and their details written to `MUST_VISIT.xlsx`:
+
+| Restaurant | Address | Phone | Website |
+|---|---|---|---|
+| Ming Pavilion | Level 8, Pacific Place, Supreme Court Road, Admiralty, HK | +852 2820 8580 | shangri-la.com |
+| Cristal Room by Anne-Sophie Pic | 43-45/F, Gloucester Tower, Landmark, 15 Queen's Road Central, HK | +852 3501 8580 | cristalroombyasp.com |
+| Leela | Shop 301-310, 1 Sunning Rd, Causeway Bay, HK | +852 2882 5316 | leela.hk |
+| Nobu | 2/F, Regent Hong Kong, 18 Salisbury Rd, Tsim Sha Tsui, HK | +852 2313 2313 | hongkong.regenthotels.com |
+| Niras | Shop 704, 7/F, K11 MUSEA, 18 Salisbury Rd, Tsim Sha Tsui, HK | +852 3905 3022 | niras.hk |
+
+ANSWER: DONE

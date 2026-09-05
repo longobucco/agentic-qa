@@ -1,7 +1,3 @@
-Both emails in the Bills folder now have stars. I can see:
-- **AWS email**: filled star (★) visible in the message list
-- **X (formerly Twitter) email**: filled star (★) visible in both the message list and the reading pane toolbar
-
-Both emails in the local Bills folder have been successfully starred.
+Both emails now have `X-Mozilla-Status: 0005` (0x0001 read + 0x0004 starred). The screenshot confirms both messages show orange star icons. The task is complete.
 
 ANSWER: DONE

@@ -1,0 +1,10 @@
+The file is saved. The spreadsheet now shows the correct column order:
+- B: Date
+- C: First Name
+- D: Last Name
+- E: Order ID
+- F: Sales
+
+This matches the required order "Date", "First Name", "Last Name", "Order ID", "Sales" exactly. The file has been saved as xlsx format.
+
+ANSWER: DONE

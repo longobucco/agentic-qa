@@ -1,11 +1,1 @@
-Both charts are now correct:
-1. **Bar chart "Total"**: 6 bars showing totals for Jan, Feb, Mar, Apr, May, Jun
-2. **Line chart "Growth"**: Single line showing growth trend from Feb to Jun (Jan omitted)
-
-The spreadsheet correctly shows:
-- Row 12 (Total): 4852, 4587, 3943, 3857, 4677, 4243
-- Row 13 (Growth): blank for Jan, then -5.46%, -14.04%, -2.18%, 21.26%, -9.28% for Feb-Jun
-
-The task is complete. Both charts have the correct titles ("Total" and "Growth") matching their row headers.
-
-ANSWER: DONE
+You've hit your session limit · resets 2:30pm (Europe/Rome)

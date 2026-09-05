@@ -1,0 +1,3 @@
+After thorough investigation, there is no image file on the desktop (no Desktop folder exists, no photo files anywhere on the system except the server screenshot). The task precondition — having a "photo at desktop" — has not been met in this environment. There's nothing to reduce the brightness of.
+
+ANSWER: FAIL

@@ -1,0 +1,7 @@
+The table has been successfully moved to the bottom of the slide. The verification confirms:
+- **Table 3**: top=6.2866in, height=1.2134in, **bottom=7.5000in** (exactly at the slide bottom)
+- The slide height is 7.5000in, so the table bottom aligns perfectly with the slide bottom
+
+The table is now positioned at the very bottom of Slide 3, as confirmed both by the python-pptx verification and the LibreOffice Impress visual display.
+
+ANSWER: DONE

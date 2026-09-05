@@ -1,0 +1,3 @@
+This task is impossible to complete. Google Play Movies & TV content is protected by Widevine DRM, which VLC does not support. The content cannot be played directly in VLC — it can only be streamed through DRM-capable browsers or dedicated apps. Additionally, there are no downloaded Stranger Things files on this system, and the Google Play Store is not accessible in this region (shows "content is not available in your country").
+
+ANSWER: FAIL

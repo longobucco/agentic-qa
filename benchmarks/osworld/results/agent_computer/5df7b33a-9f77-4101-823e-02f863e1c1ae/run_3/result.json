@@ -3,17 +3,17 @@
   "bucket": "os",
   "instruction": "I enjoy reading during my spare time, but this book is too bulky. Each time I open it, I have to find where I left off, which is a hassle. I'd like to divide the book into several PDFs, each containing a different chapter, and name them following the example I set with chapter one.",
   "answer": "",
-  "setup_error": "config setup failed: Setup step 4 failed: _open_setup - Failed to open file '/home/user/Desktop/book/Spectral Graph Theory.pdf'. An error occurred while trying to send the request or the server responded with an error: 404 Client Error: Not Found for url: https://5000-ebd5a8c8-af5d-4bbc-bf79-9f8eadd93072.daytonaproxy01.eu/setup/open_file",
+  "setup_error": "config setup failed: Setup step 4 failed: _open_setup - Failed to open file '/home/user/Desktop/book/Spectral Graph Theory.pdf'. An error occurred while trying to send the request or the server responded with an error: 404 Client Error: Not Found for url: https://5000-061c21a1-0219-447c-a524-7f24fdde9a0f.daytonaproxy01.eu/setup/open_file",
   "provenance": {
     "task_sha256": "a9c8d4ec9450cc3fbd500c00d8d7d704d492b2b6ca781d62ece610ec9e40ec99",
     "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
-    "controller_url": "https://5000-ebd5a8c8-af5d-4bbc-bf79-9f8eadd93072.daytonaproxy01.eu",
+    "controller_url": "https://5000-061c21a1-0219-447c-a524-7f24fdde9a0f.daytonaproxy01.eu",
     "release": "verified",
     "max_turns": 150,
     "task_timeout": 2700,
     "observation": "screenshot+a11y",
     "action_space": "pyautogui",
-    "started_at": "2026-08-20T16:34:36.642859+00:00",
-    "finished_at": "2026-08-20T16:34:36.643131+00:00"
+    "started_at": "2026-09-04T23:35:19.098542+00:00",
+    "finished_at": "2026-09-04T23:35:19.098648+00:00"
   }
 }

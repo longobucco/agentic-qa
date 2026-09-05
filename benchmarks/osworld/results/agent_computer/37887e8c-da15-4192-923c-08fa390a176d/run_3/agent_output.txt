@@ -1,3 +1,6 @@
-The old files (last modified 30 days ago) are now gzip-compressed in `/tmp/test_files/old_files`, and the newer files remain in `/tmp/test_files/new_files`.
+The task is complete. Here's what was done:
+
+- **Files modified 30 days ago** (`old_file1.txt`, `old_file2.txt`) were compressed using gzip → `old_file1.txt.gz`, `old_file2.txt.gz` in `/tmp/test_files/old_files/`
+- **Recent files** (`new_file1.txt`, `new_file2.txt`) are in `/tmp/test_files/new_files/` (already placed there in a prior run)
 
 ANSWER: DONE

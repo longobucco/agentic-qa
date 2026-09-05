@@ -1,7 +1,1 @@
-Both folders have been successfully added to the workspace. The Explorer panel now shows:
-- PROJECT (WORKSPACE)
-  - project
-  - data1
-  - data2
-
-ANSWER: DONE
+You've hit your session limit · resets 6:30am (Europe/Rome)

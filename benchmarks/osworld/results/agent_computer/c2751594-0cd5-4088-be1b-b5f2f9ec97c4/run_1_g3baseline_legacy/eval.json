@@ -1,0 +1,10 @@
+{
+  "id": "c2751594-0cd5-4088-be1b-b5f2f9ec97c4",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official compare_images -> 0.00",
+  "source": "official",
+  "gold_sha256": {
+    "gold_background.png": "1b19ee9db539d8eeabe3deab4e7579aeba472afad1dbd9538fd110830ab9ca0c"
+  }
+}

@@ -1,10 +1,1 @@
-The dialog has been dismissed and I can see VS Code is now showing the workspace. Looking at the Explorer panel on the left side, I can confirm both folders have been successfully added to the workspace:
-
-- **PROJECT (WORKSPACE)**
-  - project
-  - **data1**
-  - **data2**
-
-The folders `/home/user/data1` and `/home/user/data2` are now part of the current VS Code workspace, as shown in the sidebar. The `code --add` command I ran earlier successfully added them.
-
-ANSWER: DONE
+You've hit your session limit · resets 6:30am (Europe/Rome)

@@ -1,0 +1,59 @@
+{
+  "id": "57667013-ea97-417c-9dce-2713091e6e2a",
+  "bucket": "libreoffice_impress",
+  "instruction": "Navigate to slide 5 and set the font color of all textboxes to yellow. Use exactly 'yellow'\u2014no variations such as light yellow, dark yellow, or any other color.",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "fb98a25c7eabe628770cfcd3b052a356f99e193aab00d134574c0297bfe8c6da",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-95d7c949-5a38-4c76-9e72-f3f279d97120.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-15T00:34:29.375944+00:00",
+    "finished_at": "2026-08-15T00:44:18.013456+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 112,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 2.8157556500000003,
+  "agent_input_tokens": 127,
+  "agent_output_tokens": 18656,
+  "agent_cache_read_tokens": 7318623,
+  "agent_cache_creation_tokens": 89633,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3729,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.003824,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 127,
+      "outputTokens": 18656,
+      "cacheReadInputTokens": 7318623,
+      "cacheCreationInputTokens": 89633,
+      "webSearchRequests": 0,
+      "costUSD": 2.81193165,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 587114,
+  "agent_duration_api_ms": 528104,
+  "agent_session_id": "8fdb7542-ace2-465e-aa8c-a43d7e69337d",
+  "agent_uuid": "802da203-0d7d-47eb-a5b3-b9cb8df5a5f9"
+}

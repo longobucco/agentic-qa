@@ -1,0 +1,59 @@
+{
+  "id": "1d17d234-e39d-4ed7-b46f-4417922a4e7c",
+  "bucket": "libreoffice_calc",
+  "instruction": "Create a new sheet named \"Sheet2\" and merge cells A1:C1 to write the header \"Investment Summary\". Beneath that, merge cells A2:B2 to write \"High Interest Rate\" and merge cells C2:D2 to form \"Low Interest Rate\".",
+  "answer": "DONE",
+  "eval_state": "<binary:5997 bytes at FutureValue.xlsx>",
+  "provenance": {
+    "task_sha256": "988114318ef17ac2c3be66468f611393ad42a0e7877f66ca12d844af7808e6a7",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-b16cfb15-72da-4e53-9bce-37fb614c1171.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-15T11:50:08.282080+00:00",
+    "finished_at": "2026-08-15T12:01:42.019849+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 79,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 1.9552720999999997,
+  "agent_input_tokens": 90,
+  "agent_output_tokens": 20956,
+  "agent_cache_read_tokens": 4539427,
+  "agent_cache_creation_tokens": 73336,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3749,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.003824,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 90,
+      "outputTokens": 20956,
+      "cacheReadInputTokens": 4539427,
+      "cacheCreationInputTokens": 73336,
+      "webSearchRequests": 0,
+      "costUSD": 1.9514481,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 692212,
+  "agent_duration_api_ms": 607399,
+  "agent_session_id": "5dfdf9ae-388f-43dc-ba64-098d722a102f",
+  "agent_uuid": "5aec4828-dc43-4e0a-908b-36e4a6b48731"
+}

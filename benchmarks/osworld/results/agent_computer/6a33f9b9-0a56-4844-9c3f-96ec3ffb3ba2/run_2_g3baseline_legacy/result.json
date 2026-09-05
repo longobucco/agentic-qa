@@ -1,0 +1,59 @@
+{
+  "id": "6a33f9b9-0a56-4844-9c3f-96ec3ffb3ba2",
+  "bucket": "libreoffice_writer",
+  "instruction": "I have been editing my document and some words that needed to be rewritten are highlighted in yellow. As I fixed those words, please help me remove all highlight. I want to make sure that there is no highlight word.",
+  "answer": "DONE",
+  "eval_state": "<binary:34211 bytes at sample-recruitment-phone-script.odt>",
+  "provenance": {
+    "task_sha256": "9e51a083481706cbb8bf9092d122b9941b25f4508147176c866f20702c0d39a4",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-af0671c1-62ca-4354-baf8-3a03d1f52426.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-18T14:54:28.113136+00:00",
+    "finished_at": "2026-08-18T14:55:49.305124+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 22,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.546364,
+  "agent_input_tokens": 3378,
+  "agent_output_tokens": 2840,
+  "agent_cache_read_tokens": 564055,
+  "agent_cache_creation_tokens": 27578,
+  "agent_model_usage": {
+    "claude-opus-4-8": {
+      "inputTokens": 3378,
+      "outputTokens": 2840,
+      "cacheReadInputTokens": 564055,
+      "cacheCreationInputTokens": 27578,
+      "webSearchRequests": 0,
+      "costUSD": 0.54228,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    },
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 4019,
+      "outputTokens": 13,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.004084,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 79613,
+  "agent_duration_api_ms": 76300,
+  "agent_session_id": "bdb9a777-edf2-424f-ac4d-24697b57a096",
+  "agent_uuid": "e7e5a5f9-c1bd-4a2a-ac8c-154e46e098b6"
+}

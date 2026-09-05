@@ -1,0 +1,8 @@
+The environment is missing both required preconditions for this task:
+
+1. **No drafted email** — Thunderbird has no account configured, no Local Folders, and no Drafts folder (the profile contains only `prefs.js`, no `Mail`/`ImapMail`/`Local Folders` directories).
+2. **No payment record** — there is no spreadsheet, CSV, document, or any "payment/tuition/record" file anywhere in the filesystem.
+
+The task asks me to open a pre-drafted reminder email and pull email addresses from a payment record to fill the receiver field. Neither the draft nor the payment record exists, so there is nothing to read from and nothing to edit. This is a missing-precondition situation, not something to work around by fabricating data.
+
+ANSWER: FAIL

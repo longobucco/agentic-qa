@@ -1,1 +1,13 @@
-API Error: The socket connection was closed unexpectedly. For more information, pass `verbose: true` in the second argument to fetch()
+The formula bar shows `=(B2-C2)-D2-F2-G2-H2` which is exactly correct:
+- `(B2-C2)` = Sales - Sales Return = Net Sales (actual sale after returns)
+- `-D2` = minus Discounts and Allowances
+- `-F2` = minus Materials Charges
+- `-G2` = minus Labor Charges
+- `-H2` = minus Overhead
+
+The task is complete. Both sheets are properly set up:
+- **Sheet1**: Gross Profit column (J) filled with formula `=(B-C)-D-F-G-H` yielding values: 55000, 47662, 53451, 60819, 62864, 57924, 59634, 50852, 43649
+- **Sheet2**: Column A named "Year_Profit" with header and values like "2015_55000", "2016_47662", etc. (Year + "_" + integer Gross Profit)
+- Sheet order is correct: Sheet1 (first), Sheet2 (second)
+
+ANSWER: DONE

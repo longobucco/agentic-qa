@@ -1,0 +1,13 @@
+{
+  "id": "f23acfd2-c485-4b7c-a1e7-d4303ddfe864",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official ['compare_pptx_files', 'compare_pptx_files', 'compare_pptx_files', 'compare_pptx_files'] -> 0.00",
+  "source": "official",
+  "gold_sha256": {
+    "69_4_Gold.pptx": "8c2c59c6197c5baf7c9d8c21a4c33df87df42001f737767238153907b3d285b8",
+    "69_4_Gold2.pptx": "75753bd096a73270ea973be446f3c99c0574436950143dc8b48cb1b326dfa21d",
+    "69_4_Gold_all_fonts_1.pptx": "7ffd6854a73d33487e70368c1591d9feac62e8d53e13464e6b60815c89fc50fd",
+    "69_4_Gold_all_fonts_2.pptx": "8808b3cf70fe14da104490c84e0da424b30fef0b5dec8fcfac7d90e79307a267"
+  }
+}

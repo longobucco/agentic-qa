@@ -1,0 +1,10 @@
+{
+  "id": "da52d699-e8d2-4dc5-9191-a2199e0b6a9b",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official compare_docx_files -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "book_list_result_Gold.docx": "abb7895fe29369823b8e292d5a7bb8230e6bcc3bf00547dc0a11590fad0dce01"
+  }
+}

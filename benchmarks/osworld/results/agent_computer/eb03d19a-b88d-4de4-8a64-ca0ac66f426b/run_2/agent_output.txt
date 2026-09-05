@@ -1,3 +1,5 @@
-The transposed table was pasted at B8 (occupying B8:E12) and the file was saved in xlsx format.
+The task is complete. The table from B2:F5 has been transposed and pasted at B8:
+- Original table (4 rows × 5 columns): rows had Student/Class/Subject/Marks as labels in column B, with student data across columns C-F
+- Transposed table (5 rows × 4 columns) at B8:E12: columns now have Student/Class/Subject/Marks as headers, with each student's data in a row
 
 ANSWER: DONE

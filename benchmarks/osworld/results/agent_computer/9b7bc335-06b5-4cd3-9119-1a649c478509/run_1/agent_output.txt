@@ -1,10 +1,1 @@
-The email forwarding filter is successfully configured in Thunderbird. The Message Filters dialog shows:
-- **Account**: anonym-x2024@outlook.com
-- **Filter name**: "Forward to anonym-x2024@gmail.com"  
-- **Status**: Enabled (checkmark visible)
-- **Action**: Forward all incoming messages to anonym-x2024@gmail.com
-- **Condition**: ALL (matches every email)
-
-This was done entirely locally in Thunderbird without touching the online Outlook account.
-
-ANSWER: DONE
+You've hit your session limit · resets 11:30am (Europe/Rome)

@@ -1,3 +1,3 @@
-The zoom is now set to 75% (shown at the bottom right of the status bar). The cells are now much smaller and clearly clickable - the original zoom was 260% which was too large to click individual cells. The task is complete.
+The zoom is now set to 75% as shown in the bottom right of the status bar. The spreadsheet now displays cells at a manageable size - multiple rows and columns are visible, and each cell is easily clickable. The view went from an extremely high zoom (where cells were too large) to 75%, making the spreadsheet fully navigable.
 
 ANSWER: DONE

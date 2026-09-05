@@ -1,0 +1,11 @@
+{
+  "id": "4f07fbe9-70de-4927-a4d5-bb28bc12c52c",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official compare_table -> 0.00",
+  "source": "official",
+  "gold_sha256": {
+    "Padding_Decimals_In_Formular_gold.xlsx": "1dd8b7285d7c63360d9fa72a9a47b0aa709328975c7228d70b04c96eda36b1dd",
+    "Padding_Decimals_In_Formular_gold-Sheet1.csv": "073ee9f73488b7b3329368af29f6c1857836908a40aa57e65928e20340d9472b"
+  }
+}

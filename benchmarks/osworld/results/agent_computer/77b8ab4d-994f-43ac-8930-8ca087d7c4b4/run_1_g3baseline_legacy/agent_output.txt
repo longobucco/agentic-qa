@@ -1,0 +1,3 @@
+The photo has been successfully copied to the desktop as `export.jpg`. The desktop now contains both the original `The_Lost_River_Of_Dreams.jpg` and the new `export.jpg`.
+
+ANSWER: DONE

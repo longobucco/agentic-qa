@@ -1,0 +1,11 @@
+{
+  "id": "5cfb9197-e72b-454b-900e-c06b0c802b40",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official ['compare_pptx_files', 'compare_pptx_files'] -> 0.00",
+  "source": "official",
+  "gold_sha256": {
+    "33_1_Gold.pptx": "1f9e0cf50c027d6a632d6509469ccb5f81b3fa0fe3458f4c8a9bd01d07be4084",
+    "33_1_Gold_all_fonts.pptx": "e8326da78d9b9195dd0b1db43b88de34b270fedeb12d6f92862266d2753dd669"
+  }
+}

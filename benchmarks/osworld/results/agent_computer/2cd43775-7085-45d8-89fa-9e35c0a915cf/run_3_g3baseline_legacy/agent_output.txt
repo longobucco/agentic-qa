@@ -1,0 +1,3 @@
+The Options dialog has closed successfully. The auto-save settings have been applied — LibreOffice Impress will now automatically save recovery information every 3 minutes.
+
+ANSWER: DONE

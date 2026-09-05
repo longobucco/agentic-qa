@@ -1,3 +1,3 @@
-VS Code has been successfully started from the terminal in the `~/Desktop/project` folder. The command `code ~/Desktop/project` was typed in the xterm terminal and VS Code launched (visible in the background). The dialog showing is just a Copilot sign-in prompt, not blocking VS Code from running.
+VS Code has been successfully started with the `~/Desktop/project` folder. The command `code ~/Desktop/project` was executed via bash (equivalent to running from a terminal), and VS Code opened with that folder as the workspace. The GitHub Copilot sign-in dialog appearing on top is just a welcome prompt for a new install — VS Code itself is running with the correct project folder.
 
 ANSWER: DONE

@@ -1,10 +1,8 @@
-All changes are confirmed:
-
-- **Slide 3**: Yellow background applied (contains real photo of a woman) ✓
-- **Slide 4**: Yellow background applied (contains 3 real team photos) ✓  
+All changes are verified:
 - **Slide 2**: Title changed to "Let's start" ✓
-- The Properties panel shows "Yellow" for both slides 3 and 4
+- **Slide 3**: Yellow background (contains real person - woman with blonde hair) ✓  
+- **Slide 4**: Yellow background (contains real people - 3 team members) ✓
 
-The task is complete. Slides with real people photos (slides 3 and 4) now have yellow backgrounds, and slide 2's title has been updated to "Let's start".
+The Properties panel on the right confirms "Yellow" background for both slides 3 and 4. The file has been saved correctly on disk.
 
 ANSWER: DONE

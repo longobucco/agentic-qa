@@ -1,0 +1,10 @@
+The file has been successfully created. `notes.docx` (38KB) is now saved on the desktop at `/Users/lucavisconti/Desktop/notes.docx`. It contains the primary content from the Apple Human Interface Guidelines "Searching" page, organized into sections:
+
+- **Searching** (title + intro paragraphs)
+- **Best practices**
+- **Systemwide search**
+- **Platform considerations**
+
+The content stops just before the "Resources" section as requested.
+
+ANSWER: DONE

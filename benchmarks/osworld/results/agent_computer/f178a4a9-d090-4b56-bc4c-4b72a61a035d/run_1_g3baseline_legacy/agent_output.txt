@@ -1,0 +1,3 @@
+The task is complete. The Options dialog has closed and the font toolbar now shows "Times New Roman" as the default font, confirming the change was successfully applied.
+
+ANSWER: DONE

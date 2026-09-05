@@ -1,3 +1,1 @@
-The extension has been successfully installed! I can see in the Extensions panel that "test" (from undefined_publisher) is now listed under **INSTALLED (1)**.
-
-ANSWER: DONE
+You've hit your session limit · resets 3:10pm (Europe/Rome)

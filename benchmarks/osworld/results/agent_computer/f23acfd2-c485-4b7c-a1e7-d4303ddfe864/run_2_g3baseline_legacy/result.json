@@ -1,0 +1,59 @@
+{
+  "id": "f23acfd2-c485-4b7c-a1e7-d4303ddfe864",
+  "bucket": "libreoffice_impress",
+  "instruction": "Add a bullet point to the content of this slide.",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "54f2bb9ca4e216145b96294fd71c03e85c2eef4acc7f43f04934c49c1a3c652c",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-6445f387-edd7-474a-920b-902905475938.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-25T12:18:35.093156+00:00",
+    "finished_at": "2026-08-25T12:24:18.307602+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 68,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 1.3831374,
+  "agent_input_tokens": 83,
+  "agent_output_tokens": 15101,
+  "agent_cache_read_tokens": 3047388,
+  "agent_cache_creation_tokens": 64008,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2057,
+      "outputTokens": 14,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002127,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 83,
+      "outputTokens": 15101,
+      "cacheReadInputTokens": 3047388,
+      "cacheCreationInputTokens": 64008,
+      "webSearchRequests": 0,
+      "costUSD": 1.3810104,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 340921,
+  "agent_duration_api_ms": 327970,
+  "agent_session_id": "41f0d1b5-c59d-4faf-8847-55eca17efcee",
+  "agent_uuid": "c84ccd98-e3d9-4366-9b93-42f1ce6e0c83"
+}

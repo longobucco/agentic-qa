@@ -1,0 +1,9 @@
+The desktop background has been successfully set to the first image from the `lecture-notes.docx` file. The image shows a "FREE SAMPLE" stamp that was the first image (image1.png) in the document.
+
+Summary of what was accomplished:
+1. Found the Notes folder in Thunderbird's IMAP mail (`outlook.office365.com/Notes`)
+2. Found the most recent email ("Lecture Document") with a `lecture-notes.docx` attachment
+3. Extracted the docx file and identified the first image (image1.png - a "FREE SAMPLE" stamp)
+4. Used Python Xlib to set that image as the desktop background at display `:99`
+
+ANSWER: DONE

@@ -7,17 +7,19 @@
   "provenance": {
     "task_sha256": "d843cc62ceccdbccc7b062b67e35f04ae74e88fd8d61a7dd7da9e5772072312c",
     "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
-    "controller_url": "https://5000-c826d144-92b8-4d07-8987-6ff166009f2f.daytonaproxy01.eu",
+    "controller_url": "https://5000-5c340abb-aa50-4192-839f-288581f6bcfa.daytonaproxy01.eu",
     "release": "verified",
     "max_turns": 150,
     "task_timeout": 2700,
     "observation": "screenshot+a11y",
     "action_space": "pyautogui",
-    "started_at": "2026-08-18T07:51:28.267142+00:00",
-    "finished_at": "2026-08-18T07:52:53.124498+00:00"
+    "started_at": "2026-09-05T05:20:06.073814+00:00",
+    "finished_at": "2026-09-05T05:26:55.488347+00:00"
   },
+  "transcript_saved": true,
+  "transcript_bytes": 26356815,
   "agent_clean_finish": true,
-  "agent_num_turns": 14,
+  "agent_num_turns": 60,
   "agent_stop_reason": "end_turn",
   "agent_terminal_reason": "completed",
   "agent_subtype": "success",
@@ -25,35 +27,35 @@
   "agent_errors": null,
   "agent_api_error_status": null,
   "agent_permission_denials": [],
-  "agent_cost_usd": 0.38818599999999986,
-  "agent_input_tokens": 3240,
-  "agent_output_tokens": 1166,
-  "agent_cache_read_tokens": 325339,
-  "agent_cache_creation_tokens": 28178,
+  "agent_cost_usd": 1.2650834999999996,
+  "agent_input_tokens": 73,
+  "agent_output_tokens": 12408,
+  "agent_cache_read_tokens": 2846270,
+  "agent_cache_creation_tokens": 59730,
   "agent_model_usage": {
     "claude-haiku-4-5-20251001": {
-      "inputTokens": 3984,
-      "outputTokens": 14,
+      "inputTokens": 801,
+      "outputTokens": 15,
       "cacheReadInputTokens": 0,
       "cacheCreationInputTokens": 0,
       "webSearchRequests": 0,
-      "costUSD": 0.0040539999999999994,
+      "costUSD": 0.0008759999999999999,
       "contextWindow": 200000,
       "maxOutputTokens": 32000
     },
-    "claude-opus-4-8": {
-      "inputTokens": 3240,
-      "outputTokens": 1166,
-      "cacheReadInputTokens": 325339,
-      "cacheCreationInputTokens": 28178,
+    "claude-sonnet-4-6": {
+      "inputTokens": 73,
+      "outputTokens": 12408,
+      "cacheReadInputTokens": 2846270,
+      "cacheCreationInputTokens": 59730,
       "webSearchRequests": 0,
-      "costUSD": 0.38413199999999986,
-      "contextWindow": 1000000,
-      "maxOutputTokens": 64000
+      "costUSD": 1.2642074999999997,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
     }
   },
-  "agent_duration_ms": 79919,
-  "agent_duration_api_ms": 62517,
-  "agent_session_id": "f6ef8ab0-93e1-431d-b6be-99594ac6e024",
-  "agent_uuid": "00b3d39b-068f-4663-9c01-ad412e92007c"
+  "agent_duration_ms": 407346,
+  "agent_duration_api_ms": 384729,
+  "agent_session_id": "e25c25d0-135d-4f07-b56f-74163e9f3f69",
+  "agent_uuid": "906e65b4-aa89-4fde-9d6c-0f7f0e4addb3"
 }

@@ -1,0 +1,59 @@
+{
+  "id": "0512bb38-d531-4acf-9e7e-0add90816068",
+  "bucket": "vscode",
+  "instruction": "Please help me install an extension in VS Code from a local VSIX file \"/home/user/test.vsix\".",
+  "answer": "DONE",
+  "eval_state": "undefined_publisher.test\n",
+  "provenance": {
+    "task_sha256": "e02bf983ce57cb61eedc1ec8e59dee13d635f51f5b46fa9b2da0d8c064d11f5f",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-0c45ddb1-ffdf-46b8-935b-425d40e3686f.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-10T07:22:37.873773+00:00",
+    "finished_at": "2026-08-10T07:23:25.153104+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 13,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.16095679999999998,
+  "agent_input_tokens": 18,
+  "agent_output_tokens": 1330,
+  "agent_cache_read_tokens": 301171,
+  "agent_cache_creation_tokens": 13218,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 944,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001034,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 18,
+      "outputTokens": 1330,
+      "cacheReadInputTokens": 301171,
+      "cacheCreationInputTokens": 13218,
+      "webSearchRequests": 0,
+      "costUSD": 0.1599228,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 44310,
+  "agent_duration_api_ms": 42584,
+  "agent_session_id": "a7bb04e6-d1fd-4327-8363-a4001235af56",
+  "agent_uuid": "643172b7-ef2b-4b81-a804-db33245b8d14"
+}

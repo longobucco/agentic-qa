@@ -1,0 +1,59 @@
+{
+  "id": "4d117223-a354-47fb-8b45-62ab1390a95f",
+  "bucket": "os",
+  "instruction": "Change the permission of all regular files under current directory tree to 644",
+  "answer": "DONE",
+  "eval_state": "",
+  "provenance": {
+    "task_sha256": "10b6e2b36b0949508195b8b28d40d2f9b92202d5d43440d477e6fc6a46512d31",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-17da4ab9-002f-4d88-8c5d-c13679b96dc2.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-24T22:54:01.456026+00:00",
+    "finished_at": "2026-08-24T22:54:28.753018+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 5,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.0691454,
+  "agent_input_tokens": 8,
+  "agent_output_tokens": 1017,
+  "agent_cache_read_tokens": 99738,
+  "agent_cache_creation_tokens": 5908,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1705,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.00179,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 8,
+      "outputTokens": 1017,
+      "cacheReadInputTokens": 99738,
+      "cacheCreationInputTokens": 5908,
+      "webSearchRequests": 0,
+      "costUSD": 0.06735540000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 25105,
+  "agent_duration_api_ms": 25933,
+  "agent_session_id": "061591fb-c153-487b-9e4d-b8a5c36a68ec",
+  "agent_uuid": "eaf727a5-9dd8-4bb4-a08d-db86762b997e"
+}

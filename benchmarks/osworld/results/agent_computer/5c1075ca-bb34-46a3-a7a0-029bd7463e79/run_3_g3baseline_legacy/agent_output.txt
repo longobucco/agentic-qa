@@ -1,0 +1,7 @@
+All 3 files were copied successfully to `./fails` with their directory hierarchy preserved:
+
+- `test_environment/dir1/a_failed.ipynb`
+- `test_environment/dir2/subdir1/c_failed.ipynb`
+- `test_environment/dir3/e_failed.ipynb`
+
+ANSWER: DONE

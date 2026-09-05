@@ -1,0 +1,12 @@
+The entry for Yann LeCun has been successfully appended to researchers.xlsx. Here's a summary of what was added:
+
+- **Name**: Yann LeCun
+- **All citations**: 491,838
+- **h-index**: 174
+- **i10-index**: 501
+- **Top Cited Work**: Deep learning
+- **PDF Link of Top Cited Work**: https://hal.science/hal-04206682/document
+
+All data was sourced directly from Yann LeCun's Google Scholar profile.
+
+ANSWER: DONE

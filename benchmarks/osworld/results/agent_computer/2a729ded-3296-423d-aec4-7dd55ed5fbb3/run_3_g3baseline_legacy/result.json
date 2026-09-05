@@ -1,0 +1,59 @@
+{
+  "id": "2a729ded-3296-423d-aec4-7dd55ed5fbb3",
+  "bucket": "gimp",
+  "instruction": "Could you make the background of this image transparent for me?",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "f749f31020041052fd6684cb6fdb236ab3ee9d85bca6621321e86f113361494d",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:300565e6d5065a6277d7154071c581b4a72adfcb68d4726564545c9b05798a3c",
+    "controller_url": "https://5000-b9cd64d5-5b32-4197-b3ce-01ee9926ebbd.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-05T08:45:59.185227+00:00",
+    "finished_at": "2026-08-05T08:49:47.139914+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 36,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.6669018499999999,
+  "agent_input_tokens": 49,
+  "agent_output_tokens": 8163,
+  "agent_cache_read_tokens": 1295752,
+  "agent_cache_creation_tokens": 41259,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 803,
+      "outputTokens": 12,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.000863,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 49,
+      "outputTokens": 8163,
+      "cacheReadInputTokens": 1295752,
+      "cacheCreationInputTokens": 41259,
+      "webSearchRequests": 0,
+      "costUSD": 0.6660388499999998,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 225778,
+  "agent_duration_api_ms": 209219,
+  "agent_session_id": "43489474-f4b3-40da-bffa-218444e918db",
+  "agent_uuid": "c25ad59e-cfda-470c-bc0f-be47ea784576"
+}

@@ -1,0 +1,3 @@
+The slide now clearly shows "• New bullet point" with the bullet character (•) visible before the text. The bullet point has been successfully added to the slide content. The file has been saved in PowerPoint format.
+
+ANSWER: DONE

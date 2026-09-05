@@ -1,8 +1,1 @@
-The osworld server has been unavailable for an extended period (several hours of attempts). The task cannot be completed due to an infrastructure failure - the connection to the remote desktop was lost before I could finish adding data validation to the "Pass/Fail/Held" column.
-
-The work I had completed before the connection dropped:
-1. Closed the "Tip of the Day" dialog
-2. Selected the range D2:D29 (the "Pass/Fail/Held" column data cells)
-3. Opened the Data menu - but the connection was lost before I could click "Validity..." to add the dropdown list with "Pass", "Fail", "Held" options
-
-ANSWER: FAIL
+You've hit your session limit · resets 6:30am (Europe/Rome)

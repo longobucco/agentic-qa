@@ -1,0 +1,3 @@
+The left dock (toolbox) has been successfully removed from the left side of the screen. The toolbox floating window is now closed. The main GIMP canvas is visible in the center, and only the brushes/layers panel remains on the right side.
+
+ANSWER: DONE

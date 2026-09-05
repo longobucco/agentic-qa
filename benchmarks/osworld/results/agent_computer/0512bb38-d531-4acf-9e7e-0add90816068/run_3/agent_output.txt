@@ -1,8 +1,1 @@
-The extension was successfully installed. The VS Code CLI output confirms:
-
-```
-Installing extensions...
-Extension 'test.vsix' was successfully installed.
-```
-
-ANSWER: DONE
+You've hit your session limit · resets 3:10pm (Europe/Rome)

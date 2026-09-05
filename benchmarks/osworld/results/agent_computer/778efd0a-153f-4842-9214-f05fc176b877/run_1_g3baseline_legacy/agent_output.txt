@@ -1,0 +1,3 @@
+Both requirements are complete: `planet.wav` (235s stereo audio extracted from planet.mp4) exists on the Desktop, and the presentation now embeds `ppt/media/planet.wav` with a transition sound referencing it applied to all slides (with "loop until next sound" enabled for continuous background music). The file was saved in pptx format.
+
+ANSWER: DONE

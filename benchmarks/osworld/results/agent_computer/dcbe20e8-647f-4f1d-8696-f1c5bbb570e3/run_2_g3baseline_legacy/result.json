@@ -1,0 +1,59 @@
+{
+  "id": "dcbe20e8-647f-4f1d-8696-f1c5bbb570e3",
+  "bucket": "vscode",
+  "instruction": "Please help me change the background of VS Code to the photo in Downloads.",
+  "answer": "FAIL",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "0e2edffe4fb577dad2af86d3a911142a662f5fa35341edc288897b703b9af942",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-ca777b40-90f8-4ba1-9f27-d884d640e344.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-22T08:14:12.701447+00:00",
+    "finished_at": "2026-08-22T08:21:06.732452+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 38,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 1.13331175,
+  "agent_input_tokens": 3725,
+  "agent_output_tokens": 8441,
+  "agent_cache_read_tokens": 1378539,
+  "agent_cache_creation_tokens": 33721,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3561,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.003636,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 3725,
+      "outputTokens": 8441,
+      "cacheReadInputTokens": 1378539,
+      "cacheCreationInputTokens": 33721,
+      "webSearchRequests": 0,
+      "costUSD": 1.12967575,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 412233,
+  "agent_duration_api_ms": 154731,
+  "agent_session_id": "e8fefda1-134b-4c37-910e-de91a73a1168",
+  "agent_uuid": "bd2dcc32-598e-421a-9e28-d245582475e9"
+}

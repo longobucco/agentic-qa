@@ -1,0 +1,3 @@
+The VLC configuration has been successfully set. The `qt-bgcone=0` setting in `/root/.config/vlc/vlcrc` disables the background cone icon in VLC's splash screen (the idle background displayed when no media is playing).
+
+ANSWER: DONE

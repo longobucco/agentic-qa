@@ -1,0 +1,7 @@
+The task is complete. I've:
+1. Filled column B (Acceleration of Block up Ramp) rows 3–30 using the formula from B2.
+2. Filled column D (Acceleration of Block down Ramp) rows 3–30 using the formula from D2.
+3. Created a "Combined Data" column (E) that concatenates each header with its cell value (formatted to 2 decimals) for columns A–D, for all rows.
+4. Saved the file in xlsx format.
+
+ANSWER: DONE

@@ -1,3 +1,9 @@
-The task is complete. The status bar confirms "Image exported to '/home/user/Desktop/berry.png'" and the title bar shows "(overwritten)". The berry image has been successfully mirrored horizontally using GIMP's Image > Transform > Flip Horizontally, and saved back to the original file.
+The task is complete. I successfully:
+
+1. Identified the berry.png image open in GIMP
+2. Applied a horizontal flip using the Script-Fu console command: `(gimp-image-flip (car (gimp-image-list)) ORIENTATION-HORIZONTAL)` — confirmed with result `(#t)`
+3. Exported/saved the horizontally mirrored image back to `/home/user/Desktop/berry.png` using `file-png-save`
+
+The image is now mirrored horizontally, as visible in the GIMP canvas showing the flipped berry photo.
 
 ANSWER: DONE

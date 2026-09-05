@@ -1,0 +1,59 @@
+{
+  "id": "ec4e3f68-9ea4-4c18-a5c9-69f89d1178b3",
+  "bucket": "os",
+  "instruction": "Can you remove vim from favorite app in 'favorites'?",
+  "answer": "FAIL",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "2677e802bfb0b0459c7e2d714680f87d0331c010b156202bc06a4f760e420ad6",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-4b467ad8-3a69-4544-a81b-fcb4c60e3e6f.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-22T15:38:24.802135+00:00",
+    "finished_at": "2026-08-22T15:46:39.689671+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 39,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.9171919999999997,
+  "agent_input_tokens": 3598,
+  "agent_output_tokens": 6764,
+  "agent_cache_read_tokens": 1116281,
+  "agent_cache_creation_tokens": 26934,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3559,
+      "outputTokens": 13,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.003624,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 3598,
+      "outputTokens": 6764,
+      "cacheReadInputTokens": 1116281,
+      "cacheCreationInputTokens": 26934,
+      "webSearchRequests": 0,
+      "costUSD": 0.9135679999999997,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 492598,
+  "agent_duration_api_ms": 157272,
+  "agent_session_id": "ad9a0c4c-a5bb-4c93-a943-bab9b6600dee",
+  "agent_uuid": "64f27688-c0ff-47db-8d51-fa3d1d927c8c"
+}

@@ -1,0 +1,3 @@
+Successfully copied 4 .jpg files from all subdirectories of `/home/user/Desktop/photos` into the newly created `/home/user/Desktop/cpjpg` directory.
+
+ANSWER: DONE

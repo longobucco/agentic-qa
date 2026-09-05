@@ -1,3 +1,3 @@
-The image has been flipped horizontally and exported. The status bar confirms "Image exported to '/home/user/Desktop/berry.png'" and the title shows "(overwritten)".
+The image has been successfully flipped horizontally and saved. The title bar now shows "*[berry] (overwritten)-1.0" and the status bar at the bottom confirms "Image exported to '/home/user/Desktop/berry.png'". The image is now mirrored horizontally.
 
 ANSWER: DONE

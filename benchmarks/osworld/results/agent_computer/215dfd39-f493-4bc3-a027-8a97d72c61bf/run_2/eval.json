@@ -1,8 +1,7 @@
 {
   "id": "215dfd39-f493-4bc3-a027-8a97d72c61bf",
-  "verdict": "SUCCESS",
-  "reward": 1.0,
-  "reason": "official check_qt_bgcone -> 1.00",
-  "source": "official",
+  "verdict": "EVAL_ERROR",
+  "reason": "no eval_state captured (official eval errored: TypeError: a bytes-like object is required, not 'NoneType')",
+  "source": "offline_fallback",
   "gold_sha256": {}
 }

@@ -1,0 +1,8 @@
+The task is complete. All 28 movie titles have been correctly:
+1. Copied from "Garbage Movie titles" column (B) to "Clean Movie Titles" column (C)
+2. Excess whitespace removed (leading, trailing, and internal multiple spaces collapsed)
+3. Letter cases canonicalized (Title Case — first letter of each word capitalized, rest lowercase)
+
+The file has been saved to `/home/user/Movie_title_garbage_clean.xlsx` on the Linux VM in Excel format. Column A and any blank regions were left untouched.
+
+ANSWER: DONE

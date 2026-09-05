@@ -1,0 +1,3 @@
+All regular files under the current directory tree now have 644 permissions — no files remain with different permissions.
+
+ANSWER: DONE

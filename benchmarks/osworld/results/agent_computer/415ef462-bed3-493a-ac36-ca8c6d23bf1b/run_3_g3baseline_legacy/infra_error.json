@@ -1,0 +1,65 @@
+[
+  {
+    "id": "415ef462-bed3-493a-ac36-ca8c6d23bf1b",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-20T17:02:25+0200"
+  },
+  {
+    "id": "415ef462-bed3-493a-ac36-ca8c6d23bf1b",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-22T14:12:16+0200"
+  },
+  {
+    "id": "415ef462-bed3-493a-ac36-ca8c6d23bf1b",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-23T01:16:48+0200"
+  },
+  {
+    "id": "415ef462-bed3-493a-ac36-ca8c6d23bf1b",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-23T11:28:43+0200"
+  },
+  {
+    "id": "415ef462-bed3-493a-ac36-ca8c6d23bf1b",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-23T16:43:47+0200"
+  },
+  {
+    "id": "415ef462-bed3-493a-ac36-ca8c6d23bf1b",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-23T21:39:11+0200"
+  },
+  {
+    "id": "415ef462-bed3-493a-ac36-ca8c6d23bf1b",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-24T01:12:52+0200"
+  },
+  {
+    "id": "415ef462-bed3-493a-ac36-ca8c6d23bf1b",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-24T13:39:39+0200"
+  },
+  {
+    "id": "415ef462-bed3-493a-ac36-ca8c6d23bf1b",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-24T16:48:11+0200"
+  }
+]

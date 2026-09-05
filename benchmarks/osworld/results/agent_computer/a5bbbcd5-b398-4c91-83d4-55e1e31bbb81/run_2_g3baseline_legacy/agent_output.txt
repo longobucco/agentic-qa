@@ -1,0 +1,7 @@
+The persistent setting is now in place. VLC's "Minimal Interface" (start in minimal view) corresponds to the `qt-minimal-view` option in the `[qt]` section of VLC's config file. Since VLC won't launch as root in this environment (making a runtime GUI toggle impossible and non-persistent anyway), I wrote the option directly to `/root/.config/vlc/vlcrc`:
+
+- `qt-minimal-view=1` — enables minimal interface in window mode, hiding menus and the bottom playback controls.
+- Because it lives in `vlcrc`, VLC reads it on every startup, so the setting persists across restarts.
+- Verified with `configparser` that the `[qt]` section exists and `qt-minimal-view = 1`.
+
+ANSWER: DONE

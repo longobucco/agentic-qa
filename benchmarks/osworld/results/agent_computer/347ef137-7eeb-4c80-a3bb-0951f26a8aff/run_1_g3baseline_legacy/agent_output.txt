@@ -1,0 +1,9 @@
+The file is saved and both column bar charts are successfully created. The task is complete.
+
+**Summary:**
+- **Chart 1 ("2019 Monthly Total Costs")**: A column bar chart anchored at cell A34, showing per-month total costs for 2019 (Jan–Dec on X-axis, cost in £ on Y-axis)
+- **Chart 2 ("2020 Monthly Total Costs")**: A column bar chart anchored at cell K34, showing per-month total costs for 2020 (Jan–Dec on X-axis, cost in £ on Y-axis)
+
+Both charts were created using openpyxl referencing the existing monthly total column (column I) and month labels (column A) from each year's table.
+
+ANSWER: DONE

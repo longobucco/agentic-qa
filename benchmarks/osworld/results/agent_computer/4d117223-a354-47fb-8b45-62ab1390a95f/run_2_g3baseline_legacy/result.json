@@ -1,0 +1,59 @@
+{
+  "id": "4d117223-a354-47fb-8b45-62ab1390a95f",
+  "bucket": "os",
+  "instruction": "Change the permission of all regular files under current directory tree to 644",
+  "answer": "DONE",
+  "eval_state": "",
+  "provenance": {
+    "task_sha256": "10b6e2b36b0949508195b8b28d40d2f9b92202d5d43440d477e6fc6a46512d31",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-ea81b16b-57e1-44f7-b22b-979322b345ea.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-24T22:54:41.700855+00:00",
+    "finished_at": "2026-08-24T22:54:57.056098+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 5,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.05053235,
+  "agent_input_tokens": 8,
+  "agent_output_tokens": 738,
+  "agent_cache_read_tokens": 103132,
+  "agent_cache_creation_tokens": 1789,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1705,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.00179,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 8,
+      "outputTokens": 738,
+      "cacheReadInputTokens": 103132,
+      "cacheCreationInputTokens": 1789,
+      "webSearchRequests": 0,
+      "costUSD": 0.04874235,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 13726,
+  "agent_duration_api_ms": 14468,
+  "agent_session_id": "9faf37b0-2075-45d1-b17f-4fe3164755ff",
+  "agent_uuid": "c620d57f-55d5-4b60-8a0b-c1ec04cc0b00"
+}

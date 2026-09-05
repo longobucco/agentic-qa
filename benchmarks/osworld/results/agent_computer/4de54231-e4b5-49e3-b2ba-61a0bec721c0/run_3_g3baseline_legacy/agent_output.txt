@@ -1,0 +1,3 @@
+All done. B and D columns filled using the row-2 acceleration formulas, and column E "Combined Data" concatenates headers + values (2 decimals) for all rows. File saved in xlsx format.
+
+ANSWER: DONE

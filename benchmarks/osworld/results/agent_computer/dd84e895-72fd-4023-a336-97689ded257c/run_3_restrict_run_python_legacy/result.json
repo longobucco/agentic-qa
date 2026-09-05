@@ -1,0 +1,61 @@
+{
+  "id": "dd84e895-72fd-4023-a336-97689ded257c",
+  "bucket": "thunderbird",
+  "instruction": "Add a star to every email in local Bills folder",
+  "answer": "",
+  "eval_state": "<binary:1245184 bytes at global-messages-db.sqlite>",
+  "provenance": {
+    "task_sha256": "dfd49c97783b58942f80e8f04fee5e2e7a102e688ddad23df2583d1b7fc52333",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-5bd187b8-9b9e-4697-951b-b12e5176797c.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-30T15:03:49.438120+00:00",
+    "finished_at": "2026-08-30T15:28:14.962110+00:00"
+  },
+  "agent_clean_finish": false,
+  "agent_num_turns": 151,
+  "agent_stop_reason": "tool_use",
+  "agent_terminal_reason": "max_turns",
+  "agent_subtype": "error_max_turns",
+  "agent_is_error": true,
+  "agent_errors": [
+    "Reached maximum number of turns (150)"
+  ],
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 5.02223215,
+  "agent_input_tokens": 171,
+  "agent_output_tokens": 37496,
+  "agent_cache_read_tokens": 13086213,
+  "agent_cache_creation_tokens": 142015,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 779,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.000859,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 171,
+      "outputTokens": 37496,
+      "cacheReadInputTokens": 13086213,
+      "cacheCreationInputTokens": 142015,
+      "webSearchRequests": 0,
+      "costUSD": 5.0213731500000005,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 1226395,
+  "agent_duration_api_ms": 1156316,
+  "agent_session_id": "85677611-190d-4156-acdb-8a0fdb1ce464",
+  "agent_uuid": "b4ef86c2-dd14-413a-901a-53f5777c27f7"
+}

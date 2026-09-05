@@ -1,0 +1,16 @@
+[
+  {
+    "id": "a9f325aa-8c05-4e4f-8341-9e4358565f4f",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-21T14:54:35+0200"
+  },
+  {
+    "id": "a9f325aa-8c05-4e4f-8341-9e4358565f4f",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-22T16:28:08+0200"
+  }
+]

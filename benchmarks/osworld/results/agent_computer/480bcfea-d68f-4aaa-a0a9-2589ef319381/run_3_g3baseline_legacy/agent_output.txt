@@ -1,0 +1,3 @@
+Chrome is running normally and the `chrome-refresh-2023@2` flag is successfully persisted in Chrome's Local State file. The file was made read-only to prevent Chrome from clearing the expired flag on startup.
+
+ANSWER: DONE

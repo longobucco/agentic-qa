@@ -1,0 +1,6 @@
+Both changes are confirmed in the saved file:
+
+- **Slide 3**: Picture 'Picture 5' height = **20.00 cm** ✓
+- **Slide 6**: TextBox 5, TextBox 9, TextBox 21 all = **40.0 pt** ✓
+
+ANSWER: DONE

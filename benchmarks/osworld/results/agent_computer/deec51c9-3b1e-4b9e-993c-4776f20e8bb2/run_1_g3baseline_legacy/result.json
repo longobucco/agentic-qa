@@ -1,0 +1,59 @@
+{
+  "id": "deec51c9-3b1e-4b9e-993c-4776f20e8bb2",
+  "bucket": "libreoffice_calc",
+  "instruction": "Find a paper list of all the new foundation language models issued on 11st Oct. 2023 via arxivdaily, and organize it into the sheet I opened.",
+  "answer": "DONE",
+  "eval_state": "<binary:5905 bytes at New Large Language Models.xlsx>",
+  "provenance": {
+    "task_sha256": "18ffb7e3bb9e1265b96b2639e2802bf469e0d5c5b6f00d7a6071c3fdd9dca2b2",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-a1775a9a-dd6d-4cf9-8665-b9110e27ba63.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-21T19:46:56.407008+00:00",
+    "finished_at": "2026-08-21T19:51:26.391067+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 20,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 1.52735625,
+  "agent_input_tokens": 3431,
+  "agent_output_tokens": 16184,
+  "agent_cache_read_tokens": 1068717,
+  "agent_cache_creation_tokens": 90627,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 4724,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.004824,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 3431,
+      "outputTokens": 16184,
+      "cacheReadInputTokens": 1068717,
+      "cacheCreationInputTokens": 90627,
+      "webSearchRequests": 0,
+      "costUSD": 1.52253225,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 267115,
+  "agent_duration_api_ms": 245518,
+  "agent_session_id": "a21cde60-7794-47d2-9710-9cbad299e5ed",
+  "agent_uuid": "78a8e7bc-77ed-4178-8ff9-5a4f79c67bb7"
+}

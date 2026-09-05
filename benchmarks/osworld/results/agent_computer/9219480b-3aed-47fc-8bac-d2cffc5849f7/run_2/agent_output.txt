@@ -1,3 +1,1 @@
-The background filesystem search completed, but the task is already done. The fix was successfully applied to the VM via the controller API.
-
-ANSWER: DONE
+Not logged in · Please run /login

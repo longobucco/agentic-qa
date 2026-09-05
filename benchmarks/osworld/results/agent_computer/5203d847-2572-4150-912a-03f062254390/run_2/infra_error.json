@@ -1,0 +1,30 @@
+[
+  {
+    "id": "5203d847-2572-4150-912a-03f062254390",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-28T18:50:45+0200"
+  },
+  {
+    "id": "5203d847-2572-4150-912a-03f062254390",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-28T23:24:14+0200"
+  },
+  {
+    "id": "5203d847-2572-4150-912a-03f062254390",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-29T11:17:11+0200"
+  },
+  {
+    "id": "5203d847-2572-4150-912a-03f062254390",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-09-04T23:30:47+0200"
+  }
+]

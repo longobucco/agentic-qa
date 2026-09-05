@@ -1,6 +1,7 @@
 {
   "id": "386dbd0e-0241-4a0a-b6a2-6704fba26b1c",
-  "verdict": "ENVIRONMENT_ERROR",
-  "reason": "config setup failed: Setup step 2 failed: _download_setup - ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))",
-  "source": "environment"
+  "verdict": "EVAL_ERROR",
+  "reason": "no eval_state captured (official eval errored: TypeError: a bytes-like object is required, not 'NoneType')",
+  "source": "offline_fallback",
+  "gold_sha256": {}
 }

@@ -1,0 +1,10 @@
+Slide 6 picture is selected showing 19.07 x 9.84" in the status bar (9.84" ≈ 25cm ✓). 
+
+All three changes have been successfully applied and saved to the file:
+- Slide 3: Picture height = 20cm ✓ (displayed as 7.87")
+- Slide 4: Picture height = 30cm ✓ (displayed as 11.81")  
+- Slide 6: Picture height = 25cm ✓ (displayed as 9.84")
+
+The file `/home/user/Desktop/30_1.pptx` has been saved with the exact cm values using python-pptx.
+
+ANSWER: DONE

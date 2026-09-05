@@ -1,0 +1,11 @@
+[
+  {
+    "id": "2a729ded-3296-423d-aec4-7dd55ed5fbb3",
+    "run": 1,
+    "outcome": "INFRA_FLAKE",
+    "error_type": "DaytonaBadGatewayError",
+    "error": "Failed to create sandbox: <html>\r\n<head><title>502 Bad Gateway</title></head>\r\n<body>\r\n<center><h1>502 Bad Gateway</h1></center>\r\n</body>\r\n</html>\r\n",
+    "elapsed_s": 1.5,
+    "at": "2026-09-04T15:45:36+0200"
+  }
+]

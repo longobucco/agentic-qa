@@ -1,0 +1,59 @@
+{
+  "id": "b337d106-053f-4d37-8da0-7f9c4043a66b",
+  "bucket": "os",
+  "instruction": "Recently, I've been exploring the use of the Vim editor for code editing. However, the default settings don't display line numbers in Vim editor. Please search the Internet for a tutorial on adding absolute line numbers in Vim and setting it as default for my local Vim.",
+  "answer": "Added `set number` to /root/.vimrc \u2014 this enables absolute line numbers as the default in Vim.",
+  "eval_state": "",
+  "provenance": {
+    "task_sha256": "0511c9c5fb6bdd87bac804a9c46430d5a0798ff5771cc84646985602ec7e2e3f",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-f9549226-af72-4092-86c6-03e837b402d0.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-21T14:05:41.769493+00:00",
+    "finished_at": "2026-08-21T14:06:04.341098+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 5,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.24895875,
+  "agent_input_tokens": 3143,
+  "agent_output_tokens": 1017,
+  "agent_cache_read_tokens": 127845,
+  "agent_cache_creation_tokens": 22253,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 4745,
+      "outputTokens": 14,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.004815,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 3143,
+      "outputTokens": 1017,
+      "cacheReadInputTokens": 127845,
+      "cacheCreationInputTokens": 22253,
+      "webSearchRequests": 0,
+      "costUSD": 0.24414375,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 19713,
+  "agent_duration_api_ms": 19977,
+  "agent_session_id": "b8e81a85-b513-4939-960a-f2ad711c1826",
+  "agent_uuid": "ba6edffe-87e4-41f5-a05c-ec3780a176fc"
+}

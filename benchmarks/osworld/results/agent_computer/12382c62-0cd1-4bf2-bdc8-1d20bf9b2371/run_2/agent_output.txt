@@ -1,3 +1,10 @@
-The chart is created and verified: a clustered column chart in a new "Sheet2" with two series (Sales and COGS) across all 10 weeks, titled exactly "Sales & COGS".
+The task is complete! I can see on Sheet2:
+
+- A **clustered column chart** with two data series (blue for Sales, orange for COGS)
+- Chart title: **"Sales & COGS"** 
+- X-axis shows **Week 1 through Week 10**
+- The chart is on **Sheet2** as required
+
+The file was also saved automatically by the macro (`oDoc.store()`).
 
 ANSWER: DONE

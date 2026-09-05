@@ -1,0 +1,8 @@
+The verification confirms the dog layer has been successfully resized:
+
+- **Layer 0: 'New layer'** - 1578x948 (unchanged)
+- **Layer 1: 'dog_with_background.png'** - **852x512** ✓
+
+The `dog_with_background.png` layer has been scaled to **512 pixels height** while maintaining the original aspect ratio (1578:948 → 852:512). The file has been saved to `/home/user/Desktop/dog_with_background_two_layers.xcf`.
+
+ANSWER: DONE

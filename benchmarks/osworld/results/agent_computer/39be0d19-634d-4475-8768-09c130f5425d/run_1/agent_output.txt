@@ -1,3 +1,3 @@
-The file has been saved successfully. The "Features" slide now contains a table with 5 rows and 2 columns. I can see the table in the slide with the alternating banded rows (1 header row + 4 data rows = 5 rows total) and 2 columns clearly visible.
+The file has been saved. The "Features" slide now contains a table with 5 rows and 2 columns, which is clearly visible in the main editing area and in the slide thumbnail on the left panel. The status bar at the bottom confirms "Table selected".
 
 ANSWER: DONE

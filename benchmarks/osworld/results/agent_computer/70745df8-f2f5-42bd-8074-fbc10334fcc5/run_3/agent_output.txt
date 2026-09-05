@@ -1,3 +1,1 @@
-The "Files: Auto Save Delay" has been successfully changed to **500** milliseconds, and "Files: Auto Save" was set to "afterDelay" earlier. Both settings are now configured as required.
-
-ANSWER: DONE
+You've hit your session limit · resets 6:30am (Europe/Rome)

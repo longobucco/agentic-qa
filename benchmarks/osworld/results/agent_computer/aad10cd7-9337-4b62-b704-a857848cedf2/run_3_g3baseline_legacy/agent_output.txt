@@ -1,0 +1,3 @@
+The file `notes.docx` (38KB) has been successfully created on the desktop. It contains the primary content from the Apple Human Interface Guidelines "Searching" page — from the "Searching" heading through the "Platform considerations" section — stopping just before "Resources". The document includes properly formatted headings for the main title, "Best practices", "Systemwide search", and "Platform considerations" sections.
+
+ANSWER: DONE

@@ -1,0 +1,3 @@
+The transposed table was pasted at B8:E12 and the file saved in xlsx format.
+
+ANSWER: DONE

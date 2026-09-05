@@ -1,0 +1,19 @@
+{
+  "id": "0d8b7de3-e8de-4d86-b9fd-dd2dce58a217",
+  "bucket": "chrome",
+  "instruction": "Browse the natural products database.",
+  "answer": "",
+  "setup_error": "config setup failed: Setup step 3 failed: _chrome_open_tabs_setup - BrowserType.connect_over_cdp: connect ETIMEDOUT ::ffff:63.182.75.90:9222\nCall log:\n  - <ws preparing> retrieving websocket url from http://5000-de9c97fa-8907-48f4-9a0a-d61a9212ef87.daytonaproxy01.eu:9222\n",
+  "provenance": {
+    "task_sha256": "7eaa2e4f26fc270cbe61276b534a60ba47c4df5d5fa8397c15f42a7090318afa",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-de9c97fa-8907-48f4-9a0a-d61a9212ef87.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-18T08:53:56.630918+00:00",
+    "finished_at": "2026-08-18T08:53:56.634784+00:00"
+  }
+}

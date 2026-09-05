@@ -1,0 +1,3 @@
+The last paragraph now has strikethrough applied to all its words, and the document has been saved in .docx format.
+
+ANSWER: DONE

@@ -1,0 +1,6 @@
+{
+  "id": "67890eb6-6ce5-4c00-9e3d-fb4972699b06",
+  "verdict": "ENVIRONMENT_ERROR",
+  "reason": "config setup failed: Setup step 5 failed: _chrome_open_tabs_setup - BrowserType.connect_over_cdp: connect ECONNREFUSED ::ffff:62.0.58.94:9222\nCall log:\n  - <ws preparing> retrieving websocket url from http://5000-2040029a-11e8-45bd-83ab-924457c23623.daytonaproxy01.eu:9222\n",
+  "source": "environment"
+}

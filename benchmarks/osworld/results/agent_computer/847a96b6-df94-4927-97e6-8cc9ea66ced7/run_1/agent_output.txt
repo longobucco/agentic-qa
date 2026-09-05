@@ -1,7 +1,9 @@
-Both workspace folders are now open simultaneously in the same VS Code window. The Explorer panel shows "WORKSPACE1 (WORKSPACE)" containing both:
-- **project1** (from workspace1.code-workspace)
-- **project2** (from workspace2.code-workspace)
+Both project1 and project2 are now visible in the Explorer under the same VS Code window. The workspace shows "WORKSPACE1 (WORKSPACE)" with both project1 and project2 folders, effectively having both workspaces open simultaneously in the same window.
 
-Both workspaces are successfully open in a single VS Code window as a multi-root workspace.
+The approach used:
+1. Opened `workspace1.code-workspace` via File > Open Workspace from File
+2. Added `project2` (from workspace2.code-workspace) via File > Add Folder to Workspace
+
+Both workspace folders are now accessible simultaneously in the same VS Code window.
 
 ANSWER: DONE

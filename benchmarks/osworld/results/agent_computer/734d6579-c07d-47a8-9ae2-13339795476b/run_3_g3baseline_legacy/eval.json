@@ -1,0 +1,10 @@
+{
+  "id": "734d6579-c07d-47a8-9ae2-13339795476b",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official check_green_background -> 0.00",
+  "source": "official",
+  "gold_sha256": {
+    "white_background_with_object.png": "ffa7c94ac7307394e62a6c7a37c9d6718a9b24bd05d31e519250bb9609f2b806"
+  }
+}

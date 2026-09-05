@@ -1,0 +1,3 @@
+`res.png` is now saved on the Desktop. The Impress file was successfully exported to PNG format using LibreOffice's default export settings.
+
+ANSWER: DONE

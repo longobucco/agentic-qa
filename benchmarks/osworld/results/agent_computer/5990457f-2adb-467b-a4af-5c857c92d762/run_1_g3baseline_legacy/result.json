@@ -1,0 +1,59 @@
+{
+  "id": "5990457f-2adb-467b-a4af-5c857c92d762",
+  "bucket": "chrome",
+  "instruction": "Append one entry of AI researcher Yann LeCun from Google Scholar into an existing table researchers.xlsx.",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "65b9b4b2a02a60746af3da6dec6219757b9d652cad597b628683e621dd86a2e9",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-2af1b435-d063-4f52-9ecc-557047becdae.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-25T14:44:29.144208+00:00",
+    "finished_at": "2026-08-25T14:47:26.450559+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 31,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.47142955,
+  "agent_input_tokens": 36,
+  "agent_output_tokens": 6154,
+  "agent_cache_read_tokens": 932351,
+  "agent_cache_creation_tokens": 25903,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2070,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0021699999999999996,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 36,
+      "outputTokens": 6154,
+      "cacheReadInputTokens": 932351,
+      "cacheCreationInputTokens": 25903,
+      "webSearchRequests": 0,
+      "costUSD": 0.46925954999999997,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 175019,
+  "agent_duration_api_ms": 153169,
+  "agent_session_id": "f063abe2-a15b-4d10-b242-e9d243f3396c",
+  "agent_uuid": "250f8d66-8779-4e5f-a7c0-5828dd026f7f"
+}

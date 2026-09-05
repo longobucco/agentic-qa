@@ -1,0 +1,11 @@
+The setting has been successfully written to VS Code's settings.json:
+
+```json
+{
+    "workbench.editor.wrapTabs": true
+}
+```
+
+The `workbench.editor.wrapTabs` setting is now enabled, which makes tabs wrap over multiple lines when they exceed the available space.
+
+ANSWER: DONE

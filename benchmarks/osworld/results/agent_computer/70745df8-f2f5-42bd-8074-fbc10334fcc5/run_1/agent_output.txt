@@ -1,7 +1,1 @@
-Both settings are confirmed in the settings.json file:
-- `files.autoSave` = `"afterDelay"` 
-- `files.autoSaveDelay` = `500`
-
-The VS Code AutoSave feature has been enabled with "afterDelay" mode and the delay has been set to 500 milliseconds.
-
-ANSWER: DONE
+You've hit your session limit · resets 6:30am (Europe/Rome)

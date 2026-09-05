@@ -1,0 +1,59 @@
+{
+  "id": "fe41f596-a71b-4c2f-9b2f-9dcd40b568c3",
+  "bucket": "os",
+  "instruction": "I want to see the battery percentage. Can you help me display it on my screen?",
+  "answer": "FAIL",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "94375d5fd59d154b7ac500fda799d8eb01bae90a9dfc0c3a245934de657a4a38",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-4d026520-2497-49fb-8ede-9a31ffb3d483.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-23T07:34:00.275184+00:00",
+    "finished_at": "2026-08-23T07:37:58.512458+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 34,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.61173705,
+  "agent_input_tokens": 43,
+  "agent_output_tokens": 9317,
+  "agent_cache_read_tokens": 1221496,
+  "agent_cache_creation_tokens": 27535,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2083,
+      "outputTokens": 13,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002148,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 43,
+      "outputTokens": 9317,
+      "cacheReadInputTokens": 1221496,
+      "cacheCreationInputTokens": 27535,
+      "webSearchRequests": 0,
+      "costUSD": 0.60958905,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 235798,
+  "agent_duration_api_ms": 204835,
+  "agent_session_id": "9af3a592-ad45-4647-b6e6-3543c92cdbd8",
+  "agent_uuid": "07018ff5-ac45-4e76-8e5d-aa6256ced001"
+}

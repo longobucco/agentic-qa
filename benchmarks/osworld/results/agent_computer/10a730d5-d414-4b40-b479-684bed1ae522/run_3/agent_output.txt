@@ -1,3 +1,1 @@
-Dark mode is now enabled in Thunderbird. The interface has switched to a dark color scheme - you can see the background is now dark grey/black, and the button changed from "Enable" to "Disable", confirming the Dark theme is active.
-
-ANSWER: DONE
+Failed to authenticate. API Error: 401 OAuth access token has been revoked.

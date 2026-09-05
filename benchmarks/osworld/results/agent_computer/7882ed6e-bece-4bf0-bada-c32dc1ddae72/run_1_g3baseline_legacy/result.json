@@ -1,0 +1,59 @@
+{
+  "id": "7882ed6e-bece-4bf0-bada-c32dc1ddae72",
+  "bucket": "vlc",
+  "instruction": "Play the latest season of 'Stranger Things' purchased from the Google Play Movies & TV store directly in VLC.",
+  "answer": "FAIL",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "eb541a073ca0754e38bab65d3c9be2fe1b9291b4b195e739c91920c465ff821f",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-fe8e993b-5222-494b-b659-a3275477e1bc.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-09T17:51:48.551703+00:00",
+    "finished_at": "2026-08-09T17:53:36.768213+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 16,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.24542629999999996,
+  "agent_input_tokens": 23,
+  "agent_output_tokens": 4301,
+  "agent_cache_read_tokens": 387491,
+  "agent_cache_creation_tokens": 16904,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1115,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0012050000000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 23,
+      "outputTokens": 4301,
+      "cacheReadInputTokens": 387491,
+      "cacheCreationInputTokens": 16904,
+      "webSearchRequests": 0,
+      "costUSD": 0.2442213,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 105977,
+  "agent_duration_api_ms": 102273,
+  "agent_session_id": "f3528e97-fe43-4d67-b7ba-4b6a0f4aa96a",
+  "agent_uuid": "e9e1a5d0-402f-4bd6-a79c-d3c5ac671e84"
+}

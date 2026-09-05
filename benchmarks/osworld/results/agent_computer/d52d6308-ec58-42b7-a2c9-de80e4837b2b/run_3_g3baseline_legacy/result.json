@@ -1,0 +1,59 @@
+{
+  "id": "d52d6308-ec58-42b7-a2c9-de80e4837b2b",
+  "bucket": "gimp",
+  "instruction": "Could you help me remove the dock on the left side of the screen in the GIMP?",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "d3abf774836f2d28cc4e82b959fa71bc9cd7c2a10c178f772abaee68893f2227",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-ef514658-6e06-4279-916d-ba82b5b18014.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-18T07:18:34.602693+00:00",
+    "finished_at": "2026-08-18T07:34:00.099355+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 36,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 1.7608047500000004,
+  "agent_input_tokens": 3646,
+  "agent_output_tokens": 22164,
+  "agent_cache_read_tokens": 1470087,
+  "agent_cache_creation_tokens": 60311,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3994,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.004074,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 3648,
+      "outputTokens": 24517,
+      "cacheReadInputTokens": 1497244,
+      "cacheCreationInputTokens": 60311,
+      "webSearchRequests": 0,
+      "costUSD": 1.7567307500000002,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 922446,
+  "agent_duration_api_ms": 738021,
+  "agent_session_id": "e927ad8e-706e-4d08-a235-27ee27798044",
+  "agent_uuid": "a13e8bd8-2cd2-42a6-9388-74d159c37903"
+}

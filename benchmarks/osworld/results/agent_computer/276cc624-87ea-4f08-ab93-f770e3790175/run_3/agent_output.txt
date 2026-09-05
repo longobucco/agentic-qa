@@ -1,3 +1,1 @@
-The VS Code user settings file at `~/.config/Code/User/settings.json` now contains `"editor.wordWrapColumn": 50`, which sets the line length for code wrapping to 50 characters for the current user.
-
-ANSWER: DONE
+Not logged in · Please run /login

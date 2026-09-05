@@ -1,0 +1,10 @@
+{
+  "id": "b21acd93-60fd-4127-8a43-2f5178f4a830",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official compare_line_spacing -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "CCHU9045_Course_Outline_2019-20_Gold.docx": "2b8928f1146977d06fee2981d9d22f2b13781c7add4176fa855dbc0c94a93062"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "id": "4bcb1253-a636-4df4-8cb0-a35c04dfef31",
+  "verdict": "FAILURE",
+  "reward": 0.9977414640627076,
+  "reason": "official ['compare_pdfs', 'compare_pdfs', 'compare_pdfs', 'compare_pdfs'] -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "Constitution_Template_With_Guidelines_Gold_1.pdf": "a476731ba8fbb81c14001e98e72aa3c77f83abef450f0baca9eaa47d515fe4ef",
+    "Constitution_Template_With_Guidelines_Gold_2.pdf": "a476731ba8fbb81c14001e98e72aa3c77f83abef450f0baca9eaa47d515fe4ef",
+    "Constitution_Template_With_Guidelines_Gold_3.pdf": "a476731ba8fbb81c14001e98e72aa3c77f83abef450f0baca9eaa47d515fe4ef",
+    "Constitution_Template_With_Guidelines_Gold_4.pdf": "a476731ba8fbb81c14001e98e72aa3c77f83abef450f0baca9eaa47d515fe4ef"
+  }
+}

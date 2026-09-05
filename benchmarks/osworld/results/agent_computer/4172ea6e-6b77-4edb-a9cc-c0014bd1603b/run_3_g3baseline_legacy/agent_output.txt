@@ -1,0 +1,15 @@
+The task is complete. The spreadsheet now has a "Maturity Date" column (column C) with calculated dates for all 9 loans:
+
+- C2: 01/14/11 (9/16/2010 + 120 days)
+- C3: 03/09/11 (12/9/2010 + 90 days)
+- C4: 04/05/11 (1/5/2011 + 90 days)
+- C5: 12/19/10 (9/10/2010 + 100 days)
+- C6: 03/22/11 (12/22/2010 + 90 days)
+- C7: 02/14/11 (10/17/2010 + 120 days)
+- C8: 05/12/11 (1/12/2011 + 120 days)
+- C9: 03/17/11 (9/18/2010 + 180 days)
+- C10: 11/24/10 (9/5/2010 + 80 days)
+
+The file has been saved.
+
+ANSWER: DONE

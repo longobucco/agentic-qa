@@ -1,0 +1,3 @@
+Spotify has been successfully installed. The `dpkg` status shows `ii` (installed) for `spotify-client` version `1:1.2.95.453.g0eeebbed`, and the binary is at `/usr/bin/spotify`.
+
+ANSWER: DONE

@@ -1,0 +1,59 @@
+{
+  "id": "2bd59342-0664-4ccb-ba87-79379096cc08",
+  "bucket": "libreoffice_calc",
+  "instruction": "Make sparkline charts for each order id with the data from Jan to Mar in the \"Chart\" column.",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "e17155950bafa844c39c04349797df15bfa8442e0f9e9bcaec4f0ef4c672fdcd",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:300565e6d5065a6277d7154071c581b4a72adfcb68d4726564545c9b05798a3c",
+    "controller_url": "https://5000-a6776473-109b-4f4f-afb9-afbb5b4c38a6.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-05T07:32:31.366620+00:00",
+    "finished_at": "2026-08-05T07:42:47.782337+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 67,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 1.71700805,
+  "agent_input_tokens": 74,
+  "agent_output_tokens": 25169,
+  "agent_cache_read_tokens": 3438056,
+  "agent_cache_creation_tokens": 81851,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 813,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.000893,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 74,
+      "outputTokens": 25169,
+      "cacheReadInputTokens": 3438056,
+      "cacheCreationInputTokens": 81851,
+      "webSearchRequests": 0,
+      "costUSD": 1.71611505,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 614133,
+  "agent_duration_api_ms": 600577,
+  "agent_session_id": "a421618f-b013-4d0f-b954-7d8d6f35b0b8",
+  "agent_uuid": "901efa21-afe5-4cf4-879c-dfb2055ddf19"
+}

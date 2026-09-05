@@ -1,0 +1,59 @@
+{
+  "id": "873cafdd-a581-47f6-8b33-b9696ddb7b05",
+  "bucket": "os",
+  "instruction": "My friend is a \"plugin guru\" and he recommended some good plug-ins to me. Please go to the Chrome plug-in store and install all the listed plug-ins.",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "e4569b2577e0c0a71954216d390f44232e57029798a029ed2d4473506c96213d",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-172a34ba-e49a-40d1-b923-723d3864ac93.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-21T08:43:41.302422+00:00",
+    "finished_at": "2026-08-21T08:49:09.412049+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 86,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 2.966465749999999,
+  "agent_input_tokens": 4595,
+  "agent_output_tokens": 8382,
+  "agent_cache_read_tokens": 4476691,
+  "agent_cache_creation_tokens": 78529,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 4724,
+      "outputTokens": 13,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.004789,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 4595,
+      "outputTokens": 8382,
+      "cacheReadInputTokens": 4476691,
+      "cacheCreationInputTokens": 78529,
+      "webSearchRequests": 0,
+      "costUSD": 2.961676749999999,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 325396,
+  "agent_duration_api_ms": 244117,
+  "agent_session_id": "dcf79477-e4a8-4eac-ad28-52bb89bcf1f7",
+  "agent_uuid": "d6e927e7-52bf-405a-beb5-06cd454b7a17"
+}

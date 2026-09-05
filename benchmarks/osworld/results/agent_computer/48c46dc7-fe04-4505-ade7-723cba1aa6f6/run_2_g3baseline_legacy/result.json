@@ -1,0 +1,19 @@
+{
+  "id": "48c46dc7-fe04-4505-ade7-723cba1aa6f6",
+  "bucket": "chrome",
+  "instruction": "Help me to automatically set up my work space. To be specific, open project directory of OSWorld in terminal and file manager, then open github homepage and the online document of Python in chrome browser.",
+  "answer": "",
+  "setup_error": "config setup failed: Setup step 3 failed: _launch_setup - SetupController._launch_setup() got an unexpected keyword argument 'wait_for_cdp'",
+  "provenance": {
+    "task_sha256": "eee818f1d14486f9975e792a2e3250eae729aab77f3825ab9b4e10687619a8e6",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-6211563c-089e-484f-b397-da29d1ddc312.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-25T14:53:47.763732+00:00",
+    "finished_at": "2026-08-25T14:53:47.763951+00:00"
+  }
+}

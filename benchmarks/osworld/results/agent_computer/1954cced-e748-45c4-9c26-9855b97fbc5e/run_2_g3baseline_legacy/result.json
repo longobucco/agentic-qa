@@ -1,0 +1,59 @@
+{
+  "id": "1954cced-e748-45c4-9c26-9855b97fbc5e",
+  "bucket": "libreoffice_calc",
+  "instruction": "Create a Pivot Table in a new sheet (Sheet2) to count how many times each \"Invoice No.\" appears.",
+  "answer": "DONE",
+  "eval_state": "<binary:11463 bytes at Invoices.xlsx>",
+  "provenance": {
+    "task_sha256": "3d5e3eb7fa64c37e9c59fc9a51ab92404b5cefcae6d155801fc4c3031bab1981",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-cfdd5a2c-32ae-407c-937e-2ef7fa9865aa.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-18T14:38:16.529480+00:00",
+    "finished_at": "2026-08-18T14:40:37.605094+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 32,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.8862205,
+  "agent_input_tokens": 3642,
+  "agent_output_tokens": 4941,
+  "agent_cache_read_tokens": 1016258,
+  "agent_cache_creation_tokens": 37166,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3999,
+      "outputTokens": 14,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.004069,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 3642,
+      "outputTokens": 4941,
+      "cacheReadInputTokens": 1016258,
+      "cacheCreationInputTokens": 37166,
+      "webSearchRequests": 0,
+      "costUSD": 0.8821515,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 138911,
+  "agent_duration_api_ms": 126935,
+  "agent_session_id": "bfdd5b3c-fb53-4fce-b8ff-daeb371c8c9e",
+  "agent_uuid": "65145dfe-1980-4494-9877-937e89386b95"
+}

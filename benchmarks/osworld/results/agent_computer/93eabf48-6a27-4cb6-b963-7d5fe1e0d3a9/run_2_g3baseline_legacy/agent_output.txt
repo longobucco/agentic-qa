@@ -1,0 +1,3 @@
+Chrome has relaunched and the "Auto Dark Mode for Web Contents" flag (#enable-force-dark) is now set to **Disabled**, which turns off Chrome's dark mode rendering for web content. The change has been applied.
+
+ANSWER: DONE

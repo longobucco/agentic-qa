@@ -1,0 +1,61 @@
+{
+  "id": "5cfb9197-e72b-454b-900e-c06b0c802b40",
+  "bucket": "libreoffice_impress",
+  "instruction": "Change the first row of table to \"T1\",\"T2\",\"T3\",\"T4\" on slide 4.",
+  "answer": "",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "5229730c55e3fb0f31ae891923132d8af5f690200209c94a559449b4582c3a30",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-5a1a9b9a-c3b8-491a-8279-8d3bad35c7af.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-14T06:30:47.125270+00:00",
+    "finished_at": "2026-08-14T06:48:24.504052+00:00"
+  },
+  "agent_clean_finish": false,
+  "agent_num_turns": 151,
+  "agent_stop_reason": "tool_use",
+  "agent_terminal_reason": "max_turns",
+  "agent_subtype": "error_max_turns",
+  "agent_is_error": true,
+  "agent_errors": [
+    "Reached maximum number of turns (150)"
+  ],
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 3.8473012000000013,
+  "agent_input_tokens": 161,
+  "agent_output_tokens": 23931,
+  "agent_cache_read_tokens": 10307679,
+  "agent_cache_creation_tokens": 104394,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3992,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.004072,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 161,
+      "outputTokens": 23931,
+      "cacheReadInputTokens": 10307679,
+      "cacheCreationInputTokens": 104394,
+      "webSearchRequests": 0,
+      "costUSD": 3.843229200000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 1055844,
+  "agent_duration_api_ms": 1013531,
+  "agent_session_id": "e5b49a24-ead7-4df8-b19b-32dafa806220",
+  "agent_uuid": "ad2943e6-d026-4d15-bca0-f2ca7d043bb6"
+}

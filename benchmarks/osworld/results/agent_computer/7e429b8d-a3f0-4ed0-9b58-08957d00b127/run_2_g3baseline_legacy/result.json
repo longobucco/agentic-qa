@@ -1,0 +1,59 @@
+{
+  "id": "7e429b8d-a3f0-4ed0-9b58-08957d00b127",
+  "bucket": "libreoffice calc",
+  "instruction": "I have a lookup table for the officers of each branch. Please, here is another table in which I need to fill with the officer names according the headoffice (i.e., the branch name). Help me to complete this.",
+  "answer": "DONE",
+  "eval_state": "<binary:5824 bytes at VLOOKUP_Fill_the_form.xlsx>",
+  "provenance": {
+    "task_sha256": "832f391afa47fe392fba23699782ab9b1084fd3a1994542236b29fedc7c399a3",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-1f94e297-c93e-494e-b898-5f3356e44e50.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-26T16:25:43.624512+00:00",
+    "finished_at": "2026-08-26T16:28:26.675569+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 39,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.5933913,
+  "agent_input_tokens": 48,
+  "agent_output_tokens": 6284,
+  "agent_cache_read_tokens": 1278736,
+  "agent_cache_creation_tokens": 30522,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 839,
+      "outputTokens": 14,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.000909,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 48,
+      "outputTokens": 6284,
+      "cacheReadInputTokens": 1278736,
+      "cacheCreationInputTokens": 30522,
+      "webSearchRequests": 0,
+      "costUSD": 0.5924822999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 160767,
+  "agent_duration_api_ms": 149399,
+  "agent_session_id": "f1032d3d-371a-41a9-a32f-5c907b909d04",
+  "agent_uuid": "5cdef653-2167-40e3-a751-a067ef01ea3e"
+}

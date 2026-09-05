@@ -1,3 +1,1 @@
-The automatic screen lock is now enabled. The `org.gnome.desktop.screensaver lock-enabled` setting is set to `true`, so the computer will automatically lock the screen after it goes idle (blank screen after the 5‑minute idle delay), securing it once you leave.
-
-ANSWER: DONE
+You've hit your session limit · resets 11:30am (Europe/Rome)

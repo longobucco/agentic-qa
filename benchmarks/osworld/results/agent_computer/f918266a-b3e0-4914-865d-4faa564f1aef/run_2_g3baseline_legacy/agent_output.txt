@@ -1,0 +1,12 @@
+The code was completed (filled in the TODO with `arr[j+1] = arr[j]`), executed, and its output saved to `/home/user/Desktop/log.txt`.
+
+Output (sorted array):
+```
+5
+6
+11
+12
+13
+```
+
+ANSWER: DONE

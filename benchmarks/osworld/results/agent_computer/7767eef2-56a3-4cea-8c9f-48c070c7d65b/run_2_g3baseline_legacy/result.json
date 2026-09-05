@@ -1,0 +1,59 @@
+{
+  "id": "7767eef2-56a3-4cea-8c9f-48c070c7d65b",
+  "bucket": "gimp",
+  "instruction": "Please help change GIMP's theme from dark to light.",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "71d9f6f7fed0f3f32b5f741e1bbc102cb69b7e2e868a2f20dd73ce699dc45572",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-05a7558e-6590-45f1-a8df-fb5682bd30ab.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-15T20:18:32.992351+00:00",
+    "finished_at": "2026-08-15T20:33:18.086097+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 103,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 3.1521045500000002,
+  "agent_input_tokens": 114,
+  "agent_output_tokens": 37894,
+  "agent_cache_read_tokens": 7216271,
+  "agent_cache_creation_tokens": 110711,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3220,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.003305,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 114,
+      "outputTokens": 37894,
+      "cacheReadInputTokens": 7216271,
+      "cacheCreationInputTokens": 110711,
+      "webSearchRequests": 0,
+      "costUSD": 3.14879955,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 882946,
+  "agent_duration_api_ms": 853275,
+  "agent_session_id": "7c06bac4-18e5-436a-ad82-e7e3a8367637",
+  "agent_uuid": "d203f64d-c823-40be-8f6c-2575df1a33d9"
+}

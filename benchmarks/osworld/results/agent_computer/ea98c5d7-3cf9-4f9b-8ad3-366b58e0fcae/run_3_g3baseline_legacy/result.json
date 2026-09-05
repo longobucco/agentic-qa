@@ -1,0 +1,59 @@
+{
+  "id": "ea98c5d7-3cf9-4f9b-8ad3-366b58e0fcae",
+  "bucket": "vscode",
+  "instruction": "Please help me remove the shortcut \"ctrl+f\" for Tree view Find (Explorer search) in VS Code Explorer view to avoid shortcut conflict.",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "66fe81ed04c81a21346bd109f11da876b4253debb29246ea871dff0088f43ca0",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-576958bc-7738-4c36-b910-b4892c687ae0.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-20T06:05:54.791972+00:00",
+    "finished_at": "2026-08-20T06:07:43.143905+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 25,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.7363105000000001,
+  "agent_input_tokens": 3182,
+  "agent_output_tokens": 5056,
+  "agent_cache_read_tokens": 745950,
+  "agent_cache_creation_tokens": 34594,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 4718,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.004813,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 3182,
+      "outputTokens": 5056,
+      "cacheReadInputTokens": 745950,
+      "cacheCreationInputTokens": 34594,
+      "webSearchRequests": 0,
+      "costUSD": 0.7314975000000001,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 105576,
+  "agent_duration_api_ms": 99313,
+  "agent_session_id": "adea3596-34a8-40a9-b4a5-f92b53328ef7",
+  "agent_uuid": "f4b49580-9712-4e78-ae73-eac5a3c66dc3"
+}

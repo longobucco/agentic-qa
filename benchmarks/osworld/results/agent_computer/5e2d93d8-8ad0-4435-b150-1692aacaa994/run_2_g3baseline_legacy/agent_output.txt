@@ -1,0 +1,7 @@
+The workspace has been saved successfully. I can see:
+- The title bar now shows **"project (Workspace) [Superuser]"**
+- The Explorer shows **"PROJECT (WORKSPACE)"** 
+- The file **"project.code-workspace"** is now visible in the file list
+- The workspace was saved to `/home/user/project/`
+
+ANSWER: DONE

@@ -1,3 +1,1 @@
-The "About Profiles" tabpage is now open inside Thunderbird, showing the profile management interface (Create a New Profile, profile listings with Rename/Remove/Set as default/Launch options). This is the in-app profile management page, not the launch-time profile chooser dialog.
-
-ANSWER: DONE
+You've hit your session limit · resets 6:30am (Europe/Rome)

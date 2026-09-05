@@ -1,0 +1,8 @@
+The file has been saved successfully. The presentation now shows the updated text with the font changed. Looking at the slide thumbnails, the text appears narrower/different, indicating the font change was applied.
+
+The macro successfully changed all text box fonts to 'Liberation Sans Narrow' across all 28 slides by:
+1. Iterating through all slides (DrawPages)
+2. For each slide, iterating through all shapes
+3. For text-containing shapes, setting `CharFontName = "Liberation Sans Narrow"` on each text portion
+
+ANSWER: You can use a LibreOffice Basic macro (Tools > Macros > Edit Macros) to change the font for all text boxes at once. The macro iterates through all slides and shapes, and sets CharFontName = "Liberation Sans Narrow" on every text portion — no manual selection needed. The macro was successfully run on the presentation and saved.

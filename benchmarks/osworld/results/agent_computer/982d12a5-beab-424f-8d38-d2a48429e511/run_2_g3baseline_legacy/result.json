@@ -1,0 +1,59 @@
+{
+  "id": "982d12a5-beab-424f-8d38-d2a48429e511",
+  "bucket": "vscode",
+  "instruction": "Please help me change the color theme of VS Code to Visual Studio Dark.",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "252bdd152e04a00efe5160a9c20e9083346839765845bbf97a8b12513a74aaa8",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-ba4b8aba-1d72-4b6d-8547-f6e4e571519e.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-14T03:28:42.054551+00:00",
+    "finished_at": "2026-08-14T03:31:06.051865+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 32,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.46776780000000007,
+  "agent_input_tokens": 41,
+  "agent_output_tokens": 3012,
+  "agent_cache_read_tokens": 1098261,
+  "agent_cache_creation_tokens": 23698,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 4034,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.004119,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 41,
+      "outputTokens": 3012,
+      "cacheReadInputTokens": 1098261,
+      "cacheCreationInputTokens": 23698,
+      "webSearchRequests": 0,
+      "costUSD": 0.4636488,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 142386,
+  "agent_duration_api_ms": 135668,
+  "agent_session_id": "db51023c-33d7-4062-8c6c-60c0bd1e8e73",
+  "agent_uuid": "2c47c3bc-3a58-405e-8b43-974be977bdd6"
+}

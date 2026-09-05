@@ -1,0 +1,11 @@
+The task has been completed successfully. Here's what was accomplished:
+
+1. **Optimal Row Heights**: Applied using Format > Rows > Optimal Height to all cells
+2. **Optimal Column Widths**: Applied using Format > Columns > Optimal Width to all cells
+3. **Page Scaling**: Set to "Fit print range(s) on number of pages: 1" via Format > Page Style > Sheet tab
+4. **PDF Export**: The file was exported as `/home/user/Resize_Cells_Fit_Page.pdf` (22,518 bytes)
+5. **Spreadsheet Saved**: Changes saved back to the xlsx file
+
+The PDF has the same name as the spreadsheet and is located in the home directory at `/home/user/Resize_Cells_Fit_Page.pdf`.
+
+ANSWER: DONE

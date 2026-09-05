@@ -1,0 +1,10 @@
+{
+  "id": "4de54231-e4b5-49e3-b2ba-61a0bec721c0",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official compare_table -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "3_RampUpAndDown_gt1.xlsx": "d496fac274c078686d3dc8ca19214d7a6e5cfa4b9f5fa8d15cf68a1807ebd523"
+  }
+}

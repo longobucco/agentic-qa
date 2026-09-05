@@ -1,0 +1,59 @@
+{
+  "id": "971cbb5b-3cbf-4ff7-9e24-b5c84fcebfa6",
+  "bucket": "vscode",
+  "instruction": "Please help me change the settings of VS Code so that every time I open it, it automatically creates a python file called \"test.py\" without using any extensions.",
+  "answer": "FAIL",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "a2b6b326430d1f1470508f0947a553c856fb544828fd29d7af4b26f745fedf4d",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-969571aa-f380-40dd-9b58-8a4e00c24c2f.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-18T18:15:38.844878+00:00",
+    "finished_at": "2026-08-18T18:16:32.419710+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 8,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.34515149999999994,
+  "agent_input_tokens": 3106,
+  "agent_output_tokens": 3021,
+  "agent_cache_read_tokens": 205877,
+  "agent_cache_creation_tokens": 23528,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 4008,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0041080000000000005,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 3106,
+      "outputTokens": 3021,
+      "cacheReadInputTokens": 205877,
+      "cacheCreationInputTokens": 23528,
+      "webSearchRequests": 0,
+      "costUSD": 0.34104349999999994,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 52262,
+  "agent_duration_api_ms": 51316,
+  "agent_session_id": "780376a5-3303-4fe3-90bf-fa118a8fd2ec",
+  "agent_uuid": "34d34e5f-042d-48de-b458-05bef6ed22df"
+}

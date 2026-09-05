@@ -1,0 +1,16 @@
+[
+  {
+    "id": "5203d847-2572-4150-912a-03f062254390",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-29T11:15:45+0200"
+  },
+  {
+    "id": "5203d847-2572-4150-912a-03f062254390",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-09-04T23:30:32+0200"
+  }
+]

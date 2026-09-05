@@ -1,0 +1,8 @@
+Both workspaces are now open simultaneously in the same VS Code window. The Explorer panel shows:
+- **WORKSPACE1 (WORKSPACE)**
+  - project1 (from workspace1.code-workspace)
+  - project2 (from workspace2.code-workspace)
+
+Both workspace folders are visible in the same window simultaneously.
+
+ANSWER: DONE

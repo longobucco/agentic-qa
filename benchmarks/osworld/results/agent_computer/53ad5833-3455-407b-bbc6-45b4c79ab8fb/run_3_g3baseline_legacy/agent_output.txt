@@ -1,0 +1,3 @@
+VS Code has successfully opened the "project" folder from `/home/user/project`. The Explorer panel on the left shows the folder is open with its contents: `.vscode`, `main.py`, and `README.md`. The title bar confirms "project [Superuser]".
+
+ANSWER: DONE

@@ -1,0 +1,3 @@
+The setting is now `play-and-exit=0`, which stops VLC from automatically closing when a video finishes. The config file `/root/.config/vlc/vlcrc` has been updated and VLC was not running (so nothing will overwrite it).
+
+ANSWER: DONE

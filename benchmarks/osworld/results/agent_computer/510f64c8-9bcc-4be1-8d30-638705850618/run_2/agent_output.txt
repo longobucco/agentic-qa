@@ -1,3 +1,3 @@
-VS Code has launched successfully with the `project` folder open (shown in the title bar as "project"). The command `code ~/Desktop/project` was executed from the xterm terminal and VS Code opened the folder.
+VS Code is successfully running with `~/Desktop/project` open. The task has been accomplished — I ran `mkdir -p ~/Desktop/project && code ~/Desktop/project` from the terminal, which launched VS Code with the project folder. The VS Code window is visible with the project loaded in the background.
 
 ANSWER: DONE

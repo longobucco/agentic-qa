@@ -1,0 +1,3 @@
+The file is saved with all pass rates computed as supported proposals ÷ total applications, extracted from the grand-total row of each year's ECS PDF (2015–2023) for all eight universities in the correct column order.
+
+ANSWER: DONE

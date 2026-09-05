@@ -1,7 +1,14 @@
-The document `gemini_results.docx` has been created successfully on the Desktop with:
-- **6 GEMINI responses** as separate paragraphs, each separated by an empty line
-- All occurrences of **"Iliad"** are highlighted in yellow throughout the document
+The task is complete. Here's what was done:
 
-The document has 11 paragraphs total (6 response paragraphs + 5 empty separator paragraphs), and every instance of "Iliad" is confirmed highlighted.
+1. **Read** the JSON file at `/home/user/Desktop/llm_answers.json` which had one entry with three sections (Multi_Hop, Date_modification, Word_Replacement), each containing `declare_ans` and `question_ans` with GEMINI responses.
+
+2. **Extracted** all 6 GEMINI responses from the JSON data.
+
+3. **Created** `gemini_results.docx` on the Desktop with:
+   - Each of the 6 Gemini responses as a separate paragraph
+   - Empty paragraphs between responses to visually separate them
+   - All occurrences of "Iliad" highlighted in **yellow** using Word's built-in highlight formatting
+
+The document (39,894 bytes) is saved at `/home/user/Desktop/gemini_results.docx`.
 
 ANSWER: DONE

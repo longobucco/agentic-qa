@@ -1,0 +1,59 @@
+{
+  "id": "c6bf789c-ba3a-4209-971d-b63abf0ab733",
+  "bucket": "vscode",
+  "instruction": "Please help me modify VS Code setting to hide all \"__pycache__\" folders in the explorer view.",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "438543725283a769aec485f1e87fa1a31b67b1113afa21af1356fa95295323b1",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-0b8a5d33-5164-404d-96f1-09a090594b7b.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-15T20:11:29.173568+00:00",
+    "finished_at": "2026-08-15T20:12:27.406670+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 15,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.19445885,
+  "agent_input_tokens": 22,
+  "agent_output_tokens": 1855,
+  "agent_cache_read_tokens": 402367,
+  "agent_cache_creation_tokens": 11345,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3229,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.003314,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 22,
+      "outputTokens": 1855,
+      "cacheReadInputTokens": 402367,
+      "cacheCreationInputTokens": 11345,
+      "webSearchRequests": 0,
+      "costUSD": 0.19114485,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 56493,
+  "agent_duration_api_ms": 55256,
+  "agent_session_id": "e92ed60c-8cee-419b-bb88-bfafd117c232",
+  "agent_uuid": "b5d9b70a-4077-4644-ad74-25048b636302"
+}

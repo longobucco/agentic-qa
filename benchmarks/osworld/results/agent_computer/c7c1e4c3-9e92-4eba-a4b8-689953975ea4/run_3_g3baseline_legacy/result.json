@@ -1,0 +1,59 @@
+{
+  "id": "c7c1e4c3-9e92-4eba-a4b8-689953975ea4",
+  "bucket": "libreoffice_calc",
+  "instruction": "I am collecting the contact information of some professors and have their homepage links listed here. Assist me in completing the form by adding their respective email addresses.",
+  "answer": "DONE",
+  "eval_state": "<binary:6076 bytes at Professor_Contact.xlsx>",
+  "provenance": {
+    "task_sha256": "a2098220e17e3db6aaf73904e5477d913805be992f68d1fdcd0066c8295335db",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-fc5fb12d-168c-46c7-b8e5-8880996d579f.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-13T09:37:23.941751+00:00",
+    "finished_at": "2026-08-13T09:40:25.606952+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 47,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.9927887000000001,
+  "agent_input_tokens": 68,
+  "agent_output_tokens": 5688,
+  "agent_cache_read_tokens": 2277559,
+  "agent_cache_creation_tokens": 59496,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 822,
+      "outputTokens": 13,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.000887,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 68,
+      "outputTokens": 5688,
+      "cacheReadInputTokens": 2277559,
+      "cacheCreationInputTokens": 59496,
+      "webSearchRequests": 0,
+      "costUSD": 0.9919017000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 179544,
+  "agent_duration_api_ms": 164107,
+  "agent_session_id": "45f60b9f-d940-478f-b135-1ff0086e39ac",
+  "agent_uuid": "a93dd7a4-5661-4237-b7ff-99dc96d8de73"
+}

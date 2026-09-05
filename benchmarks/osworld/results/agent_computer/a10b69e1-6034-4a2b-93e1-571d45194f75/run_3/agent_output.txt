@@ -1,3 +1,9 @@
-The COMPANY and UNIVERSITY local folders have been successfully created in Thunderbird. I can see them in the folder pane under "Local Folders" alongside Trash and Outbox.
+Both folders have been successfully created. The left sidebar now shows under **Local Folders**:
+- Trash
+- Outbox
+- **COMPANY**
+- **UNIVERSITY**
+
+Both local folders COMPANY and UNIVERSITY are now visible in Thunderbird's Local Folders.
 
 ANSWER: DONE

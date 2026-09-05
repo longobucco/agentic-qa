@@ -1,0 +1,3 @@
+The chart is created and verified: a clustered column chart in a new "Sheet2" with two series (Sales and COGS) across all 10 weeks, titled exactly "Sales & COGS".
+
+ANSWER: DONE

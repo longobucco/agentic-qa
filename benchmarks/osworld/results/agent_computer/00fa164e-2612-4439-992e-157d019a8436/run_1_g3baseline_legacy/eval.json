@@ -1,0 +1,8 @@
+{
+  "id": "00fa164e-2612-4439-992e-157d019a8436",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official compare_docx_tables -> 0.00",
+  "source": "official",
+  "gold_sha256": {}
+}

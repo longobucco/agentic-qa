@@ -1,3 +1,1 @@
-The **About Profiles** page is now open as a tab inside Thunderbird. This is the profile management tabpage (`about:profiles`) — showing "This page helps you to manage your profiles," with the profiles listed, Create/Rename/Remove/Set as default options — not the profile chooser dialog. The task is complete.
-
-ANSWER: DONE
+You've hit your session limit · resets 6:30am (Europe/Rome)

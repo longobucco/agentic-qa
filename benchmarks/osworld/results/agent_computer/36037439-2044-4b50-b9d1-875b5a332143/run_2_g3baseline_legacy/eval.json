@@ -1,0 +1,8 @@
+{
+  "id": "36037439-2044-4b50-b9d1-875b5a332143",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official is_expected_url_pattern_match -> 0.00",
+  "source": "official",
+  "gold_sha256": {}
+}

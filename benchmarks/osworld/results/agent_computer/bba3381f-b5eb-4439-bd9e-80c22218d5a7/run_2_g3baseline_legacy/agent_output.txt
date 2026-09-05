@@ -1,0 +1,3 @@
+The video is actively streaming. The screenshot shows the Apple "Big Buck Bunny Bip" test stream playing at `00:00:16.08` with the characteristic test content (pie chart, color bars, "Bip!" subtitle) — confirming the HLS stream from the provided URL is successfully playing in the browser via hls.js.
+
+ANSWER: DONE

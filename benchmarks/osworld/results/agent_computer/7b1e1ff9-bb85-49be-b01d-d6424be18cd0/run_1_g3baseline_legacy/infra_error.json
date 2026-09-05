@@ -1,0 +1,76 @@
+[
+  {
+    "id": "7b1e1ff9-bb85-49be-b01d-d6424be18cd0",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-12T23:26:02+0200"
+  },
+  {
+    "id": "7b1e1ff9-bb85-49be-b01d-d6424be18cd0",
+    "run": 1,
+    "outcome": "INFRA_FLAKE",
+    "error_type": "FileNotFoundError",
+    "error": "[Errno 2] No such file or directory: 'claude'",
+    "elapsed_s": 13.4,
+    "at": "2026-08-13T14:30:39+0200"
+  },
+  {
+    "id": "7b1e1ff9-bb85-49be-b01d-d6424be18cd0",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-14T06:53:23+0200"
+  },
+  {
+    "id": "7b1e1ff9-bb85-49be-b01d-d6424be18cd0",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-14T12:19:16+0200"
+  },
+  {
+    "id": "7b1e1ff9-bb85-49be-b01d-d6424be18cd0",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-15T06:00:05+0200"
+  },
+  {
+    "id": "7b1e1ff9-bb85-49be-b01d-d6424be18cd0",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-15T19:55:51+0200"
+  },
+  {
+    "id": "7b1e1ff9-bb85-49be-b01d-d6424be18cd0",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-16T06:52:52+0200"
+  },
+  {
+    "id": "7b1e1ff9-bb85-49be-b01d-d6424be18cd0",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-16T17:03:56+0200"
+  },
+  {
+    "id": "7b1e1ff9-bb85-49be-b01d-d6424be18cd0",
+    "run": 1,
+    "outcome": "INFRA_FLAKE",
+    "error_type": "DaytonaBadGatewayError",
+    "error": "Failed to get preview link: <html>\r\n<head><title>502 Bad Gateway</title></head>\r\n<body>\r\n<center><h1>502 Bad Gateway</h1></center>\r\n</body>\r\n</html>\r\n",
+    "elapsed_s": 1.9,
+    "at": "2026-08-18T17:44:25+0200"
+  },
+  {
+    "id": "7b1e1ff9-bb85-49be-b01d-d6424be18cd0",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-19T12:14:03+0200"
+  }
+]

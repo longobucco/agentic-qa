@@ -3,21 +3,23 @@
   "bucket": "libreoffice_calc",
   "instruction": "Create a clustered column chart showing the Sales and COGS data for each week in a new sheet named \"Sheet2\". Set the chart title as \"Sales & COGS\".",
   "answer": "DONE",
-  "eval_state": "<binary:7583 bytes at WeeklySales.xlsx>",
+  "eval_state": "<binary:9604 bytes at WeeklySales.xlsx>",
   "provenance": {
     "task_sha256": "b1b45564daadae0ae5507bfde182d20a685efd5e2d8023c982b7f481200d94fd",
     "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
-    "controller_url": "https://5000-ee4bbecc-a94b-475b-a120-0af222c4a038.daytonaproxy01.eu",
+    "controller_url": "https://5000-d1eb27b7-d41c-4734-bc01-5ffd36736111.daytonaproxy01.eu",
     "release": "verified",
     "max_turns": 150,
     "task_timeout": 2700,
     "observation": "screenshot+a11y",
     "action_space": "pyautogui",
-    "started_at": "2026-08-19T21:31:32.998438+00:00",
-    "finished_at": "2026-08-19T21:32:37.857981+00:00"
+    "started_at": "2026-09-04T21:02:51.908289+00:00",
+    "finished_at": "2026-09-04T21:15:21.077776+00:00"
   },
+  "transcript_saved": true,
+  "transcript_bytes": 8793103,
   "agent_clean_finish": true,
-  "agent_num_turns": 9,
+  "agent_num_turns": 83,
   "agent_stop_reason": "end_turn",
   "agent_terminal_reason": "completed",
   "agent_subtype": "success",
@@ -25,35 +27,35 @@
   "agent_errors": null,
   "agent_api_error_status": null,
   "agent_permission_denials": [],
-  "agent_cost_usd": 0.38738949999999994,
-  "agent_input_tokens": 3230,
-  "agent_output_tokens": 3890,
-  "agent_cache_read_tokens": 244242,
-  "agent_cache_creation_tokens": 23490,
+  "agent_cost_usd": 2.1567936000000003,
+  "agent_input_tokens": 98,
+  "agent_output_tokens": 30966,
+  "agent_cache_read_tokens": 4585602,
+  "agent_cache_creation_tokens": 84112,
   "agent_model_usage": {
     "claude-haiku-4-5-20251001": {
-      "inputTokens": 4976,
+      "inputTokens": 829,
       "outputTokens": 16,
       "cacheReadInputTokens": 0,
       "cacheCreationInputTokens": 0,
       "webSearchRequests": 0,
-      "costUSD": 0.005056000000000001,
+      "costUSD": 0.000909,
       "contextWindow": 200000,
       "maxOutputTokens": 32000
     },
-    "claude-opus-4-8": {
-      "inputTokens": 3230,
-      "outputTokens": 3890,
-      "cacheReadInputTokens": 244242,
-      "cacheCreationInputTokens": 23490,
+    "claude-sonnet-4-6": {
+      "inputTokens": 98,
+      "outputTokens": 30966,
+      "cacheReadInputTokens": 4585602,
+      "cacheCreationInputTokens": 84112,
       "webSearchRequests": 0,
-      "costUSD": 0.38233349999999994,
-      "contextWindow": 1000000,
-      "maxOutputTokens": 64000
+      "costUSD": 2.155884600000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
     }
   },
-  "agent_duration_ms": 63262,
-  "agent_duration_api_ms": 58579,
-  "agent_session_id": "55905c26-4973-4ae4-b3e8-39419fc4fecd",
-  "agent_uuid": "2efd16b6-d5fb-4361-9fd7-a77b9f370bd2"
+  "agent_duration_ms": 746605,
+  "agent_duration_api_ms": 693705,
+  "agent_session_id": "f08e564f-f1b0-406f-b7a5-4de6ab37400c",
+  "agent_uuid": "a554f804-1140-490b-a490-434b488aa6d8"
 }

@@ -1,3 +1,10 @@
-The task is complete and saved. Sheet2 was created with A1:C1 merged containing "Investment Summary", A2:B2 merged with "High Interest Rate", and C2:D2 merged with "Low Interest Rate".
+Sheet2 is now visible and the macro worked perfectly. I can see:
+
+- **Cell A1:C1** is merged (shown as "A1:C1" in the Name Box) containing **"Investment Summary"**
+- **Row 2** shows **"High Interest Rate"** in columns A:B and **"Low Interest Rate"** in columns C:D
+- The status bar shows "Sheet 2 of 2" and "Selected: 1 row, 3 columns" confirming the A1:C1 merge
+- The **Sheet2** tab is active at the bottom
+
+The file was already saved by the macro (`oDoc.store()`). The task is complete.
 
 ANSWER: DONE

@@ -1,0 +1,3 @@
+The COMPANY and UNIVERSITY local folders have been successfully created in Thunderbird. I can see them in the folder pane under "Local Folders" alongside Trash and Outbox.
+
+ANSWER: DONE

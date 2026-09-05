@@ -1,0 +1,3 @@
+The left Slides panel is visible on the left side (showing "Slides" header with the slide 1 thumbnail), and the View menu confirmed "Slide Pane" is enabled with a checkmark. The panel is restored and visible.
+
+ANSWER: DONE

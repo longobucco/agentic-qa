@@ -1,0 +1,9 @@
+The document has been saved successfully. The double line spacing has been applied to the first two paragraphs:
+
+1. **First paragraph** ("Compared to a short story..."): Now has double line spacing - the lines are visibly spread out with clear double spacing between them.
+2. **Second paragraph** ("A novel may have any number of climaxes..."): Also has double line spacing applied.
+3. The remaining paragraphs ("The setting of a novel...", "There may be sudden shifts...", etc.) retain their original single line spacing.
+
+The file has been saved in Word 2007-365 format (.docx).
+
+ANSWER: DONE

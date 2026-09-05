@@ -1,0 +1,3 @@
+The dialog is closed and the document has been saved. The title now clearly shows "H₂O—Soak up the Science" with the "2" properly formatted as a subscript (visibly smaller and positioned below the baseline between H and O).
+
+ANSWER: DONE

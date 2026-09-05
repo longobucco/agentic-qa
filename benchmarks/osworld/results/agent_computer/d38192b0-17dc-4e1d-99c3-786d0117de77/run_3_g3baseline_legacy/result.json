@@ -1,0 +1,59 @@
+{
+  "id": "d38192b0-17dc-4e1d-99c3-786d0117de77",
+  "bucket": "thunderbird",
+  "instruction": "Attach the my AWS bill to the email. The bill is stored at ~/aws-bill.pdf. Don't close it or send it. I haven't finish all the contents.",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "9caad1afdf64f7108ed4b0b000623c49084b0be123d1c0ca36646e7706be8314",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-880f5c98-fc5d-42d1-a507-5d575754d066.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-19T11:54:47.849395+00:00",
+    "finished_at": "2026-08-19T12:00:07.031030+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 22,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 1.1955697499999998,
+  "agent_input_tokens": 3496,
+  "agent_output_tokens": 18919,
+  "agent_cache_read_tokens": 766410,
+  "agent_cache_creation_tokens": 51007,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3041,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.003116,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 3496,
+      "outputTokens": 18919,
+      "cacheReadInputTokens": 766410,
+      "cacheCreationInputTokens": 51007,
+      "webSearchRequests": 0,
+      "costUSD": 1.1924537499999999,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 317755,
+  "agent_duration_api_ms": 303337,
+  "agent_session_id": "75822a8f-d766-4f5f-9e0e-1f4fea0edaec",
+  "agent_uuid": "f5ca82aa-728d-4f01-a33b-b8392f3a18ed"
+}

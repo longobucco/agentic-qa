@@ -1,9 +1,1 @@
-The font has been successfully changed to **Liberation Sans Narrow** across all text boxes in the presentation. The Properties panel on the right clearly shows "Liberation Sans Narrow" as the current font.
-
-The approach used was:
-1. Extracted the PPTX file (it's a ZIP archive containing XML files)
-2. Used Python regex to replace all `<a:latin typeface="...">` attributes in the 28 slide XML files (248 font references total) with "Liberation Sans Narrow"
-3. Repacked the modified PPTX file
-4. Reloaded it in LibreOffice Impress
-
-ANSWER: You can use a LibreOffice Basic macro (Tools > Macros > Edit Macros) to iterate through all slides and text boxes programmatically and set the font to 'Liberation Sans Narrow'. Alternatively, since PPTX files are ZIP archives containing XML, you can extract the file, use a script to replace all `<a:latin typeface="..."/>` attributes in the slide XML files with `<a:latin typeface="Liberation Sans Narrow"/>`, then repack the ZIP — this changes all 248 font references across all slides at once without touching each text box manually.
+You've hit your session limit · resets 6:30am (Europe/Rome)

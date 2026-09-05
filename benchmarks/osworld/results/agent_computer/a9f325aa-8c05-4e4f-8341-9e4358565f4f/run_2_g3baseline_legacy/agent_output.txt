@@ -1,0 +1,8 @@
+The dialog is dismissed and the file has been saved. All 28 movie titles have been successfully copied to the "Clean Movie Titles" column with:
+- Extra whitespace removed (leading, trailing, and internal multiple spaces collapsed to single space)
+- Title case applied (first letter of each word capitalized, rest lowercase)
+- Column A and blank regions left untouched
+
+The file is saved as `Movie_title_garbage_clean.xlsx` on the Linux VM.
+
+ANSWER: DONE

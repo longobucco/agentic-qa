@@ -1,0 +1,5 @@
+The autoDocstring extension was successfully installed. The output confirms:
+
+> Extension 'njpwerner.autodocstring' v0.6.1 was successfully installed.
+
+ANSWER: DONE

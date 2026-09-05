@@ -1,0 +1,6 @@
+The task is complete. The file has been saved to disk with the Python script. The presentation at `/home/user/Desktop/4.3-Template_4.29.2016.pptx` now has:
+- 6 blank slides (no textboxes or other elements)
+- Each slide contains exactly one full-slide image in order: pic1.png through pic6.png
+- The original template's dimensions and format are preserved
+
+ANSWER: DONE

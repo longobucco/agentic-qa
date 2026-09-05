@@ -1,3 +1,7 @@
-The change is applied and verified: on slide 14, the first textbox ("Target audience") is now 60 pt and the second textbox ("Elaborate on what you want to discuss.") is now 28 pt. The file was saved.
+Both textboxes on slide 14 are now correctly configured:
+- **First textbox** ("Target audience"): **60 pt** ✓ (Marcellus font)
+- **Second textbox** ("Elaborate on what you want to discuss."): **28 pt** ✓ (Poppins font)
+
+The PPTX file has been saved with the correct font sizes. The task is complete.
 
 ANSWER: DONE

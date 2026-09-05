@@ -1,0 +1,3 @@
+The font is confirmed as "Times New Roman" in the Properties panel. The "Conclusion" title on slide 5 is now in Times New Roman font, and the file has been saved in PowerPoint format.
+
+ANSWER: DONE

@@ -1,0 +1,3 @@
+Do Not Disturb mode is now enabled — the `show-banners` notification setting is now `false`, which is exactly what GNOME's "Do Not Disturb" toggle controls, so notification banners will no longer appear.
+
+ANSWER: DONE

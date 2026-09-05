@@ -1,0 +1,3 @@
+The PREF cookie confirms `num=50` is set. The task is complete - the Google Search preference for 50 results per page is now saved in the PREF cookie.
+
+ANSWER: DONE

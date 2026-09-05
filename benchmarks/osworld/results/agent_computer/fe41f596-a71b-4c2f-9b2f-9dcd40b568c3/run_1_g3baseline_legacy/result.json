@@ -1,0 +1,59 @@
+{
+  "id": "fe41f596-a71b-4c2f-9b2f-9dcd40b568c3",
+  "bucket": "os",
+  "instruction": "I want to see the battery percentage. Can you help me display it on my screen?",
+  "answer": "FAIL",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "94375d5fd59d154b7ac500fda799d8eb01bae90a9dfc0c3a245934de657a4a38",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-02770d22-8f7e-4be6-b183-111e90255525.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-23T07:26:57.310619+00:00",
+    "finished_at": "2026-08-23T07:30:07.808456+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 24,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.5240589,
+  "agent_input_tokens": 35,
+  "agent_output_tokens": 9110,
+  "agent_cache_read_tokens": 870103,
+  "agent_cache_creation_tokens": 33100,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2083,
+      "outputTokens": 13,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002148,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 35,
+      "outputTokens": 9110,
+      "cacheReadInputTokens": 870103,
+      "cacheCreationInputTokens": 33100,
+      "webSearchRequests": 0,
+      "costUSD": 0.5219109000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 188409,
+  "agent_duration_api_ms": 187754,
+  "agent_session_id": "6d40dba6-1925-40ba-bbca-9a3c33cdf229",
+  "agent_uuid": "ba95912d-432a-476b-9e9b-c1a0fcb83565"
+}

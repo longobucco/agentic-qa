@@ -1,0 +1,6 @@
+Successfully copied `file1` to all three directories:
+- `/app/desktop_env/server/dir1/file1`
+- `/app/desktop_env/server/dir2/file1`
+- `/app/desktop_env/server/dir3/file1`
+
+ANSWER: DONE

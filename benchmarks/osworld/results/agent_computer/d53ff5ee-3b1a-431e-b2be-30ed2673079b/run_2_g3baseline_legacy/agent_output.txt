@@ -1,0 +1,3 @@
+All text is now lowercase and the document was saved (kept in .docx format). The uppercase text has been successfully converted to lowercase throughout the document.
+
+ANSWER: DONE

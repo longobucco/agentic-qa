@@ -1,0 +1,13 @@
+The file has been saved successfully. The "Maturity Date" column (column C) has been added with all maturity dates calculated by adding the "Length of Loan in Days" to the "Loan Issue Date" for all 9 loans:
+
+- Row 2: 9/16/2010 + 120 days = 01/14/11
+- Row 3: 12/9/2010 + 90 days = 03/09/11
+- Row 4: 1/5/2011 + 90 days = 04/05/11
+- Row 5: 9/10/2010 + 100 days = 12/19/10
+- Row 6: 12/22/2010 + 90 days = 03/22/11
+- Row 7: 10/17/2010 + 120 days = 02/14/11
+- Row 8: 1/12/2011 + 120 days = 05/12/11
+- Row 9: 9/18/2010 + 180 days = 03/17/11
+- Row 10: 9/5/2010 + 80 days = 11/24/10
+
+ANSWER: DONE

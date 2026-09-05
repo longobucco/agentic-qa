@@ -1,0 +1,3 @@
+The auto-save has been successfully configured in LibreOffice. The "Save AutoRecovery information every 3 minutes" option is now enabled in Tools → Options → Load/Save → General. LibreOffice will automatically save your work every 3 minutes going forward.
+
+ANSWER: DONE

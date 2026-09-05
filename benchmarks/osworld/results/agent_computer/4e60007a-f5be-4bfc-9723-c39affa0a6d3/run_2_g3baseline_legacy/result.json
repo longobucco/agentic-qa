@@ -1,0 +1,59 @@
+{
+  "id": "4e60007a-f5be-4bfc-9723-c39affa0a6d3",
+  "bucket": "vscode",
+  "instruction": "Please help me install the autoDocstring extension in VS Code.",
+  "answer": "DONE",
+  "eval_state": "njpwerner.autodocstring\n",
+  "provenance": {
+    "task_sha256": "5e6188cf80da1b3a6df077c3df8e6981a9e772c74157c4d373d5345de40c2b9d",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-c2ad1c35-143f-4f01-8262-3f26d8da1ad2.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-10T10:20:19.274082+00:00",
+    "finished_at": "2026-08-10T10:21:49.891910+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 22,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.29417674999999993,
+  "agent_input_tokens": 31,
+  "agent_output_tokens": 2269,
+  "agent_cache_read_tokens": 573260,
+  "agent_cache_creation_tokens": 23229,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 882,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.000962,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 31,
+      "outputTokens": 2269,
+      "cacheReadInputTokens": 573260,
+      "cacheCreationInputTokens": 23229,
+      "webSearchRequests": 0,
+      "costUSD": 0.2932147499999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 79704,
+  "agent_duration_api_ms": 75063,
+  "agent_session_id": "57500062-6120-45dc-8b6f-cd85964dc4a9",
+  "agent_uuid": "021405de-ef6e-4b18-a1c9-8e585bbddf00"
+}

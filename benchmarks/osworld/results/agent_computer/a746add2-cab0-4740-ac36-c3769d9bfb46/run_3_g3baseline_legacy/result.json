@@ -1,0 +1,59 @@
+{
+  "id": "a746add2-cab0-4740-ac36-c3769d9bfb46",
+  "bucket": "gimp",
+  "instruction": "Help me open up the Vignette filter window.",
+  "answer": "DONE",
+  "eval_state": "",
+  "provenance": {
+    "task_sha256": "9cc7b283c743206a9685edd9c047a2a790817d3d3978dd8fa4ccf5bdbd925a8b",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-91937ed0-c4fb-408b-a556-32ceabf28e92.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-26T14:20:55.156980+00:00",
+    "finished_at": "2026-08-26T14:31:03.869958+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 77,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 1.73022785,
+  "agent_input_tokens": 86,
+  "agent_output_tokens": 19394,
+  "agent_cache_read_tokens": 3907352,
+  "agent_cache_creation_tokens": 70927,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 803,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.000878,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 86,
+      "outputTokens": 19394,
+      "cacheReadInputTokens": 3907352,
+      "cacheCreationInputTokens": 70927,
+      "webSearchRequests": 0,
+      "costUSD": 1.72934985,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 606135,
+  "agent_duration_api_ms": 556620,
+  "agent_session_id": "d9ba25ab-5b66-4b78-b510-9ea8de5d01f7",
+  "agent_uuid": "732019e5-bd0e-446c-8c25-d4e794c17830"
+}

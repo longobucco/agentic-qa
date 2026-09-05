@@ -1,0 +1,59 @@
+{
+  "id": "aceb0368-56b8-4073-b70e-3dc9aee184e0",
+  "bucket": "thunderbird",
+  "instruction": "I am grading students' English exam papers, but the test consists only of multiple-choice questions. It's too exhausting to check each question one by one and record the detailed scores. Can you help me compare the remaining students' answers with the answer key and record the detailed scoring in the opened spreadsheet?",
+  "answer": "DONE",
+  "eval_state": "<binary:6449 bytes at grades.xlsx>",
+  "provenance": {
+    "task_sha256": "d2cd2d80dc53ce512ac0df984bcbaeb7549d4efc107d7e69b2380c92eda4d4bb",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-7b413caf-8716-40a6-8460-4c62a2ecf1bc.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-25T20:37:56.310425+00:00",
+    "finished_at": "2026-08-25T20:41:42.721543+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 32,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.6879423500000001,
+  "agent_input_tokens": 37,
+  "agent_output_tokens": 7326,
+  "agent_cache_read_tokens": 1364117,
+  "agent_cache_creation_tokens": 44403,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2110,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002195,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 37,
+      "outputTokens": 7326,
+      "cacheReadInputTokens": 1364117,
+      "cacheCreationInputTokens": 44403,
+      "webSearchRequests": 0,
+      "costUSD": 0.6857473500000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 223575,
+  "agent_duration_api_ms": 174468,
+  "agent_session_id": "e313dda9-51ac-4440-af95-0b5643f70d07",
+  "agent_uuid": "af19f57f-918c-41ce-a081-ec2b51996eeb"
+}

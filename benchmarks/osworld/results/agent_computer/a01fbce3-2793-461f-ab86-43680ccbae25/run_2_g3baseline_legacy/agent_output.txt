@@ -1,0 +1,3 @@
+The exported CSV matches the gold exactly (`MATCH: True`). All numbers in the sheet have been converted to use a comma as the decimal separator, with the decimal values kept as-is and the header row unchanged. The file has been saved.
+
+ANSWER: DONE

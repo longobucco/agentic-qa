@@ -1,7 +1,1 @@
-The bug is fixed. 
-
-**Root cause:** The snake always moves on a grid of `SNAKE_SIZE` (10px) steps starting from `(300, 200)`, so its head coordinates are always multiples of 10. But `Food.__init__` placed the food at arbitrary pixel coordinates (`random.randint(0, WIDTH-SNAKE_SIZE)`), which are almost never multiples of 10. So the equality check `snake.positions[0] == food.position` in `main.py` could essentially never be true — the snake could never eat the food.
-
-**Fix:** I made the initial food position snap to the grid, matching the (already-correct) `respawn()` method. Now food always lands on a cell the snake head can actually occupy, so eating works.
-
-ANSWER: DONE
+You've hit your session limit · resets 3:10pm (Europe/Rome)

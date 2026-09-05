@@ -1,0 +1,3 @@
+The console confirms the PREF cookie is set to `f6=40000000&num=50`. The `num=50` parameter successfully sets Google to show 50 search results per page. The task is complete.
+
+ANSWER: DONE

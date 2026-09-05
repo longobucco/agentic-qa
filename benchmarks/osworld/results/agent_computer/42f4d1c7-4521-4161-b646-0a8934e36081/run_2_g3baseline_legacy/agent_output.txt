@@ -1,0 +1,8 @@
+The task is complete. The status bar at the bottom right now shows "Lisp" language mode, and the code has syntax highlighting enabled by the installed Lisp extension.
+
+Summary of what was accomplished:
+1. **Installed the Lisp extension** (`mattn.Lisp` v0.1.12) via `code --install-extension`
+2. **Created GIMP Script-Fu code** in `/home/user/Desktop/resize_image.scm` that loads `character.png`, scales it to 128×128, and saves it as `resized.png`
+3. **Set the language mode to Lisp** in VS Code so the file has proper syntax highlighting
+
+ANSWER: DONE

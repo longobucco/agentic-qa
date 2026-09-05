@@ -1,0 +1,3 @@
+The file is correctly saved with the columns in the required order: **Date, First Name, Last Name, Order ID, Sales**. The data is intact (e.g., row 2: 2022-09-11, Benedict, Cucumberbatch, 76, 2492).
+
+ANSWER: DONE

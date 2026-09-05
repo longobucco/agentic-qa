@@ -1,3 +1,1 @@
-`res.png` is now saved on the Desktop. The Impress file was successfully exported to PNG format using LibreOffice's default export settings.
-
-ANSWER: DONE
+You've hit your session limit · resets 11:30am (Europe/Rome)

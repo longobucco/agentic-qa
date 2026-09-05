@@ -1,0 +1,23 @@
+[
+  {
+    "id": "bedcedc4-4d72-425e-ad62-21960b11fe0d",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-21T17:58:39+0200"
+  },
+  {
+    "id": "bedcedc4-4d72-425e-ad62-21960b11fe0d",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-22T17:03:15+0200"
+  },
+  {
+    "id": "bedcedc4-4d72-425e-ad62-21960b11fe0d",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-23T05:36:39+0200"
+  }
+]

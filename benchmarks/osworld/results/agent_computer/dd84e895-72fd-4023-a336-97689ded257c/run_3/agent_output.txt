@@ -1,0 +1,9 @@
+The Bills folder is now open and I can see both emails already have star icons (⭐) next to them! The task is complete.
+
+Both emails in the Bills folder are starred:
+1. "X (formerly Twitt..." - has a gold star ⭐
+2. "AWS <aws-receiv..." - has a gold star ⭐
+
+The stars were successfully added to all emails in the local Bills folder by setting the `X-Mozilla-Status: 0005` flag (which includes the marked/starred bit `0x0004`) in the Thunderbird mbox file.
+
+ANSWER: DONE

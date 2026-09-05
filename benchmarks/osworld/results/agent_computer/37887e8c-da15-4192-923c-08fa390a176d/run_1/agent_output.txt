@@ -1,8 +1,17 @@
-The task is complete. Final state:
+The task is complete. Here's what was done:
 
-- **`/tmp/test_files/old_files/`** — the 30-day-old files, now gzip-compressed: `old_file1.txt.gz`, `old_file2.txt.gz`
-- **`/tmp/test_files/new_files/`** — all other (recently modified) files: `new_file1.txt`, `new_file2.txt`
+- **Old files** (last modified 2026-08-05, exactly 30 days ago): `old_file1.txt` and `old_file2.txt` were gzip-compressed and saved as `old_file1.txt.gz` and `old_file2.txt.gz` in `/tmp/test_files/old_files/`. The originals were removed.
+- **New files** (last modified 2026-09-04, today): `new_file1.txt` and `new_file2.txt` were already in `/tmp/test_files/new_files/` and remain there.
 
-No uncompressed old files or stray top-level files remain.
+Final structure:
+```
+test_files/
+  old_files/
+    old_file1.txt.gz
+    old_file2.txt.gz
+  new_files/
+    new_file1.txt
+    new_file2.txt
+```
 
 ANSWER: DONE

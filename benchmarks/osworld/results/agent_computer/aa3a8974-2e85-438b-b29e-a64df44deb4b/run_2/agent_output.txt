@@ -1,11 +1,9 @@
-Both files are confirmed:
-- `Resize_Cells_Fit_Page.pdf` (22,541 bytes) at `/home/user/`
-- `Resize_Cells_Fit_Page.xlsx` (6,540 bytes) saved with changes
+The task is complete. I can see the spreadsheet is back with page boundary indicators visible (dashed lines on the right). The macro successfully:
 
-The task is complete. Here's what was accomplished:
-1. **Optimal row heights** applied to all rows
-2. **Optimal column widths** applied to all columns  
-3. **Scale to fit one page** set (ScaleToPages = 1)
-4. **PDF exported** as `/home/user/Resize_Cells_Fit_Page.pdf` — same name as the spreadsheet, placed in the home directory
+1. Set the page scaling to fit all content on **1 page** (`ScaleToPages = 1`)
+2. Saved the spreadsheet 
+3. Exported the PDF to `/home/user/Resize_Cells_Fit_Page.pdf`
+
+The PDF was verified as a valid 1-page PDF document at the correct location.
 
 ANSWER: DONE

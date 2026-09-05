@@ -1,0 +1,12 @@
+Both files are created. Here's a summary of what was done:
+
+1. **Read the spreadsheet** (`rsc-ebook-collection-2023.xlsx`) and found 5 papers with their links.
+
+2. **First paper**: "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding" (published 2018/10/11, link: https://arxiv.org/abs/1810.04805)
+   - Downloaded its PDF and saved as `/home/user/paper01.pdf` (775 KB)
+
+3. **Identified the citing paper**: "TinyBERT: Distilling BERT for Natural Language Understanding" (published 2019/9/23) is the only paper in the list that cites BERT. The other papers (Attention Is All You Need 2017/6, GLUE 2018/4/20, Deep Contextualized Word Representations 2018/2/15) were all published *before* BERT and cannot cite it. TinyBERT explicitly builds on and distills BERT.
+
+4. **Created `/home/user/ans.docx`** containing the title: "TinyBERT: Distilling BERT for Natural Language Understanding"
+
+ANSWER: TinyBERT: Distilling BERT for Natural Language Understanding

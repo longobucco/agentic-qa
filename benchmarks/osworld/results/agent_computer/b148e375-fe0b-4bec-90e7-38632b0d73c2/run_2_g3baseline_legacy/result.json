@@ -1,0 +1,59 @@
+{
+  "id": "b148e375-fe0b-4bec-90e7-38632b0d73c2",
+  "bucket": "gimp",
+  "instruction": "Could you assist me in adding a new layer and naming it 'Square'?",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "ed1b270f103a5fa2a2e6906a28c294697083ccb42df5f51dac54f99f4c3f88a1",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-7c02d75a-1158-4509-bca5-651701ffb82e.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-19T20:14:45.573186+00:00",
+    "finished_at": "2026-08-19T20:15:26.044509+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 15,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.40117175,
+  "agent_input_tokens": 3242,
+  "agent_output_tokens": 1112,
+  "agent_cache_read_tokens": 387351,
+  "agent_cache_creation_tokens": 25353,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 4955,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.005030000000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 3242,
+      "outputTokens": 1112,
+      "cacheReadInputTokens": 387351,
+      "cacheCreationInputTokens": 25353,
+      "webSearchRequests": 0,
+      "costUSD": 0.39614174999999996,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 38656,
+  "agent_duration_api_ms": 36721,
+  "agent_session_id": "71056a8c-a80f-4091-8165-3f1b07a243b8",
+  "agent_uuid": "7802fd77-5c36-442a-be66-9d51a7adbfd8"
+}

@@ -1,0 +1,9 @@
+The entry for Yann LeCun has been successfully appended to `researchers.xlsx`. The new row contains:
+- **Name**: Yann LeCun
+- **All citations**: 491838
+- **h-index**: 174
+- **i10-index**: 501
+- **Top Cited Work**: Deep learning
+- **PDF Link**: https://hal.science/hal-04206682/document
+
+ANSWER: DONE

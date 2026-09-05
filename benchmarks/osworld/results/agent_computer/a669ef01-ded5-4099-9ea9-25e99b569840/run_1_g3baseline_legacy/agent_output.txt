@@ -1,0 +1,3 @@
+The change is complete and saved. On Slide 3, "continuation of the sub topics" now has no bullet in front of it and its text is indented to align with "Main idea" and "Sub topics" (the level-1 items). The file was saved in its original .pptx format.
+
+ANSWER: DONE

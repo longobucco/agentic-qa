@@ -1,0 +1,3 @@
+The fix is complete. The root cause: the snake's head is always aligned to a `SNAKE_SIZE` (10px) grid (it starts at 300,200 and moves in 10px steps), but `Food.__init__` was generating the food at arbitrary pixel coordinates (`random.randint(0, WIDTH-SNAKE_SIZE)`), which are almost never grid-aligned — so the equality check `snake.positions[0] == food.position` could essentially never be satisfied. I changed `__init__` to snap the food to the same grid used by `respawn` (and the snake), so the head can now land exactly on the food and eat it.
+
+ANSWER: DONE

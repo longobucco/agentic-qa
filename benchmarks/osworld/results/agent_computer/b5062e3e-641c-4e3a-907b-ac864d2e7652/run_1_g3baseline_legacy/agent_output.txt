@@ -1,0 +1,10 @@
+The spreadsheet is saved to `/home/user/authors.xlsx` with headers and authors sorted alphabetically by full name:
+
+| Name | E-mail | Affiliation |
+|------|--------|-------------|
+| Chi Zhang | johnczhang@tencent.com | Tencent |
+| Jing Yu Koh | jingyuk@cs.cmu.edu | Carnegie Mellon University |
+| Runliang Niu | niurl19@mails.jlu.edu.cn | School of Artificial Intelligence, Jilin University |
+| Xiang Deng | deng.595@osu.edu | The Ohio State University |
+
+ANSWER: DONE

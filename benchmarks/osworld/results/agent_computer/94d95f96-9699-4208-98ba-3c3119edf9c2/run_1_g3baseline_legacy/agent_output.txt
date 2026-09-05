@@ -1,0 +1,9 @@
+Spotify has been successfully installed on the system. Here's what was done:
+
+1. **Detected OS**: Ubuntu 22.04 LTS (Jammy Jellyfish)
+2. **Tried the official Spotify APT repo**: The latest `spotify-client` package requires `libc6 >= 2.39`, but Ubuntu 22.04 ships with `libc6 2.35`, making it incompatible
+3. **Installed via Flatpak instead**: Installed `flatpak`, added the Flathub repository, and successfully installed Spotify (`com.spotify.Client` version `1.2.95.453.g0eeebbed`)
+
+Spotify is now installed and available as a Flatpak application (`flatpak run com.spotify.Client`).
+
+ANSWER: DONE

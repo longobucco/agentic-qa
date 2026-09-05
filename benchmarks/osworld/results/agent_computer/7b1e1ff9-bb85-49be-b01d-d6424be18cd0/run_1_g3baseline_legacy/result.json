@@ -1,0 +1,59 @@
+{
+  "id": "7b1e1ff9-bb85-49be-b01d-d6424be18cd0",
+  "bucket": "thunderbird",
+  "instruction": "Could you help me open up the profile management tabpage in Thunderbird? I want the profile management tabpage inside Thunderbird app, but not the profile chooser dialog during app launch.",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "504bae8421a98e7c00afa485b0f7506743c5a9510de970cc2532638a77dfef5a",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-82f6dbf8-a2e8-44e1-ae8a-96f0ef92ab0b.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-19T20:08:05.385310+00:00",
+    "finished_at": "2026-08-19T20:09:39.550911+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 17,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.5813394999999999,
+  "agent_input_tokens": 3368,
+  "agent_output_tokens": 4701,
+  "agent_cache_read_tokens": 458858,
+  "agent_cache_creation_tokens": 33998,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 4978,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.005058,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 3368,
+      "outputTokens": 4701,
+      "cacheReadInputTokens": 458858,
+      "cacheCreationInputTokens": 33998,
+      "webSearchRequests": 0,
+      "costUSD": 0.5762814999999999,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 92227,
+  "agent_duration_api_ms": 86221,
+  "agent_session_id": "998a660b-b434-463c-9742-edcfc8312ad6",
+  "agent_uuid": "3ceea537-8274-494d-ba10-0d73cec9056d"
+}

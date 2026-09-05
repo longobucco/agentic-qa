@@ -1,0 +1,10 @@
+{
+  "id": "2fe4b718-3bd7-46ec-bdce-b184f5653624",
+  "verdict": "FAILURE",
+  "reward": 0.8472614134182963,
+  "reason": "official compare_images -> 0.85",
+  "source": "official",
+  "gold_sha256": {
+    "src_clip_gold.gif": "9498200df29d9b53bfaa6f845c60025fab1ba42ce6fc030cf324bfe83bb763e1"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "id": "2cd43775-7085-45d8-89fa-9e35c0a915cf",
+  "verdict": "EVAL_ERROR",
+  "reason": "no eval_state captured (official eval errored: TypeError: expected str, bytes or os.PathLike object, not NoneType)",
+  "source": "offline_fallback",
+  "gold_sha256": {}
+}

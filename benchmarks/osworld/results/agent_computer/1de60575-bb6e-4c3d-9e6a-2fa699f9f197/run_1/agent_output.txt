@@ -1,3 +1,1 @@
-The pivot table has been created in Sheet2 with promotion names as column headers (Fall Kite Event, Festival of Flight, None) and their total revenue summed underneath, plus a Total Result column. The file has been saved in xlsx format.
-
-ANSWER: DONE
+You've hit your session limit · resets 11:30am (Europe/Rome)

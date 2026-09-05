@@ -1,0 +1,6 @@
+The spreadsheet is fully populated with all student scores and total grades. The task is complete:
+
+- All 9 remaining students (rows 3-11) have been graded with per-question scores (1=correct, 0=incorrect) and total grades
+- Totals: Linda Garcia=70, Richard Smith=70, Jennifer Rodriguez=70, Michael Gonzalez=80, Mary Williams=80, Joseph Thomas=60, James Martinez=60, Barbara Wilson=90, Karen Davis=50, David Brown=100
+
+ANSWER: DONE

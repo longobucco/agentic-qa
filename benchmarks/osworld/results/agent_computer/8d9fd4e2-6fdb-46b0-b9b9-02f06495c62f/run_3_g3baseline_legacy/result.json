@@ -1,0 +1,59 @@
+{
+  "id": "8d9fd4e2-6fdb-46b0-b9b9-02f06495c62f",
+  "bucket": "vlc",
+  "instruction": "Can you enable fullscreen mode in VLC so that the video fill up the whole screen?",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "f03da79b6f749a4c0abb359e403ac6ad737ff35b903dbe0c56dfa21d749dafff",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-a981bd83-a578-4b39-9f0d-98de708a283d.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-09T20:52:22.750438+00:00",
+    "finished_at": "2026-08-09T21:02:03.212408+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 74,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 1.67747875,
+  "agent_input_tokens": 91,
+  "agent_output_tokens": 19662,
+  "agent_cache_read_tokens": 3635775,
+  "agent_cache_creation_tokens": 77475,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 937,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001012,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 91,
+      "outputTokens": 19662,
+      "cacheReadInputTokens": 3635775,
+      "cacheCreationInputTokens": 77475,
+      "webSearchRequests": 0,
+      "costUSD": 1.67646675,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 578099,
+  "agent_duration_api_ms": 533615,
+  "agent_session_id": "3b60695d-aa56-461b-ad79-8304b3a192bb",
+  "agent_uuid": "b449ffe7-672c-4570-9103-cd596b859f0a"
+}

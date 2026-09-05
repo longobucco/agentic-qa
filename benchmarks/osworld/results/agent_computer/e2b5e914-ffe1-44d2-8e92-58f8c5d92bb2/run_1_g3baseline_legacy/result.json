@@ -1,0 +1,59 @@
+{
+  "id": "e2b5e914-ffe1-44d2-8e92-58f8c5d92bb2",
+  "bucket": "vscode",
+  "instruction": "Please modify VS Code's settings to disable error reporting for Python missing imports.",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "9c744ead4440945648ec9ee1219a2e4227f633de4582a79ad9d8169cadae278a",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-04ff0c8e-eff7-4ed9-b937-b52bf8a758a4.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-15T16:22:52.123594+00:00",
+    "finished_at": "2026-08-15T16:24:08.297369+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 18,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.2518974,
+  "agent_input_tokens": 25,
+  "agent_output_tokens": 2116,
+  "agent_cache_read_tokens": 493143,
+  "agent_cache_creation_tokens": 18358,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3222,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.003297,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 25,
+      "outputTokens": 2116,
+      "cacheReadInputTokens": 493143,
+      "cacheCreationInputTokens": 18358,
+      "webSearchRequests": 0,
+      "costUSD": 0.2486004,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 74684,
+  "agent_duration_api_ms": 72009,
+  "agent_session_id": "f3776502-06cf-4c52-9db5-1de378cbcd74",
+  "agent_uuid": "02142c8b-d93d-45e2-9977-92eeec5f6d7e"
+}

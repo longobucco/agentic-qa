@@ -1,0 +1,59 @@
+{
+  "id": "3a93cae4-ad3e-403e-8c12-65303b271818",
+  "bucket": "os",
+  "instruction": "Could you please add a two-hour lecture slot to my weekly course timetable, scheduled for every Wednesday at 12 PM? It seems I accidentally omitted that when setting up my schedule. I'd appreciate you taking care of that for me. Thanks!",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "f9fa9356b37d92211b514d349ed9e87b1bd6b157f524453fefaaa94ad937f3e8",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-79e40e72-a8f7-455d-98f5-ac5eedfda82a.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-20T14:17:20.942742+00:00",
+    "finished_at": "2026-08-20T14:20:35.058539+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 26,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.8940567499999998,
+  "agent_input_tokens": 3309,
+  "agent_output_tokens": 8517,
+  "agent_cache_read_tokens": 843094,
+  "agent_cache_creation_tokens": 38115,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 4741,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.004821000000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 3309,
+      "outputTokens": 8517,
+      "cacheReadInputTokens": 843094,
+      "cacheCreationInputTokens": 38115,
+      "webSearchRequests": 0,
+      "costUSD": 0.8892357499999999,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 191087,
+  "agent_duration_api_ms": 146675,
+  "agent_session_id": "41a142dd-8308-4bd0-9944-b877ce254afa",
+  "agent_uuid": "93ed967d-bcc6-44f0-8630-51eec84bcbd6"
+}

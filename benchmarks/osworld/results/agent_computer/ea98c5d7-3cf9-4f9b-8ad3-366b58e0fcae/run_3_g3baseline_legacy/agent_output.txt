@@ -1,0 +1,3 @@
+The keybindings.json now contains the removal entry for the `ctrl+f` → `list.find` (Tree view Find) shortcut, and the editor buffer is clean (matches disk). The shortcut conflict is resolved.
+
+ANSWER: DONE

@@ -1,0 +1,61 @@
+{
+  "id": "bb8ccc78-479f-4a2f-a71e-d565e439436b",
+  "bucket": "libreoffice_writer",
+  "instruction": "Share this document with my team and let us edit it together in real-time.",
+  "answer": "",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "d68b0150e204d090f35d3213559b723504df122b2fbf56a338410842b286e0cf",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-121b03d4-c57d-4a5a-9b75-c4ef8ee829c3.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-09T11:19:59.717546+00:00",
+    "finished_at": "2026-08-09T11:38:55.977862+00:00"
+  },
+  "agent_clean_finish": false,
+  "agent_num_turns": 151,
+  "agent_stop_reason": "tool_use",
+  "agent_terminal_reason": "max_turns",
+  "agent_subtype": "error_max_turns",
+  "agent_is_error": true,
+  "agent_errors": [
+    "Reached maximum number of turns (150)"
+  ],
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 4.8563288500000015,
+  "agent_input_tokens": 165,
+  "agent_output_tokens": 36604,
+  "agent_cache_read_tokens": 12578557,
+  "agent_cache_creation_tokens": 141825,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1283,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001363,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 165,
+      "outputTokens": 36604,
+      "cacheReadInputTokens": 12578557,
+      "cacheCreationInputTokens": 141825,
+      "webSearchRequests": 0,
+      "costUSD": 4.854965850000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 1133961,
+  "agent_duration_api_ms": 1066737,
+  "agent_session_id": "e380d4ed-8689-4046-ae93-c426d2c571cb",
+  "agent_uuid": "dda38b32-2d91-4aa7-8e8b-6ed61d295ca9"
+}

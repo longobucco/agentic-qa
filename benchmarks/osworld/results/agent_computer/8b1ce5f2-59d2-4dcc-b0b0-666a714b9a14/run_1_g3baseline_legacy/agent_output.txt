@@ -1,0 +1,18 @@
+The task is complete. The calendar spreadsheet now has all weekend cells (Saturdays and Sundays) highlighted with red (#ff0000) background color. Let me verify by checking a few specific cells:
+
+- **B5** = 6/3/2022 (Friday) — white, correctly NOT highlighted
+- **B6** = 6/4/2022 (Saturday) — RED ✓
+- **B7** = 6/5/2022 (Sunday) — RED ✓
+- **C4** = 7/2/2022 (Saturday) — RED ✓
+- **F3** = 10/1/2022 (Saturday) — RED ✓
+
+The modification correctly identified and highlighted all 44 weekend days across the 5 months (Jun-Oct 2022):
+- June: 8 weekend days (4 Saturdays + 4 Sundays)
+- July: 10 weekend days (5 Saturdays + 5 Sundays)
+- August: 8 weekend days
+- September: 8 weekend days
+- October: 10 weekend days
+
+The file has been saved in Excel format at `/home/user/Calendar_Highlight_Weekend_Days.xlsx`.
+
+ANSWER: DONE

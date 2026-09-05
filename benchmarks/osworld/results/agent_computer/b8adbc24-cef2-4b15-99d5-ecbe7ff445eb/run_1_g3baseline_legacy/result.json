@@ -1,0 +1,61 @@
+{
+  "id": "b8adbc24-cef2-4b15-99d5-ecbe7ff445eb",
+  "bucket": "libreoffice_impress",
+  "instruction": "Go to the second slide and name its title as \"Online Shopping\" with the same color, position and font size as the previous title.",
+  "answer": "",
+  "eval_state": "<binary:318593 bytes at 189_4.pptx>",
+  "provenance": {
+    "task_sha256": "dc853382a9f78c6ebef27d71b2ca41bce85f0d12a3d66aba9c6530a24638b883",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-52eacca8-1aa0-4f6b-952c-ed9b0904020e.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-14T20:10:38.910616+00:00",
+    "finished_at": "2026-08-14T20:25:34.260596+00:00"
+  },
+  "agent_clean_finish": false,
+  "agent_num_turns": 151,
+  "agent_stop_reason": "tool_use",
+  "agent_terminal_reason": "max_turns",
+  "agent_subtype": "error_max_turns",
+  "agent_is_error": true,
+  "agent_errors": [
+    "Reached maximum number of turns (150)"
+  ],
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 4.65099485,
+  "agent_input_tokens": 171,
+  "agent_output_tokens": 31988,
+  "agent_cache_read_tokens": 12163507,
+  "agent_cache_creation_tokens": 138085,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3716,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.003791,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 171,
+      "outputTokens": 31988,
+      "cacheReadInputTokens": 12163507,
+      "cacheCreationInputTokens": 138085,
+      "webSearchRequests": 0,
+      "costUSD": 4.64720385,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 893077,
+  "agent_duration_api_ms": 845619,
+  "agent_session_id": "e4119038-bf1c-4146-9bbe-b834d3edb137",
+  "agent_uuid": "3031b7aa-8127-4278-860d-0d87893a18b0"
+}

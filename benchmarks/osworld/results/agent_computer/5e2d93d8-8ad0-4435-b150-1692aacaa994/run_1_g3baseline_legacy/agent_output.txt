@@ -1,0 +1,16 @@
+The workspace was successfully saved. The file `/home/user/project/project.code-workspace` contains:
+
+```json
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {}
+}
+```
+
+The workspace named "project" has been saved at `/home/user/project/` as a VS Code `.code-workspace` file, with the current project folder included.
+
+ANSWER: DONE

@@ -1,0 +1,59 @@
+{
+  "id": "59f21cfb-0120-4326-b255-a5b827b38967",
+  "bucket": "vlc",
+  "instruction": "Could you play the music video that's saved on my desktop for me via vlc?",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "bb575f11c59a0828c89c6e80de54c03d4d3eb54653bced5ea13ef3b42284e2b9",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-22e8f707-4aba-485b-924e-0d1052c361bf.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-25T14:39:00.538182+00:00",
+    "finished_at": "2026-08-25T14:44:09.260994+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 52,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.99885755,
+  "agent_input_tokens": 61,
+  "agent_output_tokens": 11439,
+  "agent_cache_read_tokens": 2168556,
+  "agent_cache_creation_tokens": 46501,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2064,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002144,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 61,
+      "outputTokens": 11439,
+      "cacheReadInputTokens": 2168556,
+      "cacheCreationInputTokens": 46501,
+      "webSearchRequests": 0,
+      "costUSD": 0.99671355,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 306721,
+  "agent_duration_api_ms": 278097,
+  "agent_session_id": "a8cb010d-a7d9-4481-be26-4fbb54bdd1f6",
+  "agent_uuid": "2b92e101-8cca-4b55-8903-d7cc786b56ba"
+}

@@ -1,0 +1,11 @@
+The xterm terminal size has been permanently set to 132x43 through three complementary configurations:
+
+1. **`/etc/X11/app-defaults/XTerm`** — Added `*geometry: 132x43`. Xterm reads this app-defaults file directly every time it starts, regardless of session setup.
+
+2. **`~/.Xresources`** — Created with `xterm*geometry: 132x43`. This is loaded by `xrdb` at session start if available.
+
+3. **`~/.Xdefaults`** — Created with `xterm*geometry: 132x43`. Xterm reads this directly on local displays as a fallback.
+
+After each reboot, xterm will now automatically open at 132 columns × 43 rows without needing any manual adjustment.
+
+ANSWER: DONE

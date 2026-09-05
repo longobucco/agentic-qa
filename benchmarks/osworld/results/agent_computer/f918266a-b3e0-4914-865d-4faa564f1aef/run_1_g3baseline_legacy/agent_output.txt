@@ -1,0 +1,11 @@
+The code was completed and executed successfully. I fixed the TODO with `arr[j+1] = arr[j]` (the shift step of insertion sort), ran the script, and saved its output to `/home/user/Desktop/log.txt`, which now contains the sorted values:
+
+```
+5
+6
+11
+12
+13
+```
+
+ANSWER: DONE

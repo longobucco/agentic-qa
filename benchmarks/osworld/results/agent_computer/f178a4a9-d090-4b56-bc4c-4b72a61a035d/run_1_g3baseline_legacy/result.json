@@ -1,0 +1,59 @@
+{
+  "id": "f178a4a9-d090-4b56-bc4c-4b72a61a035d",
+  "bucket": "libreoffice_writer",
+  "instruction": "Make Times New Roman the default Font",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "c0c135fa3b12c42cd6fa5a1a1ebbd4e1911e267dc11f958aa3f13f272652fe22",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-1ac4166b-f88a-4dab-a8a1-c9c673626389.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-26T17:37:17.384815+00:00",
+    "finished_at": "2026-08-26T17:47:54.783606+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 91,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 2.2154558999999994,
+  "agent_input_tokens": 112,
+  "agent_output_tokens": 20510,
+  "agent_cache_read_tokens": 5258423,
+  "agent_cache_creation_tokens": 87752,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 798,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.000873,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 112,
+      "outputTokens": 20510,
+      "cacheReadInputTokens": 5258423,
+      "cacheCreationInputTokens": 87752,
+      "webSearchRequests": 0,
+      "costUSD": 2.214582899999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 634791,
+  "agent_duration_api_ms": 606386,
+  "agent_session_id": "54bb0133-3871-498a-ae2a-b7e6459ac2f1",
+  "agent_uuid": "fb294f1c-725e-45f6-8f74-f958f819332c"
+}

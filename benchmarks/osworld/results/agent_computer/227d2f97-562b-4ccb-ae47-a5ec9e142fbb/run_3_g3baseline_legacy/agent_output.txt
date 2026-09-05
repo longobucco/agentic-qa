@@ -1,0 +1,7 @@
+The task is complete. The Desktop now contains:
+- `QTdHniCqfJbBLJe3L3nijU-1200-80.xcf` — the original XCF file
+- `image.docx` — a LibreOffice Writer-compatible document with the image pasted into it
+
+The process was: exported the XCF to PNG using GIMP's batch mode, then embedded that PNG into a .docx document using python-docx, saved as `image.docx` on the Desktop.
+
+ANSWER: DONE

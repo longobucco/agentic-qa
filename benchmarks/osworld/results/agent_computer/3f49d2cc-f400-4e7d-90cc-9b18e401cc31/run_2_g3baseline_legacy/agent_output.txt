@@ -1,0 +1,5 @@
+The Unified Folders view is now active. The folder pane shows a "Unified Folders" section with a single unified **Inbox** (plus Drafts, Templates, Sent, Archives, Junk, Trash) that combines the corresponding folders from all email accounts into one place. The window title confirms "Inbox - Unified Folders".
+
+This is exactly how you set up a unified inbox in Thunderbird: open the folder pane options ("..." menu) → **Folder Modes** → **Unified Folders**. Now clicking the single Inbox shows messages from every account together.
+
+ANSWER: DONE

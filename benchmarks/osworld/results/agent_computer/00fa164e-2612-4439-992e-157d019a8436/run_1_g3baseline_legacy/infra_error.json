@@ -1,0 +1,16 @@
+[
+  {
+    "id": "00fa164e-2612-4439-992e-157d019a8436",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-20T11:08:28+0200"
+  },
+  {
+    "id": "00fa164e-2612-4439-992e-157d019a8436",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-22T11:33:10+0200"
+  }
+]

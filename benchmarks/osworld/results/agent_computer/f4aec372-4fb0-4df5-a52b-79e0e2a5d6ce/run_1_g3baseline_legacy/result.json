@@ -1,0 +1,59 @@
+{
+  "id": "f4aec372-4fb0-4df5-a52b-79e0e2a5d6ce",
+  "bucket": "gimp",
+  "instruction": "Help me choose the yellow triangle and positioning it at the center of my picture.",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "579ca4cc0128411995a3da817941a6f299c04cd2b7a8502a63fa04dd6ca1bad5",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-7ab39f67-5ad6-4ad6-93cf-90a168b6b48c.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-18T14:25:30.787808+00:00",
+    "finished_at": "2026-08-18T14:28:00.281761+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 26,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.835429,
+  "agent_input_tokens": 3508,
+  "agent_output_tokens": 5530,
+  "agent_cache_read_tokens": 871023,
+  "agent_cache_creation_tokens": 38410,
+  "agent_model_usage": {
+    "claude-opus-4-8": {
+      "inputTokens": 3508,
+      "outputTokens": 5530,
+      "cacheReadInputTokens": 871023,
+      "cacheCreationInputTokens": 38410,
+      "webSearchRequests": 0,
+      "costUSD": 0.831364,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    },
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3990,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.004065,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 147315,
+  "agent_duration_api_ms": 111258,
+  "agent_session_id": "3a5a1592-752a-4aa0-91c4-4c438f18a656",
+  "agent_uuid": "0b74bcd6-f532-46bc-a356-bcf4f8542b3c"
+}

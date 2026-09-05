@@ -4,7 +4,7 @@
   "instruction": "Could you assist me in enhancing the color vibrancy of my photo?",
   "answer": "",
   "agent_clean_finish": false,
-  "agent_num_turns": 1,
+  "agent_num_turns": 25,
   "agent_stop_reason": "stop_sequence",
   "agent_terminal_reason": "completed",
   "agent_subtype": "success",
@@ -12,26 +12,49 @@
   "agent_errors": null,
   "agent_api_error_status": 429,
   "agent_permission_denials": [],
-  "agent_cost_usd": 0,
-  "agent_input_tokens": 0,
-  "agent_output_tokens": 0,
-  "agent_cache_read_tokens": 0,
-  "agent_cache_creation_tokens": 0,
-  "agent_model_usage": {},
-  "agent_duration_ms": 438,
-  "agent_duration_api_ms": 0,
-  "agent_session_id": "aa50432d-fe8a-4f46-942f-75afc80e9b91",
-  "agent_uuid": "176dbcf4-c2e1-40b1-99d1-8fc70404e8b9",
+  "agent_cost_usd": 0.33818495000000004,
+  "agent_input_tokens": 31,
+  "agent_output_tokens": 4172,
+  "agent_cache_read_tokens": 652029,
+  "agent_cache_creation_tokens": 21071,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 807,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.000887,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 31,
+      "outputTokens": 4172,
+      "cacheReadInputTokens": 652029,
+      "cacheCreationInputTokens": 21071,
+      "webSearchRequests": 0,
+      "costUSD": 0.33729795,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 127364,
+  "agent_duration_api_ms": 120377,
+  "agent_session_id": "ed804643-4c15-4988-bdba-23eca170e5b3",
+  "agent_uuid": "87b67eb3-7686-494c-9688-871db19b60dd",
   "provenance": {
     "task_sha256": "6fb484fc9a8d83c270d220c46d9722d60494ba7000291a77f6836d34123cc4b9",
     "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
-    "controller_url": "https://5000-ba5289ca-258b-4e77-8644-84c3301c9bd0.daytonaproxy01.eu",
+    "controller_url": "https://5000-f38fcabe-1b01-4ae9-9fc2-f9b60baf8812.daytonaproxy01.eu",
     "release": "verified",
     "max_turns": 150,
     "task_timeout": 2700,
     "observation": "screenshot+a11y",
     "action_space": "pyautogui",
-    "started_at": "2026-08-26T14:42:27.511169+00:00",
-    "finished_at": "2026-08-26T14:42:29.954400+00:00"
-  }
+    "started_at": "2026-09-04T21:21:23.287810+00:00",
+    "finished_at": "2026-09-04T21:23:32.614491+00:00"
+  },
+  "transcript_saved": true,
+  "transcript_bytes": 8322553
 }

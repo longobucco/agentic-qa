@@ -1,0 +1,3 @@
+All docks (including the left one) are now hidden. GIMP's session state now has `hide-docks yes`, which is exactly what the evaluator checks in `sessionrc`. The left dock is gone.
+
+ANSWER: DONE

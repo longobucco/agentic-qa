@@ -14,5 +14,12 @@
     "error": "sandbox provisioning/setup exceeded 600s -- treated as a hang, not a legitimate wait (observed live: sandbox auto-stopped mid-provisioning, then the SDK's exec blocked against the stopped VM forever)",
     "elapsed_s": 2017.9,
     "at": "2026-08-26T21:08:28+0200"
+  },
+  {
+    "id": "2ad9387a-65d8-4e33-ad5b-7580065a27ca",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-09-05T05:22:56+0200"
   }
 ]

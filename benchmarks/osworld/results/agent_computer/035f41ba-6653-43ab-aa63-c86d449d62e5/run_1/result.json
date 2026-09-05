@@ -3,21 +3,23 @@
   "bucket": "libreoffice_calc",
   "instruction": "Help me fill in the Gross profit column by subtracting all the available expenses including discounts, allowances, material and labor charges, and overhead from the actual sale, i.e., the sales after deducting the returns. Then under column A named \"Year_Profit\" in a new sheet \"Sheet2\", display the Year Column in Sheet 1 as text appended by a \"_\" with the corresponding integer digits of Gross Profit value.",
   "answer": "DONE",
-  "eval_state": "<binary:7827 bytes at IncomeStatement2.xlsx>",
+  "eval_state": "<binary:7812 bytes at IncomeStatement2.xlsx>",
   "provenance": {
     "task_sha256": "a4f53b24d1ca9ad1f8e921ed852614beed57e0b5b079d3a6cbb7550e8411817d",
     "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
-    "controller_url": "https://5000-9052aeab-3daf-4189-a5cc-7dd64b692df4.daytonaproxy01.eu",
+    "controller_url": "https://5000-f8d03243-cefb-4bbd-9982-aa6b07609cd5.daytonaproxy01.eu",
     "release": "verified",
     "max_turns": 150,
-    "task_timeout": 3600,
+    "task_timeout": 2700,
     "observation": "screenshot+a11y",
     "action_space": "pyautogui",
-    "started_at": "2026-08-07T12:26:56.437344+00:00",
-    "finished_at": "2026-08-07T12:44:05.768002+00:00"
+    "started_at": "2026-09-04T10:01:14.155016+00:00",
+    "finished_at": "2026-09-04T10:39:28.279512+00:00"
   },
+  "transcript_saved": true,
+  "transcript_bytes": 9810599,
   "agent_clean_finish": true,
-  "agent_num_turns": 108,
+  "agent_num_turns": 107,
   "agent_stop_reason": "end_turn",
   "agent_terminal_reason": "completed",
   "agent_subtype": "success",
@@ -25,11 +27,11 @@
   "agent_errors": null,
   "agent_api_error_status": null,
   "agent_permission_denials": [],
-  "agent_cost_usd": 2.7051653,
+  "agent_cost_usd": 2.6832679999999987,
   "agent_input_tokens": 119,
-  "agent_output_tokens": 20710,
-  "agent_cache_read_tokens": 6777901,
-  "agent_cache_creation_tokens": 95952,
+  "agent_output_tokens": 22859,
+  "agent_cache_read_tokens": 6569740,
+  "agent_cache_creation_tokens": 88442,
   "agent_model_usage": {
     "claude-haiku-4-5-20251001": {
       "inputTokens": 888,
@@ -42,18 +44,18 @@
       "maxOutputTokens": 32000
     },
     "claude-sonnet-4-6": {
-      "inputTokens": 119,
-      "outputTokens": 20710,
-      "cacheReadInputTokens": 6777901,
-      "cacheCreationInputTokens": 95952,
+      "inputTokens": 120,
+      "outputTokens": 23132,
+      "cacheReadInputTokens": 6677675,
+      "cacheCreationInputTokens": 88442,
       "webSearchRequests": 0,
-      "costUSD": 2.7041973000000006,
+      "costUSD": 2.6822999999999992,
       "contextWindow": 200000,
       "maxOutputTokens": 32000
     }
   },
-  "agent_duration_ms": 832784,
-  "agent_duration_api_ms": 790615,
-  "agent_session_id": "893139d1-0d42-4fa3-a9eb-5d02b416b4de",
-  "agent_uuid": "27b0fd3a-3acb-4c76-8075-4e502329e721"
+  "agent_duration_ms": 795075,
+  "agent_duration_api_ms": 769399,
+  "agent_session_id": "f53a14e4-82bd-4bba-ac91-7cdf131b5caf",
+  "agent_uuid": "73f24aed-5d0e-487a-90d3-1276f82162d8"
 }

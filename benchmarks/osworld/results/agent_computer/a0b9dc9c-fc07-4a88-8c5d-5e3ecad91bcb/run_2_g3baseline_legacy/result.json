@@ -1,0 +1,19 @@
+{
+  "id": "a0b9dc9c-fc07-4a88-8c5d-5e3ecad91bcb",
+  "bucket": "thunderbird",
+  "instruction": "Please help me backup my emails in \"Bills\" folder in Thunderbird and store the .eml files with only subject names to my Google Drive folder called \"emails\".",
+  "answer": "",
+  "setup_error": "config setup failed: Setup step 1 failed: _googledrive_setup - Invalid client secrets file ('Error opening file', 'client_secrets.json', 'No such file or directory', 2)",
+  "provenance": {
+    "task_sha256": "e7fb3bba60f62ddda5cc78e695bb5aa1c8f40ae72f0c1e37eb5e18f49886dbc2",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-8ef0f8f1-4b53-4524-9b05-d348d7b2dbb2.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-25T20:11:44.026076+00:00",
+    "finished_at": "2026-08-25T20:11:44.026325+00:00"
+  }
+}

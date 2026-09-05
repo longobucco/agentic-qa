@@ -1,0 +1,3 @@
+Bing is now set as the default search engine. The settings page shows "Microsoft Bing" as the current search engine, and the confirmation toast at the bottom reads "Microsoft Bing is now your default search engine".
+
+ANSWER: DONE

@@ -1,0 +1,3 @@
+The PulseAudio server is now running and the default sink is set to maximum volume (100% / 0.00 dB) and unmuted.
+
+ANSWER: DONE

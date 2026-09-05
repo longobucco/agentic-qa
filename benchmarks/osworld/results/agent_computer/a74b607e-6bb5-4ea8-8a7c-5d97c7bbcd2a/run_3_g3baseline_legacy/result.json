@@ -1,0 +1,59 @@
+{
+  "id": "a74b607e-6bb5-4ea8-8a7c-5d97c7bbcd2a",
+  "bucket": "chrome",
+  "instruction": "I have developed a new Chrome extension myself, so it needs to be installed manually. Please help me install the extension located in the Desktop directory into the Chrome browser.",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "b21da16967abdce851c9a28ec3299e8d6d2e5ec3f4f65a761d2f1f9c8ded989d",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-059d93ad-277c-447d-bed6-19cf1d5ef5d5.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-21T12:10:58.723294+00:00",
+    "finished_at": "2026-08-21T12:12:22.717385+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 23,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.6487797500000001,
+  "agent_input_tokens": 3307,
+  "agent_output_tokens": 3631,
+  "agent_cache_read_tokens": 684722,
+  "agent_cache_creation_tokens": 31091,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 4720,
+      "outputTokens": 14,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.00479,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 3307,
+      "outputTokens": 3631,
+      "cacheReadInputTokens": 684722,
+      "cacheCreationInputTokens": 31091,
+      "webSearchRequests": 0,
+      "costUSD": 0.6439897500000001,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 81225,
+  "agent_duration_api_ms": 76641,
+  "agent_session_id": "2e6a6cbd-ba3a-4185-aee0-30554f002aac",
+  "agent_uuid": "ac540afe-4889-4ead-9cc6-d3a6c33431b0"
+}

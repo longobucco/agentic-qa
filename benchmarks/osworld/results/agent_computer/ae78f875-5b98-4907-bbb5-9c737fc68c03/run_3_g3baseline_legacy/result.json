@@ -1,0 +1,59 @@
+{
+  "id": "ae78f875-5b98-4907-bbb5-9c737fc68c03",
+  "bucket": "chrome",
+  "instruction": "Could you please change the number of search results displayed on one page to 50? I find that having more results visible at once significantly enhances my research efficiency, as it reduces the need to constantly click through multiple pages. ",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "39e937217e62ad22b90ac15d2884e4becf0bba046fb87565268e17c4413db5fe",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-929867c0-1690-49aa-b72c-fb457c62f386.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-18T06:32:16.395982+00:00",
+    "finished_at": "2026-08-18T07:10:48.476594+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 122,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 4.7669819,
+  "agent_input_tokens": 145,
+  "agent_output_tokens": 67186,
+  "agent_cache_read_tokens": 10593148,
+  "agent_cache_creation_tokens": 153790,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 4020,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0041,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 145,
+      "outputTokens": 67186,
+      "cacheReadInputTokens": 10593148,
+      "cacheCreationInputTokens": 153790,
+      "webSearchRequests": 0,
+      "costUSD": 4.7628819,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 2308700,
+  "agent_duration_api_ms": 2102794,
+  "agent_session_id": "a0b31912-124e-41d4-9e9c-191bdae6a099",
+  "agent_uuid": "88d8ea04-b6a2-45e4-99fd-95f690fcd78f"
+}

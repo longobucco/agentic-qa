@@ -1,0 +1,13 @@
+The task has been completed successfully:
+
+1. Opened Thunderbird's Address Book (Ctrl+Shift+B)
+2. Right-clicked on "Personal Address Book" and selected "Export..."
+3. Set filename to "contacts.csv" in the Desktop directory (/root/Desktop/) with "Comma Separated (UTF-8)" format
+4. Saved the file — contacts.csv (426 bytes) was created on the Desktop
+5. Converted contacts.csv to contacts.xlsx using LibreOffice Calc headless conversion
+
+Both files now exist on the Desktop:
+- `/root/Desktop/contacts.csv` — the exported contacts in CSV format
+- `/root/Desktop/contacts.xlsx` — the converted spreadsheet (5,553 bytes)
+
+ANSWER: DONE

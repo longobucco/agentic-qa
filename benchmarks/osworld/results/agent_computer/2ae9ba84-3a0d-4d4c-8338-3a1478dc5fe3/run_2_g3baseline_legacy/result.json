@@ -1,0 +1,59 @@
+{
+  "id": "2ae9ba84-3a0d-4d4c-8338-3a1478dc5fe3",
+  "bucket": "chrome",
+  "instruction": "Lately I have changed my English name to Thomas. I want to update my username. Could you help me change the username in chrome profiles to Thomas?",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "a8a4bc93d95a9756759d3cb8864a70b8e12840ddaac606674d09fd448a5a7ae7",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-8d394e2d-4363-4ca1-af68-8edbe227a21c.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-25T15:12:21.838411+00:00",
+    "finished_at": "2026-08-25T15:17:16.659853+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 60,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 1.1269878999999998,
+  "agent_input_tokens": 69,
+  "agent_output_tokens": 11375,
+  "agent_cache_read_tokens": 2567688,
+  "agent_cache_creation_tokens": 48986,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2077,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002152,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 69,
+      "outputTokens": 11375,
+      "cacheReadInputTokens": 2567688,
+      "cacheCreationInputTokens": 48986,
+      "webSearchRequests": 0,
+      "costUSD": 1.1248358999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 292781,
+  "agent_duration_api_ms": 266115,
+  "agent_session_id": "57268b1d-3f10-4b98-89dd-866ed2782f82",
+  "agent_uuid": "16b1cd5a-a185-4440-9304-5fc5b1a34503"
+}

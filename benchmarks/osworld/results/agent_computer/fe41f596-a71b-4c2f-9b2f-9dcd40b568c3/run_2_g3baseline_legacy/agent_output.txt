@@ -1,0 +1,3 @@
+This is a virtual machine with no battery hardware (`/sys/class/power_supply/` is empty and no ACPI battery exists). The task of displaying battery percentage is infeasible because there is no battery in this environment.
+
+ANSWER: FAIL

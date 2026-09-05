@@ -1,0 +1,3 @@
+GIMP's theme has been successfully changed from dark to light. The interface now shows a light gray/white background instead of the previous dark theme. The Preferences dialog has closed, confirming the change was saved.
+
+ANSWER: DONE

@@ -1,0 +1,3 @@
+script.docx has been created on the Desktop with all 80 text paragraphs extracted from the Impress presentation.
+
+ANSWER: DONE

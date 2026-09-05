@@ -1,0 +1,8 @@
+The terminal is visible with the `ls /home/user` command executed and showing "Desktop" as the output. The screenshot has been saved as `ls.png` on the Desktop at `/home/user/Desktop/ls.png`.
+
+The task is complete:
+1. Opened a terminal (xterm)
+2. Executed `ls /home/user` which shows the contents of that directory ("Desktop")
+3. Saved the terminal screenshot as `ls.png` on the Desktop
+
+ANSWER: DONE

@@ -1,0 +1,10 @@
+Conda is now fully working. Here's what was done:
+
+1. **Downloaded** Miniconda3 (latest, Linux x86_64) from the official Anaconda repository
+2. **Installed** it silently to `/root/miniconda3`
+3. **Ran `conda init bash`** which added the conda initialization block to `~/.bashrc` — so any new terminal will have conda available
+4. **Created a symlink** at `/usr/local/bin/conda` for immediate availability in the current PATH
+
+Conda 26.5.3 is now accessible — `conda --version` returns successfully in a bash shell.
+
+ANSWER: DONE

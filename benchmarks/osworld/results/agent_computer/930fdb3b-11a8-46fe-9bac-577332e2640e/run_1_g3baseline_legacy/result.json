@@ -1,0 +1,59 @@
+{
+  "id": "930fdb3b-11a8-46fe-9bac-577332e2640e",
+  "bucket": "vscode",
+  "instruction": "Please help me create a shortcut \"ctrl+j\" to move cursor focus from terminal to editor in VS Code.",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "a30702b46a9d63b43143d8e43f2f23338ba1b503275eb2ea2c0808f9464a8286",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-ac8ed24a-a5c7-4efe-9ee9-ef423c6b3d83.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-14T11:09:43.737384+00:00",
+    "finished_at": "2026-08-14T11:10:46.026044+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 15,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.2379749,
+  "agent_input_tokens": 20,
+  "agent_output_tokens": 2482,
+  "agent_cache_read_tokens": 418288,
+  "agent_cache_creation_tokens": 18962,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3991,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.004091,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 20,
+      "outputTokens": 2482,
+      "cacheReadInputTokens": 418288,
+      "cacheCreationInputTokens": 18962,
+      "webSearchRequests": 0,
+      "costUSD": 0.23388389999999998,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 60666,
+  "agent_duration_api_ms": 58210,
+  "agent_session_id": "1c291de5-5f5c-47af-a4f2-98a489c1b305",
+  "agent_uuid": "0b0095e3-6638-49d5-aa7a-3a8012dd027a"
+}

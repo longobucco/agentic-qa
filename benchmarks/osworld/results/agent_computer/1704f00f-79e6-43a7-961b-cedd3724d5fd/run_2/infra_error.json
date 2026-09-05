@@ -1,0 +1,11 @@
+[
+  {
+    "id": "1704f00f-79e6-43a7-961b-cedd3724d5fd",
+    "run": 2,
+    "outcome": "INFRA_FLAKE",
+    "error_type": "DaytonaError",
+    "error": "Failed to create sandbox: HTTPSConnectionPool(host='app.daytona.io', port=443): Max retries exceeded with url: /api/sandbox (Caused by NameResolutionError(\"HTTPSConnection(host='app.daytona.io', port=443): Failed to resolve 'app.daytona.io' ([Errno 8] nodename nor servname provided, or not known)\"))",
+    "elapsed_s": 0.1,
+    "at": "2026-09-04T22:30:36+0200"
+  }
+]

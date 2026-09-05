@@ -1,0 +1,3 @@
+The grades spreadsheet is now open in LibreOffice Calc with all scores filled in. The data is already saved in the file. The task is complete — all 9 remaining students have been graded by comparing their answers against the answer key (Q1=D, Q2=A, Q3=C, Q4=D, Q5=B, Q6=C, Q7=C, Q8=D, Q9=D, Q10=D).
+
+ANSWER: DONE

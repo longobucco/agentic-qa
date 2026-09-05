@@ -1,0 +1,6 @@
+Both files are created on the Desktop: `stock.csv` (exported table) and `result.txt` containing the numeric median.
+
+- 60 data rows, 12 empty Stock Price values filled with the average (39.20)
+- Median of the filled Stock Price column = **25.27**
+
+ANSWER: 25.27

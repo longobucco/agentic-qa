@@ -1,14 +1,1 @@
-The References section now complies with APA 7th edition. All nine entries have been corrected:
-
-- **Datta (2020)** — removed the "Teaching Case, ISSN" clutter; added the correct volume and page range (*46*, 252–272), sentence-case title, and proper `https://doi.org/` DOI format.
-- **Dwivedi et al.** — corrected the inaccurate details: the real publication is **2016**, **33**(1), 174–187 (not 2017, 30(1), 130–139), and added the missing DOI.
-- **European Commission (2018 & 2019)** — removed the erroneous "October 1, 2022" retrieval dates (not used for stable content in APA 7) and fixed title casing.
-- **Gartner (2021)** — converted from MLA style (quotes/"Accessed") to APA reference format.
-- **Mergel et al. (2019)** — added the missing DOI and "Article" label for the article number.
-- **OECD (2017)** — completed the full title with subtitle and added the publisher.
-- **United Nations (2018)** — converted from MLA to APA, with author/publisher and clean URL.
-- **World Bank (2016)** — converted from Chicago to APA date format.
-
-Journal titles, volumes, and work titles are italicized, alphabetical order is preserved, hanging-indent formatting is intact, and only the reference entries were changed. The file was saved in place under the same name.
-
-ANSWER: DONE
+You've hit your session limit · resets 3:10pm (Europe/Rome)

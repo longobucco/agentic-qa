@@ -1,7 +1,1 @@
-The preference `mail.server.default.check_all_folders_for_new` has been successfully changed from `false` to **`true`** (shown in bold, indicating a modified preference). 
-
-This setting enables Thunderbird to check all folders (including subfolders) for new messages, which means message filters will now be applied automatically to subfolders, not just the Inbox.
-
-The task is complete. By setting `mail.server.default.check_all_folders_for_new` to `true` in Thunderbird's Advanced Preferences (Config Editor), message filters will now fire automatically on subfolders whenever new mail arrives, without needing to run them manually.
-
-ANSWER: DONE
+You've hit your session limit · resets 3:10pm (Europe/Rome)

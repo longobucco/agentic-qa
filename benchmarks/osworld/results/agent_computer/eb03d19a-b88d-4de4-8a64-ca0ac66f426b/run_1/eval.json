@@ -1,8 +1,8 @@
 {
   "id": "eb03d19a-b88d-4de4-8a64-ca0ac66f426b",
-  "verdict": "SUCCESS",
-  "reward": 1.0,
-  "reason": "official compare_table -> 1.00",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official compare_table -> 0.00",
   "source": "official",
   "gold_sha256": {
     "Students_Class_Subject_Marks_gold.xlsx": "f07e45863d80dd006ef47f2e6a50c5c4f55f19ceae41dbe5816ae58062953f1a"

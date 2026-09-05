@@ -1,0 +1,59 @@
+{
+  "id": "4188d3a4-077d-46b7-9c86-23e1a036f6c1",
+  "bucket": "libreoffice_calc",
+  "instruction": "Help me freeze the range A1:B1 on this sheet to keep the headers always visible",
+  "answer": "DONE",
+  "eval_state": "<binary:7287 bytes at Freeze_row_column.xlsx>",
+  "provenance": {
+    "task_sha256": "8d97011bee7c078cdb0e0c073135940b4e998231c2055b5ffdc3a14ce46858a1",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-1ddaed18-3987-4115-b921-07c94f8640c7.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-19T08:21:49.435563+00:00",
+    "finished_at": "2026-08-19T08:22:57.306741+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 14,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.44548475000000004,
+  "agent_input_tokens": 3240,
+  "agent_output_tokens": 3423,
+  "agent_cache_read_tokens": 380151,
+  "agent_cache_creation_tokens": 24081,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3023,
+      "outputTokens": 21,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.003128,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 3240,
+      "outputTokens": 3423,
+      "cacheReadInputTokens": 380151,
+      "cacheCreationInputTokens": 24081,
+      "webSearchRequests": 0,
+      "costUSD": 0.44235675,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 65201,
+  "agent_duration_api_ms": 61985,
+  "agent_session_id": "21e2e7b6-f7c3-4783-ba6f-1108c4d4bee3",
+  "agent_uuid": "92fbf81d-7cbd-47f8-9796-916dde1b546f"
+}

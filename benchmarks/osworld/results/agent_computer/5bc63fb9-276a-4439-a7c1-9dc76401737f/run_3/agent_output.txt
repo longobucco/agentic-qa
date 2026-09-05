@@ -1,6 +1,9 @@
-The document is created successfully at `/home/user/Desktop/gemini_results.docx`:
-- **6 paragraphs**, one per Gemini response (the values of every `GEMINI` key across the JSON: Multi_Hop, Date_modification, and Word_Replacement, each with declare_ans and question_ans).
-- Each response is a separate paragraph.
-- All **33 occurrences** of "Iliad" (8+1+11+1+8+4) are highlighted in yellow.
+The task is complete. The Word document `gemini_results.docx` has been successfully created on the Desktop with:
+
+1. **6 Gemini responses** extracted from the JSON file (`llm_answers.json`), covering responses from `Multi_Hop.declare_ans`, `Multi_Hop.question_ans`, `Date_modification.declare_ans`, `Date_modification.question_ans`, `Word_Replacement.declare_ans`, and `Word_Replacement.question_ans`
+2. **Each response as a separate paragraph** separated by blank lines
+3. **All occurrences of "Iliad" highlighted in yellow** throughout the document (33 total highlighted instances visible)
+
+The document is now open in LibreOffice Writer, clearly showing the yellow highlighting on every instance of "Iliad".
 
 ANSWER: DONE

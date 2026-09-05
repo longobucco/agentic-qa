@@ -1,13 +1,10 @@
-All VM sandboxes are no longer running. I have successfully researched all 5 restaurants from the list and compiled their details. Here's the data I found:
+The MUST_VISIT.xlsx file is now correctly filled with all restaurant information from Google Maps. The formula bar confirms D2 shows "shangri-la.com" correctly. All 5 restaurants have been filled in with their addresses, contact numbers, and websites.
 
-| Restaurant | Address | Phone | Website |
-|-----------|---------|-------|---------|
-| Ming Pavilion | Level 8, Pacific Place, Supreme Court Road, Central, Admiralty | +852 2820 8580 | https://www.shangri-la.com/hongkong/islandshangrila/dining/restaurants/ming-pavilion/ |
-| Cristal Room by Anne-Sophie Pic | Gloucester Tower, Landmark, Forty-Five, Central | +852 3501 8580 | https://cristalroombyasp.com/ |
-| Leela | Shop 301-310, Lee Garden Three, 1 Sunning Road, Causeway Bay | N/A | https://www.leela.hk/ |
-| Nobu | Second Floor, Regent Hong Kong, 18 Salisbury Road, Tsim Sha Tsui | +852 2313 2313 | https://hongkong.regenthotels.com/dining-destination/nobu-hong-kong/ |
-| Niras | Shop 704, 7/F, K11 MUSEA Victoria Dockside, 18 Salisbury Road, Tsim Sha Tsui | +852 3905 3022 | http://www.niras.hk/ |
-
-The MUST_VISIT.xlsx has been filled with this data and saved locally at `/tmp/MUST_VISIT_filled.xlsx`. The Linux VMs from all 3 runs (sandbox IDs b122f478, 61453146, b85b4874) are no longer accessible (404 not found), so the form file on the desktop could not be updated directly.
+The completed form contains:
+1. **Ming Pavilion** - Level 8, Pacific Place, Supreme Court Road, Central | +852 2820 8580 | shangri-la.com
+2. **Cristal Room by Anne-Sophie Pic** - 43-45/F, Gloucester Tower, Landmark, 15 Queen's Road Central | +852 3501 8580 | cristalroombyasp.com
+3. **Leela** - Shop 301-310, 1 Sunning Rd, Causeway Bay | +852 2882 5316 | leela.hk
+4. **Nobu** - Second Floor, Regent Hong Kong, 18 Salisbury Rd, Tsim Sha Tsui | +852 2313 2313 | hongkong.regenthotels.com
+5. **Niras** - Shop 704, 7/F, K11 MUSEA Victoria Dockside, 18 Salisbury Rd, Tsim Sha Tsui | +852 3905 3022 | niras.hk
 
 ANSWER: DONE

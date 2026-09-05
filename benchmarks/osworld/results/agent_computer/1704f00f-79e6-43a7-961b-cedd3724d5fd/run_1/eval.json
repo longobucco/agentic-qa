@@ -1,6 +1,6 @@
 {
   "id": "1704f00f-79e6-43a7-961b-cedd3724d5fd",
   "verdict": "ENVIRONMENT_ERROR",
-  "reason": "config setup failed: Setup step 3 failed: _chrome_open_tabs_setup - BrowserType.connect_over_cdp: Timeout 180000ms exceeded.\nCall log:\n  - <ws preparing> retrieving websocket url from http://5000-40aabeb1-ed66-44a6-82b4-fe16c5924c51.daytonaproxy01.eu:9222\n",
+  "reason": "config setup failed: Setup step 3 failed: _chrome_open_tabs_setup - BrowserType.connect_over_cdp: getaddrinfo ENOTFOUND 5000-4b2481fb-6591-4d3f-a45a-3dba941a42d2.daytonaproxy01.eu\nCall log:\n  - <ws preparing> retrieving websocket url from http://5000-4b2481fb-6591-4d3f-a45a-3dba941a42d2.daytonaproxy01.eu:9222\n",
   "source": "environment"
 }

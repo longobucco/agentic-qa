@@ -1,3 +1,1 @@
-The blank cells in B1:E30 have been filled with the value from the cell above each one. The spreadsheet now shows the correct fill-down pattern — e.g., "Primary" propagates down until "Secondary" appears, student names propagate until a new student is listed, etc. The file has been saved.
-
-ANSWER: DONE
+You've hit your session limit · resets 3:10pm (Europe/Rome)

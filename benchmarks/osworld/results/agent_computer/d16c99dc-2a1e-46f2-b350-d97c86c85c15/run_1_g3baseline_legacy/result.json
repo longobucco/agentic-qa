@@ -1,0 +1,59 @@
+{
+  "id": "d16c99dc-2a1e-46f2-b350-d97c86c85c15",
+  "bucket": "gimp",
+  "instruction": "Could you assist me with resizing the dog layer of an image? I need to adjust the height to 512 pixels while maintaining the original aspect ratio?",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "85a96ea7d38391267fbe5d5e0a02026bc2bba5104d1e8f61c61b26ae6e14485a",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-558d7726-670d-4f61-a66b-d6ab1c122b9d.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-26T12:17:53.523760+00:00",
+    "finished_at": "2026-08-26T12:32:46.036141+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 81,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 2.1343568500000005,
+  "agent_input_tokens": 96,
+  "agent_output_tokens": 26741,
+  "agent_cache_read_tokens": 4665132,
+  "agent_cache_creation_tokens": 88667,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 823,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.000913,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 96,
+      "outputTokens": 26741,
+      "cacheReadInputTokens": 4665132,
+      "cacheCreationInputTokens": 88667,
+      "webSearchRequests": 0,
+      "costUSD": 2.1334438500000004,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 890183,
+  "agent_duration_api_ms": 783667,
+  "agent_session_id": "e895fc1d-ad55-4610-a39f-7ca5dad854b1",
+  "agent_uuid": "8fccebe8-41c9-415c-b512-810b0525381a"
+}

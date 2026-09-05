@@ -1,0 +1,59 @@
+{
+  "id": "2e6f678f-472d-4c55-99cc-8e7c5c402a71",
+  "bucket": "gimp",
+  "instruction": "Please batch process all images on the desktop by increasing their brightness to 50, instead of adjusting them individually within GIMP.",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "42e9170ed2d6fe826f8aa7b6ad67dde421e073fea56aa2e2cbe965b874ce5e5a",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-cadbfc17-c59c-44c2-a65b-4a1f74d3ee07.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-08T16:28:06.221843+00:00",
+    "finished_at": "2026-08-08T16:32:38.274402+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 37,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.6823207499999998,
+  "agent_input_tokens": 46,
+  "agent_output_tokens": 10502,
+  "agent_cache_read_tokens": 1279720,
+  "agent_cache_creation_tokens": 37129,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1413,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001503,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 46,
+      "outputTokens": 10502,
+      "cacheReadInputTokens": 1279720,
+      "cacheCreationInputTokens": 37129,
+      "webSearchRequests": 0,
+      "costUSD": 0.6808177499999998,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 269850,
+  "agent_duration_api_ms": 248219,
+  "agent_session_id": "81e8db3a-39ab-40e6-b427-f0c6b5137af8",
+  "agent_uuid": "b9f8bfe2-2187-4104-aa36-0d244212804a"
+}

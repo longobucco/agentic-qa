@@ -1,0 +1,7 @@
+The file has been saved successfully as `Professor_Contact.xlsx`. The title bar confirms it's now in Excel format. All three professor email addresses have been added to the form:
+
+- **Qi Liu** (F3): `liuqi@cs.hku.hk`
+- **Tao Yu** (F4): `tao.yu.nlp@gmail.com`
+- **Lingpeng Kong** (F5): `lpk@cs.hku.hk`
+
+ANSWER: DONE

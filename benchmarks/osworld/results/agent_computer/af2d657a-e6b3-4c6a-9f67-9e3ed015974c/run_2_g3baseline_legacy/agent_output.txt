@@ -1,0 +1,6 @@
+The file has been saved. The task is complete:
+- The title "Happy Family" has been inserted in the first slide
+- The font style "Microsoft JhengHei" has been applied (visible in the Properties panel on the right showing "MicrosoftJhengHei")
+- The file has been saved in PowerPoint format
+
+ANSWER: DONE

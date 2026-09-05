@@ -1,11 +1,1 @@
-The setup is complete. The filter file confirms:
-- **Filter name**: "Forward to Gmail"
-- **Enabled**: yes
-- **Action**: Forward
-- **Destination**: anonym-x2024@gmail.com
-- **Condition**: ALL (matches every incoming email)
-- **Type**: 17 (runs on new incoming mail)
-
-The Thunderbird Message Filters dialog also shows this filter is active for the anonym-x2024@outlook.com account. Every email received by anonym-x2024@outlook.com will be forwarded locally to anonym-x2024@gmail.com, without any changes to the online Outlook account.
-
-ANSWER: DONE
+You've hit your session limit · resets 11:30am (Europe/Rome)

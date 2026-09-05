@@ -1,0 +1,7 @@
+{
+  "id": "9bc3cc16-074a-45ac-9bdc-b2a362e1daf3",
+  "verdict": "EVAL_ERROR",
+  "reason": "no eval_state captured (official eval errored: AssertionError: )",
+  "source": "offline_fallback",
+  "gold_sha256": {}
+}

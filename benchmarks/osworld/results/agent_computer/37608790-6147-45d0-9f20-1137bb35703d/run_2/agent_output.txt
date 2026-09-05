@@ -1,3 +1,14 @@
-The saved file confirms all 21 rows are correctly split: original data in column A is untouched, and First Name, Last Name, and Rank are properly populated in columns B, C, and D (including the corrected "East" in row 12).
+The file has been saved successfully. The task is complete. All 21 employee entries have been split correctly:
+
+- **Column A** (Employee Data): Original data untouched
+- **Column B** (First Name): First word extracted
+- **Column C** (Last Name): Second word extracted  
+- **Column D** (Rank): Third word extracted
+
+For example:
+- "Benedict Cucumberbach Manager" → Benedict | Cucumberbach | Manager
+- "Blake Dreary CEO" → Blake | Dreary | CEO
+- "Clint Eastwood Chairman" → Clint | Eastwood | Chairman
+- And so on for all 21 rows (rows 2-22)
 
 ANSWER: DONE

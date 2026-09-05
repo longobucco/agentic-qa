@@ -1,11 +1,7 @@
-Sheet2 is now active and showing exactly what was required:
-- Row 1: "Investment Summary" spanning merged cells A1:C1 (shown in the Name Box as "A1:C1")
+The task is complete. I can see Sheet2 is now active and shows:
+- Row 1: "Investment Summary" spanning merged cells A1:C1 (the name box shows "A1:C1" and formula bar confirms the value)
 - Row 2: "High Interest Rate" in merged cells A2:B2, and "Low Interest Rate" in merged cells C2:D2
 
-The task has been completed successfully:
-- ✅ Sheet2 created
-- ✅ A1:C1 merged with "Investment Summary"
-- ✅ A2:B2 merged with "High Interest Rate"  
-- ✅ C2:D2 merged with "Low Interest Rate"
+The file was saved with openpyxl and is correctly structured. The status bar shows "Sheet 2 of 2" confirming the second sheet exists.
 
 ANSWER: DONE

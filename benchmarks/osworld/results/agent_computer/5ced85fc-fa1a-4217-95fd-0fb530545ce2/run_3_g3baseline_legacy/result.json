@@ -1,0 +1,59 @@
+{
+  "id": "5ced85fc-fa1a-4217-95fd-0fb530545ce2",
+  "bucket": "os",
+  "instruction": "Append \"<br/>\" to the end of each line in \"1\\n2\\n3\" and save in output.txt",
+  "answer": "DONE",
+  "eval_state": "",
+  "provenance": {
+    "task_sha256": "854cb8035074c17adb17e4a295b44182a02455b6d25253c0316d3e80c5aaec10",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-221d4b9b-7bef-4e35-98b2-19517cd1af83.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-24T23:17:19.480054+00:00",
+    "finished_at": "2026-08-24T23:17:35.330214+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 5,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.045410650000000004,
+  "agent_input_tokens": 8,
+  "agent_output_tokens": 481,
+  "agent_cache_read_tokens": 102763,
+  "agent_cache_creation_tokens": 1477,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1719,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001804,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 8,
+      "outputTokens": 481,
+      "cacheReadInputTokens": 102763,
+      "cacheCreationInputTokens": 1477,
+      "webSearchRequests": 0,
+      "costUSD": 0.04360665,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 14245,
+  "agent_duration_api_ms": 15043,
+  "agent_session_id": "847c1e93-5aca-436c-a1f4-9d0616659dad",
+  "agent_uuid": "1a8a8b37-8a10-4f1b-b8e3-647ceeda7cd0"
+}

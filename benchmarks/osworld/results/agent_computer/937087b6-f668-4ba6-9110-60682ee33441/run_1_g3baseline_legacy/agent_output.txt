@@ -1,0 +1,19 @@
+VLC has been successfully set as the default video player on the Ubuntu system. The `~/.config/mimeapps.list` now contains:
+
+```
+[Default Applications]
+video/mp4=vlc.desktop
+video/x-msvideo=vlc.desktop
+video/x-matroska=vlc.desktop
+video/mpeg=vlc.desktop
+video/ogg=vlc.desktop
+video/webm=vlc.desktop
+video/3gpp=vlc.desktop
+video/quicktime=vlc.desktop
+video/x-flv=vlc.desktop
+video/x-ms-wmv=vlc.desktop
+```
+
+All major video MIME types now point to `vlc.desktop` as the default application.
+
+ANSWER: DONE

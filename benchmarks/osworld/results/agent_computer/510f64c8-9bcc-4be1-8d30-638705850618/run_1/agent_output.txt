@@ -1,8 +1,3 @@
-The process output confirms the task is complete:
-
-- **Terminal (xterm)** is running: `xterm -e code /root/Desktop/project; bash`
-- **VS Code** is open with the correct folder: `/usr/share/code/code ... /root/Desktop/project`
-
-VS Code was successfully started in `~/Desktop/project` from the terminal.
+VS Code is now fully open. The title bar confirms **"project [Superuser]"** and the Explorer panel shows the **PROJECT** folder, confirming that VS Code was successfully started in `~/Desktop/project` from the terminal (xterm with `code ~/Desktop/project`).
 
 ANSWER: DONE

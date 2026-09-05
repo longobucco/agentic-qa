@@ -1,3 +1,3 @@
-The task is infeasible. The `$sourceDir` and `$targetDir` variables are not defined in the environment (both are empty strings), and the task description contains unresolved template variables. Previous runs confirm this is an officially-recognized infeasible task that received full reward for identifying it as such.
+The variables `$sourceDir` and `$targetDir` are unresolved shell variables (they expand to empty strings in the environment). The task contains literal unexpanded variable references with no actual directory paths specified. There is no source or target directory defined anywhere in the environment.
 
 ANSWER: FAIL

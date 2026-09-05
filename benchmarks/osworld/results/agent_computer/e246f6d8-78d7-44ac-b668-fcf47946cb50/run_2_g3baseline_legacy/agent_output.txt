@@ -1,0 +1,3 @@
+The macro successfully changed the font size of all italic text to 14pt. I can clearly see in the document that italic words like "AVL tree", "preorder", "postorder", "average case analysis", "successful", "one", "two" are now noticeably larger than the surrounding normal text (14pt vs 12pt). The document has also been saved automatically by the macro.
+
+ANSWER: DONE

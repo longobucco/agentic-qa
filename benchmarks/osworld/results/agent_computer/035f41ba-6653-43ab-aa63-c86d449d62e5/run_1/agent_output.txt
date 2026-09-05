@@ -1,11 +1,14 @@
-The task is complete. The file has been saved successfully with all the correct data:
+The task is complete. Here's a summary of what was accomplished:
 
-**Sheet1 - Gross Profit column (J) filled in:**
-- Formula: `=B-C-D-F-G-H` (Sales - Sales Return - Discounts & Allowances - Materials Charges - Labor Charges - Overhead)
-- Values: 55000, 47662, 53451, 60819, 62864, 57924, 59634, 50852, 43649
+**Sheet1 - Gross Profit column (J):**
+- Formula: `=(B-C)-D-F-G-H` = (Sales - Sales Return) - Discounts & Allowances - Materials Charges - Labor Charges - Overhead
+- 2015: 55,000 | 2016: 47,662 | 2017: 53,451 | 2018: 60,819 | 2019: 62,864
+- 2020: 57,924 | 2021: 59,634 | 2022: 50,852 | 2023: 43,649
 
-**Sheet2 - Year_Profit column (A) created:**
-- Header: "Year_Profit"
+**Sheet2 - Year_Profit column (A):**
+- Header: `Year_Profit`
 - Values: 2015_55000, 2016_47662, 2017_53451, 2018_60819, 2019_62864, 2020_57924, 2021_59634, 2022_50852, 2023_43649
+
+The file has been saved in Excel format.
 
 ANSWER: DONE

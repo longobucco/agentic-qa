@@ -1,3 +1,1 @@
-This is a knowledge question about fixing Chrome's startup page. The answer doesn't require desktop interaction — clearing cache doesn't affect Chrome's startup page settings.
-
-ANSWER: The issue is Chrome's startup page setting, not the cache. To fix it: open Chrome, go to Settings (three-dot menu → Settings), scroll to the "On startup" section, and change it from "Open a specific page or set of pages" (which has funbrain.com listed) to either "Open the New Tab page" or "Continue where you left off." You can also remove funbrain.com from the list by clicking the three-dot icon next to it and selecting Remove. This setting persists independently of cache, which is why clearing cache had no effect.
+You've hit your session limit · resets 6:30am (Europe/Rome)

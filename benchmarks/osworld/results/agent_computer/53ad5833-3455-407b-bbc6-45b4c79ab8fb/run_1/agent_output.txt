@@ -1,3 +1,1 @@
-VS Code has successfully opened the `/home/user/project` folder. The Explorer panel on the left shows the "PROJECT" with its files: `.vscode`, `main.py`, and `README.md`. The title bar also confirms "project [Superuser]".
-
-ANSWER: DONE
+You've hit your session limit · resets 1:10am (Europe/Rome)

@@ -1,3 +1,5 @@
-Successfully downloaded **Early Buildings.tex** (5045 bytes) and saved it to `/home/user/Documents/Novels/4th Year in Tsinghua/Early Buildings.tex`. This was the only chapter from the GitHub repo (`https://github.com/liangjs333/4th-year-in-tsinghua-eng`) not already present in the user's archive.
+The chapter "Early Buildings" has been successfully downloaded and saved. The file `Early Buildings.tex` (5,045 bytes) is now at `/home/user/Documents/Novels/4th Year in Tsinghua/Early Buildings.tex`.
+
+The previously downloaded chapters were: Prelude, Classroom Building 2, Gong Office, Moonlight over Lotus Pond, The Phantom of the West Lake, and Zero-Zero Pavilion. The GitHub repository contained one additional chapter — `Early Buildings.tex` — which is now saved to the novel collection folder.
 
 ANSWER: DONE

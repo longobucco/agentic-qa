@@ -1,0 +1,11 @@
+{
+  "id": "9ec204e4-f0a3-42f8-8458-b772a6797cab",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official ['compare_pptx_files', 'compare_pptx_files'] -> 0.00",
+  "source": "official",
+  "gold_sha256": {
+    "MLA_Workshop_061X_Works_Cited_Gold.pptx": "6daa100c3a05934ab8c95f754612cf2edf614e5360ae86e2d20d563353d450f7",
+    "MLA_Workshop_061X_Works_Cited_Gold_all_fonts.pptx": "62f078588df2e73a3e84644f2859db142b87b080b5ea19a10f8064ca8ce2753b"
+  }
+}

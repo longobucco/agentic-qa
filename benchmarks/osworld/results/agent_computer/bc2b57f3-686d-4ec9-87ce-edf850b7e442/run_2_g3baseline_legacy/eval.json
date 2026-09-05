@@ -1,0 +1,6 @@
+{
+  "id": "bc2b57f3-686d-4ec9-87ce-edf850b7e442",
+  "verdict": "ENVIRONMENT_ERROR",
+  "reason": "config setup failed: Setup step 1 failed: _download_setup - Upload failed with status 400",
+  "source": "environment"
+}

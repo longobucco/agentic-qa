@@ -1,0 +1,9 @@
+[
+  {
+    "id": "215dfd39-f493-4bc3-a027-8a97d72c61bf",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-30T13:34:51+0200"
+  }
+]

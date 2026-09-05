@@ -1,0 +1,74 @@
+[
+  {
+    "id": "6ada715d-3aae-4a32-a6a7-429b2e43fb93",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-12T23:25:15+0200"
+  },
+  {
+    "id": "6ada715d-3aae-4a32-a6a7-429b2e43fb93",
+    "run": 2,
+    "outcome": "INFRA_FLAKE",
+    "error_type": "FileNotFoundError",
+    "error": "[Errno 2] No such file or directory: 'claude'",
+    "elapsed_s": 26.9,
+    "at": "2026-08-13T14:29:59+0200"
+  },
+  {
+    "id": "6ada715d-3aae-4a32-a6a7-429b2e43fb93",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-14T06:52:35+0200"
+  },
+  {
+    "id": "6ada715d-3aae-4a32-a6a7-429b2e43fb93",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-14T12:18:27+0200"
+  },
+  {
+    "id": "6ada715d-3aae-4a32-a6a7-429b2e43fb93",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-15T05:59:16+0200"
+  },
+  {
+    "id": "6ada715d-3aae-4a32-a6a7-429b2e43fb93",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-15T19:55:01+0200"
+  },
+  {
+    "id": "6ada715d-3aae-4a32-a6a7-429b2e43fb93",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-16T06:52:02+0200"
+  },
+  {
+    "id": "6ada715d-3aae-4a32-a6a7-429b2e43fb93",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-16T17:03:09+0200"
+  },
+  {
+    "id": "6ada715d-3aae-4a32-a6a7-429b2e43fb93",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-18T17:43:53+0200"
+  },
+  {
+    "id": "6ada715d-3aae-4a32-a6a7-429b2e43fb93",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-19T12:37:58+0200"
+  }
+]

@@ -1,0 +1,8 @@
+{
+  "id": "7ff48d5b-2df2-49da-b500-a5150ffc7f18",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official fuzzy_place_math -> 0.00",
+  "source": "official",
+  "gold_sha256": {}
+}

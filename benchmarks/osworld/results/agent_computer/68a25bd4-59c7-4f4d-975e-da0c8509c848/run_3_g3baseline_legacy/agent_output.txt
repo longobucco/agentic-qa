@@ -1,0 +1,8 @@
+Both files are successfully created:
+
+- **`/home/user/paper01.pdf`** — The BERT paper PDF (775,166 bytes), downloaded from `https://arxiv.org/pdf/1810.04805`
+- **`/home/user/ans.docx`** — Contains the title "TinyBERT: Distilling BERT for Natural Language Understanding"
+
+**Reasoning:** The spreadsheet lists 5 papers. The first paper is BERT (published 2018/10/11). Of the remaining papers, only TinyBERT (published 2019/9/23) post-dates BERT — and it is explicitly about distilling BERT, making it the clear paper in the list that cites the first one. The other three papers (Attention Is All You Need: 2017, GLUE: 2018/4, ELMo: 2018/2) were all published before BERT and could not have cited it.
+
+ANSWER: TinyBERT: Distilling BERT for Natural Language Understanding

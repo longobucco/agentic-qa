@@ -1,0 +1,13 @@
+`notes.docx` has been created on the Desktop. It's a valid Word document containing exactly the presenter notes extracted from `Dickinson_Slides.pptx`, one paragraph per slide in presentation order, with no formatting and no slide/page numbers:
+
+1. This is opening slide.
+2. Cover slide option #1
+3. Cover slide option #3
+4. This is a graph.
+5. This is a table.
+6. This is item lists.
+7. (no notes)
+8. This is an inserted image.
+9. Blank ending slide
+
+ANSWER: DONE

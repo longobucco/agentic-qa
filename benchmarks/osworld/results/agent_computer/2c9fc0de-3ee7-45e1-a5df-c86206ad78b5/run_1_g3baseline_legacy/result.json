@@ -1,0 +1,59 @@
+{
+  "id": "2c9fc0de-3ee7-45e1-a5df-c86206ad78b5",
+  "bucket": "os",
+  "instruction": "Could you help me push the changes from commandline in current project to origin main, with the commit message \"daily update\"?",
+  "answer": "FAIL",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "1c9d0e96aabe3e6effaba142773d91fd4a5630da47a98dfc92570910b40261a8",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-d240f7c7-230b-4f94-9f8e-5a0e5e779968.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-22T11:11:36.947066+00:00",
+    "finished_at": "2026-08-22T11:19:42.356670+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 43,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 1.40100875,
+  "agent_input_tokens": 3735,
+  "agent_output_tokens": 7705,
+  "agent_cache_read_tokens": 1858371,
+  "agent_cache_creation_tokens": 41101,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3572,
+      "outputTokens": 14,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0036420000000000003,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 3735,
+      "outputTokens": 7705,
+      "cacheReadInputTokens": 1858371,
+      "cacheCreationInputTokens": 41101,
+      "webSearchRequests": 0,
+      "costUSD": 1.39736675,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 483055,
+  "agent_duration_api_ms": 157211,
+  "agent_session_id": "b00c1614-3266-4c48-94ca-8ae351e4a6c2",
+  "agent_uuid": "76d300fd-a5a6-40e0-a8ae-a94d6efcb5a2"
+}

@@ -1,0 +1,5 @@
+The task is complete. The status bar confirms: "Image saved to '/home/user/Desktop/dog_with_background_two_layers.xcf'"
+
+The dog layer ("dog_with_background.png") was successfully scaled from its original 1578x948 to **852x512 pixels**, maintaining the original aspect ratio (1578/948 ≈ 852/512 ≈ 1.664) while setting the height to exactly 512 pixels. The file has been saved.
+
+ANSWER: DONE

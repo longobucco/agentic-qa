@@ -1,0 +1,3 @@
+The VLC config file at `/home/vlcuser/.config/vlc/vlcrc` confirms `fullscreen=1` is set. The fullscreen mode has been successfully enabled in VLC through the Video Settings preferences.
+
+ANSWER: DONE

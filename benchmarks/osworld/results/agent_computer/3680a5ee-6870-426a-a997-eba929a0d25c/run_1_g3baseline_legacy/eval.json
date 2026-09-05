@@ -1,0 +1,7 @@
+{
+  "id": "3680a5ee-6870-426a-a997-eba929a0d25c",
+  "verdict": "EVAL_ERROR",
+  "reason": "no eval_state captured (official eval errored: JSONDecodeError: Expecting value: line 1 column 1 (char 0))",
+  "source": "offline_fallback",
+  "gold_sha256": {}
+}

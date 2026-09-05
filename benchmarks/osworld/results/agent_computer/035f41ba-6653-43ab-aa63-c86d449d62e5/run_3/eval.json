@@ -1,8 +1,8 @@
 {
   "id": "035f41ba-6653-43ab-aa63-c86d449d62e5",
-  "verdict": "FAILURE",
-  "reward": 0.0,
-  "reason": "official compare_table -> 0.00",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official compare_table -> 1.00",
   "source": "official",
   "gold_sha256": {
     "5_IncomeStatement2_gt1.xlsx": "dce5ec128f2fcb633591ce430f73dc6a1f5041fa2e003fca42af2cb89d2ad0a9"

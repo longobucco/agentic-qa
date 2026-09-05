@@ -1,0 +1,7 @@
+{
+  "id": "5ac2891a-eacd-4954-b339-98abba077adb",
+  "verdict": "EVAL_ERROR",
+  "reason": "no eval_state captured (official eval errored: AttributeError: module 'desktop_env.evaluators.metrics' has no attribute 'check_play_and_exit')",
+  "source": "offline_fallback",
+  "gold_sha256": {}
+}

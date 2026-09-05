@@ -1,0 +1,3 @@
+The Preferences dialog has closed, which means OK was clicked successfully and the settings were saved. The minimum number of undo steps has been set to 100 in GIMP's preferences.
+
+ANSWER: DONE

@@ -1,3 +1,1 @@
-I've enabled automatic screen lock. The GNOME setting `org.gnome.desktop.screensaver lock-enabled` is now set to `true`, so the computer will automatically lock the screen once it goes idle (idle timeout is already 5 minutes). This achieves "automatically locked after I leave."
-
-ANSWER: DONE
+You've hit your session limit · resets 11:30am (Europe/Rome)

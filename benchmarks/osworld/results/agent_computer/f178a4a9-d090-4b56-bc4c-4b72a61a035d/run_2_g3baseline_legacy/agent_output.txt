@@ -1,0 +1,5 @@
+The Options dialog is closed and the settings are saved. Times New Roman has been successfully set as the default font in LibreOffice Writer through Tools > Options > LibreOffice Writer > Basic Fonts (Western).
+
+The task is complete - Times New Roman is now the default font for LibreOffice Writer.
+
+ANSWER: DONE

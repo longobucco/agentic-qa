@@ -1,0 +1,6 @@
+The file was found and the path has been copied to the clipboard successfully using tkinter.
+
+- **File location:** `/home/user/Data3/List3/secret.docx`
+- **Clipboard content verified:** `/home/user/Data3/List3/secret.docx`
+
+ANSWER: /home/user/Data3/List3/secret.docx

@@ -1,0 +1,7 @@
+The document `gemini_results.docx` has been created successfully on the Desktop with:
+- **6 GEMINI responses** as separate paragraphs, each separated by an empty line
+- All occurrences of **"Iliad"** are highlighted in yellow throughout the document
+
+The document has 11 paragraphs total (6 response paragraphs + 5 empty separator paragraphs), and every instance of "Iliad" is confirmed highlighted.
+
+ANSWER: DONE

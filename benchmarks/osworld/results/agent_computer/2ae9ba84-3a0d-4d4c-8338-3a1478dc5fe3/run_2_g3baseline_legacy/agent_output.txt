@@ -1,0 +1,3 @@
+The Chrome profile name has been successfully changed to "Thomas". The profile name field now shows "Thomas" and the change is saved.
+
+ANSWER: DONE

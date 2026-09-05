@@ -1,0 +1,10 @@
+{
+  "id": "04d9aeaf-7bed-4024-bedb-e10e6f00eb7f",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official compare_table -> 0.00",
+  "source": "official",
+  "gold_sha256": {
+    "4_SmallBalanceSheet_gt1.xlsx": "5f832b5537dd3e36920d2bced63c239f9b60f1b6d385c1c35cf6c75715daf1f5"
+  }
+}

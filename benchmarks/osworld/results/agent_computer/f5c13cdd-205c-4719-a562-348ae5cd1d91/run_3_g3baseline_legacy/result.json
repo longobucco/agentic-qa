@@ -1,0 +1,59 @@
+{
+  "id": "f5c13cdd-205c-4719-a562-348ae5cd1d91",
+  "bucket": "thunderbird",
+  "instruction": "I've drafted an e-mail reminder for those who haven't paid tuition. Please help me to check out their e-mails from the payment record and add to the receiver field.",
+  "answer": "FAIL",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "63a3916f217fb833f23f47b46beb7ce74496ece0c6686bb392021efa24b8cc51",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-ff019957-d25d-4f89-8826-18db1986b55a.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-22T00:51:52.106981+00:00",
+    "finished_at": "2026-08-22T00:53:01.550157+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 12,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.4808585,
+  "agent_input_tokens": 3286,
+  "agent_output_tokens": 3554,
+  "agent_cache_read_tokens": 383545,
+  "agent_cache_creation_tokens": 28640,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 4726,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.004806,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 3286,
+      "outputTokens": 3554,
+      "cacheReadInputTokens": 383545,
+      "cacheCreationInputTokens": 28640,
+      "webSearchRequests": 0,
+      "costUSD": 0.47605250000000005,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 65943,
+  "agent_duration_api_ms": 64371,
+  "agent_session_id": "c97af0e6-489b-4559-b0e2-e824112491fa",
+  "agent_uuid": "ab330108-30e8-40b1-9458-f0324a2430b7"
+}

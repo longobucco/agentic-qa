@@ -1,0 +1,19 @@
+{
+  "id": "6c4c23a1-42a4-43cc-9db1-2f86ff3738cc",
+  "bucket": "chrome",
+  "instruction": "Find flights from Seattle to New York on 5th next month and only show those that can be purchased with miles.",
+  "answer": "",
+  "setup_error": "config setup failed: Setup step 3 failed: _chrome_open_tabs_setup - BrowserType.connect_over_cdp: connect ECONNREFUSED ::ffff:62.0.58.94:9222\nCall log:\n  - <ws preparing> retrieving websocket url from http://5000-07030003-3710-4421-b4a3-ad90d17b632b.daytonaproxy01.eu:9222\n",
+  "provenance": {
+    "task_sha256": "99ab7940f8adf0569434c9cc777b10f6f8848007f1e2f75a2ef6a212db782732",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-07030003-3710-4421-b4a3-ad90d17b632b.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-20T17:08:37.717822+00:00",
+    "finished_at": "2026-08-20T17:08:37.721891+00:00"
+  }
+}

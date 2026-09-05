@@ -1,0 +1,11 @@
+{
+  "id": "3a93cae4-ad3e-403e-8c12-65303b271818",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official ['compare_table', 'compare_table', 'compare_table'] -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "Course Timetable gold.xlsx": "dc2ef4bf25628503739be5dc86989145c13f0d09ea54f1c94228d4c734803e7f"
+  },
+  "note": "incidental: agent did not finish cleanly (no ANSWER / hit max-turns or errored) \u2014 the state happened to already satisfy the evaluator, not necessarily evidence the agent completed the task"
+}

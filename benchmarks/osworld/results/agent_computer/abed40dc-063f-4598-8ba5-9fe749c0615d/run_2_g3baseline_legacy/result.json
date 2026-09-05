@@ -1,0 +1,59 @@
+{
+  "id": "abed40dc-063f-4598-8ba5-9fe749c0615d",
+  "bucket": "libreoffice calc",
+  "instruction": "Check the names in column \"Names with duplicates\" and put the unique ones in column \"Unique Names\". Keep the original order of the first occurrences. Finish the work and don't touch irrelevant regions, even if they are blank.",
+  "answer": "DONE",
+  "eval_state": "<binary:5200 bytes at Names_Duplicate_Unique.xlsx>",
+  "provenance": {
+    "task_sha256": "342aabdd7bd9e254aa20449934844d79d5ba699d3f417bc16fcdd52b23cda766",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-820aa338-1764-4d46-81f0-dabe7336f7ba.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-23T02:54:38.218880+00:00",
+    "finished_at": "2026-08-23T03:03:01.630841+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 39,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.8027301499999999,
+  "agent_input_tokens": 40,
+  "agent_output_tokens": 20821,
+  "agent_cache_read_tokens": 1171933,
+  "agent_cache_creation_tokens": 36167,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3014,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.003089,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 40,
+      "outputTokens": 20821,
+      "cacheReadInputTokens": 1171933,
+      "cacheCreationInputTokens": 36167,
+      "webSearchRequests": 0,
+      "costUSD": 0.7996411499999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 501210,
+  "agent_duration_api_ms": 383969,
+  "agent_session_id": "6d9614c3-e44c-4856-bb15-a2ef5a5620fe",
+  "agent_uuid": "82875daa-434a-482c-a755-f582ae8fd678"
+}

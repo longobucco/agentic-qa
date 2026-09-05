@@ -1,1 +1,3 @@
-API Error: The socket connection was closed unexpectedly. For more information, pass `verbose: true` in the second argument to fetch()
+The task is complete. The VLC configuration file confirms `input-record-path=/root/Desktop`. The recording folder has been successfully changed to the Desktop folder.
+
+ANSWER: DONE

@@ -1,0 +1,59 @@
+{
+  "id": "c2751594-0cd5-4088-be1b-b5f2f9ec97c4",
+  "bucket": "thunderbird",
+  "instruction": "Help me export the first image from the doc file attached in the most recent email in Notes folder, and set this image as the new desktop background.",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "58a8485e515950ddeb7171aaa419c859396a4f5eb9fe20afb1000a10e5986fa6",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-b3565050-8a5f-4f3e-8239-0e24d4f924d6.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-25T20:26:31.830148+00:00",
+    "finished_at": "2026-08-25T20:32:27.237532+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 49,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.9422210999999998,
+  "agent_input_tokens": 54,
+  "agent_output_tokens": 13635,
+  "agent_cache_read_tokens": 1942302,
+  "agent_cache_creation_tokens": 40714,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2076,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002166,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 54,
+      "outputTokens": 13635,
+      "cacheReadInputTokens": 1942302,
+      "cacheCreationInputTokens": 40714,
+      "webSearchRequests": 0,
+      "costUSD": 0.9400550999999997,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 352934,
+  "agent_duration_api_ms": 337055,
+  "agent_session_id": "bc5f00a9-88ec-41c5-9ba5-a13bf30bc513",
+  "agent_uuid": "a95b7aef-7cdf-4f30-900c-daab9a1029d5"
+}

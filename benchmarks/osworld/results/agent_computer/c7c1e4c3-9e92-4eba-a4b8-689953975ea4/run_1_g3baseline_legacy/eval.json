@@ -1,0 +1,10 @@
+{
+  "id": "c7c1e4c3-9e92-4eba-a4b8-689953975ea4",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official compare_table -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "Professor_Contact_Gold.xlsx": "2e30e2af19a57982b7f0e5c077ccc256b39e49d9c923bc53c4fdbb1ea0b31dc5"
+  }
+}

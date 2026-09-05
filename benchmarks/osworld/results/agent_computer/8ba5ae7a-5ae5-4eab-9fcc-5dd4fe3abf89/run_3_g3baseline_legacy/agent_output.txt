@@ -1,0 +1,3 @@
+The VLC config file confirms the recording directory has been successfully set to `/home/user/Desktop`. The setting `input-record-path=/home/user/Desktop` is now saved in the VLC configuration.
+
+ANSWER: DONE

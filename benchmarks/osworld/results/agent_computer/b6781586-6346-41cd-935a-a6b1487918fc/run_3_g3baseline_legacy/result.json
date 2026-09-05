@@ -1,0 +1,59 @@
+{
+  "id": "b6781586-6346-41cd-935a-a6b1487918fc",
+  "bucket": "os",
+  "instruction": "I want to set my current time zone to UTC+0. Can you help me?",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "130264556cd479177b3d62e4b5a85f0786434ef6ffdad0d421fb419ad70b7194",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-4ead14e5-2d97-4ccb-82cb-4519e48392b4.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-21T15:06:05.471096+00:00",
+    "finished_at": "2026-08-21T15:07:14.257064+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 8,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.34073825,
+  "agent_input_tokens": 3149,
+  "agent_output_tokens": 4172,
+  "agent_cache_read_tokens": 177364,
+  "agent_cache_creation_tokens": 20357,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 4705,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.00478,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 3149,
+      "outputTokens": 4172,
+      "cacheReadInputTokens": 177364,
+      "cacheCreationInputTokens": 20357,
+      "webSearchRequests": 0,
+      "costUSD": 0.33595825,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 66032,
+  "agent_duration_api_ms": 65717,
+  "agent_session_id": "11d06841-f451-41a0-9fdc-3f78d490b043",
+  "agent_uuid": "15adef16-99f2-41bd-8602-452f45697bf4"
+}

@@ -1,0 +1,59 @@
+{
+  "id": "3720f614-37fd-4d04-8a6b-76f54f8c222d",
+  "bucket": "chrome",
+  "instruction": "I am from the country of Atlantis, and my mother tongue is Xenothian. Please change the Google Chrome interface language to Xenothian using only Chrome\u2019s built-in settings.",
+  "answer": "FAIL",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "caa4012f09531659bb432d82484be7bf69ab90de33b0aee9910230c16024a723",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-936eac05-6518-403f-b904-1a378eb34a43.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-08T10:57:10.700647+00:00",
+    "finished_at": "2026-08-08T10:57:16.015799+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 1,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.0175272,
+  "agent_input_tokens": 2,
+  "agent_output_tokens": 125,
+  "agent_cache_read_tokens": 16164,
+  "agent_cache_creation_tokens": 2636,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 832,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0009119999999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 2,
+      "outputTokens": 125,
+      "cacheReadInputTokens": 16164,
+      "cacheCreationInputTokens": 2636,
+      "webSearchRequests": 0,
+      "costUSD": 0.0166152,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 3238,
+  "agent_duration_api_ms": 4156,
+  "agent_session_id": "91f226bf-33c0-4eba-b9cd-b474847d7438",
+  "agent_uuid": "c3c73e1a-2c92-4f47-afd9-cb874c90a2b5"
+}

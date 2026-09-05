@@ -1,0 +1,9 @@
+Both folders have been created successfully. The left folder pane now shows under "Local Folders":
+- Trash
+- Outbox
+- **COMPANY**
+- **UNIVERSITY**
+
+Both local folders COMPANY and UNIVERSITY have been created in Thunderbird's Local Folders.
+
+ANSWER: DONE

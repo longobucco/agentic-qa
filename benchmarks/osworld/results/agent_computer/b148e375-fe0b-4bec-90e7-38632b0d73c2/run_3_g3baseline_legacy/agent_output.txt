@@ -1,0 +1,3 @@
+A new layer named "Square" was added — the title bar now shows "2 layers" and the layers panel lists "Square" above the background.
+
+ANSWER: DONE

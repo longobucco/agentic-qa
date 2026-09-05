@@ -1,0 +1,10 @@
+{
+  "id": "aad10cd7-9337-4b62-b704-a857848cedf2",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official compare_docx_files -> 0.00",
+  "source": "official",
+  "gold_sha256": {
+    "notes_Gold.docx": "877356d01dbf6374cff01e118c14adbdd8be75e0056edee36552a260bfe62e7d"
+  }
+}

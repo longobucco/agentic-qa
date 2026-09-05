@@ -1,0 +1,19 @@
+{
+  "id": "bc2b57f3-686d-4ec9-87ce-edf850b7e442",
+  "bucket": "libreoffice_calc",
+  "instruction": "The requirements of my data analysis assignment are listed in \"reminder.docx\" on the desktop. Help me modify my assignment opended accordingly.",
+  "answer": "",
+  "setup_error": "config setup failed: Setup step 1 failed: _download_setup - Upload failed with status 400",
+  "provenance": {
+    "task_sha256": "3e7446903c3b294b27314b5c8ebc82a8d40c2e10b39a6e590d505e7ae822d098",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-7f514b16-f878-4543-98c2-d582c7ae08c6.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-26T16:10:49.500356+00:00",
+    "finished_at": "2026-08-26T16:10:49.501200+00:00"
+  }
+}

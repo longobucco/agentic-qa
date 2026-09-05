@@ -1,0 +1,3 @@
+The verification confirms the task is complete. The last slide (Conclusion) now has the text "Conclusion" with font "Times New Roman" saved in the .pptx file.
+
+ANSWER: DONE

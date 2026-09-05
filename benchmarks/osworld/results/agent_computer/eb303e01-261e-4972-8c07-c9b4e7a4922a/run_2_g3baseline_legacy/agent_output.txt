@@ -1,0 +1,10 @@
+All notes are now saved correctly. Slides 1, 2, 3, and 6 — previously empty — now contain their planned remarks matching notes.docx, while slides 4, 5, and 7 (already completed) are unchanged.
+
+- Slide 1: "Lecture 1"
+- Slide 2: "Lecture slides DO NOT contain everything…" + "So, make sure you bring yourself up-to-date if you miss a class"
+- Slide 3: same two lines (without trailing period, per the doc)
+- Slide 6: "moderate illness, conflicts with other courses, travel, extracurricular obligations, job interviews, etc."
+
+The file was saved in PowerPoint format.
+
+ANSWER: DONE

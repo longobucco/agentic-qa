@@ -1,0 +1,3 @@
+The preference `mail.identity.default.auto_quote` is now set to `false`. This disables automatic quoting of the original message when replying, so replies now start with a clean slate — no indentation or `>` characters.
+
+ANSWER: DONE

@@ -1,3 +1,14 @@
-The final state matches the grader requirements: the 30-day-old files in `old_files` are now gzip-compressed (`old_file1.txt.gz`, `old_file2.txt.gz`), and the recent files in `new_files` remain uncompressed. This satisfies Method 1 (old files compressed in place) and the new-files-uncompressed check.
+The task is complete. Here's what was done:
+
+- **Old files** (modified Aug 5, 2026 — exactly 30 days ago): `old_file1.txt` and `old_file2.txt` were compressed with gzip → `old_file1.txt.gz` and `old_file2.txt.gz` in `/tmp/test_files/old_files`
+- **New files** (modified Sep 4, 2026 — today): `new_file1.txt` and `new_file2.txt` are in `/tmp/test_files/new_files`
+
+Final structure:
+```
+/tmp/test_files/old_files/old_file1.txt.gz
+/tmp/test_files/old_files/old_file2.txt.gz
+/tmp/test_files/new_files/new_file1.txt
+/tmp/test_files/new_files/new_file2.txt
+```
 
 ANSWER: DONE

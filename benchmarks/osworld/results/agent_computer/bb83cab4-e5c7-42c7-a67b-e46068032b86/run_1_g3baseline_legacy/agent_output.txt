@@ -1,0 +1,3 @@
+The `script.docx` file has been created on the Desktop with all text extracted from the Impress presentation. It contains all 64 paragraphs (all text runs from the 28 slides), preserving order and content, in a valid Word document format that Writer can open and edit.
+
+ANSWER: DONE

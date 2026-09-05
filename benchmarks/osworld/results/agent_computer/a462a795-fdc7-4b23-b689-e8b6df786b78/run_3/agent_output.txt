@@ -1,5 +1,1 @@
-The user `Charles` does not exist on this system. I verified via `getent passwd charles` (returned "not found", exit code 2) and by listing accounts — the only regular login account is `root`; there are no normal users (UID ≥ 1000) other than `nobody`.
-
-Per the task constraints, I must not create the user or modify system accounts, so switching to `Charles` is not possible.
-
-ANSWER: FAIL
+You've hit your session limit · resets 6:30am (Europe/Rome)

@@ -1,3 +1,1 @@
-The setting is now `play-and-exit=0`, which disables VLC's auto-close behavior when a video finishes. VLC was not running, so this change to the config file will take effect on the next launch and won't be overwritten.
-
-ANSWER: DONE
+Not logged in · Please run /login

@@ -1,0 +1,7 @@
+The file has been saved on disk with the correct formatting applied using python-pptx. The verification confirmed:
+- "Business Infographic Template" (title/TextBox 18): bold=True, size=44pt, underline=True  
+- "BUSINESS AND CORPORATE" (TextBox 11): bold=True
+
+All text on slide 1 is bolded, the title is set to 44pt and underlined.
+
+ANSWER: DONE

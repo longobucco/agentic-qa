@@ -1,0 +1,8 @@
+The Google Scholar profile page for the corresponding author is now open in Chrome. It shows **Tim (Tianlin) Shi**, Co-founder at Recursive Superintelligence, with verified email at stanford.edu — and his publication list includes "World of Bits: An Open-Domain Platform for Web-Based Agents," confirming this is the corresponding author of the PDF.
+
+The corresponding author was identified from the paper's first page ("Correspondence to: Tianlin (Tim) Shi <tianlin@cs.stanford.edu>"), and his public Google Scholar profile is now loaded.
+
+Sources:
+- [Tim (Tianlin) Shi — Google Scholar](https://scholar.google.com/citations?user=qRAQ5BsAAAAJ&hl=en)
+
+ANSWER: DONE — Opened the Google Scholar profile of the corresponding author Tianlin (Tim) Shi (https://scholar.google.com/citations?user=qRAQ5BsAAAAJ&hl=en) in Chrome.

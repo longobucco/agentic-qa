@@ -1,0 +1,12 @@
+The `report.xlsx` has been successfully created at `/home/user/Desktop/report.xlsx`. The spreadsheet contains:
+
+**Headers:** sender_name, sender_address, subject, CC, number_of_attachments
+
+**5 latest emails (sorted earliest → most recent):**
+1. HKU Bulk Email Delivery System | mail.service@intranet.hku.hk | HKU Daily Email Digest (25 JAN 2024) | (no CC) | 0
+2. eNotices System | enotices.daily.digest@hku.hk | HKU Daily Notices (27 JAN 2024) | mail.service@intranet.hku.hk | 0
+3. eNotices System | enotices.daily.digest@hku.hk | HKU Daily Notices (28 JAN 2024) | mail.service@intranet.hku.hk | 0
+4. HKU Bulk Email Delivery System | mail.service@intranet.hku.hk | HKU Daily Email Digest (29 JAN 2024) | (no CC) | 0
+5. HKU Bulk Email Delivery System | mail.service@intranet.hku.hk | HKU Daily Email Digest (30 JAN 2024) | (no CC) | 0
+
+ANSWER: DONE

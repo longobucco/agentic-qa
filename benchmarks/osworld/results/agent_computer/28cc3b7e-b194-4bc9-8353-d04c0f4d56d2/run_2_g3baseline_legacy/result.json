@@ -1,0 +1,59 @@
+{
+  "id": "28cc3b7e-b194-4bc9-8353-d04c0f4d56d2",
+  "bucket": "os",
+  "instruction": "The volume of my system is too small. Can you help me turn up to the max volume?",
+  "answer": "FAIL",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "7ca661ff05225fc85f7d001bbb0d732d2d565863367b45b6527b4db1ca0ab96a",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-aa02c378-8090-4c04-859c-19c6d11bb197.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-22T11:05:48.893199+00:00",
+    "finished_at": "2026-08-22T11:10:11.637066+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 29,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.71252775,
+  "agent_input_tokens": 3578,
+  "agent_output_tokens": 5841,
+  "agent_cache_read_tokens": 808641,
+  "agent_cache_creation_tokens": 22505,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3566,
+      "outputTokens": 14,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0036360000000000003,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 3578,
+      "outputTokens": 5841,
+      "cacheReadInputTokens": 808641,
+      "cacheCreationInputTokens": 22505,
+      "webSearchRequests": 0,
+      "costUSD": 0.70889175,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 260593,
+  "agent_duration_api_ms": 130916,
+  "agent_session_id": "a763acaf-b736-4356-9e25-e5dac14ee041",
+  "agent_uuid": "5923d68e-83ce-4fc8-8ddf-e8e8d5b5aaa8"
+}

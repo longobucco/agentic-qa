@@ -1,0 +1,6 @@
+{
+  "id": "4c26e3f3-3a14-4d86-b44a-d3cedebbb487",
+  "verdict": "ENVIRONMENT_ERROR",
+  "reason": "config setup failed: Setup step 1 failed: _download_setup - ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))",
+  "source": "environment"
+}

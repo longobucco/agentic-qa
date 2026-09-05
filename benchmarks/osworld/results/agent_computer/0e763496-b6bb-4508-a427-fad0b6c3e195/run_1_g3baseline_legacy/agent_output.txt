@@ -1,0 +1,3 @@
+The file has been saved successfully. The document now shows the text in Times New Roman font throughout, and the toolbar confirms the font is "Times New Roman". The file has been saved in Word format.
+
+ANSWER: DONE

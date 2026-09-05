@@ -1,0 +1,3 @@
+The **Vignette** filter window is now open successfully! The dialog shows all the Vignette filter settings including Vignette shape, Color, Radius, Softness, Gamma, Proportion, Squeeze, Center X/Y, and Rotation, with a live preview of the vignette effect on the image.
+
+ANSWER: DONE

@@ -1,0 +1,59 @@
+{
+  "id": "a10b69e1-6034-4a2b-93e1-571d45194f75",
+  "bucket": "thunderbird",
+  "instruction": "Create two local folders in Thunderbird for me: COMPANY and UNIVERSITY.",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "91b8d9daac108ea2fe3c5abda89d72841d9c5fbb81b809980de319721f44fbca",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-8f47f536-e6d4-46cd-8bc8-3bd5eee9ac34.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-25T19:45:49.174336+00:00",
+    "finished_at": "2026-08-25T20:01:32.045555+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 123,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 3.4811312500000002,
+  "agent_input_tokens": 140,
+  "agent_output_tokens": 25586,
+  "agent_cache_read_tokens": 9015690,
+  "agent_cache_creation_tokens": 104015,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2063,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002158,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 140,
+      "outputTokens": 25586,
+      "cacheReadInputTokens": 9015690,
+      "cacheCreationInputTokens": 104015,
+      "webSearchRequests": 0,
+      "costUSD": 3.47897325,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 939672,
+  "agent_duration_api_ms": 891994,
+  "agent_session_id": "36d41da8-68ba-472a-b417-09bb5dbed6d9",
+  "agent_uuid": "d90f852a-10fc-4b46-8cac-a1139bbaa773"
+}

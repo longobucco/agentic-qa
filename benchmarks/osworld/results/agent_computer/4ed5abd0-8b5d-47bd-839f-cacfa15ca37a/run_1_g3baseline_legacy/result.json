@@ -1,0 +1,59 @@
+{
+  "id": "4ed5abd0-8b5d-47bd-839f-cacfa15ca37a",
+  "bucket": "libreoffice_impress",
+  "instruction": "Set the color of titles in slides 2,3,5 as black and underline them.",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "585f23c6b47e045cb3a2caee141edd5dc3c7ed54ecd570b1ce890be2c5b19c3d",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-8b399afc-b96a-4785-b924-30696ac72f0c.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-18T23:58:23.880139+00:00",
+    "finished_at": "2026-08-18T23:59:37.350661+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 11,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.5617257499999999,
+  "agent_input_tokens": 3234,
+  "agent_output_tokens": 3990,
+  "agent_cache_read_tokens": 229039,
+  "agent_cache_creation_tokens": 52353,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3995,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.00408,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-8": {
+      "inputTokens": 3234,
+      "outputTokens": 3990,
+      "cacheReadInputTokens": 229039,
+      "cacheCreationInputTokens": 52353,
+      "webSearchRequests": 0,
+      "costUSD": 0.5576457499999999,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "agent_duration_ms": 71116,
+  "agent_duration_api_ms": 65942,
+  "agent_session_id": "f7dd03df-915c-4bc1-b975-94e1b6995ed9",
+  "agent_uuid": "15dadf9e-8741-4c5a-9cd5-180649cc4e61"
+}

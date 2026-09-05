@@ -1,0 +1,7 @@
+{
+  "id": "94d95f96-9699-4208-98ba-3c3119edf9c2",
+  "verdict": "EVAL_ERROR",
+  "reason": "eval_state='/usr/bin/spotify\\n' (official eval errored: JSONDecodeError: Expecting value: line 1 column 1 (char 0))",
+  "source": "offline_fallback",
+  "gold_sha256": {}
+}

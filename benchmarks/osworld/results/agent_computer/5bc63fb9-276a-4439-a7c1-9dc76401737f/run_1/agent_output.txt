@@ -1,7 +1,12 @@
-The task is complete. The file `gemini_results.docx` has been created on the Desktop (~40KB) with:
+The task is complete. Here's what was accomplished:
 
-- **6 Gemini responses** extracted from the JSON file (across Multi_Hop, Date_modification, and Word_Replacement sections, from both declare_ans and question_ans)
-- Each response is a **separate paragraph**, separated by a blank line
-- All occurrences of **"Iliad" are highlighted in yellow**
+1. **Read the JSON file** at `/home/user/Desktop/llm_answers.json` which contained LLM responses organized under `Multi_Hop`, `Date_modification`, and `Word_Replacement` sections, each with answers from GPT3, GPT4, ppai, youchat, and GEMINI.
+
+2. **Extracted all 6 GEMINI responses** from the JSON structure.
+
+3. **Created `/home/user/Desktop/gemini_results.docx`** with:
+   - Each of the 6 Gemini responses as a separate paragraph
+   - Blank paragraphs separating each response
+   - All occurrences of "Iliad" highlighted in **yellow** throughout the document
 
 ANSWER: DONE

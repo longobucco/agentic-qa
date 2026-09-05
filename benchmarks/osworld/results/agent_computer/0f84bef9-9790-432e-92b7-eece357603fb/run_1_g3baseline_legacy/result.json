@@ -1,0 +1,58 @@
+{
+  "id": "0f84bef9-9790-432e-92b7-eece357603fb",
+  "bucket": "libreoffice_impress",
+  "instruction": "On it Whenever I launch a LibreOffice Impress, it uses both screens, one for current slide and next slide and another for actual presentation. What I want is to use only one monitor which shows presentation. I dont want the screen with Current slide and Next slide so that it can be used for other purposes. How should I achieve this?",
+  "answer": "",
+  "agent_clean_finish": false,
+  "agent_num_turns": 122,
+  "agent_stop_reason": "stop_sequence",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": true,
+  "agent_errors": null,
+  "agent_api_error_status": 429,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 3.35581795,
+  "agent_input_tokens": 136,
+  "agent_output_tokens": 27682,
+  "agent_cache_read_tokens": 8407624,
+  "agent_cache_creation_tokens": 111181,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 864,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.000964,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 136,
+      "outputTokens": 27682,
+      "cacheReadInputTokens": 8407624,
+      "cacheCreationInputTokens": 111181,
+      "webSearchRequests": 0,
+      "costUSD": 3.35485395,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 1077149,
+  "agent_duration_api_ms": 1038888,
+  "agent_session_id": "5a755511-b5b7-4eb8-86bd-5f0dfc61e59d",
+  "agent_uuid": "ab896e6a-d47c-47ac-8d35-06ba667ffb52",
+  "provenance": {
+    "task_sha256": "5afe7fcec36a9292458cbb35e163125ecc9421706db81f88d11b181ebfed5431",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-5e9ddf19-3823-4e02-85a2-b17e539836b1.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-26T09:16:15.828099+00:00",
+    "finished_at": "2026-08-26T09:34:15.143957+00:00"
+  }
+}

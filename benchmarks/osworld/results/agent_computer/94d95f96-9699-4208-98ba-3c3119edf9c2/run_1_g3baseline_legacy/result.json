@@ -1,0 +1,59 @@
+{
+  "id": "94d95f96-9699-4208-98ba-3c3119edf9c2",
+  "bucket": "os",
+  "instruction": "I want to install Spotify on my current system. Could you please help me?",
+  "answer": "DONE",
+  "eval_state": "",
+  "provenance": {
+    "task_sha256": "17510c541d673f815b48c2832a94c0ad9f765934ce7f3c3a4ff5787cb4397599",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-9c111720-8dd9-41e6-8b76-98bb2c176cf8.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-26T05:47:05.362036+00:00",
+    "finished_at": "2026-08-26T05:49:33.951901+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 23,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.3505185,
+  "agent_input_tokens": 30,
+  "agent_output_tokens": 4934,
+  "agent_cache_read_tokens": 649935,
+  "agent_cache_creation_tokens": 21148,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2063,
+      "outputTokens": 14,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0021330000000000003,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 30,
+      "outputTokens": 4934,
+      "cacheReadInputTokens": 649935,
+      "cacheCreationInputTokens": 21148,
+      "webSearchRequests": 0,
+      "costUSD": 0.34838549999999996,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 145841,
+  "agent_duration_api_ms": 115165,
+  "agent_session_id": "b8be949e-99bf-44c7-aabf-7b73f364c141",
+  "agent_uuid": "ea5a951d-64f7-47ce-a822-7610bd54ca4d"
+}

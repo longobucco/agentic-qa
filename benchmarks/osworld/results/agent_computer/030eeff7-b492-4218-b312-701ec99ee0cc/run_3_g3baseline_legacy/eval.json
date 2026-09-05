@@ -1,0 +1,7 @@
+{
+  "id": "030eeff7-b492-4218-b312-701ec99ee0cc",
+  "verdict": "EVAL_ERROR",
+  "reason": "no eval_state captured (official eval errored: AssertionError: Setup controller cannot find init function _chrome_inject_js_setup)",
+  "source": "offline_fallback",
+  "gold_sha256": {}
+}

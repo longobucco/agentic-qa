@@ -1,0 +1,3 @@
+The left slide panel is visible — the "Slides" panel appears on the left side with the slide 1 thumbnail and its "Slides" header. In the View menu, "Slide Pane" is enabled. The panel is present and restored, so the desired state (slide panel visible) is satisfied. Toggling it now would only hide it again.
+
+ANSWER: DONE

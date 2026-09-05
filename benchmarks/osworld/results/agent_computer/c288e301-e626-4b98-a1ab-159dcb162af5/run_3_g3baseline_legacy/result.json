@@ -1,0 +1,59 @@
+{
+  "id": "c288e301-e626-4b98-a1ab-159dcb162af5",
+  "bucket": "os",
+  "instruction": "Please set the default Python version to Python4 on my Ubuntu system.",
+  "answer": "FAIL",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "8aafbe3817f63e6cb684fd600d12ef8ebdb1dcee44c83c4037fd5e53d475f4fb",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-024c02d6-1b8a-4074-b01f-75a3b58e722a.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-23T18:12:52.651569+00:00",
+    "finished_at": "2026-08-23T18:12:58.847270+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 1,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.0098795,
+  "agent_input_tokens": 2,
+  "agent_output_tokens": 130,
+  "agent_cache_read_tokens": 20145,
+  "agent_cache_creation_tokens": 0,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1805,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.00188,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 2,
+      "outputTokens": 130,
+      "cacheReadInputTokens": 20145,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0079995,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 3864,
+  "agent_duration_api_ms": 4908,
+  "agent_session_id": "b32fc3c3-b83c-491e-8aa8-4bab97d4e1e4",
+  "agent_uuid": "b22e595a-bbe7-43c3-942c-bbe90df3c021"
+}

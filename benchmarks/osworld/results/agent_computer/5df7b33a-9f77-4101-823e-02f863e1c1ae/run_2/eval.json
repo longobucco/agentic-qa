@@ -1,6 +1,6 @@
 {
   "id": "5df7b33a-9f77-4101-823e-02f863e1c1ae",
   "verdict": "ENVIRONMENT_ERROR",
-  "reason": "config setup failed: Setup step 4 failed: _open_setup - Failed to open file '/home/user/Desktop/book/Spectral Graph Theory.pdf'. An error occurred while trying to send the request or the server responded with an error: 404 Client Error: Not Found for url: https://5000-a057ad13-5661-4a09-b1cb-b6e689bebbff.daytonaproxy01.eu/setup/open_file",
+  "reason": "config setup failed: Setup step 4 failed: _open_setup - Failed to open file '/home/user/Desktop/book/Spectral Graph Theory.pdf'. An error occurred while trying to send the request or the server responded with an error: 404 Client Error: Not Found for url: https://5000-edcdf7ab-75b0-49f7-8916-cf2b842871c8.daytonaproxy01.eu/setup/open_file",
   "source": "environment"
 }

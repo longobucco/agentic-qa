@@ -1,0 +1,61 @@
+{
+  "id": "841b50aa-df53-47bd-a73a-22d3a9f73160",
+  "bucket": "libreoffice_impress",
+  "instruction": "Add a note \"APP\" into the slide and give the slide a purple background color.",
+  "answer": "",
+  "eval_state": "<binary:24556 bytes at 181_2.pptx>",
+  "provenance": {
+    "task_sha256": "98ffa11a195e4ee87ceaa062f7158fbcc668039f96830e4065671d63ade8d584",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-ac5838c9-71c2-42c3-824f-59f916a807f4.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-16T12:41:47.509441+00:00",
+    "finished_at": "2026-08-16T12:55:20.847013+00:00"
+  },
+  "agent_clean_finish": false,
+  "agent_num_turns": 151,
+  "agent_stop_reason": "tool_use",
+  "agent_terminal_reason": "max_turns",
+  "agent_subtype": "error_max_turns",
+  "agent_is_error": true,
+  "agent_errors": [
+    "Reached maximum number of turns (150)"
+  ],
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 4.550506499999998,
+  "agent_input_tokens": 167,
+  "agent_output_tokens": 25741,
+  "agent_cache_read_tokens": 12221650,
+  "agent_cache_creation_tokens": 131842,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2913,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0029879999999999998,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 167,
+      "outputTokens": 25741,
+      "cacheReadInputTokens": 12221650,
+      "cacheCreationInputTokens": 131842,
+      "webSearchRequests": 0,
+      "costUSD": 4.547518499999998,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 811857,
+  "agent_duration_api_ms": 767915,
+  "agent_session_id": "6e1a4201-4dc1-4d7e-b97b-8d07fb998ccc",
+  "agent_uuid": "e58594ab-3b18-45c5-81d6-a12a2555b376"
+}

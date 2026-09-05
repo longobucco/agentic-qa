@@ -1,9 +1,10 @@
-Both folders have been created successfully. The left folder pane now shows under "Local Folders":
-- Trash
-- Outbox
-- **COMPANY**
-- **UNIVERSITY**
+Both folders have been created successfully. The left panel now shows:
+- **Local Folders**
+  - Trash
+  - Outbox
+  - **COMPANY**
+  - **UNIVERSITY**
 
-Both local folders COMPANY and UNIVERSITY have been created in Thunderbird's Local Folders.
+The JavaScript console confirms both commands returned `undefined` (success), and both folders are visible in Thunderbird's folder pane under Local Folders.
 
 ANSWER: DONE

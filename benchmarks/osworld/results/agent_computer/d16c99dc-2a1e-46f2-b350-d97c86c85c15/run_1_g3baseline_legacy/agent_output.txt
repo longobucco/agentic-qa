@@ -1,0 +1,10 @@
+The task is complete. The status bar confirms: **"Image saved to '/home/user/Desktop/dog_with_background_two_layers.xcf'"** and the title bar no longer shows the asterisk (*) indicating all changes are saved.
+
+**Summary of what was accomplished:**
+- Found the dog layer: "dog_with_background.png" (original dimensions: 1578×948 pixels)
+- Scaled it to **852×512 pixels** — height adjusted to exactly 512 pixels while maintaining the original aspect ratio (1578/948 = 852/512 ≈ 1.664)
+- Saved the XCF file successfully
+
+The canvas now shows the scaled dog layer occupying the top-left portion, with the transparent area visible where the layer no longer covers.
+
+ANSWER: DONE

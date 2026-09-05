@@ -1,10 +1,1 @@
-The Account Settings UI confirms everything is correctly configured:
-- Account: `anonym-x2024@outlook.com`
-- **Signature text** field shows two lines:
-  - `Anonym`
-  - `XYZ Lab`
-- The **"Use HTML"** checkbox is **unchecked** → plain text signature ✓
-
-The graded state is verified both in the UI and in `prefs.js` (`mail.identity.id1.htmlSigText` = `Anonym\nXYZ Lab`, `htmlSigFormat = false`). The task originally had no email account configured, so I set up the account identity and attached the plain-text signature to it.
-
-ANSWER: DONE
+You've hit your session limit · resets 8:10pm (Europe/Rome)

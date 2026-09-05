@@ -1,0 +1,59 @@
+{
+  "id": "dd84e895-72fd-4023-a336-97689ded257c",
+  "bucket": "thunderbird",
+  "instruction": "Add a star to every email in local Bills folder",
+  "answer": "DONE",
+  "eval_state": "<binary:1245184 bytes at global-messages-db.sqlite>",
+  "provenance": {
+    "task_sha256": "dfd49c97783b58942f80e8f04fee5e2e7a102e688ddad23df2583d1b7fc52333",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-39a293e4-aea9-4a3f-8a69-a48e6c263616.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-08-26T11:29:29.408104+00:00",
+    "finished_at": "2026-08-26T11:33:07.476687+00:00"
+  },
+  "agent_clean_finish": true,
+  "agent_num_turns": 31,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.54735365,
+  "agent_input_tokens": 38,
+  "agent_output_tokens": 7868,
+  "agent_cache_read_tokens": 971108,
+  "agent_cache_creation_tokens": 36535,
+  "agent_model_usage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 801,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.000881,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-sonnet-4-6": {
+      "inputTokens": 38,
+      "outputTokens": 7868,
+      "cacheReadInputTokens": 971108,
+      "cacheCreationInputTokens": 36535,
+      "webSearchRequests": 0,
+      "costUSD": 0.5464726500000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "agent_duration_ms": 214993,
+  "agent_duration_api_ms": 207780,
+  "agent_session_id": "c7369a43-29e4-4db7-8002-d9816778d9dc",
+  "agent_uuid": "4869ebd6-f638-4062-a4df-97271910b5f6"
+}

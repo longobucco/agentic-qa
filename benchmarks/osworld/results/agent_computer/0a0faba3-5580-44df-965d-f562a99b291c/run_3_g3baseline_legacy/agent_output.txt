@@ -1,0 +1,13 @@
+The task is complete. The document is now showing the correct tabstop alignment:
+
+- First three words of each sentence are **left-aligned** (visible on the left side)
+- The remaining words are **right-aligned** (visible on the right side, cut off by the viewport)
+- There is **empty space in the middle** for adding photos
+
+The implementation used:
+1. A `<w:tab/>` element inserted after the 3rd word in each paragraph
+2. A right-aligned tab stop at 9360 twips (6.5 inches = the full text width) added to each paragraph's formatting
+
+Every paragraph in the document now has this split layout.
+
+ANSWER: DONE

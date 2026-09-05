@@ -1,0 +1,3 @@
+The task is complete. The file has been saved with strikethrough applied to both the first line ("Introductions") and second line ("Club Rights, Responsibilities & Resources") of the to-do list on slide 2.
+
+ANSWER: DONE

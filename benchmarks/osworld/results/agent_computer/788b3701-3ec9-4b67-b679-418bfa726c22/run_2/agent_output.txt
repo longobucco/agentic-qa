@@ -1,3 +1,14 @@
-Successfully downloaded `Prelude.tex` (1792 bytes) and saved it to `/home/user/Documents/Novels/4th Year in Tsinghua/Prelude.tex`. The novel collection folder was empty, so "Prelude" was the next (first) chapter to download.
+The first chapter "Prelude.tex" has been successfully downloaded from the GitHub repository and saved to `/home/user/Documents/Novels/4th Year in Tsinghua/Prelude.tex`.
+
+The chapter order from `main.tex` is:
+1. **Prelude** ← downloaded now
+2. Zero-Zero Pavilion
+3. Moonlight over Lotus Pond
+4. The Phantom of the West Lake
+5. Gong Office
+6. Classroom Building 2
+7. Early Buildings
+
+Since the novel folder was empty, "Prelude" was the next (first) chapter to obtain.
 
 ANSWER: DONE
