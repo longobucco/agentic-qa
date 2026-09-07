@@ -152,6 +152,11 @@ def _provenance(task, ctrl, started_at):
         "task_sha256": hashlib.sha256(
             json.dumps(task, sort_keys=True).encode()).hexdigest(),
         "image": config.IMAGE,
+        # The model we ASKED for. Empty means no --model was passed and the CLI picked its own
+        # default -- the gap that let the G3 campaign run across three different models without
+        # anything on disk recording it (see config.MODEL). What actually served the request is
+        # cross-checked separately, in _model_mismatch.
+        "model_requested": config.MODEL or None,
         "controller_url": getattr(ctrl, "base_url", None) or config.CONTROLLER_URL or None,
         "release": config.RELEASE,
         "max_turns": config.MAX_TURNS,
@@ -161,6 +166,30 @@ def _provenance(task, ctrl, started_at):
         "started_at": started_at,
         "finished_at": datetime.now(timezone.utc).isoformat(),
     }
+
+
+def _served_by(meta):
+    """Which model actually answered, per the CLI's own modelUsage. Haiku shows up in nearly
+    every session as Claude Code's internal auxiliary model (a few hundred tokens for things
+    like titling); it never drives the agent, so it is not the answer to this question."""
+    served = [m for m in (meta.get("modelUsage") or {}) if not m.startswith("claude-haiku")]
+    return sorted(served)
+
+
+def _model_mismatch(meta):
+    """Flag a run the CLI did NOT serve with the model we pinned, so it can be excluded rather
+    than silently averaged in. Recorded per run because this failed silently for a whole
+    campaign: with no --model passed and nothing on disk naming the model, three models' runs
+    sat indistinguishable in one results tree until modelUsage was audited weeks later."""
+    served = _served_by(meta)
+    if not config.MODEL:
+        # Unpinned: not a mismatch (nothing was promised), but still worth naming explicitly.
+        return {"model_served": served or None, "model_pinned": False, "model_mismatch": None}
+    mismatch = served != [config.MODEL]
+    if mismatch:
+        print(f"[osworld] WARNING model mismatch: pinned {config.MODEL!r} but the CLI reports "
+              f"{served or 'nothing'} -- this run is NOT comparable to the pinned campaign")
+    return {"model_served": served or None, "model_pinned": True, "model_mismatch": mismatch}
 
 
 def _clean_finish(meta, answer):
@@ -276,6 +305,7 @@ def _rate_limit_result_rec(task, meta):
     (the caller fills provenance; there's no desktop state to capture)."""
     telemetry = _agent_telemetry(meta)
     telemetry["agent_clean_finish"] = False
+    telemetry.update(_model_mismatch(meta))
     return {"id": task["id"], "bucket": tasks.bucket_of(task),
             "instruction": task["instruction"], "answer": "", **telemetry}
 
@@ -410,6 +440,7 @@ def run(task, *, env, out, refs=None, dry=False):
         "eval_state": eval_state,
         "provenance": _provenance(task, ctrl, started_at),
         **transcript,
+        **_model_mismatch(meta),
         **telemetry,
     })
     rec = _annotate_incidental(_bounded("scoring", _score, ctrl, task, answer, out), clean_finish)
