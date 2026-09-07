@@ -9,9 +9,13 @@ from core.run import Benchmark, Runner
 
 
 def build():
+    # Named after the pinned model (config.SYSTEM_NAME), so each model's campaign gets its own
+    # results tree and can never overwrite another's. Unpinned keeps the historical
+    # "agent_computer" name -- that tree holds the mixed-model G3 runs, many without a saved
+    # transcript, and has to stay exactly as it is.
     runners = {
-        "agent_computer": Runner(
-            name="agent_computer",
+        config.SYSTEM_NAME: Runner(
+            name=config.SYSTEM_NAME,
             run=agent_computer.run,
             environment=osworld_environment,
             needs_browser=False,
@@ -27,5 +31,5 @@ def build():
         bucket_of=tasks.bucket_of,
         runners=runners,
         judge=evaluate.JUDGE,
-        default_runner="agent_computer",
+        default_runner=config.SYSTEM_NAME,
     )
