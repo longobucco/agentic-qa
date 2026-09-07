@@ -10,7 +10,39 @@ RESULTS_DIR = HERE / "results"
 RELEASE = os.environ.get("OSW_RELEASE", "verified").strip().lower()
 TASKS_FILE = DATA_DIR / f"osworld_{RELEASE}.jsonl"
 
-MODEL = os.environ.get("WV_MODEL", "").strip()
+# The single most consequential knob in the harness, and until 2026-09-07 the ONLY one that was
+# neither pinned nor recorded. With this unset, runners/agent_computer passes no --model, so every
+# `claude -p` subprocess silently inherits whatever the CLI's current default happens to be -- and
+# that default drifts (it also follows an interactive /model switch). Auditing `agent_model_usage`
+# after the fact showed the G3 campaign had in fact run across THREE models: claude-sonnet-4-6
+# (884 runs), claude-sonnet-5 (326) and claude-opus-4-8 (285). That silently breaks the
+# "fixed model, variable harness" premise every comparison in this project rests on, so from here
+# on the model is pinned explicitly, recorded in each run's provenance, and cross-checked against
+# what the CLI reports it actually used (see agent_computer._provenance / _model_mismatch).
+# OSW_MODEL is the name to use; WV_MODEL stays accepted for continuity with the other benchmarks.
+MODEL = (os.environ.get("OSW_MODEL", "").strip()
+         or os.environ.get("WV_MODEL", "").strip())
+
+# Results live under <RESULTS_DIR>/<system>/, and `system` is the runner's name (see core.run).
+# Deriving the runner name from the pinned model gives each model its own results tree for free,
+# so a new pinned campaign can never overwrite the older mixed-model one -- which, having runs
+# both with and without a saved transcript, has to be preserved exactly as it is.
+_MODEL_SLUGS = {
+    "claude-sonnet-5": "sonnet5",
+    "claude-sonnet-4-6": "sonnet46",
+    "claude-opus-4-8": "opus48",
+}
+
+
+def model_slug(model=None):
+    model = MODEL if model is None else model
+    if not model:
+        return ""
+    return _MODEL_SLUGS.get(model, model.replace("claude-", "").replace(".", "").replace("-", ""))
+
+
+# "agent_computer" (unpinned, mixed-model, historical) vs "agent_computer_sonnet5" (pinned).
+SYSTEM_NAME = f"agent_computer_{model_slug()}" if MODEL else "agent_computer"
 MAX_TURNS = int(os.environ.get("OSW_MAX_TURNS", "150"))   # desktop GUI turns run >4x web-nav ones
 MAX_STEPS = int(os.environ.get("OSW_MAX_STEPS", "30"))
 TASK_TIMEOUT = int(os.environ.get("OSW_TASK_TIMEOUT", "3600"))

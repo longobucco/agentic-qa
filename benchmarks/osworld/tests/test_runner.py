@@ -7,8 +7,10 @@ from pathlib import Path
 
 from benchmarks.osworld.runners.agent_computer import (
     _agent_telemetry, _annotate_incidental, _clean_finish, _environment_error_rec,
-    _rate_limit_infra_rec, _rate_limit_result_rec, _save_conversation_transcript, _score,
+    _model_mismatch, _rate_limit_infra_rec, _rate_limit_result_rec,
+    _save_conversation_transcript, _score, _served_by,
 )
+from benchmarks.osworld import config
 
 
 def test_clean_finish_true_on_normal_stop():
@@ -189,6 +191,42 @@ def test_transcript_status_on_success(monkeypatch=None):
     assert st["transcript_saved"] is True
     assert st["transcript_bytes"] == len('{"type":"x"}\n')
     assert (out / "conversation.jsonl").exists()
+
+
+def test_served_by_ignores_the_cli_auxiliary_haiku():
+    """Claude Code bills a few hundred Haiku tokens per session for its own internal work; it
+    never drives the agent, so it must not be mistaken for the model under test."""
+    meta = {"modelUsage": {"claude-sonnet-5": {"inputTokens": 100},
+                           "claude-haiku-4-5-20251001": {"inputTokens": 881}}}
+    assert _served_by(meta) == ["claude-sonnet-5"]
+
+
+def test_model_mismatch_flags_a_run_served_by_the_wrong_model():
+    """The check that was missing for the whole G3 campaign: three models' runs landed in one
+    results tree with nothing on disk to tell them apart."""
+    real = config.MODEL
+    config.MODEL = "claude-sonnet-5"
+    try:
+        ok = _model_mismatch({"modelUsage": {"claude-sonnet-5": {}}})
+        bad = _model_mismatch({"modelUsage": {"claude-sonnet-4-6": {}}})
+    finally:
+        config.MODEL = real
+    assert ok["model_mismatch"] is False and ok["model_pinned"] is True
+    assert bad["model_mismatch"] is True
+    assert bad["model_served"] == ["claude-sonnet-4-6"]
+
+
+def test_model_mismatch_is_none_when_nothing_was_pinned():
+    """Unpinned is not a mismatch -- nothing was promised -- but it is still recorded, so a run
+    can never again be silently assumed to be on the intended model."""
+    real = config.MODEL
+    config.MODEL = ""
+    try:
+        rec = _model_mismatch({"modelUsage": {"claude-sonnet-4-6": {}}})
+    finally:
+        config.MODEL = real
+    assert rec["model_pinned"] is False and rec["model_mismatch"] is None
+    assert rec["model_served"] == ["claude-sonnet-4-6"]
 
 
 def main():
