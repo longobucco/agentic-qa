@@ -24,6 +24,23 @@ def bucket_of(task):
     return apps[0] if apps else "misc"
 
 
+def app_of(task):
+    """The app a task is ABOUT, normalized -- for grouping runs in analysis and reports.
+
+    `bucket_of` deliberately stays raw: it is written into every run record as `bucket` and is
+    what the pre-registered G3 strata were drawn on, so changing it would rewrite history
+    mid-campaign. This one is re-derived from the task JSON at read time, so it can be correct:
+    - normalized, so 'libreoffice calc' / 'vs_code' / 'Chrome' stop splitting one app into
+      three rows in every per-app failure breakdown (18 + 6 + 1 tasks in the verified release);
+    - capability tags ('os', 'terminal') yield to a real app tag, so ['os', 'chrome'] counts as
+      chrome (19 tasks whose FIRST tag is a capability) and only genuinely app-less tasks stay
+      under 'os'.
+    """
+    apps = [_normalize_app(a) for a in (task.get("related_apps") or [])]
+    real = [a for a in apps if a not in config.ALWAYS_PRESENT_CAPABILITIES]
+    return (real or apps or ["?"])[0]
+
+
 def load_tasks():
     if not config.TASKS_FILE.exists():
         raise SystemExit(

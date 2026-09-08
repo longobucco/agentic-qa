@@ -145,6 +145,15 @@ def _agent_telemetry(meta):
     }
 
 
+def _evaluator_provenance():
+    """Never let a provenance record fail a run: scoring may be unavailable entirely."""
+    try:
+        from benchmarks.osworld.env.osworld_eval import evaluator_provenance
+        return evaluator_provenance()
+    except Exception:
+        return {"evaluator_commit": None, "evaluator_package": None}
+
+
 def _provenance(task, ctrl, started_at):
     """Per-run pinning record. harness.json gets overwritten by the next invocation; this
     rides with the individual run so the record stays self-describing after reconfiguration."""
@@ -159,6 +168,10 @@ def _provenance(task, ctrl, started_at):
         "model_requested": config.MODEL or None,
         "controller_url": getattr(ctrl, "base_url", None) or config.CONTROLLER_URL or None,
         "release": config.RELEASE,
+        # Who computed the verdict. The task set and the guest image were pinned long before
+        # the evaluator library was (see data/download_evaluators.py), so a pass rate is only
+        # comparable against another one carrying the same value here.
+        **_evaluator_provenance(),
         "max_turns": config.MAX_TURNS,
         "task_timeout": config.TASK_TIMEOUT,
         "observation": config.OBSERVATION,

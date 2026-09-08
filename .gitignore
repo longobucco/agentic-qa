@@ -197,3 +197,6 @@ benchmarks/osworld/results/agent_computer/*/run_*/*
 # since it can run several MB per run and is the most likely accidental-commit candidate of
 # the bunch.
 benchmarks/osworld/results/agent_computer/*/run_*/conversation.jsonl
+
+# fetched by data/download_evaluators.py at the pinned upstream commit -- not source
+benchmarks/osworld/data/evaluators/

@@ -46,8 +46,9 @@ def _load(results_dir, system):
     return out
 
 
-def check(results_dir=None, system="agent_computer"):
+def check(results_dir=None, system=None):
     results_dir = results_dir or config.RESULTS_DIR
+    system = config.resolve_system(system)
     data = _load(results_dir, system)
     missing = []
     report = {"n_tasks": len(data), "n_runs": sum(len(v) for v in data.values())}
@@ -126,7 +127,7 @@ def check(results_dir=None, system="agent_computer"):
 
 
 def _main():
-    r = check()
+    r = check(system=config.system_from_argv())
     if not r["n_runs"]:
         print("No runs on disk yet — run the pilot first.")
         return

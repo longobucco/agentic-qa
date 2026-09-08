@@ -41,10 +41,11 @@ MAD_Z_THRESHOLD = 3.5  # Iglewicz & Hoaglin's conventional cutoff for the modifi
 WALL_CLOCK_GAP_S = 1800  # host-sleep signature: absolute gap this large isn't scheduling jitter
 
 
-def _load_records(results_dir=None, system="agent_computer"):
+def _load_records(results_dir=None, system=None):
     """[(task_id, run_name, result, eval), ...] for every scored run of a task in
     g3_sample.full()."""
     results_dir = results_dir or config.RESULTS_DIR
+    system = config.resolve_system(system)
     base = results_dir / system
     ids = set(full())
     out = []
@@ -80,7 +81,7 @@ def _is_outlier(value, stats):
     return abs(0.6745 * (value - m) / mad) > MAD_Z_THRESHOLD
 
 
-def scan(results_dir=None, system="agent_computer"):
+def scan(results_dir=None, system=None):
     records = _load_records(results_dir, system)
     flags = {"duration_outlier": [], "cost_outlier": [], "wall_clock_gap": [],
               "turn_cap_hit": [], "dirty_finish": [], "reason_cluster": []}
@@ -130,7 +131,7 @@ def scan(results_dir=None, system="agent_computer"):
 
 
 def _main():
-    flags = scan()
+    flags = scan(system=config.system_from_argv())
     total = sum(len(v) for v in flags.values())
     if not total:
         print("No anomalies flagged.")

@@ -18,7 +18,12 @@ import pathlib
 
 from benchmarks.osworld import config, tasks as osw_tasks
 
-RESULTS = config.RESULTS_DIR / "agent_computer"
+# Which results tree to describe: OSW_MODEL (or --system) picks a pinned model's tree, and the
+# manifest filenames get the same suffix so a sonnet5 manifest never overwrites the historical
+# mixed-model one.
+SYSTEM = config.resolve_system(config.system_from_argv())
+RESULTS = config.RESULTS_DIR / SYSTEM
+SUFFIX = "" if SYSTEM == "agent_computer" else "_" + SYSTEM.removeprefix("agent_computer_")
 OUT_DIR = pathlib.Path("benchmarks/osworld/analysis/results")
 
 # Campaign phase boundaries, by run start time. The G5 ablation arms and then the transcript
@@ -63,6 +68,10 @@ def _condition(started_ats):
     dates = [s for s in started_ats if s]
     if not dates:
         return "no-run"
+    # The phase boundaries below only exist in the historical mixed-model tree; a pinned-model
+    # tree is one campaign by construction, so don't pin a misleading phase label on it.
+    if SUFFIX:
+        return SUFFIX.lstrip("_") + "-campaign"
     labels = set()
     for s in dates:
         if s >= BACKFILL_FROM:
@@ -79,7 +88,7 @@ def _collect(task):
     td = RESULTS / tid
     row = {
         "task_id": tid,
-        "app": osw_tasks.bucket_of(task),
+        "app": osw_tasks.app_of(task),
         "evaluator": json.dumps(task.get("evaluator", {}).get("func")),
         "instruction": " ".join((task.get("instruction") or "").split())[:110],
     }
@@ -134,18 +143,19 @@ def main():
     fields = ["task_id", "app", "condition", "current_verdicts", "baseline_verdicts",
               "reward", "scored_by", "real_transcripts", "runs_on_disk", "evaluator",
               "note", "instruction"]
-    with (OUT_DIR / "task_manifest.csv").open("w", newline="") as f:
+    with (OUT_DIR / f"task_manifest{SUFFIX}.csv").open("w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=fields)
         w.writeheader()
         w.writerows(rows)
-    (OUT_DIR / "task_manifest.json").write_text(json.dumps(rows, indent=2))
+    (OUT_DIR / f"task_manifest{SUFFIX}.json").write_text(json.dumps(rows, indent=2))
 
     by_cond = collections.Counter(r["condition"] for r in rows)
     with_transcripts = sum(1 for r in rows if r["real_transcripts"] == 3)
     partial = sum(1 for r in rows if 0 < r["real_transcripts"] < 3)
     drifted = sum(1 for r in rows if r["note"] == "differs from G3 baseline")
 
-    print(f"task in scope: {len(rows)}  ->  {OUT_DIR}/task_manifest.{{csv,json}}")
+    print(f"system: {SYSTEM}   task in scope: {len(rows)}"
+          f"  ->  {OUT_DIR}/task_manifest{SUFFIX}.{{csv,json}}")
     print("\ncondizione delle run attualmente su disco:")
     for cond, n in by_cond.most_common():
         print(f"  {cond:<28} {n}")

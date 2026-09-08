@@ -21,11 +21,12 @@ import json
 import sys
 
 from benchmarks.osworld import config
+from benchmarks.osworld import tasks as osw_tasks
 from benchmarks.osworld.tasks import load_tasks
 from core.results import is_run_dir
 
 
-def coverage(results_dir=None, system="agent_computer"):
+def coverage(results_dir=None, system=None):
     """{task_id: {"app": ..., "real": [run_idx, ...], "stub": [run_idx, ...]}} for every task
     that has at least one conversation.jsonl on disk, real or stub.
 
@@ -33,6 +34,7 @@ def coverage(results_dir=None, system="agent_computer"):
     runnable-task population -- a directory outside the current scope still deserves an entry
     if it has a transcript, and it's what makes this testable against a synthetic tempdir."""
     results_dir = results_dir or config.RESULTS_DIR
+    system = config.resolve_system(system)
     base = results_dir / system
     tasks = {t["id"]: t for t in load_tasks()}
     out = {}
@@ -52,13 +54,13 @@ def coverage(results_dir=None, system="agent_computer"):
                 result = {}
             (stub if result.get("agent_api_error_status") else real).append(n)
         if real or stub:
-            apps = tasks.get(tid, {}).get("related_apps") or []
-            out[tid] = {"app": apps[0] if apps else "?", "real": real, "stub": stub}
+            out[tid] = {"app": osw_tasks.app_of(tasks.get(tid, {})),
+                        "real": real, "stub": stub}
     return out
 
 
 def _main():
-    cov = coverage()
+    cov = coverage(system=config.system_from_argv())
     if "--json" in sys.argv:
         print(json.dumps(cov, indent=2))
         return

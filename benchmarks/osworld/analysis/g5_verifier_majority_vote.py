@@ -58,8 +58,9 @@ def _majority(verdicts):
     return ranked[0][0]
 
 
-def run(results_dir=None, system="agent_computer"):
+def run(results_dir=None, system=None):
     results_dir = results_dir or config.RESULTS_DIR
+    system = config.resolve_system(system)
     base = results_dir / system
     tasks = {t["id"]: t for t in load_tasks()}
     flaky = taxonomy(results_dir, system)["stability"]["flaky"]
@@ -159,7 +160,7 @@ def _summarize(rows):
 
 
 def _main():
-    rows = run()
+    rows = run(system=config.system_from_argv())
     if "--json" in sys.argv:
         print(json.dumps(rows, indent=2))
         return

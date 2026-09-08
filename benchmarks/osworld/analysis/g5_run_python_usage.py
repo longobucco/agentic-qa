@@ -48,8 +48,9 @@ def _tool_counts(conversation_path):
     return counts
 
 
-def scan(results_dir=None, system="agent_computer"):
+def scan(results_dir=None, system=None):
     results_dir = results_dir or config.RESULTS_DIR
+    system = config.resolve_system(system)
     base = results_dir / system
     cov = coverage(results_dir, system)
     tasks = {t["id"]: t for t in load_tasks()}
@@ -66,9 +67,8 @@ def scan(results_dir=None, system="agent_computer"):
             total += c
             n_transcripts += 1
         if task_total:
-            apps = tasks.get(tid, {}).get("related_apps") or []
             per_task[tid] = {
-                "app": apps[0] if apps else info.get("app", "?"),
+                "app": info.get("app", "?"),
                 "n_real_transcripts": len(info["real"]),
                 "counts": dict(task_total),
                 "run_python": task_total.get("run_python", 0),
@@ -78,7 +78,7 @@ def scan(results_dir=None, system="agent_computer"):
 
 
 def _main():
-    result = scan()
+    result = scan(system=config.system_from_argv())
     if "--json" in sys.argv:
         print(json.dumps(result, indent=2))
         return
