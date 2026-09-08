@@ -1,0 +1,11 @@
+Report created at `/home/user/Desktop/report.xlsx` with the latest 5 emails from the "daily" folder, ordered earliest → most recent:
+
+| sender_name | sender_address | subject | CC | attachments |
+|---|---|---|---|---|
+| HKU Bulk Email Delivery System | mail.service@intranet.hku.hk | HKU Daily Email Digest (25 JAN 2024) | | 0 |
+| eNotices System | enotices.daily.digest@hku.hk | HKU Daily Notices (27 JAN 2024) | <mail.service@intranet.hku.hk> | 0 |
+| eNotices System | enotices.daily.digest@hku.hk | HKU Daily Notices (28 JAN 2024) | <mail.service@intranet.hku.hk> | 0 |
+| HKU Bulk Email Delivery System | mail.service@intranet.hku.hk | HKU Daily Email Digest (29 JAN 2024) | | 0 |
+| HKU Bulk Email Delivery System | mail.service@intranet.hku.hk | HKU Daily Email Digest (30 JAN 2024) | | 0 |
+
+ANSWER: DONE

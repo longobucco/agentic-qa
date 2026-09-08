@@ -1,0 +1,3 @@
+The University of Hong Kong logo has been successfully saved as `/root/hku_logo.png` (18,522 bytes), exported from within GIMP without launching a separate web browser.
+
+ANSWER: DONE

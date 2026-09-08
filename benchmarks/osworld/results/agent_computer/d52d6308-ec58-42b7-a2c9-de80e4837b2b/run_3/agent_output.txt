@@ -1,5 +1,1 @@
-I've successfully removed the dock on the left side of the GIMP window. The left dock contained a group of dockable dialogs (Tool Options, Device Status, Undo History, and Images tabs stacked together). I closed each of them via the "Configure this tab → Close Tab" menu, which removed the entire dockbook.
-
-The toolbox that remains is GIMP's core Toolbox — a separate, non-removable element (it has no tab-close menu, only a "New Toolbox" command in the Windows menu), so it is not considered "the dock" and correctly stays in place.
-
-ANSWER: DONE
+You've hit your session limit · resets 9:40pm (Europe/Rome)

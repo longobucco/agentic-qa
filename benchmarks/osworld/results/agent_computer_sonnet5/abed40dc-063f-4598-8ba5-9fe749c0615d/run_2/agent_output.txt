@@ -1,0 +1,3 @@
+Done. Unique names placed in column D preserving first-occurrence order, and the file was saved in xlsx format.
+
+ANSWER: DONE

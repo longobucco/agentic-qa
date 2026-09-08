@@ -1,0 +1,8 @@
+{
+  "id": "ef9d12bd-bcee-4ba0-a40e-918400f43ddf",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official check_left_panel -> 0.00",
+  "source": "official",
+  "gold_sha256": {}
+}

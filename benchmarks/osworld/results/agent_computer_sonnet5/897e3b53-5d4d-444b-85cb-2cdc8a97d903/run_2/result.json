@@ -1,0 +1,20 @@
+{
+  "id": "897e3b53-5d4d-444b-85cb-2cdc8a97d903",
+  "bucket": "libreoffice_writer",
+  "instruction": "I have a LibreOffice Writer file form.docx on the desktop. Help me convert it to PDF format and store the PDF in the forms/ folder in my Google Drive.",
+  "answer": "",
+  "setup_error": "config setup failed: Setup step 1 failed: _googledrive_setup - Invalid client secrets file ('Error opening file', 'client_secrets.json', 'No such file or directory', 2)",
+  "provenance": {
+    "task_sha256": "8e8645e3719b5c9cd6be0475c93d2ac5daa8c9c92a4a44fc1384e507db78247f",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "model_requested": "claude-sonnet-5",
+    "controller_url": "https://5000-3ae1749c-874f-4d86-a1cd-648fd91662f9.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-09-08T06:14:50.088881+00:00",
+    "finished_at": "2026-09-08T06:14:50.089032+00:00"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "id": "a5bbbcd5-b398-4c91-83d4-55e1e31bbb81",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official check_qt_minimal_view -> 0.00",
+  "source": "official",
+  "gold_sha256": {}
+}

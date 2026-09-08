@@ -1,0 +1,3 @@
+I installed the **vscode-numpy-viewer** extension (`percy.vscode-numpy-viewer`), which provides numpy array visualization in VS Code. Verified via `code --list-extensions`: `percy.vscode-numpy-viewer@0.1.11`.
+
+ANSWER: DONE

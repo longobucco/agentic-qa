@@ -1,0 +1,3 @@
+The photo's brightness has been reduced (Brightness −60 via GIMP's Brightness-Contrast) and the file was overwritten/exported to its original location.
+
+ANSWER: DONE

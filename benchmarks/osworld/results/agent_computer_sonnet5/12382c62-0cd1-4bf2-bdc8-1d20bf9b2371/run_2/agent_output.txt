@@ -1,0 +1,3 @@
+Chart created: a clustered column chart of Sales and COGS by week in a new "Sheet2", titled "Sales & COGS", saved to the workbook.
+
+ANSWER: DONE

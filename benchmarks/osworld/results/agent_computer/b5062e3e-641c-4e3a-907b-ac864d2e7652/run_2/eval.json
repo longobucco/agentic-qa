@@ -1,8 +1,8 @@
 {
   "id": "b5062e3e-641c-4e3a-907b-ac864d2e7652",
-  "verdict": "SUCCESS",
-  "reward": 1.0,
-  "reason": "official compare_table -> 1.00",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official compare_table -> 0.00",
   "source": "official",
   "gold_sha256": {
     "authors-gt.xlsx": "d834c5bd4649dfdd36df63dea19fd5b38e15e7e855ae4a4f285bd44ad765bd3c"

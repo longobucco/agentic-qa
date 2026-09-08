@@ -1,0 +1,3 @@
+All standalone occurrences of "text" have been replaced with "test" (whole-word match, leaving "texts"/"texting" untouched) and the file is saved.
+
+ANSWER: DONE

@@ -1,3 +1,3 @@
-The file has been saved successfully. Slide 1 now has a green background color (#008000), visible in both the slide panel on the left and the main editing view. The Properties panel confirms "Background: Color #008000".
+Slide 1 now has a green (#00FF00) background and the file has been saved in pptx format.
 
 ANSWER: DONE

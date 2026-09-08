@@ -1,0 +1,3 @@
+The file is saved (no dot indicator on tab, "keybindings.json" now shows an X close icon instead of unsaved dot). The keybinding is set: Ctrl+J moves focus from terminal to editor.
+
+ANSWER: DONE

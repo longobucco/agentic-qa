@@ -1,0 +1,10 @@
+{
+  "id": "778efd0a-153f-4842-9214-f05fc176b877",
+  "verdict": "FAILURE",
+  "reward": 0.9999999999923035,
+  "reason": "official compare_audios -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "gold_planet.wav": "98e1e255d3e8520add3501c5a791b4762f7dff8a810d295f87eeee94d319ae04"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "8f080098-ddb1-424c-b438-4e96e5e4786e",
+  "verdict": "FAILURE",
+  "reward": 0.9869160460966987,
+  "reason": "official compare_audios -> 0.99",
+  "source": "official",
+  "gold_sha256": {
+    "baby_gold.mp3": "d79d63242cb7c0d4392df0da28b32cd757234115d8b1f6ccfa39ef64f5a062a4"
+  }
+}

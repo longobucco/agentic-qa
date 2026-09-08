@@ -1,0 +1,3 @@
+Completed the `insertionSort` TODO (`arr[j+1] = arr[j]`), ran `calculator.py`, and saved its output to `/home/user/Desktop/log.txt`.
+
+ANSWER: 5\n6\n11\n12\n13

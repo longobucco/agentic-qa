@@ -1,0 +1,3 @@
+I checked the Personal Address Book in Thunderbird (both via the UI — "Total contacts in Personal Address Book: 0" — and directly in the profile's `abook.sqlite`, which has no card properties). There are no contacts to export, so the requested export/conversion cannot be meaningfully performed.
+
+ANSWER: FAIL

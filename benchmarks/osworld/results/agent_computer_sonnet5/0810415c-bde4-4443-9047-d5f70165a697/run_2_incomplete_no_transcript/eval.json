@@ -1,0 +1,11 @@
+{
+  "id": "0810415c-bde4-4443-9047-d5f70165a697",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official ['compare_line_spacing', 'compare_line_spacing'] -> 0.00",
+  "source": "official",
+  "gold_sha256": {
+    "Novels_Intro_Packet_Gold.docx": "fe7f236ee2810829b29a119fb37d6ad08520594a36827076eeb62e7a7b0c66e8",
+    "Novels_Intro_Packet_Gold_2.docx": "4452ed6553122a838536c66d2d561a4819b08d63f112b5b8e3c7f40173b6158b"
+  }
+}

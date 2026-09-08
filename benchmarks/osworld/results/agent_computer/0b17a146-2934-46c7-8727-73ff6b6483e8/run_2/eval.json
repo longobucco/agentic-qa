@@ -1,8 +1,8 @@
 {
   "id": "0b17a146-2934-46c7-8727-73ff6b6483e8",
-  "verdict": "FAILURE",
-  "reward": 0.0,
-  "reason": "official ['compare_docx_files', 'compare_subscript_contains'] -> 0.00",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official ['compare_docx_files', 'compare_subscript_contains'] -> 1.00",
   "source": "official",
   "gold_sha256": {
     "H2O_Factsheet_WA_Gold.docx": "489dcf67cd13dc13a8e37152b6db1f4931e49030ba67aca47c573345ce9fdc00"

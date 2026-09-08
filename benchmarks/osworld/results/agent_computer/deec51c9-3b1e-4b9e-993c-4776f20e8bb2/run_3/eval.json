@@ -4,7 +4,5 @@
   "reward": 0.0,
   "reason": "official compare_table -> 0.00",
   "source": "official",
-  "gold_sha256": {
-    "New Large Language Models Gold.xlsx": "987ada3caca9919dfaf6543a351b3a25d5e46afbca46be273e73157db75562d1"
-  }
+  "gold_sha256": {}
 }

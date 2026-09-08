@@ -1,0 +1,3 @@
+The document title bar confirms "notes.docx - LibreOffice Writer", the content ends correctly with "Platform considerations" section (just before Resources), and the file is now saved on the Desktop at /root/Desktop/notes.docx.
+
+ANSWER: DONE

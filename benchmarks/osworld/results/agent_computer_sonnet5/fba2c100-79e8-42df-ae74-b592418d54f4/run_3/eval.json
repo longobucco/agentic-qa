@@ -1,0 +1,8 @@
+{
+  "id": "fba2c100-79e8-42df-ae74-b592418d54f4",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official compare_images -> 0.00",
+  "source": "official",
+  "gold_sha256": {}
+}

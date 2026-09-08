@@ -1,0 +1,14 @@
+This is a knowledge/troubleshooting question rather than a task requiring a specific on-screen end state, so no desktop action is needed to "complete" it — the fix is a VLC setting change.
+
+The behavior happens because VLC's "Allow only one instance" setting (with "Use only one instance when started from file manager" / D-Bus single-instance control) forces all new media to be handed off to the already-running first instance's playlist, instead of opening in the new window.
+
+To fix it:
+1. Open VLC → **Tools → Preferences** (or press `Ctrl+P`).
+2. In the bottom-left "Show settings" section, select **All** (to reveal advanced options).
+3. Go to **Interface → Main interfaces**.
+4. Uncheck **"Allow only one instance"** (and also uncheck **"Allow only one instance when started from file"** if shown, and **"Enqueue items into playlist in one instance mode"**).
+5. Click **Save**, then close all VLC windows completely and reopen them.
+
+With that unchecked, each new `vlc` process/window runs independently and you can load and play a different video in each one simultaneously. (Alternatively, launching with the command-line flag `--no-one-instance` or `--novideo-title-show` isn't needed — just `vlc --no-one-instance` from a terminal achieves the same per-launch without changing the saved preference.)
+
+ANSWER: Yes — in VLC go to Tools > Preferences > Interface, show "All" settings, and uncheck "Allow only one instance" (and "Allow only one instance when started from file manager") under Main interfaces, then Save and restart VLC. This stops VLC from forwarding new videos to the first running instance, letting each separate VLC window play its own video simultaneously. (Command-line equivalent: launch extra instances with `vlc --no-one-instance`.)

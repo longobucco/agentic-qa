@@ -1,0 +1,5 @@
+All text boxes across every slide (and the master pages) now use **Liberation Sans Narrow**, and the file has been saved.
+
+How it was done (the non-manual approach): run a short Basic macro via **Tools ▸ Macros ▸ Edit Macros**, which loops over `ThisComponent.DrawPages` and `MasterPages`, and for every shape supporting `com.sun.star.drawing.Text` walks its paragraphs/text portions setting `CharFontName` (plus the Asian/Complex variants), then calls `oDoc.store()`. This changes every text box in one pass without selecting any of them by hand.
+
+ANSWER: Use a Basic macro (Tools ▸ Macros) that iterates DrawPages + MasterPages and sets CharFontName = "Liberation Sans Narrow" on every text shape's portions; this was executed and the presentation saved. DONE

@@ -1,0 +1,3 @@
+There is no Desktop directory at all, and no none.png file anywhere expected. The required precondition (the image file existing on the Desktop) is missing, so the task cannot be completed as stated.
+
+ANSWER: FAIL

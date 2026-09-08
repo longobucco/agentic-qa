@@ -1,0 +1,3 @@
+The "About Profiles" tabpage is now open inside Thunderbird itself (visible as a tab titled "About Profiles" in the tab bar, window title reads "About Profiles - Mozilla Thunderbird"), showing profile management options (Create, Rename, Remove, Set default, Launch profile) — not the profile chooser dialog shown at launch.
+
+ANSWER: DONE

@@ -1,10 +1,1 @@
-The desktop environment has become unreachable. Every observation/action call (`screenshot`, `run_python`) now returns `Connection refused`, and it has stayed down across ~15+ minutes of retries — this is an infrastructure failure of the OSWorld guest server, not something I can act around (there is no browser/shell fallback, and the guest is the only thing being graded).
-
-For the record, before the server crashed I had confirmed the environment state:
-- VS Code was running (Welcome/sign-in screen), using `--user-data-dir=/tmp/code-profile --extensions-dir=/tmp/code-extensions`.
-- There was **no `Downloads` directory and no image file anywhere** on the filesystem (a full search found only Chrome logos and the screenshot buffer).
-- No `settings.json` and no "Background" extension were installed.
-
-So even before the crash, the task's required precondition — "the photo in Downloads" — did not exist, and now the guest is unreachable so no action can be performed or graded.
-
-ANSWER: FAIL
+You've hit your session limit · resets 9:40pm (Europe/Rome)

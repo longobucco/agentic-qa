@@ -11,6 +11,10 @@ import os
 import tempfile
 from urllib.parse import urlparse
 
+from benchmarks.osworld import config
+from benchmarks.osworld.env.http_forwarder import (LoopbackForwarder,
+                                                   split_for_getters)
+
 
 # Getter types that fetch from a live third-party service (see g2_temporal_oracle.py for the
 # audit). Single source of truth -- g2_temporal_oracle imports this instead of duplicating it.
@@ -73,6 +77,53 @@ def hash_gold_artifacts(cache_dir, task):
     return out
 
 
+PINNED_EVALUATORS = config.DATA_DIR / "evaluators"
+
+
+def use_pinned_evaluators():
+    """Overlay the evaluator tree fetched at UPSTREAM_COMMIT onto the installed desktop_env.
+
+    The task set and the guest image are pinned to one upstream commit; the library that
+    computes the verdict was not pinned at all, and six tasks in the verified release call
+    metrics/getters the installed release doesn't have (data/download_evaluators.py). Inserting
+    the pinned tree at the front of `desktop_env.evaluators.__path__` makes every
+    `desktop_env.evaluators.<x>` import resolve there first, while the installed package keeps
+    providing the controllers and the third-party dependencies the evaluators import.
+
+    Returns the commit in use, or None when the pinned tree isn't on disk (in which case
+    scoring still runs, on the installed release -- `evaluator_provenance()` says which, so a
+    verdict is never silently attributed to the wrong evaluator).
+    """
+    stamp = PINNED_EVALUATORS / "PINNED_COMMIT"
+    if not config.PINNED_EVALUATORS or not stamp.is_file():
+        return None
+    try:
+        import desktop_env.evaluators as evaluators
+    except Exception:
+        return None
+    path = str(PINNED_EVALUATORS)
+    if path not in evaluators.__path__:
+        # Front of the list: submodule lookup is first-match, so this shadows the installed
+        # metrics/ and getters/ without touching the rest of the package.
+        evaluators.__path__.insert(0, path)
+    return stamp.read_text().strip()
+
+
+def evaluator_provenance():
+    """{"evaluator_commit": ..., "evaluator_package": ...} -- who computed the verdict.
+
+    Recorded per run: a pass rate is only comparable against another one scored by the same
+    evaluator, and this project has already been bitten once by an unrecorded pin (config.MODEL).
+    """
+    commit = use_pinned_evaluators()
+    try:
+        from importlib.metadata import version
+        installed = version("desktop_env")
+    except Exception:
+        installed = None
+    return {"evaluator_commit": commit, "evaluator_package": installed}
+
+
 def make_setup_controller(controller_url, *, cache_dir=None):
     """A real SetupController pointed at our controller_url (config/postconfig dispatch is real
     host-side logic per step type, not a 1:1 REST route name — don't hand-roll it)."""
@@ -100,10 +151,12 @@ def _last_is_fail(action_history):
 class _EnvAdapter:
     """Minimal DesktopEnv stand-in that OSWorld's getters read from."""
 
-    def __init__(self, controller, controller_url, action_history, cache_dir=None):
-        u = urlparse(controller_url)
-        self.vm_ip = u.hostname or "localhost"
-        self.server_port = u.port or (443 if u.scheme == "https" else 5000)
+    def __init__(self, controller, controller_url, action_history, cache_dir=None,
+                 getter_address=None):
+        # What the twelve URL-building getters will interpolate into "http://{ip}:{port}".
+        # Splitting the https:// controller URL here is what made them talk plain HTTP to port
+        # 443 (env/http_forwarder.py); the loopback forwarder is passed in instead.
+        self.vm_ip, self.server_port = getter_address or split_for_getters(controller_url, None)
         # caller passes its own dir to hash the gold afterwards (see hash_gold_artifacts),
         # even if scoring raises -- the gold may already be on disk by then
         self.cache_dir = cache_dir or tempfile.mkdtemp(prefix="osw_eval_cache_")
@@ -132,6 +185,7 @@ def evaluate_official(controller_url, task, action_history, cache_dir=None):
     `cache_dir`: where the official getters land any gold reference they download. Pass one to
     hash those afterwards (hash_gold_artifacts); omitted, a throwaway temp dir is used, which
     keeps the historical behaviour for callers that don't care."""
+    use_pinned_evaluators()     # must precede the import below: it decides what gets imported
     try:
         from desktop_env.controllers.python import PythonController
         from desktop_env.evaluators import getters, metrics
@@ -140,11 +194,19 @@ def evaluate_official(controller_url, task, action_history, cache_dir=None):
 
     ev = task.get("evaluator", {}) or {}
     func = ev.get("func")
-    u = urlparse(controller_url)
-    controller = PythonController(vm_ip=u.hostname or "localhost",
-                                  server_port=u.port or (443 if u.scheme == "https" else 5000))
-    controller.http_server = controller_url.rstrip("/")   # honor the full (Daytona proxy) URL
-    env = _EnvAdapter(controller, controller_url, action_history, cache_dir=cache_dir)
+    # One loopback front door for the whole scoring pass: the controller and the getters then
+    # address the guest identically, and the getters that build "http://{ip}:{port}" inline
+    # end up with a URL that is actually true (env/http_forwarder.py).
+    with LoopbackForwarder(controller_url) as fwd:
+        address = split_for_getters(controller_url, fwd)
+        controller = PythonController(vm_ip=address[0], server_port=address[1])
+        env = _EnvAdapter(controller, controller_url, action_history, cache_dir=cache_dir,
+                          getter_address=address)
+        return _score(env, ev, func, controller_url, cache_dir, getters, metrics)
+
+
+def _score(env, ev, func, controller_url, cache_dir, getters, metrics):
+    """The scoring pass itself, with the forwarder already up and `env` already addressed."""
 
     postconfig = ev.get("postconfig", [])
     if postconfig:
@@ -156,8 +218,8 @@ def evaluate_official(controller_url, task, action_history, cache_dir=None):
         make_setup_controller(controller_url, cache_dir=cache_dir).setup(postconfig)
 
     if func == "infeasible":
-        return 1.0 if _last_is_fail(action_history) else 0.0
-    if _last_is_fail(action_history):
+        return 1.0 if _last_is_fail(env.action_history) else 0.0
+    if _last_is_fail(env.action_history):
         return 0.0
 
     conj = ev.get("conj", "and")

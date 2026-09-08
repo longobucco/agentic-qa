@@ -1,8 +1,8 @@
 {
   "id": "4f07fbe9-70de-4927-a4d5-bb28bc12c52c",
-  "verdict": "FAILURE",
-  "reward": 0.0,
-  "reason": "official compare_table -> 0.00",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official compare_table -> 1.00",
   "source": "official",
   "gold_sha256": {
     "Padding_Decimals_In_Formular_gold.xlsx": "1dd8b7285d7c63360d9fa72a9a47b0aa709328975c7228d70b04c96eda36b1dd",

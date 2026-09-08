@@ -1,0 +1,5 @@
+I tested this directly in GIMP's Script-Fu console. GIMP's own network access relies on GIO/gvfs backends, and in this installation `gimp-file-load` cannot fetch any `https://` URL — it errors with "No such file or directory," meaning it's not resolving the URI at all (confirmed with multiple test URLs, including a plain PNG from Wikimedia and GitHub). The "File > Open Location" dialog shows the same failure (URI stays flagged as invalid). There is no Python-Fu console available either (only Script-Fu/TinyScheme, which has no HTTP primitives), so there is no PDB procedure capable of retrieving remote content. I confirmed the sandbox itself has internet access (curl to hku.hk succeeded), so the limitation is specific to GIMP's build lacking the network-capable GIO backend — GIMP itself, as installed here, has no built-in feature that can fetch a file from the web.
+
+Since the task explicitly requires accomplishing this using only GIMP's built-in features without a browser, and GIMP in this environment has no capability to reach the network at all, the task cannot be completed as stated.
+
+ANSWER: FAIL

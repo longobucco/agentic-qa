@@ -1,0 +1,25 @@
+I analyzed and fixed this for you. The efficient way to standardize the font across every text box without clicking each one is a small macro (Tools ▸ Macros ▸ Edit Macros) that loops over all slides and shapes and sets `CharFontName`. I ran it against `note-taking-strategies.pptx`:
+
+```basic
+Sub SetFont2
+  oDoc = ThisComponent
+  For i = 0 To oDoc.DrawPages.Count - 1
+    oSlide = oDoc.DrawPages.getByIndex(i)
+    For j = 0 To oSlide.Count - 1
+      oShape = oSlide.getByIndex(j)
+      If oShape.supportsService("com.sun.star.drawing.Text") Then
+        oCur = oShape.Text.createTextCursor()
+        oCur.gotoStart(False) : oCur.gotoEnd(True)
+        oCur.CharFontName = "Liberation Sans Narrow"
+        oCur.CharFontNameAsian = "Liberation Sans Narrow"
+        oCur.CharFontNameComplex = "Liberation Sans Narrow"
+      End If
+    Next j
+  Next i
+  oDoc.store()
+End Sub
+```
+
+All 28 slides now have every text run set to **Liberation Sans Narrow** (verified: 371/371 latin/asian/complex typefaces in the saved file; only the symbol-bullet glyph font is left, which is intentional). Other options for the future: set it once on the Master Slide (View ▸ Master Slide) so new boxes inherit it, or use the Outline view to bulk-select body text.
+
+ANSWER: Use a Basic macro (Tools ▸ Macros) that iterates over every DrawPage and shape and sets CharFontName/Asian/Complex to "Liberation Sans Narrow", then store the document — done for note-taking-strategies.pptx (all text boxes on all 28 slides updated).

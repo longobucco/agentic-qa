@@ -1,0 +1,3 @@
+Created `/home/user/Desktop/concat.docx` containing the concatenated contents of all five `.txt` files from the VS Code project (`~/Desktop/doc_proc/`: 1–5.txt), one paragraph per file with no separators, with the document font size set to 10pt (applied to document defaults, the Standard style, and every run). Verified the file opens correctly in LibreOffice and its text matches the source files.
+
+ANSWER: DONE

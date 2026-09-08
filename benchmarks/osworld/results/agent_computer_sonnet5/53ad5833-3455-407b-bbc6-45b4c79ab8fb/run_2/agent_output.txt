@@ -1,0 +1,3 @@
+The "project" folder is now open in VS Code (Explorer shows PROJECT with .vscode, main.py, README.md).
+
+ANSWER: DONE

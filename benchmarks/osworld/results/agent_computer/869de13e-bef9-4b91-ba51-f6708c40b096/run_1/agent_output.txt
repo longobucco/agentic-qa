@@ -1,8 +1,1 @@
-All 14 desktop files have been sorted into the three folders; only the folders remain on the Desktop.
-
-Classification applied (content-analyzed the ambiguous ones):
-- **Paper_reading** (academic papers): 1706.03762 (Attention Is All You Need), 1802.05365 (ELMo), 1909.10351 (TinyBERT), GLUE benchmark, paper01.pdf (verified via content = BERT paper)
-- **Projects** (coding): 2-if-for-array.zip (C programs), assign1-data3.zip (Python Pacman project)
-- **Miscellaneous** (everything else): kMeans lecture .ppt, two survey/validation .xlsx data files, DOC_2480903712718068684.pdf (verified = school handcraft show entry list, not a paper), Family Status Equality policy PDF, IA_Format.docx (assignment template), assignment_mark_frontpage.docx
-
-ANSWER: DONE
+You've hit your session limit · resets 9:40pm (Europe/Rome)

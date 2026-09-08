@@ -1,0 +1,8 @@
+{
+  "id": "99146c54-4f37-4ab8-9327-5f3291665e1e",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official exact_match -> 0.00",
+  "source": "official",
+  "gold_sha256": {}
+}

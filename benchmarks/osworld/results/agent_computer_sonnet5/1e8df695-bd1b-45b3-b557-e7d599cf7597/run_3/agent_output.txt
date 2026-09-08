@@ -1,0 +1,3 @@
+The Profit column has been added in column D, right next to COGS, with values calculated as Sales − COGS for each week, and the file was saved in xlsx format.
+
+ANSWER: DONE

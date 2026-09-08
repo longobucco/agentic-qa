@@ -1,0 +1,3 @@
+A 7×5 empty table has been inserted at the cursor position (now Table2, visible on the new page) and the document was saved in .docx format.
+
+ANSWER: DONE

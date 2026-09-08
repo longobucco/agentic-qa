@@ -1,0 +1,11 @@
+{
+  "id": "6e99a1ad-07d2-4b66-a1ce-ece6d99c20a5",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official compare_table -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "Keep_Two_decimal_points_gold.xlsx": "34df867777b220c2934887fdcf3b4e3c49e3e9507b4e714be9a48a83be1ea36c",
+    "Keep_Two_decimal_points_gold-Sheet1.csv": "056a91e4e7d38aecff3fc67ea5629887489d0edfab8ea7061cca87df8977b529"
+  }
+}

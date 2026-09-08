@@ -14,5 +14,12 @@
     "error": "[Errno 2] No such file or directory: 'claude'",
     "elapsed_s": 11.1,
     "at": "2026-08-13T14:16:37+0200"
+  },
+  {
+    "id": "982d12a5-beab-424f-8d38-d2a48429e511",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-09-05T15:39:14+0200"
   }
 ]

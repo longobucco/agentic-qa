@@ -1,0 +1,3 @@
+The table with 5 rows and 2 columns has been successfully inserted into the Features slide and the file has been saved.
+
+ANSWER: DONE

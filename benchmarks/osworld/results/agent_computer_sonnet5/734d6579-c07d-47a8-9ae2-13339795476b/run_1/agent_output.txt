@@ -1,0 +1,3 @@
+Saved successfully. The Background layer is filled with green while the object layer (user-add.png) remains unchanged.
+
+ANSWER: DONE

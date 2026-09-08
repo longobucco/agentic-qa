@@ -1,0 +1,5 @@
+Presenter Console is now disabled. When a slide show is launched, only the presentation display will be used; the other monitor stays free.
+
+To do it yourself: **Tools → Options → LibreOffice Impress → General**, and under "Presentation" uncheck **"Enable Presenter Console"**. (Optionally, in Slide Show → Slide Show Settings you can also set "Presentation display" to the single monitor you want.)
+
+ANSWER: Disable it via Tools → Options → LibreOffice Impress → General → uncheck "Enable Presenter Console". Done.

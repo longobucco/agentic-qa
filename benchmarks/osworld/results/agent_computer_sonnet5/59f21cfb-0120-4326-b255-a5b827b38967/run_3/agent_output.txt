@@ -1,0 +1,3 @@
+The music video "Rick Astley - Never Gonna Give You Up (Official Music Video).mp4" from the Desktop is now playing in VLC (progressing past 00:21 of 03:32). Audio output fails only because this is a headless machine with no sound card, but video playback is running.
+
+ANSWER: DONE

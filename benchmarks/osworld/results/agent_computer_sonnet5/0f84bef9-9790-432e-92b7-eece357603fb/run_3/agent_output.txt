@@ -1,0 +1,3 @@
+Disabled the Presenter Console via Tools → Options → LibreOffice Impress → General → unchecked "Enable Presenter Console". Now Impress will use a single monitor for the presentation only.
+
+ANSWER: Disable Tools ▸ Options ▸ LibreOffice Impress ▸ General ▸ "Enable Presenter Console" (now unchecked).

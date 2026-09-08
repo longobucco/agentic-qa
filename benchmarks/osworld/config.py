@@ -43,6 +43,29 @@ def model_slug(model=None):
 
 # "agent_computer" (unpinned, mixed-model, historical) vs "agent_computer_sonnet5" (pinned).
 SYSTEM_NAME = f"agent_computer_{model_slug()}" if MODEL else "agent_computer"
+
+
+def resolve_system(system=None):
+    """Which results tree an offline analysis should read.
+
+    Explicit argument wins; otherwise the pinned model decides, so
+    `OSW_MODEL=claude-sonnet-5 python -m benchmarks.osworld.analysis.<x>` reads that model's
+    tree instead of silently pooling it with the historical mixed-model one.
+    """
+    return system or SYSTEM_NAME
+
+
+def system_from_argv(argv=None):
+    """`--system <name>` for the analysis CLIs; None when absent (env/default then decides)."""
+    import sys
+    argv = sys.argv if argv is None else argv
+    for i, a in enumerate(argv):
+        if a == "--system" and i + 1 < len(argv):
+            return argv[i + 1]
+        if a.startswith("--system="):
+            return a.split("=", 1)[1]
+    return None
+
 MAX_TURNS = int(os.environ.get("OSW_MAX_TURNS", "150"))   # desktop GUI turns run >4x web-nav ones
 MAX_STEPS = int(os.environ.get("OSW_MAX_STEPS", "30"))
 TASK_TIMEOUT = int(os.environ.get("OSW_TASK_TIMEOUT", "3600"))
@@ -74,6 +97,13 @@ ENFORCE_SANDBOX = os.environ.get("OSW_ENFORCE_SANDBOX", "0") == "1"
 # same clean-denial mechanism idea #10 already validated for Bash/WebSearch/WebFetch. Off by
 # default -- opt in per-run.
 RESTRICT_RUN_PYTHON = os.environ.get("OSW_RESTRICT_RUN_PYTHON", "0") == "1"
+
+# Score with the evaluator tree fetched at data/download_data.py::UPSTREAM_COMMIT
+# (data/download_evaluators.py) rather than whatever `desktop_env` release pip resolved. On by
+# default once that tree is on disk; set OSW_PINNED_EVALUATORS=0 to keep a campaign scored by
+# the installed release for the rest of its run, when mid-campaign homogeneity matters more
+# than correctness on the six tasks the installed release can't score at all.
+PINNED_EVALUATORS = os.environ.get("OSW_PINNED_EVALUATORS", "1") != "0"
 
 IMAGE = os.environ.get(   # pinned by digest -- Daytona caches images by tag, not :latest
     "OSW_IMAGE",

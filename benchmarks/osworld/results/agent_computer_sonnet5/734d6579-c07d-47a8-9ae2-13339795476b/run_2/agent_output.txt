@@ -1,0 +1,3 @@
+Image saved successfully to the file with the background filled green and the object layer unchanged.
+
+ANSWER: DONE

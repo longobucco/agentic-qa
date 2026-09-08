@@ -1,0 +1,3 @@
+AutoRecovery/auto-save is now enabled at a 3-minute interval in LibreOffice's Load/Save settings.
+
+ANSWER: DONE

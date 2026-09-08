@@ -1,0 +1,8 @@
+{
+  "id": "d38192b0-17dc-4e1d-99c3-786d0117de77",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official check_list -> 0.00",
+  "source": "official",
+  "gold_sha256": {}
+}

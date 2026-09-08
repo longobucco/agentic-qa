@@ -1,0 +1,3 @@
+The photo is now on the Desktop as `export.jpg` (/home/user/Desktop/export.jpg).
+
+ANSWER: DONE

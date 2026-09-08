@@ -1,0 +1,8 @@
+Both files are now on the desktop:
+
+- **`~/Desktop/contacts.csv`** — exported from Thunderbird's Personal Address Book (30 contacts + header row), using Address Book → right-click Personal Address Book → Export → "Comma Separated (UTF-8)".
+- **`~/Desktop/contacts.xlsx`** — converted from the CSV with LibreOffice Calc (31 rows: header + 30 contacts).
+
+Note: the running Thunderbird had started against an empty profile, so I restored the populated Personal Address Book before exporting. Copies were also placed in `/home/user/Desktop`.
+
+ANSWER: DONE

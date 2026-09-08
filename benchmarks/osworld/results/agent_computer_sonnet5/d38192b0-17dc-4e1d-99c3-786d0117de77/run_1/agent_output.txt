@@ -1,0 +1,3 @@
+The only open window is Thunderbird's "Account Setup" screen — no email account is configured, and there is no compose window with an unfinished email anywhere (verified via `wmctrl -l` and the accessibility tree). The task refers to an existing draft email I should attach the bill to without closing or sending it, but no such email exists. The required precondition is missing.
+
+ANSWER: FAIL

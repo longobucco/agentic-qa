@@ -1,0 +1,3 @@
+The first two lines of the Overview list now have strike-through formatting and the file is saved in PowerPoint format.
+
+ANSWER: DONE

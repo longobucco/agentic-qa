@@ -1,0 +1,3 @@
+VS Code has no built-in feature to "visualize all numpy arrays" in a file. There are zero extensions installed, the window is in Restricted Mode, and there is no shell or browser available to install one. This task cannot be completed as stated.
+
+ANSWER: FAIL

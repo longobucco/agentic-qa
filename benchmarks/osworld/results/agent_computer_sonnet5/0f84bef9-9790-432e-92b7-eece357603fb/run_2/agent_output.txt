@@ -1,0 +1,3 @@
+The Presenter Console is now disabled, so the slideshow will use only a single monitor for the presentation.
+
+ANSWER: Disable it in Tools ▸ Options ▸ LibreOffice Impress ▸ General ▸ Presentation, by unchecking "Enable Presenter Console". Done.

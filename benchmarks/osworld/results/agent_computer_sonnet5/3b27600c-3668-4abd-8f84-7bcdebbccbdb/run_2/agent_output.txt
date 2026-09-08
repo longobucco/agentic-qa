@@ -1,0 +1,3 @@
+All 19 slides now have a blue (#0000FF) background, applied via Slide ▸ Slide Properties ▸ Background ▸ Color for each slide, and the file has been saved in its original PowerPoint format.
+
+ANSWER: DONE

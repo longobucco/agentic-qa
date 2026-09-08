@@ -1,0 +1,3 @@
+Done. Extracted the five `.txt` files (1–5) from the `doc_proc` VS Code project and merged their contents (no separator) into `/home/user/Desktop/concat.docx` using LibreOffice, with every paragraph/run and the Normal style set to font size 10 (sz=20 half-points).
+
+ANSWER: DONE

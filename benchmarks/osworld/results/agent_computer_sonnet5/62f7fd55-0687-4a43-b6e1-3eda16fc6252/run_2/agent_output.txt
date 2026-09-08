@@ -1,0 +1,3 @@
+I confirmed that GIMP's Export Image dialog rejects the ".svg" extension outright ("The given filename does not have any known file extension"), because GIMP is a raster image editor and does not support exporting raster images (like this PNG) to the SVG vector format — GIMP can only export vector *paths* as SVG, not convert pixel-based images into SVG. This makes the task as stated impossible with GIMP.
+
+ANSWER: FAIL

@@ -1,0 +1,3 @@
+Default video player set to VLC for all common video MIME types (`~/.config/mimeapps.list` updated, verified `video/mp4` → `vlc.desktop`).
+
+ANSWER: DONE

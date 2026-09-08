@@ -1,0 +1,3 @@
+Duplicates removed from `HK_train_record.docx`. Only the first occurrence of each train id remains: E201, E209, E221, E205, E213, E217, E225, E229 — 8 distinct trains running from 0600 to 1200.
+
+ANSWER: 8

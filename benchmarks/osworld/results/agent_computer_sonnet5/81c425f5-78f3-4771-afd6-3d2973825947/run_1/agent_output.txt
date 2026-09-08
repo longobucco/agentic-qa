@@ -1,0 +1,3 @@
+The data was transferred into a Writer table with the Calc formatting preserved (currency `$` signs, thousands separators) and saved as `/home/user/Desktop/price.docx`.
+
+ANSWER: DONE

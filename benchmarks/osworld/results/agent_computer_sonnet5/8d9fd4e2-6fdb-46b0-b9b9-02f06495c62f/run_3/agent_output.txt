@@ -1,0 +1,3 @@
+Fullscreen mode is enabled — no window borders/menu bar visible, and the video (with black letterboxing due to aspect ratio) fills the entire screen.
+
+ANSWER: DONE

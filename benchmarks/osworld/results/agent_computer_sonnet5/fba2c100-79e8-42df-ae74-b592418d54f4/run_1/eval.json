@@ -1,0 +1,10 @@
+{
+  "id": "fba2c100-79e8-42df-ae74-b592418d54f4",
+  "verdict": "FAILURE",
+  "reward": 0.3602622577974642,
+  "reason": "official compare_images -> 0.36",
+  "source": "official",
+  "gold_sha256": {
+    "interstellar_gold.png": "3a8d54e194ba6006b7874bf5703f64f98768b12c0886de878bf5d02ebc5d281a"
+  }
+}

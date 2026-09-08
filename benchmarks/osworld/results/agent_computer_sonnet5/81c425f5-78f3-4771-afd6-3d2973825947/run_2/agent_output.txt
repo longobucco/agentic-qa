@@ -1,0 +1,3 @@
+Saved successfully — the Calc sheet data is now a formatted table (currency formatting, header row, alternating shading preserved) in `price.docx` on the Desktop.
+
+ANSWER: DONE

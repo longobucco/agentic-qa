@@ -1,0 +1,3 @@
+All words are correctly colored: red for vowel-starting words (at, ate, our, out, into, under) and blue for the rest. The document has been saved in its original .docx format.
+
+ANSWER: DONE

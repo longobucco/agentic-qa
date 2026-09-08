@@ -1,0 +1,19 @@
+{
+  "id": "b4f95342-463e-4179-8c3f-193cd7241fb2",
+  "bucket": "chrome",
+  "instruction": "Find the Next Available dates for Diamond.",
+  "answer": "",
+  "setup_error": "config setup failed: Setup step 3 failed: _chrome_open_tabs_setup - BrowserType.connect_over_cdp: getaddrinfo ENOTFOUND 5000-c4cf1294-da84-4fbe-adfb-8ce208638732.daytonaproxy01.eu\nCall log:\n  - <ws preparing> retrieving websocket url from http://5000-c4cf1294-da84-4fbe-adfb-8ce208638732.daytonaproxy01.eu:9222\n",
+  "provenance": {
+    "task_sha256": "26c220b723e5cd3efecdb74abd06b08d66fcc163a960614b9f5ba01aad93aef5",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-c4cf1294-da84-4fbe-adfb-8ce208638732.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-09-06T14:11:41.089019+00:00",
+    "finished_at": "2026-09-06T14:11:41.094545+00:00"
+  }
+}

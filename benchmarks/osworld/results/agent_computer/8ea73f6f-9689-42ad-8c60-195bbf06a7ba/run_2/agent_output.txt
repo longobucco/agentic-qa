@@ -1,7 +1,1 @@
-The task asks me to enhance a low-resolution photo to high-resolution **without increasing the file size**. I can see GIMP is open with `low_resolution.jpeg` (1280x851 pixels, 10.2 MB in memory).
-
-This task is fundamentally contradictory: enhancing an image to higher resolution means more pixels, which requires more data and a larger file size. If you increase pixel dimensions but apply heavier compression to maintain the same file size, you lose quality — which isn't a genuine "enhancement." True super-resolution (AI-based upscaling) inherently produces larger files.
-
-The two requirements — higher resolution AND no increase in file size — are mutually exclusive when the goal is quality improvement.
-
-ANSWER: FAIL
+You've hit your session limit · resets 4:20pm (Europe/Rome)

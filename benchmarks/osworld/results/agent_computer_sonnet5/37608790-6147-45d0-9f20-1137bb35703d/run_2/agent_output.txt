@@ -1,0 +1,3 @@
+Saved. Columns B, C, D are now filled with First Name, Last Name and Rank split from column A, which is unchanged.
+
+ANSWER: DONE

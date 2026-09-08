@@ -1,0 +1,8 @@
+I added the audio to the presentation:
+
+1. Opened **Insert → Audio or Video** in LibreOffice Impress
+2. Navigated to `/home/user/Desktop` and selected **Baseball.mp3**
+3. The audio object (music-note icon) was placed on the title slide ("BASEBALL")
+4. Saved the file in PowerPoint format (Ctrl+S → Keep Current Format)
+
+ANSWER: DONE

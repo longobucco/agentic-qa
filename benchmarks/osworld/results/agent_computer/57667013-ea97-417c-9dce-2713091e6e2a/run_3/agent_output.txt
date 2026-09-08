@@ -1,5 +1,5 @@
-All textboxes on slide 5 now have font color `FFFF00` (yellow). Both shapes have been updated:
-- "WRITE AN ORIGINAL / STATEMENT OR / INSPIRING QUOTE" — all runs set to yellow
-- "Include a credit, citation, or supporting message" — set to yellow
+Slide 5 now shows both textboxes with yellow font color - "WRITE AN ORIGINAL STATEMENT OR INSPIRING QUOTE" and "Include a credit, citation, or supporting message" are both in yellow. The modification was successful.
+
+The file on disk (`/home/user/Desktop/1_2.pptx`) has been modified with all textbox font colors in slide 5 set to yellow (FFFF00). The changes are confirmed visually in LibreOffice Impress.
 
 ANSWER: DONE

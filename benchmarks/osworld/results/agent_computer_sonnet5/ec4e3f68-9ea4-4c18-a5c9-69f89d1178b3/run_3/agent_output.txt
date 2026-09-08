@@ -1,0 +1,3 @@
+None of these desktop shells/docks are installed — only a bare Xvfb + openbox window manager is running, with no GNOME desktop, dock, or "Favorites" launcher present in this environment. There is no favorites bar or application menu to remove vim from.
+
+ANSWER: FAIL

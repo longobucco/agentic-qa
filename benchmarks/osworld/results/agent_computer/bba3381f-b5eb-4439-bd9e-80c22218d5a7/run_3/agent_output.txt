@@ -1,3 +1,1 @@
-The video is streaming successfully. The screenshot shows the Apple BipBop HLS test stream is playing — I can see the video content with a timestamp of 00:00:07.06, subtitles ("Bop!"), and the color bar test pattern at the bottom.
-
-ANSWER: DONE
+You've hit your session limit · resets 4:20pm (Europe/Rome)

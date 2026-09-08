@@ -1,0 +1,3 @@
+Zoom reduced to 150%, cells are now smaller and more clickable, and more columns/rows are visible.
+
+ANSWER: DONE

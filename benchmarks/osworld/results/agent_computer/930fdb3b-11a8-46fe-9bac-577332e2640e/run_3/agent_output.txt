@@ -1,3 +1,19 @@
-The keyboard shortcut `ctrl+j` has been successfully assigned to the "View: Focus Active Editor Group" command (`workbench.action.focusActiveEditorGroup`). The Keybinding column now shows "Ctrl + J" and the Source shows "User", confirming the binding was saved.
+The keybindings.json file has been successfully written with the correct shortcut. The file confirms:
+
+```json
+[
+    {
+        "key": "ctrl+j",
+        "command": "workbench.action.focusActiveEditorGroup",
+        "when": "terminalFocus"
+    }
+]
+```
+
+This creates `ctrl+j` shortcut that:
+- Triggers only when the terminal has focus (`when: "terminalFocus"`)
+- Executes `workbench.action.focusActiveEditorGroup` to move cursor focus back to the editor
+
+The shortcut is saved at `~/.config/Code/User/keybindings.json` and will be active in VS Code.
 
 ANSWER: DONE

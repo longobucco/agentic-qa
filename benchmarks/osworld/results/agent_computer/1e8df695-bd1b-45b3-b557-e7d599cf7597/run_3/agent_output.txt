@@ -1,3 +1,1 @@
-The file has been saved. The task is complete — I added a "Profit" column (column D) right next to the COGS column, with the header "Profit" in D1 and formulas calculating Sales - COGS for each of the 10 weeks (rows 2-11).
-
-ANSWER: DONE
+You've hit your session limit · resets 11:30am (Europe/Rome)

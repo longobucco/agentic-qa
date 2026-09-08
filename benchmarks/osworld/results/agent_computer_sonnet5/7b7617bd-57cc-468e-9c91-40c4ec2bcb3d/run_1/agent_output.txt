@@ -1,0 +1,3 @@
+Set the minimal number of undo levels to 100 in GIMP Preferences → System Resources and confirmed with OK.
+
+ANSWER: DONE

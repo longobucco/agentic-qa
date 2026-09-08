@@ -1,0 +1,3 @@
+The video is confirmed playing in fullscreen (occupying the full screen area with only aspect-ratio letterboxing, no window chrome). Fullscreen mode has been successfully enabled.
+
+ANSWER: DONE

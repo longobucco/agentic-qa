@@ -1,8 +1,1 @@
-All 14 files have been organized. The desktop now contains only the three category folders.
-
-Classification summary:
-- **Paper_reading** (academic papers): `1706.03762.pdf` (Attention Is All You Need), `1802.05365.pdf` (ELMo), `1909.10351.pdf` (TinyBERT), `GLUE: A MULTI-TASK BENCHMARK AND ANALYSIS.pdf`, and `paper01.pdf` — identified via content as the BERT paper.
-- **Projects** (coding projects): `2-if-for-array.zip` (C source files), `assign1-data3.zip` (Pacman Python project).
-- **Miscellaneous** (everything else): the k-means lecture slides, two xlsx data tables, two docx forms, an equality-rights PDF, and `DOC_2480903712718068684.pdf` — identified via content as a school handcraft show schedule, not an academic paper.
-
-ANSWER: DONE
+You've hit your session limit · resets 9:40pm (Europe/Rome)

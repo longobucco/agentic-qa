@@ -1,0 +1,3 @@
+A frame from the Interstellar trailer has been captured and saved as `/home/user/Desktop/interstellar.png` (a valid 1920×1090 PNG). VLC could not be shown on screen (no GPU/video converter in this environment), so I extracted the scene frame directly from the playing video file and wrote it to the Desktop.
+
+ANSWER: DONE

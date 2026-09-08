@@ -1,0 +1,7 @@
+Both changes are complete and saved:
+
+1. **Reference added** — "Steinberg, F. M., Bearden, M. M., & Keen, C. L. (2003). Cocoa and chocolate flavonoids: Implications for cardiovascular health. Journal of the American Dietetic Association, 103(2), 215-223. doi: 10.1053/jada.2003.50028" was appended to the numbered reference list, where it becomes entry **[14]** (it sorts alphabetically after "Schramm" [13]).
+
+2. **Cross-reference added** — in the fourth paragraph, the "<add here>" marker after "A study by Pennington" was replaced with **[14]**, matching the existing in-text citation style (e.g. "evidence[11]"), so it now reads "A study by Pennington[14] noted that women do not generally meet US guidelines...".
+
+ANSWER: DONE

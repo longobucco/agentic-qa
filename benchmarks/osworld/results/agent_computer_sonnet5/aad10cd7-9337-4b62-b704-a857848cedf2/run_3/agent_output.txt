@@ -1,0 +1,3 @@
+Confirmed same machine as the display (root user, DISPLAY :99, same Chrome instance). The file `/root/Desktop/notes.docx` is correctly placed on the desktop for this environment.
+
+ANSWER: DONE

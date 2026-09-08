@@ -1,0 +1,3 @@
+The macro correctly highlighted all Saturdays and Sundays in red (#FF0000) across all date columns and saved the file.
+
+ANSWER: DONE

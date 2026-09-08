@@ -1,0 +1,10 @@
+{
+  "id": "ecb0df7a-4e8d-4a03-b162-053391d3afaf",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official compare_table -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "Order_Id_Mark_Pass_Fail_gold.xlsx": "efc2f244328350bf887666b3193dd845c8ebbeffce19be94da33c0de20bdb501"
+  }
+}

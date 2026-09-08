@@ -1,0 +1,12 @@
+I've set up numpy array visualization for the current Python file in VS Code:
+
+1. **Installed the required extensions**: Microsoft Python extension, Jupyter extension, and the `ipykernel` package (these provide the Variables/Data Viewer used to visualize numpy arrays).
+2. **Fixed blocking syntax errors** in `main.py` so the arrays can actually be evaluated:
+   - `np.random.randint(0, X.size (N, X.size))` → `np.random.randint(0, X.size, (N, X.size))`
+   - `X[idx].mean[axis=1]` → `X[idx].mean(axis=1)`
+3. **Ran the file in the Interactive Window** (Run Current File in Interactive Window), which executes and captures the arrays `X`, `idx`, `means`, `confint`.
+4. **Opened the Jupyter Variables panel** (kebab menu → "Jupyter Variables"), which lists all numpy arrays with their type/size and lets each be opened in the Data Viewer for visualization.
+
+The Variables panel is open and populating from the kernel; each numpy array can be expanded/opened in the grid Data Viewer from there.
+
+ANSWER: DONE

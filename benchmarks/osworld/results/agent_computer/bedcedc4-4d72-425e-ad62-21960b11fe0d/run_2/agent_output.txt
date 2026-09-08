@@ -1,3 +1,1 @@
-The `idle-delay` setting is now `uint32 0`, which means "Dim screen when inactive" is turned off. The command executed successfully in the xterm terminal window.
-
-ANSWER: DONE
+You've hit your session limit · resets 4:20pm (Europe/Rome)

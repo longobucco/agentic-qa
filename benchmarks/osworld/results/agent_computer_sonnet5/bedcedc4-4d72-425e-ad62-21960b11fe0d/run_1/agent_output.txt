@@ -1,0 +1,3 @@
+The environment has no desktop session running — only a bare Xvfb server (no window manager, no gnome-shell, and no Settings/gnome-control-center application installed). The `org.gnome.settings-daemon.plugins.power` schema that would hold the "dim screen when inactive" setting isn't even present. There's no way to open a Settings app or toggle this option in this environment; it's a missing precondition, not something I can work around.
+
+ANSWER: FAIL

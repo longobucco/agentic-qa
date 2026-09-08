@@ -1,0 +1,3 @@
+I closed all the dockable dialogs (Tool Options, Pointer, Undo History, Images) that made up the dock on the left side of the GIMP window. That dock area is now gone, leaving only the toolbox icons.
+
+ANSWER: DONE

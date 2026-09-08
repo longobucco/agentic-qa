@@ -1,0 +1,8 @@
+{
+  "id": "ac9bb6cb-1888-43ab-81e4-a98a547918cd",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official check_page_number_colors -> 0.00",
+  "source": "official",
+  "gold_sha256": {}
+}

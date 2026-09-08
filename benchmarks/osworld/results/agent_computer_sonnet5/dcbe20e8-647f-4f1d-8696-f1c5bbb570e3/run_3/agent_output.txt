@@ -1,0 +1,3 @@
+The task requires a photo in a Downloads folder. I checked the entire filesystem: there is no Downloads directory anywhere, no image file exists on the system (aside from system logos and the OSWorld screenshot artifact), and no VS Code background extension is installed. The required precondition — a photo in Downloads — does not exist.
+
+ANSWER: FAIL

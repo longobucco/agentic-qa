@@ -1,0 +1,3 @@
+Both data1 and data2 are now visible in the Explorer under the workspace, alongside project.
+
+ANSWER: DONE

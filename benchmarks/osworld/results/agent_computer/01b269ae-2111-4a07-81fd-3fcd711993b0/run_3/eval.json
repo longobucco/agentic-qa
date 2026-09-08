@@ -1,8 +1,8 @@
 {
   "id": "01b269ae-2111-4a07-81fd-3fcd711993b0",
-  "verdict": "FAILURE",
-  "reward": 0.0,
-  "reason": "official compare_table -> 0.00",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official compare_table -> 1.00",
   "source": "official",
   "gold_sha256": {
     "Student_Level_Fill_Blank_gold.xlsx": "a7d02419d122a3d755a41c7ca2e2bb3afabcc88138ef29b740148528ea0b6f8b"

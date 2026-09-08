@@ -1,0 +1,6 @@
+Both changes are in place and the file is saved in xlsx format:
+
+- **Sheet1, column J "Gross Profit"** = (Sales − Sales Return) − Discounts/Allowances − Materials − Labor − Overhead: 55000, 47662, 53451, 60819, 62864, 57924, 59634, 50852, 43649.
+- **Sheet2, column A "Year_Profit"** (text): 2015_55000 … 2023_43649.
+
+ANSWER: DONE

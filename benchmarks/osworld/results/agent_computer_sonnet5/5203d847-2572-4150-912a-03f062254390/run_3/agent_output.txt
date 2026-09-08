@@ -1,0 +1,3 @@
+This confirms there is no email account configured in Thunderbird at all — no accounts exist, only the outgoing SMTP settings pane with an empty list. Without an existing account, there is no Inbox, no "Local Folders" tree to create a "Promotions" folder under, and no message filter mechanism can target an inbox that doesn't exist. This is a missing precondition.
+
+ANSWER: FAIL

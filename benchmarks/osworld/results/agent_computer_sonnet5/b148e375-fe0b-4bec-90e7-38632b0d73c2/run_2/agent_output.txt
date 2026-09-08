@@ -1,0 +1,3 @@
+New "Square" layer added, visible in the Layers panel.
+
+ANSWER: DONE

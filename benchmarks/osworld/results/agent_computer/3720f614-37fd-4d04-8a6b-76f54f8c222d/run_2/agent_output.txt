@@ -1,3 +1,1 @@
-"Xenothian" is a fictional language from the fictional country of Atlantis — it does not exist in Chrome's built-in language settings. Chrome only supports real, recognized languages. This task cannot be completed as stated.
-
-ANSWER: FAIL
+You've hit your session limit · resets 4:20pm (Europe/Rome)

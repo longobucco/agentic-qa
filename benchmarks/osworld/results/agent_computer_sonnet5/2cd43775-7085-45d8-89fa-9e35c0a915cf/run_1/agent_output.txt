@@ -1,0 +1,3 @@
+Enabled AutoRecovery/auto-save in Tools → Options → Load/Save → General, set to every 3 minutes.
+
+ANSWER: DONE

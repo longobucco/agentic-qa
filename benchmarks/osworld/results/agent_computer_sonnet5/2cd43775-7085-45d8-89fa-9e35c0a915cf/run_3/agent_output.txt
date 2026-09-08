@@ -1,0 +1,3 @@
+Enabled "Save AutoRecovery information every 3 minutes" in Tools ▸ Options ▸ Load/Save ▸ General.
+
+ANSWER: DONE

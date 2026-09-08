@@ -1,3 +1,1 @@
-The setting has been written to VS Code's user settings. `debug.focusEditorOnBreak` is now `false`, which keeps the cursor focused on the debug console during debugging instead of switching back to the editor.
-
-ANSWER: DONE
+You've hit your session limit · resets 4:20pm (Europe/Rome)

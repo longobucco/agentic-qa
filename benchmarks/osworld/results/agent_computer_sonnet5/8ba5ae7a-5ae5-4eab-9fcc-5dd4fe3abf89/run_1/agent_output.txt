@@ -1,0 +1,5 @@
+I inspected the machine: the desktop is a headless Xvfb/openbox session whose only media app is VLC, and "recordings" refers to VLC's record directory. VLC refuses to launch as root (the only account present), so I set the option directly in its configuration.
+
+I wrote `~/.config/vlc/vlcrc` with `input-record-path=/root/Desktop` and created the `/root/Desktop` folder.
+
+ANSWER: DONE

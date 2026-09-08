@@ -1,0 +1,3 @@
+The file "notes.docx" has been saved to the Desktop, containing the primary content of the "Searching" HIG page — from the "Searching" heading/intro through "Best practices," "Systemwide search," and "Platform considerations" — stopping right before the "Resources" section, as requested.
+
+ANSWER: DONE

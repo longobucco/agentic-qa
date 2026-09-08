@@ -1,0 +1,3 @@
+Default applications for video MIME types are now set to `vlc.desktop` in `~/.config/mimeapps.list`.
+
+ANSWER: DONE

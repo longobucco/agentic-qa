@@ -1,0 +1,3 @@
+The file reverted correctly with valid JSON and 0 errors shown in the status bar. The keybinding is now saved to disk and loaded in the editor.
+
+ANSWER: DONE

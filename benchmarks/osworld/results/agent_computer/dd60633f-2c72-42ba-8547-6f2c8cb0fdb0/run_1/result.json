@@ -1,0 +1,19 @@
+{
+  "id": "dd60633f-2c72-42ba-8547-6f2c8cb0fdb0",
+  "bucket": "chrome",
+  "instruction": "Please extract all Python code and comments from Karpathy's GPT colab code cells (skip markdown parts), merge into \"gpt_dev_pure_code.py\" in Home directory. Include all Python code and # comments from code cells, but exclude markdown docstrings and file headers.",
+  "answer": "",
+  "setup_error": "config setup failed: Setup step 3 failed: _chrome_open_tabs_setup - BrowserType.connect_over_cdp: connect ETIMEDOUT ::ffff:63.184.157.163:9222\nCall log:\n  - <ws preparing> retrieving websocket url from http://5000-9ea1caaf-234a-456e-9215-b1a5c293fddd.daytonaproxy01.eu:9222\n",
+  "provenance": {
+    "task_sha256": "faf8d0ef04275e118a8b65fa4f325dc34b30380d2b1d378913fee224dc500adf",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "controller_url": "https://5000-9ea1caaf-234a-456e-9215-b1a5c293fddd.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-09-07T04:46:02.538266+00:00",
+    "finished_at": "2026-09-07T04:46:02.541465+00:00"
+  }
+}

@@ -1,3 +1,1 @@
-The VM environment is persistently returning HTTP 400 errors on all action tools (screenshot, click, run_python, a11y_tree, move). Only the `wait` tool is functional. This appears to be an infrastructure failure preventing any interaction with the virtual machine. Despite multiple retry attempts over several minutes, the environment has not recovered.
-
-ANSWER: FAIL
+You've hit your session limit · resets 4:20pm (Europe/Rome)

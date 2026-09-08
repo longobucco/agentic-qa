@@ -1,0 +1,20 @@
+{
+  "id": "e135df7c-7687-4ac0-a5f0-76b74438b53e",
+  "bucket": "thunderbird",
+  "instruction": "Please convert a .xlsx file opened in LibreOffice Calc to a .html file and view it in Chrome.",
+  "answer": "",
+  "setup_error": "config setup failed: Setup step 3 failed: _chrome_open_tabs_setup - BrowserType.connect_over_cdp: read ECONNRESET\nCall log:\n  - <ws preparing> retrieving websocket url from http://5000-822bb145-ac69-4136-869d-557deb722442.daytonaproxy01.eu:9222\n",
+  "provenance": {
+    "task_sha256": "61d7bfcc101bf70565c85b2964cee7b3076c284a2ab193f3dfe8ded363938303",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "model_requested": "claude-sonnet-5",
+    "controller_url": "https://5000-822bb145-ac69-4136-869d-557deb722442.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-09-07T23:28:42.734863+00:00",
+    "finished_at": "2026-09-07T23:28:42.735143+00:00"
+  }
+}

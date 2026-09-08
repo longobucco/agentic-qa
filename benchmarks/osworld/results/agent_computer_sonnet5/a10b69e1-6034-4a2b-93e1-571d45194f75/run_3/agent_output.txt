@@ -1,0 +1,3 @@
+Both folders COMPANY and UNIVERSITY now exist under Local Folders.
+
+ANSWER: DONE

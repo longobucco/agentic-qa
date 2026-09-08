@@ -1,0 +1,3 @@
+Created a Pivot Table on a new sheet (Sheet2) summarizing total revenue by promotion type, with promotion names as column headers (Fall Kite Event ≈ 46190.74, Festival of Flight ≈ 49433.4, None ≈ 82215.01, Total ≈ 177839.15). File saved in xlsx format.
+
+ANSWER: DONE

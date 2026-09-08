@@ -1,0 +1,11 @@
+{
+  "id": "6f81754e-285d-4ce0-b59e-af7edb02d108",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official compare_unique_train_records -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "HK_train_record_Gold.docx": "72c21465139b7d33726585930bc6f1e65670010d3a4b60486fee364e92cac31f",
+    "HK_train_record_Original.docx": "2fa349ad07260342f07d632ef5125cb3f501b0e13d2181bb9944f33c96e4e1e4"
+  }
+}

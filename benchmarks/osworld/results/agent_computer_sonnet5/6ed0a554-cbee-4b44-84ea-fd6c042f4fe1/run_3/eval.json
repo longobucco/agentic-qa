@@ -1,0 +1,8 @@
+{
+  "id": "6ed0a554-cbee-4b44-84ea-fd6c042f4fe1",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official check_json_settings -> 0.00",
+  "source": "official",
+  "gold_sha256": {}
+}

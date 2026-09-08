@@ -1,0 +1,3 @@
+Chart created successfully: a clustered column chart (`barDir="col"`, `grouping="clustered"`) on a new sheet "Sheet2", with series Sales and COGS by week, and title "Sales & COGS". File saved.
+
+ANSWER: DONE

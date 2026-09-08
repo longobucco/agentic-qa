@@ -15,6 +15,7 @@ import json
 import sys
 
 from benchmarks.osworld import config
+from benchmarks.osworld import tasks as osw_tasks
 from benchmarks.osworld.tasks import load_tasks
 from core.results import is_run_dir
 
@@ -51,11 +52,12 @@ def _tool_calls(conversation_path):
     return counts
 
 
-def scan(results_dir=None, system="agent_computer"):
+def scan(results_dir=None, system=None):
     """{task_id: Counter(tool_name -> calls)} for every task with a genuine escape in its
     original-baseline transcript. Prefers run_N_g3baseline_legacy/ (the true G3 baseline,
     preserved before a later G5 arm overwrote run_N/) over current run_N/."""
     results_dir = results_dir or config.RESULTS_DIR
+    system = config.resolve_system(system)
     base = results_dir / system
     escaped = collections.defaultdict(collections.Counter)
     n_scanned = 0
@@ -84,14 +86,14 @@ def scan(results_dir=None, system="agent_computer"):
 
 
 def _main():
-    escaped, n_scanned = scan()
+    escaped, n_scanned = scan(system=config.system_from_argv())
     tasks = {t["id"]: t for t in load_tasks()}
     if "--json" in sys.argv:
         print(json.dumps({tid: dict(c) for tid, c in escaped.items()}, indent=2))
         return
     print(f"{n_scanned} original-baseline transcripts scanned, {len(escaped)} tasks escaped\n")
     for tid, counts in sorted(escaped.items(), key=lambda kv: -sum(kv[1].values())):
-        app = (tasks.get(tid, {}).get("related_apps") or ["?"])[0]
+        app = osw_tasks.app_of(tasks.get(tid, {}))
         print(f"{tid[:8]} {app:20s} {dict(counts)}")
 
 

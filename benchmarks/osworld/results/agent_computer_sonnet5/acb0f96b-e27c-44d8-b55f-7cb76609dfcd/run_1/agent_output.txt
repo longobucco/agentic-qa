@@ -1,0 +1,3 @@
+The repository has been cloned to `/home/user/instructor-embedding` with a full working tree and a `.git` directory whose `origin` remote points to `https://github.com/xlang-ai/instructor-embedding` (HEAD at `9a9742c`). Since `git` was not installed on the machine, I performed the clone using the `dulwich` Python git implementation.
+
+ANSWER: DONE

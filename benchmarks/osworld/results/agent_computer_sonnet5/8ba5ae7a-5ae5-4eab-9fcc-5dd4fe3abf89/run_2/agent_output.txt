@@ -1,0 +1,3 @@
+The recording folder for VLC has been changed to the Desktop. In VLC's Preferences → Input/Codecs → "Record directory or filename" I set the path to `/root/Desktop`, saved it, and the setting is persisted in `~/.config/vlc/vlcrc` as `input-record-path=/root/Desktop`.
+
+ANSWER: DONE

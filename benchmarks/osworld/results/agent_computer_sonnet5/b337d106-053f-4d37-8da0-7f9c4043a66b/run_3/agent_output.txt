@@ -1,0 +1,3 @@
+The `.vimrc` file contains exactly `set number`, confirming the setting was applied correctly and will make Vim show absolute line numbers by default on every startup.
+
+ANSWER: DONE

@@ -1,0 +1,11 @@
+VLC by default runs in "single instance" mode, so all new VLC windows just send their play commands to the first (already running) instance instead of playing independently. To watch multiple videos simultaneously in separate VLC instances, disable this setting:
+
+1. Open VLC → Tools → Preferences (or Edit → Preferences).
+2. Set "Show settings" (bottom-left) to **All**.
+3. Go to **Interface** in the left tree.
+4. Uncheck **"Allow only one instance"** (and also uncheck **"Use only one instance when started from file manager"** if present).
+5. Save and restart VLC.
+
+After that, each new VLC window you open will be a truly separate instance, and playing a video will affect only that window, letting you play multiple videos at once.
+
+ANSWER: Yes — in VLC go to Tools > Preferences > Interface, show All settings, and uncheck "Allow only one instance" (and "Use only one instance when started from file manager"), then restart VLC. This stops new windows from forwarding playback to the first instance, so each instance can play its own video independently.

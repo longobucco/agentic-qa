@@ -1,0 +1,3 @@
+The document has been created. I converted the `.xcf` file to a PNG (via GIMP), embedded that image into a Word document, and saved it as `/home/user/Desktop/image.docx`. Verified it opens correctly in LibreOffice (renders to a 100 KB PDF with the image).
+
+ANSWER: DONE

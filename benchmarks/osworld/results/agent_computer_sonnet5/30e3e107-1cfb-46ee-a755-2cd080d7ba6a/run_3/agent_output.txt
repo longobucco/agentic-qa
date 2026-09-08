@@ -1,0 +1,3 @@
+Sheet2 was created correctly: merged A1:C1 with "Demographic Profile" in bold white text on blue fill, and three stacked tables (Sex, Civil Status, Highest Educational Attainment) each showing percentages, separated by blank rows. The file has been saved (macro called `oDoc.store()`).
+
+ANSWER: DONE

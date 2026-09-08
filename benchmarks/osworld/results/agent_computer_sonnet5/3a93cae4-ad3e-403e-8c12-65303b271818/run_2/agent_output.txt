@@ -1,0 +1,3 @@
+The Wednesday 12 PM two‑hour lecture slot ("Lec 2 (12:00-14:00)") has been added to cell D5 of the weekly grid in `Course Timetable.xlsx` (column D = Wednesday, row where column A = 12:00, matching the existing 2‑hour "Lec 1 (8:00-10:00)" slot format). File saved.
+
+ANSWER: DONE

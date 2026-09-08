@@ -1,0 +1,3 @@
+I injected valid Excel `x14:sparklineGroup` XML into the workbook: one line sparkline per order row (rows 2–23) in column F ("Chart"), each sourced from that row's Jan–Mar values (C:E). The file `/home/user/OrderId_Month_Chart.xlsx` was saved with the sparkline markup and verified as well-formed.
+
+ANSWER: DONE

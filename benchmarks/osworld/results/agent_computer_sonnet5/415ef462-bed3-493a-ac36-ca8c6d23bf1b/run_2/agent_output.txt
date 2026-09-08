@@ -1,0 +1,3 @@
+The task is complete: extracted the AWS December 2023 invoice PDF from the email in the local Bills folder, saved it to `/home/user/Documents/Finance/receipts/aws-invoice-2312.pdf` (matching the existing `aws-invoice-YYMM.pdf` naming pattern), and appended a new row (AWS, 2023.12, $10.02) to the end of `tally_book.xlsx`, matching the existing format.
+
+ANSWER: DONE

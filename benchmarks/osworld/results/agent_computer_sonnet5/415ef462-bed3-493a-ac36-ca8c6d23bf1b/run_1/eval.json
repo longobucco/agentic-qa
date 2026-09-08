@@ -1,0 +1,8 @@
+{
+  "id": "415ef462-bed3-493a-ac36-ca8c6d23bf1b",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official ['compare_table', 'check_list'] -> 0.00",
+  "source": "official",
+  "gold_sha256": {}
+}

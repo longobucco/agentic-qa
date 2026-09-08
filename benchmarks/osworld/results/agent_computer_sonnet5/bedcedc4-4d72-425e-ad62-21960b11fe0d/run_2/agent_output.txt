@@ -1,0 +1,3 @@
+The desktop environment is unresponsive — the screen stays completely black and the accessibility tree returns an empty desktop-frame with no application content, despite mouse clicks, key presses, and waiting. This is an environment failure, not something fixable through the task itself.
+
+ANSWER: FAIL

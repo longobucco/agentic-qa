@@ -1,0 +1,3 @@
+VS Code only supports a single workspace per window by design — two separate `.code-workspace` files cannot be opened simultaneously in the same window (opening a second workspace either replaces the current one or opens a new window). This task is infeasible as stated.
+
+ANSWER: FAIL

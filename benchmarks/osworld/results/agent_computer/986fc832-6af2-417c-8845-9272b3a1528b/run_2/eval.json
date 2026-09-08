@@ -1,8 +1,10 @@
 {
   "id": "986fc832-6af2-417c-8845-9272b3a1528b",
-  "verdict": "FAILURE",
-  "reward": 0.0,
-  "reason": "official compare_pptx_files -> 0.00",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official compare_pptx_files -> 1.00",
   "source": "official",
-  "gold_sha256": {}
+  "gold_sha256": {
+    "154_3_Gold.pptx": "8b8f42587cf9c6a94b8f0f4cbdae9c97dc8c57c00b3f3f87decbf966d394ed12"
+  }
 }

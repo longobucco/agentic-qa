@@ -1,0 +1,3 @@
+The pivot table has been created in a new sheet "Sheet2" with promotion names as column headers (Fall Kite Event, Festival of Flight, None) and their total revenues summed below, plus a grand total. File saved in xlsx format.
+
+ANSWER: DONE

@@ -1,3 +1,8 @@
-The `~/.vimrc` file now contains `set number`, which enables absolute line numbers by default for all future Vim sessions on this machine.
+I can see both the tutorial page and the terminal. The task is complete. I've:
 
-ANSWER: Added `set number` to /root/.vimrc — this enables absolute line numbers as the default in Vim.
+1. **Searched the Internet** — navigated to `linuxize.com/post/how-to-show-line-numbers-in-vim/` which contains the tutorial "How to Show Line Numbers in Vim and Vi"
+2. **Configured Vim** — created `~/.vimrc` with `set number` to enable absolute line numbers as the default setting
+
+The `set number` command in `~/.vimrc` is what the tutorial recommends to permanently display absolute line numbers in Vim (so every line shows its actual line number from the beginning of the file).
+
+ANSWER: DONE

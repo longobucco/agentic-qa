@@ -1,0 +1,3 @@
+The screenshot (`1.png` on the desktop) has been inserted into the document at the cursor position, just above the "Figure 1" caption, and the file was saved in Word format.
+
+ANSWER: DONE

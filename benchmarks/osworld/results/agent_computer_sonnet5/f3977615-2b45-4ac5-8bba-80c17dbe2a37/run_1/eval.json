@@ -1,0 +1,7 @@
+{
+  "id": "f3977615-2b45-4ac5-8bba-80c17dbe2a37",
+  "verdict": "EVAL_ERROR",
+  "reason": "no eval_state captured (official eval errored: TypeError: a bytes-like object is required, not 'NoneType')",
+  "source": "offline_fallback",
+  "gold_sha256": {}
+}

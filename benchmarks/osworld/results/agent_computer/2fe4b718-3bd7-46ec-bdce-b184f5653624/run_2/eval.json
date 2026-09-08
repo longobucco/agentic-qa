@@ -1,7 +1,7 @@
 {
   "id": "2fe4b718-3bd7-46ec-bdce-b184f5653624",
   "verdict": "FAILURE",
-  "reward": 0.8472614134182963,
+  "reward": 0.8472598210357833,
   "reason": "official compare_images -> 0.85",
   "source": "official",
   "gold_sha256": {

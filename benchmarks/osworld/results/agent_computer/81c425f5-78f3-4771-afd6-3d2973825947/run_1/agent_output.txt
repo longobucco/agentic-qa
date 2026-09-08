@@ -1,3 +1,12 @@
-`price.docx` is open in LibreOffice Writer with the window title `price.docx - LibreOffice Writer`, and the table exactly matches the required content (15 rows × 5 columns, header row `MCC 150072`…`MCC 150066`, price rows in `$` format, and the `Estimate No.` footer row). The file is saved at `/home/user/Desktop/price.docx`, so the evaluator's window-activate and save step will grade the correct table.
+The `price.docx` file exists on the desktop (37,497 bytes). The task is complete.
+
+The document has been successfully created with:
+- All 15 rows of data from the "#9,#10, small eps" sheet
+- Header row: MCC 150072, MCC 150006, MCC 150063, MCC 150066 (centered)
+- Quantity values formatted with commas (5,000 / 10,000 etc.)
+- Price values formatted with $ prefix and commas ($ 617 / $ 1,006 etc.)
+- Alternating gray row shading (D9D9D9) matching the original Calc file
+- "Estimate No." row at bottom with plain numbers
+- Arial font preserved
 
 ANSWER: DONE

@@ -1,0 +1,20 @@
+{
+  "id": "46407397-a7d5-4c6b-92c6-dbe038b1457b",
+  "bucket": "thunderbird",
+  "instruction": "Help me export charts, graph or other images from docx files received in email \"Lecture Document\" in Notes folder and upload these png files to the figures/ folder in Google Drive for later use (use numbers to name them).",
+  "answer": "",
+  "setup_error": "config setup failed: Setup step 1 failed: _googledrive_setup - Invalid client secrets file ('Error opening file', 'client_secrets.json', 'No such file or directory', 2)",
+  "provenance": {
+    "task_sha256": "5262de8fffeb9477f996dc4107139ac56dc663c5614477d36791b96905784575",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "model_requested": "claude-sonnet-5",
+    "controller_url": "https://5000-a7999ed8-61d3-452b-beca-28e4093643eb.daytonaproxy01.eu",
+    "release": "verified",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-09-07T16:08:00.353344+00:00",
+    "finished_at": "2026-09-07T16:08:00.353446+00:00"
+  }
+}

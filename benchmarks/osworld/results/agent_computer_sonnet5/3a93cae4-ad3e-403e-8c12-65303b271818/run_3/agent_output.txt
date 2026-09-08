@@ -1,0 +1,3 @@
+I added a two-hour lecture slot ("Lec 2 (12:00-14:00)") to the Wednesday column at the 12 PM row in `~/Desktop/Course Timetable.xlsx`, and verified the file still opens correctly.
+
+ANSWER: DONE

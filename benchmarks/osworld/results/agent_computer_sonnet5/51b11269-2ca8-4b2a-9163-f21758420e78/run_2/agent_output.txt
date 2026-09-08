@@ -1,0 +1,3 @@
+The records are sorted by Amount ascending and saved.
+
+ANSWER: DONE

@@ -1,0 +1,3 @@
+There is no `Downloads` folder in the environment and no image file anywhere on the system, so the required "photo in Downloads" does not exist. Additionally, VS Code has no native setting to set a photo as its background. The task's precondition is missing.
+
+ANSWER: FAIL

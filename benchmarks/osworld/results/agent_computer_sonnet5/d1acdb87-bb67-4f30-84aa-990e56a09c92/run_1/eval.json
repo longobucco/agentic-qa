@@ -1,0 +1,10 @@
+{
+  "id": "d1acdb87-bb67-4f30-84aa-990e56a09c92",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official compare_table -> 0.00",
+  "source": "official",
+  "gold_sha256": {
+    "MUST_VISIT-gt.xlsx": "fd60eecfc60cac1be90b81aa83c5a3322f321e39ac1e516bc023d967195bdd54"
+  }
+}

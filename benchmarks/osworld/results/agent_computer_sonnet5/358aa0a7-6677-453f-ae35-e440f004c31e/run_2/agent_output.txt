@@ -1,0 +1,5 @@
+I ran a Basic macro that iterates every slide and every text-bearing shape, setting `CharFontName` (and the Asian/Complex variants) to "Liberation Sans Narrow" on each text portion, then saved the file.
+
+Suggestion for doing this without selecting each box manually: use **Tools ▸ Macros ▸ Edit Macros** and run a short loop over `ThisComponent.DrawPages` → each shape's `Text` enumeration, assigning `CharFontName`. Alternatively, for a lighter-weight approach, edit the presentation's master slide / outline styles, but a macro is the most reliable way to catch every existing text box.
+
+ANSWER: Use a Basic macro (Tools ▸ Macros ▸ Edit Macros) that loops through all DrawPages and shapes setting CharFontName = "Liberation Sans Narrow"; this has been applied to the open presentation and saved.

@@ -1,0 +1,11 @@
+{
+  "id": "7e287123-70ca-47b9-8521-47db09b69b14",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official compare_table -> 0.00",
+  "source": "official",
+  "gold_sha256": {
+    "GRF-p5y-gt.xlsx": "23efe99a2167d170b8aefd2e141724270488270b8b237fd7424630b3bbd4c9db",
+    "GRF-p5y-gt-Sheet1.csv": "fc81865fbdc7b5f8438fb766cdad4e04b92181e7a2dfe995889f17258b975a41"
+  }
+}

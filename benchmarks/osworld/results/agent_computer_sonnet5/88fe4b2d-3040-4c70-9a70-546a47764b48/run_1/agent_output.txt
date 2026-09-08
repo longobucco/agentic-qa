@@ -1,0 +1,3 @@
+Saved successfully in .docx format. The first paragraph now has each sentence separated by an empty line, with the rest of the document unaffected.
+
+ANSWER: DONE

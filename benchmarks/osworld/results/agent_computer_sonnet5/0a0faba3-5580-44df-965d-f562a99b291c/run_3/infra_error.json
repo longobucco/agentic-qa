@@ -1,0 +1,11 @@
+[
+  {
+    "id": "0a0faba3-5580-44df-965d-f562a99b291c",
+    "run": 3,
+    "outcome": "INFRA_FLAKE",
+    "error_type": "DaytonaBadGatewayError",
+    "error": "Failed to create sandbox: Failure during waiting for sandbox to start: Failed to refresh sandbox data: <html>\r\n<head><title>502 Bad Gateway</title></head>\r\n<body>\r\n<center><h1>502 Bad Gateway</h1></center>\r\n</body>\r\n</html>\r\n",
+    "elapsed_s": 1.1,
+    "at": "2026-09-04T15:45:32+0200"
+  }
+]

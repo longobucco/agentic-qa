@@ -1,0 +1,11 @@
+{
+  "id": "21df9241-f8d7-4509-b7f1-37e501a823f7",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official compare_table -> 0.00",
+  "source": "official",
+  "gold_sha256": {
+    "Represent_in_millions_billions_gold.xlsx": "17b2da202f9c24e0e959e3f24415a19ebabdc7d1f10820255cf5ef3911dde50e",
+    "Represent_in_millions_billions_gold-Sheet1.csv": "9cbe41c8f629068a6c165a5c4e332cd4318fdc27ecbc21061406bd738432c0a8"
+  }
+}

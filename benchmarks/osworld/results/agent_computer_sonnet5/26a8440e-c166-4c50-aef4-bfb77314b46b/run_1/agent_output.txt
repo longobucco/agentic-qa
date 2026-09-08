@@ -1,0 +1,3 @@
+Table created in Sheet2 with headers "Month" and "Total" and monthly sales totals.
+
+ANSWER: DONE

@@ -1,0 +1,10 @@
+{
+  "id": "347ef137-7eeb-4c80-a3bb-0951f26a8aff",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official compare_table -> 0.00",
+  "source": "official",
+  "gold_sha256": {
+    "Create_column_charts_using_statistics_gold.xlsx": "53d2c5da7fd412ecc3de462a1263cc39f89e2d103b025b21578d2fb8db33787b"
+  }
+}

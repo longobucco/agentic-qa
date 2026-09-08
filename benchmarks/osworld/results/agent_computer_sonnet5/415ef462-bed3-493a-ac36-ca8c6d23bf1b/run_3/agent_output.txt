@@ -1,0 +1,3 @@
+Both files are in place with correct ownership: the AWS December invoice PDF is saved as `aws-invoice-2312.pdf` in the receipts folder (matching the existing `aws-invoice-YYMM.pdf` pattern), and a new row `AWS, 2023.12, 10.02` was appended to the tally book.
+
+ANSWER: DONE

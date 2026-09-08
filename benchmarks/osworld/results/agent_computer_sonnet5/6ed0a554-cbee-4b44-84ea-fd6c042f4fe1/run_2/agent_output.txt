@@ -1,0 +1,3 @@
+Both data1 and data2 are now added to the workspace, alongside the project folder, as shown in the Explorer panel.
+
+ANSWER: DONE

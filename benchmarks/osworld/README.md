@@ -21,7 +21,13 @@ docker push <registry>/osworld-ab:latest
 docker inspect <registry>/osworld-ab:latest --format '{{index .RepoDigests 0}}'   # -> pin THIS
 export OSW_IMAGE=<registry>/osworld-ab@sha256:...      # DAYTONA_API_KEY goes in the repo .env
 python -m benchmarks.osworld.data.download_data
+python -m benchmarks.osworld.data.download_evaluators
 ```
+`download_evaluators` fetches `desktop_env/evaluators/` at the same `UPSTREAM_COMMIT` as the
+tasks and the guest image; scoring uses it in preference to the installed `desktop_env` release
+and records which one produced each verdict (`provenance.evaluator_commit`). Skip it and
+scoring falls back to the installed release, which cannot score six of the verified tasks at
+all. `OSW_PINNED_EVALUATORS=0` forces the installed release back.
 `config.py`'s default `IMAGE` is already pinned to a known-good digest; only override `OSW_IMAGE` if
 you rebuild the image yourself (see the Notes below on why `:latest` alone isn't safe here).
 
@@ -43,7 +49,10 @@ OSW_CONTROLLER_URL=http://<url>:5000 python -m benchmarks.osworld.run --ids <tas
 ## Analysis
 
 `analysis/` holds the thesis's validity-audit and results-analysis scripts (`gap-research-plan.md`
-tracks the full research design). Each is independently runnable as `python -m
+tracks the full research design). Every module that reads `results/` picks the tree the same way
+the runners write it: `OSW_MODEL=claude-sonnet-5 python -m benchmarks.osworld.analysis.<name>`
+reads `results/agent_computer_sonnet5/`, or pass `--system agent_computer_sonnet5` explicitly.
+With neither, they read the historical unpinned `agent_computer/` tree. Each is independently runnable as `python -m
 benchmarks.osworld.analysis.<name>`; "offline" means no sandbox and no agent cost, "live" means it
 needs a provisioned sandbox but still spends no agent/LLM cost, and "re-derived from raw" means it
 recomputes purely from `results/` with no new runs.
@@ -85,6 +94,13 @@ recomputes purely from `results/` with no new runs.
 - `g8_failure_taxonomy.py` (G8, re-derived from raw, no new runs): failure taxonomy over the
   completed-task cohort, classifying every non-SUCCESS run by layer (INFRA/ORACLE/AGENT) and
   clustering failure signatures into a bug catalogue.
+- `task_manifest.py`: one row per in-scope task -> `analysis/results/task_manifest[_<model>].{csv,json}`.
+- `g9_replication_validity.py` (G9, re-derived from raw, no new runs): which scored runs are
+  invalidated by a defect on OUR side rather than by the agent, split into VALID /
+  INVALID_OURS / UNRESOLVED / EXCLUDED, with the task-id list to re-run once each defect is
+  fixed (`--write-ids <path>`). The set of getters that build their own `http://` URL is
+  derived from the installed `desktop_env` source, so upgrading the library shrinks the
+  finding instead of leaving a stale hardcoded list behind.
 - `conversation_coverage.py` (re-derived from raw, no new runs): which tasks have a
   `conversation.jsonl` saved and whether it's a real transcript or a rate-limited stub (a
   429 attempt still gets a 9-line stub written, since the CLI still returns a session id to
@@ -98,6 +114,18 @@ recomputes purely from `results/` with no new runs.
   schema, own `desktop_env`, see `data/download_data.py`) and fails loudly rather than silently
   downloading the wrong data.
 - Serial: one Daytona sandbox per task, `concurrency_safe=False`. Disk caps at 10GB.
+- Three things are pinned to one upstream commit, and they have to be bumped together: the task
+  set (`data/download_data.py::UPSTREAM_COMMIT`), the guest server image
+  (`docker/Dockerfile.osworld`) and, since 2026-09-08, the evaluators themselves
+  (`data/download_evaluators.py`). The evaluator half was the gap: verdicts were computed by
+  whatever `desktop_env` release pip had resolved, and six verified tasks call metrics/getters
+  that release doesn't have.
+- Upstream getters that build their own `http://{ip}:{port}` URL (12 of them) reach the guest
+  through a loopback forwarder (`env/http_forwarder.py`); splitting the https Daytona URL into
+  host+port made them talk plain HTTP to port 443, which the proxy answers with `400` and a
+  `text/html` body -- `JSONDecodeError` inside the getter, EVAL_ERROR on 20 tasks. Getters that
+  want a *different* guest port (Chrome 9222, VLC 8080) are still unreachable: those ports
+  aren't published by the sandbox.
 - Scoring requires `desktop_env` importable. `evaluate.py` is the fallback and only ever reports
   `EVAL_ERROR`: no reimplemented metric is verified to agree with the real one (see below), so it
   never produces a SUCCESS/FAILURE that could pass as an official verdict.

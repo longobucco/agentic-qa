@@ -7,17 +7,19 @@
   "provenance": {
     "task_sha256": "e0529db5c5565f786c1dd394d2e6467cde620f1d16f5fc3fbb2c2741bf9b7719",
     "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
-    "controller_url": "https://5000-8e93d029-6b02-4c34-ab96-6a634d8d50c6.daytonaproxy01.eu",
+    "controller_url": "https://5000-6a70d4d3-96e5-422a-a3e5-77b248521ee8.daytonaproxy01.eu",
     "release": "verified",
     "max_turns": 150,
     "task_timeout": 2700,
     "observation": "screenshot+a11y",
     "action_space": "pyautogui",
-    "started_at": "2026-08-22T03:12:31.860271+00:00",
-    "finished_at": "2026-08-22T03:12:53.503305+00:00"
+    "started_at": "2026-09-05T19:58:04.762955+00:00",
+    "finished_at": "2026-09-05T19:58:25.274166+00:00"
   },
+  "transcript_saved": true,
+  "transcript_bytes": 54513,
   "agent_clean_finish": true,
-  "agent_num_turns": 6,
+  "agent_num_turns": 4,
   "agent_stop_reason": "end_turn",
   "agent_terminal_reason": "completed",
   "agent_subtype": "success",
@@ -25,35 +27,43 @@
   "agent_errors": null,
   "agent_api_error_status": null,
   "agent_permission_denials": [],
-  "agent_cost_usd": 0.21673149999999997,
-  "agent_input_tokens": 3145,
-  "agent_output_tokens": 987,
-  "agent_cache_read_tokens": 124657,
-  "agent_cache_creation_tokens": 17472,
+  "agent_cost_usd": 0.16198159999999998,
+  "agent_input_tokens": 8,
+  "agent_output_tokens": 730,
+  "agent_cache_read_tokens": 94468,
+  "agent_cache_creation_tokens": 33606,
   "agent_model_usage": {
     "claude-haiku-4-5-20251001": {
-      "inputTokens": 4723,
-      "outputTokens": 16,
+      "inputTokens": 1283,
+      "outputTokens": 13,
       "cacheReadInputTokens": 0,
       "cacheCreationInputTokens": 0,
       "webSearchRequests": 0,
-      "costUSD": 0.004803,
+      "costUSD": 0.001348,
       "contextWindow": 200000,
-      "maxOutputTokens": 32000
+      "maxOutputTokens": 32000,
+      "thinkingTokens": 0,
+      "canonicalModel": "claude-haiku-4-5",
+      "provider": "firstParty",
+      "costBasis": "list"
     },
-    "claude-opus-4-8": {
-      "inputTokens": 3145,
-      "outputTokens": 987,
-      "cacheReadInputTokens": 124657,
-      "cacheCreationInputTokens": 17472,
+    "claude-sonnet-5": {
+      "inputTokens": 8,
+      "outputTokens": 730,
+      "cacheReadInputTokens": 94468,
+      "cacheCreationInputTokens": 33606,
       "webSearchRequests": 0,
-      "costUSD": 0.21192849999999996,
+      "costUSD": 0.1606336,
       "contextWindow": 1000000,
-      "maxOutputTokens": 64000
+      "maxOutputTokens": 64000,
+      "thinkingTokens": 202,
+      "canonicalModel": "claude-sonnet-5",
+      "provider": "firstParty",
+      "costBasis": "list"
     }
   },
-  "agent_duration_ms": 20141,
-  "agent_duration_api_ms": 20142,
-  "agent_session_id": "abb04ffd-49c4-42e9-869c-d35f4990a4ab",
-  "agent_uuid": "daae0f03-1a9d-430d-a77b-5dce36a801c5"
+  "agent_duration_ms": 11393,
+  "agent_duration_api_ms": 11553,
+  "agent_session_id": "75839ed8-9d23-420c-94ee-0b4199f943fe",
+  "agent_uuid": "46cdcc5d-4049-4773-9ca8-6b63b3b4519d"
 }

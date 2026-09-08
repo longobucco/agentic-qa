@@ -1,8 +1,1 @@
-The extension has been successfully loaded and configured in Chrome. The "Hello Extensions 1.0" extension (Base Level Extension) is now showing in Chrome's extensions page with:
-- Developer mode enabled (blue toggle)
-- Extension loaded with ID: `mocnijhgdiggfoillfodiefncpjkahbp`
-- Extension is enabled (blue toggle at the bottom right of the extension card)
-
-The task is complete: I unzipped `helloExtension.zip` from `/home/user/Desktop/` to `/home/user/Desktop/helloExtension/` and loaded it as an unpacked extension in Chrome.
-
-ANSWER: DONE
+You've hit your session limit · resets 9:40pm (Europe/Rome)

@@ -1,0 +1,10 @@
+{
+  "id": "efcf0d81-0835-4880-b2fd-d866e8bc2294",
+  "verdict": "FAILURE",
+  "reward": 0.2575621327898968,
+  "reason": "official compare_images -> 0.26",
+  "source": "official",
+  "gold_sha256": {
+    "interstellar_wallpaper_gold.png": "3a8d54e194ba6006b7874bf5703f64f98768b12c0886de878bf5d02ebc5d281a"
+  }
+}

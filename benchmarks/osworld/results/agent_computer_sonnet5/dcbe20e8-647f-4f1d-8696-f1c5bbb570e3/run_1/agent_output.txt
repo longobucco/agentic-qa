@@ -1,0 +1,3 @@
+The task requires "the photo in Downloads", but there is no `Downloads` directory anywhere on this system (checked `~`, `/root`, and a full filesystem search), and no photo/image file exists apart from Chrome logo assets. VS Code also has no native background-image feature and no background extension is installed. The required precondition does not exist.
+
+ANSWER: FAIL

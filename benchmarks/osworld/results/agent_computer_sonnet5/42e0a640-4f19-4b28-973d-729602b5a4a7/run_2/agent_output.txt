@@ -1,0 +1,3 @@
+Done. Sheet2 created with "Total Revenue" (867786) and "Total Expenses" (411686), file saved in xlsx format.
+
+ANSWER: Total Revenue = 867786, Total Expenses = 411686 (written to Sheet2)

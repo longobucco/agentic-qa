@@ -1,0 +1,69 @@
+[
+  {
+    "id": "778efd0a-153f-4842-9214-f05fc176b877",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-13T13:27:53+0200"
+  },
+  {
+    "id": "778efd0a-153f-4842-9214-f05fc176b877",
+    "run": 1,
+    "outcome": "INFRA_FLAKE",
+    "error_type": "FileNotFoundError",
+    "error": "[Errno 2] No such file or directory: 'claude'",
+    "elapsed_s": 15.3,
+    "at": "2026-08-13T15:50:31+0200"
+  },
+  {
+    "id": "778efd0a-153f-4842-9214-f05fc176b877",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-14T10:31:10+0200"
+  },
+  {
+    "id": "778efd0a-153f-4842-9214-f05fc176b877",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-15T04:07:10+0200"
+  },
+  {
+    "id": "778efd0a-153f-4842-9214-f05fc176b877",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-15T16:49:35+0200"
+  },
+  {
+    "id": "778efd0a-153f-4842-9214-f05fc176b877",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-16T05:38:53+0200"
+  },
+  {
+    "id": "778efd0a-153f-4842-9214-f05fc176b877",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-16T15:51:23+0200"
+  },
+  {
+    "id": "778efd0a-153f-4842-9214-f05fc176b877",
+    "run": 1,
+    "outcome": "INFRA_FLAKE",
+    "error_type": "DaytonaError",
+    "error": "Failed to execute command: HTTPSConnectionPool(host='proxy.app-eu.daytona.io', port=443): Max retries exceeded with url: /toolbox/e7392ea6-4972-41e6-ab21-5811bb527e05/process/execute (Caused by NameResolutionError(\"HTTPSConnection(host='proxy.app-eu.daytona.io', port=443): Failed to resolve 'proxy.app-eu.daytona.io' ([Errno 8] nodename nor servname provided, or not known)\"))",
+    "elapsed_s": 3.5,
+    "at": "2026-08-18T16:07:38+0200"
+  },
+  {
+    "id": "778efd0a-153f-4842-9214-f05fc176b877",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-08-19T12:13:06+0200"
+  }
+]

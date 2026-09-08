@@ -1,10 +1,3 @@
-The task is complete. Sheet2 has been successfully created with:
-
-- **A1**: "Total Revenue" (column header)
-- **B1**: "Total Expenses" (column header)  
-- **A2**: 867786 (sum of all Revenue values from Sheet1)
-- **B2**: 411686 (sum of all Total Expenses values from Sheet1)
-
-The file has been saved in Excel format.
+Sheet2 created with headers "Total Revenue" (A1) and "Total Expenses" (B1), and sums in row 2: Revenue total = 867786, Total Expenses total = 411686. File saved in xlsx format.
 
 ANSWER: DONE

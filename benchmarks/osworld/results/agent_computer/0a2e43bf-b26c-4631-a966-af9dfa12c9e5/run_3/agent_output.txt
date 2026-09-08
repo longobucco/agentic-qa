@@ -1,1 +1,3 @@
-Not logged in · Please run /login
+Total row added (Jan 4852, Feb 4587, Mar 3943, Apr 3857, May 4677, Jun 4243) and a line chart with Months on the x-axis was created and saved.
+
+ANSWER: DONE

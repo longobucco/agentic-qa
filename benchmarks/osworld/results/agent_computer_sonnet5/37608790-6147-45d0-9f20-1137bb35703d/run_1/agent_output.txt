@@ -1,0 +1,3 @@
+The field in column A has been split into First Name, Last Name, and Rank columns (B, C, D) for all rows, with the original data left untouched, and the file saved in xlsx format.
+
+ANSWER: DONE

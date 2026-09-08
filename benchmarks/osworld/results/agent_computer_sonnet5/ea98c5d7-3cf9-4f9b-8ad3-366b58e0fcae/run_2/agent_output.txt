@@ -1,0 +1,3 @@
+The keybindings.json file now correctly contains the array with the unbind entry: `[{ "key": "ctrl+f", "command": "-list.find", "when": "listFocus && listSupportsFind" }]`, properly closed. The file is saved (no unsaved dot on tab). This removes the Ctrl+F shortcut for the Tree view Find (Explorer search) command.
+
+ANSWER: DONE

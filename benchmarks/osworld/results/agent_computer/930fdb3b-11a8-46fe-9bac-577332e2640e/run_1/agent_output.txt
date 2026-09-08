@@ -1,15 +1,9 @@
-The keybinding has been successfully added to VS Code's keybindings.json. The file contains:
+The keyboard shortcut "Ctrl+J" has been successfully configured in VS Code to move cursor focus from terminal to the editor ("View: Focus Active Editor Group"). The Keyboard Shortcuts editor confirms:
 
-```json
-[
-    {
-        "key": "ctrl+j",
-        "command": "workbench.action.terminal.focusActiveEditorGroup",
-        "when": "terminalFocus"
-    }
-]
-```
+- **Command**: View: Focus Active Editor Group (`workbench.action.focusActiveEditorGroup`)
+- **Keybinding**: Ctrl + J  
+- **Source**: User
 
-This sets up `ctrl+j` to run `workbench.action.terminal.focusActiveEditorGroup` — which moves cursor focus from the terminal back to the active editor — but only when `terminalFocus` is active (so it won't conflict with other uses of ctrl+j elsewhere).
+The binding was created both via the `keybindings.json` file (with `terminalFocus` when condition) and confirmed through VS Code's keyboard shortcuts UI.
 
 ANSWER: DONE

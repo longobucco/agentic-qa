@@ -7,13 +7,13 @@
   "provenance": {
     "task_sha256": "e6e02cff5404056b42e5618caf318a25cc05db9030ba41567d5c2f798996e713",
     "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
-    "controller_url": "https://5000-3dd4e248-1c80-41aa-b890-49a93ba9c874.daytonaproxy01.eu",
+    "controller_url": "https://5000-ba232112-d808-4fed-b9ff-255f583c4d85.daytonaproxy01.eu",
     "release": "verified",
     "max_turns": 150,
     "task_timeout": 2700,
     "observation": "screenshot+a11y",
     "action_space": "pyautogui",
-    "started_at": "2026-09-04T16:37:31.481028+00:00",
-    "finished_at": "2026-09-04T16:37:31.481119+00:00"
+    "started_at": "2026-09-07T13:08:26.365625+00:00",
+    "finished_at": "2026-09-07T13:08:26.365737+00:00"
   }
 }

@@ -1,3 +1,1 @@
-The setting has been saved successfully. The `settings.json` now contains `"debug.focusEditorOnBreak": false`, which keeps the cursor focused on the debug console instead of automatically returning focus to the Editor when the debugger breaks.
-
-ANSWER: DONE
+You've hit your session limit · resets 4:20pm (Europe/Rome)

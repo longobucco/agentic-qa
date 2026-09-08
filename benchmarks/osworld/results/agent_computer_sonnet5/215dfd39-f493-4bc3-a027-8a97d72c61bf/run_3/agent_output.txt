@@ -1,0 +1,3 @@
+Based on investigation: VLC (the only app with a "cone" icon splash) is installed but has no user-facing preference to disable its traffic-cone logo — searching the VLC resources found no such toggle, and the cone branding is hardcoded into the compiled UI resources, not a configurable option. There is no setting anywhere in VLC's preferences to disable this icon.
+
+ANSWER: FAIL

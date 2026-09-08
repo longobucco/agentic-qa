@@ -1,0 +1,3 @@
+Now VLC is playing the video fullscreen with no error dialogs, filling the entire screen with no window decorations or controls visible.
+
+ANSWER: DONE

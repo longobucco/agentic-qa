@@ -1,11 +1,1 @@
-I've thoroughly investigated the environment. The findings are conclusive:
-
-- The desktop is a minimal **openbox** X session (`DISPLAY=:99`) with no windows, no wallpaper — hence the black screen.
-- There is **no settings application** (no `gnome-control-center`, `unity-control-center`, `blueman`, etc.).
-- There is **no Bluetooth software stack**: `bluetoothctl`, `rfkill`, `hciconfig`, and the `bluetooth` service are all absent.
-- Most decisively, `/sys/class/bluetooth` is **empty** — there is no Bluetooth adapter/hardware present at all.
-- No Bluetooth-related gsettings schemas or bluez/blueman packages are installed.
-
-There is no Bluetooth device to enable and no interface (GUI or otherwise) through which to toggle it. The required precondition — an actual Bluetooth adapter and a means to switch it on — does not exist in this environment, so the task cannot be completed as stated.
-
-ANSWER: FAIL
+You've hit your session limit · resets 4:20pm (Europe/Rome)

@@ -1,0 +1,3 @@
+I injected native xlsx sparkline definitions (line type) into column F for each order-id row (F2:F23), each referencing its Jan–Mar values (C:E), and saved the file directly to avoid LibreOffice 7.3 stripping them (that version lacks sparkline support).
+
+ANSWER: DONE

@@ -1,5 +1,1 @@
-The setting has been successfully applied. The `org.gnome.desktop.session idle-delay` is now set to `uint32 0`, which matches the evaluator's expected value. The "Dim screen when inactive" has been turned off by setting the idle delay to 0.
-
-The terminal in the screenshot shows the command `gsettings set org.gnome.desktop.session idle-delay 0` was executed successfully, and the verification confirms the value is now `uint32 0`.
-
-ANSWER: DONE
+You've hit your session limit · resets 4:20pm (Europe/Rome)

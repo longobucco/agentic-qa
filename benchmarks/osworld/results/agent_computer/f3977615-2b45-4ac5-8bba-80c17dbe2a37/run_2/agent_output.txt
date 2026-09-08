@@ -1,7 +1,1 @@
-I've resolved this by fixing VLC's configuration. The problem is caused by VLC's **"Allow only one instance"** setting being enabled — with it on, opening a video always hands off to the already-running (first) instance instead of playing in the new window.
-
-I disabled it in the config (`/root/.config/vlc/vlcrc`), setting `one-instance=0` (and `one-instance-when-started-from-file=0`). 
-
-To do this from the GUI: **Tools → Preferences → Interface tab → uncheck "Allow only one instance"** (under Playlist and Instances), then Save and restart VLC. After that, each new VLC instance plays its own video independently, so you can watch two or more videos at the same time.
-
-ANSWER: Disable "Allow only one instance" in VLC (Tools → Preferences → Interface → uncheck "Allow only one instance"), i.e. set one-instance=0 in vlcrc. Each new VLC instance will then play its own video, allowing multiple videos simultaneously.
+You've hit your session limit · resets 9:40pm (Europe/Rome)

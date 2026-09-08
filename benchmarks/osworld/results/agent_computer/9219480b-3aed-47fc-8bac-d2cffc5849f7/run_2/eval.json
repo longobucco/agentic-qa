@@ -6,6 +6,5 @@
   "source": "official",
   "gold_sha256": {
     "test_suite.py": "b266e83242c035256b9a6b0904615318e5bb90fd7ef19f8648a9503e7a96c9ff"
-  },
-  "note": "incidental: agent did not finish cleanly (no ANSWER / hit max-turns or errored) \u2014 the state happened to already satisfy the evaluator, not necessarily evidence the agent completed the task"
+  }
 }

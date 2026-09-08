@@ -1,0 +1,11 @@
+[
+  {
+    "id": "0a2e43bf-b26c-4631-a966-af9dfa12c9e5",
+    "run": 2,
+    "outcome": "INFRA_FLAKE",
+    "error_type": "DaytonaConnectionTimeoutError",
+    "error": "Failed to execute command: HTTPSConnectionPool(host='proxy.app-eu.daytona.io', port=443): Read timed out. (read timeout=24.94218779199582)",
+    "elapsed_s": 27.1,
+    "at": "2026-09-04T17:10:20+0200"
+  }
+]

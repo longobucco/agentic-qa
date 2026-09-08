@@ -1,0 +1,3 @@
+GIMP is a raster image editor and does not support exporting raster images (like PNG) to SVG format — SVG is a vector format, and GIMP's File > Export As dialog does not offer .svg as an output type for bitmap content. GIMP can only import/rasterize existing SVG files, not the reverse. This task cannot be accomplished as stated through GIMP.
+
+ANSWER: FAIL

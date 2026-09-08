@@ -1,8 +1,8 @@
 {
   "id": "841b50aa-df53-47bd-a73a-22d3a9f73160",
-  "verdict": "FAILURE",
-  "reward": 0.0,
-  "reason": "official compare_pptx_files -> 0.00",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official compare_pptx_files -> 1.00",
   "source": "official",
   "gold_sha256": {
     "181_2_Gold.pptx": "3272fd897b54b1ea758177aa663ef22dea832a370633c036f58a59933db03f85"

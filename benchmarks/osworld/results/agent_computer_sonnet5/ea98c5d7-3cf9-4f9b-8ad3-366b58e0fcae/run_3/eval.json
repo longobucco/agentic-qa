@@ -1,0 +1,8 @@
+{
+  "id": "ea98c5d7-3cf9-4f9b-8ad3-366b58e0fcae",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official check_json_keybindings -> 0.00",
+  "source": "official",
+  "gold_sha256": {}
+}

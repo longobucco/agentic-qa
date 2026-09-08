@@ -1,0 +1,11 @@
+[
+  {
+    "id": "59f21cfb-0120-4326-b255-a5b827b38967",
+    "run": 2,
+    "outcome": "INFRA_FLAKE",
+    "error_type": "RuntimeError",
+    "error": "scoring exceeded 600s -- treated as a hang, not a legitimate wait",
+    "elapsed_s": 804.9,
+    "at": "2026-09-07T20:28:08+0200"
+  }
+]

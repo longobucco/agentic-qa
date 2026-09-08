@@ -1,0 +1,11 @@
+{
+  "id": "c867c42d-a52d-4a24-8ae3-f75d256b5618",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official ['compare_csv', 'compare_table'] -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "contacts_gold.csv": "beb4c4e09458c8401e2c20ad90d5b550f57bb2ed79afb3719e18305bbe039b3a",
+    "contacts_gold.xlsx": "03f0ace868032e61119d6b6dc2ad8cdd12d90a3c2817c7477fd62acd432aaea6"
+  }
+}

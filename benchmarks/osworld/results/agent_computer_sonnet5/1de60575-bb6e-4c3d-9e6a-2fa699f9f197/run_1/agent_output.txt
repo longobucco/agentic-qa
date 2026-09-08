@@ -1,0 +1,8 @@
+The pivot table has been created on a new sheet named "Sheet2" with promotion names as column headers and their total revenue summed below:
+- Fall Kite Event: 46190.74
+- Festival of Flight: 49433.40
+- None: 82215.01
+
+File saved in xlsx format.
+
+ANSWER: DONE

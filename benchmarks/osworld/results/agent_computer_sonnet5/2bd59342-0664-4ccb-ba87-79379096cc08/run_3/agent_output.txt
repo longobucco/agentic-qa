@@ -1,0 +1,3 @@
+Sparklines injected into column F (F2:F23), each referencing its row's Jan–Mar values (C:E). LibreOffice was closed first so it won't overwrite the file.
+
+ANSWER: DONE

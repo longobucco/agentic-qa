@@ -1,0 +1,3 @@
+Both files created. The report.xlsx contains the latest 5 emails from the Thunderbird "daily" folder, sorted earliest→most recent, with sender_name, sender_address, subject, CC, and number_of_attachments.
+
+ANSWER: DONE

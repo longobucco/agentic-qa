@@ -1,0 +1,3 @@
+The University of Hong Kong logo has been successfully saved as a PNG file at `/root/hku_logo.png` (832×160, RGB), created entirely through GIMP's built-in Script-Fu console (loading the HKU logo SVG and exporting it as PNG) — no separate web browser was launched.
+
+ANSWER: DONE

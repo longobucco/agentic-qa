@@ -1,0 +1,3 @@
+Confirmed: `qt-max-volume=200` is now saved in VLC's config file, doubling the maximum volume from 125% to 200%.
+
+ANSWER: DONE

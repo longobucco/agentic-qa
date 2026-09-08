@@ -1,3 +1,11 @@
-The setting has been saved. The `settings.json` now contains `"workbench.editor.wrapTabs": true` and the file shows no unsaved indicator (dot) in the tab. This enables tabs to wrap over multiple lines when they exceed the available space.
+The VS Code settings file at `~/.config/Code/User/settings.json` now contains:
+
+```json
+{
+    "workbench.editor.wrapTabs": true
+}
+```
+
+The `workbench.editor.wrapTabs` setting has been set to `true`, which will make tabs wrap onto multiple lines when they exceed the available horizontal space in VS Code's tab bar.
 
 ANSWER: DONE

@@ -1,7 +1,1 @@
-All 14 files organized; the Desktop now contains only the three folders. Content analysis resolved the ambiguous names: `paper01.pdf` (BERT paper) → Paper_reading; `DOC_2480903712718068684.pdf` (a handcraft show entry form) and `IA_Format.docx` (assignment submission notice) → Miscellaneous.
-
-- **Paper_reading** (academic papers): 1706.03762 (Attention Is All You Need), 1802.05365 (ELMo), 1909.10351 (TinyBERT), GLUE benchmark, paper01 (BERT)
-- **Projects** (coding): 2-if-for-array.zip (C exercises), assign1-data3.zip (Python pacman)
-- **Miscellaneous**: k-means slides, two xlsx data tables, handcraft entry form, Family Status Equality doc, assignment format/frontpage docx
-
-ANSWER: DONE
+You've hit your session limit · resets 9:40pm (Europe/Rome)

@@ -1,0 +1,3 @@
+The root VLC config now permanently has `qt-max-volume=200`, which I verified works correctly by launching VLC and confirming the volume slider allows scrolling up to 200% (previously capped at 125%). Test user cleaned up.
+
+ANSWER: DONE

@@ -1,0 +1,3 @@
+This confirms Thunderbird has no email account configured — there's no mailbox, no "Notes" folder, and no emails at all in this environment. The task requires an existing email account with a Notes folder containing an email with a doc attachment, which doesn't exist here.
+
+ANSWER: FAIL

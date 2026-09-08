@@ -1,0 +1,10 @@
+{
+  "id": "acb0f96b-e27c-44d8-b55f-7cb76609dfcd",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official compare_text_file -> 0.00",
+  "source": "official",
+  "gold_sha256": {
+    "log_Gold.txt": "2afd31e2477a9a5b5fc7eee1615b03df4f8133b84d484ee7413e9a9828ca1a2d"
+  }
+}

@@ -1,0 +1,3 @@
+The dropdown arrow is visible on D2, confirming data validation is applied. The file has been saved in xlsx format.
+
+ANSWER: DONE

@@ -1,0 +1,3 @@
+Both column bar charts (2019 and 2020 monthly totals) have been created and the file saved in xlsx format.
+
+ANSWER: DONE

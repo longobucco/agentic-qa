@@ -1,0 +1,3 @@
+Confirmed - list.find is no longer bound to Ctrl+F (list unchanged since it wasn't there before, but now the negative binding is explicitly recorded in user keybindings.json for the Explorer tree find, preventing any future/default conflict). The keybindings.json file is saved with the removal entry.
+
+ANSWER: DONE

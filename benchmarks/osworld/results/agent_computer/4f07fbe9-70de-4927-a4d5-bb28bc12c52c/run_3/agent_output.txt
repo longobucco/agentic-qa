@@ -1,3 +1,3 @@
-The formula in D1 now uses `TEXT(C1,"0.00")`, so the text reads "The price is 19.50 euros." while still pulling the value from cell C1. Saved in xlsx format.
+D1 now reads "The price is 19.50 euros." and the file was saved in xlsx format.
 
 ANSWER: DONE

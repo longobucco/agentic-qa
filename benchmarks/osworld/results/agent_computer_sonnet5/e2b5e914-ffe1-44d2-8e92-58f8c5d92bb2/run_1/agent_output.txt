@@ -1,0 +1,3 @@
+The settings.json now contains the override disabling missing-import diagnostics.
+
+ANSWER: DONE

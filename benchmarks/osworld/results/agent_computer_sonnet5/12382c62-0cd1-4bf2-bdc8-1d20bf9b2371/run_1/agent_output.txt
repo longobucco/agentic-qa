@@ -1,0 +1,3 @@
+The file now has a "Sheet2" containing a clustered column chart of Sales and COGS per week, titled "Sales & COGS", saved to disk.
+
+ANSWER: DONE

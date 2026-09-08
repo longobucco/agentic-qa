@@ -1,0 +1,3 @@
+The spreadsheet has been updated: column J (Gross Profit) in Sheet1 is filled as (Sales − Sales Return) − Discounts/Allowances − Materials − Labor − Overhead, and a new Sheet2 has column A "Year_Profit" with values like `2015_55000`.
+
+ANSWER: DONE

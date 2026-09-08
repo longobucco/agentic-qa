@@ -1,0 +1,3 @@
+The desktop environment appears to be completely blank/unavailable—no accessibility tree content and a persistently black screen despite clicks, key presses, and waiting. This is an environment failure, not a task precondition issue, so I cannot verify or complete the requested setting change.
+
+ANSWER: FAIL

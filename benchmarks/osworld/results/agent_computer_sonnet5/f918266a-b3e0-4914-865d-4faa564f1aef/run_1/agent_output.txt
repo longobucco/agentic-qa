@@ -1,0 +1,3 @@
+Completed the insertion sort (`arr[j+1] = arr[j]`), ran the script, and saved its output to `/home/user/Desktop/log.txt`.
+
+ANSWER: 5\n6\n11\n12\n13

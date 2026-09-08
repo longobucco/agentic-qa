@@ -1,0 +1,5 @@
+The Google Scholar profile for the corresponding author, **Tianlin (Tim) Shi** (correspondence: tianlin@cs.stanford.edu, from the paper "World of Bits: An Open-Domain Platform for Web-Based Agents"), is now open in Chrome at `scholar.google.com/citations?user=qRAQ5BsAAAAJ`.
+
+Sources: [Tim (Tianlin) Shi – Google Scholar](https://scholar.google.com/citations?user=qRAQ5BsAAAAJ&hl=en)
+
+ANSWER: DONE

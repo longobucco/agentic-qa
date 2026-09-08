@@ -1,0 +1,3 @@
+The compose window is open with **aws-bill.pdf** attached (shown as "1 Attachment · aws-bill.pdf 22.8 KB"). The email is not sent and not closed.
+
+ANSWER: DONE

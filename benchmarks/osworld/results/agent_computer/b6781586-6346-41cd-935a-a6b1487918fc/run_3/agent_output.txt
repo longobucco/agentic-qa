@@ -1,6 +1,1 @@
-The timezone is now set to UTC+0:
-- `/etc/localtime` → `/usr/share/zoneinfo/Etc/UTC`
-- `/etc/timezone` = `Etc/UTC`
-- Effective offset: `UTC +0000`
-
-ANSWER: DONE
+You've hit your session limit · resets 4:20pm (Europe/Rome)

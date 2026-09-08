@@ -1,0 +1,3 @@
+This confirms there are no accounts at all — no Local Folders, no email accounts, and no Inbox. The task requires acting on "inbox emails" but there is no inbox/account configured in Thunderbird. This is a missing precondition, not something I can work around (creating a fake account wouldn't have real "inbox emails containing discount" to filter, and the task explicitly presupposes an existing inbox).
+
+ANSWER: FAIL

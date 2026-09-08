@@ -1,0 +1,5 @@
+The audio has been added. Slide 1 of the presentation now contains the "Baseball.mp3" audio (embedded as `ppt/media/media4.mp3` with a proper `<a:audioFile>` reference), and the file has been saved in PowerPoint format.
+
+Steps I used: Insert → Audio or Video → navigated to the Desktop → selected Baseball.mp3 (with "Link" unchecked so it embeds) → then Ctrl+S keeping the .pptx format.
+
+ANSWER: DONE

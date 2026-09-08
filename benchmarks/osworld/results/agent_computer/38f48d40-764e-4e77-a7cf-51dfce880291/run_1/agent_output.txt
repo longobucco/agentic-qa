@@ -1,1 +1,3 @@
-You've hit your session limit · resets 8:10pm (Europe/Rome)
+GIMP is a raster image editor and has no video editing or trimming capability. Trimming a video to keep only the 2nd–4th second cannot be done "within GIMP" as the task requires.
+
+ANSWER: FAIL

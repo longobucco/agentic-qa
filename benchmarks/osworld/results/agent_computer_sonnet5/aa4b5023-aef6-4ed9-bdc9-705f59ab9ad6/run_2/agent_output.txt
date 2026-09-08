@@ -1,0 +1,3 @@
+The video has been rotated 180° to correct its orientation and saved on the Desktop as `1984_Apple_Macintosh_Commercial.mp4`, confirmed right-side up by playback in VLC.
+
+ANSWER: DONE

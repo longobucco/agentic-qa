@@ -1,0 +1,10 @@
+{
+  "id": "abed40dc-063f-4598-8ba5-9fe749c0615d",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official compare_table -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "Names_Duplicate_Unique_gold.xlsx": "c5016d9487a680a3ebdbc68e7cda8ba2d5544bf3f6189048e1a63ad0cc9fa95f"
+  }
+}

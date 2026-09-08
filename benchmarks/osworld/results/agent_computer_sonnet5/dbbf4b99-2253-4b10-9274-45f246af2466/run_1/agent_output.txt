@@ -1,0 +1,3 @@
+The RAW image (`/home/user/Desktop/yicun.raw`) was opened in GIMP via its Script-Fu console and exported as a JPEG at `/home/user/Desktop/yicun.jpg` (3648x2736, valid JPEG).
+
+ANSWER: DONE

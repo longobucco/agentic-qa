@@ -1,0 +1,3 @@
+The color theme has been changed to Visual Studio Dark.
+
+ANSWER: DONE

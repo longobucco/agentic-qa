@@ -1,0 +1,3 @@
+New "Square" layer added (title bar now shows "2 layers").
+
+ANSWER: DONE

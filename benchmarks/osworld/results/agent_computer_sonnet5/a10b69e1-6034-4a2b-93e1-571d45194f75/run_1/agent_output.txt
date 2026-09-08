@@ -1,0 +1,3 @@
+Both folders COMPANY and UNIVERSITY now appear under Local Folders in Thunderbird.
+
+ANSWER: DONE

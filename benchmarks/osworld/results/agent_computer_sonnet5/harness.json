@@ -1,0 +1,9 @@
+{
+  "system": "agent_computer_sonnet5",
+  "runs": 3,
+  "concurrency": 1,
+  "judge_repeats": 1,
+  "env": {
+    "OSW_TASK_TIMEOUT": "2700"
+  }
+}

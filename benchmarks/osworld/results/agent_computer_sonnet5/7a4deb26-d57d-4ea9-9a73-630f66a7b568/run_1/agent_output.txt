@@ -1,0 +1,3 @@
+Exported. The brightness reduction was applied and saved to the original file.
+
+ANSWER: DONE

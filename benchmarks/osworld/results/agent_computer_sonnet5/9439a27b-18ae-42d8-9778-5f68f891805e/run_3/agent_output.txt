@@ -1,0 +1,3 @@
+The checkbox is now unchecked, meaning "debug.focusEditorOnBreak" is disabled. This means VS Code won't automatically shift focus to the editor when the debugger breaks, so focus stays wherever it was (e.g., debug console). The change is saved automatically in VS Code settings.
+
+ANSWER: DONE

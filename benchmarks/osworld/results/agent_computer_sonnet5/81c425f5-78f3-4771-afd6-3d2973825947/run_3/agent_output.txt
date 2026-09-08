@@ -1,0 +1,3 @@
+The data from the current Calc sheet was copied and pasted as a formatted table into LibreOffice Writer (preserving the "$" currency formatting, thousands separators, and right alignment), then saved as `/home/user/Desktop/price.docx` in Word format.
+
+ANSWER: DONE

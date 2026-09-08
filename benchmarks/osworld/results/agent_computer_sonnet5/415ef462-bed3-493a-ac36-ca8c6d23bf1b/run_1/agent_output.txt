@@ -1,0 +1,3 @@
+This confirms it definitively: Account Settings shows zero mail accounts configured (only the empty SMTP servers list, "New Account" button). There is no Local Folders account, no "Bills" folder, no AWS invoice email, and consequently no way to locate a "my receipts" folder or "tally book" referenced by the task. The precondition the task depends on does not exist in this environment.
+
+ANSWER: FAIL

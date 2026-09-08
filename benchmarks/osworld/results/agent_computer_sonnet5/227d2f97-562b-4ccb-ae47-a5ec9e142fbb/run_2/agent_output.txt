@@ -1,0 +1,3 @@
+The `.xcf` on the Desktop was loaded in GIMP, flattened, and its image extracted, then embedded into a LibreOffice Writer document saved as `/home/user/Desktop/image.docx` (verified: contains `word/media/image1.png`).
+
+ANSWER: DONE

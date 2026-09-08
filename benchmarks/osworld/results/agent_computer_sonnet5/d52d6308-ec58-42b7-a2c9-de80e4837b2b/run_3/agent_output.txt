@@ -1,0 +1,3 @@
+I've removed the dockable-dialogs dock from the left side of the GIMP window by closing each of its tabs (Tool Options, Device Status, Undo History, Images) via the tab menu → Close Tab. The left dock area is now cleared; only the toolbox itself remains (which is a separate element, not the dock).
+
+ANSWER: DONE

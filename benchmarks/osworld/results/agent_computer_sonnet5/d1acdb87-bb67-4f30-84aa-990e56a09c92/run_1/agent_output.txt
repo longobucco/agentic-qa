@@ -1,0 +1,8 @@
+The form file has been filled in and saved with each restaurant's address, website, and phone number.
+
+ANSWER: DONE — Filled /home/user/Desktop/restaurants.txt with details for all 5 Hong Kong restaurants:
+1. Ming Pavilion — Level 8, Island Shangri-La, Pacific Place, Supreme Court Road, Admiralty; shangri-la.com; +852 2820 8580
+2. Cristal Room by Anne-Sophie Pic — 44/F, 45 Gloucester Tower, The Landmark, 15 Queen's Road Central, Central; cristalroombyasp.com; +852 3501 8580
+3. Leela — Shop 301-310, Lee Garden Three, 1 Sunning Road, Causeway Bay; leela.hk; +852 2882 5316
+4. Nobu — 2/F, Regent Hong Kong, 18 Salisbury Road, Tsim Sha Tsui; noburestaurants.com; +852 2313 2323
+5. Niras — Shop 704, 7/F, K11 MUSEA, 18 Salisbury Road, Tsim Sha Tsui; niras.hk; +852 3905 3022

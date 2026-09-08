@@ -1,0 +1,3 @@
+The document now contains 8 lines, one per distinct train id (E201, E205, E209, E213, E217, E221, E225, E229). 92 duplicate-id lines were removed.
+
+ANSWER: 8

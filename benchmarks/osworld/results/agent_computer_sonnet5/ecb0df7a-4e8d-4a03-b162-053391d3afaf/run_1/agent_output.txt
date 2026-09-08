@@ -1,0 +1,3 @@
+Kept the xlsx format. Data validation (dropdown list with Pass/Fail/Held) has been applied to D2:D29 and the file saved.
+
+ANSWER: DONE

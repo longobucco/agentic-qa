@@ -1,0 +1,10 @@
+Conda wasn't installed at all on the machine (nothing under `/root`, `/opt`, or anywhere on disk), which is why the shell reported `conda: command not found`. I fixed it by:
+
+1. Downloading the official Miniconda3 installer from `repo.anaconda.com`.
+2. Installing it to `/root/miniconda3` (`bash Miniconda3-latest-Linux-x86_64.sh -b -p /root/miniconda3`).
+3. Running `conda init bash`, which added the conda initialization block to `/root/.bashrc`.
+4. Adding a `/usr/local/bin/conda` symlink so it's on PATH for non-interactive shells too.
+
+Verified: both `bash -ic 'conda --version'` and `bash -lc 'conda --version'` now return `conda 26.7.1`. Open a new terminal and `conda install datasets` will work.
+
+ANSWER: DONE

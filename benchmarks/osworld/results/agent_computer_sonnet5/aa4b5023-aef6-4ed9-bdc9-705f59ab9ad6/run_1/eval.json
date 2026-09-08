@@ -1,0 +1,8 @@
+{
+  "id": "aa4b5023-aef6-4ed9-bdc9-705f59ab9ad6",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official ['compare_videos', 'compare_videos'] -> 0.00",
+  "source": "official",
+  "gold_sha256": {}
+}

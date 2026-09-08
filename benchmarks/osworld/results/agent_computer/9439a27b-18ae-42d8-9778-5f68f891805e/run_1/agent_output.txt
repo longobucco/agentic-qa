@@ -1,3 +1,1 @@
-The setting was written successfully to `/root/.config/Code/User/settings.json` with `debug.focusEditorOnBreak` set to `false`, which keeps the cursor focused on the debug console instead of automatically returning to the editor when the debugger breaks.
-
-ANSWER: DONE
+You've hit your session limit · resets 4:20pm (Europe/Rome)

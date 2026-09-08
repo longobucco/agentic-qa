@@ -1,10 +1,8 @@
 {
   "id": "deec51c9-3b1e-4b9e-993c-4776f20e8bb2",
-  "verdict": "SUCCESS",
-  "reward": 1.0,
-  "reason": "official compare_table -> 1.00",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official compare_table -> 0.00",
   "source": "official",
-  "gold_sha256": {
-    "New Large Language Models Gold.xlsx": "987ada3caca9919dfaf6543a351b3a25d5e46afbca46be273e73157db75562d1"
-  }
+  "gold_sha256": {}
 }

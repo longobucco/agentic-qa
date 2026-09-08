@@ -1,0 +1,6 @@
+{
+  "id": "b4f95342-463e-4179-8c3f-193cd7241fb2",
+  "verdict": "ENVIRONMENT_ERROR",
+  "reason": "config setup failed: Setup step 3 failed: _chrome_open_tabs_setup - BrowserType.connect_over_cdp: getaddrinfo ENOTFOUND 5000-c4cf1294-da84-4fbe-adfb-8ce208638732.daytonaproxy01.eu\nCall log:\n  - <ws preparing> retrieving websocket url from http://5000-c4cf1294-da84-4fbe-adfb-8ce208638732.daytonaproxy01.eu:9222\n",
+  "source": "environment"
+}

@@ -1,0 +1,3 @@
+GIMP's theme has been successfully changed from Dark to Light.
+
+ANSWER: DONE

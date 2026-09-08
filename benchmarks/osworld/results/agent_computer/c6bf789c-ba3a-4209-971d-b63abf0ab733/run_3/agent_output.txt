@@ -1,13 +1,1 @@
-The VS Code settings file now contains:
-
-```json
-{
-    "files.exclude": {
-        "**/__pycache__": true
-    }
-}
-```
-
-The setting `**/__pycache__` with value `true` tells VS Code to hide all `__pycache__` folders at any depth in the explorer view. The change is already persisted to `/root/.config/Code/User/settings.json` and will take effect when VS Code is reloaded.
-
-ANSWER: DONE
+You've hit your session limit · resets 9:40pm (Europe/Rome)

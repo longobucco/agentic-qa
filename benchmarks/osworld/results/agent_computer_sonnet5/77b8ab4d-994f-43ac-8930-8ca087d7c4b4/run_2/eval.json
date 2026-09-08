@@ -1,0 +1,10 @@
+{
+  "id": "77b8ab4d-994f-43ac-8930-8ca087d7c4b4",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official check_file_exists_and_structure_sim -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "The_Lost_River_Of_Dreams.jpg": "884c9747c1e21ccdfc6663121758f1dbe358a1852483868fd76b6401ba349496"
+  }
+}

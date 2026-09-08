@@ -1,0 +1,3 @@
+Created `/home/user/Desktop/concat.docx` containing the concatenated contents of all five `.txt` files from the VS Code project (`doc_proc`: 1.txt–5.txt), with no separators, and the font size set to 10 pt throughout (default style + every run).
+
+ANSWER: DONE

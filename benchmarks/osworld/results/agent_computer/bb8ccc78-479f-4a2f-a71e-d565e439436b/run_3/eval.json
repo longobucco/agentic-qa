@@ -1,8 +1,8 @@
 {
   "id": "bb8ccc78-479f-4a2f-a71e-d565e439436b",
-  "verdict": "FAILURE",
-  "reward": 0.0,
-  "reason": "official infeasible -> 0.00",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official infeasible -> 1.00",
   "source": "official",
   "gold_sha256": {}
 }

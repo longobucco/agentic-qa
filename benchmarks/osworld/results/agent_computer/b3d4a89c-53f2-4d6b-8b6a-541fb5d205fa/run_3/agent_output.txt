@@ -1,10 +1,1 @@
-I investigated the environment thoroughly. This is a headless sandbox (Xvfb display `:99` + openbox window manager) with no desktop environment and, critically, no Bluetooth capability at all:
-
-- No Bluetooth adapter: `/sys/class/bluetooth/` is empty
-- No `rfkill`, no `/sys/class/rfkill`
-- No `bluetoothctl` / BlueZ stack installed (`bluez`/`blueman` not present)
-- No `systemctl`, no GNOME Settings / control-center, and the screen/a11y tree are blank
-
-There is no Bluetooth hardware or software present to switch on, and no Settings UI exists to toggle it. The required precondition simply doesn't exist in this environment, so the task cannot be completed as stated.
-
-ANSWER: FAIL
+You've hit your session limit · resets 4:20pm (Europe/Rome)

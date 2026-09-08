@@ -1,8 +1,7 @@
 {
   "id": "2c9fc0de-3ee7-45e1-a5df-c86206ad78b5",
-  "verdict": "FAILURE",
-  "reward": 0.0,
-  "reason": "official check_include_exclude -> 0.00",
-  "source": "official",
+  "verdict": "EVAL_ERROR",
+  "reason": "eval_state='repo is synchronous\\n' (official eval errored: JSONDecodeError: Expecting value: line 1 column 1 (char 0))",
+  "source": "offline_fallback",
   "gold_sha256": {}
 }

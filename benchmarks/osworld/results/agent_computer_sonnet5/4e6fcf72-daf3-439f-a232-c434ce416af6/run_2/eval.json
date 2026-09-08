@@ -1,0 +1,8 @@
+{
+  "id": "4e6fcf72-daf3-439f-a232-c434ce416af6",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official compare_table -> 0.00",
+  "source": "official",
+  "gold_sha256": {}
+}

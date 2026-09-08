@@ -1,10 +1,6 @@
 {
   "id": "8472fece-c7dd-4241-8d65-9b3cd1a0b568",
-  "verdict": "SUCCESS",
-  "reward": 1.0,
-  "reason": "official evaluate_colored_words_in_tables -> 1.00",
-  "source": "official",
-  "gold_sha256": {
-    "Dolch_Sight_Words_Primer_Gold.docx": "ebf7f1ecaf513f9b8f116cdaa5c67ce0d9ec034526b55138f63d9168808bb2c0"
-  }
+  "verdict": "ENVIRONMENT_ERROR",
+  "reason": "config setup failed: Setup step 1 failed: _download_setup - Failed to download https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/8472fece-c7dd-4241-8d65-9b3cd1a0b568/Dolch_Sight_Words_Primer.docx. No retries left.",
+  "source": "environment"
 }

@@ -1,0 +1,3 @@
+No email account is configured in Thunderbird, so there is no "Notes folder" or any emails to access. This precondition is missing, making the task impossible as stated.
+
+ANSWER: FAIL

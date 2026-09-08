@@ -1,0 +1,3 @@
+The pivot table was created in a new sheet named "Sheet2", with "Invoice No." as the row field and a count aggregation, and the file was saved in xlsx format.
+
+ANSWER: DONE

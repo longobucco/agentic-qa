@@ -1,0 +1,3 @@
+VS Code is now open with the `project` folder (showing .vscode, main.py, README.md). Task complete.
+
+ANSWER: DONE

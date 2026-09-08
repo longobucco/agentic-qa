@@ -1,0 +1,3 @@
+The mail view shows "No message found" and no folder pane with any Inbox account listed — there is no configured email account and no inbox to back up. This confirms the task's precondition doesn't exist in this environment.
+
+ANSWER: FAIL

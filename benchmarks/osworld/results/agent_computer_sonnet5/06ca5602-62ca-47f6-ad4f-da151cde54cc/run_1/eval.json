@@ -1,0 +1,10 @@
+{
+  "id": "06ca5602-62ca-47f6-ad4f-da151cde54cc",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official check_palette_and_structure_sim -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "computer.png": "86abbfa5cc068d9ed1ea21c15d7a31a72130ec6c6d3e3832355f3bd3f53e015b"
+  }
+}

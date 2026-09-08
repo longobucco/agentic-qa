@@ -6,7 +6,7 @@
   "agent_clean_finish": false,
   "agent_num_turns": 1,
   "agent_stop_reason": "stop_sequence",
-  "agent_terminal_reason": "completed",
+  "agent_terminal_reason": "api_error",
   "agent_subtype": "success",
   "agent_is_error": true,
   "agent_errors": null,
@@ -18,20 +18,22 @@
   "agent_cache_read_tokens": 0,
   "agent_cache_creation_tokens": 0,
   "agent_model_usage": {},
-  "agent_duration_ms": 456,
+  "agent_duration_ms": 367,
   "agent_duration_api_ms": 0,
-  "agent_session_id": "93c5566b-d33b-437b-9434-1cb45c2ad06a",
-  "agent_uuid": "0cc1ceeb-9e7f-44f4-a295-bcdcfb9c0ab7",
+  "agent_session_id": "6722f032-76ac-4f09-b531-bc714cbfd2b9",
+  "agent_uuid": "987b7879-17ba-4d14-a464-255f43386305",
   "provenance": {
     "task_sha256": "3a63d8a54f97804aa0c7fe47596bfb9604af661660022965d9e2ebc4a52ae31e",
     "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
-    "controller_url": "https://5000-34a4ec36-c79c-455e-803c-6cd7d352d3d8.daytonaproxy01.eu",
+    "controller_url": "https://5000-9c802f28-56bd-4183-a673-5b904534a79d.daytonaproxy01.eu",
     "release": "verified",
     "max_turns": 150,
     "task_timeout": 2700,
     "observation": "screenshot+a11y",
     "action_space": "pyautogui",
-    "started_at": "2026-08-26T14:59:35.712787+00:00",
-    "finished_at": "2026-08-26T15:03:52.469892+00:00"
-  }
+    "started_at": "2026-09-06T00:14:25.200948+00:00",
+    "finished_at": "2026-09-06T00:14:27.817057+00:00"
+  },
+  "transcript_saved": true,
+  "transcript_bytes": 52046
 }

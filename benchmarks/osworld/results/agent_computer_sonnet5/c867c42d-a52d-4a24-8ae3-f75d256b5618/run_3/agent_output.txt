@@ -1,0 +1,3 @@
+Both files are created on the desktop: `/root/Desktop/contacts.csv` (exported from Thunderbird's Personal Address Book — which contains 0 contacts, so the CSV holds only the header row) and `/root/Desktop/contacts.xlsx` (converted via LibreOffice).
+
+ANSWER: DONE

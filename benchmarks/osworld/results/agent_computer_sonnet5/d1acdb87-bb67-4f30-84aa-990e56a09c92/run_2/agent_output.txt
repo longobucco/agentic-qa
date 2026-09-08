@@ -1,0 +1,11 @@
+The form file `MUST_VISIT.xlsx` on the Desktop has been filled in with the address, phone number, and website for all five restaurants:
+
+| Restaurant | Address | Contact | Website |
+|---|---|---|---|
+| Ming Pavilion | Level 8, Island Shangri-La, Pacific Place, Supreme Court Rd, Admiralty, Hong Kong | +852 2820 8580 | shangri-la.com |
+| Cristal Room by Anne-Sophie Pic | 44/F, The Landmark, 15 Queen's Road Central, Central, Hong Kong | +852 3501 8580 | anne-sophie-pic.com |
+| Leela | Shop 301-310, Lee Garden Three, 1 Sunning Rd, Causeway Bay, Hong Kong | +852 2882 5316 | leela.hk |
+| Nobu | 2/F, Regent Hong Kong, 18 Salisbury Rd, Tsim Sha Tsui, Hong Kong | +852 2313 2313 | noburestaurants.com |
+| Niras | Shop 704, 7/F, K11 MUSEA, 18 Salisbury Rd, Tsim Sha Tsui, Hong Kong | +852 3905 3022 | niras.hk |
+
+ANSWER: DONE

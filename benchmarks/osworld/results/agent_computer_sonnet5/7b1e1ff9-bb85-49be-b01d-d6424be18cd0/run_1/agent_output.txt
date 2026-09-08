@@ -1,0 +1,3 @@
+The "About Profiles" tabpage is now open and active inside Thunderbird, showing profile management (Create Profile, Rename, Remove, Set as default, Launch profile) — not the profile chooser dialog. Task complete.
+
+ANSWER: DONE

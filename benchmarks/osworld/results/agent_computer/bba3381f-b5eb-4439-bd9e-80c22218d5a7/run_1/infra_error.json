@@ -19,5 +19,14 @@
     "error_type": "APIError",
     "error": "api_error_status=429",
     "at": "2026-08-23T05:30:36+0200"
+  },
+  {
+    "id": "bba3381f-b5eb-4439-bd9e-80c22218d5a7",
+    "run": 1,
+    "outcome": "INFRA_FLAKE",
+    "error_type": "RuntimeError",
+    "error": "scoring exceeded 600s -- treated as a hang, not a legitimate wait",
+    "elapsed_s": 1085.6,
+    "at": "2026-09-05T12:28:14+0200"
   }
 ]

@@ -1,0 +1,3 @@
+VLC's Minimal Interface was enabled via View → Minimal Interface (Ctrl+H), hiding the menu bar and bottom playback controls in windowed mode. To guarantee persistence, I confirmed the setting `qt-minimal-view=1` in VLC's config (`vlcrc`), then fully quit and relaunched VLC — it reopened directly in minimal interface mode with the controls hidden, confirming persistence.
+
+ANSWER: DONE

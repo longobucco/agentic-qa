@@ -1,0 +1,3 @@
+All yellow highlighting has been removed (selected the whole document and applied "No Fill" character highlighting), and the file has been saved. The previously highlighted words like "UCSF" now show no highlight, and the document text is intact (642 words, 3,554 characters).
+
+ANSWER: DONE

@@ -1,0 +1,3 @@
+Task completed — Column B shows values in millions (e.g., "150 M") and Column C in billions (e.g., "0.2 B"), rounded to one decimal with half rounded up, with a space before the unit letter. File saved in xlsx format.
+
+ANSWER: DONE

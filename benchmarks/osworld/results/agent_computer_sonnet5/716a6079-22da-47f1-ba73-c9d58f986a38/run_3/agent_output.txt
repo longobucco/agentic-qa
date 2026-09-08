@@ -1,0 +1,3 @@
+The file is at `/home/user/Data3/List3/secret.docx`, and I've placed that path on the system clipboard (verified by reading it back).
+
+ANSWER: /home/user/Data3/List3/secret.docx

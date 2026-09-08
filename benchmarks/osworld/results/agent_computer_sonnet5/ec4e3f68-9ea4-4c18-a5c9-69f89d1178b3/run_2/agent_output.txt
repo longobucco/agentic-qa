@@ -1,0 +1,3 @@
+The environment appears unavailable — the screen is persistently black with an empty accessibility tree, indicating no desktop session is running. This is an environment/precondition failure, not something a workaround can fix.
+
+ANSWER: FAIL

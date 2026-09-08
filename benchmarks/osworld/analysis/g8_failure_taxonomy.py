@@ -30,6 +30,7 @@ import re
 import sys
 
 from benchmarks.osworld import config
+from benchmarks.osworld import tasks as osw_tasks
 from benchmarks.osworld.tasks import load_tasks
 from core.results import is_run_dir
 
@@ -80,11 +81,10 @@ def _funcs(task):
 
 
 def _app(task):
-    apps = task.get("related_apps") or []
-    return apps[0] if apps else "?"
+    return osw_tasks.app_of(task)
 
 
-def load_cohort(results_dir=None, system="agent_computer", min_runs=MIN_RUNS):
+def load_cohort(results_dir=None, system=None, min_runs=MIN_RUNS):
     """Split every task directory on disk into completed / partial / never_run.
 
     A run counts as scored only if eval.json carries a verdict; a run directory holding just
@@ -92,6 +92,7 @@ def load_cohort(results_dir=None, system="agent_computer", min_runs=MIN_RUNS):
     infra_error.json never ran at all. Both keep the task out of the completed cohort.
     """
     results_dir = results_dir or config.RESULTS_DIR
+    system = config.resolve_system(system)
     base = results_dir / system
     tasks = {t["id"]: t for t in load_tasks()}
     cohorts = {"completed": {}, "partial": {}, "never_run": {}}
@@ -132,7 +133,7 @@ def _layer(verdict):
     return "AGENT"
 
 
-def taxonomy(results_dir=None, system="agent_computer", min_runs=MIN_RUNS):
+def taxonomy(results_dir=None, system=None, min_runs=MIN_RUNS):
     """The whole report as plain data, so callers render it and tests assert on it."""
     cohorts, tasks = load_cohort(results_dir, system, min_runs)
     done = cohorts["completed"]
@@ -226,7 +227,7 @@ def _bar(label, count, total, width=28):
 
 
 def _main():
-    report = taxonomy()
+    report = taxonomy(system=config.system_from_argv())
     if "--json" in sys.argv:
         print(json.dumps(report, indent=2))
         return

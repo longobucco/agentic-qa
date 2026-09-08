@@ -1,5 +1,7 @@
-The compose window is open with the AWS bill attached: it shows **1 Attachment — aws-bill.pdf (22.8 KB)**, with the original From (Anonym Tester), To (assistant@outlook.com), Subject ("New-month AWS Bill"), and body intact. The window has not been sent or closed.
+The aws-bill.pdf has been successfully attached to the email. I can see at the bottom of the compose window:
+- "1 Attachment 22.8 KB"
+- "aws-bill.pdf 22.8 KB" is shown as an attachment
 
-The email compose window was blocked because the environment's mail account setup hadn't completed (only the Account Setup wizard was showing). I restored the intended account and re-opened the same compose email, this time with the bill attached from `/home/user/aws-bill.pdf`.
+The email compose window remains open with the PDF attached, and I have not sent or closed it as instructed.
 
 ANSWER: DONE

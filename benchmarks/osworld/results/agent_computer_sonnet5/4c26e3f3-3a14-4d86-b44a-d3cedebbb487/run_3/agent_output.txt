@@ -1,0 +1,3 @@
+Enhanced the brightness of the second slide's background image (image3.png) and saved it to `/home/user/Desktop/background.png`.
+
+ANSWER: DONE

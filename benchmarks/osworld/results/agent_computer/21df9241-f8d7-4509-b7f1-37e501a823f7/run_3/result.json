@@ -18,20 +18,22 @@
   "agent_cache_read_tokens": 0,
   "agent_cache_creation_tokens": 0,
   "agent_model_usage": {},
-  "agent_duration_ms": 374,
+  "agent_duration_ms": 328,
   "agent_duration_api_ms": 0,
-  "agent_session_id": "3515bb55-466b-4c45-ab7d-16450264f7c3",
-  "agent_uuid": "b8648caa-0f10-44d8-8f30-4a2cbe8c03fd",
+  "agent_session_id": "46979033-6287-45fd-a5b7-c25315a7c33a",
+  "agent_uuid": "de7d93dc-1c22-45b2-8531-5ea18df1fd2e",
   "provenance": {
     "task_sha256": "f05195ff72da277d56fec133601344b470dd6d9969793f4d788835258205f307",
     "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
-    "controller_url": "https://5000-ddb73f1f-a2e3-4aba-a15b-a6710a61112a.daytonaproxy01.eu",
+    "controller_url": "https://5000-03e68bb5-5d87-4d75-af80-4972c58e2d80.daytonaproxy01.eu",
     "release": "verified",
     "max_turns": 150,
     "task_timeout": 2700,
     "observation": "screenshot+a11y",
     "action_space": "pyautogui",
-    "started_at": "2026-08-26T15:25:05.606427+00:00",
-    "finished_at": "2026-08-26T15:25:07.491401+00:00"
-  }
+    "started_at": "2026-09-05T12:39:18.249759+00:00",
+    "finished_at": "2026-09-05T12:39:20.269286+00:00"
+  },
+  "transcript_saved": true,
+  "transcript_bytes": 14270
 }

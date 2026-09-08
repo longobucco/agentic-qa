@@ -1,0 +1,3 @@
+The desktop background is now set to a frame extracted from the Interstellar trailer video (`/home/user/Desktop/Interstellar Movie - Official Trailer.mp4`). I extracted a frame via VLC, saved it to `/home/user/Pictures/video_background.png`, set `org.gnome.desktop.background picture-uri` to it, and painted it onto the root window — the screenshot confirms it's now the wallpaper.
+
+ANSWER: DONE
