@@ -39,10 +39,11 @@ from benchmarks.osworld.analysis.g3_sample import sample
 from core.results import is_run_dir
 
 
-def _load_verdicts(ids, results_dir=None, system="agent_computer"):
+def _load_verdicts(ids, results_dir=None, system=None):
     """{task_id: [verdict, ...]} for every scored run (eval.json present) of a task in `ids`.
     Tasks not on disk are simply absent -- not zero-filled."""
     results_dir = results_dir or config.RESULTS_DIR
+    system = config.resolve_system(system)
     base = results_dir / system
     out = {}
     if not base.exists():
@@ -65,7 +66,7 @@ def _load_verdicts(ids, results_dir=None, system="agent_computer"):
     return out
 
 
-def _scissor_over(ids, results_dir=None, system="agent_computer"):
+def _scissor_over(ids, results_dir=None, system=None):
     """Pass-rate under both ENVIRONMENT_ERROR conventions over the given task-id population,
     plus the gap between them and enough detail (n, dropped EVAL_ERROR) to tell a rounding
     artifact from a real methodological fork."""
@@ -95,12 +96,12 @@ def _scissor_over(ids, results_dir=None, system="agent_computer"):
     }
 
 
-def scissor(results_dir=None, system="agent_computer"):
+def scissor(results_dir=None, system=None):
     """Original G4 scope: the 46-task pre-registered sample (gap-research-plan.md)."""
     return _scissor_over(sample(), results_dir, system)
 
 
-def scissor_full(results_dir=None, system="agent_computer"):
+def scissor_full(results_dir=None, system=None):
     """Extended scope, added 2026-08-25: every runnable task, not just the pre-registered
     sample -- see the module docstring for why the two scopes give materially different
     answers rather than one refining the other."""
@@ -131,11 +132,12 @@ def _print(label, r, population_label):
 
 
 def _main():
+    system = config.system_from_argv()
     print("G4 -- ENVIRONMENT_ERROR convention ablation (RQ4)\n")
-    _print("-- pre-registered sample --", scissor(), "G3-sample tasks")
+    _print("-- pre-registered sample --", scissor(system=system), "G3-sample tasks")
     if "--sample" not in sys.argv:
         print()
-        _print("-- full runnable population --", scissor_full(), "runnable tasks")
+        _print("-- full runnable population --", scissor_full(system=system), "runnable tasks")
 
 
 if __name__ == "__main__":

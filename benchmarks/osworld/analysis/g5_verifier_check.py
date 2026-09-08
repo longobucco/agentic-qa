@@ -54,8 +54,9 @@ def verify(final_png, instruction, *, timeout=120):
     return {"answer": extract_answer(text), "raw": text}
 
 
-def run(results_dir=None, system="agent_computer"):
+def run(results_dir=None, system=None):
     results_dir = results_dir or config.RESULTS_DIR
+    system = config.resolve_system(system)
     base = results_dir / system
     tasks = {t["id"]: t for t in load_tasks()}
     out = []
@@ -114,7 +115,7 @@ def _matches(answer, official_verdict, is_infeasible):
 
 
 def _main():
-    rows = run()
+    rows = run(system=config.system_from_argv())
     if "--json" in sys.argv:
         print(json.dumps(rows, indent=2))
         return
