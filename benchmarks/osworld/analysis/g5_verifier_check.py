@@ -22,9 +22,16 @@ import json
 import sys
 from pathlib import Path
 
-from core.agent_loop import build_claude_cmd, extract_answer, run_claude
+from core.agent_loop import build_claude_cmd, extract_answer, run_claude_meta
 from benchmarks.osworld import config
 from benchmarks.osworld.tasks import load_tasks
+
+# The gap that made #9 and #12's own numbers unverifiable: this verifier call never pinned a
+# model (no `model=` reached build_claude_cmd) and, worse, previously used run_claude -- which
+# discards the CLI's whole JSON envelope, so which model answered wasn't just unrecorded, it was
+# UNRECOVERABLE even in principle. Fixed on both counts: model=config.MODEL now reaches the
+# command exactly like the agent's own runner, and run_claude_meta keeps modelUsage so every
+# call's answering model is captured going forward.
 
 VERIFIER_PROMPT = """Read the image file at the EXACT absolute path: {path} -- it is a \
 screenshot of a Linux desktop, taken at the end of an attempt to complete a task. Do not \
@@ -46,12 +53,28 @@ TARGETS = [
 ]
 
 
+def _served_by(meta):
+    """Same convention as agent_computer._served_by: Haiku is Claude Code's own internal
+    auxiliary model, never the one actually judging the screenshot."""
+    served = [m for m in (meta.get("modelUsage") or {}) if not m.startswith("claude-haiku")]
+    return sorted(served)
+
+
 def verify(final_png, instruction, *, timeout=120):
-    """One independent verifier call. Returns {"answer": "DONE"|"FAIL"|"", "raw": str}."""
+    """One independent verifier call. Returns {"answer", "raw", "model_requested",
+    "model_served", "model_mismatch"} -- the last three are what the original version of this
+    function could never have produced, at any point after the fact."""
     prompt = VERIFIER_PROMPT.format(path=final_png, instruction=instruction)
-    cmd = build_claude_cmd(prompt, max_turns=4, allowed_tools=["Read"])
-    text = run_claude(cmd, timeout=timeout)
-    return {"answer": extract_answer(text), "raw": text}
+    cmd = build_claude_cmd(prompt, max_turns=4, allowed_tools=["Read"], model=config.MODEL or None)
+    meta = run_claude_meta(cmd, timeout=timeout)
+    text = meta.get("result", "")
+    served = _served_by(meta)
+    return {
+        "answer": extract_answer(text), "raw": text,
+        "model_requested": config.MODEL or None,
+        "model_served": served or None,
+        "model_mismatch": (served != [config.MODEL]) if config.MODEL else None,
+    }
 
 
 def run(results_dir=None, system=None):
@@ -84,12 +107,16 @@ def run(results_dir=None, system=None):
                     "agent_answer": (result.get("answer") or "").strip(),
                     "official_verdict": ev.get("verdict"),
                     "verifier_answer": v["answer"],
+                    "verifier_model_requested": v["model_requested"],
+                    "verifier_model_served": v["model_served"],
+                    "verifier_model_mismatch": v["model_mismatch"],
                 }
                 row["verifier_matches_official"] = _matches(row["verifier_answer"], row["official_verdict"], is_infeasible)
                 row["agent_matches_official"] = _matches(row["agent_answer"], row["official_verdict"], is_infeasible)
                 out.append(row)
                 print(f"{tid[:8]} run_{n} {cond:12s} agent={row['agent_answer']:5s} "
-                      f"verifier={row['verifier_answer']:5s} official={row['official_verdict']}")
+                      f"verifier={row['verifier_answer']:5s} official={row['official_verdict']}",
+                      file=sys.stderr)
     return out
 
 

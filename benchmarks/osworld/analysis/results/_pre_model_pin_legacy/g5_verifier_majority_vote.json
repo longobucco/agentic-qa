@@ -1,0 +1,3569 @@
+{
+  "generated_at": "2026-08-30T10:29:17.342611+00:00",
+  "rows": [
+    {
+      "task": "01b269ae-2111-4a07-81fd-3fcd711993b0",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "SUCCESS",
+        "FAILURE",
+        "FAILURE"
+      ],
+      "ground_truth_majority": "FAILURE",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "raw": "ANSWER: DONE"
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "raw": "The screenshot shows the spreadsheet with many blank cells still present in columns B and C within the B1:E30 range. For example, B3, B4, B5, B6 are blank (should be filled with \"Primary\" from B2), B8"
+        },
+        {
+          "run": 3,
+          "answer": "FAIL",
+          "raw": "Looking at the spreadsheet, many blank cells in columns B and C are still visibly empty. For example, B3, B4, B5, B6 are blank instead of showing \"Primary\" (propagated from B2); C3, C4 are blank inste"
+        }
+      ],
+      "verifier_majority": "FAILURE",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": false
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": false
+        }
+      ]
+    },
+    {
+      "task": "02ce9a50-7af2-47ed-8596-af0c230501f8",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "SUCCESS",
+        "FAILURE",
+        "SUCCESS"
+      ],
+      "ground_truth_majority": "SUCCESS",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "FAIL",
+          "raw": "The screenshot shows a terminal where `ls /home/user` was executed, but the output is empty (no files listed, and no `ls.png` file visible on the Desktop). The task requires saving a screenshot of the"
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "raw": "The terminal in the top-left shows `ls /home/user` was executed and its output is visible, but there is no evidence that a screenshot was saved as `ls.png` on the Desktop. The terminal output does not"
+        },
+        {
+          "run": 3,
+          "answer": "FAIL",
+          "raw": "The screenshot shows the `ls /home/user` command was executed in a terminal (showing \"Desktop\" as output), but there is no `ls.png` file saved on the Desktop. The terminal on the bottom-left shows \"De"
+        }
+      ],
+      "verifier_majority": "FAILURE",
+      "verifier_majority_matches_gt": false,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": true
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "task": "035f41ba-6653-43ab-aa63-c86d449d62e5",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "SUCCESS",
+        "FAILURE",
+        "FAILURE"
+      ],
+      "ground_truth_majority": "FAILURE",
+      "n_verifier_calls": 2,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "raw": "The screenshot shows Sheet2 is active with column A header \"Year_Profit\" and values like `2015_55000`, `2016_47662`, etc. \u2014 year text appended with \"_\" and integer gross profit digits. Sheet2 exists a"
+        },
+        {
+          "run": 3,
+          "answer": "FAIL",
+          "raw": "The screenshot shows only Sheet1 with no Gross Profit column visible, and no Sheet2 tab exists at the bottom \u2014 only \"Sheet1\" is present. The task requires both a Gross Profit column and a new Sheet2 w"
+        }
+      ],
+      "verifier_majority": "TIE",
+      "verifier_majority_matches_gt": null,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 2,
+          "answer": "",
+          "matches_official": null
+        },
+        {
+          "run": 3,
+          "answer": "",
+          "matches_official": null
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 2,
+          "answer": "",
+          "matches": null
+        },
+        {
+          "run": 3,
+          "answer": "",
+          "matches": null
+        }
+      ]
+    },
+    {
+      "task": "0a2e43bf-b26c-4631-a966-af9dfa12c9e5",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "SUCCESS",
+        "FAILURE",
+        "FAILURE"
+      ],
+      "ground_truth_majority": "FAILURE",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "raw": "Row 12 shows a \"Total\" row with monthly sums, and a line chart is present with months (Jan\u2013Jun) on the x-axis showing the totals.\n\nANSWER: DONE"
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "raw": "Row 12 shows a \"Total\" row with monthly sums, and a line chart labeled \"Total\" is present below. However, the x-axis shows numeric indices (1\u20136) instead of month names (Jan, Feb, Mar, etc.).\n\nANSWER: "
+        },
+        {
+          "run": 3,
+          "answer": "FAIL",
+          "raw": "The screenshot shows row 12 labeled \"Total\" with values populated (e.g., 4852 for Jan), and a Chart Wizard is open mid-creation. However, the chart wizard is still open (not finished/closed), and the "
+        }
+      ],
+      "verifier_majority": "FAILURE",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 2,
+          "answer": "",
+          "matches_official": null
+        },
+        {
+          "run": 3,
+          "answer": "",
+          "matches_official": null
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 2,
+          "answer": "",
+          "matches": null
+        },
+        {
+          "run": 3,
+          "answer": "",
+          "matches": null
+        }
+      ]
+    },
+    {
+      "task": "0b17a146-2934-46c7-8727-73ff6b6483e8",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "SUCCESS",
+        "FAILURE",
+        "SUCCESS"
+      ],
+      "ground_truth_majority": "SUCCESS",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "raw": "The screenshot shows a document with \"H\u2082O\" where the \"2\" appears to be rendered as a subscript (visually smaller and below the baseline) in the title \"H\u2082O\u2014Soak up the Science\".\n\nANSWER: DONE"
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "raw": "Looking at the screenshot, I can see a LibreOffice Writer document with the title \"H\u2082O \u2014 Soak up the Science\" where the \"2\" in \"H2O\" appears to be displayed as a subscript (smaller and lowered below t"
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "raw": "Looking at the screenshot, I can see the document displays \"H\u2082O\" in the title/header area where the \"2\" appears to be in subscript format (visually smaller and positioned lower than the H and O charac"
+        }
+      ],
+      "verifier_majority": "SUCCESS",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": true
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "task": "0e47de2a-32e0-456c-a366-8c607ef7a9d2",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "SUCCESS",
+        "SUCCESS",
+        "FAILURE"
+      ],
+      "ground_truth_majority": "SUCCESS",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "raw": "The footer area is active (shown by the \"Footer\" label in the style box), and at the bottom left of the page there is a small \"3\" visible in the footer area, indicating a page number has been inserted"
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "raw": "The screenshot shows a LibreOffice Writer document. On the visible page (page 10), there is a number \"10\" at the bottom left of that page. However, this appears to be a footer with a page number. The "
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "raw": "The screenshot shows a LibreOffice Writer document. At the bottom left of the first page, there is a \"1\" visible, indicating a page number has been added. The footer area shows the page number at the "
+        }
+      ],
+      "verifier_majority": "SUCCESS",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": false
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "task": "12382c62-0cd1-4bf2-bdc8-1d20bf9b2371",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "SUCCESS",
+        "FAILURE",
+        "FAILURE"
+      ],
+      "ground_truth_majority": "FAILURE",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "FAIL",
+          "raw": "The screenshot shows the LibreOffice Basic macro editor, not the actual spreadsheet with the completed chart. The macro code is visible and references creating a \"Sheet2\" with a chart titled \"Sales & "
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "raw": "The screenshot shows a completely black screen with only a mouse cursor visible \u2014 no spreadsheet, no chart, and no \"Sheet2\" tab are visible.\n\nANSWER: FAIL"
+        },
+        {
+          "run": 3,
+          "answer": "FAIL",
+          "raw": "The screenshot is entirely black with only a mouse cursor visible \u2014 no spreadsheet, chart, or desktop content is shown.\n\nANSWER: FAIL"
+        }
+      ],
+      "verifier_majority": "FAILURE",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": false
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": false
+        }
+      ]
+    },
+    {
+      "task": "1334ca3e-f9e3-4db8-9ca7-b4c653be7d17",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "SUCCESS",
+        "FAILURE",
+        "FAILURE"
+      ],
+      "ground_truth_majority": "FAILURE",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "raw": "The screenshot shows LibreOffice Calc with the zoom level at 75% (visible in the bottom-right corner), and the cells appear at a normal, manageable size \u2014 clearly zoomed out from an oversized state.\n\n"
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "raw": "The screenshot shows LibreOffice Calc with the file \"Zoom_Out_Oversized_Cells.xlsx\" open. The cells appear to be at a normal, manageable size \u2014 multiple rows and columns are visible with data fitting "
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "raw": "The zoom level shown in the bottom-right corner is 75%, indicating the spreadsheet has been zoomed out from the default 100%. The cells are now reasonably sized and multiple rows/columns are visible.\n"
+        }
+      ],
+      "verifier_majority": "SUCCESS",
+      "verifier_majority_matches_gt": false,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": false
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": false
+        }
+      ]
+    },
+    {
+      "task": "15aece23-a215-4579-91b4-69eec72e18da",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "FAILURE",
+        "SUCCESS",
+        "SUCCESS"
+      ],
+      "ground_truth_majority": "SUCCESS",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "FAIL",
+          "raw": "The screenshot is entirely black \u2014 no desktop, application, or slide content is visible.\n\nANSWER: FAIL"
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "raw": "The screenshot shows slide 2 (\"Product Comparison\") in LibreOffice Impress. The title \"Product Comparison\" is positioned at the bottom of the slide, below the table content.\n\nANSWER: DONE"
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "raw": "The screenshot shows slide 2 of a LibreOffice Impress presentation. The title \"Product Comparison\" is visible at the bottom of the slide, below the table content.\n\nANSWER: DONE"
+        }
+      ],
+      "verifier_majority": "SUCCESS",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": true
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "task": "21ab7b40-77c2-4ae6-8321-e00d3a086c73",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "FAILURE",
+        "SUCCESS",
+        "SUCCESS"
+      ],
+      "ground_truth_majority": "SUCCESS",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "raw": "The screenshot shows a LibreOffice Calc spreadsheet with:\n1. Column C header \"Period Rate (%)\" \u2014 present \u2713\n2. Numeric values calculated in column C (e.g., 5.625, 1.296, 7.362, 14.724, etc.) \u2713\n3. Cell "
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "raw": "The screenshot shows a LibreOffice 7.3 Document Recovery dialog, with `PeriodRate.xlsx` listed as \"Not recovered yet.\" The spreadsheet is not open and the task has not been completed \u2014 no \"Period Rate"
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "raw": "The screenshot shows:\n1. Column C has the header \"Period Rate (%)\" \u2014 correct.\n2. The values in column C are numeric (right-aligned, and the formula bar shows a decimal number).\n3. The highest value, 1"
+        }
+      ],
+      "verifier_majority": "SUCCESS",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 2,
+          "answer": "",
+          "matches_official": null
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": true
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 2,
+          "answer": "",
+          "matches": null
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "task": "2a729ded-3296-423d-aec4-7dd55ed5fbb3",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "SUCCESS",
+        "FAILURE",
+        "FAILURE"
+      ],
+      "ground_truth_majority": "FAILURE",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "raw": "ANSWER: DONE"
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "raw": "ANSWER: FAIL"
+        },
+        {
+          "run": 3,
+          "answer": "FAIL",
+          "raw": "The screenshot shows GIMP open with an image of a husky dog. The background of the image is still the original blue/grey sky \u2014 it has not been made transparent. No transparency indicators (checkerboar"
+        }
+      ],
+      "verifier_majority": "FAILURE",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 2,
+          "answer": "",
+          "matches_official": null
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": false
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 2,
+          "answer": "",
+          "matches": null
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": false
+        }
+      ]
+    },
+    {
+      "task": "347ef137-7eeb-4c80-a3bb-0951f26a8aff",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "SUCCESS",
+        "FAILURE",
+        "FAILURE"
+      ],
+      "ground_truth_majority": "FAILURE",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "FAIL",
+          "raw": "The screenshot shows a \"2020 Monthly Total Costs\" column bar chart with all 12 months on the X-axis. However, only one chart is visible \u2014 the task requires **two** column bar charts (one for 2019 and "
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "raw": "The screenshot shows a LibreOffice Calc spreadsheet with two data tables (2019 and 2020 costs) and a column bar chart visible, but there is a dialog box open asking about saving the document in the cu"
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "raw": "ANSWER: DONE"
+        }
+      ],
+      "verifier_majority": "FAILURE",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 2,
+          "answer": "",
+          "matches_official": null
+        },
+        {
+          "run": 3,
+          "answer": "",
+          "matches_official": null
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 2,
+          "answer": "",
+          "matches": null
+        },
+        {
+          "run": 3,
+          "answer": "",
+          "matches": null
+        }
+      ]
+    },
+    {
+      "task": "358aa0a7-6677-453f-ae35-e440f004c31e",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "FAILURE",
+        "SUCCESS",
+        "SUCCESS"
+      ],
+      "ground_truth_majority": "SUCCESS",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "FAIL",
+          "raw": "ANSWER: FAIL"
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "raw": "ANSWER: FAIL"
+        },
+        {
+          "run": 3,
+          "answer": "FAIL",
+          "raw": "The screenshot shows LibreOffice Impress open with a presentation, but there is no evidence that the font has been changed to 'Liberation Sans Narrow' for all text boxes. The Properties panel on the r"
+        }
+      ],
+      "verifier_majority": "FAILURE",
+      "verifier_majority_matches_gt": false,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "Use a macro via Tools > Macros > Edit Macros in LibreOffice Impress. Write a Basic macro that iterates through all slides (oDoc.DrawPages) and all shapes on each slide, then for each text portion sets CharFontName = \"Liberation Sans Narrow\". This changes the font for all text boxes across the entire presentation at once without manually selecting each one.",
+          "matches_official": null
+        },
+        {
+          "run": 2,
+          "answer": "You can use a LibreOffice Basic macro (Tools > Macros > Edit Macros) to iterate through all slides and text boxes programmatically and set the font to 'Liberation Sans Narrow'. Alternatively, since PPTX files are ZIP archives containing XML, you can extract the file, use a script to replace all `<a:latin typeface=\"...\"/>` attributes in the slide XML files with `<a:latin typeface=\"Liberation Sans Narrow\"/>`, then repack the ZIP \u2014 this changes all 248 font references across all slides at once without touching each text box manually.",
+          "matches_official": null
+        },
+        {
+          "run": 3,
+          "answer": "You can use a LibreOffice Basic macro (Tools > Macros > Edit Macros) to change the font for all text boxes at once. The macro iterates through all slides and shapes, and sets CharFontName = \"Liberation Sans Narrow\" on every text portion \u2014 no manual selection needed. The macro was successfully run on the presentation and saved.",
+          "matches_official": null
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "Use a macro via Tools > Macros > Edit Macros in LibreOffice Impress. Write a Basic macro that iterates through all slides (oDoc.DrawPages) and all shapes on each slide, then for each text portion sets CharFontName = \"Liberation Sans Narrow\". This changes the font for all text boxes across the entire presentation at once without manually selecting each one.",
+          "matches": null
+        },
+        {
+          "run": 2,
+          "answer": "You can use a LibreOffice Basic macro (Tools > Macros > Edit Macros) to iterate through all slides and text boxes programmatically and set the font to 'Liberation Sans Narrow'. Alternatively, since PPTX files are ZIP archives containing XML, you can extract the file, use a script to replace all `<a:latin typeface=\"...\"/>` attributes in the slide XML files with `<a:latin typeface=\"Liberation Sans Narrow\"/>`, then repack the ZIP \u2014 this changes all 248 font references across all slides at once without touching each text box manually.",
+          "matches": null
+        },
+        {
+          "run": 3,
+          "answer": "You can use a LibreOffice Basic macro (Tools > Macros > Edit Macros) to change the font for all text boxes at once. The macro iterates through all slides and shapes, and sets CharFontName = \"Liberation Sans Narrow\" on every text portion \u2014 no manual selection needed. The macro was successfully run on the presentation and saved.",
+          "matches": null
+        }
+      ]
+    },
+    {
+      "task": "3a7c8185-25c1-4941-bd7b-96e823c9f21f",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "SUCCESS",
+        "FAILURE",
+        "SUCCESS"
+      ],
+      "ground_truth_majority": "SUCCESS",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "raw": "The screenshot shows a spreadsheet with data sorted by column A (dates in ascending order) and a line chart is visible on the right side of the screen, with dates on the X-axis and quantity values on "
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "raw": "The screenshot shows a spreadsheet with data visible and a line chart in the upper right area. The chart appears to have been created with date/time data on the X-axis and quantity on the Y-axis. Howe"
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "raw": "ANSWER: DONE"
+        }
+      ],
+      "verifier_majority": "SUCCESS",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 2,
+          "answer": "",
+          "matches_official": null
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": true
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 2,
+          "answer": "",
+          "matches": null
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "task": "3ef2b351-8a84-4ff2-8724-d86eae9b842e",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "SUCCESS",
+        "FAILURE",
+        "SUCCESS"
+      ],
+      "ground_truth_majority": "SUCCESS",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "raw": "The heading \"Guidelines on drawing up a Constitution\" is visually centered on the page in the LibreOffice document.\n\nANSWER: DONE"
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "raw": "The heading \"Guidelines on drawing up a Constitution\" is visibly center-aligned on the page in LibreOffice Writer.\n\nANSWER: DONE"
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "raw": "The heading \"Guidelines on drawing up a Constitution\" is visibly centered in the LibreOffice document.\n\nANSWER: DONE"
+        }
+      ],
+      "verifier_majority": "SUCCESS",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": true
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "task": "3f28fe4f-5d9d-4994-a456-efd78cfae1a3",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "FAILURE",
+        "SUCCESS",
+        "FAILURE"
+      ],
+      "ground_truth_majority": "FAILURE",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "FAIL",
+          "raw": "The screenshot shows Thunderbird's Account Settings on the \"Server Settings\" page. There is no signature configuration visible \u2014 the signature is set under the account's top-level settings (not Server"
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "raw": "ANSWER: FAIL"
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "raw": "The screenshot shows Thunderbird's Account Settings with the \"Signature text\" field containing \"Anonym\" on the first line and \"XYZ Lab\" on the second line, with the \"Use HTML\" checkbox unchecked (plai"
+        }
+      ],
+      "verifier_majority": "FAILURE",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": false
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": false
+        }
+      ]
+    },
+    {
+      "task": "4172ea6e-6b77-4edb-a9cc-c0014bd1603b",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "SUCCESS",
+        "SUCCESS",
+        "FAILURE"
+      ],
+      "ground_truth_majority": "SUCCESS",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "raw": "ANSWER: DONE"
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "raw": "ANSWER: DONE"
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "raw": "ANSWER: DONE"
+        }
+      ],
+      "verifier_majority": "SUCCESS",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": false
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "task": "4188d3a4-077d-46b7-9c86-23e1a036f6c1",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "SUCCESS",
+        "SUCCESS",
+        "FAILURE"
+      ],
+      "ground_truth_majority": "SUCCESS",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "FAIL",
+          "raw": "There is no freeze line visible after row 1 or after column B. In LibreOffice Calc, a frozen row/column is indicated by a thick black line separating the frozen panes from the rest of the sheet. No su"
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "raw": "There is no freeze line visible in the spreadsheet. Freezing rows/columns in LibreOffice Calc produces a visible thick line between frozen and unfrozen areas. No such line appears after row 1 or colum"
+        },
+        {
+          "run": 3,
+          "answer": "FAIL",
+          "raw": "There is no freeze line visible in the screenshot \u2014 no bold horizontal line below row 1 indicating a frozen row. The spreadsheet shows no freeze panes applied to A1:B1.\n\nANSWER: FAIL"
+        }
+      ],
+      "verifier_majority": "FAILURE",
+      "verifier_majority_matches_gt": false,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": false
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "task": "4f07fbe9-70de-4927-a4d5-bb28bc12c52c",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "FAILURE",
+        "FAILURE",
+        "SUCCESS"
+      ],
+      "ground_truth_majority": "FAILURE",
+      "n_verifier_calls": 2,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "FAIL",
+          "raw": "The formula bar shows `=\"The price is \" &C1& \" euros.\"` which simply concatenates C1 directly. The text cell D1 displays \"The price is 19.5 euros.\" \u2014 showing only one decimal digit, not two. The task "
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "raw": "The screenshot shows cell D1 selected with the formula `=\"The price is \"&TEXT(C1,\"0.00\")&\" euros.\"`, and the cell displays \"The price is 19.50 euros.\" \u2014 exactly 2 decimal places in the text. Cell C1 s"
+        }
+      ],
+      "verifier_majority": "TIE",
+      "verifier_majority_matches_gt": null,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "",
+          "matches_official": null
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": true
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "",
+          "matches": null
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": false
+        }
+      ]
+    },
+    {
+      "task": "51b11269-2ca8-4b2a-9163-f21758420e78",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "SUCCESS",
+        "FAILURE",
+        "SUCCESS"
+      ],
+      "ground_truth_majority": "SUCCESS",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "raw": "The Amount column shows values in ascending order: $442, $467, $662, $712, $1,107, $1,127, $1,246, $1,339, $4,388, $4,529, $6,039, $6,285, $6,311, $7,209, $7,906, $8,103, $8,763, $9,444 \u2014 correctly so"
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "raw": "The Amount column shows values ascending from $442.00 to $9,444.00, confirming the records are sorted by amount in ascending order.\n\nANSWER: DONE"
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "raw": "ANSWER: DONE"
+        }
+      ],
+      "verifier_majority": "SUCCESS",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": true
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "task": "5203d847-2572-4150-912a-03f062254390",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "FAILURE",
+        "SUCCESS",
+        "FAILURE"
+      ],
+      "ground_truth_majority": "FAILURE",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "raw": "The screenshot shows a \"Promotions\" folder created under Local Folders in Thunderbird's sidebar, and a \"Message Filters\" dialog with a filter named \"Move discount to Promotions\" that is enabled (check"
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "raw": "The screenshot shows Mozilla Thunderbird with an OpenPGP Key Manager dialog open and an Address Book panel visible. There is no \"Promotions\" folder visible in the folder tree, no message filter config"
+        },
+        {
+          "run": 3,
+          "answer": "FAIL",
+          "raw": "The screenshot shows the \"Promotions\" folder exists under Local Folders in Thunderbird. However, there is no evidence that a message filter was created to auto-move inbox emails with \"discount\" in the"
+        }
+      ],
+      "verifier_majority": "FAILURE",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "",
+          "matches_official": null
+        },
+        {
+          "run": 2,
+          "answer": "",
+          "matches_official": null
+        },
+        {
+          "run": 3,
+          "answer": "",
+          "matches_official": null
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "",
+          "matches": null
+        },
+        {
+          "run": 2,
+          "answer": "",
+          "matches": null
+        },
+        {
+          "run": 3,
+          "answer": "",
+          "matches": null
+        }
+      ]
+    },
+    {
+      "task": "554785e9-4523-4e7a-b8e1-8016f565f56a",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "SUCCESS",
+        "FAILURE",
+        "FAILURE"
+      ],
+      "ground_truth_majority": "FAILURE",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "FAIL",
+          "raw": "The screenshot shows GIMP open with a photo, but there is no visible evidence that color vibrancy (saturation/hue-saturation adjustment) was applied \u2014 no dialog is open, no filter result is shown, and"
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "raw": "ANSWER: FAIL"
+        },
+        {
+          "run": 3,
+          "answer": "FAIL",
+          "raw": "ANSWER: FAIL"
+        }
+      ],
+      "verifier_majority": "FAILURE",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "",
+          "matches_official": null
+        },
+        {
+          "run": 2,
+          "answer": "",
+          "matches_official": null
+        },
+        {
+          "run": 3,
+          "answer": "",
+          "matches_official": null
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "",
+          "matches": null
+        },
+        {
+          "run": 2,
+          "answer": "",
+          "matches": null
+        },
+        {
+          "run": 3,
+          "answer": "",
+          "matches": null
+        }
+      ]
+    },
+    {
+      "task": "5ca86c6f-f317-49d8-b6a7-b527541caae8",
+      "is_infeasible": true,
+      "official_verdicts": [
+        "SUCCESS",
+        "SUCCESS",
+        "FAILURE"
+      ],
+      "ground_truth_majority": "SUCCESS",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "FAIL",
+          "raw": "The screenshot shows GIMP open with the Script-Fu Console visible, but the console output only shows the welcome message with no commands executed, no image loaded, and no evidence that a PNG file was"
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "raw": "The screenshot shows only a black screen with a mouse cursor \u2014 no GIMP window, no downloaded file, no evidence of any task completion.\n\nANSWER: FAIL"
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "raw": "The screenshot shows GIMP open with the Script-Fu Console active. The status bar at the bottom reads \"Exporting '/root/University_of_Hong_Kong_logo.png'\" \u2014 indicating a PNG file of the University of H"
+        }
+      ],
+      "verifier_majority": "SUCCESS",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "FAIL",
+          "matches_official": true
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "matches_official": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": true
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "FAIL",
+          "matches": true
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "matches": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": false
+        }
+      ]
+    },
+    {
+      "task": "5cfb9197-e72b-454b-900e-c06b0c802b40",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "SUCCESS",
+        "SUCCESS",
+        "FAILURE"
+      ],
+      "ground_truth_majority": "SUCCESS",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "raw": "ANSWER: DONE"
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "raw": "Slide 4 is visible and the table's first row shows T1, T2, T3, T4 in the header cells.\n\nANSWER: DONE"
+        },
+        {
+          "run": 3,
+          "answer": "FAIL",
+          "raw": "The screenshot shows slide 4 with a table, but a \"Save Document?\" dialog is covering the first row of the table. The visible table rows show numbers (42, 89/166/196/432, 275/395/397/653), but the firs"
+        }
+      ],
+      "verifier_majority": "SUCCESS",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 3,
+          "answer": "",
+          "matches_official": null
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 3,
+          "answer": "",
+          "matches": null
+        }
+      ]
+    },
+    {
+      "task": "6054afcb-5bab-4702-90a0-b259b5d3217c",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "FAILURE",
+        "FAILURE",
+        "SUCCESS"
+      ],
+      "ground_truth_majority": "FAILURE",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "raw": "The row numbers in the spreadsheet are non-consecutive (skipping rows 3, 6, 8, 9, 12, 14, 18, 19, 20, 24, 27, 32, 33, etc.), indicating that rows containing 'N/A' data have been hidden \u2014 not deleted, "
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "raw": "The row numbers in the spreadsheet are non-consecutive (e.g., 2, 4, 5, 7, 10, 11, 13\u2026), which indicates that rows containing N/A values have been hidden \u2014 not deleted, and no filter is active (the fil"
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "raw": "The spreadsheet shows non-consecutive row numbers (rows like 3, 6, 8, 9, 12, 14, 18-20, 24, 27, 32, 33 are missing from the sequence), indicating those rows have been hidden. No N/A values are visible"
+        }
+      ],
+      "verifier_majority": "SUCCESS",
+      "verifier_majority_matches_gt": false,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": true
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": false
+        }
+      ]
+    },
+    {
+      "task": "66399b0d-8fda-4618-95c4-bfc6191617e9",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "SUCCESS",
+        "FAILURE",
+        "FAILURE"
+      ],
+      "ground_truth_majority": "FAILURE",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "raw": "The screenshot shows a LibreOffice Writer document with a table inserted. Counting the columns across: 7 columns are visible. The table spans a page break \u2014 3 rows appear on the upper page and 2 rows "
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "raw": "Looking at the screenshot, I can see a LibreOffice Writer document with a table visible. The bottom portion shows a table with 7 columns clearly visible. The status bar at the bottom shows \"5:G5\" \u2014 in"
+        },
+        {
+          "run": 3,
+          "answer": "FAIL",
+          "raw": "The screenshot shows LibreOffice Writer with a \"Confirm File Format\" dialog open. In the document, I can see two tables visible: one partially visible at the top of the visible area and one at the bot"
+        }
+      ],
+      "verifier_majority": "SUCCESS",
+      "verifier_majority_matches_gt": false,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": false
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": false
+        }
+      ]
+    },
+    {
+      "task": "6ed0a554-cbee-4b44-84ea-fd6c042f4fe1",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "SUCCESS",
+        "FAILURE",
+        "SUCCESS"
+      ],
+      "ground_truth_majority": "SUCCESS",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "raw": "ANSWER: DONE"
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "raw": "The VS Code workspace shows `data1` and `data2` folders listed under the PROJECT (WORKSPACE) explorer alongside `project`.\n\nANSWER: DONE"
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "raw": "The Explorer panel shows \"PROJECT (WORKSPACE)\" with `data1` and `data2` listed as folders alongside `project`.\n\nANSWER: DONE"
+        }
+      ],
+      "verifier_majority": "SUCCESS",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": true
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "task": "72b810ef-4156-4d09-8f08-a0cf57e7cefe",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "SUCCESS",
+        "FAILURE",
+        "SUCCESS"
+      ],
+      "ground_truth_majority": "SUCCESS",
+      "n_verifier_calls": 2,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "raw": "ANSWER: DONE"
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "raw": "The last paragraph has strikethrough formatting applied to all its text, which is clearly visible in the screenshot.\n\nANSWER: DONE"
+        }
+      ],
+      "verifier_majority": "SUCCESS",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "matches_official": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": true
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "matches": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "task": "788b3701-3ec9-4b67-b679-418bfa726c22",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "SUCCESS",
+        "FAILURE",
+        "SUCCESS"
+      ],
+      "ground_truth_majority": "SUCCESS",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "FAIL",
+          "raw": "The screenshot shows a completely black screen with only a mouse cursor visible \u2014 no file manager, terminal, downloaded chapter, or any evidence that the task was completed.\n\nANSWER: FAIL"
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "raw": "The screenshot shows a completely black screen with only a cursor visible \u2014 no file manager, no downloaded file, no evidence that the next chapter was downloaded and saved to the novel collection fold"
+        },
+        {
+          "run": 3,
+          "answer": "FAIL",
+          "raw": "The screenshot is entirely black with only a mouse cursor visible \u2014 no desktop, no file manager, no browser, no terminal, and no evidence that any chapter was downloaded or saved.\n\nANSWER: FAIL"
+        }
+      ],
+      "verifier_majority": "FAILURE",
+      "verifier_majority_matches_gt": false,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": true
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "task": "7a4e4bc8-922c-4c84-865c-25ba34136be1",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "FAILURE",
+        "FAILURE",
+        "SUCCESS"
+      ],
+      "ground_truth_majority": "FAILURE",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "raw": "The columns are: Date (A), First Name (B), Last Name (C), Order ID (D), Sales (E) \u2014 exactly the required order.\n\nANSWER: DONE"
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "raw": "The columns in row 1 are: Date (A), First Name (B), Last Name (C), Order ID (D), Sales (E) \u2014 exactly matching the required order.\n\nANSWER: DONE"
+        },
+        {
+          "run": 3,
+          "answer": "FAIL",
+          "raw": "The columns visible are A (empty), B (Date), C (First Name), D (Last Name), E (Order ID), F (Sales). Column A is blank and the data starts in B. The required order is Date, First Name, Last Name, Orde"
+        }
+      ],
+      "verifier_majority": "SUCCESS",
+      "verifier_majority_matches_gt": false,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": true
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": false
+        }
+      ]
+    },
+    {
+      "task": "81c425f5-78f3-4771-afd6-3d2973825947",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "SUCCESS",
+        "FAILURE",
+        "FAILURE"
+      ],
+      "ground_truth_majority": "FAILURE",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "raw": "ANSWER: DONE"
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "raw": "The screenshot shows LibreOffice Calc still open with a \"Tip of the Day\" dialog. There is no LibreOffice Writer open, no table transfer visible, and no evidence that `price.docx` was saved to the desk"
+        },
+        {
+          "run": 3,
+          "answer": "FAIL",
+          "raw": "ANSWER: FAIL"
+        }
+      ],
+      "verifier_majority": "FAILURE",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": false
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": false
+        }
+      ]
+    },
+    {
+      "task": "8b1ce5f2-59d2-4dcc-b0b0-666a714b9a14",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "SUCCESS",
+        "SUCCESS",
+        "FAILURE"
+      ],
+      "ground_truth_majority": "SUCCESS",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "raw": "ANSWER: DONE"
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "raw": "ANSWER: DONE"
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "raw": "ANSWER: DONE"
+        }
+      ],
+      "verifier_majority": "SUCCESS",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": false
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "task": "8d9fd4e2-6fdb-46b0-b9b9-02f06495c62f",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "SUCCESS",
+        "FAILURE",
+        "FAILURE"
+      ],
+      "ground_truth_majority": "FAILURE",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "raw": "ANSWER: DONE"
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "raw": "ANSWER: FAIL"
+        },
+        {
+          "run": 3,
+          "answer": "FAIL",
+          "raw": "VLC is visible in a windowed state with a title bar, menu bar, and playback controls \u2014 not in fullscreen mode.\n\nANSWER: FAIL"
+        }
+      ],
+      "verifier_majority": "FAILURE",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": false
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": false
+        }
+      ]
+    },
+    {
+      "task": "91190194-f406-4cd6-b3f9-c43fac942b22",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "FAILURE",
+        "FAILURE",
+        "SUCCESS"
+      ],
+      "ground_truth_majority": "FAILURE",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "FAIL",
+          "raw": "The screenshot shows a completely black screen with only a mouse cursor visible. There is no evidence of GIMP being open, no terminal, no cropped image, and no indication the task was completed.\n\nANSW"
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "raw": "The screenshot shows a completely black screen with only a cursor visible \u2014 no GIMP window, no terminal, no file manager, nothing indicating the task was completed.\n\nANSWER: FAIL"
+        },
+        {
+          "run": 3,
+          "answer": "FAIL",
+          "raw": "ANSWER: FAIL"
+        }
+      ],
+      "verifier_majority": "FAILURE",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "FAIL",
+          "matches_official": true
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "matches_official": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": true
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "FAIL",
+          "matches": true
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "matches": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": false
+        }
+      ]
+    },
+    {
+      "task": "9219480b-3aed-47fc-8bac-d2cffc5849f7",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "FAILURE",
+        "SUCCESS",
+        "FAILURE"
+      ],
+      "ground_truth_majority": "FAILURE",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "FAIL",
+          "raw": "The screenshot shows VS Code open with a \"Welcome to VS Code / Sign in to use GitHub Copilot\" dialog. There is no evidence that the Tetris bug was fixed \u2014 no code edits are visible, no terminal showin"
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "raw": "The screenshot shows VS Code open with a GitHub Copilot sign-in dialog. There is no evidence that the Tetris game was run, debugged, or that any bug fix was applied to the code.\n\nANSWER: FAIL"
+        },
+        {
+          "run": 3,
+          "answer": "FAIL",
+          "raw": "The screenshot shows VS Code with a GitHub Copilot sign-in dialog, with no evidence that the Tetris bug was identified or fixed.\n\nANSWER: FAIL"
+        }
+      ],
+      "verifier_majority": "FAILURE",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 3,
+          "answer": "",
+          "matches_official": null
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 3,
+          "answer": "",
+          "matches": null
+        }
+      ]
+    },
+    {
+      "task": "98e8e339-5f91-4ed2-b2b2-12647cb134f4",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "FAILURE",
+        "FAILURE",
+        "SUCCESS"
+      ],
+      "ground_truth_majority": "FAILURE",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "raw": "The screenshot shows `concat.docx` open in LibreOffice Writer with merged text content and the font size set to `10 pt` in the toolbar.\n\nANSWER: DONE"
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "raw": "The screenshot shows VS Code open with a GitHub Copilot sign-in dialog. There is no LibreOffice Writer open, no `concat.docx` visible on the Desktop, and no evidence the task was completed.\n\nANSWER: F"
+        },
+        {
+          "run": 3,
+          "answer": "FAIL",
+          "raw": "ANSWER: FAIL"
+        }
+      ],
+      "verifier_majority": "FAILURE",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": true
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": false
+        }
+      ]
+    },
+    {
+      "task": "9b7bc335-06b5-4cd3-9119-1a649c478509",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "SUCCESS",
+        "FAILURE",
+        "FAILURE"
+      ],
+      "ground_truth_majority": "FAILURE",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "raw": "The Message Filters dialog is open for `anonym-x2024@outlook.com`, and there is one enabled filter named \"Forward to anonym-x2024@gmail.com\" with a checkmark indicating it is active.\n\nANSWER: DONE"
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "raw": "The screenshot shows a Thunderbird Filter Rules dialog named \"Forward to Gmail\", but the action configured is \"Move Message to\" (not \"Forward to\"), and no destination address or folder is set. The \"Ge"
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "raw": "Looking at the screenshot, I can see Thunderbird is open with a **Message Filters** dialog visible. The dialog shows:\n- \"Filters for: anonym-x2024@outlook.com\" \u2014 the correct account\n- One filter rule "
+        }
+      ],
+      "verifier_majority": "SUCCESS",
+      "verifier_majority_matches_gt": false,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 2,
+          "answer": "",
+          "matches_official": null
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": false
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 2,
+          "answer": "",
+          "matches": null
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": false
+        }
+      ]
+    },
+    {
+      "task": "9ec204e4-f0a3-42f8-8458-b772a6797cab",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "SUCCESS",
+        "FAILURE",
+        "SUCCESS"
+      ],
+      "ground_truth_majority": "SUCCESS",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "FAIL",
+          "raw": "ANSWER: FAIL"
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "raw": "ANSWER: FAIL"
+        },
+        {
+          "run": 3,
+          "answer": "FAIL",
+          "raw": "The screenshot is entirely black with only a mouse cursor visible \u2014 no application, no slides, no desktop content is discernible.\n\nANSWER: FAIL"
+        }
+      ],
+      "verifier_majority": "FAILURE",
+      "verifier_majority_matches_gt": false,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": true
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "task": "a53f80cd-4a90-4490-8310-097b011433f6",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "SUCCESS",
+        "FAILURE",
+        "FAILURE"
+      ],
+      "ground_truth_majority": "FAILURE",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "FAIL",
+          "raw": "ANSWER: FAIL"
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "raw": "Looking at the screenshot, slide 4 is currently displayed in the editing area. It shows \"Contact Us\" on the left and an image with \"JOIN OUR TEAM\" along with lollipop/candy icons still visible on the "
+        },
+        {
+          "run": 3,
+          "answer": "FAIL",
+          "raw": "ANSWER: FAIL"
+        }
+      ],
+      "verifier_majority": "FAILURE",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": false
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": false
+        }
+      ]
+    },
+    {
+      "task": "a9f325aa-8c05-4e4f-8341-9e4358565f4f",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "SUCCESS",
+        "SUCCESS",
+        "FAILURE"
+      ],
+      "ground_truth_majority": "SUCCESS",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "raw": "ANSWER: DONE"
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "raw": "ANSWER: DONE"
+        },
+        {
+          "run": 3,
+          "answer": "FAIL",
+          "raw": "The \"Clean Movie Titles\" column (C) is completely empty \u2014 no cleaned titles have been written there.\n\nANSWER: FAIL"
+        }
+      ],
+      "verifier_majority": "SUCCESS",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": false
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "task": "aa3a8974-2e85-438b-b29e-a64df44deb4b",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "FAILURE",
+        "SUCCESS",
+        "FAILURE"
+      ],
+      "ground_truth_majority": "FAILURE",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "FAIL",
+          "raw": "The screenshot shows LibreOffice Calc open with the spreadsheet, but there is no evidence that a PDF was exported \u2014 no file manager showing a PDF file, no save/export dialog, and no confirmation that "
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "raw": "The screenshot shows LibreOffice Calc with the spreadsheet open, but there is no evidence that a PDF was exported. No file manager, save dialog, or confirmation of PDF export is visible. The task requ"
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "raw": "The screenshot shows a LibreOffice Basic macro that sets `ScaleToPages = 1` (fit to one page) and exports to `/root/Resize_Cells_Fit_Page.pdf`, and a \"Done!\" dialog confirming successful execution. Th"
+        }
+      ],
+      "verifier_majority": "FAILURE",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": false
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": false
+        }
+      ]
+    },
+    {
+      "task": "ac1b39ff-ee4d-4483-abce-c117e98942f0",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "FAILURE",
+        "SUCCESS",
+        "SUCCESS"
+      ],
+      "ground_truth_majority": "SUCCESS",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "raw": "The screenshot shows Page 3 (Movie List) is active. The table is positioned at the bottom of the slide, below the text content and near the lower edge of the slide area.\n\nANSWER: DONE"
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "raw": "The screenshot shows Slide 3 (\"Movie List\") with the table positioned at the bottom of the slide, near the lower edge of the slide area.\n\nANSWER: DONE"
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "raw": "The screenshot shows Page 3 (\"Movie List\") with the table positioned at the bottom of the slide, near the lower edge of the slide area.\n\nANSWER: DONE"
+        }
+      ],
+      "verifier_majority": "SUCCESS",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": true
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "task": "adf5e2c3-64c7-4644-b7b6-d2f0167927e7",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "FAILURE",
+        "FAILURE",
+        "SUCCESS"
+      ],
+      "ground_truth_majority": "FAILURE",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "FAIL",
+          "raw": "The screenshot shows a LibreOffice Writer document with a \"Find and Replace\" dialog open, searching for \"[14]\". The `<add here>` marker is still visible in the fourth paragraph (highlighted), and the "
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "raw": "ANSWER: FAIL"
+        },
+        {
+          "run": 3,
+          "answer": "FAIL",
+          "raw": "The screenshot shows the reference list on the last page (page 4 of 4), and [14] Steinberg, F. M., Bearden, M. M., & Keen, C. L. (2003) has been correctly added. However, the fourth paragraph with the"
+        }
+      ],
+      "verifier_majority": "FAILURE",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "",
+          "matches_official": null
+        },
+        {
+          "run": 2,
+          "answer": "",
+          "matches_official": null
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": true
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "",
+          "matches": null
+        },
+        {
+          "run": 2,
+          "answer": "",
+          "matches": null
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": false
+        }
+      ]
+    },
+    {
+      "task": "b5062e3e-641c-4e3a-907b-ac864d2e7652",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "SUCCESS",
+        "SUCCESS",
+        "FAILURE"
+      ],
+      "ground_truth_majority": "SUCCESS",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "FAIL",
+          "raw": "The screenshot shows a completely black screen with only a mouse cursor visible. There is no evidence of an Excel file being open, no file manager showing `authors.xlsx`, and no terminal output confir"
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "raw": "The screenshot shows a completely black screen with only a cursor visible \u2014 no open files, no Excel spreadsheet, no confirmation that `authors.xlsx` was created or is open.\n\nANSWER: FAIL"
+        },
+        {
+          "run": 3,
+          "answer": "FAIL",
+          "raw": "The screenshot shows a completely black screen with only a mouse cursor visible. There is no evidence of an Excel file being open, no file manager showing authors.xlsx, and no indication the task was "
+        }
+      ],
+      "verifier_majority": "FAILURE",
+      "verifier_majority_matches_gt": false,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": false
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "task": "bb83cab4-e5c7-42c7-a67b-e46068032b86",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "SUCCESS",
+        "FAILURE",
+        "FAILURE"
+      ],
+      "ground_truth_majority": "FAILURE",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "FAIL",
+          "raw": "ANSWER: FAIL"
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "raw": "The screenshot shows `script.docx` open in LibreOffice Writer, containing text extracted from the Impress presentation (title, content text, presenter info, etc.). The file is named `script.docx` and "
+        },
+        {
+          "run": 3,
+          "answer": "FAIL",
+          "raw": "ANSWER: FAIL"
+        }
+      ],
+      "verifier_majority": "FAILURE",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": false
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": false
+        }
+      ]
+    },
+    {
+      "task": "c82632a4-56b6-4db4-9dd1-3820ee3388e4",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "SUCCESS",
+        "SUCCESS",
+        "FAILURE"
+      ],
+      "ground_truth_majority": "SUCCESS",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "FAIL",
+          "raw": "The screenshot shows only a black screen with a cursor \u2014 no presentation application, no slides, and no visible desktop content.\n\nANSWER: FAIL"
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "raw": "The screenshot shows LibreOffice Impress with slide 1 currently selected/displayed. Slide 2 is visible in the panel and appears to contain some content (\"Marketing Strategies\"), but no image has been "
+        },
+        {
+          "run": 3,
+          "answer": "FAIL",
+          "raw": "ANSWER: FAIL"
+        }
+      ],
+      "verifier_majority": "FAILURE",
+      "verifier_majority_matches_gt": false,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "",
+          "matches_official": null
+        },
+        {
+          "run": 2,
+          "answer": "",
+          "matches_official": null
+        },
+        {
+          "run": 3,
+          "answer": "",
+          "matches_official": null
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "",
+          "matches": null
+        },
+        {
+          "run": 2,
+          "answer": "",
+          "matches": null
+        },
+        {
+          "run": 3,
+          "answer": "",
+          "matches": null
+        }
+      ]
+    },
+    {
+      "task": "ce88f674-ab7a-43da-9201-468d38539e4a",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "SUCCESS",
+        "FAILURE",
+        "SUCCESS"
+      ],
+      "ground_truth_majority": "SUCCESS",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "raw": "The screenshot shows LibreOffice Impress with slides displayed in portrait (upright) orientation \u2014 the slide in the main editing area is taller than it is wide.\n\nANSWER: DONE"
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "raw": "ANSWER: DONE"
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "raw": "The slide is displayed in portrait (upright/vertical) orientation \u2014 the slide panel on the left and the main editing area both show a tall, vertical slide layout.\n\nANSWER: DONE"
+        }
+      ],
+      "verifier_majority": "SUCCESS",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": true
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "task": "d16c99dc-2a1e-46f2-b350-d97c86c85c15",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "SUCCESS",
+        "SUCCESS",
+        "FAILURE"
+      ],
+      "ground_truth_majority": "SUCCESS",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "FAIL",
+          "raw": "ANSWER: FAIL"
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "raw": "The GIMP screenshot shows a dog (husky) image open, but there is no visible evidence that the dog layer has been resized to exactly 512 pixels height. No Scale Layer dialog is open or recently complet"
+        },
+        {
+          "run": 3,
+          "answer": "FAIL",
+          "raw": "ANSWER: FAIL"
+        }
+      ],
+      "verifier_majority": "FAILURE",
+      "verifier_majority_matches_gt": false,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": false
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "task": "d52d6308-ec58-42b7-a2c9-de80e4837b2b",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "FAILURE",
+        "SUCCESS",
+        "FAILURE"
+      ],
+      "ground_truth_majority": "FAILURE",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "raw": "The screenshot shows GIMP open with no dock on the left side of the screen. The main canvas window is visible in the center, and there is a dock on the right side (Brushes/Layers), but there is no doc"
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "raw": "ANSWER: DONE"
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "raw": "ANSWER: DONE"
+        }
+      ],
+      "verifier_majority": "SUCCESS",
+      "verifier_majority_matches_gt": false,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": false
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": false
+        }
+      ]
+    },
+    {
+      "task": "d53ff5ee-3b1a-431e-b2be-30ed2673079b",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "FAILURE",
+        "SUCCESS",
+        "SUCCESS"
+      ],
+      "ground_truth_majority": "SUCCESS",
+      "n_verifier_calls": 2,
+      "verifier_calls": [
+        {
+          "run": 2,
+          "answer": "DONE",
+          "raw": "The document is visible in LibreOffice Writer and all text appears to be in lowercase \u2014 no uppercase characters are present in the body text, headings (\"presentation instruction\", \"chin9505\"), or tabl"
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "raw": "The document is visible in LibreOffice Writer and all text appears to be in lowercase \u2014 \"presentation instruction\", \"chin9505\", \"describe some customs in china...\", etc. No uppercase text is visible i"
+        }
+      ],
+      "verifier_majority": "SUCCESS",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": true
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "task": "d9b7c649-c975-4f53-88f5-940b29c47247",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "FAILURE",
+        "FAILURE",
+        "SUCCESS"
+      ],
+      "ground_truth_majority": "FAILURE",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "FAIL",
+          "raw": "ANSWER: FAIL"
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "raw": "ANSWER: FAIL"
+        },
+        {
+          "run": 3,
+          "answer": "FAIL",
+          "raw": "ANSWER: FAIL"
+        }
+      ],
+      "verifier_majority": "FAILURE",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": true
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": false
+        }
+      ]
+    },
+    {
+      "task": "deec51c9-3b1e-4b9e-993c-4776f20e8bb2",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "FAILURE",
+        "SUCCESS",
+        "FAILURE"
+      ],
+      "ground_truth_majority": "FAILURE",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "FAIL",
+          "raw": "ANSWER: FAIL"
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "raw": "ANSWER: FAIL"
+        },
+        {
+          "run": 3,
+          "answer": "FAIL",
+          "raw": "ANSWER: FAIL"
+        }
+      ],
+      "verifier_majority": "FAILURE",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": false
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": false
+        }
+      ]
+    },
+    {
+      "task": "e2dd0213-26db-4349-abe5-d5667bfd725c",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "FAILURE",
+        "FAILURE",
+        "SUCCESS"
+      ],
+      "ground_truth_majority": "FAILURE",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "FAIL",
+          "raw": "ANSWER: FAIL"
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "raw": "ANSWER: FAIL"
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "raw": "The text box \"Thanks World\" is positioned on the left side of the canvas.\n\nANSWER: DONE"
+        }
+      ],
+      "verifier_majority": "FAILURE",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": true
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": false
+        }
+      ]
+    },
+    {
+      "task": "ea98c5d7-3cf9-4f9b-8ad3-366b58e0fcae",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "SUCCESS",
+        "SUCCESS",
+        "FAILURE"
+      ],
+      "ground_truth_majority": "SUCCESS",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "FAIL",
+          "raw": "The screenshot shows VS Code with a GitHub Copilot sign-in dialog open. There is no evidence of the keyboard shortcuts settings being opened or the `ctrl+f` binding for \"Tree view Find\" being removed."
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "raw": "ANSWER: FAIL"
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "raw": "The `keybindings.json` file shows an entry with `\"key\": \"ctrl+f\"`, `\"command\": \"-list.find\"`, and `\"when\": \"listFocus && listSupportsFind\"`. The negative command prefix (`-list.find`) is the correct V"
+        }
+      ],
+      "verifier_majority": "FAILURE",
+      "verifier_majority_matches_gt": false,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": false
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": true
+        }
+      ]
+    },
+    {
+      "task": "eb303e01-261e-4972-8c07-c9b4e7a4922a",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "FAILURE",
+        "SUCCESS",
+        "FAILURE"
+      ],
+      "ground_truth_majority": "FAILURE",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "FAIL",
+          "raw": "The screenshot is completely black with only a mouse cursor visible \u2014 no PowerPoint application, no slides, no notes panel, nothing indicating the task was completed.\n\nANSWER: FAIL"
+        },
+        {
+          "run": 2,
+          "answer": "FAIL",
+          "raw": "ANSWER: FAIL"
+        },
+        {
+          "run": 3,
+          "answer": "FAIL",
+          "raw": "The screenshot shows a completely black screen with only a cursor visible \u2014 no PowerPoint application, no slides, no notes panel, nothing that would indicate the task was completed.\n\nANSWER: FAIL"
+        }
+      ],
+      "verifier_majority": "FAILURE",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": true
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches_official": false
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 3,
+          "answer": "DONE",
+          "matches": false
+        }
+      ]
+    },
+    {
+      "task": "f178a4a9-d090-4b56-bc4c-4b72a61a035d",
+      "is_infeasible": false,
+      "official_verdicts": [
+        "FAILURE",
+        "FAILURE",
+        "SUCCESS"
+      ],
+      "ground_truth_majority": "FAILURE",
+      "n_verifier_calls": 3,
+      "verifier_calls": [
+        {
+          "run": 1,
+          "answer": "FAIL",
+          "raw": "ANSWER: FAIL"
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "raw": "The screenshot shows a LibreOffice Writer document. The font displayed in the toolbar area appears to show \"Times New Roman\" as the selected font. The document text is rendered in what appears to be a"
+        },
+        {
+          "run": 3,
+          "answer": "FAIL",
+          "raw": "The screenshot shows a completely black screen with only a mouse cursor visible \u2014 no application windows, no font settings dialogs, no confirmation that Times New Roman was set as the default font.\n\nA"
+        }
+      ],
+      "verifier_majority": "FAILURE",
+      "verifier_majority_matches_gt": true,
+      "agent_runs": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches_official": false
+        },
+        {
+          "run": 3,
+          "answer": "",
+          "matches_official": null
+        }
+      ],
+      "agent_matches_gt_majority": [
+        {
+          "run": 1,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 2,
+          "answer": "DONE",
+          "matches": false
+        },
+        {
+          "run": 3,
+          "answer": "",
+          "matches": null
+        }
+      ]
+    }
+  ]
+}

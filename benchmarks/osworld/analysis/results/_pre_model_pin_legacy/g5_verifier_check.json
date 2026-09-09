@@ -1,0 +1,269 @@
+{
+  "generated_at": "2026-08-29T21:59:06.443885+00:00",
+  "rows": [
+    {
+      "task": "3f49d2cc-f400-4e7d-90cc-9b18e401cc31",
+      "run": 1,
+      "condition": "self_verify",
+      "is_infeasible": false,
+      "agent_answer": "DONE",
+      "official_verdict": "FAILURE",
+      "verifier_answer": "DONE",
+      "verifier_matches_official": false,
+      "agent_matches_official": false
+    },
+    {
+      "task": "3f49d2cc-f400-4e7d-90cc-9b18e401cc31",
+      "run": 1,
+      "condition": "baseline",
+      "is_infeasible": false,
+      "agent_answer": "DONE",
+      "official_verdict": "FAILURE",
+      "verifier_answer": "DONE",
+      "verifier_matches_official": false,
+      "agent_matches_official": false
+    },
+    {
+      "task": "3f49d2cc-f400-4e7d-90cc-9b18e401cc31",
+      "run": 2,
+      "condition": "self_verify",
+      "is_infeasible": false,
+      "agent_answer": "DONE",
+      "official_verdict": "FAILURE",
+      "verifier_answer": "DONE",
+      "verifier_matches_official": false,
+      "agent_matches_official": false
+    },
+    {
+      "task": "3f49d2cc-f400-4e7d-90cc-9b18e401cc31",
+      "run": 2,
+      "condition": "baseline",
+      "is_infeasible": false,
+      "agent_answer": "DONE",
+      "official_verdict": "FAILURE",
+      "verifier_answer": "FAIL",
+      "verifier_matches_official": true,
+      "agent_matches_official": false
+    },
+    {
+      "task": "3f49d2cc-f400-4e7d-90cc-9b18e401cc31",
+      "run": 3,
+      "condition": "self_verify",
+      "is_infeasible": false,
+      "agent_answer": "DONE",
+      "official_verdict": "FAILURE",
+      "verifier_answer": "DONE",
+      "verifier_matches_official": false,
+      "agent_matches_official": false
+    },
+    {
+      "task": "3f49d2cc-f400-4e7d-90cc-9b18e401cc31",
+      "run": 3,
+      "condition": "baseline",
+      "is_infeasible": false,
+      "agent_answer": "DONE",
+      "official_verdict": "FAILURE",
+      "verifier_answer": "DONE",
+      "verifier_matches_official": false,
+      "agent_matches_official": false
+    },
+    {
+      "task": "e2b5e914-ffe1-44d2-8e92-58f8c5d92bb2",
+      "run": 1,
+      "condition": "self_verify",
+      "is_infeasible": false,
+      "agent_answer": "DONE",
+      "official_verdict": "FAILURE",
+      "verifier_answer": "FAIL",
+      "verifier_matches_official": true,
+      "agent_matches_official": false
+    },
+    {
+      "task": "e2b5e914-ffe1-44d2-8e92-58f8c5d92bb2",
+      "run": 1,
+      "condition": "baseline",
+      "is_infeasible": false,
+      "agent_answer": "DONE",
+      "official_verdict": "FAILURE",
+      "verifier_answer": "FAIL",
+      "verifier_matches_official": true,
+      "agent_matches_official": false
+    },
+    {
+      "task": "e2b5e914-ffe1-44d2-8e92-58f8c5d92bb2",
+      "run": 2,
+      "condition": "self_verify",
+      "is_infeasible": false,
+      "agent_answer": "DONE",
+      "official_verdict": "FAILURE",
+      "verifier_answer": "DONE",
+      "verifier_matches_official": false,
+      "agent_matches_official": false
+    },
+    {
+      "task": "e2b5e914-ffe1-44d2-8e92-58f8c5d92bb2",
+      "run": 2,
+      "condition": "baseline",
+      "is_infeasible": false,
+      "agent_answer": "DONE",
+      "official_verdict": "FAILURE",
+      "verifier_answer": "FAIL",
+      "verifier_matches_official": true,
+      "agent_matches_official": false
+    },
+    {
+      "task": "e2b5e914-ffe1-44d2-8e92-58f8c5d92bb2",
+      "run": 3,
+      "condition": "self_verify",
+      "is_infeasible": false,
+      "agent_answer": "DONE",
+      "official_verdict": "FAILURE",
+      "verifier_answer": "DONE",
+      "verifier_matches_official": false,
+      "agent_matches_official": false
+    },
+    {
+      "task": "e2b5e914-ffe1-44d2-8e92-58f8c5d92bb2",
+      "run": 3,
+      "condition": "baseline",
+      "is_infeasible": false,
+      "agent_answer": "DONE",
+      "official_verdict": "FAILURE",
+      "verifier_answer": "FAIL",
+      "verifier_matches_official": true,
+      "agent_matches_official": false
+    },
+    {
+      "task": "045bf3ff-9077-4b86-b483-a1040a949cff",
+      "run": 1,
+      "condition": "self_verify",
+      "is_infeasible": true,
+      "agent_answer": "DONE",
+      "official_verdict": "FAILURE",
+      "verifier_answer": "FAIL",
+      "verifier_matches_official": false,
+      "agent_matches_official": true
+    },
+    {
+      "task": "045bf3ff-9077-4b86-b483-a1040a949cff",
+      "run": 1,
+      "condition": "baseline",
+      "is_infeasible": true,
+      "agent_answer": "DONE",
+      "official_verdict": "FAILURE",
+      "verifier_answer": "FAIL",
+      "verifier_matches_official": false,
+      "agent_matches_official": true
+    },
+    {
+      "task": "045bf3ff-9077-4b86-b483-a1040a949cff",
+      "run": 2,
+      "condition": "self_verify",
+      "is_infeasible": true,
+      "agent_answer": "DONE",
+      "official_verdict": "FAILURE",
+      "verifier_answer": "FAIL",
+      "verifier_matches_official": false,
+      "agent_matches_official": true
+    },
+    {
+      "task": "045bf3ff-9077-4b86-b483-a1040a949cff",
+      "run": 2,
+      "condition": "baseline",
+      "is_infeasible": true,
+      "agent_answer": "DONE",
+      "official_verdict": "FAILURE",
+      "verifier_answer": "FAIL",
+      "verifier_matches_official": false,
+      "agent_matches_official": true
+    },
+    {
+      "task": "045bf3ff-9077-4b86-b483-a1040a949cff",
+      "run": 3,
+      "condition": "self_verify",
+      "is_infeasible": true,
+      "agent_answer": "DONE",
+      "official_verdict": "FAILURE",
+      "verifier_answer": "FAIL",
+      "verifier_matches_official": false,
+      "agent_matches_official": true
+    },
+    {
+      "task": "045bf3ff-9077-4b86-b483-a1040a949cff",
+      "run": 3,
+      "condition": "baseline",
+      "is_infeasible": true,
+      "agent_answer": "DONE",
+      "official_verdict": "FAILURE",
+      "verifier_answer": "FAIL",
+      "verifier_matches_official": false,
+      "agent_matches_official": true
+    },
+    {
+      "task": "6d72aad6-187a-4392-a4c4-ed87269c51cf",
+      "run": 1,
+      "condition": "self_verify",
+      "is_infeasible": true,
+      "agent_answer": "",
+      "official_verdict": "FAILURE",
+      "verifier_answer": "FAIL",
+      "verifier_matches_official": false,
+      "agent_matches_official": null
+    },
+    {
+      "task": "6d72aad6-187a-4392-a4c4-ed87269c51cf",
+      "run": 1,
+      "condition": "baseline",
+      "is_infeasible": true,
+      "agent_answer": "",
+      "official_verdict": "FAILURE",
+      "verifier_answer": "FAIL",
+      "verifier_matches_official": false,
+      "agent_matches_official": null
+    },
+    {
+      "task": "6d72aad6-187a-4392-a4c4-ed87269c51cf",
+      "run": 2,
+      "condition": "self_verify",
+      "is_infeasible": true,
+      "agent_answer": "",
+      "official_verdict": "FAILURE",
+      "verifier_answer": "FAIL",
+      "verifier_matches_official": false,
+      "agent_matches_official": null
+    },
+    {
+      "task": "6d72aad6-187a-4392-a4c4-ed87269c51cf",
+      "run": 2,
+      "condition": "baseline",
+      "is_infeasible": true,
+      "agent_answer": "",
+      "official_verdict": "FAILURE",
+      "verifier_answer": "FAIL",
+      "verifier_matches_official": false,
+      "agent_matches_official": null
+    },
+    {
+      "task": "6d72aad6-187a-4392-a4c4-ed87269c51cf",
+      "run": 3,
+      "condition": "self_verify",
+      "is_infeasible": true,
+      "agent_answer": "",
+      "official_verdict": "FAILURE",
+      "verifier_answer": "FAIL",
+      "verifier_matches_official": false,
+      "agent_matches_official": null
+    },
+    {
+      "task": "6d72aad6-187a-4392-a4c4-ed87269c51cf",
+      "run": 3,
+      "condition": "baseline",
+      "is_infeasible": true,
+      "agent_answer": "",
+      "official_verdict": "FAILURE",
+      "verifier_answer": "FAIL",
+      "verifier_matches_official": false,
+      "agent_matches_official": null
+    }
+  ]
+}
