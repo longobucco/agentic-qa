@@ -91,7 +91,11 @@ def run(results_dir=None, system=None):
             if png.exists():
                 vr = verify(png.resolve(), instruction)
                 verifier_answer = vr["answer"]
-                verifier_calls.append({"run": n, "answer": verifier_answer, "raw": vr["raw"][:200]})
+                verifier_calls.append({
+                    "run": n, "answer": verifier_answer, "raw": vr["raw"][:200],
+                    "model_requested": vr["model_requested"], "model_served": vr["model_served"],
+                    "model_mismatch": vr["model_mismatch"],
+                })
                 print(f"{tid[:8]} run_{n} official={v:8s} agent={agent_answer:5s} "
                       f"verifier={verifier_answer}", file=sys.stderr)
             else:
