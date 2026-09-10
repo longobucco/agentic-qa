@@ -22,12 +22,17 @@ def extract_answer(text: str) -> str:
 
 
 def build_claude_cmd(prompt, *, model=None, max_turns=None, add_dir=None,
-                     mcp_config=None, allowed_tools=None, extra=None):
+                     mcp_config=None, allowed_tools=None, extra=None, resume=None):
     """Assemble a `claude -p ... --output-format json` argv.
 
     Covers every runner/judge shape: a plain agent (add_dir), an MCP runner (mcp_config +
     allowed_tools), and the judge (add_dir + low max_turns). Falsy `model` => omit
     `--model` so the CLI uses the subscription default.
+
+    `resume` (a prior call's session_id) continues that session instead of starting a new
+    one -- verified live 2026-09-09 to preserve session_id, pinned model, and tool/MCP state
+    across the boundary, so a follow-up prompt picks up exactly where the resumed session left
+    off (same desktop state, same allowed tools) rather than re-provisioning from scratch.
     """
     cmd = ["claude", "-p", prompt, "--output-format", "json",
            "--dangerously-skip-permissions"]
@@ -43,6 +48,8 @@ def build_claude_cmd(prompt, *, model=None, max_turns=None, add_dir=None,
         cmd += list(extra)
     if model:
         cmd += ["--model", model]
+    if resume:
+        cmd += ["--resume", resume]
     return cmd
 
 
