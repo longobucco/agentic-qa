@@ -8,7 +8,7 @@ import tempfile
 import time
 from pathlib import Path
 
-from benchmarks.osworld.runners import agent_computer
+from benchmarks.osworld.runners import agent_computer, common
 from benchmarks.osworld.runners.agent_computer import (
     _action_history, _agent_telemetry, _annotate_incidental, _bounded, _clean_finish,
     _environment_error_rec, _evaluator_provenance, _extra_flags, _implies_done, _inloop_verify,
@@ -519,9 +519,16 @@ def test_bounded_returns_the_wrapped_function_result():
 def test_bounded_raises_runtime_error_past_its_timeout():
     """The watchdog that stops a hung eval-state capture/score from stranding a whole run for
     an hour (see the module docstring above _bounded) -- verified here without actually
-    waiting out the real 600s default by monkeypatching the module-level timeout constant."""
-    real_timeout = agent_computer._POST_RUN_TIMEOUT_S
-    agent_computer._POST_RUN_TIMEOUT_S = 0.05
+    waiting out the real 600s default by monkeypatching the timeout constant. Patched on
+    `common` (where _bounded is now defined, post-extraction), not on the `agent_computer` name
+    that merely re-imports it -- a function reads module globals off its own __globals__, i.e.
+    the module it was DEFINED in, so patching the importer's copy of the name has no effect on
+    what the function actually sees. Caught this exact gap live while verifying the extraction
+    (docs/verify-replan-minimal-integration-plan.md commit 2): before this fix, this test's
+    patch on `agent_computer._POST_RUN_TIMEOUT_S` silently did nothing post-extraction and
+    `_bounded` ran out its real 600s default instead of the intended 0.05s."""
+    real_timeout = common._POST_RUN_TIMEOUT_S
+    common._POST_RUN_TIMEOUT_S = 0.05
     try:
         try:
             _bounded("slow", time.sleep, 5)
@@ -531,7 +538,7 @@ def test_bounded_raises_runtime_error_past_its_timeout():
             assert "slow" in str(e) and "0.05" in str(e)
         assert raised
     finally:
-        agent_computer._POST_RUN_TIMEOUT_S = real_timeout
+        common._POST_RUN_TIMEOUT_S = real_timeout
 
 
 def test_evaluator_provenance_falls_back_when_the_evaluator_package_is_unavailable():
