@@ -2,14 +2,18 @@
 gold-hashing logic in runners/agent_computer.py (pure, no desktop/LLM):
   python -m benchmarks.osworld.tests.test_runner
 """
+import hashlib
+import json
 import tempfile
+import time
 from pathlib import Path
 
 from benchmarks.osworld.runners import agent_computer
 from benchmarks.osworld.runners.agent_computer import (
-    _agent_telemetry, _annotate_incidental, _clean_finish, _environment_error_rec,
-    _implies_done, _inloop_verify, _model_mismatch, _rate_limit_infra_rec,
-    _rate_limit_result_rec, _save_conversation_transcript, _score, _served_by,
+    _action_history, _agent_telemetry, _annotate_incidental, _bounded, _clean_finish,
+    _environment_error_rec, _evaluator_provenance, _extra_flags, _implies_done, _inloop_verify,
+    _mcp_config, _model_mismatch, _provenance, _rate_limit_infra_rec, _rate_limit_result_rec,
+    _save_conversation_transcript, _score, _served_by,
 )
 from benchmarks.osworld import config
 
@@ -451,6 +455,194 @@ def test_inloop_verify_screenshot_failure_is_non_fatal():
         config.INLOOP_VERIFY = real
     assert answer == "DONE" and telemetry["inloop_verify_used"] is False
     assert "controller unreachable" in telemetry["inloop_verify_error"]
+
+
+def test_mcp_config_writes_a_valid_stdio_spec():
+    """Characterization test (docs/verify-replan-minimal-integration-plan.md commit 1): pins
+    the exact shape _mcp_config produces today, before it moves into a shared module. A
+    verify-replan Auditor needs the same spec shape with a different tool allowlist -- this
+    locks down the part that must stay identical."""
+    path = _mcp_config("http://localhost:9999")
+    try:
+        spec = json.loads(Path(path).read_text())
+        assert spec == {"mcpServers": {"osworld": {
+            "type": "stdio", "command": "python",
+            "args": ["-m", "benchmarks.osworld.mcp.server"],
+            "env": {"OSW_CONTROLLER_URL": "http://localhost:9999"},
+        }}}
+    finally:
+        Path(path).unlink()
+
+
+def test_mcp_config_defaults_to_empty_url_env():
+    path = _mcp_config(None)
+    try:
+        spec = json.loads(Path(path).read_text())
+        assert spec["mcpServers"]["osworld"]["env"]["OSW_CONTROLLER_URL"] == ""
+    finally:
+        Path(path).unlink()
+
+
+def test_extra_flags_none_when_no_restriction_is_active():
+    real_a, real_b = config.ENFORCE_SANDBOX, config.RESTRICT_RUN_PYTHON
+    config.ENFORCE_SANDBOX = config.RESTRICT_RUN_PYTHON = False
+    try:
+        assert _extra_flags() is None
+    finally:
+        config.ENFORCE_SANDBOX, config.RESTRICT_RUN_PYTHON = real_a, real_b
+
+
+def test_extra_flags_combines_both_restrictions_with_one_strict_mcp_config():
+    """--strict-mcp-config must appear at most once even with both G5 arms (#10 and #11)
+    active together -- two separate flags would be a malformed argv the CLI rejects."""
+    real_a, real_b = config.ENFORCE_SANDBOX, config.RESTRICT_RUN_PYTHON
+    config.ENFORCE_SANDBOX = config.RESTRICT_RUN_PYTHON = True
+    try:
+        flags = _extra_flags()
+    finally:
+        config.ENFORCE_SANDBOX, config.RESTRICT_RUN_PYTHON = real_a, real_b
+    assert flags == ["--disallowedTools", "Bash", "WebSearch", "WebFetch",
+                     "mcp__osworld__run_python", "--strict-mcp-config"]
+    assert flags.count("--strict-mcp-config") == 1
+
+
+def test_action_history_maps_fail_and_infeasible_to_fail():
+    assert _action_history("FAIL") == ["FAIL"]
+    assert _action_history("This task is INFEASIBLE") == ["FAIL"]
+    assert _action_history("DONE") == ["DONE"]
+
+
+def test_bounded_returns_the_wrapped_function_result():
+    assert _bounded("quick", lambda x: x * 2, 21) == 42
+
+
+def test_bounded_raises_runtime_error_past_its_timeout():
+    """The watchdog that stops a hung eval-state capture/score from stranding a whole run for
+    an hour (see the module docstring above _bounded) -- verified here without actually
+    waiting out the real 600s default by monkeypatching the module-level timeout constant."""
+    real_timeout = agent_computer._POST_RUN_TIMEOUT_S
+    agent_computer._POST_RUN_TIMEOUT_S = 0.05
+    try:
+        try:
+            _bounded("slow", time.sleep, 5)
+            raised = False
+        except RuntimeError as e:
+            raised = True
+            assert "slow" in str(e) and "0.05" in str(e)
+        assert raised
+    finally:
+        agent_computer._POST_RUN_TIMEOUT_S = real_timeout
+
+
+def test_evaluator_provenance_falls_back_when_the_evaluator_package_is_unavailable():
+    real_import = __builtins__["__import__"] if isinstance(__builtins__, dict) else __builtins__.__import__
+
+    def blocked_import(name, *a, **k):
+        if name == "benchmarks.osworld.env.osworld_eval":
+            raise ImportError("simulated: desktop_env not installed")
+        return real_import(name, *a, **k)
+
+    import builtins
+    real = builtins.__import__
+    builtins.__import__ = blocked_import
+    try:
+        rec = _evaluator_provenance()
+    finally:
+        builtins.__import__ = real
+    assert rec == {"evaluator_commit": None, "evaluator_package": None}
+
+
+def test_provenance_shape_and_pinned_config_fields():
+    """Characterization test: pins every field _provenance writes today and where each one
+    comes from (task hash, ctrl, or a specific config knob), so extracting this into a shared
+    module cannot silently drop or rename a field a downstream reader (reporting.ab_compare,
+    the verify-replan role telemetry) depends on."""
+    real = {k: getattr(config, k) for k in
+            ("MODEL", "IMAGE", "RELEASE", "MAX_TURNS", "TASK_TIMEOUT", "OBSERVATION",
+             "ACTION_SPACE")}
+    config.MODEL = "claude-sonnet-5"
+    config.IMAGE = "test-image@sha256:deadbeef"
+    config.RELEASE = "verified"
+    config.MAX_TURNS = 150
+    config.TASK_TIMEOUT = 3600
+    config.OBSERVATION = "screenshot+a11y"
+    config.ACTION_SPACE = "pyautogui"
+    try:
+        task = {"id": "t1", "instruction": "do the thing"}
+        rec = _provenance(task, ctrl=None, started_at="2026-09-10T00:00:00+00:00")
+    finally:
+        for k, v in real.items():
+            setattr(config, k, v)
+    assert rec["task_sha256"] == hashlib.sha256(
+        json.dumps(task, sort_keys=True).encode()).hexdigest()
+    assert rec["image"] == "test-image@sha256:deadbeef"
+    assert rec["model_requested"] == "claude-sonnet-5"
+    assert rec["controller_url"] is None   # ctrl=None and config.CONTROLLER_URL unset in tests
+    assert rec["release"] == "verified"
+    assert rec["max_turns"] == 150
+    assert rec["task_timeout"] == 3600
+    assert rec["observation"] == "screenshot+a11y"
+    assert rec["action_space"] == "pyautogui"
+    assert rec["started_at"] == "2026-09-10T00:00:00+00:00"
+    assert "evaluator_commit" in rec and "evaluator_package" in rec
+    assert "finished_at" in rec and rec["finished_at"] != rec["started_at"]
+
+
+def test_provenance_reads_the_controller_url_off_ctrl_when_present():
+    class _Ctrl:
+        base_url = "http://ctrl:1234"
+    rec = _provenance({"id": "t1"}, ctrl=_Ctrl(), started_at="x")
+    assert rec["controller_url"] == "http://ctrl:1234"
+
+
+class _FakeEnv:
+    """Minimal stand-in for core.environment's context value: run() only ever reads
+    .browser and .setup_error off it (never calls into it as a context manager itself --
+    that happens one level up, in core.run)."""
+    browser = None
+    setup_error = None
+
+
+def test_dry_run_argv_is_a_stable_snapshot_for_a_fixed_task_and_config():
+    """The plan's own gate before any extraction (verify-replan-minimal-integration-plan.md
+    §17): 'dimostrare che una run baseline dry-run produce lo stesso argv'. Captures every
+    build_claude_cmd kwarg for a fixed task under fixed config, with _mcp_config's random
+    tmpfile name replaced by a fixed stand-in -- so this test fails loudly if extracting
+    _mcp_config/_extra_flags/build_claude_cmd's call site into runners/common.py changes so
+    much as one flag, ordering, or default for the untouched baseline path."""
+    calls = []
+    fixed_mcp_path = tempfile.mkstemp(prefix="osw_fixed_mcp_")[1]
+
+    def fake_mcp_config(controller_url):
+        return fixed_mcp_path
+
+    def fake_build_claude_cmd(prompt, **kwargs):
+        calls.append({"prompt_nonempty": bool(prompt), **kwargs})
+        return ["claude", "-p", "FAKE"]
+
+    real_model, real_max_turns = config.MODEL, config.MAX_TURNS
+    real_a, real_b = config.ENFORCE_SANDBOX, config.RESTRICT_RUN_PYTHON
+    config.MODEL, config.MAX_TURNS = "claude-sonnet-5", 150
+    config.ENFORCE_SANDBOX = config.RESTRICT_RUN_PYTHON = False
+    try:
+        _with_patched(agent_computer, "_mcp_config", fake_mcp_config, lambda:
+            _with_patched(agent_computer, "build_claude_cmd", fake_build_claude_cmd, lambda:
+                agent_computer.run(
+                    {"id": "t1", "instruction": "do the thing", "evaluator": {}},
+                    env=_FakeEnv(), out=Path(tempfile.mkdtemp(prefix="osw_dry_")), dry=True)))
+    finally:
+        config.MODEL, config.MAX_TURNS = real_model, real_max_turns
+        config.ENFORCE_SANDBOX, config.RESTRICT_RUN_PYTHON = real_a, real_b
+        Path(fixed_mcp_path).unlink(missing_ok=True)
+    assert len(calls) == 1
+    assert calls[0] == {
+        "prompt_nonempty": True,
+        "model": "claude-sonnet-5",
+        "max_turns": 150,
+        "mcp_config": fixed_mcp_path,
+        "allowed_tools": agent_computer.OSWORLD_TOOLS,
+        "extra": None,
+    }
 
 
 def main():
