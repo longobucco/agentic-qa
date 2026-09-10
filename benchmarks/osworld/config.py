@@ -142,6 +142,30 @@ INLOOP_VERIFY_SKIP_APPS = {
     a.strip() for a in os.environ.get("OSW_INLOOP_VERIFY_SKIP_APPS", "os").split(",") if a.strip()
 }
 
+# Verify-Replan (docs/verify-replan-minimal-integration-plan.md): a second, separate runner
+# (runners/verify_replan.py) -- not a flag on agent_computer, so the baseline path is provably
+# unaffected (see the runner's own module docstring and its characterization tests). Its own
+# results tree, keyed the same way as SYSTEM_NAME above, so a non-Sonnet-5 verify-replan variant
+# can never silently mix into the pinned pilot's tree either.
+VR_SYSTEM_NAME = f"verify_replan_{model_slug()}" if MODEL else "verify_replan"
+# Section 8: "OSW_MAX_TURNS non può essere assegnato integralmente a ogni sessione" -- each role
+# gets its own budget rather than inheriting the baseline executor's 150.
+VR_INITIAL_MAX_TURNS = int(os.environ.get("OSW_VR_INITIAL_MAX_TURNS", "100"))
+VR_AUDITOR_MAX_TURNS = int(os.environ.get("OSW_VR_AUDITOR_MAX_TURNS", "12"))
+VR_RECOVERY_MAX_TURNS = int(os.environ.get("OSW_VR_RECOVERY_MAX_TURNS", "38"))
+VR_FINAL_AUDITOR_MAX_TURNS = int(os.environ.get("OSW_VR_FINAL_AUDITOR_MAX_TURNS", "12"))
+VR_MAX_RECOVERIES = int(os.environ.get("OSW_VR_MAX_RECOVERIES", "1"))
+VR_INITIAL_TIMEOUT = int(os.environ.get("OSW_VR_INITIAL_TIMEOUT", "2400"))
+VR_AUDIT_TIMEOUT = int(os.environ.get("OSW_VR_AUDIT_TIMEOUT", "300"))
+VR_RECOVERY_TIMEOUT = int(os.environ.get("OSW_VR_RECOVERY_TIMEOUT", "900"))
+VR_TOTAL_TIMEOUT = int(os.environ.get("OSW_VR_TOTAL_TIMEOUT", "3600"))
+# Empty means "inherit OSW_MODEL" -- kept as its own knob (rather than always reading MODEL
+# directly) so a future ablation can pin a cheaper auditor model without touching the executor.
+VR_AUDITOR_MODEL = os.environ.get("OSW_VR_AUDITOR_MODEL", "").strip()
+VR_MIN_CONFIDENCE = os.environ.get("OSW_VR_MIN_CONFIDENCE", "medium").strip().lower()
+VR_AUDIT_ON_FAIL = os.environ.get("OSW_VR_AUDIT_ON_FAIL", "1") == "1"
+VR_CAPTURE_EVERY_OBS = os.environ.get("OSW_VR_CAPTURE_EVERY_OBS", "1") == "1"
+
 # Score with the evaluator tree fetched at data/download_data.py::UPSTREAM_COMMIT
 # (data/download_evaluators.py) rather than whatever `desktop_env` release pip resolved. On by
 # default once that tree is on disk; set OSW_PINNED_EVALUATORS=0 to keep a campaign scored by

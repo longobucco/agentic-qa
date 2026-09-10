@@ -4,7 +4,7 @@ eval.json), so core.run uses that verdict. Serial (provisioning is heavy).
 """
 from benchmarks.osworld import config, evaluate, tasks
 from benchmarks.osworld.env.sandbox import osworld_environment
-from benchmarks.osworld.runners import agent_computer
+from benchmarks.osworld.runners import agent_computer, gpt_astra, verify_replan
 from core.run import Benchmark, Runner
 
 
@@ -21,6 +21,28 @@ def build():
             needs_browser=False,
             concurrency_safe=False,
             self_eval=True,          # scores with OSWorld's own evaluators; writes eval.json
+        ),
+        # Independent model replication: GPT Astra via Codex CLI, with the same OSWorld MCP,
+        # Daytona image and official evaluators as the Claude Code/Sonnet runner.
+        config.ASTRA_SYSTEM_NAME: Runner(
+            name=config.ASTRA_SYSTEM_NAME,
+            run=gpt_astra.run,
+            environment=osworld_environment,
+            needs_browser=False,
+            concurrency_safe=False,
+            preflight=gpt_astra.preflight,
+            self_eval=True,
+        ),
+        # Verify-Replan (docs/verify-replan-minimal-integration-plan.md): Execute -> Verify ->
+        # [Done | Replan -> Execute recovery -> Verify], selected explicitly, never the default
+        # -- the baseline runner above is unaffected by this existing at all.
+        config.VR_SYSTEM_NAME: Runner(
+            name=config.VR_SYSTEM_NAME,
+            run=verify_replan.run,
+            environment=osworld_environment,
+            needs_browser=False,
+            concurrency_safe=False,
+            self_eval=True,
         ),
     }
     return Benchmark(
