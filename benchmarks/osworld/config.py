@@ -144,10 +144,7 @@ INLOOP_VERIFY_SKIP_APPS = {
 
 # Verify-Replan (docs/verify-replan-minimal-integration-plan.md): a second, separate runner
 # (runners/verify_replan.py) -- not a flag on agent_computer, so the baseline path is provably
-# unaffected (see the runner's own module docstring and its characterization tests). Its own
-# results tree, keyed the same way as SYSTEM_NAME above, so a non-Sonnet-5 verify-replan variant
-# can never silently mix into the pinned pilot's tree either.
-VR_SYSTEM_NAME = f"verify_replan_{model_slug()}" if MODEL else "verify_replan"
+# unaffected (see the runner's own module docstring and its characterization tests).
 # Section 8: "OSW_MAX_TURNS non può essere assegnato integralmente a ogni sessione" -- each role
 # gets its own budget rather than inheriting the baseline executor's 150.
 VR_INITIAL_MAX_TURNS = int(os.environ.get("OSW_VR_INITIAL_MAX_TURNS", "100"))
@@ -155,6 +152,15 @@ VR_AUDITOR_MAX_TURNS = int(os.environ.get("OSW_VR_AUDITOR_MAX_TURNS", "12"))
 VR_RECOVERY_MAX_TURNS = int(os.environ.get("OSW_VR_RECOVERY_MAX_TURNS", "38"))
 VR_FINAL_AUDITOR_MAX_TURNS = int(os.environ.get("OSW_VR_FINAL_AUDITOR_MAX_TURNS", "12"))
 VR_MAX_RECOVERIES = int(os.environ.get("OSW_VR_MAX_RECOVERIES", "1"))
+# Its own results tree, keyed the same way as SYSTEM_NAME above (so a non-Sonnet-5 variant can
+# never silently mix into the pinned pilot's tree), AND by whether recovery is even possible:
+# Section 13's "audit-only" arm (OSW_VR_MAX_RECOVERIES=0, measures the auditor alone) and the
+# "verify-replan" arm (recoveries on) would otherwise both write to plain
+# "verify_replan_sonnet5" and silently overwrite each other's runs on the same 30-task pilot
+# manifest -- the exact class of bug the model-pinning post-mortem (Section 4 of the project
+# doc) already burned this project on once.
+VR_SYSTEM_NAME = (f"verify_replan_{model_slug()}" if MODEL else "verify_replan") + (
+    "_auditonly" if VR_MAX_RECOVERIES == 0 else "")
 VR_INITIAL_TIMEOUT = int(os.environ.get("OSW_VR_INITIAL_TIMEOUT", "2400"))
 VR_AUDIT_TIMEOUT = int(os.environ.get("OSW_VR_AUDIT_TIMEOUT", "300"))
 VR_RECOVERY_TIMEOUT = int(os.environ.get("OSW_VR_RECOVERY_TIMEOUT", "900"))
