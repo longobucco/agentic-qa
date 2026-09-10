@@ -1,6 +1,7 @@
 """OSWorld config from env. OSW_RELEASE picks the task track -- only "verified" (369 tasks,
 xlang-ai/OSWorld) is wired up"""
 import os
+import re
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -43,6 +44,25 @@ def model_slug(model=None):
 
 # "agent_computer" (unpinned, mixed-model, historical) vs "agent_computer_sonnet5" (pinned).
 SYSTEM_NAME = f"agent_computer_{model_slug()}" if MODEL else "agent_computer"
+
+# Independent GPT Astra replication. It deliberately does not reuse OSW_MODEL: setting the
+# Sonnet baseline model must never rename or redirect Astra's result tree.
+ASTRA_MODEL = os.environ.get("OSW_ASTRA_MODEL", "gpt-6-astra").strip()
+ASTRA_REASONING_EFFORT = os.environ.get("OSW_ASTRA_REASONING_EFFORT", "high").strip()
+ASTRA_CODEX_VERSION = os.environ.get("OSW_ASTRA_CODEX_VERSION", "0.153.4").strip()
+
+
+def astra_system_name():
+    """Keep the canonical tree concise, but never pool any campaign override into it."""
+    if (ASTRA_MODEL == "gpt-6-astra" and ASTRA_REASONING_EFFORT == "high"
+            and ASTRA_CODEX_VERSION == "0.153.4"):
+        return "agent_computer_astra"
+    safe = lambda value: re.sub(r"[^a-zA-Z0-9]+", "", value) or "default"
+    return (f"agent_computer_{safe(ASTRA_MODEL)}_{safe(ASTRA_REASONING_EFFORT)}"
+            f"_codex{safe(ASTRA_CODEX_VERSION)}")
+
+
+ASTRA_SYSTEM_NAME = astra_system_name()
 
 
 def resolve_system(system=None):
@@ -97,6 +117,30 @@ ENFORCE_SANDBOX = os.environ.get("OSW_ENFORCE_SANDBOX", "0") == "1"
 # same clean-denial mechanism idea #10 already validated for Bash/WebSearch/WebFetch. Off by
 # default -- opt in per-run.
 RESTRICT_RUN_PYTHON = os.environ.get("OSW_RESTRICT_RUN_PYTHON", "0") == "1"
+# G5 idea #15 (in-loop independent verification, direct operationalization of #9/#12): #1's
+# SELF_VERIFY (above) re-observes with the SAME agent that already decided DONE -- validated
+# null, 0/12 runs changed. #9/#12 showed a FRESH call with no memory of the attempt, judging
+# only the final screenshot, disagrees with a wrong self-report at a real rate (up to 55.2% by
+# app -- g8_failure_taxonomy's "believed it finished but the oracle said no"). Both were always
+# offline, after the desktop state was already fixed -- neither could ever change a verdict.
+# This wires the same independent check into the LIVE run: when the agent self-reports DONE,
+# take the current screenshot (desktop is still up, before _capture_eval_state/scoring), run
+# the same single-turn Read-only verifier call as g5_verifier_check.verify(), and on
+# disagreement resume the SAME claude session (--resume, confirmed live 2026-09-09 to preserve
+# session_id/model/tool-state across the boundary) with one follow-up turn -- a genuine second
+# attempt, not a relabeling of the first. Off by default -- opt in per-run.
+INLOOP_VERIFY = os.environ.get("OSW_INLOOP_VERIFY", "0") == "1"
+INLOOP_VERIFY_MAX_TURNS = int(os.environ.get("OSW_INLOOP_VERIFY_MAX_TURNS", "40"))
+# 2026-09-09/10 pilot (12 tasks / 36 runs, generic then reason-specific nudge): the "os" bucket's
+# tasks are almost all terminal/background-config changes that leave no GUI window open, so the
+# in-loop screenshot came back "entirely black, only a mouse cursor visible" on all 6 of that
+# bucket's runs, both variants -- a screenshot-based verifier is structurally blind here
+# regardless of prompt wording, so paying for the extra call/retry on this bucket is pure waste,
+# not a milder version of the mechanism. Comma-separated task buckets (see tasks.bucket_of) to
+# skip entirely; empty disables the exclusion.
+INLOOP_VERIFY_SKIP_APPS = {
+    a.strip() for a in os.environ.get("OSW_INLOOP_VERIFY_SKIP_APPS", "os").split(",") if a.strip()
+}
 
 # Score with the evaluator tree fetched at data/download_data.py::UPSTREAM_COMMIT
 # (data/download_evaluators.py) rather than whatever `desktop_env` release pip resolved. On by

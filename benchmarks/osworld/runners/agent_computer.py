@@ -5,6 +5,7 @@ to the offline checker in evaluate.py when desktop_env isn't importable.
 import hashlib
 import json
 import os
+import re
 import shutil
 import tempfile
 import time
@@ -203,6 +204,131 @@ def _model_mismatch(meta):
         print(f"[osworld] WARNING model mismatch: pinned {config.MODEL!r} but the CLI reports "
               f"{served or 'nothing'} -- this run is NOT comparable to the pinned campaign")
     return {"model_served": served or None, "model_pinned": True, "model_mismatch": mismatch}
+
+
+def _implies_done(answer):
+    """Same DONE/FAIL split as _action_history, exposed on its own: the in-loop verifier only
+    engages when the agent claims completion -- a self-reported FAIL is already the agent's own
+    admission and needs no independent check to act on."""
+    a = (answer or "").strip().upper()
+    return bool(a) and not (a.startswith("FAIL") or "INFEASIBLE" in a)
+
+
+# Idea #15 pilot (2026-09-09, 6 tasks / 18 runs, docs/g5-arm-inloop-verify-pilot -- see
+# analysis): the generic nudge below ("does not confirm... check again") never once changed the
+# agent's self-report (0/11 retries). Reading the retried transcripts explained why: the verifier
+# is screenshot-only, so it is structurally blind to any success criterion that isn't visible in
+# a screenshot (audio volume, on-disk file contents, background config keys) -- and the agent,
+# which DOES have run_python to check those directly, reasonably discounts a same-generic
+# disagreement it can explain away ("the review saw a black screen because I'd closed my
+# terminal", etc.). The fix tried here is NOT giving the verifier more tools (that would reopen
+# the oracle-contamination risk documented in the project doc's Section 6 -- a verifier that can
+# read files/run code can read the same evaluator/gold sources the agent did) -- it is making the
+# verifier's disagreement specific enough that a generic "must be non-visual" dismissal doesn't
+# trivially apply.
+_INLOOP_VERIFIER_PROMPT = """Read the image file at the EXACT absolute path: {path} -- it is a \
+screenshot of a Linux desktop, taken at the end of an attempt to complete a task. Do not search \
+for anything else; the path given is correct and complete.
+
+The task instruction was: {instruction}
+
+Based ONLY on what you see in the screenshot, does the desktop state satisfy this instruction? \
+Answer with exactly two lines:
+ANSWER: DONE or ANSWER: FAIL
+REASON: one brief sentence naming the SPECIFIC element, text, or state that is present, \
+missing, or wrong -- not a generic restatement of the instruction."""
+
+_INLOOP_RETRY_PROMPT = """An independent review of the current screen does not confirm the \
+task is complete. The task instruction was: {instruction}
+
+Specifically, the review said: {reason}
+
+Address that specific point. If the task is not actually finished, continue working until it \
+genuinely is, then give your final answer in exactly the same format as before: 'ANSWER: DONE' \
+or 'ANSWER: FAIL'. If you are confident the task truly is already complete despite this specific \
+concern, explain concretely why that exact point is wrong or not applicable, then repeat \
+'ANSWER: DONE'."""
+
+_REASON_RE = re.compile(r"^REASON:\s*(.*)$", re.MULTILINE)
+
+
+def _verify_with_reason(png_path, instruction, *, timeout=120):
+    """Same mechanism as g5_verifier_check.verify() (fresh context, screenshot + instruction
+    only, Read-only) but kept as its own call rather than reusing that function, so tightening
+    the in-loop prompt here can never change what #9/#12 measure or how they reproduce."""
+    prompt = _INLOOP_VERIFIER_PROMPT.format(path=png_path, instruction=instruction)
+    cmd = build_claude_cmd(prompt, max_turns=4, allowed_tools=["Read"], model=config.MODEL or None)
+    meta = run_claude_meta(cmd, timeout=timeout)
+    text = meta.get("result", "")
+    m = _REASON_RE.search(text)
+    return {"answer": extract_answer(text), "reason": m.group(1).strip() if m else None,
+            "raw": text, "model_served": _served_by(meta)}
+
+
+def _inloop_verify(ctrl, task, answer, meta, mcp_config_path, out):
+    """G5 idea #15: on a self-reported DONE, run an independent check (fresh context, screenshot
+    only, no memory of the attempt) while the desktop is still live, and on disagreement give the
+    agent one real follow-up turn via --resume, naming the verifier's specific reason rather than
+    a generic "check again" (see the pilot post-mortem above). Returns (answer, meta,
+    extra_telemetry) -- unchanged from the inputs whenever the mechanism is off, doesn't apply, or
+    errors, so a failure here can never break an otherwise normal run.
+    """
+    if not config.INLOOP_VERIFY or not _implies_done(answer):
+        return answer, meta, {"inloop_verify_used": False}
+    if tasks.app_of(task) in config.INLOOP_VERIFY_SKIP_APPS:
+        return answer, meta, {"inloop_verify_used": False, "inloop_verify_skipped_app": True}
+    try:
+        png_path = out / "inloop_pre_verify.png"
+        png_path.write_bytes(ctrl.screenshot())
+        v = _verify_with_reason(png_path.resolve(), task.get("instruction", ""))
+    except Exception as e:
+        print(f"[osworld] in-loop verify skipped (capture/verify failed): {e}")
+        return answer, meta, {"inloop_verify_used": False, "inloop_verify_error": str(e)}
+
+    base = {
+        "inloop_verify_used": True,
+        "inloop_verify_verdict": v["answer"],
+        "inloop_verify_reason": v["reason"],
+        "inloop_verify_model": v["model_served"],
+        "inloop_verify_first_answer": answer,
+        "inloop_verify_retried": False,
+    }
+    if (v["answer"] or "").strip().upper().startswith("DONE"):
+        return answer, meta, base   # verifier agrees -- no retry
+
+    session_id = meta.get("session_id")
+    if not session_id:
+        return answer, meta, {**base, "inloop_verify_error": "no session_id to resume"}
+    reason = v["reason"] or "the current screen does not appear to show the task as complete"
+    try:
+        cmd2 = build_claude_cmd(
+            _INLOOP_RETRY_PROMPT.format(instruction=task.get("instruction", ""), reason=reason),
+            model=config.MODEL or None, max_turns=config.INLOOP_VERIFY_MAX_TURNS,
+            mcp_config=mcp_config_path, allowed_tools=OSWORLD_TOOLS, resume=session_id,
+        )
+        meta2 = run_claude_meta(cmd2, timeout=config.TASK_TIMEOUT)
+    except Exception as e:
+        print(f"[osworld] in-loop verify retry failed: {e}")
+        return answer, meta, {**base, "inloop_verify_error": f"retry call failed: {e}"}
+
+    # Two real API calls were made regardless of whether the second produced a usable answer --
+    # cost/turns/duration must sum both, or a retry that changes nothing still silently
+    # under-reports what it spent (the same species of gap _agent_telemetry was written to
+    # close for the outer call).
+    summed = {
+        "total_cost_usd": (meta.get("total_cost_usd") or 0) + (meta2.get("total_cost_usd") or 0),
+        "num_turns": (meta.get("num_turns") or 0) + (meta2.get("num_turns") or 0),
+        "duration_ms": (meta.get("duration_ms") or 0) + (meta2.get("duration_ms") or 0),
+        "duration_api_ms": (meta.get("duration_api_ms") or 0) + (meta2.get("duration_api_ms") or 0),
+    }
+    answer2 = extract_answer(meta2.get("result", ""))
+    if not answer2:
+        # resumed call produced nothing usable -- keep the original answer text, but the spend
+        # was real either way, so still fold it into what gets recorded.
+        return answer, {**meta, **summed}, {**base, "inloop_verify_retried": True,
+                                            "inloop_verify_second_answer": None}
+    return answer2, {**meta2, **summed}, {**base, "inloop_verify_retried": True,
+                                          "inloop_verify_second_answer": answer2}
 
 
 def _clean_finish(meta, answer):
@@ -406,8 +532,21 @@ def run(task, *, env, out, refs=None, dry=False):
         os.unlink(mcp_config_path)
         return None
 
+    inloop_telemetry = {}
     try:
         meta = run_claude_meta(cmd, timeout=config.TASK_TIMEOUT)
+        # Kept alive past this first call, on purpose: idea #15's follow-up turn (below) needs
+        # the SAME --mcp-config to --resume this session with the OSWorld tools still available.
+        # Deleting it right after the first call (as this used to) would make any retry attempt
+        # silently lose desktop control -- moved into the same try/finally that now spans both
+        # calls so the file outlives whichever one actually happens.
+        if ctrl and not meta.get("api_error_status"):
+            first_answer = extract_answer(meta.get("result", ""))
+            # the returned answer is discarded here -- `meta` (possibly the resumed call's
+            # envelope) is re-extracted the same way as any other run just below, so there is
+            # exactly one place that turns a `meta` into the recorded `answer`.
+            _, meta, inloop_telemetry = _inloop_verify(
+                ctrl, task, first_answer, meta, mcp_config_path, out)
     finally:
         # written fresh per run (NamedTemporaryFile(delete=False)); the claude subprocess has
         # exited by now (run_claude_meta blocks until it does) so it's safe to remove. Without
@@ -455,6 +594,7 @@ def run(task, *, env, out, refs=None, dry=False):
         **transcript,
         **_model_mismatch(meta),
         **telemetry,
+        **inloop_telemetry,
     })
     rec = _annotate_incidental(_bounded("scoring", _score, ctrl, task, answer, out), clean_finish)
     results_io.write_eval(out, {"id": task["id"], **rec})

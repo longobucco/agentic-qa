@@ -5,10 +5,11 @@ gold-hashing logic in runners/agent_computer.py (pure, no desktop/LLM):
 import tempfile
 from pathlib import Path
 
+from benchmarks.osworld.runners import agent_computer
 from benchmarks.osworld.runners.agent_computer import (
     _agent_telemetry, _annotate_incidental, _clean_finish, _environment_error_rec,
-    _model_mismatch, _rate_limit_infra_rec, _rate_limit_result_rec,
-    _save_conversation_transcript, _score, _served_by,
+    _implies_done, _inloop_verify, _model_mismatch, _rate_limit_infra_rec,
+    _rate_limit_result_rec, _save_conversation_transcript, _score, _served_by,
 )
 from benchmarks.osworld import config
 
@@ -227,6 +228,229 @@ def test_model_mismatch_is_none_when_nothing_was_pinned():
         config.MODEL = real
     assert rec["model_pinned"] is False and rec["model_mismatch"] is None
     assert rec["model_served"] == ["claude-sonnet-4-6"]
+
+
+class _FakeCtrl:
+    def __init__(self, png_bytes=b"\x89PNG\r\n\x1a\nfake"):
+        self._png_bytes = png_bytes
+        self.screenshot_calls = 0
+
+    def screenshot(self):
+        self.screenshot_calls += 1
+        return self._png_bytes
+
+
+def _with_patched(module, name, value, fn):
+    real = getattr(module, name)
+    setattr(module, name, value)
+    try:
+        return fn()
+    finally:
+        setattr(module, name, real)
+
+
+def test_implies_done_true_for_a_plain_done():
+    assert _implies_done("DONE") is True
+
+
+def test_implies_done_false_for_fail_or_infeasible():
+    assert _implies_done("FAIL") is False
+    assert _implies_done("This task is INFEASIBLE") is False
+    assert _implies_done("") is False
+
+
+def test_inloop_verify_off_by_default_never_touches_the_desktop():
+    """The whole mechanism is opt-in (config.INLOOP_VERIFY, default 0) -- with it off, not even
+    a screenshot should be taken, so a normal campaign pays zero cost for the feature existing."""
+    ctrl = _FakeCtrl()
+    real = config.INLOOP_VERIFY
+    config.INLOOP_VERIFY = False
+    try:
+        answer, meta, telemetry = _inloop_verify(
+            ctrl, {"instruction": "x"}, "DONE", {"session_id": "s1"}, "/tmp/mcp.json",
+            Path(tempfile.mkdtemp(prefix="osw_il_")))
+    finally:
+        config.INLOOP_VERIFY = real
+    assert answer == "DONE" and telemetry == {"inloop_verify_used": False}
+    assert ctrl.screenshot_calls == 0
+
+
+def test_inloop_verify_skips_a_self_reported_fail():
+    """A FAIL is the agent's own admission -- no independent check needed to act on it."""
+    ctrl = _FakeCtrl()
+    real = config.INLOOP_VERIFY
+    config.INLOOP_VERIFY = True
+    try:
+        answer, meta, telemetry = _inloop_verify(
+            ctrl, {"instruction": "x"}, "FAIL", {"session_id": "s1"}, "/tmp/mcp.json",
+            Path(tempfile.mkdtemp(prefix="osw_il_")))
+    finally:
+        config.INLOOP_VERIFY = real
+    assert answer == "FAIL" and telemetry == {"inloop_verify_used": False}
+    assert ctrl.screenshot_calls == 0
+
+
+def test_inloop_verify_skips_an_excluded_app_bucket():
+    """2026-09-10 finding: the 'os' bucket's tasks leave no GUI window open, so the in-loop
+    screenshot came back an uninformative black screen on every one of that bucket's runs in the
+    pilot -- config.INLOOP_VERIFY_SKIP_APPS lets that bucket skip the mechanism entirely rather
+    than pay for a check that cannot possibly confirm anything."""
+    ctrl = _FakeCtrl()
+    real_flag, real_skip = config.INLOOP_VERIFY, config.INLOOP_VERIFY_SKIP_APPS
+    config.INLOOP_VERIFY = True
+    config.INLOOP_VERIFY_SKIP_APPS = {"os"}
+    try:
+        answer, meta, telemetry = _inloop_verify(
+            ctrl, {"instruction": "x", "related_apps": ["os"]}, "DONE", {"session_id": "s1"},
+            "/tmp/mcp.json", Path(tempfile.mkdtemp(prefix="osw_il_")))
+    finally:
+        config.INLOOP_VERIFY, config.INLOOP_VERIFY_SKIP_APPS = real_flag, real_skip
+    assert answer == "DONE"
+    assert telemetry == {"inloop_verify_used": False, "inloop_verify_skipped_app": True}
+    assert ctrl.screenshot_calls == 0
+
+
+def test_inloop_verify_agreement_skips_the_retry_call():
+    """Verifier agrees with the agent's DONE -> no --resume call should ever be attempted."""
+    ctrl = _FakeCtrl()
+    out = Path(tempfile.mkdtemp(prefix="osw_il_"))
+    resume_calls = []
+
+    def fake_verify_with_reason(png_path, instruction, timeout=120):
+        assert png_path.exists()
+        return {"answer": "DONE", "reason": "the target file shows the expected text",
+                "raw": "ANSWER: DONE\nREASON: x", "model_served": ["claude-sonnet-5"]}
+
+    def fake_run_claude_meta(cmd, timeout=None):
+        resume_calls.append(cmd)
+        raise AssertionError("should not be called when the verifier agrees")
+
+    real_verify_config = config.INLOOP_VERIFY
+    config.INLOOP_VERIFY = True
+    try:
+        answer, meta, telemetry = _with_patched(
+            agent_computer, "_verify_with_reason", fake_verify_with_reason, lambda:
+            _with_patched(agent_computer, "run_claude_meta", fake_run_claude_meta, lambda:
+                _inloop_verify(ctrl, {"instruction": "do the thing"}, "DONE",
+                              {"session_id": "s1", "total_cost_usd": 0.10}, "/tmp/mcp.json", out)))
+    finally:
+        config.INLOOP_VERIFY = real_verify_config
+    assert answer == "DONE"
+    assert resume_calls == []
+    assert telemetry["inloop_verify_used"] is True
+    assert telemetry["inloop_verify_verdict"] == "DONE"
+    assert telemetry["inloop_verify_retried"] is False
+    assert ctrl.screenshot_calls == 1
+    assert (out / "inloop_pre_verify.png").exists()
+
+
+def test_inloop_verify_disagreement_retries_with_the_specific_reason():
+    """Verifier disagrees with the agent's DONE -> a --resume call is made carrying the
+    verifier's specific reason (not a generic 'check again'), its answer wins, and the two
+    calls' cost/turns are summed rather than the first being silently dropped. Grounded in the
+    2026-09-09 pilot: a generic nudge never once changed the agent's self-report (0/11) because
+    a screenshot-only verifier is blind to non-visual state the agent can check with run_python;
+    naming the specific claim is meant to close that escape hatch."""
+    ctrl = _FakeCtrl()
+    out = Path(tempfile.mkdtemp(prefix="osw_il_"))
+    retry_prompts = []
+
+    def fake_verify_with_reason(png_path, instruction, timeout=120):
+        return {"answer": "FAIL", "reason": "the sidebar still shows the old filename",
+                "raw": "ANSWER: FAIL\nREASON: x", "model_served": ["claude-sonnet-5"]}
+
+    def fake_run_claude_meta(cmd, timeout=None):
+        assert "--resume" in cmd and "s1" in cmd
+        retry_prompts.append(cmd[cmd.index("-p") + 1])
+        return {"result": "ANSWER: FAIL", "session_id": "s1", "total_cost_usd": 0.05,
+                "num_turns": 3, "duration_ms": 1000, "duration_api_ms": 800,
+                "modelUsage": {"claude-sonnet-5": {}}}
+
+    real_verify_config = config.INLOOP_VERIFY
+    config.INLOOP_VERIFY = True
+    try:
+        answer, meta, telemetry = _with_patched(
+            agent_computer, "_verify_with_reason", fake_verify_with_reason, lambda:
+            _with_patched(agent_computer, "run_claude_meta", fake_run_claude_meta, lambda:
+                _inloop_verify(ctrl, {"instruction": "do the thing"}, "DONE",
+                              {"session_id": "s1", "total_cost_usd": 0.10, "num_turns": 5,
+                               "duration_ms": 2000, "duration_api_ms": 1500}, "/tmp/mcp.json", out)))
+    finally:
+        config.INLOOP_VERIFY = real_verify_config
+    assert answer == "FAIL"
+    assert telemetry["inloop_verify_retried"] is True
+    assert telemetry["inloop_verify_second_answer"] == "FAIL"
+    assert telemetry["inloop_verify_reason"] == "the sidebar still shows the old filename"
+    assert "the sidebar still shows the old filename" in retry_prompts[0]
+    assert round(meta["total_cost_usd"], 2) == 0.15
+    assert meta["num_turns"] == 8
+    assert meta["duration_ms"] == 3000
+
+
+def test_inloop_verify_disagreement_without_a_parsed_reason_falls_back_to_generic_text():
+    """A verifier reply that skips the REASON line must not crash the retry -- it falls back to
+    a generic phrase rather than interpolating None into the prompt."""
+    ctrl = _FakeCtrl()
+    out = Path(tempfile.mkdtemp(prefix="osw_il_"))
+    retry_prompts = []
+
+    def fake_verify_with_reason(png_path, instruction, timeout=120):
+        return {"answer": "FAIL", "reason": None, "raw": "ANSWER: FAIL",
+                "model_served": ["claude-sonnet-5"]}
+
+    def fake_run_claude_meta(cmd, timeout=None):
+        retry_prompts.append(cmd[cmd.index("-p") + 1])
+        return {"result": "ANSWER: DONE", "session_id": "s1"}
+
+    real = config.INLOOP_VERIFY
+    config.INLOOP_VERIFY = True
+    try:
+        _with_patched(
+            agent_computer, "_verify_with_reason", fake_verify_with_reason, lambda:
+            _with_patched(agent_computer, "run_claude_meta", fake_run_claude_meta, lambda:
+                _inloop_verify(ctrl, {"instruction": "do the thing"}, "DONE",
+                              {"session_id": "s1"}, "/tmp/mcp.json", out)))
+    finally:
+        config.INLOOP_VERIFY = real
+    assert "None" not in retry_prompts[0]
+    assert "does not appear to show the task as complete" in retry_prompts[0]
+
+
+def test_inloop_verify_without_session_id_cannot_resume():
+    ctrl = _FakeCtrl()
+    out = Path(tempfile.mkdtemp(prefix="osw_il_"))
+
+    def fake_verify_with_reason(png_path, instruction, timeout=120):
+        return {"answer": "FAIL", "reason": None, "raw": "", "model_served": None}
+
+    real = config.INLOOP_VERIFY
+    config.INLOOP_VERIFY = True
+    try:
+        answer, meta, telemetry = _with_patched(
+            agent_computer, "_verify_with_reason", fake_verify_with_reason, lambda:
+            _inloop_verify(ctrl, {"instruction": "x"}, "DONE", {}, "/tmp/mcp.json", out))
+    finally:
+        config.INLOOP_VERIFY = real
+    assert answer == "DONE" and telemetry["inloop_verify_retried"] is False
+    assert "no session_id" in telemetry["inloop_verify_error"]
+
+
+def test_inloop_verify_screenshot_failure_is_non_fatal():
+    class _BrokenCtrl:
+        def screenshot(self):
+            raise RuntimeError("controller unreachable")
+
+    out = Path(tempfile.mkdtemp(prefix="osw_il_"))
+    real = config.INLOOP_VERIFY
+    config.INLOOP_VERIFY = True
+    try:
+        answer, meta, telemetry = _inloop_verify(
+            _BrokenCtrl(), {"instruction": "x"}, "DONE", {"session_id": "s1"},
+            "/tmp/mcp.json", out)
+    finally:
+        config.INLOOP_VERIFY = real
+    assert answer == "DONE" and telemetry["inloop_verify_used"] is False
+    assert "controller unreachable" in telemetry["inloop_verify_error"]
 
 
 def main():
