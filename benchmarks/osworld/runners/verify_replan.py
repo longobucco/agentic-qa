@@ -134,10 +134,15 @@ def run(task, *, env, out, refs=None, dry=False):
         recovery_triggered = False
         recovery_attempts = 0
 
-        if ctrl is None:
-            # No live desktop to audit against (should not happen outside test doubles) -- fall
-            # straight through to scoring on the initial executor's own answer.
+        skip_audit = claim_initial["status"] != "done" and not config.VR_AUDIT_ON_FAIL
+        if ctrl is None or skip_audit:
+            # No live desktop to audit against (should not happen outside test doubles), or the
+            # executor itself already said fail/infeasible and OSW_VR_AUDIT_ON_FAIL=0 opts out
+            # of auditing that class of claim at all -- either way, fall straight through to
+            # scoring on the initial executor's own answer.
             audit_initial = None
+            if skip_audit:
+                _timeline_event(timeline, "AUDIT_1_SKIPPED", reason="audit_on_fail disabled")
         else:
             _readonly_mcp_path = _readonly_mcp_config(controller_url)
             audit_dir = vr_dir / "audit_1"
