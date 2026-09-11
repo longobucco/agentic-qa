@@ -143,7 +143,16 @@ clicks nothing rather than guessing a coordinate. No per-application code: a Cal
 Results go to their own tree (`agent_computer_sonnet5_grounding`, automatic suffix), and
 `result.json` records `grounding_used` / `grounding_min_score` per run.
 
-**Status: implemented, 57 tests green, deliberately NOT run.** Its own pre-registered gate
+**Status: implemented, 63 tests green, deliberately NOT run — and currently unevaluable.** All 456
+real `a11y_tree` captures on disk (every results tree, all 9 apps, both campaigns) come back EMPTY:
+`{"AT": "<desktop-frame .../>"}`, a self-closing root with zero children, never once populated. The
+image installs `at-spi2-core`/`python3-pyatspi` but no AT-SPI bridge is producing a tree at
+runtime, so nothing can be resolved by name until that is repaired. This also corrects the arm's
+own motivation — `a11y_tree`'s 0.8% share is not neglect of a structured channel, the agent called
+it 456 times, got nothing, and stopped — and retroactively bounds Verify-Replan's auditor and idea
+#15, which both listed `a11y_tree` as an evidence source and were in fact screenshot-only.
+
+Separately, its own pre-registered gate
 (`analysis/g10_grounding_signal.py`, run with `--compare`) falsified the arm's premise before any
 rollout spend. The targeting gap that motivated it was measured on `agent_computer`, which is
 genuinely mixed-model — 326 of its 982 runs served by `claude-sonnet-5`, 296 by
