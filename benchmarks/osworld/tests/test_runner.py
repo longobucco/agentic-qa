@@ -652,6 +652,75 @@ def test_dry_run_argv_is_a_stable_snapshot_for_a_fixed_task_and_config():
     }
 
 
+# --- accessibility-channel probe and the grounding precheck ------------------
+
+class _A11yCtrl:
+    base_url = "http://guest:5000"
+
+    def __init__(self, payload):
+        self.payload = payload
+        self.calls = 0
+
+    def a11y_tree(self):
+        self.calls += 1
+        if isinstance(self.payload, Exception):
+            raise self.payload
+        return self.payload
+
+
+_EMPTY_AT = '{"AT": "<desktop-frame/>"}'
+_POPULATED_AT = (
+    '<desktop xmlns:st="https://accessibility.ubuntu.example.org/ns/state"'
+    ' xmlns:cp="https://accessibility.ubuntu.example.org/ns/component">'
+    '<push-button name="OK" st:showing="true" st:visible="true" st:enabled="true"'
+    ' cp:screencoord="(10, 10)" cp:size="(20, 20)"/></desktop>'
+)
+
+
+def test_a11y_health_records_the_channel_state_without_raising():
+    ok = common._a11y_health(_A11yCtrl(_POPULATED_AT))
+    assert ok["a11y_ok"] is True and ok["a11y_elements"] == 1
+
+    dead = common._a11y_health(_A11yCtrl(_EMPTY_AT))
+    assert dead["a11y_ok"] is False and dead["a11y_nodes"] == 0
+    assert "AT-SPI bridge" in dead["a11y_reason"]
+
+    unreachable = common._a11y_health(_A11yCtrl(ConnectionError("down")))
+    assert unreachable["a11y_ok"] is False
+    assert "ConnectionError" in unreachable["a11y_reason"]
+
+    assert common._a11y_health(None)["a11y_ok"] is None
+
+
+def test_grounding_precheck_only_blocks_when_the_arm_is_on():
+    """The baseline works from screenshots and must never be failed by an empty tree; the arm
+    must never be RUN against one, or a broken environment reads as a null mechanism."""
+    original = config.GROUNDING
+    try:
+        config.GROUNDING = False
+        assert agent_computer._grounding_precheck(_A11yCtrl(_EMPTY_AT)) is None
+
+        config.GROUNDING = True
+        blocked = agent_computer._grounding_precheck(_A11yCtrl(_EMPTY_AT))
+        assert blocked and "accessibility channel is not reporting" in blocked
+        assert "OSW_GROUNDING" in blocked          # tells the operator how to proceed
+        assert agent_computer._grounding_precheck(_A11yCtrl(_POPULATED_AT)) is None
+    finally:
+        config.GROUNDING = original
+
+
+def test_grounding_precheck_costs_nothing_when_the_arm_is_off():
+    """It must not add an HTTP round trip to every baseline run."""
+    original = config.GROUNDING
+    try:
+        config.GROUNDING = False
+        ctrl = _A11yCtrl(_EMPTY_AT)
+        agent_computer._grounding_precheck(ctrl)
+        assert ctrl.calls == 0
+    finally:
+        config.GROUNDING = original
+
+
 def main():
     fns = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
     for fn in fns:

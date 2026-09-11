@@ -22,7 +22,7 @@ from pathlib import Path
 
 import requests
 
-from benchmarks.osworld import config, evaluate, tasks
+from benchmarks.osworld import config, evaluate, grounding, tasks
 from benchmarks.osworld.env import osworld_eval
 
 OSWORLD_TOOLS = [
@@ -168,6 +168,31 @@ def _provenance(task, ctrl, started_at):
         "started_at": started_at,
         "finished_at": datetime.now(timezone.utc).isoformat(),
     }
+
+
+def _a11y_health(ctrl):
+    """One /accessibility probe per run, recorded in result.json as `a11y_*`.
+
+    An environment fact, not an arm knob, which is why it lives here: the guest returned an empty
+    accessibility tree on all 456 captures taken across every campaign before docker/start.sh was
+    given a D-Bus session bus and the AT-SPI bridges, and nothing on disk recorded that -- the
+    channel looked merely unpopular (0.8% of tool calls) rather than broken. Recording it makes the
+    repair verifiable from the results tree instead of trusted, and makes a future regression
+    visible on the first run rather than after a thousand.
+
+    Never raises and never blocks: a dead or slow controller yields ok=False, same as a dead bridge,
+    with `reason` telling the two apart.
+    """
+    if ctrl is None:
+        return {"a11y_ok": None, "a11y_nodes": None, "a11y_reason": "no controller"}
+    try:
+        health = _bounded("a11y probe", lambda: grounding.tree_health(ctrl.a11y_tree()))
+    except Exception as e:
+        return {"a11y_ok": False, "a11y_nodes": 0, "a11y_reason": f"{type(e).__name__}: {e}"}
+    # _bounded raises RuntimeError on timeout, so the except above is the timeout path too --
+    # tree_health itself always returns a dict.
+    return {"a11y_ok": health["ok"], "a11y_nodes": health["nodes"],
+            "a11y_elements": health["elements"], "a11y_reason": health["reason"]}
 
 
 def _served_by(meta):
