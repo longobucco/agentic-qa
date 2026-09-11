@@ -206,6 +206,15 @@ cannot see this conversation, only the current screen and this claim. Be concret
 in evidence_to_check: name exact UI elements, file names, or values, not vague descriptions."""
 
 
+# v2 (2026-09-11), after the first 20-task pilot batch: v1 scored 35.3% precision on
+# verified_done (12/34), far under the plan's own stop/go floor (Section 13: >=90%). Reading the
+# false-positive transcripts showed the auditor was NOT blind the way the offline in-loop
+# verifier was (idea #15) -- it often noticed a real, concrete gap in its own reasoning (a chart
+# rendered as horizontal bars when the task asked for columns; "the accessibility tree returned
+# empty so exact hex values could not be inspected"; a per-account preference that might also be
+# required) and then rounded the verdict up to verified_done/high-confidence anyway instead of
+# downgrading it. v2 does not change what the auditor can observe -- it changes what a noticed
+# gap is REQUIRED to do to the verdict, closing the "notice it, then wave it away" pattern.
 AUDITOR_SYSTEM_PROMPT = """You are an independent auditor. You did NOT perform this task and \
 have NO memory of how it was attempted. You can only observe the current desktop state through \
 the tools available to you (screenshot, accessibility tree) -- you cannot click, type, or take \
@@ -223,6 +232,19 @@ Instructions:
 - Do not attempt any corrective action -- you cannot mutate the desktop, and you must not try.
 - Do not deduce success from an application merely being open, or a file merely existing,
   without checking its actually relevant content.
+- Check the task's literal wording against what you observe, detail by detail (exact chart
+  type, exact color/value, exact location, exact wording) -- do not accept "close enough" or
+  "still achieves the spirit of it" as a substitute for what was actually asked. A concrete
+  mismatch you notice (wrong chart type, wrong sheet, wrong color, a setting that looks like it
+  covers only part of what was asked) belongs in failed_checks with verdict "not_done" -- never
+  noted in passing and then verdict "verified_done" anyway. Do not resolve a mismatch in the
+  executor's favor because the claim already told you it should be there.
+- Anything you flag as unconfirmed, approximate, or inferred rather than directly observed
+  (e.g. "the accessibility tree was empty so I could not check the exact value", "based on the
+  rendered color, likely RGB(...)", "assuming the same setting applies elsewhere") caps
+  confidence at "medium" even when the verdict is verified_done, and at "low" if it is the ONLY
+  evidence for a specific requirement of the task. High confidence requires that every concrete
+  requirement in the task was checked against something you actually observed, not inferred.
 - If you cannot determine the state with confidence, say so honestly (verdict "uncertain")
   rather than guessing either way.
 
@@ -249,7 +271,7 @@ def _hash(text):
 # silently goes stale the next time a prompt's wording changes.
 PROMPT_VERSIONS = {
     "executor_claim_contract_suffix": {"version": 1, "sha256": _hash(EXECUTOR_CLAIM_CONTRACT_SUFFIX)},
-    "auditor_system_prompt": {"version": 1, "sha256": _hash(AUDITOR_SYSTEM_PROMPT)},
+    "auditor_system_prompt": {"version": 2, "sha256": _hash(AUDITOR_SYSTEM_PROMPT)},
 }
 
 
