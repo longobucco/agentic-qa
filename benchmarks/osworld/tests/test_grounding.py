@@ -10,6 +10,7 @@ live, which is the one failure mode these tests exist to rule out.
 No pytest (same convention as the other suites here):
   python -m benchmarks.osworld.tests.test_grounding
 """
+import json
 import xml.etree.ElementTree as ET
 
 from benchmarks.osworld import grounding
@@ -141,6 +142,47 @@ def test_malformed_coordinates_are_dropped_not_evaluated():
                    cp:screencoord="not a tuple" cp:size="(20, 20)"/>
     </desktop>"""
     assert grounding.parse_elements(xml) == []
+
+
+# The exact bytes the guest's /accessibility route returned on a real libreoffice_calc run
+# (agent_computer_sonnet5/0bf05a7d.../run_1). Controller.a11y_tree() hands this back verbatim: a
+# JSON envelope, NOT raw XML -- and the tree inside is EMPTY, which is true of all 456 captures
+# on disk. Both facts are pinned here because both were assumptions this module got wrong.
+REAL_EMPTY_ENVELOPE = (
+    '{\n  "AT": "<desktop-frame '
+    'xmlns:st=\\"https://accessibility.ubuntu.example.org/ns/state\\" '
+    'xmlns:attr=\\"https://accessibility.ubuntu.example.org/ns/attributes\\" '
+    'xmlns:cp=\\"https://accessibility.ubuntu.example.org/ns/component\\" '
+    'xmlns:val=\\"https://accessibility.ubuntu.example.org/ns/value\\"/>"\n}\n'
+)
+
+
+def test_unwrap_tree_accepts_the_real_controller_envelope():
+    xml = grounding.unwrap_tree(REAL_EMPTY_ENVELOPE)
+    assert xml.startswith("<desktop-frame")
+    # and it really is empty -- resolving against it must yield nothing, not raise
+    assert grounding.parse_elements(REAL_EMPTY_ENVELOPE) == []
+    assert grounding.resolve(REAL_EMPTY_ENVELOPE, "Bold") == []
+
+
+def test_unwrap_tree_handles_raw_xml_and_the_extra_transport_layer():
+    assert grounding.unwrap_tree(TREE) is TREE or grounding.unwrap_tree(TREE).startswith("<desktop")
+    # {"result": "{\"AT\": \"<xml>\"}"} -- the shape a logged MCP tool result carries
+    inner = json.dumps({"AT": "<desktop><a/></desktop>"})
+    assert grounding.unwrap_tree(json.dumps({"result": inner})) == "<desktop><a/></desktop>"
+
+
+def test_unwrap_tree_degrades_instead_of_raising_on_junk():
+    for junk in ("", "   ", "not json {", '{"unexpected": 1}', None, 42):
+        grounding.unwrap_tree(junk)          # must not raise
+    assert grounding.unwrap_tree(None) == ""
+
+
+def test_parse_accepts_an_enveloped_populated_tree():
+    """The envelope path must reach the real parser, not just return a string."""
+    enveloped = json.dumps({"AT": TREE})
+    assert {el.name for el in grounding.parse_elements(enveloped)} == {
+        el.name for el in grounding.parse_elements(TREE)}
 
 
 def test_parse_propagates_parse_error_for_the_caller_to_translate():

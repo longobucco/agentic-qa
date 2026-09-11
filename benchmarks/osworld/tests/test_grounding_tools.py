@@ -9,8 +9,11 @@ No `mcp` import needed: the plain functions take a controller and return a strin
 
   python -m benchmarks.osworld.tests.test_grounding_tools
 """
+import json
+
 from benchmarks.osworld import config
 from benchmarks.osworld.mcp import grounding_tools as gt
+from benchmarks.osworld.tests.test_grounding import REAL_EMPTY_ENVELOPE
 
 NS = ('xmlns:st="https://accessibility.ubuntu.example.org/ns/state" '
       'xmlns:cp="https://accessibility.ubuntu.example.org/ns/component"')
@@ -107,6 +110,26 @@ def test_tree_failures_all_produce_an_actionable_sentence_not_a_traceback():
         out = gt.find_element(FakeCtrl(fail=mode), "Bold")
         assert expected in out, (mode, out)
         assert "click(x, y)" in out, mode
+
+
+def test_the_real_guest_envelope_is_unwrapped_before_parsing():
+    """Controller.a11y_tree() returns `{"AT": "<xml>"}`, not raw XML. Without unwrapping, every
+    call reported "did not parse as XML" -- wrong, and unactionable for the model."""
+    enveloped = json.dumps({"AT": TREE})
+    out = gt.find_element(FakeCtrl([enveloped]), "Bold")
+    assert "(212,62)" in out and "did not parse" not in out
+
+
+def test_a_root_only_tree_is_reported_as_the_bridge_not_reporting():
+    """The ONLY case seen live: all 456 a11y_tree captures on disk come back as a self-closing
+    root. The model must be told the channel is dead in this session, not handed an empty candidate
+    list that reads like "this particular element is missing"."""
+    out = gt.find_element(FakeCtrl([REAL_EMPTY_ENVELOPE]), "Bold")
+    assert "no elements at all" in out and "AT-SPI bridge" in out and "click(x, y)" in out
+
+    ctrl = FakeCtrl([REAL_EMPTY_ENVELOPE])
+    assert "no elements at all" in gt.click_element(ctrl, "Bold")
+    assert ctrl.clicks == []          # and nothing is clicked on a guessed coordinate
 
 
 # --- click_element -----------------------------------------------------------

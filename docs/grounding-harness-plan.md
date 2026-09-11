@@ -1,6 +1,6 @@
 # Piano di implementazione: harness di grounding (Mixture-of-Grounding) per OSWorld + Sonnet 5
 
-**Stato:** implementato e testato — **non lanciato: la premessa non regge su Sonnet 5 pinnato** (vedi §5)
+**Stato:** implementato e testato — **non lanciato: il canale a11y è vuoto in questo harness** (vedi §8), e la premessa statistica non regge su Sonnet 5 pinnato (§5)
 **Data:** 2026-09-11
 **Branch:** `grounding-harness`
 **Sistema:** `agent_computer_sonnet5_grounding` (suffisso automatico, `config.SYSTEM_NAME`)
@@ -179,3 +179,55 @@ python -m benchmarks.osworld.analysis.g10_grounding_signal \
 # arm
 OSW_MODEL=claude-sonnet-5 OSW_GROUNDING=1 python -m core.run --benchmark osworld ...
 ```
+
+
+## 8. Causa decisiva: l'albero di accessibilità è vuoto, e lo è sempre stato
+
+Verificato su **tutte le 456 catture reali di `a11y_tree` presenti su disco** — ogni albero dei
+risultati (`agent_computer`, `agent_computer_sonnet5`, `agent_computer_astra`,
+`verify_replan_sonnet5`), tutte le 9 app, entrambe le campagne:
+
+```
+captures: 456    vuote (<= 1 elemento): 456 (100.0%)    popolate: 0
+envelope: {"AT": "<desktop-frame xmlns:.../>"}   <- root autochiudente, zero figli
+```
+
+Per app, sul tree pinnato: chrome 4, gimp 14, libreoffice_calc 13, libreoffice_impress 11,
+libreoffice_writer 4, os 24, thunderbird 23, vlc 41, vscode 4 — **tutte vuote, nessuna popolata**.
+
+L'immagine guest installa `at-spi2-core` e `python3-pyatspi`
+(`benchmarks/osworld/docker/Dockerfile.osworld:54`), quindi la dipendenza c'è, ma **nessun bridge
+AT-SPI sta effettivamente producendo un albero a runtime** (serve il bus di accessibilità attivo e
+i bridge dei toolkit abilitati per GTK/Qt: `toolkit-accessibility`, `GTK_MODULES=gail:atk-bridge`,
+`QT_ACCESSIBILITY=1`).
+
+### Conseguenze, in ordine di importanza
+
+1. **L'harness di grounding non è valutabile**, su Sonnet 5 né su nessun altro modello, finché
+   l'immagine non è riparata. Risolverebbe zero elementi e cadrebbe sempre sul fallback visivo.
+   Correttamente: `find_element`/`click_element` riportano che il bridge non riporta nulla e
+   `click_element` **non clicca** su coordinate indovinate (test dedicato).
+2. **Corregge la motivazione originale di questo arm.** Lo 0.8% di uso di `a11y_tree` non è un
+   canale strutturato trascurato a favore dei pixel: l'agente l'ha chiamato 456 volte, non ha
+   ricevuto niente, e ha smesso. Il comportamento era razionale.
+3. **Chiude il dibattito dell'idea #2 del backlog** («a11y-first vs grounding visivo»): in questo
+   harness a11y-first non è mai stato disponibile. La discussione era priva di oggetto.
+4. **Ridimensiona retroattivamente due risultati già chiusi.** L'auditor di Verify-Replan aveva
+   `a11y_tree` fra i suoi tool e la sua "gerarchia delle evidenze" citava a11y come fonte: era di
+   fatto **solo-screenshot**. Lo stesso vale per l'idea #15. La "cecità da screenshot" diagnosticata
+   come meccanismo dei loro risultati nulli aveva quindi una seconda componente non rilevata — non
+   solo «lo screenshot non vede il contenuto dei file», ma anche «il canale strutturato era morto».
+   Non cambia i verdetti (entrambi chiusi come nulli), cambia la spiegazione.
+5. **Prerequisito per qualunque intervento basato su a11y**: riparare il bridge nell'immagine e
+   riverificare con `find_element` / `list_elements` su un task reale. Solo dopo il gate §4 ha
+   senso.
+
+### Bug corretti in questa passata
+
+- `Controller.a11y_tree()` restituisce **`{"AT": "<xml>"}`**, non XML grezzo. `parse_elements`
+  assumeva XML grezzo: ogni chiamata live avrebbe risposto «did not parse as XML». Risolto con
+  `grounding.unwrap_tree()`, che accetta envelope, doppio envelope del transport MCP e XML grezzo.
+- `_tree()` distingue ora «root senza figli» da «XML malformato», perché il primo è l'unico caso
+  che si verifica live e richiede un messaggio diverso.
+- I byte reali dell'envelope catturato sono fissati come fixture (`REAL_EMPTY_ENVELOPE`), così
+  entrambe le assunzioni sbagliate restano sotto test.

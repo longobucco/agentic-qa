@@ -31,23 +31,34 @@ _BUTTON_CALL = {
 }
 
 
+_FALLBACK = "use screenshot() and click(x, y) instead"
+
+
 def _tree(ctrl):
-    """(xml, error_message). Every tool funnels the two failure modes -- the guest's
-    /accessibility call failing, and the tree coming back unparseable -- through here, so a model
-    always gets a sentence it can act on instead of a traceback surfacing as an MCP error."""
+    """(xml, error_message). Every tool funnels the failure modes through here, so a model always
+    gets a sentence it can act on instead of a traceback surfacing as an MCP error.
+
+    The guest's /accessibility route returns a JSON envelope `{"AT": "<xml>"}`, not raw XML, so the
+    payload is unwrapped before parsing -- without that step every call here reported "did not
+    parse as XML", which is both wrong and unactionable. The no-node case is reported separately
+    from the malformed case because in this harness it is the ONLY case: all 456 captures on disk
+    come back with a self-closing root (docs/grounding-harness-plan.md §8).
+    """
     try:
-        xml = ctrl.a11y_tree()
+        raw = ctrl.a11y_tree()
     except Exception as e:
-        return None, (f"could not read the accessibility tree ({type(e).__name__}: {e}) -- "
-                      f"use screenshot() and click(x, y) instead")
-    if not (xml or "").strip():
-        return None, ("the accessibility tree came back empty -- this window may be "
-                      "custom-rendered; use screenshot() and click(x, y) instead")
+        return None, f"could not read the accessibility tree ({type(e).__name__}: {e}) -- {_FALLBACK}"
+    xml = grounding.unwrap_tree(raw)
+    if not xml.strip():
+        return None, f"the accessibility tree came back empty -- {_FALLBACK}"
     try:
-        ET.fromstring(xml)
+        root = ET.fromstring(xml)
     except ET.ParseError as e:
-        return None, (f"the accessibility tree did not parse as XML ({e}) -- use screenshot() "
-                      f"and click(x, y) instead")
+        return None, f"the accessibility tree did not parse as XML ({e}) -- {_FALLBACK}"
+    if len(root) == 0:
+        return None, ("the accessibility tree has no elements at all (the guest returned only a "
+                      f"root node) -- the AT-SPI bridge is not reporting this desktop, so no "
+                      f"element can be resolved by name in this session; {_FALLBACK}")
     return xml, None
 
 
