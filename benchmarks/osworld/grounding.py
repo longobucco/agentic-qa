@@ -331,6 +331,32 @@ def score_element(el, query, *, role=None, screen_area=None):
     return score, why
 
 
+def tree_health(raw):
+    """Is the accessibility channel actually reporting? -> {"nodes", "elements", "ok", "reason"}.
+
+    `nodes` counts child elements of the root, `elements` those with usable geometry. `ok` is
+    False for the three distinguishable failures -- unreachable/blank, unparseable, and the
+    root-only tree that this harness produced on all 456 captures before the AT-SPI bus was added
+    to docker/start.sh. Recorded per run so the repair is verified by data rather than asserted:
+    an apt-get install is not validation (see the Dockerfile's own note).
+    """
+    xml = unwrap_tree(raw)
+    if not xml.strip():
+        return {"nodes": 0, "elements": 0, "ok": False, "reason": "empty response"}
+    try:
+        root = ET.fromstring(xml)
+    except ET.ParseError as e:
+        return {"nodes": 0, "elements": 0, "ok": False, "reason": f"unparseable: {e}"}
+    nodes = sum(1 for _ in root.iter()) - 1
+    if nodes <= 0:
+        return {"nodes": 0, "elements": 0, "ok": False,
+                "reason": "root node only -- the AT-SPI bridge is not reporting this desktop"}
+    elements = len(parse_elements(xml))
+    return {"nodes": nodes, "elements": elements, "ok": elements > 0,
+            "reason": None if elements else
+                      f"{nodes} node(s) but none with usable geometry"}
+
+
 def screen_area_hint(elements):
     """Usable screen area inferred from the tree's own outermost box.
 
