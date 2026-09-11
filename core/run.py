@@ -53,6 +53,9 @@ _HARNESS_ENV_KEYS = (
     "OSW_VR_INITIAL_MAX_TURNS", "OSW_VR_AUDITOR_MAX_TURNS", "OSW_VR_RECOVERY_MAX_TURNS",
     "OSW_VR_FINAL_AUDITOR_MAX_TURNS", "OSW_VR_INITIAL_TIMEOUT", "OSW_VR_AUDIT_TIMEOUT",
     "OSW_VR_RECOVERY_TIMEOUT", "OSW_VR_TOTAL_TIMEOUT", "OSW_VR_AUDITOR_MODEL",
+    # Grounding harness (docs/grounding-harness-plan.md): whether the arm ran, and the score floor
+    # that decides what resolves -- both change what the harness measures.
+    "OSW_GROUNDING", "OSW_GROUNDING_VERIFY", "OSW_GROUNDING_MIN_SCORE",
 )
 
 

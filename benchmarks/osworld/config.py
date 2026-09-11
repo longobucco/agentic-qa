@@ -162,6 +162,13 @@ GROUNDING_VERIFY = os.environ.get("OSW_GROUNDING_VERIFY", "1") == "1"
 # resolves but an unrelated element does not: too low and the agent clicks confidently on the
 # wrong control, which is worse than being told to read the screenshot.
 GROUNDING_MIN_SCORE = float(os.environ.get("OSW_GROUNDING_MIN_SCORE", "0.45"))
+# Its own results tree. The baseline tree holds 982 runs that the g10 analysis and every published
+# number in this project depend on; a grounding run writing into it would silently contaminate the
+# very comparison this arm exists to make. Same reasoning as VR_SYSTEM_NAME's suffix below, and
+# the reason it is applied here rather than at SYSTEM_NAME's own definition is only ordering --
+# GROUNDING is not known yet at that point.
+if GROUNDING:
+    SYSTEM_NAME = f"{SYSTEM_NAME}_grounding"
 
 # Verify-Replan (docs/verify-replan-minimal-integration-plan.md): a second, separate runner
 # (runners/verify_replan.py) -- not a flag on agent_computer, so the baseline path is provably

@@ -26,6 +26,41 @@ from core.agent_loop import build_claude_cmd, extract_answer, preview, run_claud
 from core import results as results_io
 
 
+# Grounding harness (config.GROUNDING, docs/grounding-harness-plan.md). Names must match what
+# mcp/grounding_tools.register() attaches to the `osworld` FastMCP instance, prefix included --
+# a wrong prefix here is silent under --dangerously-skip-permissions (which makes --allowedTools
+# pre-approval rather than a gate), which is exactly how the same mistake went unnoticed in
+# runners/verify_replan.py's READONLY_TOOLS for several commits.
+GROUNDING_TOOLS = [
+    "mcp__osworld__find_element", "mcp__osworld__click_element", "mcp__osworld__list_elements",
+]
+
+
+def _allowed_tools():
+    """The baseline OSWorld toolset, plus the grounding arm's tools when that arm is on.
+
+    Kept here rather than in common.OSWORLD_TOOLS on purpose: that module's extraction discipline
+    is that it reads no G5-arm config knob (see its docstring), and GROUNDING is one.
+    """
+    return OSWORLD_TOOLS + (GROUNDING_TOOLS if config.GROUNDING else [])
+
+
+def _grounding_telemetry():
+    """Per-run record of the grounding arm's settings, merged into result.json.
+
+    The results tree is already suffixed when the arm is on (config.SYSTEM_NAME), but a directory
+    name records only that the arm ran, not how it was configured -- and GROUNDING_MIN_SCORE
+    changes what resolves, so two runs under the same tree are not comparable without it.
+    """
+    if not config.GROUNDING:
+        return {"grounding_used": False}
+    return {
+        "grounding_used": True,
+        "grounding_verify": config.GROUNDING_VERIFY,
+        "grounding_min_score": config.GROUNDING_MIN_SCORE,
+    }
+
+
 def _extra_flags():
     """Extra claude CLI flags for the G5 tool-restriction arms (config.ENFORCE_SANDBOX, idea
     #10; config.RESTRICT_RUN_PYTHON, idea #11). Both use --disallowedTools, a real deny list
@@ -140,7 +175,7 @@ def _inloop_verify(ctrl, task, answer, meta, mcp_config_path, out):
         cmd2 = build_claude_cmd(
             _INLOOP_RETRY_PROMPT.format(instruction=task.get("instruction", ""), reason=reason),
             model=config.MODEL or None, max_turns=config.INLOOP_VERIFY_MAX_TURNS,
-            mcp_config=mcp_config_path, allowed_tools=OSWORLD_TOOLS, resume=session_id,
+            mcp_config=mcp_config_path, allowed_tools=_allowed_tools(), resume=session_id,
         )
         meta2 = run_claude_meta(cmd2, timeout=config.TASK_TIMEOUT)
     except Exception as e:
@@ -186,7 +221,7 @@ def run(task, *, env, out, refs=None, dry=False):
         model=config.MODEL or None,
         max_turns=config.MAX_TURNS,
         mcp_config=mcp_config_path,
-        allowed_tools=OSWORLD_TOOLS,
+        allowed_tools=_allowed_tools(),
         extra=_extra_flags(),
     )
     if dry:
@@ -257,6 +292,7 @@ def run(task, *, env, out, refs=None, dry=False):
         **_model_mismatch(meta),
         **telemetry,
         **inloop_telemetry,
+        **_grounding_telemetry(),
     })
     rec = _annotate_incidental(_bounded("scoring", _score, ctrl, task, answer, out), clean_finish)
     results_io.write_eval(out, {"id": task["id"], **rec})
