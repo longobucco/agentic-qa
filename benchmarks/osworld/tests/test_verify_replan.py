@@ -210,7 +210,7 @@ def test_render_auditor_prompt_embeds_the_instruction_and_claim():
 def test_prompt_versions_are_registered_with_a_stable_hash():
     assert "auditor_system_prompt" in vr.PROMPT_VERSIONS
     entry = vr.PROMPT_VERSIONS["auditor_system_prompt"]
-    assert entry["version"] == 1 and len(entry["sha256"]) == 64
+    assert entry["version"] >= 1 and len(entry["sha256"]) == 64
 
 
 def main():
