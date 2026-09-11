@@ -129,6 +129,33 @@ green. The plan's Section 12 live smoke test (3 real tasks against a live sandbo
 and are the natural next-approval checkpoint, not something to launch silently off the back of
 this commit.
 
+## Grounding harness (experimental, branch `grounding-harness`, NOT launched)
+
+`OSW_GROUNDING=1` adds three tools to the OSWorld MCP server — `find_element`, `click_element`,
+`list_elements` — that resolve a *named* target through the accessibility tree instead of having
+the model emit `(x, y)` from a screenshot, plus an action-level check: `click_element` re-reads the
+tree and tells the model when the click changed nothing. Unlike every G5 arm so far it acts before
+the wrong state exists rather than auditing it afterwards. `click(x, y)` is untouched and still
+offered — this is an added channel, not a replacement — and when nothing resolves `click_element`
+clicks nothing rather than guessing a coordinate. No per-application code: a Calc cell is a
+`table-cell` whose accessible name is its reference, so the generic path reaches it.
+
+Results go to their own tree (`agent_computer_sonnet5_grounding`, automatic suffix), and
+`result.json` records `grounding_used` / `grounding_min_score` per run.
+
+**Status: implemented, 57 tests green, deliberately NOT run.** Its own pre-registered gate
+(`analysis/g10_grounding_signal.py`, run with `--compare`) falsified the arm's premise before any
+rollout spend. The targeting gap that motivated it was measured on `agent_computer`, which is
+genuinely mixed-model — 326 of its 982 runs served by `claude-sonnet-5`, 296 by
+`claude-sonnet-4-6`, 5 by `claude-opus-4-8`, `model_requested=None` throughout. There the gap is
+real (11.8% vs 8.7% re-clicks, z = 2.74). On the pinned `agent_computer_sonnet5` tree it is absent
+and reversed (3.4% vs 4.3%, z = -1.37): Sonnet 5 re-clicks about half as often, and its always-fail
+tasks are not the ones it targets badly. See `docs/grounding-harness-plan.md` §5.
+
+Practical consequence beyond this arm: **always pass `--system` or `OSW_MODEL` explicitly to the
+analysis CLIs.** Without it they read `agent_computer`, the mixed tree — where the pass rate is
+50.8% and the buckets are 104/46/102, against 56.8% and 137/36/104 on pinned Sonnet 5.
+
 ## Analysis
 
 `analysis/` holds the thesis's validity-audit and results-analysis scripts (`gap-research-plan.md`
