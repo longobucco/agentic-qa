@@ -30,7 +30,16 @@ from benchmarks.osworld.runners.common import (
 from core.agent_loop import build_claude_cmd, extract_answer, preview, run_claude_meta
 from core import results as results_io
 
-READONLY_TOOLS = ["mcp__osworld__screenshot", "mcp__osworld__a11y_tree", "mcp__osworld__wait"]
+READONLY_TOOLS = [
+    "mcp__osworld_readonly__screenshot", "mcp__osworld_readonly__a11y_tree",
+    "mcp__osworld_readonly__wait", "mcp__osworld_readonly__inspect_thunderbird_prefs",
+    "mcp__osworld_readonly__inspect_pptx_text_colors",
+]   # pre-existing bug fixed 2026-09-11: this list carried the wrong MCP server prefix
+   # ("osworld" instead of "osworld_readonly"), so it never matched any tool's real name and
+   # was inert -- harmless only because --dangerously-skip-permissions already suppresses the
+   # confirmation prompt this flag exists to pre-approve (same "--allowedTools doesn't restrict
+   # availability" property _extra_flags's own docstring already establishes for the acting
+   # agent's tool set).
 
 
 def _readonly_mcp_config(controller_url):
