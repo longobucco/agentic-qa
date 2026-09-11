@@ -1,40 +1,52 @@
 """Target resolution from the accessibility tree -- the pure-logic half of the grounding harness.
 
-WHY THIS EXISTS. Every G5 arm so far acted AFTER the action: self-verify (#1, null), independent
-verifier (#9), majority vote (#12), in-loop verify (#15, null), Verify-Replan (gate failed at
-57.1% precision), offline bBoN selection (#16, below chance). A sweep over the full Sonnet-5
-campaign (982 runs, 900 transcripts, analysis/g10_grounding_signal.py) ruled out every other
-structural explanation for the 40.5% of tasks that never pass:
+READ THIS FIRST: THE CHANNEL IS DEAD IN THIS HARNESS. All 456 real a11y_tree captures on disk --
+every results tree, all 9 apps, both the mixed and the pinned Sonnet-5 campaign -- return an EMPTY
+tree: `{"AT": "<desktop-frame xmlns:.../>"}`, a self-closing root with zero child nodes. Not once
+populated. The guest image installs `at-spi2-core` and `python3-pyatspi`
+(docker/Dockerfile.osworld), so the dependency is present, but no AT-SPI bridge is actually
+producing a tree at runtime, and nothing in this module can resolve anything until that is fixed
+(accessibility bus running, toolkit bridges enabled for GTK/Qt apps).
 
-  - turn budget is not binding -- median 15 turns in BOTH the always-pass and always-fail
-    buckets, only 5.4% of FAILURE runs reach the 150-turn cap;
+That finding also corrects this module's own original motivation. a11y_tree's 0.8% share of tool
+calls is NOT an underused structured channel the agent neglects in favour of pixels: the agent
+tried it 456 times, got nothing back, and stopped. Everything here is therefore written against a
+channel that must be repaired before it can be evaluated -- see docs/grounding-harness-plan.md §5
+and §8. It is kept because the code is correct and tested, not because the arm is ready to run.
+
+WHY IT WAS BUILT. Every G5 arm so far acted AFTER the action: self-verify (#1, null), independent
+verifier (#9), majority vote (#12), in-loop verify (#15, null), Verify-Replan (gate failed at
+57.1% precision), offline bBoN selection (#16, below chance). On the pinned Sonnet-5 tree
+(agent_computer_sonnet5, 833 agent-scored runs, 851 transcripts, 56.8% pass rate) a sweep ruled
+out every other structural explanation for the 37.5% of tasks that never pass:
+
+  - turn budget is not binding -- median 17 turns in BOTH the always-pass and always-fail
+    buckets, 0.0% of runs reach the 150-turn cap;
   - observation capability is not missing -- the agent already reopens and parses its own output
-    files in 70.7% of always-fail runs that use run_python;
+    files in 73.2% of always-fail runs that use run_python;
   - the full "derive the expected value, then compare" loop is already present at 10.0% in
     always-fail vs 12.9% in always-pass -- no enrichment, so forcing it has no observational
     support;
   - requirement complexity does not discriminate -- 1.16 vs 1.11 conjunctive oracle checks,
     3.86 vs 3.77 instruction clauses.
 
-Exactly one measured feature separates the buckets: click targeting. Re-clicks landing within
-8px of the immediately preceding click (the first one did not do what the agent expected) run at
-10.9% of clicks on always-fail tasks vs 8.3% on always-pass -- two-proportion z = 2.40, p < 0.05
--- and the flaky bucket is the extreme on every targeting metric (14.4% re-clicks, 13.6 clicks per
-run, 1.60 screenshots per click), which is what non-deterministic targeting predicts: run-to-run
-variance IS targeting churn. Meanwhile a11y_tree is called 210 times across those transcripts
-(0.9% of tool calls) against screenshot's 7331 (31.9%) -- the structured channel that could
-resolve a target by role and name is sitting unused, because a raw tree dump is far too large to
-read and the tool offers no query.
+Click targeting looked like the one feature that separated the buckets, but that measurement came
+from `agent_computer`, which is genuinely mixed-model (326 of 982 runs served by claude-sonnet-5,
+296 by claude-sonnet-4-6, 5 by claude-opus-4-8). There the gap is real: 11.8% vs 8.7% re-clicks,
+z = 2.74. On the pinned Sonnet-5 tree it vanishes and reverses -- 3.4% always-fail vs 4.3%
+always-pass, z = -1.37 -- so targeting churn reads as a capability signature of the weaker models
+in the mixed tree, not as the mechanism behind Sonnet 5's residual failures. One app survives
+per-app (libreoffice_calc, 6.7% vs 1.1%, z = 4.65, which passes Bonferroni over the 10 apps), and
+even that is unreachable while the tree is empty.
 
-So this module does not add another verification layer. It moves target resolution EARLIER, to
-before the wrong state exists: the agent names what it wants ("the Bold button", "cell D7") and
-this resolves the name to coordinates through the structured channel, falling back to the model's
-own visual estimate only when nothing resolves. That is the Mixture-of-Grounding shape the
-published OSWorld gains come from (Agent S2, arXiv:2504.00906; UGround/SeeAct-V,
-arXiv:2410.05243), not an a11y-tree-first design -- the 2026 grounding literature is explicit
-that a11y trees are noisy and incomplete on custom-rendered widgets
-(docs/ideas-to-explore.md #2's corrected framing), which is why `click(x, y)` stays available
-and unmodified and this is strictly an added channel.
+WHAT IT DOES. It moves target resolution EARLIER, to before the wrong state exists: the agent
+names what it wants ("the Bold button", "cell D7") and this resolves the name to coordinates
+through the structured channel, falling back to the model's own visual estimate whenever nothing
+resolves -- which, today, is always. That is the Mixture-of-Grounding shape the published OSWorld
+gains come from (Agent S2, arXiv:2504.00906; UGround/SeeAct-V, arXiv:2410.05243), not an
+a11y-tree-first design: the 2026 grounding literature is explicit that a11y trees are noisy and
+incomplete on custom-rendered widgets (docs/ideas-to-explore.md #2's corrected framing), which is
+why `click(x, y)` stays available and unmodified and this is strictly an added channel.
 
 SCOPE. Pure functions over an XML string: no network, no MCP, no Controller. Everything here is
 unit-testable against a fixture, which is why the tree-format constants below are taken from
@@ -42,6 +54,7 @@ upstream rather than guessed -- see _UBUNTU_NS.
 """
 import difflib
 import hashlib
+import json
 import re
 import xml.etree.ElementTree as ET
 
@@ -171,6 +184,37 @@ class Element:
         return f"<Element {self.describe()}>"
 
 
+def unwrap_tree(raw):
+    """The guest's /accessibility route does NOT return raw XML: it returns a JSON object
+    `{"AT": "<desktop-frame .../>"}`, so Controller.a11y_tree() hands back that envelope verbatim.
+
+    Found by reading the 456 real a11y_tree captures on disk rather than by inspection -- every
+    one of them is the envelope form, and parsing it as XML fails outright. Accepts either shape
+    (and tolerates the extra `{"result": ...}` layer the MCP transport adds when a tool result is
+    logged) so the resolver works against the controller, against a transcript capture, and
+    against a plain XML fixture.
+    """
+    if not isinstance(raw, str):
+        return ""
+    text = raw.strip()
+    if not text.startswith("{"):
+        return text
+    for _ in range(2):          # at most {"result": "{\"AT\": ...}"}
+        try:
+            obj = json.loads(text)
+        except (ValueError, TypeError):
+            return text
+        if not isinstance(obj, dict):
+            return text
+        nxt = obj.get("AT") if "AT" in obj else obj.get("result")
+        if not isinstance(nxt, str):
+            return text
+        text = nxt.strip()
+        if text.startswith("<"):
+            return text
+    return text
+
+
 def parse_elements(xml, *, screen=None):
     """Every node carrying usable screen geometry, in document order.
 
@@ -181,7 +225,7 @@ def parse_elements(xml, *, screen=None):
     Raises ET.ParseError on malformed XML; callers at the MCP boundary turn that into a message
     rather than letting it escape (see mcp/grounding_tools.py).
     """
-    root = ET.fromstring(xml)
+    root = ET.fromstring(unwrap_tree(xml))
     st, cp, val = _UBUNTU_NS["st"], _UBUNTU_NS["cp"], _UBUNTU_NS["val"]
     out = []
     for node in root.iter():
