@@ -287,6 +287,19 @@ def score_element(el, query, *, role=None, screen_area=None):
     return score, why
 
 
+def screen_area_hint(elements):
+    """Usable screen area inferred from the tree's own outermost box.
+
+    The container penalty needs to know what "most of the screen" means, and asking the guest for
+    the display size would be an extra round trip on every resolve. The root frame/desktop node is
+    already the largest box in the tree, so its extent is the answer -- and it stays correct on a
+    non-standard resolution, where a hardcoded 1920x1080 would not.
+    """
+    if not elements:
+        return None
+    return max((el.x + el.w) * (el.y + el.h) for el in elements) or None
+
+
 def resolve(xml, query, *, role=None, limit=5, min_score=0.45, screen=None):
     """Rank elements against `query`. Returns [(score, why, Element)], best first, at most `limit`.
 
@@ -294,7 +307,7 @@ def resolve(xml, query, *, role=None, limit=5, min_score=0.45, screen=None):
     correct move is then the visual estimate, not a guess from this module.
     """
     elements = parse_elements(xml, screen=screen)
-    screen_area = (screen[0] * screen[1]) if screen else None
+    screen_area = (screen[0] * screen[1]) if screen else screen_area_hint(elements)
     scored = []
     for el in elements:
         s, why = score_element(el, query, role=role, screen_area=screen_area)

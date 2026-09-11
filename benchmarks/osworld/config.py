@@ -142,6 +142,27 @@ INLOOP_VERIFY_SKIP_APPS = {
     a.strip() for a in os.environ.get("OSW_INLOOP_VERIFY_SKIP_APPS", "os").split(",") if a.strip()
 }
 
+# Grounding harness (docs/grounding-harness-plan.md): adds find_element/click_element/
+# list_elements to the OSWorld MCP server, resolving a NAMED target through the accessibility tree
+# instead of having the model emit (x, y) from a screenshot. Unlike every earlier G5 arm this acts
+# before the wrong state exists rather than auditing it afterwards -- motivated by
+# analysis/g10_grounding_signal.py, where targeting is the ONLY measured feature separating the
+# always-fail bucket from always-pass (re-clicks within 8px at 10.9% vs 8.3% of clicks, z = 2.40,
+# p < 0.05; the flaky bucket worst on every metric) once budget, observation capability,
+# derive-and-compare behaviour and requirement complexity are all ruled out. `click(x, y)` is
+# untouched and still offered: this is an added channel, and the 2026 grounding literature is
+# explicit that a11y trees are incomplete on custom-rendered widgets. Off by default -- opt in
+# per-run, like every other arm.
+GROUNDING = os.environ.get("OSW_GROUNDING", "0") == "1"
+# Re-read the tree after a click_element and tell the model when nothing changed. This is the
+# action-level half of the mechanism (a click that did nothing is detectable locally, with no
+# model call and no oracle) and costs one extra /accessibility round trip per click.
+GROUNDING_VERIFY = os.environ.get("OSW_GROUNDING_VERIFY", "1") == "1"
+# Score floor below which a candidate is not offered at all. Tuned so a prefix-only match still
+# resolves but an unrelated element does not: too low and the agent clicks confidently on the
+# wrong control, which is worse than being told to read the screenshot.
+GROUNDING_MIN_SCORE = float(os.environ.get("OSW_GROUNDING_MIN_SCORE", "0.45"))
+
 # Verify-Replan (docs/verify-replan-minimal-integration-plan.md): a second, separate runner
 # (runners/verify_replan.py) -- not a flag on agent_computer, so the baseline path is provably
 # unaffected (see the runner's own module docstring and its characterization tests).
