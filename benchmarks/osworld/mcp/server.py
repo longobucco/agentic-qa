@@ -79,16 +79,29 @@ def key(keys: str) -> str:
     return f"pressed {keys}"
 
 
-@mcp.tool()
-def run_python(code: str) -> str:
-    """Run arbitrary pyautogui/Python code in the guest."""
-    return _ctrl.pyautogui(code) or "ok"
+if os.environ.get("OSW_RESTRICT_RUN_PYTHON", "0") != "1":
+    @mcp.tool()
+    def run_python(code: str) -> str:
+        """Run arbitrary pyautogui/Python code in the guest."""
+        return _ctrl.pyautogui(code) or "ok"
 
 
 @mcp.tool()
 def wait(seconds: float) -> str:
     time.sleep(min(seconds, 30))
     return f"waited {seconds}s"
+
+
+# Grounding harness (config.GROUNDING / OSW_GROUNDING=1): three extra tools that resolve a NAMED
+# target through the accessibility tree. Gated the same way run_python is above -- a tool the model
+# is told about but cannot call is the setup that produced fabricated tool-call text in
+# docs/finding-confabulation-under-tool-denial.md, so availability here and the prompt's tool list
+# (prompts.GROUNDING_LINES) are driven by the same flag. The tools above, `click(x, y)` included,
+# are untouched: this only ever adds a channel.
+if os.environ.get("OSW_GROUNDING", "0") == "1":
+    from benchmarks.osworld.mcp import grounding_tools
+
+    grounding_tools.register(mcp, _ctrl)
 
 
 if __name__ == "__main__":
