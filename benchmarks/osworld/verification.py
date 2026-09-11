@@ -215,10 +215,33 @@ in evidence_to_check: name exact UI elements, file names, or values, not vague d
 # required) and then rounded the verdict up to verified_done/high-confidence anyway instead of
 # downgrading it. v2 does not change what the auditor can observe -- it changes what a noticed
 # gap is REQUIRED to do to the verdict, closing the "notice it, then wave it away" pattern.
+#
+# v3 (2026-09-11): most of v2's residual false positives were exactly the kind of unconfirmed
+# detail v2 already told the model to flag (an exact PPTX text color, a Thunderbird preference)
+# -- the model correctly said so, but had no way to actually CONFIRM it beyond a screenshot, so
+# "medium confidence, verified_done" was often the honest ceiling. Two narrow, read-only content
+# tools (mcp/readonly_server.py) now exist for exactly that gap, following the "evidence
+# hierarchy" 2026 GUI-agent-verification literature converges on (Interactive Reward Agent,
+# arXiv:2607.25904: visible state -> screenshot; application state -> a specialized tool; GUI
+# inspection only as a last resort) -- named explicitly below so the model reaches for them
+# instead of defaulting to a screenshot-only judgment on exactly the task classes that need them.
 AUDITOR_SYSTEM_PROMPT = """You are an independent auditor. You did NOT perform this task and \
 have NO memory of how it was attempted. You can only observe the current desktop state through \
-the tools available to you (screenshot, accessibility tree) -- you cannot click, type, or take \
-any action.
+the tools available to you -- you cannot click, type, or take any action.
+
+Tools available, in the order you should prefer them:
+1. screenshot / accessibility tree -- your default view of the desktop.
+2. inspect_pptx_text_colors(path) -- if the task's success depends on an EXACT text color in a
+   .pptx file, this reads the color as actually stored in the file, not as rendered on screen
+   (screen anti-aliasing and color profiles make an exact hex judgment from a screenshot alone
+   unreliable). Use it whenever a precise color/value claim matters and a .pptx is involved.
+3. inspect_thunderbird_prefs(pattern) -- if the task's success depends on a Thunderbird setting,
+   this greps the actual profile's prefs.js for a substring you choose, catching settings that
+   may not be visible, or only partially visible, in the Preferences UI (e.g. a per-account
+   value when only the global default was checked in the UI).
+Reach for tool 2 or 3 whenever the task involves that file type/application and an exact value
+matters -- do not settle for a screenshot-only judgment when a more precise tool is available
+and applicable.
 
 Task the executor was asked to do: {instruction}
 
@@ -245,6 +268,7 @@ Instructions:
   confidence at "medium" even when the verdict is verified_done, and at "low" if it is the ONLY
   evidence for a specific requirement of the task. High confidence requires that every concrete
   requirement in the task was checked against something you actually observed, not inferred.
+  Before settling for "unconfirmed", check whether tool 2 or 3 above could confirm it directly.
 - If you cannot determine the state with confidence, say so honestly (verdict "uncertain")
   rather than guessing either way.
 
@@ -271,7 +295,7 @@ def _hash(text):
 # silently goes stale the next time a prompt's wording changes.
 PROMPT_VERSIONS = {
     "executor_claim_contract_suffix": {"version": 1, "sha256": _hash(EXECUTOR_CLAIM_CONTRACT_SUFFIX)},
-    "auditor_system_prompt": {"version": 2, "sha256": _hash(AUDITOR_SYSTEM_PROMPT)},
+    "auditor_system_prompt": {"version": 3, "sha256": _hash(AUDITOR_SYSTEM_PROMPT)},
 }
 
 
