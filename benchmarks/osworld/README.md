@@ -41,6 +41,20 @@ all. `OSW_PINNED_EVALUATORS=0` forces the installed release back.
 `config.py`'s default `IMAGE` is already pinned to a known-good digest; only override `OSW_IMAGE` if
 you rebuild the image yourself (see the Notes below on why `:latest` alone isn't safe here).
 
+**The pinned default digest predates the AT-SPI fix** (`docker/start.sh`'s accessibility-bus block
+plus `libreoffice-gtk3`, added 2026-09-12). Until the image is rebuilt and `OSW_IMAGE` re-pinned,
+`/accessibility` keeps returning an empty tree and every run records `a11y_ok: false` in
+`result.json`. Two consequences worth stating before rebuilding:
+
+- a rebuilt image is a **different harness version**, so its pass rate is not directly comparable
+  with the 882-run `agent_computer_sonnet5` tree — treat a post-rebuild campaign as a new baseline,
+  the same discipline already applied to `provenance.evaluator_commit`;
+- the Chrome/VSCode `.deb` URLs are "current stable", so a rebuild also picks up newer versions of
+  both (see the Dockerfile's own note on that trade-off).
+
+The fix is asserted, not yet validated: nothing here has run against a rebuilt image. `a11y_ok` in
+`result.json` is what confirms or refutes it on the first real run.
+
 ## Run
 ```
 python -m benchmarks.osworld.env.sandbox up               # provision a desktop

@@ -20,7 +20,7 @@ from benchmarks.osworld.runners.common import (
     _capture_eval_state, _clean_finish, _environment_error_rec, _evaluate_with_retry,
     _evaluator_provenance, _mcp_config, _model_mismatch, _POST_RUN_TIMEOUT_S, _provenance,
     _rate_limit_infra_rec, _rate_limit_result_rec, _save_conversation_transcript, _score,
-    _served_by,
+    _served_by, _a11y_health,
 )
 from core.agent_loop import build_claude_cmd, extract_answer, preview, run_claude_meta
 from core import results as results_io
@@ -43,6 +43,29 @@ def _allowed_tools():
     is that it reads no G5-arm config knob (see its docstring), and GROUNDING is one.
     """
     return OSWORLD_TOOLS + (GROUNDING_TOOLS if config.GROUNDING else [])
+
+
+def _grounding_precheck(ctrl):
+    """Refuse to spend a grounding run against a dead accessibility channel.
+
+    Only when the arm is ON: the baseline does not depend on a11y (the agent works from
+    screenshots), so an empty tree is a recorded fact there, not a reason to fail a run. With the
+    arm on it IS the reason -- every find_element/click_element would resolve nothing and the run
+    would look like a null result for the mechanism rather than a broken environment. That
+    confusion already cost this project a whole analysis: the channel was empty on all 456
+    captures across every campaign and nothing on disk said so.
+
+    Returns an error string to abort with, or None to proceed.
+    """
+    if not config.GROUNDING:
+        return None
+    health = _a11y_health(ctrl)
+    if health.get("a11y_ok"):
+        return None
+    return (f"grounding arm requested but the accessibility channel is not reporting "
+            f"({health.get('a11y_reason')}); nodes={health.get('a11y_nodes')}. Rebuild the guest "
+            f"image with the AT-SPI bus from docker/start.sh and re-pin config.IMAGE, or unset "
+            f"OSW_GROUNDING -- see docs/grounding-harness-plan.md Section 8.")
 
 
 def _grounding_telemetry():
@@ -215,6 +238,16 @@ def run(task, *, env, out, refs=None, dry=False):
         results_io.write_eval(out, rec["eval"])
         return ""
 
+    # Before building the command: an arm whose channel is dead produces meaningless data, and
+    # the failure has to be loud rather than look like a null result (see _grounding_precheck).
+    grounding_block = _grounding_precheck(ctrl) if not dry else None
+    if grounding_block:
+        rec = _environment_error_rec(task, grounding_block)
+        rec["result"]["provenance"] = _provenance(task, ctrl, started_at)
+        results_io.write_result(out, rec["result"])
+        results_io.write_eval(out, rec["eval"])
+        return ""
+
     mcp_config_path = _mcp_config(controller_url)
     cmd = build_claude_cmd(
         agent_prompt(task),
@@ -293,6 +326,7 @@ def run(task, *, env, out, refs=None, dry=False):
         **telemetry,
         **inloop_telemetry,
         **_grounding_telemetry(),
+        **_a11y_health(ctrl),
     })
     rec = _annotate_incidental(_bounded("scoring", _score, ctrl, task, answer, out), clean_finish)
     results_io.write_eval(out, {"id": task["id"], **rec})

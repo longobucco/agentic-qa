@@ -345,6 +345,39 @@ def test_tree_digest_returns_empty_on_unparseable_input():
     assert grounding.tree_digest("<not xml") == ""
 
 
+# --- channel health ---------------------------------------------------------
+
+def test_tree_health_distinguishes_the_three_failure_modes():
+    """These three look identical from the outside and need different responses: a dead controller
+    is retryable, malformed XML is a bug, and a root-only tree means the AT-SPI bridge is not
+    running -- the only case this harness actually produced, on all 456 captures."""
+    dead = grounding.tree_health(REAL_EMPTY_ENVELOPE)
+    assert dead["ok"] is False and dead["nodes"] == 0
+    assert "AT-SPI bridge is not reporting" in dead["reason"]
+
+    blank = grounding.tree_health("")
+    assert blank["ok"] is False and blank["reason"] == "empty response"
+
+    broken = grounding.tree_health("<desktop><unclosed>")
+    assert broken["ok"] is False and "unparseable" in broken["reason"]
+
+
+def test_tree_health_reports_ok_on_a_populated_tree_through_either_shape():
+    for payload in (TREE, json.dumps({"AT": TREE})):
+        h = grounding.tree_health(payload)
+        assert h["ok"] is True and h["reason"] is None
+        assert h["nodes"] > h["elements"] > 0     # nodes include the ones without geometry
+
+
+def test_tree_health_flags_a_tree_whose_nodes_have_no_geometry():
+    """A bridge can report a hierarchy while every node lacks a box -- reporting, but useless for
+    targeting, so it must not read as ok."""
+    xml = f'<desktop {NS}><push-button name="A" st:showing="true"/></desktop>'
+    h = grounding.tree_health(xml)
+    assert h["nodes"] == 1 and h["elements"] == 0 and h["ok"] is False
+    assert "none with usable geometry" in h["reason"]
+
+
 def main():
     fns = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
     for fn in fns:

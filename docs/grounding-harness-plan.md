@@ -1,6 +1,6 @@
 # Piano di implementazione: harness di grounding (Mixture-of-Grounding) per OSWorld + Sonnet 5
 
-**Stato:** implementato e testato — **non lanciato: il canale a11y è vuoto in questo harness** (vedi §8), e la premessa statistica non regge su Sonnet 5 pinnato (§5)
+**Stato:** implementato e testato — **non lanciato; fix del canale a11y scritto ma NON validato** (vedi §8, §9), e la premessa statistica non regge su Sonnet 5 pinnato (§5)
 **Data:** 2026-09-11
 **Branch:** `grounding-harness`
 **Sistema:** `agent_computer_sonnet5_grounding` (suffisso automatico, `config.SYSTEM_NAME`)
@@ -231,3 +231,68 @@ i bridge dei toolkit abilitati per GTK/Qt: `toolkit-accessibility`, `GTK_MODULES
   che si verifica live e richiede un messaggio diverso.
 - I byte reali dell'envelope catturato sono fissati come fixture (`REAL_EMPTY_ENVELOPE`), così
   entrambe le assunzioni sbagliate restano sotto test.
+
+
+## 9. Riparazione del canale AT-SPI (scritta, non validata)
+
+### Cosa è stato cambiato
+
+`docker/start.sh` — il guest non aveva **nessun bus D-Bus di sessione**, da cui si bootstrappa il
+bus di accessibilità: `Xvfb` + `openbox` + server Flask, e nient'altro. Aggiunto, **prima** di
+openbox e delle app (un bridge di toolkit si registra alla costruzione dei widget: un'app avviata
+prima che il bus esista resta invisibile ad AT-SPI per tutta la sua vita, anche se il bus arriva
+dopo):
+
+- `dbus-launch --sh-syntax` con export di `DBUS_SESSION_BUS_ADDRESS`;
+- `at-spi-bus-launcher --launch-immediately` e `at-spi2-registryd`, con **path risolto** fra
+  `/usr/libexec`, `/usr/lib/at-spi2-core` e `PATH` — un path hardcoded che sbaglia fallirebbe in
+  silenzio e sarebbe indistinguibile dal bug che stiamo correggendo, quindi in assenza si logga
+  un WARNING esplicito;
+- lato toolkit: `GTK_MODULES=gail:atk-bridge`, `GTK_A11Y=atspi`, `NO_AT_BRIDGE=0`,
+  `QT_ACCESSIBILITY=1`, `QT_LINUX_ACCESSIBILITY_ALWAYS_ON=1`, più
+  `gsettings set org.gnome.desktop.interface toolkit-accessibility true` (tollerante al fallimento:
+  senza un demone dconf scrivibile non riesce, e le env var portano già lo stesso interruttore);
+- `SAL_USE_VCLPLUGIN=gtk3`.
+
+`Dockerfile.osworld` — aggiunto **`libreoffice-gtk3`**. LibreOffice espone AT-SPI solo attraverso
+il backend VCL gtk3; col plugin X11 generico non riporta nulla, il che lascerebbe cieche le tre
+famiglie `libreoffice_*` — la fetta più grande del task set — anche con un bus funzionante.
+
+### Perché la patch non basta da sola
+
+La disciplina del progetto è già scritta nel Dockerfile: *«an apt-get install claim isn't
+validation, a live check is»*. Qui la sonda è parte della consegna:
+
+- `grounding.tree_health(raw)` distingue i tre fallimenti che dall'esterno si somigliano —
+  controller irraggiungibile/vuoto, XML malformato, **root senza figli** (l'unico che questo
+  harness produce) — e in più segnala l'albero che riporta nodi senza geometria utile.
+- `common._a11y_health(ctrl)` scrive `a11y_ok` / `a11y_nodes` / `a11y_elements` / `a11y_reason` in
+  **ogni `result.json`**. Una sonda per run, mai solleva, mai blocca. È ciò che rende la
+  riparazione verificabile dai dati invece che creduta, e rende visibile una regressione al primo
+  run invece che dopo mille.
+- `agent_computer._grounding_precheck(ctrl)` **rifiuta di avviare l'arm** se il canale non riporta,
+  scrivendo un ENVIRONMENT_ERROR che dice come procedere. Solo con l'arm acceso: la baseline lavora
+  da screenshot e non va mai fatta fallire per un albero vuoto. Con l'arm acceso invece è
+  necessario, perché un ambiente rotto si leggerebbe come meccanismo nullo — la confusione che è
+  già costata un'analisi intera.
+
+### Stato e prossimo passo
+
+**Non validato.** Nessuna di queste righe ha girato contro un'immagine ricostruita; non ho un
+sandbox Daytona attivo né accesso al registry, e ricostruire e pubblicare l'immagine è un'azione
+che tocca l'infrastruttura condivisa. Sequenza:
+
+1. `docker build --platform linux/amd64 -f benchmarks/osworld/docker/Dockerfile.osworld ...`
+2. push, `docker inspect ... RepoDigests`, re-pin di `OSW_IMAGE`/`config.IMAGE`
+3. un singolo task reale: se `result.json` riporta `a11y_ok: true` con `a11y_elements > 0` il canale
+   è vivo; altrimenti `a11y_reason` dice quale dei quattro modi ha fallito
+4. solo allora il gate §4 ha senso, e `list_elements()` su un task Calc dice se le celle sono
+   esposte per riferimento (l'assunzione su cui poggia la nicchia di §5)
+
+### Avvertenza metodologica
+
+Un'immagine ricostruita è una **versione diversa dell'harness**: il suo pass rate non è
+direttamente confrontabile con l'albero `agent_computer_sonnet5` da 882 run. Va trattata come nuova
+baseline, con la stessa disciplina già applicata a `provenance.evaluator_commit`. In più le URL
+`.deb` di Chrome e VSCode sono "current stable", quindi un rebuild porta anche versioni più nuove
+di entrambi.
