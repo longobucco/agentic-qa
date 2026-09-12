@@ -17,7 +17,13 @@ FROM ubuntu:22.04
 ENV DEBIAN_FRONTEND=noninteractive DISPLAY=:99
 
 # add only the apps your subset needs; python3-pyatspi is required for /accessibility (imported
-# unconditionally on Linux — without it the guest server won't even start). wmctrl is used by
+# unconditionally on Linux — without it the guest server won't even start). NOTE: having the
+# package is necessary and NOT sufficient — /accessibility returned an empty `<desktop-frame/>` on
+# all 456 captures taken across every campaign until start.sh was given a D-Bus session bus and
+# the AT-SPI bridges (docs/grounding-harness-plan.md Section 8). libreoffice-gtk3 belongs to the
+# same fix: LibreOffice exposes AT-SPI only through its gtk3 VCL backend, and with the generic
+# X11 plugin the three libreoffice_* families — the largest slice of the task set — report
+# nothing even with a working bus. wmctrl is used by
 # main.py's activate_window (part of the evaluator's postconfig on many tasks); gsettings
 # (libglib2.0-bin + schemas) and python-is-python3 (a bare `python` binary — OSWorld's own
 # config/postconfig steps invoke "python", not "python3") are needed by other task configs.
@@ -52,6 +58,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         xvfb x11-utils openbox xterm scrot gnome-screenshot wmctrl \
         python3 python3-pip python3-tk python3-dev python-is-python3 \
         at-spi2-core python3-pyatspi dbus-x11 \
+        libreoffice-gtk3 \
         libglib2.0-bin gsettings-desktop-schemas \
         xdg-utils desktop-file-utils shared-mime-info file libfile-mimeinfo-perl \
         supervisor curl \
