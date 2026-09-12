@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {"fact": "file explorer shows the new filename", "source": "screenshot", "evidence_ref": null}
+  ],
+  "failed_checks": [],
+  "next_action": null,
+  "confidence": "high"
+}
