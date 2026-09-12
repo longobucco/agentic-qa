@@ -206,7 +206,7 @@ class _EnvAdapter:
     """Minimal DesktopEnv stand-in that OSWorld's getters read from."""
 
     def __init__(self, controller, controller_url, action_history, cache_dir=None,
-                 getter_address=None):
+                 getter_address=None, use_proxy=False):
         # What the twelve URL-building getters will interpolate into "http://{ip}:{port}".
         # Splitting the https:// controller URL here is what made them talk plain HTTP to port
         # 443 (env/http_forwarder.py); the loopback forwarder is passed in instead.
@@ -229,7 +229,11 @@ class _EnvAdapter:
         self.chromium_port = 9222
         self.vlc_port = 8080
         self._vm_machine = None
-        self.current_use_proxy = False
+        # False for every existing (closed-book) caller. The open-book runner passes True here so
+        # a getter that has to relaunch Chrome mid-evaluation (its CDP connection dropped) reads
+        # this and relaunches WITH --proxy-server, same as chrome.py's own
+        # get_gotoRecreationPage_and_get_html_content fallback already does when it's set.
+        self.current_use_proxy = use_proxy
         self.action_history = action_history
         self.controller = controller
 
@@ -247,12 +251,17 @@ class _EnvAdapter:
         return self._vm_machine
 
 
-def evaluate_official(controller_url, task, action_history, cache_dir=None):
+def evaluate_official(controller_url, task, action_history, cache_dir=None, use_proxy=False):
     """Return OSWorld's reward for this task (0..1), or None if desktop_env isn't importable.
 
     `cache_dir`: where the official getters land any gold reference they download. Pass one to
     hash those afterwards (hash_gold_artifacts); omitted, a throwaway temp dir is used, which
-    keeps the historical behaviour for callers that don't care."""
+    keeps the historical behaviour for callers that don't care.
+
+    `use_proxy`: False for every closed-book/baseline caller (unchanged behavior). The open-book
+    runner passes True so a postconfig step that relaunches Chrome (several chrome-bucket tasks
+    do: pkill then relaunch right before scoring) gets --proxy-server too, and so
+    current_use_proxy reads true for getters that branch on it (see _EnvAdapter)."""
     use_pinned_evaluators()     # must precede the import below: it decides what gets imported
     try:
         from desktop_env.controllers.python import PythonController
@@ -269,11 +278,12 @@ def evaluate_official(controller_url, task, action_history, cache_dir=None):
         address = split_for_getters(controller_url, fwd)
         controller = PythonController(vm_ip=address[0], server_port=address[1])
         env = _EnvAdapter(controller, controller_url, action_history, cache_dir=cache_dir,
-                          getter_address=address)
-        return _score(env, ev, func, controller_url, cache_dir, getters, metrics)
+                          getter_address=address, use_proxy=use_proxy)
+        return _score(env, ev, func, controller_url, cache_dir, getters, metrics,
+                      use_proxy=use_proxy)
 
 
-def _score(env, ev, func, controller_url, cache_dir, getters, metrics):
+def _score(env, ev, func, controller_url, cache_dir, getters, metrics, use_proxy=False):
     """The scoring pass itself, with the forwarder already up and `env` already addressed."""
 
     postconfig = ev.get("postconfig", [])
@@ -283,7 +293,8 @@ def _score(env, ev, func, controller_url, cache_dir, getters, metrics):
         # uncleaned mkdtemp per scored run is exactly the kind of per-run temp-dir leak that
         # let 5400 stray dirs/files (3.6GB) accumulate over ~1000 run attempts (found live
         # 2026-08-16).
-        make_setup_controller(controller_url, cache_dir=cache_dir).setup(postconfig)
+        make_setup_controller(controller_url, cache_dir=cache_dir).setup(
+            postconfig, use_proxy=use_proxy)
 
     if func == "infeasible":
         return 1.0 if _last_is_fail(env.action_history) else 0.0
