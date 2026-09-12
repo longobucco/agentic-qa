@@ -1,0 +1,32 @@
+# Closed-book tasks with no official verdict after the 2026-09-09/10 campaign pass.
+# Derived from the rate-limited set; dcbe20e8-647f-4f1d-8696-f1c5bbb570e3 is excluded
+# because it subsequently obtained an official evaluation.
+930fdb3b-11a8-46fe-9bac-577332e2640e
+9d425400-e9b2-4424-9a4b-d4c7abac4140
+d06f0d4d-2cd5-4ede-8de9-598629438c6e
+a5bbbcd5-b398-4c91-83d4-55e1e31bbb81
+94d95f96-9699-4208-98ba-3c3119edf9c2
+5ca86c6f-f317-49d8-b6a7-b527541caae8
+f3977615-2b45-4ac5-8bba-80c17dbe2a37
+bedcedc4-4d72-425e-ad62-21960b11fe0d
+ec4e3f68-9ea4-4c18-a5c9-69f89d1178b3
+57242fad-77ca-454f-b71b-f187181a9f23
+b6781586-6346-41cd-935a-a6b1487918fc
+7c4cc09e-7a92-40dd-8338-b2286535c4ed
+b3d4a89c-53f2-4d6b-8b6a-541fb5d205fa
+6d72aad6-187a-4392-a4c4-ed87269c51cf
+971cbb5b-3cbf-4ff7-9e24-b5c84fcebfa6
+3ce045a0-877b-42aa-8d2c-b4a863336ab8
+fe41f596-a71b-4c2f-9b2f-9dcd40b568c3
+a4d98375-215b-4a4d-aee9-3d4370fccc41
+13584542-872b-42d8-b299-866967b5c3ef
+5812b315-e7bd-4265-b51f-863c02174c28
+c288e301-e626-4b98-a1ab-159dcb162af5
+4783cc41-c03c-4e1b-89b4-50658f642bd5
+5ced85fc-fa1a-4217-95fd-0fb530545ce2
+2373b66a-092d-44cb-bfd7-82e86e7a3b4d
+276cc624-87ea-4f08-ab93-f770e3790175
+28cc3b7e-b194-4bc9-8353-d04c0f4d56d2
+4e60007a-f5be-4bfc-9723-c39affa0a6d3
+5ac2891a-eacd-4954-b339-98abba077adb
+7882ed6e-bece-4bf0-bada-c32dc1ddae72

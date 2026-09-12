@@ -1,0 +1,42 @@
+{
+  "frozen_at": "2026-09-09T08:30:00Z",
+  "release": "osworld_verified",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "high",
+  "codex_cli_version": "0.153.4",
+  "population": {
+    "paths": [
+      "scripts/g_sonnet5_campaign_ids.txt",
+      "scripts/g_astra_campaign_expansion_ids.txt"
+    ],
+    "exclude_path": "scripts/g_astra_campaign_google_drive_excluded_ids.txt",
+    "count": 291,
+    "sha256": "0a8cfe80ea8921ac183d45bfb4375fef14c129d99ef421ff92d93496adc17659"
+  },
+  "tool_policy": {
+    "approval_mode": "dangerously-bypass-approvals-and-sandbox",
+    "user_config": "ignored",
+    "exec_rules": "ignored",
+    "code_mode_host": "enabled_required_for_mcp",
+    "allowed_mcp_server": "osworld",
+    "allowed_mcp_tools": [
+      "screenshot", "a11y_tree", "click", "double_click", "right_click", "move",
+      "scroll", "type", "key", "wait"
+    ],
+    "disabled_features": [
+      "shell_tool", "browser_use", "computer_use", "browser_use_external",
+      "browser_use_full_cdp_access", "apps", "plugins", "skill_search", "multi_agent",
+      "multi_agent_v2", "image_generation", "in_app_browser", "in_app_local_automation",
+      "goals", "sleep_tool", "tool_suggest", "view_image", "shell_snapshot", "unified_exec"
+    ]
+  },
+  "accepted_canary": {
+    "task_id": "3ef2b351-8a84-4ff2-8724-d86eae9b842e",
+    "run": 1,
+    "verdict": "SUCCESS",
+    "reward": 1.0,
+    "mcp_tool_calls": 11,
+    "non_mcp_tool_calls": 0,
+    "session_id": "01a084f4-6221-7c00-81da-b30861c9e4c3"
+  }
+}
