@@ -8,6 +8,8 @@ falls back to the offline checker in evaluate.py.
 """
 import hashlib
 import os
+import pathlib
+import sys
 import tempfile
 from urllib.parse import urlparse
 
@@ -106,7 +108,39 @@ def use_pinned_evaluators():
         # Front of the list: submodule lookup is first-match, so this shadows the installed
         # metrics/ and getters/ without touching the rest of the package.
         evaluators.__path__.insert(0, path)
+    _drop_installed_submodules(path)
     return stamp.read_text().strip()
+
+
+def _drop_installed_submodules(pinned_path):
+    """Evict `desktop_env.evaluators.*` modules already loaded from the installed release.
+
+    `__path__` only steers imports that haven't happened yet, and one has: importing
+    `desktop_env.controllers.setup` (every run does, for config setup) pulls in
+    `desktop_env.evaluators.metrics.utils`, which drags the whole installed metrics package
+    into sys.modules. Without this eviction the overlay is a silent no-op -- measured on the
+    2026-09-08 campaign tail, where 171 runs recorded `evaluator_commit` while the installed
+    1.0.2 had actually computed every one of their verdicts. A provenance field that lies is
+    worse than no field at all.
+
+    Modules already handed out stay alive for whoever holds a reference (setup.py keeps its
+    `compare_urls`); only subsequent imports are redirected. These are pure-function modules,
+    so two copies coexisting costs nothing but memory.
+    """
+    for name, mod in list(sys.modules.items()):
+        if not name.startswith("desktop_env.evaluators."):
+            continue
+        origin = getattr(mod, "__file__", None)
+        if not origin or str(origin).startswith(pinned_path):
+            continue
+        del sys.modules[name]
+        # Dropping it from sys.modules is not enough: the parent package still holds it as an
+        # attribute, and `from desktop_env.evaluators import metrics` is satisfied by that
+        # attribute without ever re-running the import machinery.
+        parent_name, _, leaf = name.rpartition(".")
+        parent = sys.modules.get(parent_name)
+        if parent is not None and getattr(parent, leaf, None) is mod:
+            delattr(parent, leaf)
 
 
 def evaluator_provenance():
@@ -121,7 +155,18 @@ def evaluator_provenance():
         installed = version("desktop_env")
     except Exception:
         installed = None
-    return {"evaluator_commit": commit, "evaluator_package": installed}
+    # Report where the metrics ACTUALLY resolve from, not where we asked them to: the overlay
+    # can be defeated by an earlier import (see _drop_installed_submodules).
+    where = None
+    try:
+        from desktop_env.evaluators import metrics
+        where = str(pathlib.Path(metrics.__file__).resolve().parent)
+    except Exception:
+        pass
+    in_effect = bool(commit) and where is not None and where.startswith(str(PINNED_EVALUATORS))
+    return {"evaluator_commit": commit if in_effect else None,
+            "evaluator_package": installed,
+            "evaluator_source": "pinned" if in_effect else "installed"}
 
 
 def make_setup_controller(controller_url, *, cache_dir=None):
@@ -146,6 +191,15 @@ def _last_is_fail(action_history):
         return False
     last = action_history[-1]
     return last == "FAIL" or (isinstance(last, dict) and last.get("action_type") == "FAIL")
+
+
+def _guest_machine(controller, default="x86_64"):
+    try:
+        out = controller.execute_python_command("import platform; print(platform.machine())")
+        text = (out or {}).get("output") if isinstance(out, dict) else out
+        return (text or "").strip() or default
+    except Exception:
+        return default
 
 
 class _EnvAdapter:
@@ -174,9 +228,23 @@ class _EnvAdapter:
         # current_use_proxy in 2, so both were latent failures waiting on the right task.
         self.chromium_port = 9222
         self.vlc_port = 8080
+        self._vm_machine = None
         self.current_use_proxy = False
         self.action_history = action_history
         self.controller = controller
+
+    @property
+    def vm_machine(self):
+        """Guest CPU architecture, asked for lazily.
+
+        The pinned chrome getters branch on it (`env.vm_machine.lower()`), and its absence cost
+        3 runs on 873cafdd the day the pinned tree went in. Lazy on purpose: an evaluator that
+        short-circuits (the agent answered FAIL) must reach the guest zero times, and a probe in
+        __init__ would spend a round-trip on every scored run to serve the handful of chrome
+        getters that read it."""
+        if self._vm_machine is None:
+            self._vm_machine = _guest_machine(self.controller)
+        return self._vm_machine
 
 
 def evaluate_official(controller_url, task, action_history, cache_dir=None):
@@ -265,3 +333,13 @@ def _score(env, ev, func, controller_url, cache_dir, getters, metrics):
         expected_state = getter(expected_spec)(env, expected_spec)
         return float(metric(result_state, expected_state, **options))
     return float(metric(result_state, **options))
+
+
+# Overlay the pinned evaluators as early as possible: at import of this module, before anything
+# here can pull `desktop_env.controllers.setup` in (which imports the installed metrics). Doing
+# it only inside evaluate_official meant evicting and re-importing modules mid-run, which also
+# threw away any patch a caller had applied to them.
+try:
+    use_pinned_evaluators()
+except Exception:      # never let provenance plumbing stop a run from being scored
+    pass

@@ -93,6 +93,93 @@ def affected_getters(package_dir=None):
     return out
 
 
+# --- benchmark-wide exposure: how many of the 369 tasks each defect can reach ---------------
+# Observed counts only cover what has actually been run (the campaign skips chrome, and a task
+# with no run has no verdict to invalidate). These are derived from the task JSON and the
+# evaluator source instead, so they answer "how big is this defect on the benchmark", not "how
+# often did we happen to hit it".
+
+def _defs_with(root, needle):
+    """get_*/def names in `root` whose body mentions `needle`."""
+    out = set()
+    if not pathlib.Path(root).is_dir():
+        return out
+    for src in pathlib.Path(root).glob("*.py"):
+        text = src.read_text(errors="replace")
+        for m in re.finditer(r"def (\w+)\(([\s\S]*?)(?=\ndef |\Z)", text):
+            if needle in m.group(2):
+                out.add(m.group(1))
+    return out
+
+
+def _all_defs(root):
+    out = set()
+    if not pathlib.Path(root).is_dir():
+        return out
+    for src in pathlib.Path(root).glob("*.py"):
+        out |= set(re.findall(r"^def (\w+)", src.read_text(errors="replace"), re.M))
+    return out
+
+
+def defect_exposure(pinned_root=None, installed_root=None, tasks=None):
+    """{class: {"tasks": [...], "status": ...}} over the WHOLE release, derived from source.
+
+    `pinned_root` / `installed_root` are `.../evaluators` directories (the pinned tree fetched
+    by data/download_evaluators.py, and the installed desktop_env release).
+    """
+    from benchmarks.osworld.env import osworld_eval
+    pinned = pathlib.Path(pinned_root or osworld_eval.PINNED_EVALUATORS)
+    if installed_root is None:
+        try:
+            import desktop_env.evaluators
+            installed = pathlib.Path(desktop_env.evaluators.__path__[-1])
+        except Exception:
+            installed = pinned
+    else:
+        installed = pathlib.Path(installed_root)
+
+    url_builders = _defs_with(pinned / "getters", "http://{")
+    guest_port = {g for g in url_builders
+                  if g in _defs_with(pinned / "getters", "chromium_port")
+                  or g in _defs_with(pinned / "getters", "vlc_port")}
+    controller_port = url_builders - guest_port
+    machine_readers = _defs_with(pinned / "getters", "vm_machine")
+    missing_in_installed = ((_all_defs(pinned / "metrics") - _all_defs(installed / "metrics"))
+                            | (_all_defs(pinned / "getters") - _all_defs(installed / "getters")))
+
+    if tasks is None:
+        # The WHOLE release, not tasks.load_tasks(): exposure is a property of the benchmark,
+        # and narrowing it to the apps this image supports would flatter the numbers.
+        with open(config.TASKS_FILE) as fh:
+            tasks = [json.loads(line) for line in fh if line.strip()]
+    out = collections.defaultdict(list)
+    for t in tasks:
+        tid, g = t["id"], _spec_getters(t)
+        f = (t.get("evaluator") or {}).get("func")
+        f = set(f) if isinstance(f, list) else ({f} if f else set())
+        if g & controller_port:
+            out["url_scheme"].append(tid)
+        if g & guest_port:
+            out["guest_port"].append(tid)
+        if (f | g) & missing_in_installed:
+            out["library_skew"].append(tid)
+        if g & machine_readers:
+            out["vm_machine"].append(tid)
+        if "googledrive" in json.dumps(t.get("config") or []):
+            out["needs_credentials"].append(tid)
+
+    status = {
+        "url_scheme": ("fixed", "getter builds http://<controller port> -> loopback forwarder"),
+        "guest_port": ("open", "getter wants guest port 9222/8080, which the sandbox never publishes"),
+        "library_skew": ("fixed", "symbol absent from the installed desktop_env -> pinned tree"),
+        "vm_machine": ("fixed", "getter reads env.vm_machine -> lazy property on _EnvAdapter"),
+        "needs_credentials": ("unfixable", "Google Drive setup needs credentials we don't ship"),
+    }
+    return {"n_tasks": len(tasks),
+            "classes": {k: {"tasks": sorted(v), "status": status[k][0], "what": status[k][1]}
+                        for k, v in sorted(out.items())}}
+
+
 def _spec_getters(task):
     """The get_* functions a task's evaluator will actually call."""
     ev = task.get("evaluator") or {}
@@ -209,6 +296,7 @@ def audit(results_dir=None, system=None, tasks_by_id=None, broken_getters=None):
         "unresolved_task_ids": unresolved,
         "excluded_task_ids": excluded,
         "clean_task_ids": valid_tasks,
+        "exposure": defect_exposure(),
     }
 
 
@@ -246,6 +334,18 @@ def _main():
     print(f"\nclean tasks (verdicts usable as-is): {len(rep['clean_task_ids'])}")
     print(f"\n{len(rep['broken_getters'])} getter(s) in the installed desktop_env build their "
           f"own http:// URL:\n  {', '.join(rep['broken_getters'])}")
+
+    exp = rep["exposure"]
+    n = exp["n_tasks"]
+    print(f"\nBENCHMARK-WIDE EXPOSURE (all {n} verified tasks, derived from the task JSON and "
+          f"the evaluator source -- not from what we happened to run)")
+    print("  tasks   share  status      defect")
+    union = set()
+    for name, d in sorted(exp["classes"].items(), key=lambda kv: -len(kv[1]["tasks"])):
+        k = len(d["tasks"])
+        union |= set(d["tasks"])
+        print(f"  {k:5d}  {100*k/n:5.1f}%  {d['status']:10s}  {name} -- {d['what']}")
+    print(f"  {len(union):5d}  {100*len(union)/n:5.1f}%  {'':10s}  at least one of the above")
 
 
 if __name__ == "__main__":
