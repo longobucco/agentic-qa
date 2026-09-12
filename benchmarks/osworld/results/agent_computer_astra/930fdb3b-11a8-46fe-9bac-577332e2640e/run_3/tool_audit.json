@@ -1,0 +1,652 @@
+{
+  "tool_calls": [
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "image"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "click",
+      "arguments": {
+        "x": 1090,
+        "y": 257
+      },
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "click",
+      "arguments": {
+        "x": 1090,
+        "y": 257
+      },
+      "outcome": {
+        "content_types": [
+          "text"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "image"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "key",
+      "arguments": {
+        "keys": "ctrl+shift+p"
+      },
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "key",
+      "arguments": {
+        "keys": "ctrl+shift+p"
+      },
+      "outcome": {
+        "content_types": [
+          "text"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "image"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "type",
+      "arguments": {
+        "text": "Preferences: Open Keyboard Shortcuts (JSON)"
+      },
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "type",
+      "arguments": {
+        "text": "Preferences: Open Keyboard Shortcuts (JSON)"
+      },
+      "outcome": {
+        "content_types": [
+          "text"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "image"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "click",
+      "arguments": {
+        "x": 596,
+        "y": 189
+      },
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "click",
+      "arguments": {
+        "x": 596,
+        "y": 189
+      },
+      "outcome": {
+        "content_types": [
+          "text"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "image"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "key",
+      "arguments": {
+        "keys": "ctrl+a"
+      },
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "key",
+      "arguments": {
+        "keys": "ctrl+a"
+      },
+      "outcome": {
+        "content_types": [
+          "text"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "image"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "type",
+      "arguments": {
+        "text": "[\n    {\n        \"key\": \"ctrl+j\",\n        \"command\": \"workbench.action.focusActiveEditorGroup\",\n        \"when\": \"terminalFocus\"\n    }\n]\n"
+      },
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "type",
+      "arguments": {
+        "text": "[\n    {\n        \"key\": \"ctrl+j\",\n        \"command\": \"workbench.action.focusActiveEditorGroup\",\n        \"when\": \"terminalFocus\"\n    }\n]\n"
+      },
+      "outcome": {
+        "content_types": [
+          "text"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "image"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "key",
+      "arguments": {
+        "keys": "ctrl+a"
+      },
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "key",
+      "arguments": {
+        "keys": "ctrl+a"
+      },
+      "outcome": {
+        "content_types": [
+          "text"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "image"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "type",
+      "arguments": {
+        "text": "[{\"key\":\"ctrl+j\",\"command\":\"workbench.action.focusActiveEditorGroup\",\"when\":\"terminalFocus\"}]"
+      },
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "type",
+      "arguments": {
+        "text": "[{\"key\":\"ctrl+j\",\"command\":\"workbench.action.focusActiveEditorGroup\",\"when\":\"terminalFocus\"}]"
+      },
+      "outcome": {
+        "content_types": [
+          "text"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "image"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "key",
+      "arguments": {
+        "keys": "shift+end"
+      },
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "key",
+      "arguments": {
+        "keys": "shift+end"
+      },
+      "outcome": {
+        "content_types": [
+          "text"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "a11y_tree",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "a11y_tree",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "text"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "image"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "key",
+      "arguments": {
+        "keys": "backspace"
+      },
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "key",
+      "arguments": {
+        "keys": "backspace"
+      },
+      "outcome": {
+        "content_types": [
+          "text"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "image"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "key",
+      "arguments": {
+        "keys": "ctrl+s"
+      },
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "key",
+      "arguments": {
+        "keys": "ctrl+s"
+      },
+      "outcome": {
+        "content_types": [
+          "text"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "image"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "key",
+      "arguments": {
+        "keys": "ctrl+grave"
+      },
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "key",
+      "arguments": {
+        "keys": "ctrl+grave"
+      },
+      "outcome": {
+        "content_types": [
+          "text"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "image"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "key",
+      "arguments": {
+        "keys": "ctrl+shift+p"
+      },
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "key",
+      "arguments": {
+        "keys": "ctrl+shift+p"
+      },
+      "outcome": {
+        "content_types": [
+          "text"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "image"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "type",
+      "arguments": {
+        "text": "Terminal: Create New Terminal"
+      },
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "type",
+      "arguments": {
+        "text": "Terminal: Create New Terminal"
+      },
+      "outcome": {
+        "content_types": [
+          "text"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "image"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "key",
+      "arguments": {
+        "keys": "enter"
+      },
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "key",
+      "arguments": {
+        "keys": "enter"
+      },
+      "outcome": {
+        "content_types": [
+          "text"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "image"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "key",
+      "arguments": {
+        "keys": "ctrl+j"
+      },
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "key",
+      "arguments": {
+        "keys": "ctrl+j"
+      },
+      "outcome": {
+        "content_types": [
+          "text"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "image"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    }
+  ],
+  "contaminated": false,
+  "evidence": []
+}

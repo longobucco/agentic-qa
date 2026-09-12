@@ -1,0 +1,3 @@
+The desktop remains black with an empty accessibility tree; I couldn’t open a terminal to collect the report.
+
+ANSWER: FAIL

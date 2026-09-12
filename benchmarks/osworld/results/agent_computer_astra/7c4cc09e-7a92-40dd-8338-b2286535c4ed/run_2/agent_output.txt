@@ -1,0 +1,3 @@
+Arabic isn’t available as a built-in display language in this installation. Changing it would require a language-pack extension, which your instructions prohibit.
+
+ANSWER: FAIL

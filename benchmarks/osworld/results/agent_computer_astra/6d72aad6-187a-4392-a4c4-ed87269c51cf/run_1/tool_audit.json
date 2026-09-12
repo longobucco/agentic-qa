@@ -1,0 +1,40 @@
+{
+  "tool_calls": [
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "image"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "a11y_tree",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "a11y_tree",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "text"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    }
+  ],
+  "contaminated": false,
+  "evidence": []
+}

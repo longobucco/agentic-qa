@@ -1,0 +1,23 @@
+[
+  {
+    "id": "5ac2891a-eacd-4954-b339-98abba077adb",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-09-10T00:53:36.549396+00:00"
+  },
+  {
+    "id": "5ac2891a-eacd-4954-b339-98abba077adb",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-09-10T08:46:44.239888+00:00"
+  },
+  {
+    "id": "5ac2891a-eacd-4954-b339-98abba077adb",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-09-11T07:29:06.567249+00:00"
+  }
+]

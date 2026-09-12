@@ -1,0 +1,3 @@
+The desktop remains black with an empty accessibility tree, so VLC is inaccessible and I couldn’t change the setting.
+
+ANSWER: FAIL

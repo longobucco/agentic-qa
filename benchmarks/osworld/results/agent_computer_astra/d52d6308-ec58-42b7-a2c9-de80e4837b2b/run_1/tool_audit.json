@@ -1,0 +1,240 @@
+{
+  "tool_calls": [
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "image"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "a11y_tree",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "a11y_tree",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "text"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "click",
+      "arguments": {
+        "x": 682,
+        "y": 134
+      },
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "click",
+      "arguments": {
+        "x": 682,
+        "y": 134
+      },
+      "outcome": {
+        "content_types": [
+          "text"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "image"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "click",
+      "arguments": {
+        "x": 766,
+        "y": 328
+      },
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "click",
+      "arguments": {
+        "x": 766,
+        "y": 328
+      },
+      "outcome": {
+        "content_types": [
+          "text"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "image"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "click",
+      "arguments": {
+        "x": 173,
+        "y": 10
+      },
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "click",
+      "arguments": {
+        "x": 173,
+        "y": 10
+      },
+      "outcome": {
+        "content_types": [
+          "text"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "image"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "click",
+      "arguments": {
+        "x": 681,
+        "y": 132
+      },
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "click",
+      "arguments": {
+        "x": 681,
+        "y": 132
+      },
+      "outcome": {
+        "content_types": [
+          "text"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "image"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "click",
+      "arguments": {
+        "x": 769,
+        "y": 369
+      },
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "click",
+      "arguments": {
+        "x": 769,
+        "y": 369
+      },
+      "outcome": {
+        "content_types": [
+          "text"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "image"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    }
+  ],
+  "contaminated": false,
+  "evidence": []
+}

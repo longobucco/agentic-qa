@@ -1,0 +1,8 @@
+{
+  "id": "5ac2891a-eacd-4954-b339-98abba077adb",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official check_play_and_exit -> 0.00",
+  "source": "official",
+  "gold_sha256": {}
+}

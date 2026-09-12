@@ -1,0 +1,3 @@
+The desktop remains blank with no accessible controls, so I couldn’t configure the account.
+
+ANSWER: FAIL

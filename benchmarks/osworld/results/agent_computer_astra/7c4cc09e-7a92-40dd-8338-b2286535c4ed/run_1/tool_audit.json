@@ -1,0 +1,270 @@
+{
+  "tool_calls": [
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "image"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "click",
+      "arguments": {
+        "x": 1090,
+        "y": 257
+      },
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "click",
+      "arguments": {
+        "x": 1090,
+        "y": 257
+      },
+      "outcome": {
+        "content_types": [
+          "text"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "image"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "key",
+      "arguments": {
+        "keys": "ctrl+shift+p"
+      },
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "key",
+      "arguments": {
+        "keys": "ctrl+shift+p"
+      },
+      "outcome": {
+        "content_types": [
+          "text"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "image"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "type",
+      "arguments": {
+        "text": "Configure Display Language"
+      },
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "type",
+      "arguments": {
+        "text": "Configure Display Language"
+      },
+      "outcome": {
+        "content_types": [
+          "text"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "image"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "key",
+      "arguments": {
+        "keys": "enter"
+      },
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "key",
+      "arguments": {
+        "keys": "enter"
+      },
+      "outcome": {
+        "content_types": [
+          "text"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "image"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "a11y_tree",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "a11y_tree",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "text"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "type",
+      "arguments": {
+        "text": "Arabic"
+      },
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "type",
+      "arguments": {
+        "text": "Arabic"
+      },
+      "outcome": {
+        "content_types": [
+          "text"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "image"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "key",
+      "arguments": {
+        "keys": "esc"
+      },
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "key",
+      "arguments": {
+        "keys": "esc"
+      },
+      "outcome": {
+        "content_types": [
+          "text"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "image"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    }
+  ],
+  "contaminated": false,
+  "evidence": []
+}

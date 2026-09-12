@@ -1,0 +1,3 @@
+The desktop remains black with no accessible player controls, so I couldn’t change the slider color.
+
+ANSWER: FAIL

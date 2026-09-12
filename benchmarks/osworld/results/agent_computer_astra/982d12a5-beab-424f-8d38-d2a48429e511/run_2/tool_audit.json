@@ -1,0 +1,219 @@
+{
+  "tool_calls": [
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "image"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "click",
+      "arguments": {
+        "x": 1091,
+        "y": 258
+      },
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "click",
+      "arguments": {
+        "x": 1091,
+        "y": 258
+      },
+      "outcome": {
+        "content_types": [
+          "text"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "image"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "key",
+      "arguments": {
+        "keys": "ctrl+shift+p"
+      },
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "key",
+      "arguments": {
+        "keys": "ctrl+shift+p"
+      },
+      "outcome": {
+        "content_types": [
+          "text"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "image"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "type",
+      "arguments": {
+        "text": "Preferences: Color Theme"
+      },
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "type",
+      "arguments": {
+        "text": "Preferences: Color Theme"
+      },
+      "outcome": {
+        "content_types": [
+          "text"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "image"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "click",
+      "arguments": {
+        "x": 505,
+        "y": 188
+      },
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "click",
+      "arguments": {
+        "x": 505,
+        "y": 188
+      },
+      "outcome": {
+        "content_types": [
+          "text"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "image"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "click",
+      "arguments": {
+        "x": 509,
+        "y": 364
+      },
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "click",
+      "arguments": {
+        "x": 509,
+        "y": 364
+      },
+      "outcome": {
+        "content_types": [
+          "text"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": null,
+      "event": "item.started"
+    },
+    {
+      "type": "screenshot",
+      "arguments": {},
+      "outcome": {
+        "content_types": [
+          "image"
+        ],
+        "success": true
+      },
+      "event": "item.completed"
+    }
+  ],
+  "contaminated": false,
+  "evidence": []
+}

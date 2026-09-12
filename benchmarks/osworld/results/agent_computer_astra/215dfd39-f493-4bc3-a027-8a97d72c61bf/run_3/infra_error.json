@@ -1,0 +1,16 @@
+[
+  {
+    "id": "215dfd39-f493-4bc3-a027-8a97d72c61bf",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-09-09T20:57:06.916817+00:00"
+  },
+  {
+    "id": "215dfd39-f493-4bc3-a027-8a97d72c61bf",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-09-09T22:56:58.531180+00:00"
+  }
+]

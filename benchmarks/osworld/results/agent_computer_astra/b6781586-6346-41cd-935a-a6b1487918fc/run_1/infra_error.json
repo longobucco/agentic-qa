@@ -1,0 +1,16 @@
+[
+  {
+    "id": "b6781586-6346-41cd-935a-a6b1487918fc",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-09-09T23:14:39.188743+00:00"
+  },
+  {
+    "id": "b6781586-6346-41cd-935a-a6b1487918fc",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-09-10T07:08:40.341439+00:00"
+  }
+]

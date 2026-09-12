@@ -1,0 +1,3 @@
+Disabled “Debug: Focus Editor On Break” so debugging won’t automatically move focus back to the editor.
+
+ANSWER: DONE

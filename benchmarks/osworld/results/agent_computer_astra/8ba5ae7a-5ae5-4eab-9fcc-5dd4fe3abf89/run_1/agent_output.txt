@@ -1,0 +1,3 @@
+The desktop remains black with no accessible controls, so I couldn’t change the recordings folder.
+
+ANSWER: FAIL

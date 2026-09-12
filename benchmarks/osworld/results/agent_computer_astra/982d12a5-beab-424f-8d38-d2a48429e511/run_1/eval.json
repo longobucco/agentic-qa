@@ -1,0 +1,8 @@
+{
+  "id": "982d12a5-beab-424f-8d38-d2a48429e511",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official compare_config -> 0.00",
+  "source": "official",
+  "gold_sha256": {}
+}

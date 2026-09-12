@@ -1,0 +1,3 @@
+Git is not installed, so the repository could not be cloned.
+
+ANSWER: FAIL

@@ -1,0 +1,31 @@
+{
+  "id": "46407397-a7d5-4c6b-92c6-dbe038b1457b",
+  "bucket": "thunderbird",
+  "instruction": "Help me export charts, graph or other images from docx files received in email \"Lecture Document\" in Notes folder and upload these png files to the figures/ folder in Google Drive for later use (use numbers to name them).",
+  "answer": "",
+  "setup_error": "config setup failed: Setup step 1 failed: _googledrive_setup - Invalid client secrets file ('Error opening file', 'client_secrets.json', 'No such file or directory', 2)",
+  "provenance": {
+    "task_sha256": "5262de8fffeb9477f996dc4107139ac56dc663c5614477d36791b96905784575",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "model_requested": "gpt-6-astra",
+    "controller_url": "https://5000-f843e457-67dc-4c66-a29a-af464b89c6ee.daytonaproxy01.eu",
+    "release": "verified",
+    "evaluator_commit": "091f5ef1d5544bc74953c77875d5feb5bed30108",
+    "evaluator_package": "1.0.2",
+    "evaluator_source": "pinned",
+    "max_turns": null,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-09-09T09:03:10.313613+00:00",
+    "finished_at": "2026-09-09T09:03:10.494818+00:00",
+    "model_served": null,
+    "model_pinned": true,
+    "model_mismatch": null,
+    "reasoning_effort_mismatch": null,
+    "agent_runtime": "codex_cli",
+    "agent_runtime_version": "codex-cli 0.153.4",
+    "reasoning_effort": "high",
+    "max_steps": 30
+  }
+}

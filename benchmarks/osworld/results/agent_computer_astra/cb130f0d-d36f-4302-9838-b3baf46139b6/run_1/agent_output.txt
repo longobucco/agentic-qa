@@ -1,0 +1,3 @@
+The desktop is blank, with no accessible video or controls.
+
+ANSWER: FAIL

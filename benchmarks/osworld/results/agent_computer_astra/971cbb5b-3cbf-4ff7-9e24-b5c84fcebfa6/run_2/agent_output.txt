@@ -1,0 +1,3 @@
+VS Code’s built-in settings cannot automatically create a named `test.py` file on every launch. The startup setting only supports creating an untitled file.
+
+ANSWER: FAIL

@@ -1,0 +1,16 @@
+[
+  {
+    "id": "f3977615-2b45-4ac5-8bba-80c17dbe2a37",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-09-09T20:45:19.624475+00:00"
+  },
+  {
+    "id": "f3977615-2b45-4ac5-8bba-80c17dbe2a37",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-09-09T22:45:08.266763+00:00"
+  }
+]

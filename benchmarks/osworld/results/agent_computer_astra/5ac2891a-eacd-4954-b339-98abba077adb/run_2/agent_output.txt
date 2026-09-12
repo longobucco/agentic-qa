@@ -1,0 +1,1 @@
+I’ll check VLC’s settings and turn off the option that closes it when playback ends.

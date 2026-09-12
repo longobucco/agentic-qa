@@ -1,0 +1,3 @@
+The Downloads folder does not exist in the current user’s home directory, so the required photo is unavailable.
+
+ANSWER: FAIL

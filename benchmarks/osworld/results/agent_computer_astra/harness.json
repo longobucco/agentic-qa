@@ -1,0 +1,12 @@
+{
+  "system": "agent_computer_astra",
+  "runs": 3,
+  "concurrency": 1,
+  "judge_repeats": 1,
+  "env": {
+    "OSW_TASK_TIMEOUT": "2700",
+    "OSW_ASTRA_MODEL": "gpt-6-astra",
+    "OSW_ASTRA_REASONING_EFFORT": "high",
+    "OSW_ASTRA_CODEX_VERSION": "0.153.4"
+  }
+}

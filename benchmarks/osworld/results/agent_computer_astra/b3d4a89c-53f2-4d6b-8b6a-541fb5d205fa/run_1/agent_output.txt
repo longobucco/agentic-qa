@@ -1,0 +1,3 @@
+The desktop remains black and exposes no controls, so I couldn’t turn on Bluetooth.
+
+ANSWER: FAIL

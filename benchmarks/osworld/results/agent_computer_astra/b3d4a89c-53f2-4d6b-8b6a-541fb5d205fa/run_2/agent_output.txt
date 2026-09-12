@@ -1,0 +1,3 @@
+The desktop remains blank, so I can’t access Bluetooth settings.
+
+ANSWER: FAIL

@@ -1,0 +1,6 @@
+{
+  "id": "46407397-a7d5-4c6b-92c6-dbe038b1457b",
+  "verdict": "ENVIRONMENT_ERROR",
+  "reason": "config setup failed: Setup step 1 failed: _googledrive_setup - Invalid client secrets file ('Error opening file', 'client_secrets.json', 'No such file or directory', 2)",
+  "source": "environment"
+}

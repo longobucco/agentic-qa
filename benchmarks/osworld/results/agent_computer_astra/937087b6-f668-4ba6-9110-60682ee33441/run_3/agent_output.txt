@@ -1,0 +1,2 @@
+The desktop remains black with no accessible controls, so I couldn’t change the default player.
+ANSWER: FAIL

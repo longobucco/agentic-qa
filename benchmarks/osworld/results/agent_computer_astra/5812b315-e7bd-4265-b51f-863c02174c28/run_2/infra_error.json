@@ -1,0 +1,23 @@
+[
+  {
+    "id": "5812b315-e7bd-4265-b51f-863c02174c28",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-09-10T00:07:01.725411+00:00"
+  },
+  {
+    "id": "5812b315-e7bd-4265-b51f-863c02174c28",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-09-10T08:00:38.572728+00:00"
+  },
+  {
+    "id": "5812b315-e7bd-4265-b51f-863c02174c28",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-09-11T06:42:28.520299+00:00"
+  }
+]

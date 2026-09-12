@@ -1,0 +1,16 @@
+[
+  {
+    "id": "b3d4a89c-53f2-4d6b-8b6a-541fb5d205fa",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-09-09T23:26:39.101878+00:00"
+  },
+  {
+    "id": "b3d4a89c-53f2-4d6b-8b6a-541fb5d205fa",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-09-10T07:20:36.990729+00:00"
+  }
+]

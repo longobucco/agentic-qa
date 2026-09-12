@@ -1,0 +1,3 @@
+The task is not possible: the desktop remains black with no accessible controls to switch to Charles.
+
+ANSWER: FAIL

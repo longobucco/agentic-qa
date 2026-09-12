@@ -1,0 +1,3 @@
+The desktop remains black and exposes no accessible controls, so I couldn’t change the setting.
+
+ANSWER: FAIL

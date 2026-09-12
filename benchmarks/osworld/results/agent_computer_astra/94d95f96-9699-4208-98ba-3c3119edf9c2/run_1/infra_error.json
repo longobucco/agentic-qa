@@ -1,0 +1,16 @@
+[
+  {
+    "id": "94d95f96-9699-4208-98ba-3c3119edf9c2",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-09-09T20:33:14.047689+00:00"
+  },
+  {
+    "id": "94d95f96-9699-4208-98ba-3c3119edf9c2",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-09-09T22:32:57.161915+00:00"
+  }
+]

@@ -1,0 +1,2 @@
+The desktop is blank and exposes no accessible controls, so I couldn’t remove Vim from favorites.
+ANSWER: FAIL

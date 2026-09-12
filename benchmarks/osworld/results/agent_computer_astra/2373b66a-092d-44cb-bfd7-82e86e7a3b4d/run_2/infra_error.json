@@ -1,0 +1,23 @@
+[
+  {
+    "id": "2373b66a-092d-44cb-bfd7-82e86e7a3b4d",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-09-10T00:30:19.098522+00:00"
+  },
+  {
+    "id": "2373b66a-092d-44cb-bfd7-82e86e7a3b4d",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-09-10T08:23:40.929829+00:00"
+  },
+  {
+    "id": "2373b66a-092d-44cb-bfd7-82e86e7a3b4d",
+    "outcome": "RATE_LIMITED",
+    "error_type": "APIError",
+    "error": "api_error_status=429",
+    "at": "2026-09-11T07:05:59.801162+00:00"
+  }
+]
