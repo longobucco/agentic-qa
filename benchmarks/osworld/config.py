@@ -142,6 +142,64 @@ INLOOP_VERIFY_SKIP_APPS = {
     a.strip() for a in os.environ.get("OSW_INLOOP_VERIFY_SKIP_APPS", "os").split(",") if a.strip()
 }
 
+# Grounding harness (docs/grounding-harness-plan.md): adds find_element/click_element/
+# list_elements to the OSWorld MCP server, resolving a NAMED target through the accessibility tree
+# instead of having the model emit (x, y) from a screenshot. Unlike every earlier G5 arm this acts
+# before the wrong state exists rather than auditing it afterwards -- motivated by
+# analysis/g10_grounding_signal.py, where targeting is the ONLY measured feature separating the
+# always-fail bucket from always-pass (re-clicks within 8px at 10.9% vs 8.3% of clicks, z = 2.40,
+# p < 0.05; the flaky bucket worst on every metric) once budget, observation capability,
+# derive-and-compare behaviour and requirement complexity are all ruled out. `click(x, y)` is
+# untouched and still offered: this is an added channel, and the 2026 grounding literature is
+# explicit that a11y trees are incomplete on custom-rendered widgets. Off by default -- opt in
+# per-run, like every other arm.
+GROUNDING = os.environ.get("OSW_GROUNDING", "0") == "1"
+# Re-read the tree after a click_element and tell the model when nothing changed. This is the
+# action-level half of the mechanism (a click that did nothing is detectable locally, with no
+# model call and no oracle) and costs one extra /accessibility round trip per click.
+GROUNDING_VERIFY = os.environ.get("OSW_GROUNDING_VERIFY", "1") == "1"
+# Score floor below which a candidate is not offered at all. Tuned so a prefix-only match still
+# resolves but an unrelated element does not: too low and the agent clicks confidently on the
+# wrong control, which is worse than being told to read the screenshot.
+GROUNDING_MIN_SCORE = float(os.environ.get("OSW_GROUNDING_MIN_SCORE", "0.45"))
+# Its own results tree. The baseline tree holds 982 runs that the g10 analysis and every published
+# number in this project depend on; a grounding run writing into it would silently contaminate the
+# very comparison this arm exists to make. Same reasoning as VR_SYSTEM_NAME's suffix below, and
+# the reason it is applied here rather than at SYSTEM_NAME's own definition is only ordering --
+# GROUNDING is not known yet at that point.
+if GROUNDING:
+    SYSTEM_NAME = f"{SYSTEM_NAME}_grounding"
+
+# Verify-Replan (docs/verify-replan-minimal-integration-plan.md): a second, separate runner
+# (runners/verify_replan.py) -- not a flag on agent_computer, so the baseline path is provably
+# unaffected (see the runner's own module docstring and its characterization tests).
+# Section 8: "OSW_MAX_TURNS non può essere assegnato integralmente a ogni sessione" -- each role
+# gets its own budget rather than inheriting the baseline executor's 150.
+VR_INITIAL_MAX_TURNS = int(os.environ.get("OSW_VR_INITIAL_MAX_TURNS", "100"))
+VR_AUDITOR_MAX_TURNS = int(os.environ.get("OSW_VR_AUDITOR_MAX_TURNS", "12"))
+VR_RECOVERY_MAX_TURNS = int(os.environ.get("OSW_VR_RECOVERY_MAX_TURNS", "38"))
+VR_FINAL_AUDITOR_MAX_TURNS = int(os.environ.get("OSW_VR_FINAL_AUDITOR_MAX_TURNS", "12"))
+VR_MAX_RECOVERIES = int(os.environ.get("OSW_VR_MAX_RECOVERIES", "1"))
+# Its own results tree, keyed the same way as SYSTEM_NAME above (so a non-Sonnet-5 variant can
+# never silently mix into the pinned pilot's tree), AND by whether recovery is even possible:
+# Section 13's "audit-only" arm (OSW_VR_MAX_RECOVERIES=0, measures the auditor alone) and the
+# "verify-replan" arm (recoveries on) would otherwise both write to plain
+# "verify_replan_sonnet5" and silently overwrite each other's runs on the same 30-task pilot
+# manifest -- the exact class of bug the model-pinning post-mortem (Section 4 of the project
+# doc) already burned this project on once.
+VR_SYSTEM_NAME = (f"verify_replan_{model_slug()}" if MODEL else "verify_replan") + (
+    "_auditonly" if VR_MAX_RECOVERIES == 0 else "")
+VR_INITIAL_TIMEOUT = int(os.environ.get("OSW_VR_INITIAL_TIMEOUT", "2400"))
+VR_AUDIT_TIMEOUT = int(os.environ.get("OSW_VR_AUDIT_TIMEOUT", "300"))
+VR_RECOVERY_TIMEOUT = int(os.environ.get("OSW_VR_RECOVERY_TIMEOUT", "900"))
+VR_TOTAL_TIMEOUT = int(os.environ.get("OSW_VR_TOTAL_TIMEOUT", "3600"))
+# Empty means "inherit OSW_MODEL" -- kept as its own knob (rather than always reading MODEL
+# directly) so a future ablation can pin a cheaper auditor model without touching the executor.
+VR_AUDITOR_MODEL = os.environ.get("OSW_VR_AUDITOR_MODEL", "").strip()
+VR_MIN_CONFIDENCE = os.environ.get("OSW_VR_MIN_CONFIDENCE", "medium").strip().lower()
+VR_AUDIT_ON_FAIL = os.environ.get("OSW_VR_AUDIT_ON_FAIL", "1") == "1"
+VR_CAPTURE_EVERY_OBS = os.environ.get("OSW_VR_CAPTURE_EVERY_OBS", "1") == "1"
+
 # Score with the evaluator tree fetched at data/download_data.py::UPSTREAM_COMMIT
 # (data/download_evaluators.py) rather than whatever `desktop_env` release pip resolved. On by
 # default once that tree is on disk; set OSW_PINNED_EVALUATORS=0 to keep a campaign scored by
