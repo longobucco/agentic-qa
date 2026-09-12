@@ -1,3 +1,3 @@
-The "project" folder from /home/user is now open in VS Code — the Explorer shows the PROJECT workspace with .vscode, main.py, and README.md, and the title bar reads "project [Superuser]".
+The "project" folder is now open in VS Code, showing its contents (.vscode, main.py, README.md).
 
 ANSWER: DONE

@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "verdict": "infeasible",
+  "observations": [
+    {
+      "fact": "Thunderbird main window shows the 'Home' welcome page with an empty folder pane and 'No message found' in the message list",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "No user_pref lines matching 'mail.account' exist in prefs.js (0 of 73 lines matched)",
+      "source": "a11y",
+      "evidence_ref": null
+    },
+    {
+      "fact": "No user_pref lines matching 'mail.server' exist in prefs.js (0 of 73 lines matched)",
+      "source": "a11y",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The only mailnews.* prefs present are default tag color/label settings, with no filter- or account-related entries",
+      "source": "a11y",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "No corrective action possible without setting up an email account first; once an account with an Inbox and subfolders exists, Message Filters could be configured to run automatically on subfolders via 'Run in Folder' plus editing the filter's applied folders, or the 'When Getting New Mail' filter type.",
+  "confidence": "high",
+  "parse_error": null
+}

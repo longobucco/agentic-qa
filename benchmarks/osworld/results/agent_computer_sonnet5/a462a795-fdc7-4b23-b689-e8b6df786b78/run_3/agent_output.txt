@@ -1,1 +1,3 @@
-You've hit your session limit · resets 11:30am (Europe/Rome)
+The user `Charles` does not exist on this machine: `id charles` returns "no such user", there is no entry in `/etc/passwd`, and `/home` is empty. Per the task instructions I must not create the user or modify system accounts, so switching to `Charles` is not possible.
+
+ANSWER: FAIL

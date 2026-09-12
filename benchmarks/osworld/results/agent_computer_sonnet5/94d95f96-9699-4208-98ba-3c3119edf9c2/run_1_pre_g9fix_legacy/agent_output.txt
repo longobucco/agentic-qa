@@ -1,0 +1,3 @@
+Confirmed: Spotify (com.spotify.Client, version 1.2.95.453) is installed as a system Flatpak. It can be launched with `flatpak run com.spotify.Client`.
+
+ANSWER: DONE

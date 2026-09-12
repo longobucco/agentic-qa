@@ -1,0 +1,3 @@
+The VS Code User configuration now defines an automatic task (in `tasks.json`) that runs `touch test.py` on `folderOpen`, plus `task.allowAutomaticTasks: on`, so opening a folder in VS Code creates `test.py` with no extensions involved.
+
+ANSWER: DONE

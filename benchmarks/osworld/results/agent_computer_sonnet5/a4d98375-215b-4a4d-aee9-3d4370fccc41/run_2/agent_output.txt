@@ -1,0 +1,3 @@
+Automatic screen lock is now enabled: the screen blanks after 5 minutes idle and locks immediately when it does (`lock-enabled=true`, `lock-delay=0`, `idle-delay=300`).
+
+ANSWER: DONE

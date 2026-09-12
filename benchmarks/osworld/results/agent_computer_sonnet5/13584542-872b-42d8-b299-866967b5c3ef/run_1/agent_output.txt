@@ -1,0 +1,10 @@
+The screen now shows a freshly launched xterm. It printed `43 132` (rows × columns) from `stty size` on startup — i.e. it opened directly at 132×43 with no manual resize.
+
+Addressing the review's point: the earlier black screen was simply because no terminal window was open at that moment; it wasn't evidence the config change failed. The actual persistent fix is a file change, now demonstrably in effect:
+
+- The only terminal emulator installed here is **xterm** (no GNOME Terminal / profile dialog exists on this system).
+- xterm's startup geometry is read from `~/.Xresources` and `~/.Xdefaults` on every launch, so it survives reboot. Both files now contain `XTerm*vt100.geometry: 132x43`.
+- An `xrdb -merge ~/.Xresources` line was also added to `~/.xprofile` and the openbox autostart.
+- Verification: a brand-new xterm reports `stty size` = `43 132` without any manual change.
+
+ANSWER: DONE

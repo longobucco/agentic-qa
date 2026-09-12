@@ -1,0 +1,12 @@
+{
+  "status": "done",
+  "claim": "On slide 1 of 45_2.pptx, the three text boxes now have exact font colors: top 'NEW PR   DUCT' = yellow FFFF00, middle 'LAUNCH' = red FF0000, bottom 'PR   JECT PR   POSAL' = green 00FF00. The document was saved in place.",
+  "evidence_to_check": [
+    "Slide 1 text 'NEW PR   DUCT' renders in pure yellow (RGB 255,255,0)",
+    "Slide 1 text 'LAUNCH' renders in pure red (RGB 255,0,0)",
+    "Slide 1 text 'PR   JECT PR   POSAL' renders in pure green (RGB 0,255,0)",
+    "File /home/user/Desktop/45_2.pptx saved with these character color runs"
+  ],
+  "remaining_risk": "An extra headless soffice instance was launched to open a UNO socket; it should not affect the saved document.",
+  "parse_error": null
+}

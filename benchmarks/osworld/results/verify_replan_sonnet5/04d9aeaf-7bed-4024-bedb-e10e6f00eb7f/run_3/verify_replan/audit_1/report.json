@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "Title bar reads 'SmallBalanceSheet.xlsx - LibreOffice Calc', confirming the file is in xlsx format",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Sheet tabs at bottom show 'Sheet1' and 'Sheet2', with Sheet2 currently active/selected",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Sheet2 row 1 contains headers: A1=Year, B1=CA changes, C1=FA changes, D1=OA changes",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Sheet2 A2:A6 contain 2015, 2016, 2017, 2018, 2019 in sequence",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Row 2 (2015) shows B2=10.15%, C2=-4.96%, D2=-1.68%, matching claimed values exactly",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Row 6 (2019) shows B6=6.55%, C6=-7.46%, D6=1.44%, matching claimed values exactly",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Formula bar shows a formula referencing Sheet1 (e.g. =(Sheet1.B3-Sheet1.B2)/Sheet1.B2) for the selected range, consistent with year-over-year percentage change formulas pulling from Sheet1",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Values in B:D columns are displayed with a percent sign and 2 decimal places, consistent with percentage formatting",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Accessibility tree returned empty/no useful content, so all verification relied on the screenshot only",
+      "source": "a11y",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "None required; optionally confirm the file was actually saved to disk (e.g., no unsaved-changes indicator or a reload check), since save status could not be directly confirmed from the current screenshot alone.",
+  "confidence": "medium",
+  "parse_error": null
+}

@@ -1,0 +1,3 @@
+The titles on slides 2, 3, and 5 are now black and underlined (visible in the slide panel thumbnails), and the changes are saved to the file.
+
+ANSWER: DONE

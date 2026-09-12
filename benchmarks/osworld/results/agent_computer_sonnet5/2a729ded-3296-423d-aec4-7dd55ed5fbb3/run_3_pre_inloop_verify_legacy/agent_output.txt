@@ -1,0 +1,3 @@
+The background has been made transparent (blue sky/water removed via contiguous color selection) and the image was saved back to `/home/user/Desktop/dog_with_background.png` as a PNG with alpha.
+
+ANSWER: DONE

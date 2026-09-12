@@ -1,0 +1,17 @@
+File saved (kept pptx format). Task complete.
+
+ANSWER: DONE
+
+```json
+{
+  "status": "done",
+  "claim": "On slide 1 of 45_2.pptx, the three textboxes are colored top-to-bottom: 'NEW PR DUCT' is pure yellow (FFFF00), 'LAUNCH' is pure red (FF0000), and 'PR JECT PR POSAL' is pure green (00FF00). The file was saved in pptx format.",
+  "evidence_to_check": [
+    "Slide 1 textbox 'NEW PR DUCT' font color is hex FFFF00",
+    "Slide 1 textbox 'LAUNCH' font color is hex FF0000",
+    "Slide 1 textbox 'PR JECT PR POSAL' font color is hex 00FF00",
+    "File 45_2.pptx was saved (no unsaved changes indicator)"
+  ],
+  "remaining_risk": null
+}
+```

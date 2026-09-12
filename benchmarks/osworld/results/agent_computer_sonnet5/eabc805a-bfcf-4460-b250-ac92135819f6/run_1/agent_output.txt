@@ -1,3 +1,3 @@
-The Python extension by Microsoft is now installed — the Install button was replaced by a settings gear, a Python icon appeared in the activity bar, and the "Get Started with Python" walkthrough opened automatically.
+The Python extension is now installed — the "Get Started with Python Development" walkthrough opened and the gear icon replaced the Install button.
 
 ANSWER: DONE

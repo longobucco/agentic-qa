@@ -1,0 +1,3 @@
+LibreOffice Impress has no built-in video-export feature. Its export options are PDF, HTML, Flash (SWF), and static image formats — none of which is a video container. With terminal/ffmpeg, extensions, and other applications explicitly forbidden, there is no way to produce a playable video using only Impress's built-in export. The task's core precondition does not exist.
+
+ANSWER: FAIL

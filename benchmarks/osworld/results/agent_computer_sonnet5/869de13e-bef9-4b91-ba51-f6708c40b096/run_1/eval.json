@@ -1,0 +1,8 @@
+{
+  "id": "869de13e-bef9-4b91-ba51-f6708c40b096",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official ['exact_match', 'exact_match', 'exact_match'] -> 0.00",
+  "source": "official",
+  "gold_sha256": {}
+}

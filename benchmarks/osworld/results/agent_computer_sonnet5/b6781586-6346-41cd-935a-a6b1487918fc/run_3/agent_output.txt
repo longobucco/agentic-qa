@@ -1,3 +1,3 @@
-Timezone is now set to UTC (UTC+0): `/etc/localtime` → `/usr/share/zoneinfo/UTC`, `/etc/timezone` = `UTC`, and `date` confirms UTC.
+The system time zone is already set to `Etc/UTC` (`/etc/localtime → /usr/share/zoneinfo/Etc/UTC`, `/etc/timezone` = `Etc/UTC`), and `date` confirms the clock is running in UTC (offset +0). No change needed.
 
 ANSWER: DONE

@@ -1,0 +1,3 @@
+Automatic screen lock is now enabled: the screen locks when the session goes idle (idle-delay 300s / 5 min), with lock-enabled=true and lock-delay=0 (locks immediately on blank).
+
+ANSWER: DONE

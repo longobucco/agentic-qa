@@ -1,0 +1,3 @@
+The extension installed successfully. `code --list-extensions` now shows `undefined_publisher.test`.
+
+ANSWER: DONE

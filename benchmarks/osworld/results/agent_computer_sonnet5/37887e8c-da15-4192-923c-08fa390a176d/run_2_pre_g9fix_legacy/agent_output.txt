@@ -1,0 +1,3 @@
+Done. The two 30-day-old files were gzip-compressed into `/tmp/test_files/old_files/` (`old_file1.txt.gz`, `old_file2.txt.gz`, originals removed), and the two recent files remain in `/tmp/test_files/new_files/`.
+
+ANSWER: DONE

@@ -1,0 +1,3 @@
+SSH server installed and configured. User **charles** created with password `Ex@mpleP@55w0rd!`, shell `nologin`, and an sshd `Match User charles` block enforcing `ChrootDirectory /home/test1` + `ForceCommand internal-sftp`. Verified: SFTP as charles connects and is jailed with `/` = `/home/test1`; interactive shell access is refused.
+
+ANSWER: DONE

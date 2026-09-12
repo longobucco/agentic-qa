@@ -1,0 +1,10 @@
+{
+  "id": "adf5e2c3-64c7-4644-b7b6-d2f0167927e7",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official compare_docx_files -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "Essay_Writing_English_for_uni_Gold.docx": "1ae0d141428acee7fd1221d9f7cc0cfcbb50316bc5998ae4bd7ba8842ddec05b"
+  }
+}

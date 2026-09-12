@@ -1,0 +1,3 @@
+All five extensions have been installed: Zoom Chrome Extension, Speechify — Text to Speech, React Developer Tools, Momentum, and Google Translate. Each now shows "Remove from Chrome".
+
+ANSWER: DONE

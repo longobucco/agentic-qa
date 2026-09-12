@@ -1,0 +1,3 @@
+File written to /root/output.txt with contents `1<br/>\n2<br/>\n3<br/>`.
+
+ANSWER: DONE

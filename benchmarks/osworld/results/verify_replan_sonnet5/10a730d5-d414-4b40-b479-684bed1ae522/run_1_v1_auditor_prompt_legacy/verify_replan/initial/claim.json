@@ -1,0 +1,12 @@
+{
+  "status": "done",
+  "claim": "Thunderbird is set to a complete dark mode: the built-in 'Dark' theme is the active/enabled theme, mail.dark-reader.enabled is true, and layout.css.prefers-color-scheme.content-override is set to 0 (dark) so message content also renders dark.",
+  "evidence_to_check": [
+    "Add-ons Manager > Themes shows 'Dark' under Enabled (button reads 'Disable'), and System theme/Light show 'Enable'",
+    "about:config / Config Editor: layout.css.prefers-color-scheme.content-override = 0 (shown bold/modified)",
+    "about:config: mail.dark-reader.enabled = true",
+    "Thunderbird UI (toolbars, folder pane, tab bar) renders with a dark background"
+  ],
+  "remaining_risk": "The exact preference a grader expects for 'complete' dark mode may differ; extensions.activeThemeID should be thunderbird-compact-dark@mozilla.org but I set the theme via the UI rather than verifying that pref directly.",
+  "parse_error": null
+}

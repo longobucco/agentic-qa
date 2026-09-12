@@ -1,0 +1,3 @@
+Both config files now have an uncommented `global-key-play-pause=Ctrl+Alt+p` under `[core]`, which enables a global (system-wide) hotkey for play/pause in VLC so the video can be paused/resumed without leaving the PDF reader.
+
+ANSWER: DONE

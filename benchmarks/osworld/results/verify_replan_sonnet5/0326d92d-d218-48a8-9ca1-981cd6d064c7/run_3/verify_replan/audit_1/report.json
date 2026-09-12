@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "Row 12 has label 'Total' in A12 and values 4852, 4587, 3943, 3857, 4677, 4243 in B12:G12, matching the sum of each column's visible sales rep values (e.g. B2:B11 sums to 4852)",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Row 13 has label 'Growth' in A13, B13 is empty (Jan omitted), and C13:G13 show -5.46%, -14.04%, -2.18%, 21.26%, -9.28%, which match (month-prior)/prior calculations off the Total row",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "A column/bar chart titled 'Total' is present with 6 bars labeled Jan through Jun, heights consistent with the Total row values",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "A line chart titled 'Growth' is present with 5 points labeled Feb, Mar, Apr, May, Jun (no Jan point), y-values consistent with the Growth row percentages",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Title bar shows 'SalesRep.xlsx - LibreOffice Calc' with no unsaved-changes indicator visible",
+      "source": "screenshot",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "None required; optionally confirm the underlying cell formulas (vs. hardcoded values) by inspecting B12 and C13 formula bar content, and confirm the file was saved in xlsx format via the Keep Current Format dialog, since these were not directly observable from the static screenshot.",
+  "confidence": "medium",
+  "parse_error": null
+}

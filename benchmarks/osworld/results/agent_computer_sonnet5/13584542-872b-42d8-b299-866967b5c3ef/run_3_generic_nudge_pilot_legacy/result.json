@@ -1,0 +1,72 @@
+{
+  "id": "13584542-872b-42d8-b299-866967b5c3ef",
+  "bucket": "os",
+  "instruction": "I click in terminal: terminal->132x43 to change terminal size but after each reboot terminal size is set to default setting and I have to change it again. Help me set it permanently",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "967c0901eee92e82c70f8c3f4d8b6c9dd4675786e644e56060097e773fc36052",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "model_requested": "claude-sonnet-5",
+    "controller_url": "https://5000-969309fb-35bb-4945-904e-c2670be6b9ed.daytonaproxy01.eu",
+    "release": "verified",
+    "evaluator_commit": "091f5ef1d5544bc74953c77875d5feb5bed30108",
+    "evaluator_package": "1.0.2",
+    "evaluator_source": "pinned",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-09-09T22:16:27.115113+00:00",
+    "finished_at": "2026-09-09T22:19:58.067207+00:00"
+  },
+  "transcript_saved": true,
+  "transcript_bytes": 485679,
+  "model_served": [
+    "claude-sonnet-5"
+  ],
+  "model_pinned": true,
+  "model_mismatch": false,
+  "agent_clean_finish": true,
+  "agent_num_turns": 29,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.5283994,
+  "agent_input_tokens": 12,
+  "agent_output_tokens": 2042,
+  "agent_cache_read_tokens": 356758,
+  "agent_cache_creation_tokens": 7912,
+  "agent_model_usage": {
+    "claude-sonnet-5": {
+      "inputTokens": 12,
+      "outputTokens": 2042,
+      "cacheReadInputTokens": 356758,
+      "cacheCreationInputTokens": 7912,
+      "webSearchRequests": 0,
+      "costUSD": 0.12344359999999999,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "thinkingTokens": 1021,
+      "canonicalModel": "claude-sonnet-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "agent_duration_ms": 198521,
+  "agent_duration_api_ms": 149508,
+  "agent_session_id": "048d6e8a-d934-481d-a79f-93f202ea6de8",
+  "agent_uuid": "c7b30247-e8ad-4f28-8393-694fc39a241c",
+  "inloop_verify_used": true,
+  "inloop_verify_verdict": "FAIL",
+  "inloop_verify_model": [
+    "claude-sonnet-5"
+  ],
+  "inloop_verify_first_answer": "DONE",
+  "inloop_verify_retried": true,
+  "inloop_verify_second_answer": "DONE"
+}

@@ -1,7 +1,8 @@
 {
   "id": "7f35355e-02a6-45b5-b140-f0be698bcf85",
-  "verdict": "EVAL_ERROR",
-  "reason": "eval_state='25.27' (official eval errored: AttributeError: module 'desktop_env.evaluators.getters' has no attribute 'get_local_file')",
-  "source": "offline_fallback",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official compare_result_files -> 0.00",
+  "source": "official",
   "gold_sha256": {}
 }

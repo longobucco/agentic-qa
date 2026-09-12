@@ -1,0 +1,3 @@
+All fields are filled in (full name, email address, password) and I'm staying on the Account Setup page as requested.
+
+ANSWER: DONE

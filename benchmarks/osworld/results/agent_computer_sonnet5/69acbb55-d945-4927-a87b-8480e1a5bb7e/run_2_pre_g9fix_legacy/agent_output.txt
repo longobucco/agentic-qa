@@ -1,0 +1,8 @@
+Environment configured successfully:
+
+- Repo fetched to `/home/user/instructor-embedding` (GitHub tarball, since `git` isn't present).
+- Freed disk space (pip cache was full), then installed CPU-only `torch 2.14.0+cpu` plus all of `requirements.txt` (transformers, datasets, pyarrow, numpy, requests, scikit-learn, scipy, sentence-transformers, tqdm, rich, huggingface-hub).
+- Installed the project itself in editable mode (`pip install -e .` → `InstructorEmbedding-1.0.2`).
+- Verified: `from InstructorEmbedding import INSTRUCTOR` and all deps import cleanly.
+
+ANSWER: DONE

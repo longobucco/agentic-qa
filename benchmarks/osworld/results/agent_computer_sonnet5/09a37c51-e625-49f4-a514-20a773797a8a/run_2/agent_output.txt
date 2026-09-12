@@ -1,0 +1,3 @@
+White background with the person retained (75% white, subject in center). Saved to `/home/user/Desktop/pic.jpg`.
+
+ANSWER: DONE

@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "verdict": "uncertain",
+  "observations": [
+    {
+      "fact": "LibreOffice Impress is open with 'multimedia_classroom_podium-2020.pptx' on Slide 1 of 23, in normal editing view with no dialog open",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "No Tools > Options dialog is visible, so the 'Enable Presenter Console' checkbox state cannot be observed",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The accessibility tree returned empty, providing no additional state",
+      "source": "a11y",
+      "evidence_ref": null
+    },
+    {
+      "fact": "A first-run 'version 7.3 of LibreOffice for the first time' info bar is shown",
+      "source": "screenshot",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [
+    "Cannot confirm 'Enable Presenter Console' checkbox under Tools > Options > LibreOffice Impress > General is unchecked (dialog not open)",
+    "Cannot inspect registrymodifications.xcu / EnablePresenterScreen value with available observation tools"
+  ],
+  "next_action": "Open Tools > Options > LibreOffice Impress > General and confirm the 'Enable Presenter Console' checkbox under Presentation is unchecked; alternatively verify the PresenterScreen key is set to false in the user config.",
+  "confidence": "medium",
+  "parse_error": null
+}

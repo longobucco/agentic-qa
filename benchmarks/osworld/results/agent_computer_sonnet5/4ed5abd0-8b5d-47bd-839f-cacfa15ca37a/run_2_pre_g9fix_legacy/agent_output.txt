@@ -1,0 +1,3 @@
+I edited the presentation file directly, setting the title text on slides 2, 3, and 5 to black and underlined.
+
+ANSWER: DONE

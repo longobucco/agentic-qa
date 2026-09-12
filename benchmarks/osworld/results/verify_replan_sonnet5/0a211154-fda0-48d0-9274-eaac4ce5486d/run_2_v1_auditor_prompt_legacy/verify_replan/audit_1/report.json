@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "LibreOffice Impress has 13_0.pptx open with 6 slides",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Slide 3 thumbnail has a bright yellow background and contains a photograph of a woman (appears to be a real person)",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Slide 4 thumbnail ('Meet the Teams') has a bright yellow background and contains three head-shot photographs of people",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Slides 1, 5 and 6 thumbnails retain purple/lavender backgrounds and show only illustrations (mermaid/underwater art), not real-people photos",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Slide 2 is displayed in the editor; its title placeholder text reads 'Let's start' (straight apostrophe) and its background remains #5F77BB per the Properties panel",
+      "source": "screenshot",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "None required; if the checker demands a typographic (curly) apostrophe, re-enter the slide 2 title using that character.",
+  "confidence": "medium",
+  "parse_error": null
+}

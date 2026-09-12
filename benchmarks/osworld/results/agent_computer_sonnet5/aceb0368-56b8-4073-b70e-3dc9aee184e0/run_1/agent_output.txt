@@ -1,1 +1,15 @@
-You've hit your session limit · resets 6:30am (Europe/Rome)
+I compared each remaining student's answer sheet (students 1–9) against ReferenceAnswers.docx and recorded per-question scoring (1 = correct, 0 = wrong) plus the Total Grade (10 pts/question) in grades.xlsx:
+
+- Richard Smith: 70
+- Jennifer Rodriguez: 70
+- Michael Gonzalez: 80
+- Mary Williams: 80
+- Joseph Thomas: 60
+- James Martinez: 60
+- Barbara Wilson: 90
+- Karen Davis: 50
+- David Brown: 100
+
+(Linda Garcia, row 2, was already graded.)
+
+ANSWER: DONE

@@ -1,1 +1,6 @@
-You've hit your session limit · resets 3:50pm (Europe/Rome)
+Both outputs are on the Desktop and match almost exactly (35 differing edge pixels out of 1.6M).
+
+- **GIMP extraction** (`character_gimp.png`): loaded `character.png`, used Select by Color on the background `(190,216,205)`, Composite criterion, threshold 30, no antialias/feather, added alpha, Edit→Clear, exported PNG. 470,212 opaque (character) pixels.
+- **Automation script** (`/home/user/Desktop/extract_character.py`): replicates the same selection — max per-channel abs difference from `(190,216,205)` ≤ 30 → set alpha 0 — and writes `character_code.png`. 470,213 opaque pixels.
+
+ANSWER: DONE

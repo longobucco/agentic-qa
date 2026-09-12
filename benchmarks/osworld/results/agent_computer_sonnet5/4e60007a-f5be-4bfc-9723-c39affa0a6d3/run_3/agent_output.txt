@@ -1,3 +1,3 @@
-The autoDocstring extension (njpwerner.autodocstring v0.6.1) was successfully installed.
+Installed — the extension now shows Disable/Uninstall buttons.
 
 ANSWER: DONE

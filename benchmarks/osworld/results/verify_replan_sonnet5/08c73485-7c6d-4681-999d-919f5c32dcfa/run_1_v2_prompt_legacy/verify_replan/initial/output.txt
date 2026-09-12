@@ -1,0 +1,16 @@
+The Thunderbird instance has no email account configured at all — no Inbox, no subfolders, and no message filters exist to modify. The task presupposes an existing account with filters already running on Inbox, which isn't present here (Account Setup wizard was open and had to be dismissed; the mail view shows "No message found" with no folder pane account). Without any account/folder structure, there's nothing to apply automatic filters to, and no way to demonstrate the requested change.
+
+ANSWER: FAIL
+
+```json
+{
+  "status": "infeasible",
+  "claim": "No email account is configured in this Thunderbird instance, so there are no folders, subfolders, or message filters to modify — the task's precondition (existing filters running automatically on Inbox but not subfolders) does not hold.",
+  "evidence_to_check": [
+    "Thunderbird main window shows no account in the folder pane and message list says 'No message found'",
+    "The Account Setup wizard was open on launch, indicating no email account had been configured",
+    "Tools > Message Filters would show no accounts/filters available to select"
+  ],
+  "remaining_risk": "It's possible an account exists but was hidden behind the Account Setup tab in a way I didn't fully explore; however the folder pane being completely empty strongly indicates no account is configured."
+}
+```

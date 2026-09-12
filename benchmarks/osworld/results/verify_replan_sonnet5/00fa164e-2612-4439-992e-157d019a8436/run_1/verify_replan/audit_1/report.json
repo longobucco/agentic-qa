@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "awe_desk_env.docx is open in LibreOffice Writer with a heading '5.2 Main Results'",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "A table appears directly beneath the '5.2 Main Results' heading",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Header row reads: model | os | calc | impress | writer | vlc | gimp | chrome | thunderbird | vscode | multi | avg (12 columns, lowercase)",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Data row reads: Gpt-4 | 0.3333 | 0.0000 | 0.0910 | 0.0476 | 0.1507 | 0.0625 | 0.3636 | 0.1333 | 0.4545 | 0.2143 | 0.1557",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Numeric cells display four decimal places including trailing zeros (0.0000, 0.3333, etc.)",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The title bar shows the document name as awe_desk_env.docx",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The source spreadsheet expe-results.xlsx is not open/visible, so displayed values could not be cross-checked against the original GPT-4 row",
+      "source": "screenshot",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "None required from observable state; if higher assurance is needed, open expe-results.xlsx and compare the GPT-4 row cell-by-cell against the inserted table.",
+  "confidence": "medium",
+  "parse_error": null
+}

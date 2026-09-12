@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "45_2.pptx is open in LibreOffice Impress showing slide 1 of 22 selected",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Slide 1 top text box 'NEW PR DUCT' renders in pure yellow",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Slide 1 middle text box 'LAUNCH' renders in pure red",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Slide 1 bottom text box 'PR JECT PR POSAL' renders in bright pure green (not a dark or muted green)",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Top-to-bottom color order is yellow, red, green as required",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The accessibility tree returned empty, so exact font color hex values could not be independently confirmed",
+      "source": "a11y",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "None required; if stricter verification is desired, select each textbox and open Format > Character to confirm hex values FFFF00 / FF0000 / 00FF00.",
+  "confidence": "medium",
+  "parse_error": null
+}

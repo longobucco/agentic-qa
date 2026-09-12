@@ -1,0 +1,3 @@
+Installed — the extension page now shows "Disable" and "Uninstall" buttons, confirming autoDocstring by Nils Werner is installed.
+
+ANSWER: DONE

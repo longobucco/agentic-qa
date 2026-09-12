@@ -1,0 +1,13 @@
+I identified the environment: Ubuntu with **openbox + xterm** (no GNOME Terminal). In xterm, the "132x43" size selection isn't persisted anywhere by the app itself — the permanent way to set it is via X resources.
+
+I created the setting in the user's home (`/root`):
+
+- `~/.Xresources` and `~/.Xdefaults`, both containing:
+  ```
+  xterm*VT100.geometry: 132x43
+  XTerm*geometry: 132x43
+  ```
+
+xterm reads `~/.Xdefaults` directly at every startup (and `.Xresources` is loaded by `xrdb` in standard X session startups), so every new terminal — including after a reboot — will now open at 132 columns × 43 rows without manual adjustment.
+
+ANSWER: DONE

@@ -1,3 +1,3 @@
-I removed the background from the husky photo using GIMP (contiguous color selection of the blue backdrop, added an alpha channel, cleared the selection) and saved it back as a PNG with transparency at `/home/user/Desktop/dog_with_background.png`. The dog is preserved; the surrounding background is now fully transparent.
+The file on disk (`/home/user/Desktop/dog_with_background.png`) now has an alpha channel with the blue water background fully transparent — GIMP now displays it with the transparency checkerboard and the husky isolated. The earlier review was looking at the stale imported view; reloading the saved file confirms the transparency is really there.
 
 ANSWER: DONE

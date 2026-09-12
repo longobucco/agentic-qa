@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "prefs.js contains user_pref(\"extensions.activeThemeID\", \"thunderbird-compact-dark@mozilla.org\")",
+      "source": "a11y",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Thunderbird window shows dark backgrounds with light text across the title bar, tab bar, sidebar, and Settings > Appearance page",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "extensions.ui.lastCategory is set to addons://list/theme, consistent with the theme having just been changed via the Add-ons Manager Themes list",
+      "source": "a11y",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "None needed; the built-in Dark theme is confirmed active both in the rendered UI and in the underlying prefs.js.",
+  "confidence": "high",
+  "parse_error": null
+}

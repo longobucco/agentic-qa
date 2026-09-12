@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "A sheet tab named 'Sheet2' exists next to 'Sheet1' at the bottom of the workbook, and it is the currently active sheet (status bar shows 'Sheet 2 of 2').",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Row 1 of Sheet2 shows headers 'Year' in A1, 'CA change*' in B1, 'FA change*' in C1, and 'OA changes' in D1 (B1/C1 text appears truncated by column width, consistent with 'CA changes'/'FA changes').",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Column A rows 2-6 contain 2015, 2016, 2017, 2018, 2019 in order.",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Row 2 (2015) values: B2=10.15%, C2=-4.96%, D2=-1.68%; Row 6 (2019) values: B6=6.55%, C6=-7.46%, D6=1.44% \u2014 matching the executor's claimed evidence exactly.",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The formula bar for the selected range shows '=(Sheet1.B3-Sheet1.B2)/Sheet1.B2', indicating the percentage change formula references Sheet1 data for consecutive years, consistent with a year-over-year percentage change calculation.",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Title bar reads 'SmallBalanceSheet.xlsx - LibreOffice Calc' with no visible unsaved-changes marker, though the precise save-state indicator in the status bar is too small to read with certainty.",
+      "source": "screenshot",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "None required; optionally widen columns B and C to confirm the full header text 'CA changes' / 'FA changes' is not truncated, and confirm the file was actually saved (no pending 'Keep Current Format' dialog or modified-document indicator).",
+  "confidence": "medium",
+  "parse_error": null
+}

@@ -1,0 +1,15 @@
+Saved successfully in pptx format. Task complete.
+
+ANSWER: DONE
+
+{
+  "status": "done",
+  "claim": "On slide 1, the three text boxes now have exact font colors top-to-bottom: 'NEW PR DUCT' set to pure yellow (FFFF00), 'LAUNCH' set to pure red (FF0000), and 'PR JECT PR POSAL' set to pure green (00FF00). The file was saved in pptx format.",
+  "evidence_to_check": [
+    "Slide 1 text box 'NEW PR DUCT' (top) has font color hex FFFF00",
+    "Slide 1 text box 'LAUNCH' (middle) has font color hex FF0000",
+    "Slide 1 text box 'PR JECT PR POSAL' (bottom) has font color hex 00FF00",
+    "File 45_2.pptx was saved (Keep Current Format dialog confirmed)"
+  ],
+  "remaining_risk": "Each text box's run may contain a single uniform color, but if any box has multiple runs/paragraphs, Ctrl+A within edit mode should have covered all text in that box; not independently verified via XML inspection."
+}

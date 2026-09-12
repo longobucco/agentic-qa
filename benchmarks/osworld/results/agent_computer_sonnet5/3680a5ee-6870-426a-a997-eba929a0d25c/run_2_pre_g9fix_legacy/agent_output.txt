@@ -1,0 +1,3 @@
+The merge is complete. Using the terminal, I converted `file1.xlsx` and `file2.ods` to CSV with LibreOffice headless, row-wise concatenated the two columns with `paste -d ''`, saved the result to `~/Desktop/output.csv` (single column: "First NameLast Name", "DulceAbril", "MaraHashimoto", …), and opened it in LibreOffice Calc from the terminal.
+
+ANSWER: DONE

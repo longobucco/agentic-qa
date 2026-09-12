@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "Screenshot shows slide 1 with 'NEW PR DUCT' in yellow (top), 'LAUNCH' in red (middle), 'PR JECT PR POSAL' in green (bottom)",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "inspect_pptx_text_colors on /home/user/Desktop/45_2.pptx slide1.xml shows exact stored colors: #FFFF00 for 'NEW PR   DUCT', #FF0000 for 'LAUNCH', #00FF00 for 'PR   JECT PR   POSAL'",
+      "source": "a11y",
+      "evidence_ref": null
+    },
+    {
+      "fact": "No other colors (e.g. dark red, light green) appear in slide1.xml text runs",
+      "source": "a11y",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "None needed; the three text boxes on slide 1 are colored pure yellow, red, and green top-to-bottom as requested.",
+  "confidence": "high",
+  "parse_error": null
+}

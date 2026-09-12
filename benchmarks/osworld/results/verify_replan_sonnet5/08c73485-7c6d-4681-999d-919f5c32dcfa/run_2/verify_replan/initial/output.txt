@@ -1,0 +1,12 @@
+This confirms Thunderbird has no email account configured — there's no folder pane, no Inbox, no subfolders, and therefore no Message Filters can exist (filters are per-account, requiring at least one mail account with folders). The task presupposes an existing setup with message filters and subfolders that simply doesn't exist in this environment. I cannot fabricate an account/credentials since none were provided, and setting one up wouldn't reflect the user's actual described scenario.
+
+ANSWER: FAIL
+
+```json
+{
+  "status": "infeasible",
+  "claim": "Thunderbird has no email account configured at all (Account Setup wizard was showing on launch, and 'Use Thunderbird without an email account' leads to an empty folder pane with no Inbox/subfolders). There are no existing message filters or folders to apply automatic filtering to, so the requested task cannot be performed as described.",
+  "evidence_to_check": ["Thunderbird main window folder pane is empty/collapsed with no account listed", "Tools > Message Filters (or hamburger menu > Tools > Message Filters) shows no accounts in the 'Filters for:' dropdown, or the menu item is unavailable", "No Inbox or subfolder exists anywhere in the profile"],
+  "remaining_risk": "It's possible a pre-existing account/profile was intended to be present but failed to load or was hidden in a different profile; I did not attempt to create a new account since that would fabricate a scenario not matching the user's described existing filters/subfolders."
+}
+```

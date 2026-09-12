@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "22_6.pptx is open in LibreOffice Impress, and the editing view shows slide 2 of 2 selected.",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Slide 2 displays the text 'Note' positioned in the top area of the slide, near the right edge (approx x=835-870 while the slide right border is ~915).",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The 'Note' text ends flush toward the right side of the slide, consistent with right/end paragraph alignment rather than left or center.",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Slide 2 also contains an empty content placeholder showing 'Click to add Text', so 'Note' is a separate top element, consistent with a title placeholder.",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The accessibility tree returned no usable content, so placeholder-type and exact alignment metadata could not be independently confirmed.",
+      "source": "a11y",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "If stricter verification is needed, confirm via the file's XML that slide 2's title placeholder (type='title'/'ctrTitle') contains exactly 'Note' and its paragraph properties specify algn='r'.",
+  "confidence": "medium",
+  "parse_error": null
+}

@@ -1,3 +1,3 @@
-The video is now streaming in VLC — playback is running (past the 16-second mark of the 10-minute stream). The only errors are audio-device warnings (the VM has no audio output); the HLS video stream itself is playing fine.
+The stream is now playing in VLC — the m3u8 is loaded, the playback clock is advancing (past 00:00:29), and the test-pattern video is rendering.
 
 ANSWER: DONE

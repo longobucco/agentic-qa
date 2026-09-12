@@ -1,0 +1,8 @@
+{
+  "id": "5c1075ca-bb34-46a3-a7a0-029bd7463e79",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official check_include_exclude -> 0.00",
+  "source": "official",
+  "gold_sha256": {}
+}

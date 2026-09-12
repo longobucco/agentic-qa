@@ -1,0 +1,3 @@
+All regular files under the home directory tree (`/root`, the shell's current directory) now have permission `644`; verified no file remains with a different mode.
+
+ANSWER: DONE

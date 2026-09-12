@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "verdict": "uncertain",
+  "observations": [
+    {
+      "fact": "LibreOffice Impress is open editing 38_1.pptx, currently displaying slide 3 of 6",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "On slide 3 the large red 'HELLO THERE!' text is clipped at the slide's left edge, only fragments 'LO', 'RE', '!' visible near x=165-210; its text box appears to extend off the left of the slide, so alignment within the box cannot be determined visually",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The secondary slide-3 text 'I'm Rain. / Welcome to my education presentation / Follow me at @reallygreatsite...' appears centered",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The accessibility tree returned empty content, providing no shape/paragraph alignment data",
+      "source": "a11y",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Slides 4 and 5 are only visible as tiny panel thumbnails; their textbox alignment cannot be reliably read and I cannot navigate to them (read-only)",
+      "source": "screenshot",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "Open the pptx XML (or inspect each slide in the editor) to confirm a:pPr algn=\"r\" on all paragraphs of the first non-empty textbox of slide 3, algn=\"ctr\" on slide 4's, and algn=\"l\"/absent on slide 5's, and that the file was saved after these edits.",
+  "confidence": "low",
+  "parse_error": null
+}

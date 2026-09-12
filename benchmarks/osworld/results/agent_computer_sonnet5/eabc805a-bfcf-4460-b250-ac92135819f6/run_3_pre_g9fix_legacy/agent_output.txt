@@ -1,0 +1,3 @@
+The Python extension by Microsoft has been installed successfully — the Install button is now replaced by a settings gear, the Python getting-started walkthrough opened, and a Python icon appeared in the activity bar.
+
+ANSWER: DONE

@@ -1,0 +1,17 @@
+All three text boxes on slide 1 are now colored correctly and the file has been saved in pptx format.
+
+ANSWER: DONE
+
+```json
+{
+  "status": "done",
+  "claim": "On slide 1 of 45_2.pptx, the top textbox ('NEW PR DUCT') is now pure yellow (FFFF00), the middle textbox ('LAUNCH') is pure red (FF0000), and the bottom textbox ('PR JECT PR POSAL') is pure green (00FF00), applied top-to-bottom as requested, and the file was saved in pptx format.",
+  "evidence_to_check": [
+    "Slide 1 top textbox text 'NEW PR DUCT' has font color hex FFFF00",
+    "Slide 1 middle textbox text 'LAUNCH' has font color hex FF0000",
+    "Slide 1 bottom textbox text 'PR JECT PR POSAL' has font color hex 00FF00",
+    "File 45_2.pptx was saved (Keep Current Format dialog accepted) with these changes persisted"
+  ],
+  "remaining_risk": "The three text elements are separate shapes/textboxes as observed via click selection, but I did not use a11y tree to formally enumerate shape names/IDs; if any textbox contains multiple runs, only the whole-text selection (Ctrl+A) was recolored which should cover all runs."
+}
+```

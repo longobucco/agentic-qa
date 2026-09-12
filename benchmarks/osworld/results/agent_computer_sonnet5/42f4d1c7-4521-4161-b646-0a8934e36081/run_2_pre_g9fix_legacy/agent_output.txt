@@ -1,0 +1,6 @@
+Both parts complete:
+
+- **Lisp extension installed** into VS Code's active extensions dir (`/tmp/code-extensions`): `mattn.lisp` (plus `qingpeng.common-lisp`). Verified via `code --list-extensions`.
+- **Script-fu resize script** written to `/home/user/Desktop/resize.scm` and opened in VS Code. Running it through GIMP batch mode produced `/home/user/Desktop/resized.png` at exactly 128×128 (verified with PIL).
+
+ANSWER: DONE

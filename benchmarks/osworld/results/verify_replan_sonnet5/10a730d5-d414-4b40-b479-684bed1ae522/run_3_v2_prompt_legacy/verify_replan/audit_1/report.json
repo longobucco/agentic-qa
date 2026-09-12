@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "Thunderbird's title bar, toolbar, tab bar, folder pane, and message list all render with dark backgrounds and light text",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The content pane (Thunderbird's default 'Welcome to Freedom' start page) also renders with a dark background and light/colored text",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "An 'Add-ons Manager' tab is open in the tab bar, but its content is not currently displayed (the 'Settings' tab is the active/visible one instead), so the Themes list showing 'Dark' as enabled could not be directly inspected",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The accessibility tree returned an empty desktop-frame with no node data, so no accessibility-based confirmation of the active theme name was possible",
+      "source": "a11y",
+      "evidence_ref": null
+    },
+    {
+      "fact": "No email account is configured ('No message found' in the message list), so no real HTML email message body could be checked for dark rendering",
+      "source": "screenshot",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [
+    "Could not directly confirm via Add-ons Manager > Themes that 'Dark' theme shows a 'Disable' button (active) while 'Light'/'System theme' show 'Enable' \u2014 that tab's content is not in view",
+    "Could not verify the setting persists across a restart",
+    "Could not verify actual HTML email message content renders in dark mode, since no email account/messages exist"
+  ],
+  "next_action": "Switch to the Add-ons Manager tab and confirm the Dark theme card shows 'Disable' (active) with the others showing 'Enable'; if possible, load or view an actual email message to check whether message body content also renders dark, not just the chrome and start page.",
+  "confidence": "medium",
+  "parse_error": null
+}

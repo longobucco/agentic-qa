@@ -1,0 +1,19 @@
+File saved successfully in xlsx format with Sheet2 containing the required data.
+
+ANSWER: DONE
+
+```json
+{
+  "status": "done",
+  "claim": "I created a new sheet named 'Sheet2' in SmallBalanceSheet.xlsx with headers Year, CA changes, FA changes, OA changes in row 1, and rows for 2015-2019 containing the percentage year-over-year change formulas referencing Sheet1's Current Assets (col B), Fixed Assets (col C), and Other Assets (col D) columns, formatted as percentages, and saved the file in xlsx format.",
+  "evidence_to_check": [
+    "Sheet2 tab exists next to Sheet1 in SmallBalanceSheet.xlsx",
+    "Sheet2!A1:D1 contains 'Year', 'CA changes', 'FA changes', 'OA changes'",
+    "Sheet2!A2:A6 contains 2015, 2016, 2017, 2018, 2019",
+    "Sheet2!B2 shows 10.15% (=(204527-185682)/185682), C2 shows -4.96%, D2 shows -1.68%",
+    "Sheet2!B6 shows 6.55%, C6 shows -7.46%, D6 shows 1.44% for year 2019",
+    "File was saved (Keep Current Format dialog accepted for xlsx)"
+  ],
+  "remaining_risk": "None significant; values were verified visually against Sheet1 source data before saving."
+}
+```

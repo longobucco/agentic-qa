@@ -1,0 +1,4 @@
+{"phase": "EXECUTE_INITIAL", "at": "2026-09-11T11:06:36.252812+00:00"}
+{"phase": "EXECUTE_INITIAL_DONE", "at": "2026-09-11T11:11:22.130213+00:00", "claim_status": "done"}
+{"phase": "AUDIT_1", "at": "2026-09-11T11:11:22.139503+00:00"}
+{"phase": "AUDIT_1_DONE", "at": "2026-09-11T11:11:58.763229+00:00", "verdict": "verified_done"}

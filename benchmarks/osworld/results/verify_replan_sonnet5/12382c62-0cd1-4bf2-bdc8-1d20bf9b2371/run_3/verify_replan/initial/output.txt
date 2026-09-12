@@ -1,0 +1,15 @@
+Chart created successfully in a new "Sheet2": a clustered column BarChart with title "Sales & COGS", series Sales (col B) and COGS (col C), categories from Week 1–10 (col A).
+
+ANSWER: DONE
+
+{
+  "status": "done",
+  "claim": "Added a new sheet 'Sheet2' to /home/user/WeeklySales.xlsx containing a clustered column chart with title 'Sales & COGS', plotting the Sales and COGS series against each week.",
+  "evidence_to_check": [
+    "Workbook WeeklySales.xlsx has sheets ['Sheet1', 'Sheet2']",
+    "Sheet2 contains exactly one chart of type BarChart with type='col' and grouping='clustered'",
+    "The chart title renders as 'Sales & COGS'",
+    "The chart has two data series referencing Sheet1!B1:B11 (Sales) and Sheet1!C1:C11 (COGS) with categories Sheet1!A2:A11"
+  ],
+  "remaining_risk": "LibreOffice was killed rather than cleanly closed; if a verifier reopens in LibreOffice the openpyxl-generated chart XML should still be read correctly, but exact title-object representation differs from a LibreOffice-authored chart."
+}

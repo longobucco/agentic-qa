@@ -1,0 +1,72 @@
+{
+  "id": "276cc624-87ea-4f08-ab93-f770e3790175",
+  "bucket": "vscode",
+  "instruction": "Please help me set the current user's line length for code wrapping to 50 characters in VS Code.",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "4cbdd8d1416de6a9c9e725051182969f809ee3d1cda80d8ac528d97cc19ae271",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "model_requested": "claude-sonnet-5",
+    "controller_url": "https://5000-30c6d357-75b0-45e2-a076-885d90a98e92.daytonaproxy01.eu",
+    "release": "verified",
+    "evaluator_commit": "091f5ef1d5544bc74953c77875d5feb5bed30108",
+    "evaluator_package": "1.0.2",
+    "evaluator_source": "pinned",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-09-09T22:30:32.873050+00:00",
+    "finished_at": "2026-09-09T22:31:39.668616+00:00"
+  },
+  "transcript_saved": true,
+  "transcript_bytes": 1389591,
+  "model_served": [
+    "claude-sonnet-5"
+  ],
+  "model_pinned": true,
+  "model_mismatch": false,
+  "agent_clean_finish": true,
+  "agent_num_turns": 19,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.31480320000000006,
+  "agent_input_tokens": 30,
+  "agent_output_tokens": 1852,
+  "agent_cache_read_tokens": 688188,
+  "agent_cache_creation_tokens": 19422,
+  "agent_model_usage": {
+    "claude-sonnet-5": {
+      "inputTokens": 30,
+      "outputTokens": 1852,
+      "cacheReadInputTokens": 688188,
+      "cacheCreationInputTokens": 19422,
+      "webSearchRequests": 0,
+      "costUSD": 0.23390560000000007,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "thinkingTokens": 626,
+      "canonicalModel": "claude-sonnet-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "agent_duration_ms": 55240,
+  "agent_duration_api_ms": 50027,
+  "agent_session_id": "cbe4d322-9be9-4ba9-825e-302d1ba4c206",
+  "agent_uuid": "67a037ff-a3df-4343-9f3c-015464270d4c",
+  "inloop_verify_used": true,
+  "inloop_verify_verdict": "FAIL",
+  "inloop_verify_model": [
+    "claude-sonnet-5"
+  ],
+  "inloop_verify_first_answer": "DONE",
+  "inloop_verify_retried": true,
+  "inloop_verify_second_answer": "DONE"
+}

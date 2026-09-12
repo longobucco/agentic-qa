@@ -1,0 +1,3 @@
+The image at `/home/user/Desktop/dog_with_background.png` now has an alpha channel with the sky/water background removed (transparent), keeping the dog intact.
+
+ANSWER: DONE

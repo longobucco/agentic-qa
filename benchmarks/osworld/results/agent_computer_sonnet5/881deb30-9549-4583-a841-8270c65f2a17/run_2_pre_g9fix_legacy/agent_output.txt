@@ -1,0 +1,5 @@
+All 72 cells (B2:I10) are filled with the ECS pass rates (supported ÷ applications) computed from the grand-total row of each year's PDF, and the file is saved in xlsx format.
+
+Sample checks: 2015 CityU = 35/77 ≈ 0.4545; 2016 HKUST = 17/24 ≈ 0.7083; 2023 HKU = 40/116 ≈ 0.3448.
+
+ANSWER: DONE

@@ -1,0 +1,3 @@
+The PROJECT folder is now open in VS Code's Explorer.
+
+ANSWER: DONE

@@ -1,0 +1,3 @@
+The screen is entirely black with an empty accessibility tree — there is no desktop UI, volume slider, or settings panel to display, so a visual review cannot confirm this task either way. System volume on this environment is only observable through the audio server. Initially no audio daemon was running (`pactl` gave "Connection refused"). I started PulseAudio and set every sink to 100% (65536 / 0.00 dB) and unmuted, and re-verification confirms the default sink is at 100%, unmuted, and the daemon is still alive.
+
+ANSWER: DONE

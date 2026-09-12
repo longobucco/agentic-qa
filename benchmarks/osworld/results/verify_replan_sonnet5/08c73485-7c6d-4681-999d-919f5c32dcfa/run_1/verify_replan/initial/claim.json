@@ -1,0 +1,11 @@
+{
+  "status": "infeasible",
+  "claim": "Thunderbird has no email account configured at all (Account Settings shows only an empty Outgoing Server/SMTP list, no accounts, no Inbox, no folders), so there are no message filters or subfolders to apply automatic filtering to.",
+  "evidence_to_check": [
+    "Account Settings dialog in Thunderbird shows no mail accounts listed on the left panel, only 'Outgoing Server (SMTP)'",
+    "The folder pane in the main Thunderbird window is empty with 'No message found' and no account/folder tree visible",
+    "Attempting Account Setup wizard shows blank 'Your full name'/'Email address' fields, confirming no pre-existing account"
+  ],
+  "remaining_risk": "It's possible a hidden/disabled account exists that isn't surfacing in the UI due to a rendering issue, but all observed evidence points to a genuinely empty profile with no accounts or filters configured.",
+  "parse_error": null
+}

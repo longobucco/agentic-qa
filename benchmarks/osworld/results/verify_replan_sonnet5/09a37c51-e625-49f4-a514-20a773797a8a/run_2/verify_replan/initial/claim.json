@@ -1,0 +1,11 @@
+{
+  "status": "done",
+  "claim": "Removed the scenic background from the Desktop picture, kept the person, placed them on a solid white background, and saved the result as pic.jpg on the Desktop.",
+  "evidence_to_check": [
+    "File /home/user/Desktop/pic.jpg exists (JPEG, ~27KB, 320x510)",
+    "All four corner pixels of pic.jpg are pure white (255,255,255) and roughly 75% of pixels are near-white",
+    "The person from the original ChMkKV8wsR6IBfEtABYfc0Tgu9cAAA1lQHO_78AFh-L733.jpg remains visible in the center of pic.jpg with no scenic background"
+  ],
+  "remaining_risk": "Automated matting may leave minor edge artifacts or slightly imperfect cutout around the person's hair/outline.",
+  "parse_error": null
+}

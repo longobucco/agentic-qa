@@ -1,0 +1,7 @@
+All three changes are applied to `/home/user/Desktop/16_2.pptx` and verified:
+
+- Content font size → 12 pt (152400 EMU)
+- Content font color → orange (FFA500)
+- Slide background → red solid fill (FF0000)
+
+ANSWER: DONE

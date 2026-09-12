@@ -1,0 +1,11 @@
+The conversion succeeded. While the LibreOffice Calc instance stayed open, I ran the command line:
+
+```
+soffice --headless --convert-to csv --outdir /home/user/Desktop \
+  "-env:UserInstallation=file:///tmp/lo_conv_profile" \
+  /home/user/Desktop/file_example_ODS_5000.ods
+```
+
+The separate `-env:UserInstallation` profile lets `soffice` run alongside the already-running instance. Result: `/home/user/Desktop/file_example_ODS_5000.csv` (5001 lines, same base name) was created with the spreadsheet's data.
+
+ANSWER: DONE

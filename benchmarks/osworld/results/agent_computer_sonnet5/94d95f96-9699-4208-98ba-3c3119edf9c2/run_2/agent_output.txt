@@ -1,3 +1,6 @@
-The desktop environment isn't rendering any content — the screen stays completely black (confirmed via pixel sampling, all pixels are (0,0,0)) even though mouse input is registering (cursor moves). There's no visible desktop, taskbar, application menu, or terminal to open in order to install Spotify (e.g., via a software center or package manager). The accessibility tree also returns an empty desktop frame with no UI elements. This is an environment/display failure preventing any interaction with applications, not a fixable step in the task itself.
+Spotify is now installed on the system.
 
-ANSWER: FAIL
+- The official APT package (`spotify-client`) couldn't be used because its current build requires glibc ≥ 2.39, while this Ubuntu 22.04 system has 2.35, and snap is unavailable (no systemd).
+- Installed instead via Flatpak from Flathub: `com.spotify.Client` version 1.2.95.453, registered as a desktop app ("Spotify"), with a `spotify` launcher command added to PATH.
+
+ANSWER: DONE — Spotify (com.spotify.Client 1.2.95.453) installed via Flatpak; launch with `spotify` or from the app menu.

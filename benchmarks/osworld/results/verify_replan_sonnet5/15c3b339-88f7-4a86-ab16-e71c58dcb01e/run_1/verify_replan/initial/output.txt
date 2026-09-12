@@ -1,0 +1,16 @@
+All fields are filled in and I'm staying on this page as requested.
+
+ANSWER: DONE
+
+{
+  "status": "done",
+  "claim": "In Thunderbird's 'Set Up Your Existing Email Address' page, I filled 'Your full name' with 'anonym-x2024', 'Email address' with 'anonym-x2024@outlook.com', and 'Password' with 'password' (8 masked dots shown). The page is still displayed, not submitted.",
+  "evidence_to_check": [
+    "Account Setup tab shows 'Set Up Your Existing Email Address'",
+    "Email address field contains 'anonym-x2024@outlook.com'",
+    "Your full name field contains 'anonym-x2024'",
+    "Password field shows 8 masked characters",
+    "Continue button is enabled but has not been clicked"
+  ],
+  "remaining_risk": "Full name was set to 'anonym-x2024' since the task didn't specify one; password contents can't be visually verified beyond the 8 dots."
+}

@@ -1,0 +1,7 @@
+{
+  "system": "verify_replan_sonnet5",
+  "runs": 3,
+  "concurrency": 1,
+  "judge_repeats": 1,
+  "env": {}
+}

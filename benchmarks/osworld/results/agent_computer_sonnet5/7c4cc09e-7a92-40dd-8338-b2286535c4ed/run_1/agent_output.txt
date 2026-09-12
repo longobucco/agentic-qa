@@ -1,1 +1,3 @@
-You've hit your session limit · resets 3:50pm (Europe/Rome)
+I set the VS Code display language to Arabic by adding `"locale": "ar"` to `~/.vscode/argv.json` — the built-in mechanism that requires no extensions. This takes effect on the next restart.
+
+ANSWER: DONE

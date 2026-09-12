@@ -1,1 +1,3 @@
-You've hit your session limit · resets 11:30am (Europe/Rome)
+The required precondition is missing: Thunderbird has **no email account configured at all** (confirmed by prefs.js containing no `mail.account`/`mail.server` entries and Thunderbird's own "No Email Account Configured" dialog). There is no existing `anonym-x2024@outlook.com` account to attach a forwarding filter to, no stored credentials, and the task forbids touching the online account. Setting up the account from scratch would require credentials I don't have and would contact the online service.
+
+ANSWER: FAIL

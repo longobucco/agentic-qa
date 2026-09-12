@@ -1,0 +1,3 @@
+The `photos` directory tree contains only empty subfolders (vacation/thailand, vacation/hk, family, events) with no `.jpg` files. I created `/root/Desktop/cpjpg` and there were no `.jpg` files to copy.
+
+ANSWER: DONE — created /root/Desktop/cpjpg; no .jpg files exist anywhere under /root/Desktop/photos, so nothing was copied.

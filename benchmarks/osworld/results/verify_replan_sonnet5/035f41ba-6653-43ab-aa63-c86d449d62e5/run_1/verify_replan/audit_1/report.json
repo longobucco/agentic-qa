@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "verdict": "uncertain",
+  "observations": [
+    {
+      "fact": "LibreOffice Calc has IncomeStatement2.xlsx open; title bar shows no unsaved-changes indicator",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Two sheet tabs exist at the bottom: 'Sheet1' and 'Sheet2'; 'Sheet2' is currently active",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Sheet2 cell A1 contains 'Year_Profit'",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Sheet2 A2 is selected and the formula bar shows ' 2015_55000'; cells A2:A10 display 2015_55000, 2016_47662, 2017_53451, 2018_60819, 2019_62864, 2020_57924, 2021_59634, 2022_50852, 2023_43649",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Sheet1 content is not visible; its Gross Profit column J and header could not be observed because the auditor cannot switch sheets",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The a11y tree returned empty, providing no additional cell-level data",
+      "source": "a11y",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [
+    "Sheet1 cell J1 = 'Gross Profit' and J2:J10 = 55000, 47662, 53451, 60819, 62864, 57924, 59634, 50852, 43649 \u2014 could not be observed",
+    "Whether Sheet2 A2:A10 are stored as text strings (not formulas/numbers) \u2014 not fully confirmable, though formula-bar content is consistent with text"
+  ],
+  "next_action": "Switch to Sheet1 and confirm that column J is headed 'Gross Profit' and J2:J10 hold the nine computed values matching the Sheet2 suffixes; also confirm Sheet2 A-column entries are text.",
+  "confidence": "medium",
+  "parse_error": null
+}

@@ -1,0 +1,3 @@
+I explored Google Search settings (`google.com/preferences` → "Other settings", plus the legacy preferences layout). Modern Google Search no longer exposes any "Results per page" / "Number of results" control — Google removed that setting. There is no supported way through Chrome or Google settings to set search results per page to 50, so the task cannot be completed as stated.
+
+ANSWER: FAIL

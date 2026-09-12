@@ -1,0 +1,14 @@
+All nine reference entries have been rewritten to APA 7th edition style and saved in place:
+
+- **Datta (2020)** – removed "Teaching Case, ISSN:" and "DOI:" labels; added volume **46** and page range **252–272**; DOI as a URL.
+- **Dwivedi et al.** – corrected year **2016** (was 2017), volume/issue **33(1)** (was 30(1)), pages **174–187** (was 130–139); added DOI.
+- **European Commission (2018) & (2019)** – dropped the stray "October 1, 2022," retrieval dates; sentence-cased titles; URL after a period.
+- **Gartner (2021)** – converted from MLA-style quotes/"Accessed" to APA author–date report format.
+- **Mergel et al. (2019)** – added the missing DOI and "Article 101385".
+- **OECD (2017)** – completed the truncated title with its subtitle and added the publisher.
+- **United Nations (2018)** – converted from MLA to APA; added department as publisher.
+- **World Bank (2016)** – converted "World Bank. 2016." style to APA date format; publisher omitted (same as author).
+
+Alphabetical order was already correct and is unchanged; no other part of the document was touched.
+
+ANSWER: DONE

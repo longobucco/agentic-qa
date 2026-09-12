@@ -1,0 +1,10 @@
+Done. The "Enable Presenter Console" option in Tools → Options → LibreOffice Impress → General → Presentation has been unchecked. With this disabled, Impress will no longer use a second monitor for the presenter view (Current/Next slide); the slide show will display on a single screen, leaving the other monitor free.
+
+ANSWER: Disable Tools → Options → LibreOffice Impress → General → Presentation → "Enable Presenter Console" (now unchecked). This stops Impress from using the second monitor for the Current/Next slide view.
+
+{
+  "status": "done",
+  "claim": "In Tools > Options > LibreOffice Impress > General, the 'Enable Presenter Console' checkbox under the Presentation section has been unchecked and applied via OK.",
+  "evidence_to_check": ["Reopen Tools > Options > LibreOffice Impress > General; the 'Enable Presenter Console' checkbox is unchecked", "In the user profile registrymodifications.xcu, Impress/Misc/Start 'EnablePresenterScreen' (or 'PresenterScreen') is set to false"],
+  "remaining_risk": "The exact registry key name graded may differ; the Slide Show Settings 'Presentation display' dropdown was disabled in this single-monitor VM so it could not be set to a specific display."
+}

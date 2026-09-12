@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "verdict": "uncertain",
+  "observations": [
+    {
+      "fact": "The screen is entirely black with only a mouse cursor visible; no terminal, window, or application is displayed.",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The accessibility tree is empty (only an empty desktop-frame element), exposing no windows or UI content.",
+      "source": "a11y",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [
+    "Cannot confirm /root/.Xdefaults contains 'xterm*geometry: 132x43' / 'XTerm*VT100.geometry: 132x43'",
+    "Cannot confirm /root/.Xresources contains the same geometry lines",
+    "Cannot confirm a newly launched xterm reports 'stty size' of '43 132'",
+    "Cannot confirm the change survives a reboot"
+  ],
+  "next_action": "With only read-only screenshot and a11y access and no visible terminal, the file contents and the persisted geometry cannot be inspected. To verify, open a terminal and display the contents of /root/.Xresources and /root/.Xdefaults, then launch a fresh xterm and check 'stty size'; ideally also confirm the resources are loaded on session start (e.g. via an xinitrc/xrdb -merge hook) so the size persists across reboot.",
+  "confidence": "low",
+  "parse_error": null
+}

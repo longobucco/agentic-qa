@@ -1,0 +1,3 @@
+Divided the image (`/home/user/Desktop/tilearray.png`) into three equal vertical sections, measured each section's warmth (mean R−B): section 3 = +50.9 (warmest), section 2 = +40.4, section 1 = +32.1 (coolest). Reordered them warmest→coolest left-to-right (3, 2, 1) by pure pixel concatenation — no color changes, no tint/filter — and saved as `rearranged.png` on the Desktop.
+
+ANSWER: DONE

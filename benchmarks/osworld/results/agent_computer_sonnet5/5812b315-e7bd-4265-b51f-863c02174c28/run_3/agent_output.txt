@@ -1,0 +1,3 @@
+Done. Installed openssh-server, created user `charles` with the given password, and added an SSH `Match User charles` block restricting access via `ChrootDirectory /home/test1` + `ForceCommand internal-sftp`, with password auth enabled and sshd running on port 22.
+
+ANSWER: DONE

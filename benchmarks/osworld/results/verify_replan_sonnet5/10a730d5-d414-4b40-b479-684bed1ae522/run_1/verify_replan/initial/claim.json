@@ -1,0 +1,10 @@
+{
+  "status": "done",
+  "claim": "I enabled the built-in 'Dark' theme in Thunderbird (Add-ons Manager > Themes > Dark > Enable), which switched the entire application UI\u2014toolbars, menus, folder pane, message list, and content panes\u2014to a dark color scheme.",
+  "evidence_to_check": [
+    "In the Add-ons Manager > Themes section, the 'Dark' theme card shows an 'Disable' button and is highlighted/labeled as active while 'System theme \u2014 auto' and 'Light' show 'Enable' buttons",
+    "The main Thunderbird window (toolbar, folder pane, message list, tab bar) renders with a dark background and light text instead of the default light theme"
+  ],
+  "remaining_risk": "This enables the application-wide dark theme but does not change per-message HTML rendering (some received HTML emails with light backgrounds may still render with their own light colors in the message body, since that is controlled by each email's own styling, not a global Thunderbird setting).",
+  "parse_error": null
+}

@@ -1,0 +1,10 @@
+{
+  "status": "infeasible",
+  "claim": "GIMP 2.10 has no CMYK image mode; Image > Mode only lists RGB, Grayscale, and Indexed, so the image cannot be converted to CMYK mode. The image remains RGB.",
+  "evidence_to_check": [
+    "Open Image > Mode in GIMP and confirm the only entries are 'RGB...', 'Grayscale...', 'Indexed...' with RGB currently selected (bullet marker)",
+    "GIMP title bar still reads '(RGB color 8-bit gamma integer, sRGB IEC61966-2.1, 1 layer)' for the gate.jpeg image"
+  ],
+  "remaining_risk": "A CMYK plugin (e.g. Separate+) could theoretically be installed, but none is present in the Mode menu or standard menus.",
+  "parse_error": null
+}

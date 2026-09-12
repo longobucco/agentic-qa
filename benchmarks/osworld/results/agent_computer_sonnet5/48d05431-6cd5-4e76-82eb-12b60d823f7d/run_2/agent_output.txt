@@ -1,12 +1,3 @@
-conda was not installed at all on the machine (no anaconda/miniconda anywhere), which is why the shell reported "command not found". I downloaded the official Miniconda installer, installed it to `/root/miniconda3`, and ran `conda init bash` so it's on your PATH. Verified in a fresh interactive shell:
-
-```
-$ conda --version
-conda 26.7.1
-$ which conda
-/root/miniconda3/bin/conda
-```
-
-Open a new terminal (or run `source ~/.bashrc`) and `conda install datasets` will work.
+Miniconda3 was not installed on the machine at all, which is why `conda` wasn't found. I installed it to `/root/miniconda3`, ran `conda init bash`, added it to `~/.profile`, `/etc/profile.d/conda.sh`, and symlinked it into `/usr/local/bin`. `conda --version` now works in both login and non-login shells (conda 26.7.1).
 
 ANSWER: DONE

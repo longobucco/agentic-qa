@@ -1,3 +1,3 @@
-Clipboard now contains the file path, held by a background clipboard-owner process.
+The file is at `/home/user/Data3/List3/secret.docx`, and I've copied that path to the clipboard (verified by reading it back).
 
 ANSWER: /home/user/Data3/List3/secret.docx

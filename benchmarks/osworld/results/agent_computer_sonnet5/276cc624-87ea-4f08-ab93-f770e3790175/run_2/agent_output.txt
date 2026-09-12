@@ -1,3 +1,3 @@
-Set `editor.wordWrapColumn` to 50 in the user settings file (`/tmp/code-profile/User/settings.json`), which is VS Code's "line length for code wrapping" setting.
+The user settings JSON is now open and visibly shows `"editor.wordWrapColumn": 50` at `/tmp/code-profile/User/settings.json` (VS Code's active user-data-dir). This is the setting that controls the line length for code wrapping. The earlier concern was just that the setup modal was covering the screen; that's now dismissed and the setting is confirmed in VS Code's own settings editor.
 
 ANSWER: DONE

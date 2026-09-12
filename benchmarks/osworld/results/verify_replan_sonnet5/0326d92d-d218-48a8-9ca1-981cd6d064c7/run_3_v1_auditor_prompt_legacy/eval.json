@@ -1,0 +1,10 @@
+{
+  "id": "0326d92d-d218-48a8-9ca1-981cd6d064c7",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official compare_table -> 0.00",
+  "source": "official",
+  "gold_sha256": {
+    "2_SalesRep_gt1.xlsx": "29e996f4e508b49a40429d5c383fdc3d424b0ca064a3b3d0c41f1af10e72d690"
+  }
+}

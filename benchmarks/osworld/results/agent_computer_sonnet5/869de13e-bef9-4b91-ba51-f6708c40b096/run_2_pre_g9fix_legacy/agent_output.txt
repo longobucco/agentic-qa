@@ -1,0 +1,7 @@
+All 14 desktop files sorted:
+
+- **Paper_reading** (5): 1706.03762 (Attention Is All You Need), 1802.05365 (ELMo), 1909.10351 (TinyBERT), GLUE benchmark paper, paper01.pdf (BERT paper — identified via content analysis)
+- **Projects** (2): 2-if-for-array.zip (C exercises), assign1-data3.zip (Pacman Python assignment)
+- **Miscellaneous** (7): k-Means lecture slides, two xlsx data tables, DOC_248…pdf (handcraft entry form — content analysis), Family Status Equality PDF, IA_Format.docx & assignment_mark_frontpage.docx (assignment admin templates)
+
+ANSWER: DONE

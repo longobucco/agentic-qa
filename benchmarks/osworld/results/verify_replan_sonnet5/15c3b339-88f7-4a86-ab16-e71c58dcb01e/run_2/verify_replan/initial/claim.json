@@ -1,0 +1,13 @@
+{
+  "status": "done",
+  "claim": "In Thunderbird's 'Set Up Your Existing Email Address' page, the full name field contains 'anonym-x2024', the Email address field contains 'anonym-x2024@outlook.com', and the Password field contains 8 masked characters ('password'). The form is still on that setup page (not submitted).",
+  "evidence_to_check": [
+    "Account Setup tab shows 'Set Up Your Existing Email Address'",
+    "Email address field value is exactly 'anonym-x2024@outlook.com'",
+    "Your full name field value is 'anonym-x2024'",
+    "Password field shows 8 dots and revealing it shows 'password'",
+    "Continue button is enabled but has not been clicked"
+  ],
+  "remaining_risk": "The 'Your full name' field was auto-populated to 'anonym-x2024' from the email local part; if a real name was expected it may need adjustment, but the task only asked to fill in address and password.",
+  "parse_error": null
+}

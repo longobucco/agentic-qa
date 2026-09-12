@@ -1,0 +1,3 @@
+The `photos` directory contains only subfolders (`vacation/thailand`, `vacation/hk`, `family`, `events`) and no `.jpg` files anywhere. I created the `cpjpg` directory at `/root/Desktop/cpjpg`; there were zero `.jpg` files to copy.
+
+ANSWER: DONE

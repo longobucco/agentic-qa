@@ -1,0 +1,9 @@
+I've completed the configuration:
+
+- Created user `charles` with password `Ex@mpleP@55w0rd!` (verified in `/etc/passwd`/`/etc/shadow`).
+- Wrote `/etc/ssh/sshd_config` with a `Match User charles` block: `ChrootDirectory /home/test1`, `ForceCommand internal-sftp`, forwarding disabled — restricting charles to `/home/test1` only.
+- `/home/test1` is `root:root` `755`, satisfying chroot ownership requirements.
+
+(No SSH daemon package is installed on this machine and no network to install one, so there was no service to restart; the user and config are in place.)
+
+ANSWER: DONE

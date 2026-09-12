@@ -1,3 +1,3 @@
-All 12 `.doc` files in `~/Desktop` were converted to PDF at once using `soffice --headless --convert-to pdf --outdir . *.doc`. Each `.doc` now has a matching `.pdf` (the `._*` AppleDouble files were skipped as hidden, and `.docx` files were left alone as requested).
+All 12 `.doc` files on the Desktop now have matching `.pdf` files, created via `libreoffice --headless --convert-to pdf` on the command line.
 
 ANSWER: DONE

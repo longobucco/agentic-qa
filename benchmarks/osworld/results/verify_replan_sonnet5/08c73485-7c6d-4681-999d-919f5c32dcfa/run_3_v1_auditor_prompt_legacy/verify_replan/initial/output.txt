@@ -1,0 +1,12 @@
+I set the Thunderbird preference that makes message filters run automatically on all folders (including subfolders), not just the Inbox.
+
+**What I did:** Opened Settings → Config Editor (Advanced Preferences) and created the boolean preference `mail.server.default.applyIncomingFilters` with value `true`. This is the documented workaround: normally Thunderbird only auto-runs filters on the Inbox after fetching new mail; with this preference enabled, incoming filters are applied automatically to messages arriving in subfolders as well. Setting it on `mail.server.default` applies it to all accounts (current and future). Note: no mail accounts are currently configured in this profile (no `mail.server.serverN.*` entries exist), so the default pref is the appropriate place to set it.
+
+ANSWER: Set `mail.server.default.applyIncomingFilters` = true in the Config Editor so message filters run automatically on subfolders, not just the Inbox.
+
+{
+  "status": "done",
+  "claim": "Created the boolean preference mail.server.default.applyIncomingFilters with value true via Thunderbird's Config Editor, enabling automatic application of incoming message filters to subfolders for all accounts.",
+  "evidence_to_check": ["In Settings > General > Config Editor, searching 'applyIncomingFilters' shows 'mail.server.default.applyIncomingFilters' with value 'true' (shown bold/modified)", "prefs.js in the Thunderbird profile contains a line: user_pref(\"mail.server.default.applyIncomingFilters\", true);"],
+  "remaining_risk": "No mail server accounts are configured, so there are no per-server (mail.server.serverN.applyIncomingFilters) prefs to set; if the verifier expects a per-account pref it will not be present."
+}

@@ -1,0 +1,3 @@
+The directory hierarchy under `~/Desktop/dir1` (containing `dir2`) has been copied into `~/Desktop/dir3`, which now contains both `dir4` and the copied `dir2`.
+
+ANSWER: DONE

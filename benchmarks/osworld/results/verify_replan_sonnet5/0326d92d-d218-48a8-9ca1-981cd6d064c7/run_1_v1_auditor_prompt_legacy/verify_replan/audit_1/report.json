@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "Row 12 label 'Total' with values B12:G12 = 4852, 4587, 3943, 3857, 4677, 4243 (Jan-Jun monthly totals)",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Row 13 label 'Growth' with values under Feb-Jun columns = -5.461665, -14.03968, -2.18108, 21.26005, -9.279453; the Jan (B13) cell is empty",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "These growth values match month-on-month percentage change of the Total row (e.g. (4587-4852)/4852=-5.46%, (4243-4677)/4677=-9.28%)",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "A chart titled 'Total' shows six bars labeled Jan through Jun, scaled ~0-5000, matching the monthly totals (rendered as horizontal bars)",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "A chart titled 'Growth' is a line chart with five x-axis points Feb, Mar, Apr, May, Jun (Jan omitted), y-axis ~ -20 to 25, line dips to ~-14 at Mar and peaks ~21 at May",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "File is SalesRep.xlsx open in LibreOffice Calc, Sheet1",
+      "source": "screenshot",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "None required. (Minor cosmetic note: the 'Total' chart is a horizontal bar chart rather than vertical columns, but it still displays each month's total as bars as the task requests.)",
+  "confidence": "high",
+  "parse_error": null
+}

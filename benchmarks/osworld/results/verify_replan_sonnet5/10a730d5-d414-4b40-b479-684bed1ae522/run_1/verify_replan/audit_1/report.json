@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "Screenshot shows Thunderbird main window with dark background and light text across toolbar, folder pane, message list, tab bar, and content pane",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "prefs.js contains extensions.activeThemeID = \"thunderbird-compact-dark@mozilla.org\", confirming the built-in Dark theme is the active theme",
+      "source": "a11y",
+      "evidence_ref": null
+    },
+    {
+      "fact": "prefs.js also contains browser.theme.content-theme = 0, meaning HTML message content is not forced to dark, consistent with the executor's own stated caveat",
+      "source": "a11y",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "None required for the core request; if the user wants truly complete dark rendering including HTML email bodies, consider enabling content dark-mode override as well, but this was not part of the literal 'enable dark mode in Thunderbird' ask and was already disclosed as a limitation.",
+  "confidence": "high",
+  "parse_error": null
+}

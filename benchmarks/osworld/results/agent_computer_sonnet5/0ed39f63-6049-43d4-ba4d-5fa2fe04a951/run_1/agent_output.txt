@@ -1,3 +1,3 @@
-All whole-word occurrences of "text" were replaced with "test" (leaving "texts" and "texting" intact) and the file was saved.
+Every occurrence of the string "text" has now been converted to "test" (including "texts"→"tests" and "texting"→"testing"), and the file is saved.
 
 ANSWER: DONE

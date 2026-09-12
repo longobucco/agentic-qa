@@ -1,15 +1,9 @@
-The environment is configured. Summary of what was done in `/home/user`:
+I configured the environment on the desktop:
 
-1. **Fetched the project** `xlang-ai/instructor-embedding` into `/home/user/instructor-embedding` (git wasn't installed, so pulled the source tarball from GitHub).
-2. **Installed a CPU build of PyTorch** (`torch 2.14.0+cpu`) from the PyTorch CPU index — the default `torch>=2.0` was dragging in multi-GB CUDA wheels that overflowed the 10 GB disk.
-3. **Installed all `requirements.txt` deps** plus the package itself in editable mode (`pip install -r requirements.txt -e .`): transformers 4.57.6, datasets 2.21.0, sentence-transformers 3.4.1, scikit-learn, scipy, numpy, huggingface-hub, rich, tqdm, etc.
-4. **Verified**: `import torch, transformers, datasets, sentence_transformers` and `from InstructorEmbedding import INSTRUCTOR` all succeed.
-
-You can now run the Colab-style workflow, e.g.:
-```python
-from InstructorEmbedding import INSTRUCTOR
-model = INSTRUCTOR('hkunlp/instructor-large')
-emb = model.encode([['Represent the Science title:', 'A new method for word embeddings']])
-```
+1. **Fetched the project** — `xlang-ai/instructor-embedding` into `/home/user/instructor-embedding` (git was unavailable, so I downloaded and extracted the repo archive).
+2. **Installed dependencies** per `requirements.txt` and the Colab reference:
+   - `torch 2.14.0+cpu` (CPU wheel, to fit disk), `transformers 4.57.6`, `datasets 2.21.0`, `sentence-transformers 3.4.1`, plus `scikit-learn`, `scipy`, `numpy 1.26.4`, `pyarrow 17.0`, `huggingface-hub`, `rich`, `tqdm`, `requests`.
+   - `InstructorEmbedding 1.0.1` (the pip package used in the Colab notebook).
+3. **Verified**: `from InstructorEmbedding import INSTRUCTOR` and all core imports succeed.
 
 ANSWER: DONE

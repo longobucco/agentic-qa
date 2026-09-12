@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "verdict": "uncertain",
+  "observations": [
+    {
+      "fact": "The screen is entirely black with only a mouse cursor visible; no application, file manager, or spreadsheet is displayed.",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The accessibility tree is empty (only an empty desktop-frame element), so no window or UI content is exposed for inspection.",
+      "source": "a11y",
+      "evidence_ref": null
+    },
+    {
+      "fact": "State is unchanged after waiting 2 seconds; nothing is loading into view.",
+      "source": "screenshot",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [
+    "Cannot confirm WeeklySales.xlsx contains a sheet named 'Sheet2'",
+    "Cannot confirm Sheet2 contains a clustered column (BarChart, type='col', grouping='clustered') chart",
+    "Cannot confirm the chart title is 'Sales & COGS'",
+    "Cannot confirm the chart has Sales and COGS series referencing the weekly data"
+  ],
+  "next_action": "Open WeeklySales.xlsx in a spreadsheet application (or inspect the xlsx XML) to confirm the presence of Sheet2, a single clustered column chart, its title text, and its two data series with weekly categories.",
+  "confidence": "high",
+  "parse_error": null
+}

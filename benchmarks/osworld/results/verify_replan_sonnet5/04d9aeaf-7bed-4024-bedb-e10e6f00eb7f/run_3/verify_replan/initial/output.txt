@@ -1,0 +1,19 @@
+File saved successfully in xlsx format, and Sheet2 contains the required data.
+
+ANSWER: DONE
+
+```json
+{
+  "status": "done",
+  "claim": "Created a new sheet named 'Sheet2' with headers Year, CA changes, FA changes, OA changes in row 1, and computed year-over-year percentage changes for Current Assets, Fixed Assets, and Other Assets for years 2015-2019 (rows 2-6), referencing Sheet1 data with formulas like =(Sheet1.B3-Sheet1.B2)/Sheet1.B2, formatted as percentages, and saved the file in xlsx format.",
+  "evidence_to_check": [
+    "Sheet2 tab exists in SmallBalanceSheet.xlsx alongside Sheet1",
+    "Sheet2 cell A1='Year', B1='CA changes', C1='FA changes', D1='OA changes'",
+    "Sheet2 A2:A6 contain 2015,2016,2017,2018,2019",
+    "Sheet2 B2 shows 10.15% (CA change 2015), C2 shows -4.96%, D2 shows -1.68%",
+    "Sheet2 B6 shows 6.55% (CA change 2019), C6 shows -7.46%, D6 shows 1.44%",
+    "File was saved (Keep Current Format dialog accepted) preserving .xlsx"
+  ],
+  "remaining_risk": "The task didn't specify exact formula direction (change vs prior year) but this is the standard interpretation; also didn't specify percentage formatting precision, which was left at default (2 decimal places)."
+}
+```

@@ -1,0 +1,3 @@
+I've enabled automatic locking: the screen now blanks after 5 minutes of inactivity (`idle-delay` 300s) and locks immediately when it does (`lock-enabled` true, `lock-delay` 0), so the computer will lock itself after you step away.
+
+ANSWER: DONE

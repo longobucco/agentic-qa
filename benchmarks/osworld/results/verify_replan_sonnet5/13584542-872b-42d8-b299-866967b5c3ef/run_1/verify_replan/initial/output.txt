@@ -1,0 +1,25 @@
+Confirmed: a newly launched `xterm` now starts at **132 columns × 43 rows** (`stty size` reported `43 132`).
+
+I made it permanent by writing the xterm geometry resource to `~/.Xdefaults` and `~/.Xresources` (xterm reads `~/.Xdefaults` directly at every startup since `xrdb` isn't installed here):
+
+```
+XTerm*VT100.geometry: 132x43
+xterm*geometry: 132x43
+...
+```
+
+I also added `~/.config/openbox/autostart` to merge `~/.Xresources` if `xrdb` ever becomes available. Every new terminal — including after a reboot — will now open at 132x43 without manual resizing.
+
+ANSWER: DONE
+
+{
+  "status": "done",
+  "claim": "Added xterm geometry resources (132x43) to /root/.Xdefaults and /root/.Xresources so every new xterm opens at 132 columns x 43 rows persistently. A freshly spawned xterm reported 'stty size' = '43 132'.",
+  "evidence_to_check": [
+    "/root/.Xdefaults contains a line like 'XTerm*VT100.geometry: 132x43'",
+    "/root/.Xresources contains 'XTerm*VT100.geometry: 132x43'",
+    "Launching 'xterm -fn fixed -e \"stty size\"' prints '43 132'",
+    "/root/.config/openbox/autostart merges $HOME/.Xresources"
+  ],
+  "remaining_risk": "This container has no real reboot/X-session restart path and xrdb is not installed; persistence relies on xterm reading ~/.Xdefaults directly, which it does by default."
+}

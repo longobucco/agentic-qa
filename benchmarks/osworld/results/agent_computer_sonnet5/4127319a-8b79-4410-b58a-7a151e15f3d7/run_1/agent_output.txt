@@ -1,0 +1,3 @@
+The command ran in the terminal, showing the total line count of all PHP files recursively.
+
+ANSWER: 54

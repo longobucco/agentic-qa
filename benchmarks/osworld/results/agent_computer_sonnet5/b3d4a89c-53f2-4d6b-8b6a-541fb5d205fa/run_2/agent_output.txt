@@ -1,0 +1,3 @@
+The environment is a headless Xvfb display with no desktop environment, no Bluetooth adapter (`/sys/class/bluetooth` absent), no BlueZ/bluetoothctl, no D-Bus system bus, and no Settings application. There is no Bluetooth hardware or software stack to enable.
+
+ANSWER: FAIL

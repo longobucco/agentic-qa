@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "verdict": "not_done",
+  "observations": [
+    {
+      "fact": "Row 12 (A12:G12) contains 'Total' label with values 4852, 4587, 3943, 3857, 4677, 4243 for Jan-Jun, matching manual sums of the sales columns above (e.g., B2:B11 sums to 4852)",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Row 13 (A13:G13) contains 'Growth' label with B13 empty (Jan) and C13:G13 = -5.46%, -14.04%, -2.18%, 21.26%, -9.28%, matching month-on-month growth calc from row 12 totals",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "A column/bar chart titled 'Total' is present, showing six bars for Jan-Jun matching row 12 values",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "A line chart titled 'Growth' is present, plotting a single line with no point/segment at Jan and values matching row 13 for Feb-Jun",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The Growth line chart's x-axis still displays six category labels 'Jan, Feb, Mar, Apr, May, Jun' \u2014 Jan appears as a tick/label on the axis even though no data point is plotted there, leaving a visible empty gap before the line starts at Feb",
+      "source": "screenshot",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [
+    "Task requires Jan to be 'omitted in the chart' for the growth line chart, but Jan is still present as a category label on the chart's x-axis (only the plotted value is missing, not the category itself) \u2014 the chart's data/category range appears to include Jan rather than being restricted to Feb-Jun"
+  ],
+  "next_action": "Edit the Growth line chart's data range so the category axis only covers Feb-Jun (excluding column B/Jan entirely), rather than including Jan as a blank category slot.",
+  "confidence": "high",
+  "parse_error": null
+}

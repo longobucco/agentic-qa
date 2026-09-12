@@ -1,0 +1,10 @@
+{
+  "status": "done",
+  "claim": "Created the boolean preference mail.server.default.applyIncomingFilters with value true via Thunderbird's Config Editor, enabling automatic application of incoming message filters to subfolders for all accounts.",
+  "evidence_to_check": [
+    "In Settings > General > Config Editor, searching 'applyIncomingFilters' shows 'mail.server.default.applyIncomingFilters' with value 'true' (shown bold/modified)",
+    "prefs.js in the Thunderbird profile contains a line: user_pref(\"mail.server.default.applyIncomingFilters\", true);"
+  ],
+  "remaining_risk": "No mail server accounts are configured, so there are no per-server (mail.server.serverN.applyIncomingFilters) prefs to set; if the verifier expects a per-account pref it will not be present.",
+  "parse_error": null
+}

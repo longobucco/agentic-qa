@@ -1,0 +1,3 @@
+VS Code is now open with the `~/Desktop/project` folder, launched from the terminal (`code .` run in that directory).
+
+ANSWER: DONE

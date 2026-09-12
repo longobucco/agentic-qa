@@ -1,3 +1,3 @@
-The Vignette filter window is now open.
+The Vignette filter dialog is now open.
 
 ANSWER: DONE

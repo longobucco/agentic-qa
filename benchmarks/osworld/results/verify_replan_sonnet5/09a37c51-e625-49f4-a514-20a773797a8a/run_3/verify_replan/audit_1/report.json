@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "Window title bar reads 'pic.jpg - LibreOffice Draw', indicating a file named pic.jpg is open",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The displayed image shows a single person (dark jacket, blue jeans, large backpack with orange strap) walking away, centered",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The area around the person is uniformly white; no sky, clouds, mountains, or rocks are visible",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The person's lower legs and feet have ragged/jagged edges with some stray pixels, consistent with heuristic segmentation",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The page thumbnail in the Pages panel also shows the person on white",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Accessibility tree returned empty; file path, format validity, and exact pixel values could not be independently confirmed",
+      "source": "a11y",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "None required for core goal; optionally clean up the ragged edges around the feet/lower legs and stray pixels for a tighter matte.",
+  "confidence": "medium",
+  "parse_error": null
+}

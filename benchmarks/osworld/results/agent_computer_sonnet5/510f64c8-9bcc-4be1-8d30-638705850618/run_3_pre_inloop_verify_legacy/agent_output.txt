@@ -1,0 +1,3 @@
+VS Code launched from an xterm terminal with `code ~/Desktop/project`, and its window title confirms the `project` folder is open.
+
+ANSWER: DONE

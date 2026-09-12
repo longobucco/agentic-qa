@@ -1,0 +1,15 @@
+File saved in pptx format successfully. All three text colors have been changed as requested.
+
+ANSWER: DONE
+
+{
+  "status": "done",
+  "claim": "On slide 1 of the pptx, the three text boxes were recolored top-to-bottom: 'NEW PRODUCT' set to pure yellow (#FFFF00), 'LAUNCH' set to pure red (#FF0000), and 'PROJECT PROPOSAL' set to pure green (#00FF00). The file was saved keeping pptx format.",
+  "evidence_to_check": [
+    "Slide 1 text box containing 'NEW PRODUCT' has font color hex FFFF00",
+    "Slide 1 text box containing 'LAUNCH' has font color hex FF0000",
+    "Slide 1 text box containing 'PROJECT PROPOSAL' has font color hex 00FF00",
+    "File 45_2.pptx was saved (title bar shows no unsaved-change indicator)"
+  ],
+  "remaining_risk": "The 'Use PowerPoint Format' dialog may not have appeared if Impress remembered the format silently; if it appeared as a different dialog, pressing Return might have picked an unintended default button, though the title bar still shows 45_2.pptx with no asterisk/modified indicator."
+}

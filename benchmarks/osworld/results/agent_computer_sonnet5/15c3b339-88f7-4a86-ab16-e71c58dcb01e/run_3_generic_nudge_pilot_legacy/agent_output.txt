@@ -1,0 +1,3 @@
+All fields are filled in on the Account Setup page (full name, email address, and password), and I've stayed on that page as requested.
+
+ANSWER: DONE

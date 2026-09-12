@@ -1,1 +1,11 @@
-You've hit your session limit · resets 3:50pm (Europe/Rome)
+I've enabled Thunderbird's **Unified Folders** view. Here's how it was done (and how to do it again):
+
+1. In the folder pane, click the **⋯ (More)** button at the top.
+2. Choose **Folder Modes → Unified Folders** (checkmark it).
+3. Optionally uncheck **All Folders** so only the unified view shows.
+
+Now the folder pane shows a single **Inbox** (plus Drafts, Sent, Junk, Trash, etc.) that merges the corresponding folders from every configured account — clicking **Inbox** shows all incoming mail from all accounts in one list. Each account's individual folders are still reachable by expanding the unified folder.
+
+Note: this profile currently has **no email accounts configured**, so the unified Inbox is empty right now. It will automatically aggregate messages as soon as you add your accounts (Settings → Account Settings → Account Actions → Add Mail Account).
+
+ANSWER: DONE — Enabled folder pane "Unified Folders" mode (⋯ menu → Folder Modes → Unified Folders), which merges the Inbox/Sent/etc. of all accounts into one unified view.

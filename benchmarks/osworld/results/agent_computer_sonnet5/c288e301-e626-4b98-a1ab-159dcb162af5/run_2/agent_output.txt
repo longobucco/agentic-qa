@@ -1,0 +1,3 @@
+Python 4 does not exist — the latest Python is in the 3.x series. There is no Python4 package or interpreter available on Ubuntu (or anywhere), so the default Python version cannot be set to it.
+
+ANSWER: FAIL

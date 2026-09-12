@@ -1,0 +1,10 @@
+{
+  "status": "done",
+  "claim": "Reduced the LibreOffice Calc zoom level from 260% to 150%, making the cells smaller and easier to click.",
+  "evidence_to_check": [
+    "The zoom indicator in the bottom-right status bar of LibreOffice Calc reads 150%",
+    "More rows and columns are visible on screen than before (columns A-G and rows 1-25 visible)"
+  ],
+  "remaining_risk": "The task said 'a little bit'; 150% is a moderate reduction which may differ from an exact expected value.",
+  "parse_error": null
+}

@@ -1,0 +1,12 @@
+{
+  "status": "done",
+  "claim": "On slide 1 of 45_2.pptx, the three text boxes are colored top-to-bottom as yellow (#FFFF00, 'NEW PRODUCT'), red (#FF0000, 'LAUNCH'), and green (#00FF00, 'PROJECT PROPOSAL'), and the file was saved in pptx format.",
+  "evidence_to_check": [
+    "Slide 1 top textbox text 'NEW PR DUCT' has font color hex FFFF00",
+    "Slide 1 middle textbox text 'LAUNCH' has font color hex FF0000",
+    "Slide 1 bottom textbox text 'PR JECT PR POSAL' has font color hex 00FF00",
+    "File 45_2.pptx was saved (Keep Current Format dialog confirmed) and title bar shows no unsaved-changes indicator"
+  ],
+  "remaining_risk": "The text boxes appear to contain overlapping/partially hidden text due to images on top (e.g. 'NEW PRODUCT' obscured by soap image); confirmed via a11y that each is a distinct single-line textbox, but did not verify full underlying text strings beyond what's visible.",
+  "parse_error": null
+}

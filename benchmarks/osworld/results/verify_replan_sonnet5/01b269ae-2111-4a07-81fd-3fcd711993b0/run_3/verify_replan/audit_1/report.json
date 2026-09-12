@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "Title bar reads 'Student_Level_Fill_Blank.xlsx - LibreOffice Calc' with no modified/asterisk indicator",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Column B (Level) rows 2-30 are all populated: Primary (2-6), Secondary (7-18), Intermediate (19-24), Advance (25-30), no blank cells",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Column C (Student) rows 2-30 are all populated with repeated names per group (Blake Dreary, Bey Twice, Arnold Shaw, Clint Eastwood, Olivia Calme, Parah Salin, Elijah Plastic, Tom Softy), no blank cells",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Columns D (Subject) and E (Marks) rows 2-30 are fully populated with no blanks",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Row 1 contains headers Level/Student/Subject/Marks; column A and columns F+ are blank; rows 31+ are blank",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Accessibility tree returned empty, so cell contents could not be cross-checked for hidden spaces/formulas",
+      "source": "a11y",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "None required; the visible target region B1:E30 has no blank cells and surrounding regions are untouched.",
+  "confidence": "high",
+  "parse_error": null
+}

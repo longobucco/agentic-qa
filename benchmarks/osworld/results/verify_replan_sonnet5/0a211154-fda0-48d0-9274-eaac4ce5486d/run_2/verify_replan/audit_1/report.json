@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "Slide 2 is currently open; its title text box reads \"Let's start\"",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Slide 2 background color shown in Properties panel is #5F77BB (blue), not yellow",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Slide 3 thumbnail ('Hello there') shows a yellow background with an apparent photographic image of a woman",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Slide 4 thumbnail ('Meet the Team') shows a yellow background with three apparent photographic headshots",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Slides 1, 5, 6 thumbnails show non-yellow (purple/lavender) backgrounds with illustration-style artwork, no photographic people visible",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Title bar shows file is 13_0.pptx open in LibreOffice Impress",
+      "source": "screenshot",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "Open slides 3 and 4 individually and check the Properties panel background color field to confirm it reads exactly yellow (#FFFF00), and zoom into the images on slides 3/4 to confirm they are genuine photographs of real people rather than stylized illustrations; also open slides 1, 5, 6 individually to confirm their backgrounds are unchanged from the original.",
+  "confidence": "medium",
+  "parse_error": null
+}

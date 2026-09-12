@@ -1,0 +1,3 @@
+Old files (30 days old) are gzip-compressed in `/tmp/test_files/old_files/`; the newer files are in `/tmp/test_files/new_files/`.
+
+ANSWER: DONE

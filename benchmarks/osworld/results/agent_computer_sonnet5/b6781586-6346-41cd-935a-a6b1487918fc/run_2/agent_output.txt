@@ -1,3 +1,3 @@
-Timezone is now set to Etc/UTC (UTC+0): `/etc/timezone` reads `Etc/UTC` and `/etc/localtime` links to `/usr/share/zoneinfo/Etc/UTC`.
+Timezone is now set to UTC+0 (Etc/UTC). `/etc/localtime` → `/usr/share/zoneinfo/Etc/UTC`, `/etc/timezone` = `Etc/UTC`, and `date` reports `UTC +0000`.
 
 ANSWER: DONE

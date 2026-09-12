@@ -1,1 +1,7 @@
-You've hit your session limit · resets 11:30am (Europe/Rome)
+All 14 desktop files sorted:
+
+- **Paper_reading**: 1706.03762.pdf (Attention Is All You Need), 1802.05365.pdf (ELMo), 1909.10351.pdf (TinyBERT), GLUE benchmark paper, paper01.pdf (23-page LaTeX academic paper, content-analyzed since it had no extractable name)
+- **Projects**: 2-if-for-array.zip (C exercises), assign1-data3.zip (Python Pacman assignment)
+- **Miscellaneous**: k-means lecture slides, two validation/survey xlsx files, DOC_2480903712718068684.pdf (handcraft show entry form, identified by content), Family Status Equality PDF, IA_Format.docx & assignment_mark_frontpage.docx (admin templates)
+
+ANSWER: DONE

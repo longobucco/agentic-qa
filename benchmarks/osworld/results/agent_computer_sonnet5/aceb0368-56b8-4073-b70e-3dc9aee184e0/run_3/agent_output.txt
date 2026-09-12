@@ -1,1 +1,15 @@
-You've hit your session limit · resets 6:30am (Europe/Rome)
+The spreadsheet now has detailed scoring for all remaining students (rows 3–11), each question marked 1/0 against the answer key (D, A, C, D, B, C, C, D, D, D) with Total Grade = correct answers × 10:
+
+- Richard Smith: 70
+- Jennifer Rodriguez: 70
+- Michael Gonzalez: 80
+- Mary Williams: 80
+- Joseph Thomas: 60
+- James Martinez: 60
+- Barbara Wilson: 90
+- Karen Davis: 50
+- David Brown: 100
+
+(Linda Garcia's row was already graded and left unchanged.)
+
+ANSWER: DONE

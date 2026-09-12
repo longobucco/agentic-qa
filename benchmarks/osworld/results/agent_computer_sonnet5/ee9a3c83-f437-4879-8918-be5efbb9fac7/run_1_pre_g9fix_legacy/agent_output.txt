@@ -1,0 +1,3 @@
+The conversion succeeded. Using LibreOffice's command-line converter with a separate user-installation profile (to work around the running LibreOffice instance's profile lock), I created `/home/user/Desktop/file_example_ODS_5000.csv` from `file_example_ODS_5000.ods` — 5001 lines, header + 5000 data rows, same filename.
+
+ANSWER: DONE

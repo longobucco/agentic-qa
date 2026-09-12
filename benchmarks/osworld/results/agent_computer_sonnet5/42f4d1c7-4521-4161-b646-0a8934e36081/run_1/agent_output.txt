@@ -1,0 +1,3 @@
+Installed the `mattn.lisp` VS Code extension (into the active `/tmp/code-extensions` dir) and wrote/ran a script-fu script that scaled `character.png` to 128×128, saving `/home/user/Desktop/resized.png` (verified 128×128).
+
+ANSWER: DONE

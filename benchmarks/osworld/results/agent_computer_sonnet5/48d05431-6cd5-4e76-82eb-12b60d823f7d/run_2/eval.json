@@ -1,7 +1,8 @@
 {
   "id": "48d05431-6cd5-4e76-82eb-12b60d823f7d",
-  "verdict": "EVAL_ERROR",
-  "reason": "eval_state='' (official eval errored: JSONDecodeError: Expecting value: line 1 column 1 (char 0))",
-  "source": "offline_fallback",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official exact_match -> 1.00",
+  "source": "official",
   "gold_sha256": {}
 }

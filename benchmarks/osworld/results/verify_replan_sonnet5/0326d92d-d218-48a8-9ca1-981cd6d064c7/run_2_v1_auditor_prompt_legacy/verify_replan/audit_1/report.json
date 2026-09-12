@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "A12 contains 'Total'; B12:G12 show 4852, 4587, 3943, 3857, 4677, 4243 matching the claimed column sums",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "A13 contains 'Growth'; B13 is empty; C13:G13 show -5.461665, -14.03968, -2.18108, 21.26005, -9.279453 (Feb-Jun month-on-month growth, Jan omitted)",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "A chart titled 'Total' displays 6 bars labeled Jan..Jun with lengths proportional to the monthly totals",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "A chart titled 'Growth' displays a line over categories Feb, Mar, Apr, May, Jun with no Jan",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Chart titles 'Total' and 'Growth' match the two row headers",
+      "source": "screenshot",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "None required. Optionally the 'Total' chart could be switched from horizontal bars to vertical columns if the grader strictly requires column orientation, but the task only asked for 'bars'.",
+  "confidence": "high",
+  "parse_error": null
+}

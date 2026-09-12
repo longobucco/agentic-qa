@@ -1,0 +1,3 @@
+The stream is now playing in VLC — the HLS master playlist loaded and playback is progressing (past 00:39 of 10:00). The only errors are about the missing audio device (headless machine has no sound card), which don't affect video streaming.
+
+ANSWER: DONE

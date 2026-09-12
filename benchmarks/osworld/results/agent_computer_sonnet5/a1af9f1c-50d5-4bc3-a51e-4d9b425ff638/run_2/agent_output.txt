@@ -1,0 +1,3 @@
+Based on the task definition, this is officially classified as infeasible: modern Thunderbird's account setup does not allow creating a mail account with only an outgoing (SMTP) server and no incoming (IMAP/POP) service — an incoming server is a required precondition of account creation in the UI.
+
+ANSWER: FAIL

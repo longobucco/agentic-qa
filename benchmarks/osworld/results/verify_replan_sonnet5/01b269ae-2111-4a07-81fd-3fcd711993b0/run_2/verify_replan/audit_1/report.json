@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "LibreOffice Calc shows Student_Level_Fill_Blank.xlsx open on Sheet1",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Row 1 contains headers Level (B), Student (C), Subject (D), Marks (E)",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Column B is fully populated rows 2-30: Primary (2-6), Secondary (7-18), Intermediate (19-24), Advance (25-30), with no blank cells",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Column C is fully populated rows 2-30 with student names (Blake Dreary, Bey Twice, Arnold Shaw, Clint Eastwood, Olivia Calme, Parah Salin, Elijah Plastic, Tom Softy), no blanks",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Columns D and E are fully populated rows 2-30 with subjects and marks, no blanks",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Column A is empty and rows 31+ are empty (irrelevant regions untouched)",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Title bar shows no unsaved-changes indicator",
+      "source": "screenshot",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "No correction needed; all blank cells in B1:E30 have been filled with the value above and no irrelevant regions were modified.",
+  "confidence": "high",
+  "parse_error": null
+}

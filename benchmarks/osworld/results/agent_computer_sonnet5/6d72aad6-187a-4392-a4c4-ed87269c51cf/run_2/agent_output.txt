@@ -1,0 +1,3 @@
+LibreOffice Impress has no built-in video/movie export feature. Its File ▸ Export options cover PDF, raster/vector images, HTML, and (in older versions) Flash/SWF — but no video container format (MP4/AVI/WebM/MOV), and there is no slideshow-to-video renderer anywhere in Impress. The task forbids terminal/ffmpeg, extensions, and any other application, so there is no way to produce a video file to then play in VLC. The requested feature does not exist.
+
+ANSWER: FAIL

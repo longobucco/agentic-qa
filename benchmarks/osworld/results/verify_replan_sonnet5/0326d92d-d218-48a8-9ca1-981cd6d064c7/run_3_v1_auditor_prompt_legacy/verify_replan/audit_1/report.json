@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "Cell A12 contains 'Total' with B12=4852, C12=4587, D12=394... (values match claimed monthly sums)",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Cell A13 contains 'Growth' with C13=-5.461665, D13=-14.0396; B13 (Jan) is empty",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Growth values are consistent with month-on-month percentage change of the Total row (e.g. (4587-4852)/4852 = -5.46%)",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "A bar chart titled 'Total' is present, plotting six bars categorized Jan through Jun",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "A line chart titled 'Growth' is present, with x-axis categories Feb, Mar, Apr, May, Jun (Jan omitted)",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Title bar reads 'SalesRep.xlsx - LibreOffice Calc' with no modified indicator",
+      "source": "screenshot",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "None required; all task conditions appear satisfied. Optionally the Growth cells could be percent-formatted, but the numeric percentage values are correct.",
+  "confidence": "high",
+  "parse_error": null
+}

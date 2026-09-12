@@ -1,0 +1,3 @@
+The desktop environment isn't rendering any content — the screen stays completely black (confirmed via pixel sampling, all pixels are (0,0,0)) even though mouse input is registering (cursor moves). There's no visible desktop, taskbar, application menu, or terminal to open in order to install Spotify (e.g., via a software center or package manager). The accessibility tree also returns an empty desktop frame with no UI elements. This is an environment/display failure preventing any interaction with applications, not a fixable step in the task itself.
+
+ANSWER: FAIL

@@ -1,0 +1,3 @@
+Saved. User settings now set `editor.wordWrapColumn` to 50 (with `editor.wordWrap` set to `wordWrapColumn` so the limit takes effect).
+
+ANSWER: DONE

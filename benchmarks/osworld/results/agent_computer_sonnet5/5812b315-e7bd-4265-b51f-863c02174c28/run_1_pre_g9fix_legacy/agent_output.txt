@@ -1,0 +1,9 @@
+SSH user `charles` created with the given password, restricted via an SFTP chroot to `/home/test1`:
+
+- Installed `openssh-server` (was missing).
+- Created user `charles` (nologin shell) with password `Ex@mpleP@55w0rd!`, added to `sftponly` group.
+- `/home/test1` set to `root:root` `755` (chroot requirement).
+- Added to `/etc/ssh/sshd_config`: `Match User charles` → `ChrootDirectory /home/test1`, `ForceCommand internal-sftp`, forwarding disabled.
+- sshd restarted. Verified: SFTP login succeeds with root dir `/` = `/home/test1`; interactive SSH is refused ("This service allows sftp connections only").
+
+ANSWER: DONE

@@ -1,3 +1,3 @@
-I edited VLC's config (`/root/.config/vlc/vlcrc`) to set `play-and-exit=0`, which disables VLC quitting when playback finishes.
+Set `play-and-exit=0` in `~/.config/vlc/vlcrc`, which disables VLC quitting when playback finishes.
 
 ANSWER: DONE

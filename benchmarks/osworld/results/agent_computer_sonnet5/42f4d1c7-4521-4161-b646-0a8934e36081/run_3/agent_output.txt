@@ -1,0 +1,5 @@
+Both parts complete:
+- **Lisp extension installed** in VS Code (`mattn.lisp` v0.1.12, confirmed via `--list-extensions` and `extensions.json`), giving syntax support for GIMP Script-Fu (Scheme/Lisp) files.
+- **Test script** `/home/user/Desktop/resize.scm` written and executed via `gimp -i -b`, producing `/home/user/Desktop/resized.png` at exactly 128×128.
+
+ANSWER: DONE

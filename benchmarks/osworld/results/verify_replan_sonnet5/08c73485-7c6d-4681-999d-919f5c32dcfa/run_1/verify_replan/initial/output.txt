@@ -1,0 +1,14 @@
+This confirms there are no email accounts configured in this Thunderbird instance at all — no accounts, no Inbox, no subfolders, and consequently no message filters exist. The task requires an existing filter set up on an account with subfolders, which is not present here. There's no "Local Folders" fallback either (the account list is completely empty, only showing global SMTP settings).
+
+Since the precondition (an existing account/filter setup) is entirely missing, this task cannot be completed as stated — there is nothing to configure "Run Filters After Delivery" on.
+
+ANSWER: FAIL
+
+```json
+{
+  "status": "infeasible",
+  "claim": "Thunderbird has no email account configured at all (Account Settings shows only an empty Outgoing Server/SMTP list, no accounts, no Inbox, no folders), so there are no message filters or subfolders to apply automatic filtering to.",
+  "evidence_to_check": ["Account Settings dialog in Thunderbird shows no mail accounts listed on the left panel, only 'Outgoing Server (SMTP)'", "The folder pane in the main Thunderbird window is empty with 'No message found' and no account/folder tree visible", "Attempting Account Setup wizard shows blank 'Your full name'/'Email address' fields, confirming no pre-existing account"],
+  "remaining_risk": "It's possible a hidden/disabled account exists that isn't surfacing in the UI due to a rendering issue, but all observed evidence points to a genuinely empty profile with no accounts or filters configured."
+}
+```

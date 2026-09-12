@@ -1,0 +1,7 @@
+I edited VLC's configuration to enable a **global hotkey** for Play/Pause. In `/root/.config/vlc/vlcrc` under `[hotkeys]` I set:
+
+- `global-key-play-pause=Space`
+
+Global hotkeys are received by VLC even when it doesn't have focus, so you can now press Space to pause/resume the video while staying in the PDF reader.
+
+ANSWER: DONE

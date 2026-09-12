@@ -1,0 +1,14 @@
+I inspected the environment: there is no GNOME Terminal (or any GNOME desktop) installed — the only terminal emulator present is `xterm`, and there is no `gsettings` schema or `dconf` for GNOME Terminal, and no display manager UI (blank desktop).
+
+The permanent way to fix terminal size for the terminal that exists here (xterm) is via X resources, which are loaded at every startup/reboot. I created:
+
+- `/root/.Xresources` and `/root/.Xdefaults` containing:
+  ```
+  XTerm*VT100.geometry: 132x43
+  XTerm*geometry: 132x43
+  UXTerm*VT100.geometry: 132x43
+  ```
+
+Now every new terminal starts at 132 columns × 43 rows and this survives reboots (X reads `~/.Xresources`/`~/.Xdefaults` on each session start), so you no longer need to resize it manually.
+
+ANSWER: DONE

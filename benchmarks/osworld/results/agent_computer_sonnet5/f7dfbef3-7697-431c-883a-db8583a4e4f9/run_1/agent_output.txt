@@ -1,3 +1,7 @@
-All 12 `.doc` files in `/home/user/Desktop` have been converted to PDF using `soffice --headless --convert-to pdf *.doc`, and each now has a matching `.pdf` file in the same directory.
+All 13 `.doc` files on the Desktop (the working directory) now have matching `.pdf` files, produced in one command:
+
+```
+cd ~/Desktop && libreoffice --headless --convert-to pdf --outdir . ./*.doc
+```
 
 ANSWER: DONE

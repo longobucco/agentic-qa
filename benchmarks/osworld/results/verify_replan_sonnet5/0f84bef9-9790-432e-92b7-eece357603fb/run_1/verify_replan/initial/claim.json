@@ -1,0 +1,10 @@
+{
+  "status": "done",
+  "claim": "In Tools > Options > LibreOffice Impress > General, the 'Enable Presenter Console' checkbox under the Presentation section has been unchecked and applied via OK.",
+  "evidence_to_check": [
+    "Reopen Tools > Options > LibreOffice Impress > General; the 'Enable Presenter Console' checkbox is unchecked",
+    "In the user profile registrymodifications.xcu, Impress/Misc/Start 'EnablePresenterScreen' (or 'PresenterScreen') is set to false"
+  ],
+  "remaining_risk": "The exact registry key name graded may differ; the Slide Show Settings 'Presentation display' dropdown was disabled in this single-monitor VM so it could not be set to a specific display.",
+  "parse_error": null
+}

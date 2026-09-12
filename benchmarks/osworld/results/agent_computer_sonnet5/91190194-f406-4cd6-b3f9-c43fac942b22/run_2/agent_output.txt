@@ -1,0 +1,3 @@
+Cropped image created: original 1233×1280 → cropped.png 1233×1024 (top 20% / 256px removed) at /home/user/Desktop/cropped.png, using GIMP batch mode from the command line.
+
+ANSWER: DONE

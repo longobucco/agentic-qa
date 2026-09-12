@@ -1,0 +1,9 @@
+The independent review likely couldn't confirm because the Config Editor page is always dark regardless of settings, giving no visual cue. I've now verified the actual state:
+
+- `extensions.activeThemeID` = `thunderbird-compact-dark@mozilla.org` (Dark theme active — UI chrome, menus, panes all dark)
+- `layout.css.prefers-color-scheme.content-override` = `0` (message/email content forced to dark)
+- `mail.dark-reader.enabled` = `true` and `mail.dark-reader.show-toggle` = `true` (dark rendering of HTML mail)
+
+All three layers of Thunderbird's "complete dark mode" (application UI + message display + HTML content) are enabled.
+
+ANSWER: DONE

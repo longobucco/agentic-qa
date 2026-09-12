@@ -1,0 +1,3 @@
+Python 4 does not exist — the latest Python release line is 3.x, and there is no Python 4 to set as the system default on Ubuntu. This task asks for something that does not exist, so it cannot be completed as stated.
+
+ANSWER: FAIL

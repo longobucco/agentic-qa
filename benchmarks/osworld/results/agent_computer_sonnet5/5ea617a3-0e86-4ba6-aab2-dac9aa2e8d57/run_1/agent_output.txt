@@ -1,3 +1,3 @@
-The poster has been restored from Trash to its original location at `/home/user/Desktop/poster_party_night.webp`, and the corresponding trash metadata was removed.
+Restored `poster_party_night.webp` from Trash to `/home/user/Desktop/` and cleared its trash metadata.
 
 ANSWER: DONE

@@ -1,7 +1,1 @@
-Both pivot tables are created in the new "Sheet2":
-- **Product pivot** (A1): total revenue per product (Aspen 479.13, Quad 707.82, … total 2368.15)
-- **Sales Channel pivot** (F1): total revenue per channel (E-mail Coupon 75.62, In Store Sales 649.16, Web Site Sales 1643.37)
-
-The workbook was saved.
-
-ANSWER: DONE
+You've hit your session limit · resets 11:10pm (Europe/Rome)

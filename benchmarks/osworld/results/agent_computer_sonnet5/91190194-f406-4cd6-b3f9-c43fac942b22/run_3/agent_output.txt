@@ -1,0 +1,3 @@
+1280 → 1024 (removed 256 = exactly 20%). cropped.png saved to Desktop.
+
+ANSWER: DONE

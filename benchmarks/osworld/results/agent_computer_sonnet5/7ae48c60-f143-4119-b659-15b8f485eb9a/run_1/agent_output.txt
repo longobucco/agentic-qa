@@ -1,3 +1,3 @@
-Done. Picture heights set on slides 3, 4, 6 to ~20 cm, ~30 cm, ~25 cm respectively, and the file was saved in pptx format.
+I edited the presentation file directly. Pictures on slide 3 set to 20 cm (7,200,000 EMU), slide 4 to 30 cm, slide 6 to 25 cm, and the file was saved and verified.
 
 ANSWER: DONE

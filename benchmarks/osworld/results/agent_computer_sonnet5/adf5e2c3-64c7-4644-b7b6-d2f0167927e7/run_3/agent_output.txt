@@ -1,1 +1,9 @@
-You've hit your session limit · resets 6:30am (Europe/Rome)
+Both edits are complete and saved:
+
+1. **Reference added** — "Steinberg, F. M., Bearden, M. M., & Keen, C. L. (2003). Cocoa and chocolate flavonoids: Implications for cardiovascular health. Journal of the American Dietetic Association, 103(2), 215-223. doi: 10.1053/jada.2003.50028" is now the last entry in the numbered reference list, auto-numbered as [14] (following [13] Schramm).
+
+2. **Cross-reference added** — in the fourth body paragraph, the "<add here>" marker after "A study by Pennington" was replaced with "[14]", so it now reads "A study by Pennington[14] noted that women do not generally meet US guidelines for trace elements…".
+
+The hyperlink-style formatting that got inherited on the new reference line was also cleared, and the document was saved in its original .docx format.
+
+ANSWER: DONE

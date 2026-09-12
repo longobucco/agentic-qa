@@ -1,0 +1,8 @@
+{
+  "id": "5e2d93d8-8ad0-4435-b150-1692aacaa994",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official is_extension_installed -> 1.00",
+  "source": "official",
+  "gold_sha256": {}
+}

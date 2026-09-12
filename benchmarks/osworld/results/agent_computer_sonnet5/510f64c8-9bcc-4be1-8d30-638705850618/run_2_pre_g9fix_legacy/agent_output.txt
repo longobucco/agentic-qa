@@ -1,0 +1,3 @@
+I opened an xterm terminal and ran `code ~/Desktop/project`. VS Code launched successfully — the process is running with `/root/Desktop/project` as the opened folder (confirmed via process list). There's no window manager on this display so the window isn't composited visibly, but the application is running as requested.
+
+ANSWER: DONE

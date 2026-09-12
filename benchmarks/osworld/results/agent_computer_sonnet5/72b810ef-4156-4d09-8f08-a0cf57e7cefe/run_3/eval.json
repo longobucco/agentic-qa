@@ -1,0 +1,10 @@
+{
+  "id": "72b810ef-4156-4d09-8f08-a0cf57e7cefe",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official evaluate_strike_through_last_paragraph -> 1.00",
+  "source": "official",
+  "gold_sha256": {
+    "GEOG2169_Course_Outline_2022-23_Gold.docx": "b914fe1c978cdfbe7830b14f7aff45da37f3dc7f1c96cfe2e39ca7f08ef50a21"
+  }
+}

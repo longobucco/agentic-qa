@@ -1,0 +1,5 @@
+I set Google Search's "results per page" preference to 50. The modern Google Search Settings UI no longer exposes the "Results per page" slider, so I set the underlying preference directly: the `PREF` cookie for `.google.com` now contains `num=50` and persists across reloads.
+
+Note: current Google Search uses continuous scrolling and largely ignores the count for rendering, but the preference itself is now set to 50.
+
+ANSWER: DONE

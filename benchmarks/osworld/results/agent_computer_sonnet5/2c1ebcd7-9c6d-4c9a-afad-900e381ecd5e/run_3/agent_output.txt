@@ -1,14 +1,15 @@
-All nine reference entries have been rewritten to APA 7th edition style and saved in place. Key corrections:
+All nine reference entries have been rewritten in APA 7th edition style, with publication details verified against the actual sources and corrected where wrong:
 
-- **Datta (2020)** – converted from mixed style; corrected to *Communications of the Association for Information Systems, 46*, 252–272, with proper DOI format.
-- **Dwivedi et al.** – year fixed 2017→**2016**, volume/issue/pages fixed 30(1), 130–139 → **33(1), 174–187**, DOI added.
-- **European Commission (2018 & 2019)** – reformatted from note style to APA (publisher added, "Retrieved" phrasing removed, sentence-case titles).
-- **Gartner** – converted from MLA-style quotes to APA glossary-entry format.
-- **Mergel et al.** – added Article number and DOI.
-- **OECD (2017)** – full title restored ("Boosting the Digital Transformation of the Public Sector"), publisher added.
-- **United Nations (2018)** – converted from MLA to APA (year in parentheses, sentence case, org as publisher).
-- **World Bank (2016)** – year moved into parentheses, DOI formatted as URL.
+- **Datta (2020)** – converted from mixed style; added volume 46, pages 252–272; kept DOI.
+- **Dwivedi et al.** – corrected year 2017→2016, journal volume/issue/pages 30(1), 130–139 → 33(1), 174–187; added DOI 10.1016/j.giq.2015.06.003.
+- **European Commission (2018)** – Eurobarometer 90; removed stray retrieval date, added publisher, fixed dead URL.
+- **European Commission (2019)** – DESI 2019 Italy; cleaned to APA, updated URL.
+- **Gartner** – converted from MLA; now (n.d.) glossary entry with retrieval date.
+- **Mergel et al. (2019)** – added "Article 101385" and DOI 10.1016/j.giq.2019.06.002.
+- **OECD (2017)** – added subtitle, publisher (OECD Publishing); kept DOI.
+- **United Nations (2018)** – converted from MLA to APA, sentence case, organizational author as publisher.
+- **World Bank (2016)** – converted from mixed style; publisher omitted (same as author), kept DOI.
 
-Alphabetical order (unchanged) and the rest of the document were left intact.
+Alphabetical order preserved; no other part of the document changed; saved in place as `case study.docx`.
 
 ANSWER: DONE

@@ -1,0 +1,3 @@
+Copied all 4 `.jpg` files found recursively under `/home/user/Desktop/photos` into a new `/home/user/Desktop/cpjpg` directory: `emnlp2023.jpg`, `hk_group_photo.jpg`, `hong-kong-china.jpg`, and `monk252520thailand252520wat252520arun252520scaled25255B225255D.jpg`.
+
+ANSWER: DONE

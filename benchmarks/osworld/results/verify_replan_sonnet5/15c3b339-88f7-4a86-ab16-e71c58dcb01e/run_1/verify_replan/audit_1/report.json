@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "Thunderbird 'Account Setup' tab shows the 'Set Up Your Existing Email Address' page",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "'Your full name' field contains 'anonym-x2024'",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "'Email address' field contains 'anonym-x2024@outlook.com'",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "'Password' field shows 8 masked dots, consistent with 'password' (8 characters)",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The page is still displayed with Cancel/Continue buttons visible; no server-config or next screen shown, indicating it was not submitted",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Accessibility tree returned empty, so verification relies on the screenshot only",
+      "source": "a11y",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "None required. Password text cannot be visually confirmed beyond the 8 masked dots, and full name was assumed as 'anonym-x2024'; user intends to check manually.",
+  "confidence": "high",
+  "parse_error": null
+}

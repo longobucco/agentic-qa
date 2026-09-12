@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "Row 12 labeled 'Total' contains sums for each month (B12:G12 = 4852, 4587, 3943, 3857, 4677, 4243)",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Row 13 labeled 'Growth' contains month-on-month % for Feb-Jun (C13:G13 = -5.46%, -14.04%, -2.18%, 21.26%, -9.28%), B13 (Jan) is empty",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "A bar chart titled 'Total' is present, showing one bar per month Jan through Jun",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "A line chart titled 'Growth' is present, with x-axis labels reading Feb, Mar, Apr, May, Jun only \u2014 no Jan label or gap",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Growth values in the chart visually match the sheet's row 13 percentages (dip to ~-14% at Mar, peak ~21% at May)",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Computed growth percentages (e.g. 4587/4852-1=-5.46%, 4677/3857-1=21.26%) match the displayed cell values, confirming correct month-on-month formula",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Title bar reads 'SalesRep.xlsx - LibreOffice Calc' with no visible unsaved-change indicator",
+      "source": "screenshot",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "None needed; task appears fully and correctly completed as observed.",
+  "confidence": "high",
+  "parse_error": null
+}

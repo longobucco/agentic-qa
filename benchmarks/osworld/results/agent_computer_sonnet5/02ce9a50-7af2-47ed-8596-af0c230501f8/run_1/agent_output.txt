@@ -1,0 +1,3 @@
+I opened an xterm in `/home/user`, ran `ls` (output: `Desktop`), and saved a cropped screenshot of that terminal window to `/home/user/Desktop/ls.png`.
+
+ANSWER: DONE

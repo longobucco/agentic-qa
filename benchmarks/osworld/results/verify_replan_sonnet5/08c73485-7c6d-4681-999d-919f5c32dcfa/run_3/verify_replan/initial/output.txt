@@ -1,0 +1,16 @@
+The Thunderbird instance has no email account configured (confirmed by the "No Email Account Configured" dialog when exiting Account Setup, and the empty "Welcome to Freedom" home screen with no folders in the left pane). Message filters and folder scope settings are per-account and require an existing account with a folder structure (Inbox, subfolders) to configure. Without any configured account, there are no filters to view/edit and no subfolders to target — the precondition for this task doesn't exist in this environment.
+
+ANSWER: FAIL
+
+```json
+{
+  "status": "infeasible",
+  "claim": "No email account is configured in this Thunderbird instance, so there are no message filters and no subfolders to apply automatic filtering to.",
+  "evidence_to_check": [
+    "Thunderbird main window shows 'No message found' with an empty folder pane (only the account-less 'Home' view, no Inbox/subfolders listed)",
+    "Attempting Tools > Message Filters does not open a usable filter list (no account selected, no filters exist)",
+    "The Account Setup wizard was open on launch, and canceling it shows a 'No Email Account Configured' dialog, confirming zero accounts exist"
+  ],
+  "remaining_risk": "It's possible an account exists but was hidden behind the Account Setup wizard in a way I didn't fully explore (e.g. a second profile or a local folders account with filters); I did not exhaustively check Account Settings for any existing account entries before concluding infeasibility."
+}
+```

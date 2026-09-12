@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "verdict": "uncertain",
+  "observations": [
+    {
+      "fact": "The Config Editor (Advanced Preferences) tab shows 'layout.css.prefers-color-scheme.content-override' with value 0, displayed in bold, indicating it is set/modified (a reset arrow is present)",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The Thunderbird UI chrome renders dark: dark title bar, dark tab strip, dark toolbar, and dark search field background",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Open tabs include 'Add-ons Manager' and 'Settings', but they are not the foreground tab, so theme selection state is not observable",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The accessibility tree returned empty, so no additional structural detail is available",
+      "source": "a11y",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [
+    "Cannot confirm Add-ons Manager > Themes shows 'Dark' as the enabled theme (tab not in foreground)",
+    "Cannot confirm mail.dark-reader.enabled = true (pref not shown; search box is filtered to a different pref)",
+    "Cannot confirm message/content area renders dark (no mail view visible)"
+  ],
+  "next_action": "Bring the Add-ons Manager Themes tab to the foreground to confirm 'Dark' is the enabled theme (not 'System theme \u2014 auto'), and in the Config Editor search 'mail.dark-reader.enabled' to confirm it is true; also open a message to confirm message content renders with a dark background.",
+  "confidence": "medium",
+  "parse_error": null
+}

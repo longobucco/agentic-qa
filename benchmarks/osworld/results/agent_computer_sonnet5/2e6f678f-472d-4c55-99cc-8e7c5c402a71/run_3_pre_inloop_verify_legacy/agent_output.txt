@@ -1,0 +1,3 @@
+All three desktop images were batch-processed through GIMP's Script-Fu console, applying brightness +50 and saving in place.
+
+ANSWER: DONE

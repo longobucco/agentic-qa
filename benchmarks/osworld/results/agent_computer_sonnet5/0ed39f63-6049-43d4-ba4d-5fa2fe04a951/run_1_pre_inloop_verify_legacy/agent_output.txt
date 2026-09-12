@@ -1,0 +1,3 @@
+All whole-word occurrences of "text" were replaced with "test" (leaving "texts" and "texting" intact) and the file was saved.
+
+ANSWER: DONE

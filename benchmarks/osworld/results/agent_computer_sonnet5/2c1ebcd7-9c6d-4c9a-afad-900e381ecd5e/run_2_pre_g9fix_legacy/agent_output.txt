@@ -1,0 +1,12 @@
+All nine entries in the References list have been rewritten to APA 7th edition style, alphabetical order preserved, and the file saved in place. Key corrections:
+
+- **Datta** – was a mixed/incomplete style; corrected to the actual journal article (Datta, Walker & Amarilli, 2020, *Journal of Information Technology Teaching Cases, 10*(2), 54–71, with DOI).
+- **Dwivedi et al.** – wrong year/volume/pages; actual details are 2016, *33*(1), 174–187, DOI added.
+- **European Commission (2018 & 2019)** – removed the "October 1, 2022" pseudo-retrieval date, sentence-cased titles.
+- **Gartner** – converted from MLA to APA webpage/glossary format with retrieval date.
+- **Mergel et al.** – correct; added missing DOI and "Article" label for the article number.
+- **OECD** – added full subtitle, publisher (OECD Publishing), kept DOI.
+- **United Nations** – converted from MLA to APA report format.
+- **World Bank** – converted to APA (parenthetical year, sentence case), kept DOI.
+
+ANSWER: DONE

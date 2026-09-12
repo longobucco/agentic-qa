@@ -1,0 +1,3 @@
+All 72 cells (9 years × 8 universities) have been filled with pass rates computed from the "Total" row of each ECS PDF (supported proposals ÷ applications), and the file was saved in xlsx format. Column sums were verified against each PDF's grand total for every year.
+
+ANSWER: DONE

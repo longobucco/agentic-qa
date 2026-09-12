@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "Slide 1 (thumbnail selected, slide 1 of 22) shows three text elements: top 'NEW PR   DUCT' rendered in a bright/pure yellow, middle 'LAUNCH' rendered in a bright/pure red, and bottom 'PR   JECT PR   POSAL' rendered in a bright/pure green, in top-to-bottom order matching the task's requested yellow, red, green sequence",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The a11y tree query returned an empty desktop-frame with no populated elements, so exact font color hex values (e.g. FFFF00/FF0000/00FF00) could not be programmatically confirmed",
+      "source": "a11y",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Title bar reads '45_2.pptx - LibreOffice Impress' with no visible unsaved-changes indicator in the visible UI chrome",
+      "source": "screenshot",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "If exact hex precision must be certified, select each text run and check Format > Character > Font Color dialog to confirm FFFF00/FF0000/00FF00 exactly, since only rendered on-screen color could be visually assessed here.",
+  "confidence": "medium",
+  "parse_error": null
+}

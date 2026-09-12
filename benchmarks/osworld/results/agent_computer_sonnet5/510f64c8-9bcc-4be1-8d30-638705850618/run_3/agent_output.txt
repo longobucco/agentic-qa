@@ -1,3 +1,3 @@
-VS Code is now open with the `project` folder (showing .vscode, main.py, README.md). Task complete.
+VS Code is now open with the `~/Desktop/project` folder (launched via `code --no-sandbox /home/user/Desktop/project` from the terminal; the Explorer shows the PROJECT folder with its files).
 
 ANSWER: DONE

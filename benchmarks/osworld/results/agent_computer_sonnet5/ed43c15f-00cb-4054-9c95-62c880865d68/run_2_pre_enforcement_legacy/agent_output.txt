@@ -1,0 +1,3 @@
+The file has been edited directly: the picture on slide 2 was moved to the top of the slide, and all textbox text runs on slides 1 and 2 are now underlined. The presentation is reopened in LibreOffice Impress (visible: underlined "Minimalistic Newsletter" / "Here is the start of the presentation", and slide 2's picture at the top).
+
+ANSWER: DONE

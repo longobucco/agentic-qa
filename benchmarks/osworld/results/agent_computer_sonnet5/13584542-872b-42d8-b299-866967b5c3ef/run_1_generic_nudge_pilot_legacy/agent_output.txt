@@ -1,0 +1,5 @@
+A terminal is now open on screen (via Ctrl+Alt+T) showing `stty size` → **`43 132`**. The earlier review saw a black screen only because I had closed my verification window; the persistent setting itself was already in place.
+
+Why it's permanent: xterm has no savable per-window size — it reads its geometry from X resource files at launch. I wrote `*VT100.geometry: 132x43` into `/etc/X11/app-defaults/XTerm` (and `XTerm-color`), plus `~/.Xresources`/`~/.Xdefaults`, and bound Ctrl+Alt+T in Openbox to a sized xterm. These are on-disk config files, so every new terminal after any reboot opens at 132×43, as just demonstrated.
+
+ANSWER: DONE

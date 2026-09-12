@@ -1,0 +1,3 @@
+The setting is now enabled (`show-battery-percentage` → `true`), so the battery percentage will display next to the battery icon in the top bar.
+
+ANSWER: DONE

@@ -1,0 +1,7 @@
+{
+  "id": "a669ef01-ded5-4099-9ea9-25e99b569840",
+  "verdict": "EVAL_ERROR",
+  "reason": "eval_state='<binary:1079071 bytes at Writing-Outlines.pptx>' (official eval errored: AttributeError: module 'desktop_env.evaluators.metrics' has no attribute 'check_continuation_line_indent_no_bullet')",
+  "source": "offline_fallback",
+  "gold_sha256": {}
+}

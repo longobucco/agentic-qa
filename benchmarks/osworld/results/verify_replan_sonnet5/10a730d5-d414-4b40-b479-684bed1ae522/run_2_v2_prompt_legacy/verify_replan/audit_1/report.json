@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "The Thunderbird window shows a dark title bar, dark toolbar, dark folder pane, dark tab bar, and a black message list pane with light text ('No message found').",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The active content pane (Home/start page) renders with a black/dark background and white/light-colored text and buttons ('Welcome to Freedom').",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "An 'Add-ons Manager' tab is open in the tab bar but is not the focused/visible tab in this screenshot, so its Themes list (showing which theme is Enabled/Disabled) could not be directly inspected.",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The accessibility tree query returned an empty desktop frame with no node data, so no accessibility-level confirmation of theme settings was possible.",
+      "source": "a11y",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "None required for the visible chrome \u2014 it is fully dark. If full confidence is needed, bring the Add-ons Manager > Themes tab to the foreground to directly confirm the 'Dark' theme shows 'Disable' (active) and 'System theme \u2014 auto' shows 'Enable' (inactive).",
+  "confidence": "medium",
+  "parse_error": null
+}

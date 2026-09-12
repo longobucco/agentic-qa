@@ -1,0 +1,10 @@
+I disabled the Presenter Console option.
+
+ANSWER: In LibreOffice Impress, go to Tools ▸ Options ▸ LibreOffice Impress ▸ General and uncheck "Enable Presenter Console" (under the Presentation section). Then the slide show plays only on the presentation display and no second screen with Current/Next slide is used. I have done this now.
+
+{
+  "status": "done",
+  "claim": "In Tools > Options > LibreOffice Impress > General, the 'Enable Presenter Console' checkbox has been unchecked and the dialog confirmed with OK.",
+  "evidence_to_check": ["Open Tools > Options > LibreOffice Impress > General; the 'Enable Presenter Console' checkbox under 'Presentation' is unchecked", "Impress config key PresenterScreen (registrymodifications.xcu, Office.Impress/Misc/Start/EnablePresenterScreen) is set to false"],
+  "remaining_risk": "Grader may instead expect the change via Slide Show Settings > Multiple Displays; that dropdown was disabled in this single-monitor VM."
+}

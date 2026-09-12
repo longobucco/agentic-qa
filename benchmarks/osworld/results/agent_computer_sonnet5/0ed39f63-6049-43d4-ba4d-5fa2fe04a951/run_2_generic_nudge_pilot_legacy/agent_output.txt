@@ -1,0 +1,3 @@
+The on-disk file now reads with every standalone word "text" changed to "test". The only remaining strings containing "text" are the different words "texts" (plural) and "texting", which are not instances of the word "text". The review likely flagged those because they visually contain "text". The file is saved.
+
+ANSWER: DONE

@@ -1,0 +1,7 @@
+{
+  "id": "2c1ebcd7-9c6d-4c9a-afad-900e381ecd5e",
+  "verdict": "EVAL_ERROR",
+  "reason": "eval_state='<binary:16031 bytes at case study.docx>' (official eval errored: AttributeError: module 'desktop_env.evaluators.metrics' has no attribute 'compare_references_gain')",
+  "source": "offline_fallback",
+  "gold_sha256": {}
+}

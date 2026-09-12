@@ -1,0 +1,3 @@
+All 12 `.doc` files in `/home/user/Desktop` have been converted to PDF using `soffice --headless --convert-to pdf *.doc`, and each now has a matching `.pdf` file in the same directory.
+
+ANSWER: DONE

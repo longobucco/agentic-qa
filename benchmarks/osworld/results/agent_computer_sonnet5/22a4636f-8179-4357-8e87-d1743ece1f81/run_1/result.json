@@ -1,0 +1,22 @@
+{
+  "id": "22a4636f-8179-4357-8e87-d1743ece1f81",
+  "bucket": "libreoffice_writer",
+  "instruction": "Please help me convert the file \"Meeting-Agenda.docx\" to a pdf file and upload to the folder 'meetings' in my google drive.",
+  "answer": "",
+  "setup_error": "config setup failed: Setup step 1 failed: _googledrive_setup - Invalid client secrets file ('Error opening file', 'client_secrets.json', 'No such file or directory', 2)",
+  "provenance": {
+    "task_sha256": "11eb14a5418983bca83ecd9a6cc3cd883be5905018ce5c7a1127d6dd5830c65b",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "model_requested": "claude-sonnet-5",
+    "controller_url": "https://5000-8673206d-558e-4db5-91bb-ee01129ddb0c.daytonaproxy01.eu",
+    "release": "verified",
+    "evaluator_commit": "091f5ef1d5544bc74953c77875d5feb5bed30108",
+    "evaluator_package": "1.0.2",
+    "max_turns": 150,
+    "task_timeout": 2700,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-09-08T12:45:19.517630+00:00",
+    "finished_at": "2026-09-08T12:45:19.519749+00:00"
+  }
+}

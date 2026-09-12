@@ -1,5 +1,1 @@
-Both changes are applied and saved to `/home/user/Desktop/43_1.pptx`:
-- Slide 2's picture moved to the slide top (top = 0).
-- All text runs in the textboxes on slides 1 and 2 are now underlined (visible in the reopened file).
-
-ANSWER: DONE
+You've hit your session limit · resets 11:10pm (Europe/Rome)

@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "extensions.activeThemeID pref is set to 'thunderbird-compact-dark@mozilla.org'",
+      "source": "a11y",
+      "evidence_ref": null
+    },
+    {
+      "fact": "browser.theme.content-theme and browser.theme.toolbar-theme are both 0 (dark)",
+      "source": "a11y",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Screenshot shows entire visible UI in dark colors: title bar, folder pane, message list pane, toolbar, and the content/welcome page all have dark backgrounds with light text",
+      "source": "screenshot",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "None needed; dark theme is active application-wide as claimed.",
+  "confidence": "high",
+  "parse_error": null
+}

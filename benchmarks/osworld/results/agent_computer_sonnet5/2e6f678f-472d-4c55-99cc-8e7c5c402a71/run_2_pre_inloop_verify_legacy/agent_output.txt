@@ -1,0 +1,3 @@
+All three desktop images (squirrel.jpeg, panda.jpeg, heron.jpeg) were batch-processed via GIMP's Script-Fu console, applying a brightness increase of 50 and saving each in place.
+
+ANSWER: DONE

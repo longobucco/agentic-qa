@@ -1,1 +1,5 @@
-You've hit your session limit · resets 11:30am (Europe/Rome)
+The user `Charles` does not exist on this system. Checking `/etc/passwd` shows only system accounts (root, daemon, bin, etc.) and `getent passwd Charles` returns nothing (exit code 2). Per the task instructions, I must not create the user or change system accounts.
+
+The task cannot be completed because the user `Charles` does not exist.
+
+ANSWER: FAIL

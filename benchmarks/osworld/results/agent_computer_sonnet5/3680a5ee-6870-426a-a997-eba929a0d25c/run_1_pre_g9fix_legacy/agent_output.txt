@@ -1,0 +1,6 @@
+The task is complete. I merged the two columns via the command line:
+- Converted `file1.xlsx` and `file2.ods` to CSV with `soffice --headless --convert-to csv`
+- Concatenated row-wise with `paste -d '' file1.csv file2.csv > output.csv` at `~/Desktop/output.csv`
+- Opened it with `soffice output.csv`, which is now showing in LibreOffice Calc as a single column (`DulceAbril`, `MaraHashimoto`, …)
+
+ANSWER: DONE

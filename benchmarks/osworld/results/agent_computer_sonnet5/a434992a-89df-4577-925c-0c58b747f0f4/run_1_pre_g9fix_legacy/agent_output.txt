@@ -1,0 +1,9 @@
+I made all three changes directly in the presentation file (`/home/user/Desktop/16_2.pptx`):
+
+- **Content font size → 12** (`sz="1200"` on the content placeholder's run and end-paragraph properties)
+- **Content font color → orange** (`srgbClr val="FFA500"`)
+- **Slide background → red** (added `<p:bg>` with `srgbClr val="FF0000"` to the slide)
+
+Verified the resulting slide1.xml contains all three edits, and closed LibreOffice so it won't overwrite the file.
+
+ANSWER: DONE

@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "verdict": "uncertain",
+  "observations": [
+    {
+      "fact": "LibreOffice Calc has IncomeStatement2.xlsx open, title bar shows no unsaved-changes marker",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "A sheet tab named 'Sheet2' exists and follows 'Sheet1' (status bar: Sheet 2 of 2); it is the active sheet",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Sheet2 A1 displays 'Year Profit' (the character between 'Year' and 'Profit' could be an underscore rendered at the baseline; cannot confirm it is exactly 'Year_Profit')",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Sheet2 A2:A10 display '2015 55000','2016 47662','2017 53451','2018 60819','2019 62864','2020 57924','2021 59634','2022 50852','2023 43649', left-aligned and overflowing into empty column B, consistent with text strings joined by underscore",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "These Sheet2 values match the executor's claimed Gross Profit numbers exactly",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Sheet1 is not visible; the Gross Profit column (J) and its values cannot be observed",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The accessibility tree returned empty, so cell contents/formulas cannot be inspected directly",
+      "source": "a11y",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [
+    "Cannot confirm Sheet1!J1 header is 'Gross Profit' or that J2:J10 contain the computed values",
+    "Cannot confirm the Gross Profit arithmetic (actual sale minus discounts/allowances/materials/labor/overhead) was done correctly",
+    "Cannot confirm Sheet2!A1 is exactly 'Year_Profit' vs 'Year Profit', nor that A2:A10 use underscores vs spaces",
+    "Cannot confirm Sheet2 values are text (not numbers) and were derived from Sheet1 Year column"
+  ],
+  "next_action": "Switch to Sheet1 and inspect the header row and column J values plus the source expense columns to verify the Gross Profit computation; then select Sheet2 A1 and A2 and read the formula bar to confirm the exact string content uses an underscore separator and is stored as text.",
+  "confidence": "medium",
+  "parse_error": null
+}

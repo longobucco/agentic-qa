@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "SmallBalanceSheet.xlsx is open in LibreOffice Calc with two sheet tabs: 'Sheet1' and 'Sheet2'; 'Sheet2' is active (status bar 'Sheet 2 of 2')",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Sheet2 A1:D1 contain headers 'Year', 'CA changes', 'FA changes', 'OA changes'",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Sheet2 A2:A6 contain 2015, 2016, 2017, 2018, 2019",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Sheet2 row 2 = 10.149072, -4.96044, -1.675978; row 6 = 6.5545787, -7.455235, 1.439206, matching the executor's stated evidence values",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Values are expressed as percentages (e.g. ~10.15, not 0.10)",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Title bar shows 'SmallBalanceSheet.xlsx' with no modified-state indicator visible",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Accessibility tree returned empty; verification based on screenshot only",
+      "source": "a11y",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "None required; underlying Sheet1 source values and save-to-disk state could not be independently confirmed from the screenshot, but the visible Sheet2 contents satisfy all task conditions.",
+  "confidence": "medium",
+  "parse_error": null
+}

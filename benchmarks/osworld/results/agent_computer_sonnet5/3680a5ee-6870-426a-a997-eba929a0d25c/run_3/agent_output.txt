@@ -1,3 +1,3 @@
-The task is complete: I converted both files to CSV via `soffice --headless --convert-to csv`, concatenated the two single columns row-by-row into `~/Desktop/output.csv` (5001 rows, one column, e.g. `DulceAbril`, `MaraHashimoto`), and opened it in LibreOffice Calc from the terminal with `soffice --calc`.
+The task is complete. I converted both spreadsheets to CSV via the command line (`soffice --headless --convert-to csv`), merged the two columns row-wise by string concatenation with `paste -d ''`, saved the result to `~/Desktop/output.csv` (5001 rows, e.g. `First NameLast Name`, `DulceAbril`, `MaraHashimoto`…), and launched it from the terminal with `soffice --calc`, which is now open in LibreOffice Calc.
 
 ANSWER: DONE

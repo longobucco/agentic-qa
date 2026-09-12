@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "Slide 1 top textbox reads 'NEW PR   DUCT' (partially obscured by soap image, underlying text likely 'NEW PRODUCT') and is rendered in a bright yellow color",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Slide 1 middle textbox reads 'LAUNCH' and is rendered in a bright red color",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Slide 1 bottom textbox reads 'PR   JECT PR   POSAL' (partially obscured by hand/soap image, likely 'PROJECT PROPOSAL') and is rendered in a bright green color",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Top-to-bottom order of colors is yellow, red, green, matching the requested order",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Title bar reads '45_2.pptx - LibreOffice Impress' with no visible unsaved-changes marker",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Accessibility tree returned empty (no exposed elements), so exact font color hex values could not be directly confirmed from a11y data",
+      "source": "a11y",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "None required if rendered colors are confirmed as exactly FFFF00/FF0000/00FF00 (e.g. via a color picker or file inspection); visually they appear to be pure yellow/red/green with no shade variation, but this was judged from the rendered screenshot rather than an inspected hex value.",
+  "confidence": "medium",
+  "parse_error": null
+}

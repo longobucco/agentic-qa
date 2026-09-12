@@ -1,3 +1,3 @@
-VLC is now set as the default application for video files. I verified via `xdg-mime query default` that video types (mp4, mkv, quicktime, etc.) now resolve to `vlc.desktop`, and updated `~/.config/mimeapps.list` accordingly.
+VLC is now set as the default for all common video MIME types (verified: `video/mp4` → `vlc.desktop`).
 
 ANSWER: DONE

@@ -1,3 +1,3 @@
-Created `/root/.config/Code/User/settings.json` with `"editor.wordWrapColumn": 50`, which is VS Code's user setting controlling the column at which code wraps.
+The user settings file now contains `"editor.wordWrapColumn": 50`, which controls the column at which code wraps.
 
 ANSWER: DONE

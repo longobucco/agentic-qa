@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "LibreOffice Impress is showing slide 2 of 2 of 22_6.pptx",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Slide 2 displays the text 'Note' positioned in the upper area of the slide, flush against the right side (approx x~850 of the ~915px-wide slide), consistent with a right-aligned title paragraph",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "A separate content placeholder ('Click to add Text') occupies the body area, so 'Note' is in a distinct upper placeholder consistent with the title placeholder",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The window title bar reads '22_6.pptx - LibreOffice Impress' with no visible modification/unsaved indicator",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The accessibility tree returned empty, so placeholder type and exact paragraph alignment property could not be independently confirmed",
+      "source": "a11y",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "None required; if stricter verification is desired, inspect the slide XML to confirm the 'Note' run is in the title placeholder with algn=\"r\".",
+  "confidence": "medium",
+  "parse_error": null
+}

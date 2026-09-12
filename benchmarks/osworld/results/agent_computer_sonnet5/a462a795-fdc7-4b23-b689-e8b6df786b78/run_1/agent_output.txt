@@ -1,1 +1,3 @@
-You've hit your session limit · resets 11:30am (Europe/Rome)
+The user list on this machine contains only system accounts (root and daemons). There is no user account named `Charles` (no human/login user exists at all). Per the task instructions, I must not create the user or modify system accounts, so switching to `Charles` is impossible.
+
+ANSWER: FAIL

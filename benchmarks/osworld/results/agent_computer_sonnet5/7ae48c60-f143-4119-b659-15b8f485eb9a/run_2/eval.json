@@ -1,10 +1,11 @@
 {
   "id": "7ae48c60-f143-4119-b659-15b8f485eb9a",
-  "verdict": "SUCCESS",
-  "reward": 1.0,
-  "reason": "official ['compare_pptx_files', 'compare_pptx_files'] -> 1.00",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official ['compare_pptx_files', 'compare_pptx_files'] -> 0.00",
   "source": "official",
   "gold_sha256": {
-    "30_1_Gold.pptx": "48e52b17eaddff77774b87b358441e94f65ab40c3b019257d7676406ffa67306"
+    "30_1_Gold.pptx": "48e52b17eaddff77774b87b358441e94f65ab40c3b019257d7676406ffa67306",
+    "30_1_Gold_all_fonts.pptx": "f1b38d0e34ba4fd46fc02488512de15f8512ddc7c726d7cf7a19326d4b20bc71"
   }
 }

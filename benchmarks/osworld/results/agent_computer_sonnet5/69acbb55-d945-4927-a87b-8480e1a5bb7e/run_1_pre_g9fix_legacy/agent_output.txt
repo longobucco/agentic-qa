@@ -1,0 +1,15 @@
+The environment is configured. Summary of what was done in `/home/user`:
+
+1. **Fetched the project** `xlang-ai/instructor-embedding` into `/home/user/instructor-embedding` (git wasn't installed, so pulled the source tarball from GitHub).
+2. **Installed a CPU build of PyTorch** (`torch 2.14.0+cpu`) from the PyTorch CPU index — the default `torch>=2.0` was dragging in multi-GB CUDA wheels that overflowed the 10 GB disk.
+3. **Installed all `requirements.txt` deps** plus the package itself in editable mode (`pip install -r requirements.txt -e .`): transformers 4.57.6, datasets 2.21.0, sentence-transformers 3.4.1, scikit-learn, scipy, numpy, huggingface-hub, rich, tqdm, etc.
+4. **Verified**: `import torch, transformers, datasets, sentence_transformers` and `from InstructorEmbedding import INSTRUCTOR` all succeed.
+
+You can now run the Colab-style workflow, e.g.:
+```python
+from InstructorEmbedding import INSTRUCTOR
+model = INSTRUCTOR('hkunlp/instructor-large')
+emb = model.encode([['Represent the Science title:', 'A new method for word embeddings']])
+```
+
+ANSWER: DONE

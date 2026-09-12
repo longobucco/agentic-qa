@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "Slide 1 of 45_2.pptx is displayed in LibreOffice Impress and contains three text elements over a blue background.",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The top text box 'NEW PR   DUCT' renders in a bright pure yellow consistent with RGB(255,255,0).",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The middle text box 'LAUNCH' renders in a bright pure red consistent with RGB(255,0,0).",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The bottom text box 'PR   JECT PR   POSAL' renders in a bright pure green consistent with RGB(0,255,0).",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The colors are in top-to-bottom order yellow, red, green as required.",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The window title bar shows '45_2.pptx' with no modification/unsaved indicator visible; accessibility tree returned empty so exact hex values could not be inspected via Format dialog.",
+      "source": "screenshot",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "None required; if exact hex verification is needed, open Format > Character for each text box to confirm FFFF00 / FF0000 / 00FF00.",
+  "confidence": "medium",
+  "parse_error": null
+}

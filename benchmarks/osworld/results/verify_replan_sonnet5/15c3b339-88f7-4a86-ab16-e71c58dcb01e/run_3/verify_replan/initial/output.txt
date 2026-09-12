@@ -1,0 +1,10 @@
+All fields are filled in on the "Set Up Your Existing Email Address" page and I've stayed on that page as requested.
+
+ANSWER: DONE
+
+{
+  "status": "done",
+  "claim": "In Thunderbird's Account Setup page, I filled 'Your full name' with 'anonym-x2024', 'Email address' with 'anonym-x2024@outlook.com', and 'Password' with 'password' (8 characters), leaving the page open without clicking Continue.",
+  "evidence_to_check": ["Account Setup tab shows 'Set Up Your Existing Email Address'", "Email address field contains 'anonym-x2024@outlook.com'", "Full name field contains 'anonym-x2024'", "Password field shows 8 masked dots", "Remember password checkbox is checked"],
+  "remaining_risk": "A second tab 'Thunderbird Privacy Notice' opened but the Account Setup form remains filled and active"
+}

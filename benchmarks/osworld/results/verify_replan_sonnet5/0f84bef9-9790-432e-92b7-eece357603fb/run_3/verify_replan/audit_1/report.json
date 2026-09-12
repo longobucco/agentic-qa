@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "verdict": "uncertain",
+  "observations": [
+    {
+      "fact": "LibreOffice Impress is open with 'multimedia_classroom_podium-2020.pptx' in normal editing view; no Options dialog is visible",
+      "source": "screenshot"
+    },
+    {
+      "fact": "A 'first time running version 7.3' notification bar is shown, and no Tools > Options > LibreOffice Impress > General dialog is open to inspect the 'Enable Presenter Console' checkbox",
+      "source": "screenshot"
+    },
+    {
+      "fact": "The accessibility tree returned empty, so control-level state (checkbox values) cannot be inspected",
+      "source": "a11y"
+    }
+  ],
+  "failed_checks": [
+    "Cannot confirm the 'Enable Presenter Console' checkbox in Tools > Options > LibreOffice Impress > General is unchecked",
+    "Cannot inspect registrymodifications.xcu for the StartWithPresenterScreen / presenter-console property"
+  ],
+  "next_action": "Open Tools > Options > LibreOffice Impress > General and visually confirm the 'Enable Presenter Console' checkbox under the Presentation section is unchecked; alternatively inspect the user profile's registrymodifications.xcu for the Impress presenter-console setting being false.",
+  "confidence": "high",
+  "parse_error": null
+}

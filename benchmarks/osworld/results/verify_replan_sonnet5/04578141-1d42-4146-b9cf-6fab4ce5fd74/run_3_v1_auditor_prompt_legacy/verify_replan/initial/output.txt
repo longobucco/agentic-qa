@@ -1,0 +1,15 @@
+All three textboxes updated and saved in pptx format.
+
+ANSWER: DONE
+
+{
+  "status": "done",
+  "claim": "On slide 1 of 45_2.pptx, the top textbox ('NEW PR DUCT') text is now yellow FFFF00, the middle textbox ('LAUNCH') is red FF0000, and the bottom textbox ('PR JECT PR POSAL') is green 008000. File saved in PowerPoint format.",
+  "evidence_to_check": [
+    "Slide 1 top text 'NEW PR DUCT' font color = FFFF00",
+    "Slide 1 middle text 'LAUNCH' font color = FF0000",
+    "Slide 1 bottom text 'PR JECT PR POSAL' font color = 008000",
+    "45_2.pptx was saved (no unsaved-changes indicator)"
+  ],
+  "remaining_risk": "Verifier may expect a different 'green' value (e.g. 00FF00 or 00B050) than the standard 008000 used here."
+}

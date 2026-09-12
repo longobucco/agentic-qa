@@ -1,0 +1,12 @@
+{
+  "status": "done",
+  "claim": "Added a 'Total' row (row 12) with =SUM formulas for each month (Jan-Jun: 4852, 4587, 3943, 3857, 4677, 4243) and a 'Growth' row (row 13) with month-on-month growth percentages for Feb-Jun. Inserted a bar chart titled 'Total' showing each month's total as bars, and a line chart titled 'Growth' showing Feb-Jun growth percentages with Jan omitted. Saved as SalesRep.xlsx.",
+  "evidence_to_check": [
+    "Cell A12 contains 'Total'; B12:G12 contain 4852, 4587, 3943, 3857, 4677, 4243",
+    "Cell A13 contains 'Growth'; C13:G13 contain approx -5.46, -14.04, -2.18, 21.26, -9.28; B13 (Jan) is empty",
+    "A bar chart object with main title 'Total' exists on Sheet1 plotting the six monthly totals",
+    "A line chart object with main title 'Growth' exists on Sheet1 plotting 5 points labeled Feb, Mar, Apr, May, Jun"
+  ],
+  "remaining_risk": "The 'Total' chart renders as a horizontal bar chart rather than vertical columns; growth percentages use month-total ratios which is the intended month-on-month interpretation.",
+  "parse_error": null
+}

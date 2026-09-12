@@ -1,0 +1,8 @@
+The task is complete. On Page 3 (Concept Map slide), the line "continuation of the sub topics" now:
+- Has no bullet in front of it (`<a:buNone/>`)
+- Is indented to the same left position as "Main idea" and "Sub topics" (paragraph left margin `marL="457200"`, matching the reference lines)
+- Is at the same outline level (level 0)
+
+I also removed a stray empty paragraph that was accidentally created, and saved the file (kept in PowerPoint format).
+
+ANSWER: DONE

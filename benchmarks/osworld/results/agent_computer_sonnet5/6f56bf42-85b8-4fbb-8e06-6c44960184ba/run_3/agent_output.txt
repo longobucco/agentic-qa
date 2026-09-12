@@ -1,0 +1,3 @@
+file1 copied into dir1, dir2, and dir3 (each now contains a 33-byte file1 matching the source).
+
+ANSWER: DONE

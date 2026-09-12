@@ -1,3 +1,7 @@
-LibreOffice Writer has been force-quit — the screen is now empty (black desktop), confirming the `soffice.bin` process was killed via the command-line `pkill -9` command. No system restart was performed.
+LibreOffice Writer has been force-killed. I ran `pkill -9 -f soffice`, which terminated only the frozen `soffice.bin` process (PID 524) — no other applications were touched and no restart was needed. A follow-up `pgrep soffice` now returns nothing, confirming it's gone.
+
+Equivalent commands you can use yourself next time:
+- `pkill -9 soffice.bin` (or `killall -9 soffice.bin`)
+- or find the PID with `pgrep -af soffice` then `kill -9 <pid>`
 
 ANSWER: DONE

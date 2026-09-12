@@ -1,3 +1,3 @@
-Document saved successfully. The GPT-4 results table has been inserted into the "5.2 Main Results" section with the exact header row and cell values as displayed in the spreadsheet.
+The table was saved into the "Main Results" section with the header row and GPT-4 values formatted to four decimal places.
 
 ANSWER: DONE

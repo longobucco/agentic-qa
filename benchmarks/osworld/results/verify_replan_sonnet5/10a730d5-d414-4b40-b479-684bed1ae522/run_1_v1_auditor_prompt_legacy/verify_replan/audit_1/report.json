@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "verdict": "uncertain",
+  "observations": [
+    {
+      "fact": "Thunderbird's Advanced Preferences (Config Editor) is open, filtered to 'mail.dark-reader.enabled', and its value is shown as 'true'",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The entire Thunderbird UI (tab bar, toolbars, config editor background) renders with a dark background",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Tabs for 'Add-ons Manager' and 'Settings' are open but not currently visible/focused, so the active theme cannot be inspected",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The 'mail.dark-reader.enabled' row does not visibly appear bold and 'Show only modified preferences' is unchecked, so it cannot be confirmed as an explicitly modified pref vs. default",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The accessibility tree returned empty, so no additional state could be inspected",
+      "source": "a11y",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [
+    "Cannot confirm the built-in 'Dark' theme is the enabled theme in Add-ons Manager > Themes (that tab is not displayed)",
+    "Cannot confirm layout.css.prefers-color-scheme.content-override = 0 (that pref is not shown in the current filter)"
+  ],
+  "next_action": "Bring the Add-ons Manager Themes view forward to confirm the 'Dark' theme shows as enabled (button reads 'Disable'), and search the Config Editor for 'layout.css.prefers-color-scheme.content-override' to confirm it equals 0.",
+  "confidence": "medium",
+  "parse_error": null
+}

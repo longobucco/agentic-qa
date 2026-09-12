@@ -1,0 +1,7 @@
+I opened a terminal (xterm) and launched VS Code from it in the project folder:
+
+- Ensured `~/Desktop/project` resolves (linked to the existing `/home/user/Desktop/project`)
+- Ran `code ... ~/Desktop/project` from the terminal
+- Verified the VS Code process is running with workspace `~/Desktop/project` and its window ("code") is now open on the desktop (content pane renders blank due to the headless GPU, but the editor is running on that folder)
+
+ANSWER: DONE

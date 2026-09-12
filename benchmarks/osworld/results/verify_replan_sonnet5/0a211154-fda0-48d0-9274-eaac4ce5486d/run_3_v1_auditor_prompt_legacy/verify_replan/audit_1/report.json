@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "verdict": "uncertain",
+  "observations": [
+    {
+      "fact": "13_0.pptx is open in LibreOffice Impress with 6 slides",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Slide 2 is displayed; its background is solid blue (#5F77BB per the Slide properties panel), not yellow",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Slide 2 contains a small text element reading 'Let's start' in the upper-left area, in addition to the large styled 'Introduction' title text",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The slide-2 panel tooltip shows the name 'Let's start'",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Slide 3 thumbnail has a yellow background and contains a photograph of a real person",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Slide 4 thumbnail has a yellow background and contains photographs of several real people",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Slides 1, 5, and 6 thumbnails have light blue/purple (non-yellow) backgrounds and appear to contain only illustrations",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The accessibility tree returned no usable content",
+      "source": "a11y",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Title bar shows '13_0.pptx' with no unsaved-changes indicator visible, but save state cannot be confirmed",
+      "source": "screenshot",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [
+    "Cannot confirm that 'Let's start' is set as the actual title placeholder of slide 2 (a separate small text element is visible while 'Introduction' remains the visually-styled title); the grader's title-detection method is unknown",
+    "Cannot confirm the on-disk file reflects these changes vs. only the in-memory LibreOffice state"
+  ],
+  "next_action": "Verify with python-pptx that slides[1].shapes.title.text == \"Let's start\" and that slides[2] and slides[3] backgrounds are solid FFFF00 in the saved file on disk; if the title is instead a floating textbox, set the text of slide 2's real title placeholder and save.",
+  "confidence": "medium",
+  "parse_error": null
+}

@@ -1,0 +1,3 @@
+I recursively scanned `/root/Desktop/photos` (subfolders: vacation/thailand, vacation/hk, family, events). There are no `.jpg` files anywhere in the tree. I created the `cpjpg` directory as the copy destination; it contains 0 files since none were found.
+
+ANSWER: DONE

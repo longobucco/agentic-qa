@@ -1,3 +1,3 @@
-The VLC config now has `play-and-exit=0`, so VLC will no longer quit when a video finishes.
+I disabled the "play and exit" option in VLC's configuration (`play-and-exit=0` in `~/.config/vlc/vlcrc`), so VLC will no longer close automatically when a video finishes.
 
 ANSWER: DONE

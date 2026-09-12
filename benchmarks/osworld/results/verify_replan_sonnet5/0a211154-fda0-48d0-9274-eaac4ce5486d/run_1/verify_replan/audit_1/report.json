@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "Currently open slide (4 of 6) has a solid yellow background, confirmed via the Properties panel 'Background: Color: Yellow' control, and shows three photos of real people (a young man, a young woman, a young man) with the title 'Meet the Teams'.",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Slide panel thumbnail for slide 3 shows a yellow background with a photo of a woman and a title reading approximately 'Hello there'.",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Slide panel thumbnails for slides 1, 5, and 6 show non-yellow (pink/blue) backgrounds with illustrations only, no real people photos visible.",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Slide panel thumbnail for slide 2 shows a non-yellow background with illustration only (no photo), and title text that appears to read 'Let's start', consistent with the requested title change.",
+      "source": "screenshot",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "None required, but for full certainty someone with interactive access should open slide 2 directly to confirm the exact title text (including apostrophe style: straight vs. curly quote) and open slide 3 to confirm its background fill is exactly yellow rather than just visually similar in the thumbnail.",
+  "confidence": "medium",
+  "parse_error": null
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "Slide 4 is open in the editor with a solid yellow background and contains three circular photographs that appear to be real people (young man, young woman, young man); title reads 'Meet the Teams'.",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The Properties panel shows the current slide's Background set to Color = 'Yellow'.",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Slide 3 thumbnail shows a yellow background with a photograph of a blonde woman (a real person) and 'Hello there' text.",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Slide 2 thumbnail shows a blue/pink background (not yellow) with the text 'Let's start' near the top.",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Slides 1, 5, and 6 thumbnails retain blue/purple backgrounds and appear to contain underwater illustrations (fish, seaweed, dolphin) rather than photos of real people, though thumbnails are too small to fully confirm.",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Title bar reads '13_0.pptx - LibreOffice Impress' with no visible unsaved-changes marker.",
+      "source": "screenshot",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "If a grader is strict, open slide 2 to confirm the title placeholder text is exactly \"Let's start\" (capitalization and apostrophe), and inspect slides 1/5/6 full-size to confirm none contain a photograph of a real person.",
+  "confidence": "medium",
+  "parse_error": null
+}

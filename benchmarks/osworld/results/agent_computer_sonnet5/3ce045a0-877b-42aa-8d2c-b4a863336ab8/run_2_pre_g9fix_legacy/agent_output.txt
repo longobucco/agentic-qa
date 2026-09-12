@@ -1,0 +1,3 @@
+The text scaling factor is now set to 1.25 ("Large Text"), which enlarges text across the desktop and applications so it's easier to read.
+
+ANSWER: DONE

@@ -1,0 +1,3 @@
+Automatic screen lock is now enabled: the screen blanks after 5 minutes of inactivity and locks immediately when it does, so the computer locks itself after you leave.
+
+ANSWER: DONE

@@ -1,0 +1,11 @@
+The task is complete. I:
+
+1. **Added a Revenue column (G)** to Sheet1 titled "Revenue", computed as `Retail Price × Quantity × (1 − Discount)`, with the Retail Price looked up per product from the "Retail Price" sheet (e.g. Aspen×33×(1−0.165) = 604.83225).
+
+2. **Created a real Pivot Table in a new sheet "Sheet2"** using LibreOffice's DataPilot, with Product as the row field and Sum of Revenue as the data field — summarizing total revenue per product (Aspen 2262.91, Quad 3233.71, etc.).
+
+3. Saved the workbook in xlsx format.
+
+Verified via the saved file: the pivot table definition has rowFields=Product, dataFields=sum of Revenue (fld 6), no column/filter fields — matching the expected structure.
+
+ANSWER: DONE

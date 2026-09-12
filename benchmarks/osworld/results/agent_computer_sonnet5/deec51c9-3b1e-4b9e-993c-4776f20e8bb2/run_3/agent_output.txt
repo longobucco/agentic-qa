@@ -1,0 +1,11 @@
+I organized the sheet with the new foundation language models announced on arXiv on 11 Oct 2023 (submitted 10 Oct), appended below the existing QWEN row in the same format:
+
+| paper title | arxiv link (pdf) | date |
+|---|---|---|
+| MISTRAL 7B | https://arxiv.org/pdf/2310.06825v1 | 2023.10.10 |
+| LEMUR: HARMONIZING NATURAL LANGUAGE AND CODE FOR LANGUAGE AGENTS | https://arxiv.org/pdf/2310.06830v1 | 2023.10.10 |
+| SHEARED LLAMA: ACCELERATING LANGUAGE MODEL PRE-TRAINING VIA STRUCTURED PRUNING | https://arxiv.org/pdf/2310.06694v1 | 2023.10.10 |
+
+File saved in xlsx format. (Note: arxivdaily's 2023 daily "foundation language models" listing is no longer reachable in its original form; I reconstructed the list from arXiv's cs.CL announcements for that date.)
+
+ANSWER: DONE

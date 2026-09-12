@@ -1,0 +1,13 @@
+The concern is now addressed. The screen shows a freshly launched xterm displaying:
+
+- **`~/.Xresources`** contents including `XTerm*vt100.geometry: 132x43`
+- **`stty size`** output → `43 132` (43 rows × 132 columns)
+
+The earlier black screen was simply because no terminal window was open (this environment has no desktop panel/WM chrome, just a bare X server). The persistence mechanism was already in place; I've now opened a terminal so it's visible on screen.
+
+Why this is permanent across reboots:
+- `~/.Xdefaults` and `~/.Xresources` carry `XTerm*vt100.geometry: 132x43` (xterm reads `.Xdefaults` directly here since `xrdb` isn't installed).
+- `/etc/X11/app-defaults/XTerm` (and `UXTerm`) got `*VT100.geometry: 132x43` as a system-wide fallback that xterm always loads.
+- Functional test confirms a newly spawned xterm opens at exactly 132×43.
+
+ANSWER: DONE

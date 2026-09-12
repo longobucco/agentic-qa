@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "Screenshot shows slide 1 in LibreOffice Impress with 'NEW PR DUCT' (top, yellow), 'LAUNCH' (middle, red), 'PR JECT PR POSAL' (bottom, green)",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "ppt/slides/slide1.xml stored color for text 'NEW PR   DUCT  ' is #FFFF00 (pure yellow)",
+      "source": "a11y",
+      "evidence_ref": "inspect_pptx_text_colors"
+    },
+    {
+      "fact": "ppt/slides/slide1.xml stored color for text 'LAUNCH' is #FF0000 (pure red)",
+      "source": "a11y",
+      "evidence_ref": "inspect_pptx_text_colors"
+    },
+    {
+      "fact": "ppt/slides/slide1.xml stored color for text 'PR   JECT PR   POSAL' is #00FF00 (pure green)",
+      "source": "a11y",
+      "evidence_ref": "inspect_pptx_text_colors"
+    },
+    {
+      "fact": "File 45_2.pptx was read from disk at /home/user/Desktop/45_2.pptx, confirming saved state on disk (not just in-memory editor state)",
+      "source": "a11y",
+      "evidence_ref": "inspect_pptx_text_colors"
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "None needed.",
+  "confidence": "high",
+  "parse_error": null
+}

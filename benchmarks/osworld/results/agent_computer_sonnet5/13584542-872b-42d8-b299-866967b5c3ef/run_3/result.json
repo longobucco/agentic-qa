@@ -1,0 +1,73 @@
+{
+  "id": "13584542-872b-42d8-b299-866967b5c3ef",
+  "bucket": "os",
+  "instruction": "I click in terminal: terminal->132x43 to change terminal size but after each reboot terminal size is set to default setting and I have to change it again. Help me set it permanently",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "967c0901eee92e82c70f8c3f4d8b6c9dd4675786e644e56060097e773fc36052",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "model_requested": "claude-sonnet-5",
+    "controller_url": "https://5000-4a82bc6c-cd4b-469c-b1fe-5cb992dfde61.daytonaproxy01.eu",
+    "release": "verified",
+    "evaluator_commit": "091f5ef1d5544bc74953c77875d5feb5bed30108",
+    "evaluator_package": "1.0.2",
+    "evaluator_source": "pinned",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-09-09T23:28:41.272707+00:00",
+    "finished_at": "2026-09-09T23:33:48.129933+00:00"
+  },
+  "transcript_saved": true,
+  "transcript_bytes": 421689,
+  "model_served": [
+    "claude-sonnet-5"
+  ],
+  "model_pinned": true,
+  "model_mismatch": false,
+  "agent_clean_finish": true,
+  "agent_num_turns": 24,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.4143465999999999,
+  "agent_input_tokens": 12,
+  "agent_output_tokens": 1652,
+  "agent_cache_read_tokens": 299878,
+  "agent_cache_creation_tokens": 5383,
+  "agent_model_usage": {
+    "claude-sonnet-5": {
+      "inputTokens": 12,
+      "outputTokens": 1652,
+      "cacheReadInputTokens": 299878,
+      "cacheCreationInputTokens": 5383,
+      "webSearchRequests": 0,
+      "costUSD": 0.09805159999999999,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "thinkingTokens": 796,
+      "canonicalModel": "claude-sonnet-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "agent_duration_ms": 292306,
+  "agent_duration_api_ms": 132980,
+  "agent_session_id": "9e78c982-45eb-49c7-9c8d-94601524b50f",
+  "agent_uuid": "26644828-6234-4216-bd48-658f8e353954",
+  "inloop_verify_used": true,
+  "inloop_verify_verdict": "FAIL",
+  "inloop_verify_reason": "The terminal shows only an empty shell prompt with no visible edit to any config file (e.g. ~/.Xresources or ~/.bashrc) that would persist the 132x43 size across reboots.",
+  "inloop_verify_model": [
+    "claude-sonnet-5"
+  ],
+  "inloop_verify_first_answer": "DONE",
+  "inloop_verify_retried": true,
+  "inloop_verify_second_answer": "DONE"
+}

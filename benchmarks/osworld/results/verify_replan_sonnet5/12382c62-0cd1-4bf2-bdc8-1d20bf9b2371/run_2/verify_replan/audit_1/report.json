@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "LibreOffice Calc has WeeklySales.xlsx open with a sheet tab named exactly 'Sheet2' which is active; status bar shows 'Sheet 2 of 2'",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Sheet2 contains an embedded chart object positioned over cells A2:G23",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The chart is a vertical clustered column chart with two distinct series (dark blue and orange bars) grouped per category",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The category axis shows 10 labels: Week 1 through Week 10",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The chart title text displayed above the plot area reads 'Sales & COGS'",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The other sheet tab is named 'Sheet1'",
+      "source": "screenshot",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "None required. Note: no legend is displayed so series names 'Sales'/'COGS' could not be directly confirmed visually, and save state could not be verified from the UI, but all observable task conditions are met.",
+  "confidence": "medium",
+  "parse_error": null
+}

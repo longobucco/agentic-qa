@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "Sheet2 tab exists next to Sheet1 tab at the bottom of SmallBalanceSheet.xlsx, and is currently the active/open sheet",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Sheet2!A1:D1 contains 'Year', 'CA changes', 'FA changes', 'OA changes'",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Sheet2!A2:A6 contains 2015, 2016, 2017, 2018, 2019",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Sheet2!B2=10.15%, C2=-4.96%, D2=-1.68% for 2015",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Sheet2!B6=6.55%, C6=-7.46%, D6=1.44% for 2019",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Formula bar shows B2 = '=(Sheet1.B3-Sheet1.B2)/Sheet1.B2', confirming the values are live formulas referencing Sheet1 rather than hardcoded numbers, and the cells display with a percent format",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Title bar shows 'SmallBalanceSheet.xlsx - LibreOffice Calc' with no visible unsaved-changes marker",
+      "source": "screenshot",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "None needed; all claimed values and structure were directly observed and match. Optionally verify on-disk save state via file modification time if absolute certainty on persistence is required.",
+  "confidence": "high",
+  "parse_error": null
+}

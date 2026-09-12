@@ -1,0 +1,13 @@
+{
+  "status": "done",
+  "claim": "Created a new sheet named 'Sheet2' in SmallBalanceSheet.xlsx with headers Year, CA changes, FA changes, OA changes in row 1, and rows for years 2015-2019 (rows 2-6) containing the percentage year-over-year change for Current Assets, Fixed Assets, and Other Assets relative to Sheet1 data, formatted as percentages, then saved the file in xlsx format.",
+  "evidence_to_check": [
+    "Sheet2 tab exists next to Sheet1 in SmallBalanceSheet.xlsx",
+    "Sheet2 A1:D1 contain 'Year', 'CA changes', 'FA changes', 'OA changes'",
+    "Sheet2 A2:A6 contain 2015, 2016, 2017, 2018, 2019",
+    "Sheet2 B2 shows 10.15% (=(204527-185682)/185682), C2 shows -4.96%, D2 shows -1.68%, and similarly through row 6 (2019: B6=6.55%, C6=-7.46%, D6=1.44%)",
+    "File was saved (Keep Current Format dialog accepted) with no unsaved changes indicator"
+  ],
+  "remaining_risk": "The task said 'compared to last year' which I interpreted as (current-previous)/previous starting at 2015 vs 2014; this matches the standard definition of percentage change.",
+  "parse_error": null
+}

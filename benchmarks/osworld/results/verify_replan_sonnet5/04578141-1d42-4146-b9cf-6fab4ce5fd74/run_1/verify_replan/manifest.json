@@ -1,0 +1,22 @@
+{
+  "harness_schema": 1,
+  "config": {
+    "vr_max_recoveries": 1,
+    "vr_min_confidence": "medium",
+    "vr_initial_max_turns": 100,
+    "vr_auditor_max_turns": 12,
+    "vr_recovery_max_turns": 38,
+    "vr_final_auditor_max_turns": 12,
+    "auditor_model": "claude-sonnet-5"
+  },
+  "prompt_versions": {
+    "executor_claim_contract_suffix": {
+      "version": 1,
+      "sha256": "e722d8cda86faa6a840ec629cd60bc9845c5c71c876709d24aa23603a157ac0d"
+    },
+    "auditor_system_prompt": {
+      "version": 3,
+      "sha256": "5df291419063c31db784b059e91abfb1507a36e098b1688de8757a32e61faeea"
+    }
+  }
+}

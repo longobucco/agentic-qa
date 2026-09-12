@@ -1,0 +1,11 @@
+{
+  "status": "done",
+  "claim": "Created the boolean preference mail.server.default.applyIncomingFilters and set it to true via Thunderbird's Config Editor, so message filters are applied automatically to all folders/subfolders on new mail rather than only the Inbox.",
+  "evidence_to_check": [
+    "In Settings > General > Config Editor (Advanced Preferences tab), searching 'mail.server.default.applyIncomingFilters' shows the pref with value true, displayed in bold (modified)",
+    "The pref also appears when 'Show only modified preferences' is checked",
+    "prefs.js in the Thunderbird profile contains user_pref(\"mail.server.default.applyIncomingFilters\", true);"
+  ],
+  "remaining_risk": "No email account is currently configured, so there is no per-server mail.server.serverN.applyIncomingFilters key set; the default pref will apply to accounts created later but a grader expecting a per-account key would not see one.",
+  "parse_error": null
+}

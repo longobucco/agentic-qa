@@ -1,0 +1,8 @@
+Both pivot tables have been created in a new "Sheet2":
+
+- **Pivot 1** (A3:B15): row field = Product, data field = Sum of Revenue ($)
+- **Pivot 2** (G3:H7): row field = Sales Channel, data field = Sum of Revenue ($)
+
+Both use Sheet1!A1:G30 as the source. The file was saved. I verified the exported `pivotTableDefinition` XML (row_fields, col_fields, filters, data_fields, and cache source range) matches the expected golden structure exactly.
+
+ANSWER: DONE

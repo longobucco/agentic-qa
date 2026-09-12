@@ -1,0 +1,73 @@
+{
+  "id": "13584542-872b-42d8-b299-866967b5c3ef",
+  "bucket": "os",
+  "instruction": "I click in terminal: terminal->132x43 to change terminal size but after each reboot terminal size is set to default setting and I have to change it again. Help me set it permanently",
+  "answer": "DONE",
+  "eval_state": null,
+  "provenance": {
+    "task_sha256": "967c0901eee92e82c70f8c3f4d8b6c9dd4675786e644e56060097e773fc36052",
+    "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "model_requested": "claude-sonnet-5",
+    "controller_url": "https://5000-b9c10302-fbdb-4415-b9e2-13be5674ec05.daytonaproxy01.eu",
+    "release": "verified",
+    "evaluator_commit": "091f5ef1d5544bc74953c77875d5feb5bed30108",
+    "evaluator_package": "1.0.2",
+    "evaluator_source": "pinned",
+    "max_turns": 150,
+    "task_timeout": 3600,
+    "observation": "screenshot+a11y",
+    "action_space": "pyautogui",
+    "started_at": "2026-09-09T23:26:28.663679+00:00",
+    "finished_at": "2026-09-09T23:28:26.468047+00:00"
+  },
+  "transcript_saved": true,
+  "transcript_bytes": 305509,
+  "model_served": [
+    "claude-sonnet-5"
+  ],
+  "model_pinned": true,
+  "model_mismatch": false,
+  "agent_clean_finish": true,
+  "agent_num_turns": 12,
+  "agent_stop_reason": "end_turn",
+  "agent_terminal_reason": "completed",
+  "agent_subtype": "success",
+  "agent_is_error": false,
+  "agent_errors": null,
+  "agent_api_error_status": null,
+  "agent_permission_denials": [],
+  "agent_cost_usd": 0.22306659999999998,
+  "agent_input_tokens": 6,
+  "agent_output_tokens": 917,
+  "agent_cache_read_tokens": 125267,
+  "agent_cache_creation_tokens": 2968,
+  "agent_model_usage": {
+    "claude-sonnet-5": {
+      "inputTokens": 6,
+      "outputTokens": 917,
+      "cacheReadInputTokens": 125267,
+      "cacheCreationInputTokens": 2968,
+      "webSearchRequests": 0,
+      "costUSD": 0.0461074,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 64000,
+      "thinkingTokens": 200,
+      "canonicalModel": "claude-sonnet-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "agent_duration_ms": 105610,
+  "agent_duration_api_ms": 70260,
+  "agent_session_id": "fe5b2eb0-f636-43ed-bd0e-7fd68e19f89a",
+  "agent_uuid": "569029bc-2f13-46be-9148-0056a9ef5d66",
+  "inloop_verify_used": true,
+  "inloop_verify_verdict": "FAIL",
+  "inloop_verify_reason": "The screenshot is an entirely black screen with only a mouse cursor visible\u2014no terminal, profile preferences dialog, or config file is shown to confirm a permanent size setting.",
+  "inloop_verify_model": [
+    "claude-sonnet-5"
+  ],
+  "inloop_verify_first_answer": "DONE",
+  "inloop_verify_retried": true,
+  "inloop_verify_second_answer": "DONE"
+}

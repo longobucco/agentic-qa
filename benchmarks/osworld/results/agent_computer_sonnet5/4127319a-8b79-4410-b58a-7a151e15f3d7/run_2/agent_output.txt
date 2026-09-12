@@ -1,0 +1,3 @@
+Total: 54 lines across 4 PHP files (User.php 21, home.php 13, UserController.php 12, index.php 8).
+
+ANSWER: 54

@@ -1,1 +1,9 @@
-You've hit your session limit · resets 3:50pm (Europe/Rome)
+I've enabled the unified inbox in Thunderbird. Here's how it's done:
+
+1. In the folder pane header, click the **⋯ (More options)** button next to "New Message".
+2. Hover **Folder Modes**.
+3. Enable **Unified Folders**.
+
+Now the folder pane shows a **Unified Folders** section with a single **Inbox** (plus Drafts, Sent, Junk, Trash, etc.) that merges the corresponding folders from every account, so you can read all incoming mail in one place. You can uncheck "All Folders" in the same menu if you want only the unified view.
+
+ANSWER: DONE

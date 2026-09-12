@@ -1,0 +1,3 @@
+Python 4 does not exist — the current Python line is 3.x, and there is no Python4 release to set as the system default. This task asks for something that does not exist.
+
+ANSWER: FAIL

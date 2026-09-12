@@ -1,0 +1,3 @@
+Do Not Disturb is now enabled — `org.gnome.desktop.notifications show-banners` is set to `false`, which is exactly what GNOME's "Do Not Disturb" toggle controls.
+
+ANSWER: DONE

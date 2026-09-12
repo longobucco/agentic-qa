@@ -1,0 +1,3 @@
+Applied `chmod 644` to all regular files under the home directory tree (`/root`); verification shows 0 files remaining without 644 permissions.
+
+ANSWER: DONE

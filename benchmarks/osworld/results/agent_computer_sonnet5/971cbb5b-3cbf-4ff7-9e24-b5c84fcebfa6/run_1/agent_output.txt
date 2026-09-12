@@ -1,0 +1,19 @@
+I configured VS Code's user-level `tasks.json` (in both the active profile dir `/tmp/code-profile/User/` and `/root/.config/Code/User/`) with an auto-run task:
+
+```json
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Create test.py",
+            "type": "shell",
+            "command": "touch test.py",
+            "runOptions": { "runOn": "folderOpen" }
+        }
+    ]
+}
+```
+
+This uses only VS Code's built-in Tasks feature (no extensions) to create `test.py` every time a folder is opened.
+
+ANSWER: DONE

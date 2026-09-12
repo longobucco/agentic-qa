@@ -1,0 +1,3 @@
+Copied all three `*failed.ipynb` files into `./fails` with directory hierarchy preserved.
+
+ANSWER: DONE

@@ -1,0 +1,14 @@
+All nine reference entries have been rewritten to APA 7th edition style and saved in place. Key corrections:
+
+- **Datta (2020)** – converted from mixed style; corrected to *Communications of the Association for Information Systems, 46*, 252–272, with proper DOI format.
+- **Dwivedi et al.** – year fixed 2017→**2016**, volume/issue/pages fixed 30(1), 130–139 → **33(1), 174–187**, DOI added.
+- **European Commission (2018 & 2019)** – reformatted from note style to APA (publisher added, "Retrieved" phrasing removed, sentence-case titles).
+- **Gartner** – converted from MLA-style quotes to APA glossary-entry format.
+- **Mergel et al.** – added Article number and DOI.
+- **OECD (2017)** – full title restored ("Boosting the Digital Transformation of the Public Sector"), publisher added.
+- **United Nations (2018)** – converted from MLA to APA (year in parentheses, sentence case, org as publisher).
+- **World Bank (2016)** – year moved into parentheses, DOI formatted as URL.
+
+Alphabetical order (unchanged) and the rest of the document were left intact.
+
+ANSWER: DONE

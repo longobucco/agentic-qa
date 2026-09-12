@@ -1,0 +1,3 @@
+The change is complete. On Page 3 ("Concept Map"), the line "continuation of the sub topics" now sits at the same left indent as "Main idea" and "Sub topics" (marL 457200, top level) and no longer has a bullet in front of it. The edit was written directly into the .pptx and the file reopened cleanly showing the result.
+
+ANSWER: DONE

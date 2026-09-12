@@ -1,0 +1,7 @@
+The change is complete. On Page 3 ("Concept Map"), the "continuation of the sub topics" line now:
+- Has no bullet in front of it
+- Is indented to the same left position (marL = 457200 EMU) as "Main idea" and "Sub topics"
+
+I applied this directly to the file's XML (`ppt/slides/slide3.xml`): the paragraph's properties were changed from a bulleted hanging-indent (`buChar "•"`, `indent="-431640"`) to `buNone` with `indent="0"` while keeping `marL="457200"`, matching the other top-level items. The file `/home/user/Desktop/Writing-Outlines.pptx` is saved and reopened showing the result.
+
+ANSWER: DONE

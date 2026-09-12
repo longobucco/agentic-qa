@@ -1,0 +1,7 @@
+I've completed the task:
+
+1. **Exported the table to CSV** — Used File → Save As → Text CSV, creating `/home/user/Desktop/stock.csv`.
+2. **Wrote code** (`/home/user/Desktop/solution.py`) that reads the CSV, fills empty Stock Price values with the mean of known prices (avg ≈ 39.20 over 48 values, 12 empty), then takes the median of all 60 rows.
+3. **Saved the numeric result** to `result.txt`: `25.27`.
+
+ANSWER: 25.27

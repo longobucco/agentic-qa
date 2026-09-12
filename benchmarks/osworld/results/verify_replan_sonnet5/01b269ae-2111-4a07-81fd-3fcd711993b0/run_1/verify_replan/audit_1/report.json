@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "Student_Level_Fill_Blank.xlsx is open in LibreOffice Calc showing Sheet1",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Row 1 contains headers Level (B1), Student (C1), Subject (D1), Marks (E1)",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Column B rows 2-30 are all populated: Primary (2-6), Secondary (7-18), Intermediate (19-24), Advance (25-30)",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Column C rows 2-30 all show student names cascading (e.g. Blake Dreary rows 2-4, Bey Twice 5-6, Arnold Shaw 7-11, Clint Eastwood 12-15, Olivia Calme 16-18, Parah Salin 19-21, Elijah Plastic 22-24, Tom Softy 25-30)",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Column D rows 2-30 all show a subject value; Column E rows 2-30 all show a numeric marks value",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "No visible empty cell remains in B1:E30",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Column A rows 1-30 are empty and appear untouched",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Accessibility tree returned no content, so cell-level formula/value inspection and save-state indicator could not be verified",
+      "source": "a11y",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "None required; all blank cells in B1:E30 appear filled with the value from the cell above and other regions are unchanged. If certainty about the saved file is needed, confirm the workbook was saved in xlsx format without a pending-changes indicator.",
+  "confidence": "medium",
+  "parse_error": null
+}

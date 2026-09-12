@@ -1,0 +1,3 @@
+The `ls` command was executed in /home/user (output: `Desktop`) in a terminal, and a screenshot of that terminal window was saved to `/home/user/Desktop/ls.png`.
+
+ANSWER: DONE

@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "Screenshot shows slide 1 with 'NEW PR   DUCT' in yellow (top), 'LAUNCH' in red (middle), 'PR   JECT PR   POSAL' in green (bottom)",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "inspect_pptx_text_colors on /home/user/Desktop/45_2.pptx shows ppt/slides/slide1.xml: color=#FFFF00 text='NEW PR   DUCT  ', color=#FF0000 text='LAUNCH', color=#00FF00 text='PR   JECT PR   POSAL'",
+      "source": "a11y",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Title bar shows '45_2.pptx - LibreOffice Impress' with no unsaved-changes asterisk/indicator",
+      "source": "screenshot",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "None needed; all three textboxes match the required exact colors in top-to-bottom order and the file content reflects this on disk.",
+  "confidence": "high",
+  "parse_error": null
+}

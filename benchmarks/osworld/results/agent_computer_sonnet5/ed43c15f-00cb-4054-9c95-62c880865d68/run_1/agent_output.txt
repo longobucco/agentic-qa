@@ -1,3 +1,1 @@
-Both changes applied and verified: the picture on slide 2 is now at top=0 (slide top), and all textbox text on slides 1 and 2 is underlined. LibreOffice was closed without saving so it won't overwrite the file.
-
-ANSWER: DONE
+You've hit your session limit · resets 11:10pm (Europe/Rome)

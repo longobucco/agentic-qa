@@ -1,0 +1,3 @@
+Old files (modified 2026-08-10, exactly 30 days ago) are now gzip-compressed in `/tmp/test_files/old_files/`; the newer files are in `/tmp/test_files/new_files/`.
+
+ANSWER: DONE

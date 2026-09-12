@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "Thunderbird's Advanced Preferences (Config Editor) tab is open with search filter 'mail.server.default.applyIncomingFilters'",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "A single matching row shows the preference name 'mail.server.default.applyIncomingFilters' rendered in bold with value 'true'",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The row's action control is a trash/delete icon (not a reset-to-default arrow), indicating a user-created preference",
+      "source": "screenshot",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "None required for the general fix. If a grader expects a per-account key, an email account would need to be configured and mail.server.serverN.applyIncomingFilters set to true for that server; also consider running existing filters manually once on already-received mail in subfolders.",
+  "confidence": "high",
+  "parse_error": null
+}

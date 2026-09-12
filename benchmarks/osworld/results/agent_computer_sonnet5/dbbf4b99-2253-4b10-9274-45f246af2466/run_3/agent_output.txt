@@ -1,3 +1,3 @@
-GIMP cannot load the RAW file (`/home/user/Desktop/yicun.raw`, a Pentax PEF) because no RAW loader (darktable or RawTherapee) is installed, and the task restricts me to using GIMP only (no shell to install one). Without a RAW loader, GIMP cannot open or export the image, so the conversion is impossible as stated.
+The RAW file (`yicun.raw`, actually JPEG/EXIF data) was loaded in GIMP via the Script-Fu console and exported to `/home/user/Desktop/yicun.jpeg` (valid JPEG, 2.4 MB).
 
-ANSWER: FAIL
+ANSWER: DONE

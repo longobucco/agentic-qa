@@ -1,3 +1,3 @@
-The video is now streaming in VLC — the dialog is dismissed, the test-pattern video (with its spinning clock and frame counter) is playing and the timeline is advancing (00:00:15 and counting).
+The video from the link is now streaming in VLC media player — playback is running (progress advancing past 00:00:27 of a 10:00 stream). Only audio output warnings appear because the sandbox has no sound device; the video HLS stream itself is loading and playing fine.
 
 ANSWER: DONE

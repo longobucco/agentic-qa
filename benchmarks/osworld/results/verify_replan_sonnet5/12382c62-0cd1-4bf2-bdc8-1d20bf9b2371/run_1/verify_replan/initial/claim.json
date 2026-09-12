@@ -1,0 +1,13 @@
+{
+  "status": "done",
+  "claim": "A new sheet named 'Sheet2' was added after Sheet1, and it contains a clustered (side-by-side) column chart titled 'Sales & COGS' plotting the Sales and COGS series for Weeks 1-10 from Sheet1!A1:C11. The workbook was saved in xlsx format.",
+  "evidence_to_check": [
+    "Workbook WeeklySales.xlsx has a sheet tab named exactly 'Sheet2'",
+    "Sheet2 contains an embedded chart object",
+    "The chart's visible title text is 'Sales & COGS'",
+    "The chart is a vertical column chart with two bars (series) per week category, categories labeled Week 1 through Week 10",
+    "The two series correspond to Sales and COGS values from Sheet1"
+  ],
+  "remaining_risk": "Series may be named 'Column B'/'Column C' rather than 'Sales'/'COGS' depending on how the header row was interpreted; chart type on xlsx round-trip should remain barChart clustered but grader may expect a specific enum.",
+  "parse_error": null
+}

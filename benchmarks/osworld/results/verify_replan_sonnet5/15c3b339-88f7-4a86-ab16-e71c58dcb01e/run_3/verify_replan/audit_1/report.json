@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "Thunderbird is on the 'Account Setup' tab titled 'Set Up Your Existing Email Address'",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "'Your full name' field contains 'anonym-x2024'",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "'Email address' field contains 'anonym-x2024@outlook.com'",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "'Password' field shows 8 masked dots, consistent with 'password'",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "'Remember password' checkbox is checked",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Continue was not clicked; the form remains open with Cancel/Continue buttons visible",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "A second tab 'Thunderbird Privacy Notice' is also open but the Account Setup tab is active and populated",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Accessibility tree returned empty; verification is based on the screenshot only",
+      "source": "a11y",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "None needed; the credentials are filled and the page is left open as requested.",
+  "confidence": "high",
+  "parse_error": null
+}

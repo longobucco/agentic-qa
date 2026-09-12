@@ -1,7 +1,8 @@
 {
   "id": "dbbf4b99-2253-4b10-9274-45f246af2466",
-  "verdict": "EVAL_ERROR",
-  "reason": "eval_state=\"/home/user/Desktop/yicun.jpg: image/jpeg\\n2>/dev/null:                  cannot open `2>/dev/null' (No such file or directory)\\n||:                           cannot open `||' (No such file or directory)\\ntrue:                         cannot open `true' (No such file or directory)\\n\" (official eval errored: JSONDecodeError: Expecting value: line 1 column 1 (char 0))",
-  "source": "offline_fallback",
+  "verdict": "SUCCESS",
+  "reward": 1.0,
+  "reason": "official check_include_exclude -> 1.00",
+  "source": "official",
   "gold_sha256": {}
 }

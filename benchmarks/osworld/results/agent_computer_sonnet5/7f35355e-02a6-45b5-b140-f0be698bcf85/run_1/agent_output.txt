@@ -1,7 +1,3 @@
-Exported the table and computed the result.
-
-- `stock.xlsx` → `/home/user/Desktop/stock.csv`
-- 12 empty Stock Price cells filled with the mean (≈39.20125), then median of all 60 values
-- `/home/user/Desktop/result.txt` contains `25.27`
+Exported `stock.csv`, filled 12 empty Stock Price cells with the mean (≈39.20), and computed the median of all 60 values. Wrote the result to `result.txt`.
 
 ANSWER: 25.27

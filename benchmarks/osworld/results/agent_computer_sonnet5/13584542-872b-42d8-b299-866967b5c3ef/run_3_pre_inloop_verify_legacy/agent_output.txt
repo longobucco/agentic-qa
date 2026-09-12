@@ -1,0 +1,12 @@
+Confirmed: a newly launched xterm now reports `132x43` (`COLSxLINES=132x43`).
+
+I made it permanent by writing the xterm geometry resource into `~/.Xdefaults` (and `~/.Xresources`):
+
+```
+XTerm*VT100.geometry: 132x43
+xterm*geometry: 132x43
+```
+
+Since Xlib reads `~/.Xdefaults` at application startup (and `~/.Xresources` is picked up by `xrdb` on login), every new terminal will now open at 132 columns × 43 rows after each reboot without manual adjustment.
+
+ANSWER: DONE

@@ -1,0 +1,3 @@
+Thunderbird now has a send-only account for anonym-x2024@outlook.com: an outgoing SMTP server (smtp-mail.outlook.com:587, STARTTLS, user anonym-x2024@outlook.com) plus a matching identity, and no incoming (IMAP/POP) server configured. The compose window correctly shows "From: anonym <anonym-x2024@outlook.com>".
+
+ANSWER: DONE

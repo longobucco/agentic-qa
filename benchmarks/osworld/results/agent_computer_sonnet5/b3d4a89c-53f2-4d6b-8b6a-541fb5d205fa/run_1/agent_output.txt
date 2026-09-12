@@ -1,0 +1,3 @@
+The environment is a bare Xvfb display (`:99`) with no desktop environment, no window manager, no GNOME Settings, and no Bluetooth stack at all — no `bluetoothctl`, no `rfkill`, no `/sys/class/bluetooth`, no bluez packages, no D-Bus system bus, and the screen renders fully black. There is no Bluetooth hardware or UI present to switch on.
+
+ANSWER: FAIL

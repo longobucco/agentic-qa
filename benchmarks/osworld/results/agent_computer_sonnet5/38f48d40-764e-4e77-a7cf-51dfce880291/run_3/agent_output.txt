@@ -1,1 +1,3 @@
-You've hit your session limit · resets 6:30am (Europe/Rome)
+GIMP 2.10 is an image editor with no video import/export capability, and the system has no ffmpeg, avconv, moviepy, or any other video tooling. Trimming an MP4 within GIMP is not possible.
+
+ANSWER: FAIL

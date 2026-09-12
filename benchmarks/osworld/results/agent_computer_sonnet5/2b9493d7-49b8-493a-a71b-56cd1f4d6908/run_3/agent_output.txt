@@ -1,3 +1,3 @@
-LibreOffice Writer has been force-quit — the window is gone and the screen now shows an empty desktop with no soffice process running. The command-line kill worked without a system restart and without affecting other applications.
+LibreOffice Writer has been force-quit. I ran `pkill -f soffice`, which terminated the frozen process; a follow-up `pgrep -af soffice` returned nothing, confirming no LibreOffice processes remain. No other applications were touched and no reboot was needed.
 
 ANSWER: DONE

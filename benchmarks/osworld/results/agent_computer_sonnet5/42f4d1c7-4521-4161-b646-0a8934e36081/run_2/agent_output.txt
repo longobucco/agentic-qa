@@ -1,0 +1,3 @@
+Extension `mattn.lisp` installed in VS Code, and the script-fu script produced `/home/user/Desktop/resized.png` at 128×128.
+
+ANSWER: DONE

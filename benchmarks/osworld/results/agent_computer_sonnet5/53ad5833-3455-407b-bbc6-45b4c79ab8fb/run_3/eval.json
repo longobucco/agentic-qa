@@ -1,8 +1,7 @@
 {
   "id": "53ad5833-3455-407b-bbc6-45b4c79ab8fb",
-  "verdict": "FAILURE",
-  "reward": 0.0,
-  "reason": "official compare_config -> 0.00",
-  "source": "official",
+  "verdict": "EVAL_ERROR",
+  "reason": "no eval_state captured (official eval errored: AttributeError: '_EnvAdapter' object has no attribute 'setup_controller')",
+  "source": "offline_fallback",
   "gold_sha256": {}
 }

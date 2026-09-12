@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "verdict": "uncertain",
+  "observations": [
+    {
+      "fact": "Thunderbird is open on the 'Advanced Preferences' (Config Editor) tab",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The Config Editor search field contains the string 'mail.server.server', not 'applyIncomingFilters'",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The only row shown is the 'add new preference' row (name field plus Boolean/Number/String radios and a '+' button); no existing preference matching the current query is displayed",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The 'Show only modified preferences' checkbox is unchecked",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The accessibility tree returned empty, so no additional UI detail is available",
+      "source": "a11y",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [
+    "Cannot confirm 'mail.server.default.applyIncomingFilters' exists with value 'true' \u2014 the current search term does not match that preference and no such row is visible",
+    "prefs.js contents are not observable from the available tools"
+  ],
+  "next_action": "Clear the Config Editor search field and search for 'applyIncomingFilters' to confirm whether 'mail.server.default.applyIncomingFilters' exists and is set to true (shown bold/modified). Separately, verify the intended behavior actually works, since setting the 'default' branch pref does not retroactively apply filters to existing subfolders and Thunderbird normally requires per-server configuration or a manual 'Run Filters on Folder' action.",
+  "confidence": "high",
+  "parse_error": null
+}

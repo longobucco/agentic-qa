@@ -1,0 +1,7 @@
+I've enabled a complete dark mode in Thunderbird:
+
+1. **Dark theme** — enabled the built-in "Dark" theme in Add-ons and Themes (dark UI for the whole application).
+2. **Message content dark mode** — verified `mail.dark-reader.enabled` and `mail.dark-reader.show-toggle` are `true`, so email message bodies render dark too.
+3. **Web/content color scheme** — set `layout.css.prefers-color-scheme.content-override` to `0` (dark), so rendered HTML content and pages also follow dark mode.
+
+ANSWER: DONE

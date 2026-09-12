@@ -1,0 +1,3 @@
+I opened a terminal and ran `code` pointed at `~/Desktop/project`. VS Code is now running with that folder open (process confirmed with `/root/Desktop/project` as its workspace argument).
+
+ANSWER: DONE

@@ -1,0 +1,9 @@
+Found the image at `/home/user/Desktop/tilearray.png` (962×1280), split it into three vertical sections at x=320 and x=640, measured warmth as R−B per section:
+
+- Left (0): 32.1
+- Middle (1): 40.3
+- Right (2): 50.8
+
+Reordered warmest→coolest left-to-right as [right, middle, left], pasting pixels unchanged (no tint/filter), and saved to `/home/user/Desktop/rearranged.png`.
+
+ANSWER: DONE

@@ -1,7 +1,11 @@
 {
   "id": "2c1ebcd7-9c6d-4c9a-afad-900e381ecd5e",
-  "verdict": "EVAL_ERROR",
-  "reason": "eval_state='<binary:16031 bytes at case study.docx>' (official eval errored: AttributeError: module 'desktop_env.evaluators.metrics' has no attribute 'compare_references_gain')",
-  "source": "offline_fallback",
-  "gold_sha256": {}
+  "verdict": "FAILURE",
+  "reward": 0.2686,
+  "reason": "official compare_references_gain -> 0.27",
+  "source": "official",
+  "gold_sha256": {
+    "case study gold.docx": "8dee945aea1932a50da5600e6eedd37316b5cc70ef944a991e9f0666d763cd57",
+    "case study initial.docx": "3f5c324a1cc3a42e6b39fe31434f1c14f3afcffe6b57f9d34baec193006e897b"
+  }
 }

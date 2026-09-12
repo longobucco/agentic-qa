@@ -1,0 +1,3 @@
+The environment is a bare Xvfb session with no desktop/settings UI, no Bluetooth adapter, no Bluetooth stack (bluez/bluetoothctl/rfkill absent), no system D-Bus, and no settings application. There is no Bluetooth to switch on and no interface to do it through.
+
+ANSWER: FAIL

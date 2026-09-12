@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "Thunderbird's Advanced Preferences (about:config) tab is open with search term 'mail.server.default.applyIncomingFilters'",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "A single result row shows the preference name 'mail.server.default.applyIncomingFilters' rendered in bold with value 'true'",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The row displays a trash/delete icon (rather than a reset-to-default arrow), indicating the preference is user-created/user-set",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The accessibility tree returned empty, so verification rests on the screenshot only; prefs.js contents could not be inspected with available tools",
+      "source": "a11y",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "If the grader expects a per-account pref, note that no mail account is configured in this profile so only the default pref can exist; the created 'mail.server.default.applyIncomingFilters=true' is the applicable setting and new accounts will inherit it.",
+  "confidence": "medium",
+  "parse_error": null
+}

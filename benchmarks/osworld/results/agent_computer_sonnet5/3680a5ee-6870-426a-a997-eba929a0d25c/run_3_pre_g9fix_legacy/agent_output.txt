@@ -1,0 +1,3 @@
+The task is complete: I converted both files to CSV via `soffice --headless --convert-to csv`, concatenated the two single columns row-by-row into `~/Desktop/output.csv` (5001 rows, one column, e.g. `DulceAbril`, `MaraHashimoto`), and opened it in LibreOffice Calc from the terminal with `soffice --calc`.
+
+ANSWER: DONE

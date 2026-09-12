@@ -1,1 +1,11 @@
-You've hit your session limit · resets 11:30am (Europe/Rome)
+Setting written to `/root/.config/Code/User/settings.json`:
+
+```json
+{
+    "files.exclude": {
+        "**/__pycache__": true
+    }
+}
+```
+
+ANSWER: DONE

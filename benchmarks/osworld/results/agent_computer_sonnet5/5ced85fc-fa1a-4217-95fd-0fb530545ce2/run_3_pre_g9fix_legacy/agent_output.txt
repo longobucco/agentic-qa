@@ -1,0 +1,8 @@
+File `/root/output.txt` now contains:
+```
+1<br/>
+2<br/>
+3<br/>
+```
+
+ANSWER: DONE

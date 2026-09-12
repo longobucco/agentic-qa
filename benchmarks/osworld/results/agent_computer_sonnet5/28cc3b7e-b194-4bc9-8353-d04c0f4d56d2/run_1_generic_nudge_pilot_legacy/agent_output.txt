@@ -1,0 +1,3 @@
+The default sink volume is at 100% (65536 = 0.00 dB, the maximum) and unmuted. This environment is a headless Xvfb+openbox desktop with no audio panel or system tray, so there is nothing visual for a screen review to confirm — the system volume is controlled and verified through PulseAudio, which now reports max volume on every sink.
+
+ANSWER: DONE

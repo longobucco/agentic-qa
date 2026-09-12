@@ -1,1 +1,3 @@
-You've hit your session limit · resets 6:30am (Europe/Rome)
+Settings file written with `"workbench.editor.wrapTabs": true` at `~/.config/Code/User/settings.json`. VS Code watches this file and applies it live.
+
+ANSWER: DONE

@@ -1,0 +1,3 @@
+Done. Compressed the two files modified 30 days ago (`old_file1.txt`, `old_file2.txt`) into `/tmp/test_files/old_files/` as `.gz` archives and removed the originals; the newer files remain in `/tmp/test_files/new_files/`.
+
+ANSWER: DONE

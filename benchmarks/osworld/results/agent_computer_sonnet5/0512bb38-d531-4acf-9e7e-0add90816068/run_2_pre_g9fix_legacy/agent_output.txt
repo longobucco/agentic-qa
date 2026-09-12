@@ -1,0 +1,3 @@
+The extension from `/home/user/test.vsix` is installed and confirmed via `code --list-extensions` (`undefined_publisher.test@0.0.1`).
+
+ANSWER: DONE

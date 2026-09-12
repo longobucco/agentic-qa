@@ -1,1 +1,9 @@
-You've hit your session limit · resets 6:30am (Europe/Rome)
+I've completed both changes:
+
+1. **Added reference [14]** to the reference list (after [13] Schramm, keeping alphabetical order): "Steinberg, F. M., Bearden, M. M., & Keen, C. L. (2003). Cocoa and chocolate flavonoids: Implications for cardiovascular health. *Journal of the American Dietetic Association, 103*(2), 215-223. doi: 10.1053/jada.2003.50028" — with journal name and volume italicized to match the list's style.
+
+2. **Added the cross-reference** in the fourth paragraph, replacing the "<add here>" marker so it now reads "A study by Pennington[14] noted that women do not generally meet US guidelines...", matching the document's inline citation style.
+
+Document saved in Word format.
+
+ANSWER: DONE

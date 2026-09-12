@@ -1,0 +1,8 @@
+{
+  "id": "3ce045a0-877b-42aa-8d2c-b4a863336ab8",
+  "verdict": "FAILURE",
+  "reward": 0.0,
+  "reason": "official ['check_include_exclude', 'check_include_exclude'] -> 0.00",
+  "source": "official",
+  "gold_sha256": {}
+}

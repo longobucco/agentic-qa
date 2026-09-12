@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "Cell A12 = 'Total', row 12 shows values 4852 (Jan), 4587 (Feb), 3943 (Mar), which exactly match the SUM of the visible Sales Rep columns B2:B11, C2:C11, D2:D11 respectively",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Cell A13 = 'Growth', row 13 shows blank for Jan (B13) and -5.46% (C13), -14.04% (D13), which exactly match (Feb-Jan)/Jan and (Mar-Feb)/Feb computed from the Total row",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "A column/bar chart titled 'Total' is present showing 6 bars for Jan through Jun; bar heights for Apr/May/Jun are consistent with the claimed values 3857/4677/4243 (Apr lowest, May tallest, Jun mid)",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "A line chart titled 'Growth' is present with the x-axis showing only Feb, Mar, Apr, May, Jun (Jan omitted), and the line shape (dip at Mar, peak ~21% at May, drop to ~-9% at Jun) is consistent with the claimed growth values",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Chart titles read exactly 'Total' and 'Growth', matching the A12/A13 row headers",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Cells D12:G12 and E13:G13 (Apr-Jun Total/Growth) are visually obscured by the overlapping charts in the screenshot, so their exact numeric/formula content could not be directly read from the cells themselves",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The accessibility tree returned empty/no usable content, so no formula-bar or structural confirmation (e.g. actual SUM formulas vs. static values, or save-format confirmation) was possible",
+      "source": "a11y",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "If higher certainty is needed, move or temporarily resize the charts to reveal cells D12:G13 directly and confirm their formulas, and check the title bar/File menu for unsaved-change indicators to confirm the xlsx save completed in Excel format.",
+  "confidence": "medium",
+  "parse_error": null
+}

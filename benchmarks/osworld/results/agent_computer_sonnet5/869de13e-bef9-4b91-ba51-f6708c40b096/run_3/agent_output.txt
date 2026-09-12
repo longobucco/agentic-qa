@@ -1,1 +1,7 @@
-You've hit your session limit · resets 11:30am (Europe/Rome)
+All 14 desktop files sorted into the three folders:
+
+- **Paper_reading**: 1706.03762 (Attention Is All You Need), 1802.05365 (ELMo), 1909.10351 (TinyBERT), GLUE benchmark, paper01 (BERT)
+- **Projects**: 2-if-for-array.zip (C exercises), assign1-data3.zip (Pacman Python assignment)
+- **Miscellaneous**: k-means lecture slides, two survey/validation spreadsheets, a show-entry schoolwork PDF, Family Status Equality report, and two assignment-template .docx files
+
+ANSWER: DONE

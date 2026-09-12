@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "verdict": "uncertain",
+  "observations": [
+    {
+      "fact": "The screen is entirely black with only a mouse cursor visible; no terminal, editor, or window is displayed.",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The accessibility tree is empty (only an empty desktop-frame element), exposing no windows or application content.",
+      "source": "a11y",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [
+    "Cannot observe contents of /etc/X11/app-defaults/XTerm",
+    "Cannot observe contents of /root/.Xdefaults or /root/.Xresources",
+    "Cannot observe output of launching a new xterm / 'stty size'"
+  ],
+  "next_action": "Open a terminal and display the relevant files (cat /etc/X11/app-defaults/XTerm, ~/.Xresources, ~/.Xdefaults) plus launch a fresh xterm running 'stty size' so the 132x43 geometry and its persistence can be visually confirmed.",
+  "confidence": "high",
+  "parse_error": null
+}

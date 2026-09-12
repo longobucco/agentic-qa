@@ -1,0 +1,3 @@
+User "charles" created with the given password, and sshd is configured with a `Match User charles` block that chroots the account to `/home/test1` (with `ForceCommand internal-sftp`). Config passes `sshd -t` and the service is running.
+
+ANSWER: DONE

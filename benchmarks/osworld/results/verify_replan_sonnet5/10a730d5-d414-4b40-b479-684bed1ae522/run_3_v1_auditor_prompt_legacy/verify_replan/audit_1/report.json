@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "Config Editor (Advanced Preferences) shows layout.css.prefers-color-scheme.content-override with value 0, displayed in bold indicating a modified/non-default value",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The Thunderbird UI chrome (title bar, tab bar, toolbar, search field, preference rows) is rendered with dark backgrounds and light text",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "A row for the pref exists with a reset (revert-to-default) arrow button present, consistent with the value having been explicitly changed",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Open tabs include an Add-ons Manager tab and a Settings tab, but neither is currently focused so the Themes list could not be directly observed",
+      "source": "screenshot",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "None required for confirmed items; to fully verify, open the Add-ons Manager Themes pane to confirm the built-in 'Dark' theme shows a 'Disable' button (enabled), and open a message to confirm message content renders dark.",
+  "confidence": "medium",
+  "parse_error": null
+}

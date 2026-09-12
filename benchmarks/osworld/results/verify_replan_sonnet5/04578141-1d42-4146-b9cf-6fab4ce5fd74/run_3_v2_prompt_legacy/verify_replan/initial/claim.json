@@ -1,0 +1,12 @@
+{
+  "status": "done",
+  "claim": "On slide 1 of 45_2.pptx, the three text boxes are colored top-to-bottom as yellow (NEW PR DUCT, hex FFFF00), red (LAUNCH, hex FF0000), and green (PR JECT PR POSAL, hex 00FF00), and the file has been saved in pptx format.",
+  "evidence_to_check": [
+    "Slide 1 text box 'NEW PR   DUCT' (top, position Y\u22480.49\") has font color FFFF00 (pure yellow)",
+    "Slide 1 text box 'LAUNCH' (middle, position Y\u22482.94\") has font color FF0000 (pure red)",
+    "Slide 1 text box 'PR   JECT PR   POSAL' (bottom, position Y\u22488.12\") has font color 00FF00 (pure green)",
+    "The pptx file was saved (title bar shows no unsaved-changes indicator, Keep Current Format dialog was accepted)"
+  ],
+  "remaining_risk": "None significant; colors were set via exact hex codes (FFFF00, FF0000, 00FF00) through the Custom Color dialog, and the save dialog's 'Use PowerPoint Format' was confirmed via Enter key.",
+  "parse_error": null
+}

@@ -1,0 +1,3 @@
+The sheet now contains the new foundation language models announced via arxivdaily on 11 Oct 2023, organized in the existing columns (paper title / arxiv link (pdf) / date), and the file has been saved in xlsx format.
+
+ANSWER: Added the 11 Oct 2023 arxivdaily new foundation language model papers to the sheet — Mistral 7B (https://arxiv.org/pdf/2310.06825), Sheared LLaMA: Accelerating Language Model Pre-training via Structured Pruning (https://arxiv.org/pdf/2310.06694), and CodeFuse-13B: A Pretrained Multi-lingual Code Large Language Model (https://arxiv.org/pdf/2310.06266), all dated 2023.10.10.

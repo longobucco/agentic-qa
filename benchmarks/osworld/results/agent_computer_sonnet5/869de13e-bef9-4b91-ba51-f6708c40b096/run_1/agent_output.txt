@@ -1,1 +1,9 @@
-You've hit your session limit · resets 11:30am (Europe/Rome)
+All 14 files sorted:
+
+- **Paper_reading** (5): Attention Is All You Need (1706.03762), ELMo (1802.05365), TinyBERT (1909.10351), GLUE benchmark, BERT (paper01.pdf — identified by content)
+- **Projects** (2): 2-if-for-array.zip (C exercises), assign1-data3.zip (Python pacman assignment)
+- **Miscellaneous** (7): k-Means lecture slides, two survey/validation xlsx data tables, DOC_2480903712718068684.pdf (a schoolwork entry form — identified by content), Family Status Equality doc, IA_Format.docx, assignment_mark_frontpage.docx
+
+Desktop root has no loose files remaining.
+
+ANSWER: DONE

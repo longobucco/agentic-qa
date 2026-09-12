@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "Slide 1 of 45_2.pptx is shown in LibreOffice Impress with three text elements on a blue background",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The top text 'NEW PR DUCT' appears bright yellow (consistent with FFFF00)",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The middle text 'LAUNCH' appears bright red (consistent with FF0000)",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The bottom text 'PR JECT PR POSAL' appears green (a standard medium green, consistent with 008000)",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Top-to-bottom color order is yellow, red, green, matching the requested order",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Title bar reads '45_2.pptx - LibreOffice Impress' with no visible unsaved-changes marker",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The accessibility tree returned empty, so exact font color hex values could not be independently confirmed",
+      "source": "a11y",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "If the verifier requires a specific green hex other than 008000 (e.g. 00FF00 or 00B050), re-set the bottom textbox font color to that exact value; otherwise no action needed.",
+  "confidence": "medium",
+  "parse_error": null
+}

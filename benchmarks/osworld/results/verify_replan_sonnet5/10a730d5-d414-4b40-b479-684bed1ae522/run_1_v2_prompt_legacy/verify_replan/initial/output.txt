@@ -1,0 +1,16 @@
+Dark theme is enabled and applied across the entire Thunderbird interface (toolbar, folder pane, message list, settings).
+
+ANSWER: DONE
+
+```json
+{
+  "status": "done",
+  "claim": "Enabled the built-in 'Dark' theme in Thunderbird via Add-ons Manager > Themes, which applies a dark color scheme across the entire application UI (toolbars, menus, folder pane, message list, and settings panels).",
+  "evidence_to_check": [
+    "In Thunderbird, go to Add-ons Manager > Themes: the 'Dark' theme entry shows a 'Disable' button (indicating it is currently enabled/active) instead of 'Enable'",
+    "The overall Thunderbird window chrome, menus, tab bar, and settings pages render with a dark background and light text",
+    "The 'System theme — auto' and 'Light' theme entries show 'Enable' buttons, confirming they are not the active theme"
+  ],
+  "remaining_risk": "This Thunderbird version did not expose a separate toggle for forcing dark mode specifically on individual HTML email message content/reading pane (only the built-in Dark theme for the overall app chrome was found), so if the grader expects per-message dark rendering of HTML emails, that aspect may not be fully covered."
+}
+```

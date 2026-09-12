@@ -1,0 +1,9 @@
+All five recommended plugins have been installed from the Chrome Web Store:
+
+1. **Zoom Chrome Extension** — added
+2. **Speechify — Text to Speech** — added
+3. **React Developer Tools** — added
+4. **Momentum** (momentumdash.com) — added
+5. **Google Translate** — added
+
+ANSWER: DONE

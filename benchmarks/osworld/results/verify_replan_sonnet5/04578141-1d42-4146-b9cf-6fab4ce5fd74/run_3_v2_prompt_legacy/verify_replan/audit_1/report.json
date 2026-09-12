@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "verdict": "verified_done",
+  "observations": [
+    {
+      "fact": "Slide 1 shows three text boxes top-to-bottom: 'NEW PR   DUCT' in bright yellow, 'LAUNCH' in bright red, and 'PR   JECT PR   POSAL' in bright green.",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The colors appear as pure, saturated yellow/red/green with no visible tint of dark or light variants (e.g. no orange-tinted red, no olive yellow, no teal-tinted green).",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Title bar reads '45_2.pptx - LibreOffice Impress' with no visible unsaved-change marker.",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "Accessibility tree returned an empty desktop-frame with no node details, so exact font color hex values could not be confirmed programmatically.",
+      "source": "a11y",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "None required; if exact hex confirmation is needed, select each text box and check Format > Character > Font Color to confirm FFFF00/FF0000/00FF00 precisely.",
+  "confidence": "medium",
+  "parse_error": null
+}

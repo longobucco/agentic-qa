@@ -1,3 +1,3 @@
-The document has been saved successfully with the table inserted in the "5.2 Main Results" section, containing the GPT-4 results header row and data row copied exactly from the spreadsheet.
+Table with the GPT-4 experiment results (including the header row) has been inserted into the "5.2 Main Results" section and the document saved in .docx format.
 
 ANSWER: DONE

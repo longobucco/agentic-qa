@@ -1,11 +1,3 @@
-Exported the table to `/home/user/Desktop/stock.csv` via LibreOffice, then computed the result:
-
-- 48 stock prices present, 12 empty (placeholder symbol rows) → average = 39.20125
-- Filled the 12 empty values with the average, then took the median of all 60 values → **25.27**
-
-Saved:
-- `stock.csv` (exported table) on Desktop
-- `median_calc.py` (the code) on Desktop
-- `result.txt` containing `25.27` (Desktop and home)
+Exported `/home/user/Desktop/stock.csv`, filled the 12 empty Stock Price cells with the mean of the 48 known prices (≈39.20), and computed the median of the resulting 60 values. Saved to `/home/user/Desktop/result.txt`.
 
 ANSWER: 25.27

@@ -1,12 +1,1 @@
-I inspected the system: VLC was not actually running and refuses to launch as the current (root) user, but the relevant setting lives in VLC's config file. The way to pause VLC without switching away from the PDF reader is to assign a **global hotkey** for Play/Pause (VLC's per-key "Global" hotkeys work even when VLC is not focused).
-
-I set this in `~/.config/vlc/vlcrc`:
-
-```
-[hotkeys]
-global-key-play-pause=Ctrl+Shift+Space
-```
-
-Now pressing Ctrl+Shift+Space toggles play/pause in VLC while the PDF reader stays focused and on top.
-
-ANSWER: DONE
+You've hit your session limit · resets 11:10pm (Europe/Rome)

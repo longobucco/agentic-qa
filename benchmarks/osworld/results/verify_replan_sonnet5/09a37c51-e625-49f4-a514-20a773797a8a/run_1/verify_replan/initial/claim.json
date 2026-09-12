@@ -1,0 +1,12 @@
+{
+  "status": "done",
+  "claim": "Removed the scenic background from the Desktop picture using rembg, composited the extracted person onto a solid white background, and saved the result as pic.jpg on the Desktop.",
+  "evidence_to_check": [
+    "File /home/user/Desktop/pic.jpg exists and is a valid JPEG (~320x510)",
+    "All four corners and roughly 75% of pic.jpg pixels are pure white (255,255,255)",
+    "The non-white pixels form a single human-shaped figure (head, torso, two legs) centered in the frame",
+    "No trees/sky/scenery from the original ChMkKV8wsR6IBfEtABYfc0Tgu9cAAA1lQHO_78AFh-L733.jpg remain"
+  ],
+  "remaining_risk": "Segmentation edges may include minor haloing or slight cropping of hair/limb extremities typical of automated background removal.",
+  "parse_error": null
+}

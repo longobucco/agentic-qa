@@ -1,1 +1,3 @@
-You've hit your session limit · resets 11:30am (Europe/Rome)
+Saved. Task complete: Column C has header "Period Rate (%)", values as numbers, and the highest (14.724 in C20) is green.
+
+ANSWER: DONE

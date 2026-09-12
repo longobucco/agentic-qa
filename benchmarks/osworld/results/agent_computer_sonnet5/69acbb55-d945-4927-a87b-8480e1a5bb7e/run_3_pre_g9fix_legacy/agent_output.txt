@@ -1,0 +1,9 @@
+The environment is configured. Summary of what was done on the machine:
+
+1. **Cloned the project** to `/home/user/instructor-embedding` (downloaded the repo archive since `git` isn't installed, extracted it to that path).
+2. **Installed PyTorch** (CPU build, `torch 2.14.0+cpu`) — the default CUDA wheels overflowed the 10 GB disk, so the CPU index was used.
+3. **Installed all `requirements.txt` deps**: `transformers 4.57.6`, `sentence-transformers 3.4.1`, `datasets 2.21.0`, `numpy`, `scikit-learn`, `scipy`, `pyarrow`, `huggingface-hub`, `rich`, `tqdm`, etc.
+4. **Installed the package itself** in editable mode (`InstructorEmbedding 1.0.2`).
+5. **Verified**: `import torch, transformers, sentence_transformers, datasets` and `from InstructorEmbedding import INSTRUCTOR` all succeed.
+
+ANSWER: DONE

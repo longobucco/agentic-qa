@@ -8,24 +8,27 @@
     "task_sha256": "0352a97d32923236e7b50c136e4fe93b9f2e6fc4adaa86ecf6a3f7f2608a4be9",
     "image": "ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
     "model_requested": "claude-sonnet-5",
-    "controller_url": "https://5000-44db7e0f-6182-4a41-a831-36f35df7447a.daytonaproxy01.eu",
+    "controller_url": "https://5000-0ae53d76-f7bc-4b25-984a-30417545eb00.daytonaproxy01.eu",
     "release": "verified",
+    "evaluator_commit": "091f5ef1d5544bc74953c77875d5feb5bed30108",
+    "evaluator_package": "1.0.2",
+    "evaluator_source": "pinned",
     "max_turns": 150,
-    "task_timeout": 2700,
+    "task_timeout": 3600,
     "observation": "screenshot+a11y",
     "action_space": "pyautogui",
-    "started_at": "2026-09-07T21:02:11.724491+00:00",
-    "finished_at": "2026-09-07T21:02:39.081612+00:00"
+    "started_at": "2026-09-10T06:31:25.342156+00:00",
+    "finished_at": "2026-09-10T06:32:14.335878+00:00"
   },
   "transcript_saved": true,
-  "transcript_bytes": 1009193,
+  "transcript_bytes": 1402283,
   "model_served": [
     "claude-sonnet-5"
   ],
   "model_pinned": true,
   "model_mismatch": false,
   "agent_clean_finish": true,
-  "agent_num_turns": 9,
+  "agent_num_turns": 19,
   "agent_stop_reason": "end_turn",
   "agent_terminal_reason": "completed",
   "agent_subtype": "success",
@@ -33,11 +36,11 @@
   "agent_errors": null,
   "agent_api_error_status": null,
   "agent_permission_denials": [],
-  "agent_cost_usd": 0.12525760000000002,
-  "agent_input_tokens": 18,
-  "agent_output_tokens": 861,
-  "agent_cache_read_tokens": 286623,
-  "agent_cache_creation_tokens": 14487,
+  "agent_cost_usd": 0.24535200000000001,
+  "agent_input_tokens": 38,
+  "agent_output_tokens": 1431,
+  "agent_cache_read_tokens": 696975,
+  "agent_cache_creation_tokens": 22558,
   "agent_model_usage": {
     "claude-haiku-4-5-20251001": {
       "inputTokens": 1269,
@@ -54,22 +57,30 @@
       "costBasis": "list"
     },
     "claude-sonnet-5": {
-      "inputTokens": 18,
-      "outputTokens": 861,
-      "cacheReadInputTokens": 286623,
-      "cacheCreationInputTokens": 14487,
+      "inputTokens": 38,
+      "outputTokens": 1431,
+      "cacheReadInputTokens": 696975,
+      "cacheCreationInputTokens": 22558,
       "webSearchRequests": 0,
-      "costUSD": 0.12391860000000002,
+      "costUSD": 0.24401300000000004,
       "contextWindow": 1000000,
       "maxOutputTokens": 64000,
-      "thinkingTokens": 229,
+      "thinkingTokens": 266,
       "canonicalModel": "claude-sonnet-5",
       "provider": "firstParty",
       "costBasis": "list"
     }
   },
-  "agent_duration_ms": 24100,
-  "agent_duration_api_ms": 19257,
-  "agent_session_id": "5a97e22c-0c41-44f4-8484-3896e11c66cd",
-  "agent_uuid": "ef09b12d-0059-4453-b567-19399f1f4bf7"
+  "agent_duration_ms": 37851,
+  "agent_duration_api_ms": 33283,
+  "agent_session_id": "d13a20eb-43be-4876-8339-39b4501825fb",
+  "agent_uuid": "84430a33-2e96-4966-83d6-a0ffcdadb608",
+  "inloop_verify_used": true,
+  "inloop_verify_verdict": "DONE",
+  "inloop_verify_reason": "The VS Code Explorer shows the \"PROJECT\" folder opened as the workspace root (with .vscode, main.py, README.md), and the title bar reads \"project [Superuser]\".",
+  "inloop_verify_model": [
+    "claude-sonnet-5"
+  ],
+  "inloop_verify_first_answer": "DONE",
+  "inloop_verify_retried": false
 }

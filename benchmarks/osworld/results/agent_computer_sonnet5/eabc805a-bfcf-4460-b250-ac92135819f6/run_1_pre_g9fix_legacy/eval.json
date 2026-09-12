@@ -1,0 +1,7 @@
+{
+  "id": "eabc805a-bfcf-4460-b250-ac92135819f6",
+  "verdict": "EVAL_ERROR",
+  "reason": "eval_state='ms-python.debugpy\\nms-python.python\\nms-python.vscode-pylance\\nms-python.vscode-python-envs\\n' (official eval errored: JSONDecodeError: Expecting value: line 1 column 1 (char 0))",
+  "source": "offline_fallback",
+  "gold_sha256": {}
+}

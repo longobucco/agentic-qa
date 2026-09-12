@@ -1,0 +1,3 @@
+The terminal ran `ls` in /home/user (output: `Desktop`), and I saved a screenshot of the terminal as `ls.png` on the Desktop.
+
+ANSWER: DONE

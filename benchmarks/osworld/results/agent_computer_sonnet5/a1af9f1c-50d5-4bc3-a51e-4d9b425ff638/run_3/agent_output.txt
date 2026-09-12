@@ -1,0 +1,9 @@
+I configured Thunderbird with a send-only account:
+
+- **Identity:** anonym-x2024@outlook.com
+- **Outgoing (SMTP):** smtp-mail.outlook.com, port 587, STARTTLS, username anonym-x2024@outlook.com
+- **Incoming:** none — the account uses a type "none" server (Local Folders), so no IMAP/POP incoming service is configured.
+
+Thunderbird launched cleanly and persisted the configuration.
+
+ANSWER: DONE

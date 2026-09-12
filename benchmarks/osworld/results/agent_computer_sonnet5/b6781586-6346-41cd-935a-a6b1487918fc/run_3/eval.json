@@ -1,7 +1,7 @@
 {
   "id": "b6781586-6346-41cd-935a-a6b1487918fc",
   "verdict": "EVAL_ERROR",
-  "reason": "no eval_state captured (official eval errored: JSONDecodeError: Expecting value: line 1 column 1 (char 0))",
+  "reason": "no eval_state captured (official eval errored: IndexError: list index out of range)",
   "source": "offline_fallback",
   "gold_sha256": {}
 }

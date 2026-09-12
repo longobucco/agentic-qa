@@ -1,0 +1,3 @@
+Installed the `mattn.lisp` VS Code extension, wrote a Script-Fu script (`~/Desktop/resize.scm`), and ran it through GIMP batch mode, producing `~/Desktop/resized.png` verified at 128×128.
+
+ANSWER: DONE

@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "verdict": "uncertain",
+  "observations": [
+    {
+      "fact": "38_1.pptx is open in LibreOffice Impress, currently displaying slide 1 of 6",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The slide panel shows 6 thumbnails; slides 3, 4, and 5 contain text-bearing shapes but the thumbnails are too small/low-resolution to determine paragraph alignment (right/center/left)",
+      "source": "screenshot",
+      "evidence_ref": null
+    },
+    {
+      "fact": "The accessibility tree returned empty, providing no structural or alignment data for any slide",
+      "source": "a11y",
+      "evidence_ref": null
+    },
+    {
+      "fact": "I cannot navigate to slides 3-5, open the file, or inspect shape properties, so the actual PP_ALIGN values of the first textbox on each slide cannot be confirmed",
+      "source": "screenshot",
+      "evidence_ref": null
+    }
+  ],
+  "failed_checks": [],
+  "next_action": "Open each of slides 3, 4, and 5, select the first textbox, and confirm via Format > Paragraph (or the sidebar alignment controls) that slide 3's first textbox is right-aligned, slide 4's is centered, and slide 5's is left-aligned; alternatively inspect the saved .pptx with python-pptx to check the first text-frame shape's paragraph alignment on each slide.",
+  "confidence": "low",
+  "parse_error": null
+}

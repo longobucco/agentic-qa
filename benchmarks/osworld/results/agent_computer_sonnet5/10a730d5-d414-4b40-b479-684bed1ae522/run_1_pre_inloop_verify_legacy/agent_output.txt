@@ -1,0 +1,3 @@
+Both changes are persisted: the Dark theme (`thunderbird-compact-dark@mozilla.org`) is active, and message-content rendering is forced to dark (`layout.css.prefers-color-scheme.content-override` = 0), giving a complete dark mode covering both the UI and the message pane.
+
+ANSWER: DONE

@@ -1,0 +1,10 @@
+Zoom is now 100%, cells are much smaller and easily clickable.
+
+ANSWER: DONE
+
+{
+  "status": "done",
+  "claim": "Changed the LibreOffice Calc zoom from 260% to 100%, making cells small enough to click individually.",
+  "evidence_to_check": ["The zoom indicator in the bottom-right status bar of LibreOffice Calc reads 100%", "Many rows and columns (A through I+, rows 1-38) are visible on screen at once"],
+  "remaining_risk": null
+}

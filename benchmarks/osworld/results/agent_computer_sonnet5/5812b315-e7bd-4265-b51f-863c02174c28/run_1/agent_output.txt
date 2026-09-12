@@ -1,0 +1,17 @@
+I installed openssh-server, created the user, and configured the SSH chroot restriction.
+
+- **User `charles`** created (`useradd -m -s /bin/bash charles`) with password `Ex@mpleP@55w0rd!` (verified in `/etc/shadow` via `chpasswd`).
+- **`/home/test1`** created and set to `root:root` / `755` (required as a valid `ChrootDirectory`).
+- **`/etc/ssh/sshd_config`** now contains:
+  ```
+  Match User charles
+      ChrootDirectory /home/test1
+      ForceCommand internal-sftp
+      AllowTcpForwarding no
+      X11Forwarding no
+  ```
+- `sshd` is running (`/usr/sbin/sshd`, listener active on port 22). The system has no systemd, so it was started directly after creating `/run/sshd`.
+
+charles can now authenticate over SSH but is confined to `/home/test1` and cannot reach any other part of the filesystem.
+
+ANSWER: DONE
