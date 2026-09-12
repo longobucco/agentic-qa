@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "verdict": "not_done",
+  "observations": [
+    {"fact": "the file explorer still shows the old filename", "source": "screenshot", "evidence_ref": null}
+  ],
+  "failed_checks": ["filename was not actually changed"],
+  "next_action": "rename the file to the requested name",
+  "confidence": "high"
+}

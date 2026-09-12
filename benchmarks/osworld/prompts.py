@@ -1,5 +1,7 @@
 """Prompt for the OSWorld desktop agent."""
-from benchmarks.osworld.config import MAX_STEPS, OBSERVATION, SELF_VERIFY, RESTRICT_RUN_PYTHON
+from benchmarks.osworld.config import (
+    GROUNDING, MAX_STEPS, OBSERVATION, RESTRICT_RUN_PYTHON, SELF_VERIFY,
+)
 
 # G5 idea #11 (docs/g5-arm-restrict-run-python-plan.md): when RESTRICT_RUN_PYTHON also denies the
 # tool at the CLI level (runners/agent_computer._extra_flags), this line must be dropped too --
@@ -9,6 +11,31 @@ from benchmarks.osworld.config import MAX_STEPS, OBSERVATION, SELF_VERIFY, RESTR
 # never appearing here even though config.ENFORCE_SANDBOX denies those too.
 RUN_PYTHON_LINE = "  run_python(code)        -> run arbitrary pyautogui code (escape hatch)\n"
 
+# Grounding harness (config.GROUNDING, docs/grounding-harness-plan.md). Advertised only when
+# mcp/server.py actually registers the tools -- same rule as RUN_PYTHON_LINE above, and for the
+# same reason (docs/finding-confabulation-under-tool-denial.md).
+GROUNDING_LINES = """  find_element(description, role="")    -> where a NAMED element is, without clicking
+  click_element(description, role="")   -> click a NAMED element, and report if nothing changed
+  list_elements(role="", name_contains="") -> the interactive elements currently on screen
+"""
+
+# Deliberately short, and framed as "when", not "always". Forcing every click through the tree
+# would be the wrong intervention: a11y trees are incomplete on custom-rendered surfaces (GIMP's
+# canvas, an image viewer), so coordinates stay first-class for anything without a name. The
+# measured problem this addresses is narrower -- re-clicks within 8px of the previous click run at
+# 10.9% of clicks on tasks that never pass vs 8.3% on tasks that always do
+# (analysis/g10_grounding_signal.py) -- i.e. targeting named controls by eye.
+GROUNDING_BLOCK = """
+Targeting: when the thing you want to act on has a NAME in the interface (a button, a menu entry,
+a cell reference, a field label), use click_element("that name") instead of estimating coordinates
+from the screenshot. It resolves the name through the accessibility tree, which is exact, and it
+tells you whether the click actually changed anything. If it reports the screen did not change,
+do NOT repeat the same call -- try rank=2, describe the target differently, or switch to
+screenshot() plus click(x, y). If nothing resolves at all, the element is not in the tree (common
+on drawing canvases and image editors): read the screenshot and click coordinates, as normal.
+Use list_elements() when you do not yet know what a control is called.
+"""
+
 AGENT_PROMPT = """You are an autonomous agent operating a real Linux desktop to complete ONE task.
 You control the computer ONLY through these MCP tools (there is NO browser and NO shell):
   screenshot()            -> a PNG of the current screen (your primary observation)
@@ -17,14 +44,14 @@ You control the computer ONLY through these MCP tools (there is NO browser and N
   move(x, y) / scroll(dx, dy)
   type(text)              -> type a string at the current focus
   key("ctrl+s")           -> press a key combination
-{run_python_line}  wait(seconds)
+{run_python_line}{grounding_lines}  wait(seconds)
 
 Procedure:
 1. Call screenshot() (and a11y_tree() when you need precise coordinates) to observe the desktop.
 2. Loop: observe -> ONE action -> execute -> re-observe, until done. Actually perform the change;
    the resulting STATE is graded, not your narration.
 3. Keep it under ~{max_steps} actions. Do NOT ask for confirmation. Dismiss dialogs yourself.
-{self_verify}
+{grounding}{self_verify}
 Finish by printing on the LAST line EXACTLY:
 ANSWER: <the requested information, or DONE for pure action tasks>
 If the task itself is impossible to complete as stated (contradictory, missing a required
@@ -55,4 +82,6 @@ def agent_prompt(task):
         max_steps=MAX_STEPS, observation=OBSERVATION, instruction=task["instruction"],
         self_verify=SELF_VERIFY_BLOCK if SELF_VERIFY else "",
         run_python_line="" if RESTRICT_RUN_PYTHON else RUN_PYTHON_LINE,
+        grounding_lines=GROUNDING_LINES if GROUNDING else "",
+        grounding=GROUNDING_BLOCK if GROUNDING else "",
     )

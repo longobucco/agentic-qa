@@ -45,6 +45,17 @@ _HARNESS_ENV_KEYS = (
     # OSWorld pins the observation/action profile + image so a desktop A/B is auditable.
     "OSW_RELEASE", "OSW_MAX_TURNS", "OSW_MAX_STEPS", "OSW_TASK_TIMEOUT",
     "OSW_OBSERVATION", "OSW_ACTION_SPACE", "OSW_IMAGE",
+    "OSW_ASTRA_MODEL", "OSW_ASTRA_REASONING_EFFORT", "OSW_ASTRA_CODEX_VERSION",
+    # Verify-Replan (docs/verify-replan-minimal-integration-plan.md): recovery cap, per-role
+    # timeouts/turn budgets and confidence floor all change what the harness measures, so an
+    # A/B against the baseline runner is only fair when these are pinned and visible too.
+    "OSW_VR_MAX_RECOVERIES", "OSW_VR_MIN_CONFIDENCE",
+    "OSW_VR_INITIAL_MAX_TURNS", "OSW_VR_AUDITOR_MAX_TURNS", "OSW_VR_RECOVERY_MAX_TURNS",
+    "OSW_VR_FINAL_AUDITOR_MAX_TURNS", "OSW_VR_INITIAL_TIMEOUT", "OSW_VR_AUDIT_TIMEOUT",
+    "OSW_VR_RECOVERY_TIMEOUT", "OSW_VR_TOTAL_TIMEOUT", "OSW_VR_AUDITOR_MODEL",
+    # Grounding harness (docs/grounding-harness-plan.md): whether the arm ran, and the score floor
+    # that decides what resolves -- both change what the harness measures.
+    "OSW_GROUNDING", "OSW_GROUNDING_VERIFY", "OSW_GROUNDING_MIN_SCORE",
 )
 
 

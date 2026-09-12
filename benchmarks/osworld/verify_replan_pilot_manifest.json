@@ -1,0 +1,85 @@
+{
+  "plan": "docs/verify-replan-minimal-integration-plan.md",
+  "built_from": "agent_computer_sonnet5",
+  "criteria": {
+    "false_completion": "answer=DONE, official verdict=FAILURE on >=1 existing run",
+    "flaky": "g8_failure_taxonomy stability=flaky, not already in false_completion",
+    "controls": "5 always_pass + 5 always_fail, not already selected above"
+  },
+  "excluded": {
+    "chrome_bucket": true,
+    "google_drive_ids_file": "/Users/lucavisconti/QATesting/agentic-qa/scripts/g_astra_campaign_google_drive_excluded_ids.txt"
+  },
+  "categories": {
+    "false_completion": [
+      "02ce9a50-7af2-47ed-8596-af0c230501f8",
+      "04578141-1d42-4146-b9cf-6fab4ce5fd74",
+      "04d9aeaf-7bed-4024-bedb-e10e6f00eb7f",
+      "05dd4c1d-c489-4c85-8389-a7836c4f0567",
+      "08aced46-45a2-48d7-993b-ed3fb5b32302",
+      "09a37c51-e625-49f4-a514-20a773797a8a",
+      "0a211154-fda0-48d0-9274-eaac4ce5486d",
+      "10a730d5-d414-4b40-b479-684bed1ae522",
+      "12382c62-0cd1-4bf2-bdc8-1d20bf9b2371",
+      "1334ca3e-f9e3-4db8-9ca7-b4c653be7d17"
+    ],
+    "flaky": [
+      "1954cced-e748-45c4-9c26-9855b97fbc5e",
+      "21df9241-f8d7-4509-b7f1-37e501a823f7",
+      "28cc3b7e-b194-4bc9-8353-d04c0f4d56d2",
+      "2a729ded-3296-423d-aec4-7dd55ed5fbb3",
+      "3a7c8185-25c1-4941-bd7b-96e823c9f21f",
+      "415ef462-bed3-493a-ac36-ca8c6d23bf1b",
+      "4188d3a4-077d-46b7-9c86-23e1a036f6c1",
+      "4d117223-a354-47fb-8b45-62ab1390a95f",
+      "4de54231-e4b5-49e3-b2ba-61a0bec721c0",
+      "5c1a6c3d-c1b3-47cb-9b01-8d1b7544ffa1"
+    ],
+    "controls": [
+      "00fa164e-2612-4439-992e-157d019a8436",
+      "01b269ae-2111-4a07-81fd-3fcd711993b0",
+      "0326d92d-d218-48a8-9ca1-981cd6d064c7",
+      "035f41ba-6653-43ab-aa63-c86d449d62e5",
+      "045bf3ff-9077-4b86-b483-a1040a949cff",
+      "08c73485-7c6d-4681-999d-919f5c32dcfa",
+      "0f84bef9-9790-432e-92b7-eece357603fb",
+      "13584542-872b-42d8-b299-866967b5c3ef",
+      "15c3b339-88f7-4a86-ab16-e71c58dcb01e",
+      "215dfd39-f493-4bc3-a027-8a97d72c61bf"
+    ]
+  },
+  "all_ids": [
+    "00fa164e-2612-4439-992e-157d019a8436",
+    "01b269ae-2111-4a07-81fd-3fcd711993b0",
+    "02ce9a50-7af2-47ed-8596-af0c230501f8",
+    "0326d92d-d218-48a8-9ca1-981cd6d064c7",
+    "035f41ba-6653-43ab-aa63-c86d449d62e5",
+    "04578141-1d42-4146-b9cf-6fab4ce5fd74",
+    "045bf3ff-9077-4b86-b483-a1040a949cff",
+    "04d9aeaf-7bed-4024-bedb-e10e6f00eb7f",
+    "05dd4c1d-c489-4c85-8389-a7836c4f0567",
+    "08aced46-45a2-48d7-993b-ed3fb5b32302",
+    "08c73485-7c6d-4681-999d-919f5c32dcfa",
+    "09a37c51-e625-49f4-a514-20a773797a8a",
+    "0a211154-fda0-48d0-9274-eaac4ce5486d",
+    "0f84bef9-9790-432e-92b7-eece357603fb",
+    "10a730d5-d414-4b40-b479-684bed1ae522",
+    "12382c62-0cd1-4bf2-bdc8-1d20bf9b2371",
+    "1334ca3e-f9e3-4db8-9ca7-b4c653be7d17",
+    "13584542-872b-42d8-b299-866967b5c3ef",
+    "15c3b339-88f7-4a86-ab16-e71c58dcb01e",
+    "1954cced-e748-45c4-9c26-9855b97fbc5e",
+    "215dfd39-f493-4bc3-a027-8a97d72c61bf",
+    "21df9241-f8d7-4509-b7f1-37e501a823f7",
+    "28cc3b7e-b194-4bc9-8353-d04c0f4d56d2",
+    "2a729ded-3296-423d-aec4-7dd55ed5fbb3",
+    "3a7c8185-25c1-4941-bd7b-96e823c9f21f",
+    "415ef462-bed3-493a-ac36-ca8c6d23bf1b",
+    "4188d3a4-077d-46b7-9c86-23e1a036f6c1",
+    "4d117223-a354-47fb-8b45-62ab1390a95f",
+    "4de54231-e4b5-49e3-b2ba-61a0bec721c0",
+    "5c1a6c3d-c1b3-47cb-9b01-8d1b7544ffa1"
+  ],
+  "count": 30,
+  "sha256": "baf523b6b304484fc3140f33ac0c6b4bfc4cdce749606854db4a574cd0942761"
+}

@@ -125,6 +125,73 @@ def test_affected_getters_is_derived_from_source_not_hardcoded():
     assert g9.affected_getters(package_dir=d) == {"get_bad"}
 
 
+
+
+def _fake_evaluator_tree(root, *, getters_src, metrics_src=""):
+    (root / "getters").mkdir(parents=True, exist_ok=True)
+    (root / "metrics").mkdir(parents=True, exist_ok=True)
+    (root / "getters" / "all.py").write_text(getters_src)
+    (root / "metrics" / "all.py").write_text(metrics_src)
+    return root
+
+
+def test_exposure_separates_the_getters_the_forwarder_fixed_from_the_ones_it_cannot():
+    """A getter that wants the controller's port is fixed by the forwarder; one that wants a
+    guest port the sandbox never publishes is not, and collapsing the two would claim a fix we
+    don't have."""
+    d = _tmp()
+    pinned = _fake_evaluator_tree(
+        d / "pinned",
+        getters_src=(
+            'def get_vm_command_line(env, config):\n'
+            '    port = env.server_port\n'
+            '    requests.post(f"http://{vm_ip}:{port}/execute")\n\n'
+            'def get_open_tabs_info(env, config):\n'
+            '    port = env.chromium_port\n'
+            '    url = f"http://{host}:{port}"\n\n'
+            'def get_active_url_from_accessTree(env, config):\n'
+            '    arch = env.vm_machine.lower()\n\n'
+            'def get_vm_file(env, config):\n'
+            '    return env.controller.get_file(config["path"])\n'),
+        metrics_src='def compare_pptx_files_robust(a, b, **kw):\n    return 1.0\n')
+    # the installed release has every getter the pinned one has -- it is only the *metric*
+    # that is missing here, which is what library_skew must key on
+    installed = _fake_evaluator_tree(
+        d / "installed",
+        getters_src=('def get_vm_command_line(env, config):\n    pass\n\n'
+                     'def get_open_tabs_info(env, config):\n    pass\n\n'
+                     'def get_active_url_from_accessTree(env, config):\n    pass\n\n'
+                     'def get_vm_file(env, config):\n    pass\n'))
+
+    def task(tid, gtype, func="exact_match", config=None):
+        return {"id": tid, "evaluator": {"func": func, "result": {"type": gtype}},
+                "config": config or []}
+
+    exp = g9.defect_exposure(pinned_root=pinned, installed_root=installed, tasks=[
+        task("t-url", "vm_command_line"),
+        task("t-guest", "open_tabs_info"),
+        task("t-machine", "active_url_from_accessTree"),
+        task("t-skew", "vm_file", func="compare_pptx_files_robust"),
+        task("t-creds", "vm_file", config=[{"type": "googledrive", "parameters": {}}]),
+        task("t-clean", "vm_file"),
+    ])
+    c = exp["classes"]
+    assert exp["n_tasks"] == 6
+    assert c["url_scheme"]["tasks"] == ["t-url"] and c["url_scheme"]["status"] == "fixed"
+    assert c["guest_port"]["tasks"] == ["t-guest"] and c["guest_port"]["status"] == "open"
+    assert c["vm_machine"]["tasks"] == ["t-machine"]
+    assert c["library_skew"]["tasks"] == ["t-skew"]
+    assert c["needs_credentials"]["tasks"] == ["t-creds"]
+    assert all("t-clean" not in d["tasks"] for d in c.values())
+
+
+def test_exposure_covers_the_whole_release_not_just_the_supported_apps():
+    """Exposure is a property of the benchmark; narrowing it to this image's app scope would
+    flatter the numbers (the guest-port class is mostly chrome, which the campaign skips)."""
+    exp = g9.defect_exposure()
+    assert exp["n_tasks"] == 369, exp["n_tasks"]
+
+
 if __name__ == "__main__":
     import sys
     mod = sys.modules[__name__]

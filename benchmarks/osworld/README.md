@@ -1,15 +1,25 @@
 # OSWorld
 
-OSWorld (real Ubuntu desktop tasks) on the shared `core/`. Brain is `claude -p`; the hands are an
-MCP server wrapping OSWorld's in-guest controller (screenshot + pyautogui); the judge is OSWorld's
-own deterministic evaluator. No API keys.
+OSWorld (real Ubuntu desktop tasks) on the shared `core/`. The baseline brain is `claude -p`; an
+independent replication uses GPT Astra through `codex exec`. The hands are the same MCP server
+wrapping OSWorld's in-guest controller (screenshot + pyautogui), and the judge is OSWorld's own
+deterministic evaluator.
 
 ## Layout
 - `runners/agent_computer.py`: `claude -p` + MCP; scores with OSWorld's evaluators while live
+- `runners/common.py`: policy-free primitives (MCP config, telemetry, provenance, the post-run
+  watchdog, transcript capture, scoring) shared by every `claude -p`-based runner below
+- `runners/gpt_astra.py`: `codex exec` + the same MCP/evaluator; separate Astra result tree
+- `runners/verify_replan.py`: Execute -> Verify -> [Done | Replan -> Execute recovery -> Verify],
+  a second opt-in system alongside the baseline runner (see Verify-Replan below)
+- `verification.py`: pure claim/audit parsing and recovery decision behind verify_replan.py, no
+  Daytona/MCP dependency
 - `env/osworld_eval.py`: delegates scoring to OSWorld's official evaluators (desktop_env)
 - `env/sandbox.py`: one Daytona desktop per task (+ `up`/`down`/`list` CLI)
 - `env/controller.py`: HTTP client to the in-guest controller
 - `mcp/server.py`: the desktop tools (screenshot/click/type/key/run_python/...)
+- `mcp/readonly_server.py`: screenshot/a11y_tree/wait only -- the Verify-Replan Auditor's entire
+  view of the desktop, structurally incapable of mutating it (nothing else is even defined)
 - `evaluate.py`: fallback when the official evaluator is unreachable; always `EVAL_ERROR`, never a guessed verdict
 - `docker/Dockerfile.osworld`: the desktop image (base for the sandbox)
 
@@ -31,12 +41,58 @@ all. `OSW_PINNED_EVALUATORS=0` forces the installed release back.
 `config.py`'s default `IMAGE` is already pinned to a known-good digest; only override `OSW_IMAGE` if
 you rebuild the image yourself (see the Notes below on why `:latest` alone isn't safe here).
 
+**The pinned default digest predates the AT-SPI fix** (`docker/start.sh`'s accessibility-bus block
+plus `libreoffice-gtk3`, added 2026-09-12). Until the image is rebuilt and `OSW_IMAGE` re-pinned,
+`/accessibility` keeps returning an empty tree and every run records `a11y_ok: false` in
+`result.json`. Two consequences worth stating before rebuilding:
+
+- a rebuilt image is a **different harness version**, so its pass rate is not directly comparable
+  with the 882-run `agent_computer_sonnet5` tree — treat a post-rebuild campaign as a new baseline,
+  the same discipline already applied to `provenance.evaluator_commit`;
+- the Chrome/VSCode `.deb` URLs are "current stable", so a rebuild also picks up newer versions of
+  both (see the Dockerfile's own note on that trade-off).
+
+The fix is asserted, not yet validated: nothing here has run against a rebuilt image. `a11y_ok` in
+`result.json` is what confirms or refutes it on the first real run.
+
 ## Run
 ```
 python -m benchmarks.osworld.env.sandbox up               # provision a desktop
 python -m benchmarks.osworld.run --per-bucket 1 --limit 6
 python -m benchmarks.osworld.report
 ```
+
+GPT Astra replication (requires a logged-in `codex` CLI):
+
+```
+python -m benchmarks.osworld.run --system agent_computer_astra --per-bucket 1 --limit 6
+python -m benchmarks.osworld.report agent_computer_astra
+```
+
+The model, effort and Codex CLI are pinned by default to `gpt-6-astra`, `high`, and `0.153.4`.
+Non-default model/effort combinations automatically get a different result-tree name:
+
+```
+OSW_ASTRA_MODEL=gpt-6-astra OSW_ASTRA_REASONING_EFFORT=high \
+  python -m benchmarks.osworld.run --system agent_computer_astra --ids <task-id>
+```
+
+Results are written under `results/agent_computer_astra/`; they never share the Sonnet tree.
+Codex's JSONL trajectory is saved directly as `conversation.jsonl`. The runner disables Codex's
+built-in shell/browser/computer/app and auxiliary tool surfaces and injects only the OSWorld MCP;
+the sandboxed Code Mode host remains enabled because Astra uses it to invoke MCP tools. The process
+itself runs in a fresh temporary working directory. Approval prompts are bypassed because this is an
+unattended benchmark; this does not widen the tool surface, and the disposable Daytona desktop is the
+external sandbox. The requested Astra model is recorded, but the
+current Codex JSONL contract does not guarantee an independently reported served-model field, so
+`provenance.model_served` is deliberately `null` rather than inferred.
+
+`scripts/g_astra_campaign_driver.sh` runs the frozen 299-task Astra manifest: the 202-task
+Sonnet-5 paired base plus a documented 97-task Astra expansion. It is not the complete
+currently-runnable OSWorld population. Run it only after the smoke test; it is
+intentionally serial because each unit owns a Daytona desktop. `astra_campaign_lock.json` freezes
+the CLI version, model, reasoning effort, population hash and exact tool policy; preflight fails
+closed if any of them changes.
 Resume a sandbox Daytona auto-stopped (see Notes below):
 ```
 python -m benchmarks.osworld.env.sandbox resume <sandbox-id>
@@ -45,6 +101,83 @@ Spike without provisioning (drive a desktop you already have up):
 ```
 OSW_CONTROLLER_URL=http://<url>:5000 python -m benchmarks.osworld.run --ids <task-id>
 ```
+
+### Verify-Replan (experimental, branch `verify-replan`)
+
+Full design: `docs/verify-replan-minimal-integration-plan.md` (local, not versioned, same
+convention as the `g5-arm-*.md` plan docs). One-line summary: the acting agent's own DONE claim
+is checked by an independent, read-only-MCP auditor before scoring; on a well-formed `not_done`
+verdict, a fresh recovery session gets the audit report (never the evaluator spec or gold) and
+one attempt to fix only the failed checks, then a final audit, then the official evaluator is
+invoked exactly once.
+
+```
+OSW_MODEL=claude-sonnet-5 python -m benchmarks.osworld.run \
+  --system verify_replan_sonnet5 --per-bucket 1 --limit 6
+python -m benchmarks.osworld.report verify_replan_sonnet5
+```
+
+Results land under `results/verify_replan_sonnet5/<task>/`, alongside a `verify_replan/`
+subdirectory per run with one folder per role (`initial/`, `audit_1/`, `recovery_1/`,
+`audit_final/`) plus `manifest.json` (config knobs + prompt versions/hashes actually used) and
+`timeline.jsonl` (one line per state-machine transition). `result.json` additionally carries
+`harness: "verify_replan"`, `initial_claim`/`audit_initial`/`audit_final` verdicts,
+`recovery_triggered`/`recovery_attempts`, `false_completion_detected`/`_recovered` (best-effort
+proxies from the audit trail, not a counterfactual -- see the plan's Section 3.4 on natural vs.
+matched budget for the methodologically honest way to establish a causal effect), and
+`role_usage`/`total_agent_cost_usd`/`total_agent_duration_ms` aggregated across every role's
+`claude -p` call.
+
+Per-role turn/timeout budgets, the recovery cap, and the auditor's confidence floor are all
+separate `OSW_VR_*` knobs (see `config.py`), pinned per campaign the same way every other
+harness A/B knob in this project is (`core/run.py::_HARNESS_ENV_KEYS`) -- `OSW_MAX_TURNS` is
+NOT reused across every role's session. Never the default system; select it explicitly with
+`--system verify_replan_sonnet5`, and it never touches `agent_computer`'s own code path or
+results tree.
+
+Status as of this branch: state machine, read-only MCP boundary, and both the offline unit
+tests and a real-fake-CLI integration suite (`tests/test_verify_replan.py`,
+`tests/test_verify_replan_integration.py`, `tests/test_readonly_mcp.py`) are implemented and
+green. The plan's Section 12 live smoke test (3 real tasks against a live sandbox) and the
+30-task pilot campaign (Section 13) have NOT been run yet -- both cost real sandbox/API spend
+and are the natural next-approval checkpoint, not something to launch silently off the back of
+this commit.
+
+## Grounding harness (experimental, branch `grounding-harness`, NOT launched)
+
+`OSW_GROUNDING=1` adds three tools to the OSWorld MCP server — `find_element`, `click_element`,
+`list_elements` — that resolve a *named* target through the accessibility tree instead of having
+the model emit `(x, y)` from a screenshot, plus an action-level check: `click_element` re-reads the
+tree and tells the model when the click changed nothing. Unlike every G5 arm so far it acts before
+the wrong state exists rather than auditing it afterwards. `click(x, y)` is untouched and still
+offered — this is an added channel, not a replacement — and when nothing resolves `click_element`
+clicks nothing rather than guessing a coordinate. No per-application code: a Calc cell is a
+`table-cell` whose accessible name is its reference, so the generic path reaches it.
+
+Results go to their own tree (`agent_computer_sonnet5_grounding`, automatic suffix), and
+`result.json` records `grounding_used` / `grounding_min_score` per run.
+
+**Status: implemented, 63 tests green, deliberately NOT run — and currently unevaluable.** All 456
+real `a11y_tree` captures on disk (every results tree, all 9 apps, both campaigns) come back EMPTY:
+`{"AT": "<desktop-frame .../>"}`, a self-closing root with zero children, never once populated. The
+image installs `at-spi2-core`/`python3-pyatspi` but no AT-SPI bridge is producing a tree at
+runtime, so nothing can be resolved by name until that is repaired. This also corrects the arm's
+own motivation — `a11y_tree`'s 0.8% share is not neglect of a structured channel, the agent called
+it 456 times, got nothing, and stopped — and retroactively bounds Verify-Replan's auditor and idea
+#15, which both listed `a11y_tree` as an evidence source and were in fact screenshot-only.
+
+Separately, its own pre-registered gate
+(`analysis/g10_grounding_signal.py`, run with `--compare`) falsified the arm's premise before any
+rollout spend. The targeting gap that motivated it was measured on `agent_computer`, which is
+genuinely mixed-model — 326 of its 982 runs served by `claude-sonnet-5`, 296 by
+`claude-sonnet-4-6`, 5 by `claude-opus-4-8`, `model_requested=None` throughout. There the gap is
+real (11.8% vs 8.7% re-clicks, z = 2.74). On the pinned `agent_computer_sonnet5` tree it is absent
+and reversed (3.4% vs 4.3%, z = -1.37): Sonnet 5 re-clicks about half as often, and its always-fail
+tasks are not the ones it targets badly. See `docs/grounding-harness-plan.md` §5.
+
+Practical consequence beyond this arm: **always pass `--system` or `OSW_MODEL` explicitly to the
+analysis CLIs.** Without it they read `agent_computer`, the mixed tree — where the pass rate is
+50.8% and the buckets are 104/46/102, against 56.8% and 137/36/104 on pinned Sonnet 5.
 
 ## Analysis
 
