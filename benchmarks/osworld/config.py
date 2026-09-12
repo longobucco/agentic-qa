@@ -64,6 +64,12 @@ def astra_system_name():
 
 ASTRA_SYSTEM_NAME = astra_system_name()
 
+# Open-book Astra campaign (docs/g_astra_open_book_runner_implementation.md): same model/effort/
+# codex-version knobs as the closed-book campaign (same _system_name suffixing discipline, so an
+# override still can't pool into the canonical tree) -- deliberately its own results root, never
+# unioned with agent_computer_astra's.
+ASTRA_OPENBOOK_SYSTEM_NAME = f"{ASTRA_SYSTEM_NAME}_openbook"
+
 
 def resolve_system(system=None):
     """Which results tree an offline analysis should read.
@@ -212,6 +218,15 @@ IMAGE = os.environ.get(   # pinned by digest -- Daytona caches images by tag, no
     "ghcr.io/longobucco/osworld-ab@sha256:"
     "8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
 )
+# Open-book campaign: a SEPARATE image from IMAGE above -- the closed-book pin must never
+# silently start carrying mitmproxy/iptables/CA just because this file also defines
+# ASTRA_OPENBOOK_SYSTEM_NAME. Built FROM the pinned IMAGE digest (docker/Dockerfile.osworld-
+# openbook), not from ubuntu:22.04, specifically to inherit its validated Chrome build rather
+# than re-download "latest stable" (see that Dockerfile's own docstring for why that matters).
+# Empty until a canary has passed and this is set explicitly -- open_book_preflight.campaign_check
+# has no image digest to validate yet, so there is nothing to silently fall back to.
+OPENBOOK_IMAGE = os.environ.get("OSW_OPENBOOK_IMAGE", "").strip()
+
 CONTROLLER_PORT = int(os.environ.get("OSW_CONTROLLER_PORT", "5000"))
 
 CONTROLLER_URL = os.environ.get("OSW_CONTROLLER_URL", "").strip()   # skip provisioning

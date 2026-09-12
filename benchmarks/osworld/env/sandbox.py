@@ -19,6 +19,7 @@ import tempfile
 import time
 from concurrent.futures import ThreadPoolExecutor, TimeoutError as FutureTimeoutError
 from contextlib import contextmanager
+from pathlib import Path
 
 from benchmarks.osworld import config
 from benchmarks.osworld.env.controller import Controller
@@ -129,13 +130,18 @@ def _verify_launches(ctrl, steps, *, wait=3, retries=4):
     return f"launched app(s) never started: {', '.join(sorted(binaries))}"
 
 
-def _run_config(ctrl, task):
+def _run_config(ctrl, task, *, use_proxy=False):
     """Run the task's config via OSWorld's own SetupController, then independently verify any
     "launch" step actually started (see _verify_launches). Returns None on success, an error
     string on failure -- never silently swallowed. No fallback to a naive per-step POST: config
     dispatch is real host-side logic per step type, not a 1:1 REST route, and a naive POST 404s
     on "download"/"open". An unprepared environment is worse than none -- the caller must see
-    the error and skip driving the agent rather than run it blind."""
+    the error and skip driving the agent rather than run it blind.
+
+    `use_proxy`: threaded into upstream SetupController.setup(steps, use_proxy=...) -- when True,
+    any "launch" step starting google-chrome gets --proxy-server=http://127.0.0.1:18888 appended
+    (setup.py:309-310). False (default) for every existing caller; only the open-book environment
+    (env.guest_proxy having already made something real listen there) passes True."""
     steps = task.get("config", [])
     if not steps:
         return None
@@ -149,7 +155,7 @@ def _run_config(ctrl, task):
     # agent_computer._score / osworld_eval.evaluate_official).
     cache_dir = tempfile.mkdtemp(prefix="osw_setup_cache_")
     try:
-        make_setup_controller(ctrl.base_url, cache_dir=cache_dir).setup(steps)
+        make_setup_controller(ctrl.base_url, cache_dir=cache_dir).setup(steps, use_proxy=use_proxy)
     except Exception as e:
         return f"config setup failed: {e}"
     finally:
@@ -217,6 +223,72 @@ def osworld_environment(task, *, port=None):
         ex.shutdown(wait=False)   # don't block the whole campaign on a still-stuck worker thread
         sb = holder.get("sb")
         if sb is not None and not config.SANDBOX_ID:   # tear down fresh sandboxes only
+            try:
+                sb.delete()
+            except Exception:
+                pass
+
+
+def _provision_and_configure_openbook(task, holder):
+    """Same shape as _provision_and_configure, plus: start the guest fixture proxy and lock down
+    egress (env.guest_proxy) BEFORE running the task's config, so any "launch" step's
+    --proxy-server=... (use_proxy=True) actually points at something already listening.
+
+    Task-scoped preflight (open_book_preflight.task_check) runs FIRST, before provisioning --
+    a task with no fixture bundle costs nothing beyond the check itself, rather than paying for
+    a sandbox it was never going to be able to run against."""
+    from benchmarks.osworld import open_book_preflight
+    from benchmarks.osworld.env import guest_proxy
+    if not config.OPENBOOK_IMAGE:
+        return None, ("OSW_OPENBOOK_IMAGE not set -- the closed-book image (config.IMAGE) has "
+                      "no mitmproxy/CA/iptables layer; refusing to provision against it")
+    check = open_book_preflight.task_check(task)
+    if not check["ready"]:
+        return None, check["reason"]
+    bundle_dir = Path(check["bundle_dir"])
+    if config.SANDBOX_ID:
+        _warn_reuse_once("OSW_SANDBOX_ID set")
+        d = _client()
+        sb = next((s for s in d.list() if s.id == config.SANDBOX_ID), None)
+        if sb is None:
+            raise SystemExit(f"OSW_SANDBOX_ID={config.SANDBOX_ID} not found")
+        holder["sb"] = sb
+        _ensure_running(sb)
+        ctrl = _ensure_controller_up(sb)
+    else:
+        sb, ctrl = provision(image=config.OPENBOOK_IMAGE, on_created=lambda s: holder.update(sb=s))
+    try:
+        guest_proxy.start(ctrl, bundle_dir)
+    except guest_proxy.GuestProxyError as e:
+        return ctrl, f"open-book guest proxy setup failed: {e}"
+    return ctrl, _run_config(ctrl, task, use_proxy=True)
+
+
+@contextmanager
+def osworld_openbook_environment(task, *, port=None):
+    """Open-book counterpart of osworld_environment: identical provisioning, but the guest
+    fixture proxy is up and the egress lockdown confirmed before the task's config (and
+    therefore Chrome) ever runs. Does not support OSW_CONTROLLER_URL reuse -- a reused desktop's
+    proxy/lockdown state from a PREVIOUS task is exactly the cross-task contamination the frozen
+    manifest's per-task bundle is supposed to rule out; open-book campaigns always provision
+    fresh (OSW_SANDBOX_ID reuse is still allowed, same as the baseline path, since guest_proxy.
+    start() is re-applied idempotently every call regardless)."""
+    holder = {}
+    ex = ThreadPoolExecutor(max_workers=1)
+    try:
+        fut = ex.submit(_provision_and_configure_openbook, task, holder)
+        try:
+            ctrl, err = fut.result(timeout=_PROVISION_TIMEOUT_S)
+        except FutureTimeoutError:
+            raise RuntimeError(
+                f"open-book sandbox provisioning/setup exceeded {_PROVISION_TIMEOUT_S}s -- "
+                f"treated as a hang, not a legitimate wait"
+            ) from None
+        yield Env(port=None, browser=ctrl, setup_error=err)
+    finally:
+        ex.shutdown(wait=False)
+        sb = holder.get("sb")
+        if sb is not None and not config.SANDBOX_ID:
             try:
                 sb.delete()
             except Exception:

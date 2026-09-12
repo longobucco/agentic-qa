@@ -1,0 +1,70 @@
+# Open-book campaign's guest image: the ALREADY-PINNED, already-validated closed-book image
+# (config.IMAGE's digest -- real successful chrome-bucket campaign runs on record) as the base,
+# with ONLY the fixture-proxy tooling layered on top. Deliberately NOT built from ubuntu:22.04 +
+# a fresh Batch-3 install: confirmed live (2026-09-12) that Google's "always latest stable" Chrome
+# URL (docker/Dockerfile.osworld's own documented drift risk) picked up a newer Chrome build
+# (153.0.8010.36) that fails "DevTools remote debugging requires a non-default data directory"
+# through the SAME wrapper/flags that work on the pinned image's Chrome (151.0.7922.108) -- i.e.
+# CDP never binds, silently, for EVERY chrome-bucket task, not just open-book ones. Basing this
+# image on the pinned digest instead inherits the known-good Chrome byte-for-byte; only mitmproxy/
+# CA/iptables are new here.
+#
+# Build + push a NEW tag/digest (never overwrites the base): set OSW_OPENBOOK_IMAGE to the
+# result, NOT config.IMAGE -- the closed-book campaign's pin must stay untouched by this file
+# existing at all.
+#   docker build --platform linux/amd64 -f benchmarks/osworld/docker/Dockerfile.osworld-openbook \
+#     -t <registry>/osworld-ab:openbook-<tag> .
+ARG BASE_IMAGE=ghcr.io/longobucco/osworld-ab@sha256:8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b
+FROM ${BASE_IMAGE}
+
+# Chromium (confirmed live 2026-09-12, both Chrome 151.0.7922.108 -- the pinned version -- and a
+# newer 153.0.8010.36) refuses remote debugging with "DevTools remote debugging requires a
+# non-default data directory" whenever --user-data-dir's VALUE equals what
+# chrome::GetDefaultUserDataDirectory() would compute anyway -- true here even though the launch
+# wrapper passes it explicitly, because the wrapper's own explicit value ($HOME/.config/
+# google-chrome) IS the platform default (an anti-hijacking check added ~M92, comparing values,
+# not "was the flag passed"). The wrapper can't point elsewhere: desktop_env's evaluator getters
+# hardcode reading Chrome's profile from that exact path (see the base Dockerfile's own comment).
+# Fix: point ONLY Chrome's notion of "what the default would have been" somewhere else, via
+# XDG_CONFIG_HOME (chrome::DIR_USER_DATA's own computation reads this on Linux) -- the actual
+# profile directory used is still whatever --user-data-dir says, unaffected by this var, verified
+# live: Preferences/Bookmarks/History still land in $HOME/.config/google-chrome as before,
+# --remote-debugging-port now actually binds. Set at the image root (not per-launch-step) so
+# supervisord -> start.sh -> main.py -> every subprocess.run Chrome launch inherits it uniformly,
+# with no change to OSWorld's own vendored SetupController.
+# An absolute path NOT derived from $HOME on purpose: $HOME's actual runtime value is a guest
+# property this Dockerfile can't know (see the base Dockerfile's own reasoning for why the
+# Chrome wrapper resolves $HOME itself rather than hardcoding /root) -- XDG_CONFIG_HOME needs
+# only to differ from wherever $HOME/.config turns out to be, not to be based on it.
+ENV XDG_CONFIG_HOME=/opt/osw_xdg_unused
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        iptables libnss3-tools \
+    && rm -rf /var/lib/apt/lists/*
+# iptables — the open-book campaign's in-guest egress lockdown (env/guest_proxy.py) needs it on
+# PATH; whether the sandbox actually grants NET_ADMIN to make the rules take effect is a Daytona
+# runtime property this Dockerfile can't confirm — guest_proxy.start() verifies the rule landed
+# and raises rather than proceeding silently unprotected if it didn't (see its own comment).
+# libnss3-tools — `certutil`, to install the open-book proxy's CA into Chrome's NSS cert DB below.
+
+# mitmproxy pinned, not "latest": the CA generated below must keep matching the version that
+# reads it back at runtime across every sandbox built from this image. bcrypt pinned below 4.1
+# too -- confirmed live (2026-09-12): mitmproxy pulls passlib for its proxyauth addon, and
+# passlib 1.7.4 crashes at IMPORT TIME against bcrypt>=4.1 (removed `bcrypt.__about__`), which
+# means mitmdump refuses to even start, not just proxyauth being unavailable.
+RUN pip3 install --no-cache-dir mitmproxy==11.0.2 "bcrypt<4.1"
+
+# Generate the confdir's CA ONCE, at build time, and bake it in at a fixed path -- not
+# per-sandbox at runtime. A fresh CA per sandbox would mean Chrome's NSS trust store has to be
+# reprovisioned every run too, which is exactly the per-run drift the frozen campaign lock exists
+# to rule out (see env/guest_proxy.py's module docstring). Running mitmdump briefly with no
+# traffic is the same startup path that creates the confdir's CA on a real run -- more robust
+# across mitmproxy versions than calling its internal cert-generation API directly.
+RUN mkdir -p /opt/osw_openbook/mitmproxy_confdir && \
+    timeout 8 mitmdump --set confdir=/opt/osw_openbook/mitmproxy_confdir \
+        --listen-host 127.0.0.1 --listen-port 28899 || true && \
+    test -f /opt/osw_openbook/mitmproxy_confdir/mitmproxy-ca-cert.pem
+
+# NSS trust install happens at runtime (env/guest_proxy.py), not here: Chrome's --user-data-dir
+# (and therefore its NSS db) resolves against $HOME, which the base image's own Chrome wrapper
+# resolves at guest runtime, not at image build time.

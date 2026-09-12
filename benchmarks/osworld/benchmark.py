@@ -3,8 +3,8 @@ self_eval (it scores with OSWorld's official evaluators while the desktop is liv
 eval.json), so core.run uses that verdict. Serial (provisioning is heavy).
 """
 from benchmarks.osworld import config, evaluate, tasks
-from benchmarks.osworld.env.sandbox import osworld_environment
-from benchmarks.osworld.runners import agent_computer, gpt_astra, verify_replan
+from benchmarks.osworld.env.sandbox import osworld_environment, osworld_openbook_environment
+from benchmarks.osworld.runners import agent_computer, gpt_astra, gpt_astra_openbook, verify_replan
 from core.run import Benchmark, Runner
 
 
@@ -31,6 +31,18 @@ def build():
             needs_browser=False,
             concurrency_safe=False,
             preflight=gpt_astra.preflight,
+            self_eval=True,
+        ),
+        # Open-book Astra campaign (docs/g_astra_open_book_runner_implementation.md): same model,
+        # own results tree, own environment (guest fixture proxy + egress lockdown before any
+        # task config runs) -- never combined with the closed-book agent_computer_astra tree.
+        config.ASTRA_OPENBOOK_SYSTEM_NAME: Runner(
+            name=config.ASTRA_OPENBOOK_SYSTEM_NAME,
+            run=gpt_astra_openbook.run,
+            environment=osworld_openbook_environment,
+            needs_browser=False,
+            concurrency_safe=False,
+            preflight=gpt_astra_openbook.preflight,
             self_eval=True,
         ),
         # Verify-Replan (docs/verify-replan-minimal-integration-plan.md): Execute -> Verify ->
