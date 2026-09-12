@@ -1,0 +1,6 @@
+{
+  "status": "infeasible",
+  "claim": "the requested menu option does not exist in this application version",
+  "evidence_to_check": ["menu has no such entry, confirmed by scanning all top-level menus"],
+  "remaining_risk": null
+}

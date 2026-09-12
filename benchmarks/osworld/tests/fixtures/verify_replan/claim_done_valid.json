@@ -1,0 +1,6 @@
+{
+  "status": "done",
+  "claim": "renamed the target file as requested",
+  "evidence_to_check": ["file explorer shows the new filename"],
+  "remaining_risk": null
+}
