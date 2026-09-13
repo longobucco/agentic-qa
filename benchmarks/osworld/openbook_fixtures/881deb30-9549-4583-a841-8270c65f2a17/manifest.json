@@ -200,6 +200,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/881deb30-9549-4583-a841-8270c65f2a17/supported_rate.xlsx"
+    },
+    {
+      "body_file": "bodies/9d97b986f83c1871831933499ff69de7198d99b3be0b9347ef8ab1559073fca0",
+      "body_sha256": "9d97b986f83c1871831933499ff69de7198d99b3be0b9347ef8ab1559073fca0",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/881deb30-9549-4583-a841-8270c65f2a17/supported_rate_gt.xlsx"
     }
   ],
   "schema_version": 1,

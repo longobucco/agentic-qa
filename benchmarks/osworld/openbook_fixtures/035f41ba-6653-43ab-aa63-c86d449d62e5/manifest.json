@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/035f41ba-6653-43ab-aa63-c86d449d62e5/IncomeStatement2.xlsx"
+    },
+    {
+      "body_file": "bodies/dce5ec128f2fcb633591ce430f73dc6a1f5041fa2e003fca42af2cb89d2ad0a9",
+      "body_sha256": "dce5ec128f2fcb633591ce430f73dc6a1f5041fa2e003fca42af2cb89d2ad0a9",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/035f41ba-6653-43ab-aa63-c86d449d62e5/5_IncomeStatement2_gt1.xlsx"
     }
   ],
   "schema_version": 1,

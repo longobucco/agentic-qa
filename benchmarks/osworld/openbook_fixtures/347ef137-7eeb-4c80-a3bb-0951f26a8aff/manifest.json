@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/347ef137-7eeb-4c80-a3bb-0951f26a8aff/Create_column_charts_using_statistics.xlsx"
+    },
+    {
+      "body_file": "bodies/53d2c5da7fd412ecc3de462a1263cc39f89e2d103b025b21578d2fb8db33787b",
+      "body_sha256": "53d2c5da7fd412ecc3de462a1263cc39f89e2d103b025b21578d2fb8db33787b",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/347ef137-7eeb-4c80-a3bb-0951f26a8aff/Create_column_charts_using_statistics_gold.xlsx"
     }
   ],
   "schema_version": 1,

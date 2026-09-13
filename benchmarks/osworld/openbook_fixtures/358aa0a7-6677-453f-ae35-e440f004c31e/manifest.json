@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/358aa0a7-6677-453f-ae35-e440f004c31e/note-taking-strategies.file"
+    },
+    {
+      "body_file": "bodies/1cb8cc967e80bd2fcfa1fccb1fd421d3047893f7e0ba6b22328d3df2604eb9c8",
+      "body_sha256": "1cb8cc967e80bd2fcfa1fccb1fd421d3047893f7e0ba6b22328d3df2604eb9c8",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/358aa0a7-6677-453f-ae35-e440f004c31e/note-taking-strategies_Gold.pptx"
     }
   ],
   "schema_version": 1,

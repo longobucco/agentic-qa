@@ -50,6 +50,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/0c825995-5b70-4526-b663-113f4c999dd2/assessing_and_reporting_water_quality%28q%26a%29.pdf"
+    },
+    {
+      "body_file": "bodies/a2813497fadda723c0ecc029801edbeefffc41b9439d6344f77d182ec3e10742",
+      "body_sha256": "a2813497fadda723c0ecc029801edbeefffc41b9439d6344f77d182ec3e10742",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/0c825995-5b70-4526-b663-113f4c999dd2/environment_policy_report%20%28draft%29_gold.docx"
     }
   ],
   "schema_version": 1,

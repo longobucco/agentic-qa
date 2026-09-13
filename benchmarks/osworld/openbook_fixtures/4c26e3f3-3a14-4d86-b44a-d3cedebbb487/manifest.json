@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/4c26e3f3-3a14-4d86-b44a-d3cedebbb487/PPT-Template_widescreen.pptx"
+    },
+    {
+      "body_file": "bodies/7e4c3e1c0ed66074f17a811948e250bd6c8a6b2fcfc8b5447b3c844955e83528",
+      "body_sha256": "7e4c3e1c0ed66074f17a811948e250bd6c8a6b2fcfc8b5447b3c844955e83528",
+      "headers": {
+        "content-type": "image/png"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/4c26e3f3-3a14-4d86-b44a-d3cedebbb487/back.png"
     }
   ],
   "schema_version": 1,

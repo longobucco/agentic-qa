@@ -1,0 +1,47 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/e02841f6b3699dac2088206cf8c54047134c4c8762bb443b035419930fa34a08",
+      "body_sha256": "e02841f6b3699dac2088206cf8c54047134c4c8762bb443b035419930fa34a08",
+      "headers": {
+        "content-type": "application/octet-stream"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/74d5859f-ed66-4d3e-aa0e-93d7a592ce41/file_1t5Llhn6seDUXVs-eILu6CjwFEQL9Z5Qm.bin"
+    },
+    {
+      "body_file": "bodies/30012d1ee6048d112d7dbd9660926712387795eb5020c72604d2021c721cb29c",
+      "body_sha256": "30012d1ee6048d112d7dbd9660926712387795eb5020c72604d2021c721cb29c",
+      "headers": {
+        "content-type": "application/octet-stream"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/74d5859f-ed66-4d3e-aa0e-93d7a592ce41/index.html"
+    },
+    {
+      "body_file": "bodies/b4257e1e0441b04b45f98193e2f8ca528923f6d45b9f3a22918c38d91704ca90",
+      "body_sha256": "b4257e1e0441b04b45f98193e2f8ca528923f6d45b9f3a22918c38d91704ca90",
+      "headers": {
+        "content-type": "application/octet-stream"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/74d5859f-ed66-4d3e-aa0e-93d7a592ce41/style.css"
+    },
+    {
+      "body_file": "bodies/7130d5f9c6157ae9a802da32a85566fecd133acbcac6331581a51ccb11783cc5",
+      "body_sha256": "7130d5f9c6157ae9a802da32a85566fecd133acbcac6331581a51ccb11783cc5",
+      "headers": {
+        "content-type": "application/octet-stream"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/74d5859f-ed66-4d3e-aa0e-93d7a592ce41/file_14YYnhCfRtHQNk8M4fBPaUQeteoFMGBsA.bin"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "74d5859f-ed66-4d3e-aa0e-93d7a592ce41"
+}

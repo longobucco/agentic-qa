@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/a9f325aa-8c05-4e4f-8341-9e4358565f4f/Movie_titles_garbage_clean.xlsx"
+    },
+    {
+      "body_file": "bodies/a71315476cb9ce5bd4c843db097311dedcb784d21a89c3fdf29578a376eee684",
+      "body_sha256": "a71315476cb9ce5bd4c843db097311dedcb784d21a89c3fdf29578a376eee684",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/a9f325aa-8c05-4e4f-8341-9e4358565f4f/Movie_titles_garbage_clean_gold.xlsx"
     }
   ],
   "schema_version": 1,

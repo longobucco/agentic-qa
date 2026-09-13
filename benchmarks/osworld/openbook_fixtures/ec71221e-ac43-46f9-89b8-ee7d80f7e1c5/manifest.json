@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/vs_code/ec71221e-ac43-46f9-89b8-ee7d80f7e1c5/test.py"
+    },
+    {
+      "body_file": "bodies/38c7e66a915509f86133d76defab294064f1dd94d87c729daeb799d073149b34",
+      "body_sha256": "38c7e66a915509f86133d76defab294064f1dd94d87c729daeb799d073149b34",
+      "headers": {
+        "content-type": "application/octet-stream"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/vs_code/ec71221e-ac43-46f9-89b8-ee7d80f7e1c5/test_gold.py"
     }
   ],
   "schema_version": 1,

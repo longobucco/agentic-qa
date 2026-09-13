@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/51f5801c-18b3-4f25-b0c3-02f85507a078/Dickinson_Slides.pptx"
+    },
+    {
+      "body_file": "bodies/184938c001aa31191fef4859698273f73a4c3ab3c3f105d44c02962a453a1eab",
+      "body_sha256": "184938c001aa31191fef4859698273f73a4c3ab3c3f105d44c02962a453a1eab",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/51f5801c-18b3-4f25-b0c3-02f85507a078/notes_gold.docx"
     }
   ],
   "schema_version": 1,

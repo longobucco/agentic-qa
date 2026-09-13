@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/8b1ce5f2-59d2-4dcc-b0b0-666a714b9a14/Calendar_Highlight_Weekend_Days.xlsx"
+    },
+    {
+      "body_file": "bodies/e83e93f388874dd7e075b92a22478e586fdad0f55ecfc538b93823c3efd8b6d1",
+      "body_sha256": "e83e93f388874dd7e075b92a22478e586fdad0f55ecfc538b93823c3efd8b6d1",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/8b1ce5f2-59d2-4dcc-b0b0-666a714b9a14/Calendar_Highlight_Weekend_Days_gold.xlsx"
     }
   ],
   "schema_version": 1,

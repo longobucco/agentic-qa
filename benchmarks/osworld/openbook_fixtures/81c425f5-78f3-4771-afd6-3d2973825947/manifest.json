@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/81c425f5-78f3-4771-afd6-3d2973825947/OSP_Envelope_Price-List_2023_5000.xlsx"
+    },
+    {
+      "body_file": "bodies/47c247260a916accc9b5163973c8344d2629fd06c506ba557a4a9bd063c32341",
+      "body_sha256": "47c247260a916accc9b5163973c8344d2629fd06c506ba557a4a9bd063c32341",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/81c425f5-78f3-4771-afd6-3d2973825947/price.docx"
     }
   ],
   "schema_version": 1,

@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/0b17a146-2934-46c7-8727-73ff6b6483e8/H2O_Factsheet_WA.docx"
+    },
+    {
+      "body_file": "bodies/489dcf67cd13dc13a8e37152b6db1f4931e49030ba67aca47c573345ce9fdc00",
+      "body_sha256": "489dcf67cd13dc13a8e37152b6db1f4931e49030ba67aca47c573345ce9fdc00",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/0b17a146-2934-46c7-8727-73ff6b6483e8/H2O_Factsheet_WA_Gold.docx"
     }
   ],
   "schema_version": 1,

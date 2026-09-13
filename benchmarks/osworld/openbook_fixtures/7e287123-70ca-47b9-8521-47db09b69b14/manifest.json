@@ -190,6 +190,26 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/7e287123-70ca-47b9-8521-47db09b69b14/grf23.pdf"
+    },
+    {
+      "body_file": "bodies/23efe99a2167d170b8aefd2e141724270488270b8b237fd7424630b3bbd4c9db",
+      "body_sha256": "23efe99a2167d170b8aefd2e141724270488270b8b237fd7424630b3bbd4c9db",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/7e287123-70ca-47b9-8521-47db09b69b14/GRF-p5y.bak.xlsx"
+    },
+    {
+      "body_file": "bodies/fc81865fbdc7b5f8438fb766cdad4e04b92181e7a2dfe995889f17258b975a41",
+      "body_sha256": "fc81865fbdc7b5f8438fb766cdad4e04b92181e7a2dfe995889f17258b975a41",
+      "headers": {
+        "content-type": "text/csv"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/7e287123-70ca-47b9-8521-47db09b69b14/GRF-p5y.bak-Sheet1.csv"
     }
   ],
   "schema_version": 1,

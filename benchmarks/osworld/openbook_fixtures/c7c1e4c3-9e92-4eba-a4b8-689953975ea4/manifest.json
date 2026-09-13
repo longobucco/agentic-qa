@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/c7c1e4c3-9e92-4eba-a4b8-689953975ea4/Professor_Contact.xlsx"
+    },
+    {
+      "body_file": "bodies/2e30e2af19a57982b7f0e5c077ccc256b39e49d9c923bc53c4fdbb1ea0b31dc5",
+      "body_sha256": "2e30e2af19a57982b7f0e5c077ccc256b39e49d9c923bc53c4fdbb1ea0b31dc5",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/c7c1e4c3-9e92-4eba-a4b8-689953975ea4/Professor_Contact_Gold.xlsx"
     }
   ],
   "schema_version": 1,

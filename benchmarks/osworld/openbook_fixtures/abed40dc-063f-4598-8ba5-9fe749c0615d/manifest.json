@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/abed40dc-063f-4598-8ba5-9fe749c0615d/Names_Duplicate_Unique.xlsx"
+    },
+    {
+      "body_file": "bodies/c5016d9487a680a3ebdbc68e7cda8ba2d5544bf3f6189048e1a63ad0cc9fa95f",
+      "body_sha256": "c5016d9487a680a3ebdbc68e7cda8ba2d5544bf3f6189048e1a63ad0cc9fa95f",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/abed40dc-063f-4598-8ba5-9fe749c0615d/Names_Duplicate_Unique_gold.xlsx"
     }
   ],
   "schema_version": 1,

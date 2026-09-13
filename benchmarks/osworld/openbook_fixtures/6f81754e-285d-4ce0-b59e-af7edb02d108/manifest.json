@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/6f81754e-285d-4ce0-b59e-af7edb02d108/HK_train_record.docx"
+    },
+    {
+      "body_file": "bodies/72c21465139b7d33726585930bc6f1e65670010d3a4b60486fee364e92cac31f",
+      "body_sha256": "72c21465139b7d33726585930bc6f1e65670010d3a4b60486fee364e92cac31f",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/6f81754e-285d-4ce0-b59e-af7edb02d108/HK_train_record_Gold.docx"
     }
   ],
   "schema_version": 1,

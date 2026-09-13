@@ -20,6 +20,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/8df7e444-8e06-4f93-8a1a-c5c974269d82/reminder.docx"
+    },
+    {
+      "body_file": "bodies/69b9deb94f48de827cb7ae29d17728a88b34add9fb726407a2cf843bdab3d2bf",
+      "body_sha256": "69b9deb94f48de827cb7ae29d17728a88b34add9fb726407a2cf843bdab3d2bf",
+      "headers": {
+        "content-type": "application/octet-stream"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/8df7e444-8e06-4f93-8a1a-c5c974269d82/Recruitment_and_retention_of_health_professionals_across_Europe.zip"
     }
   ],
   "schema_version": 1,

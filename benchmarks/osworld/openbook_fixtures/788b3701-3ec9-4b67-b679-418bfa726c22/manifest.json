@@ -90,6 +90,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/788b3701-3ec9-4b67-b679-418bfa726c22/old-chapters.tar.xz"
+    },
+    {
+      "body_file": "bodies/648849de03984bfaeaac2be87fdbbba9ff66cfdd430165edf5655ebef1d8ac5d",
+      "body_sha256": "648849de03984bfaeaac2be87fdbbba9ff66cfdd430165edf5655ebef1d8ac5d",
+      "headers": {
+        "content-type": "application/octet-stream"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/788b3701-3ec9-4b67-b679-418bfa726c22/\u00e6\u0097\u00a9\u00e6\u009c\u009f\u00e5\u00bb\u00ba\u00e7\u00ad\u0091\u00e7\u00be\u00a4.tex"
     }
   ],
   "schema_version": 1,

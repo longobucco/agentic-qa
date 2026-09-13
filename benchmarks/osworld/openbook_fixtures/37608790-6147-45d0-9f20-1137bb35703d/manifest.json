@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/37608790-6147-45d0-9f20-1137bb35703d/Employee_Roles_and_Ranks.xlsx"
+    },
+    {
+      "body_file": "bodies/4546a6e6f815f352a598c049df91746e85e597652b9681049b4cd2eb9ac4d837",
+      "body_sha256": "4546a6e6f815f352a598c049df91746e85e597652b9681049b4cd2eb9ac4d837",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/37608790-6147-45d0-9f20-1137bb35703d/Employee_Roles_and_Ranks_gold.xlsx"
     }
   ],
   "schema_version": 1,

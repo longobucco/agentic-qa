@@ -10,6 +10,26 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/a01fbce3-2793-461f-ab86-43680ccbae25/Set_Decimal_Separator_Dot.xlsx"
+    },
+    {
+      "body_file": "bodies/8e3d3258ae8686590922159b550f1fe3f684925635aa205c91ee979e2538d39d",
+      "body_sha256": "8e3d3258ae8686590922159b550f1fe3f684925635aa205c91ee979e2538d39d",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/a01fbce3-2793-461f-ab86-43680ccbae25/Set_Decimal_Separator_Dot_gold_ru.xlsx"
+    },
+    {
+      "body_file": "bodies/8e5a2d3304bad6390dc9ca6903b6305a7a89a83c2d435b133a3d0f468b0e0232",
+      "body_sha256": "8e5a2d3304bad6390dc9ca6903b6305a7a89a83c2d435b133a3d0f468b0e0232",
+      "headers": {
+        "content-type": "text/csv"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/a01fbce3-2793-461f-ab86-43680ccbae25/Set_Decimal_Separator_Dot_gold_ru.csv"
     }
   ],
   "schema_version": 1,

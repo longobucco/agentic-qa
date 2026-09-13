@@ -20,6 +20,36 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/3680a5ee-6870-426a-a997-eba929a0d25c/file2.ods"
+    },
+    {
+      "body_file": "bodies/f0adba7f3be7b9d874adeb8e31cd07290f80b653c08f620a2822ca570408a9ee",
+      "body_sha256": "f0adba7f3be7b9d874adeb8e31cd07290f80b653c08f620a2822ca570408a9ee",
+      "headers": {
+        "content-type": "text/csv"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/3680a5ee-6870-426a-a997-eba929a0d25c/output.csv"
+    },
+    {
+      "body_file": "bodies/c92e0505385812e05d594a3d5c675876e9b21e97d8ed9a9abd13691a067471ab",
+      "body_sha256": "c92e0505385812e05d594a3d5c675876e9b21e97d8ed9a9abd13691a067471ab",
+      "headers": {
+        "content-type": "text/csv"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/3680a5ee-6870-426a-a997-eba929a0d25c/output_gold2.csv"
+    },
+    {
+      "body_file": "bodies/e1653c48850a89ef18a7d6964296162476c58bdddfebd2f8383b5eac6558c81c",
+      "body_sha256": "e1653c48850a89ef18a7d6964296162476c58bdddfebd2f8383b5eac6558c81c",
+      "headers": {
+        "content-type": "text/csv"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/3680a5ee-6870-426a-a997-eba929a0d25c/output_gold3.csv"
     }
   ],
   "schema_version": 1,

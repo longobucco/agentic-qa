@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/b52b40a5-ad70-4c53-b5b0-5650a8387052/thunderbird.profile.tar.gz"
+    },
+    {
+      "body_file": "bodies/bb7fd26b027fd4d6745c54053a8e63582f69b0a073331fd914caba2e456346f2",
+      "body_sha256": "bb7fd26b027fd4d6745c54053a8e63582f69b0a073331fd914caba2e456346f2",
+      "headers": {
+        "content-type": "application/pdf"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/b52b40a5-ad70-4c53-b5b0-5650a8387052/attachment_full.pdf"
     }
   ],
   "schema_version": 1,

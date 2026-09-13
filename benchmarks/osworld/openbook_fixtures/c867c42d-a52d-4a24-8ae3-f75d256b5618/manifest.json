@@ -10,6 +10,26 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/c867c42d-a52d-4a24-8ae3-f75d256b5618/thunderbird.profile.tar.gz"
+    },
+    {
+      "body_file": "bodies/beb4c4e09458c8401e2c20ad90d5b550f57bb2ed79afb3719e18305bbe039b3a",
+      "body_sha256": "beb4c4e09458c8401e2c20ad90d5b550f57bb2ed79afb3719e18305bbe039b3a",
+      "headers": {
+        "content-type": "text/csv"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/c867c42d-a52d-4a24-8ae3-f75d256b5618/contacts.csv"
+    },
+    {
+      "body_file": "bodies/03f0ace868032e61119d6b6dc2ad8cdd12d90a3c2817c7477fd62acd432aaea6",
+      "body_sha256": "03f0ace868032e61119d6b6dc2ad8cdd12d90a3c2817c7477fd62acd432aaea6",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/c867c42d-a52d-4a24-8ae3-f75d256b5618/contacts.xlsx"
     }
   ],
   "schema_version": 1,

@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/1de60575-bb6e-4c3d-9e6a-2fa699f9f197/EntireSummerSales.xlsx"
+    },
+    {
+      "body_file": "bodies/2715c3ce74255c63a3c261efa77ef4cd7aca5833d4ff694e4fcd5729828378ef",
+      "body_sha256": "2715c3ce74255c63a3c261efa77ef4cd7aca5833d4ff694e4fcd5729828378ef",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/1de60575-bb6e-4c3d-9e6a-2fa699f9f197/6_EntireSummerSales_gt1.xlsx"
     }
   ],
   "schema_version": 1,

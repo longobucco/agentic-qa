@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/3aaa4e37-dc91-482e-99af-132a612d40f3/Export_Calc_to_CSV.xlsx"
+    },
+    {
+      "body_file": "bodies/57703b2916961af19bf88e34bb059a50c2bf7006175009c910873416750909cb",
+      "body_sha256": "57703b2916961af19bf88e34bb059a50c2bf7006175009c910873416750909cb",
+      "headers": {
+        "content-type": "text/csv"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/3aaa4e37-dc91-482e-99af-132a612d40f3/Export_Calc_to_CSV.csv"
     }
   ],
   "schema_version": 1,

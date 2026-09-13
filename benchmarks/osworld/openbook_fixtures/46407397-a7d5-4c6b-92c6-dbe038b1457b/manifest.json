@@ -10,6 +10,36 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/46407397-a7d5-4c6b-92c6-dbe038b1457b/thunderbird.profile.tar.gz"
+    },
+    {
+      "body_file": "bodies/4f584d4b99a2ae0498dd4fb8827bf3acbb53847918912881ce12b04dca91aaa9",
+      "body_sha256": "4f584d4b99a2ae0498dd4fb8827bf3acbb53847918912881ce12b04dca91aaa9",
+      "headers": {
+        "content-type": "image/png"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/46407397-a7d5-4c6b-92c6-dbe038b1457b/1.png"
+    },
+    {
+      "body_file": "bodies/d5bfc6194ab0ff2f1be9ea5465ca2681f2bb9e0207bbe5286ed837c956418dca",
+      "body_sha256": "d5bfc6194ab0ff2f1be9ea5465ca2681f2bb9e0207bbe5286ed837c956418dca",
+      "headers": {
+        "content-type": "image/png"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/46407397-a7d5-4c6b-92c6-dbe038b1457b/2.png"
+    },
+    {
+      "body_file": "bodies/4e3e2dd11a39dcb6ad6266b97862f66ccdd3cf72eefc384fb6dede4ed2ae9045",
+      "body_sha256": "4e3e2dd11a39dcb6ad6266b97862f66ccdd3cf72eefc384fb6dede4ed2ae9045",
+      "headers": {
+        "content-type": "image/png"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/46407397-a7d5-4c6b-92c6-dbe038b1457b/3.png"
     }
   ],
   "schema_version": 1,

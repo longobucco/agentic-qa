@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/897e3b53-5d4d-444b-85cb-2cdc8a97d903/form.docx"
+    },
+    {
+      "body_file": "bodies/0e9bd9c76123982ff2c4d3875543bde39e7b27676b863dd898410e4649b7ed75",
+      "body_sha256": "0e9bd9c76123982ff2c4d3875543bde39e7b27676b863dd898410e4649b7ed75",
+      "headers": {
+        "content-type": "application/pdf"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/897e3b53-5d4d-444b-85cb-2cdc8a97d903/form_gold.pdf"
     }
   ],
   "schema_version": 1,

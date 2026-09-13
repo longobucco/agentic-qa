@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/b21acd93-60fd-4127-8a43-2f5178f4a830/CCHU9045_Course_Outline_2019-20.docx"
+    },
+    {
+      "body_file": "bodies/2b8928f1146977d06fee2981d9d22f2b13781c7add4176fa855dbc0c94a93062",
+      "body_sha256": "2b8928f1146977d06fee2981d9d22f2b13781c7add4176fa855dbc0c94a93062",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/b21acd93-60fd-4127-8a43-2f5178f4a830/CCHU9045_Course_Outline_2019-20_Gold.docx"
     }
   ],
   "schema_version": 1,

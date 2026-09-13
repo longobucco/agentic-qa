@@ -40,6 +40,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/b5062e3e-641c-4e3a-907b-ac864d2e7652/5950bf290a1570ea401bf98882128160-Paper-Datasets_and_Benchmarks.pdf"
+    },
+    {
+      "body_file": "bodies/d834c5bd4649dfdd36df63dea19fd5b38e15e7e855ae4a4f285bd44ad765bd3c",
+      "body_sha256": "d834c5bd4649dfdd36df63dea19fd5b38e15e7e855ae4a4f285bd44ad765bd3c",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/b5062e3e-641c-4e3a-907b-ac864d2e7652/authors-ground_truth.xlsx"
     }
   ],
   "schema_version": 1,

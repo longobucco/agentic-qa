@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/0e5303d4-8820-42f6-b18d-daf7e633de21/lecture0.pdf"
+    },
+    {
+      "body_file": "bodies/5b3624ec4aa1de78749d27b9d1ec271a94aca2eed071c6c608b86aba30a8c33e",
+      "body_sha256": "5b3624ec4aa1de78749d27b9d1ec271a94aca2eed071c6c608b86aba30a8c33e",
+      "headers": {
+        "content-type": "application/octet-stream"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/0e5303d4-8820-42f6-b18d-daf7e633de21/lecture_slides.zip"
     }
   ],
   "schema_version": 1,

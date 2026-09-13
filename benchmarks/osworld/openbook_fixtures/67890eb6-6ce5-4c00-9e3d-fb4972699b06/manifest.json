@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/67890eb6-6ce5-4c00-9e3d-fb4972699b06/best_awards_acl.xlsx"
+    },
+    {
+      "body_file": "bodies/8550d87120d252d40d9fe336b8e3b7d04da366746fe9f1480144bf894d94e428",
+      "body_sha256": "8550d87120d252d40d9fe336b8e3b7d04da366746fe9f1480144bf894d94e428",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/67890eb6-6ce5-4c00-9e3d-fb4972699b06/gold_best_awards_acl.xlsx"
     }
   ],
   "schema_version": 1,

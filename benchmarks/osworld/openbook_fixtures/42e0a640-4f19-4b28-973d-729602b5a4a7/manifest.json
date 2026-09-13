@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/1273e544-688f-496b-8d89-3e0f40aa0606/NetIncome.xlsx"
+    },
+    {
+      "body_file": "bodies/568de5273d0bad1752d93bbfc80f3db104db1ddf8fb0feaea7bfe028970a9935",
+      "body_sha256": "568de5273d0bad1752d93bbfc80f3db104db1ddf8fb0feaea7bfe028970a9935",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/42e0a640-4f19-4b28-973d-729602b5a4a7/2_NetIncome_gt1.xlsx"
     }
   ],
   "schema_version": 1,

@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/91190194-f406-4cd6-b3f9-c43fac942b22/cola.png"
+    },
+    {
+      "body_file": "bodies/2616d357d16547f8909e135f80fe0f78c8ec14ca39a3e1da14064be78d6e7061",
+      "body_sha256": "2616d357d16547f8909e135f80fe0f78c8ec14ca39a3e1da14064be78d6e7061",
+      "headers": {
+        "content-type": "image/png"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/91190194-f406-4cd6-b3f9-c43fac942b22/cropped_gold.png"
     }
   ],
   "schema_version": 1,

@@ -20,6 +20,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/20236825-b5df-46e7-89bf-62e1d640a897/Bubble_Sort_tutorial.docx"
+    },
+    {
+      "body_file": "bodies/ca0bb079b261b9e24b0e5d6b8ac692832db8ed46735f4d6d62bca76ca7118cdd",
+      "body_sha256": "ca0bb079b261b9e24b0e5d6b8ac692832db8ed46735f4d6d62bca76ca7118cdd",
+      "headers": {
+        "content-type": "text/plain"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/20236825-b5df-46e7-89bf-62e1d640a897/res.txt"
     }
   ],
   "schema_version": 1,

@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/vlc/8f080098-ddb1-424c-b438-4e96e5e4786e/Baby%20Justin%20Bieber.mp4"
+    },
+    {
+      "body_file": "bodies/d79d63242cb7c0d4392df0da28b32cd757234115d8b1f6ccfa39ef64f5a062a4",
+      "body_sha256": "d79d63242cb7c0d4392df0da28b32cd757234115d8b1f6ccfa39ef64f5a062a4",
+      "headers": {
+        "content-type": "application/octet-stream"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/vlc/8f080098-ddb1-424c-b438-4e96e5e4786e/Baby%20Justin%20Bieber.mp3"
     }
   ],
   "schema_version": 1,

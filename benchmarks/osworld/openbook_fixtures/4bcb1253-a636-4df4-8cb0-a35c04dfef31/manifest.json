@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/4bcb1253-a636-4df4-8cb0-a35c04dfef31/View_Person_Organizational_Summary.docx"
+    },
+    {
+      "body_file": "bodies/a476731ba8fbb81c14001e98e72aa3c77f83abef450f0baca9eaa47d515fe4ef",
+      "body_sha256": "a476731ba8fbb81c14001e98e72aa3c77f83abef450f0baca9eaa47d515fe4ef",
+      "headers": {
+        "content-type": "application/pdf"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/4bcb1253-a636-4df4-8cb0-a35c04dfef31/View_Person_Organizational_Summary.pdf"
     }
   ],
   "schema_version": 1,

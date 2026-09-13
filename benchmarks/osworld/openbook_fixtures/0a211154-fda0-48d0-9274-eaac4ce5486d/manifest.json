@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/0a211154-fda0-48d0-9274-eaac4ce5486d/13_0_.pptx"
+    },
+    {
+      "body_file": "bodies/7ec6205033e37d02fd1c012dd4dfab9acf3a78fb9abd3bdd0df7770a720287b2",
+      "body_sha256": "7ec6205033e37d02fd1c012dd4dfab9acf3a78fb9abd3bdd0df7770a720287b2",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/0a211154-fda0-48d0-9274-eaac4ce5486d/13_0_Gold.pptx"
     }
   ],
   "schema_version": 1,

@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/bbc9534786b9f0c37589ac0b1b95c884bb2cddc5858c523ea6a1f389ca25812e",
+      "body_sha256": "bbc9534786b9f0c37589ac0b1b95c884bb2cddc5858c523ea6a1f389ca25812e",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/4e9f0faf-2ecc-4ae8-a804-28c9a75d1ddc/invoice.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "4e9f0faf-2ecc-4ae8-a804-28c9a75d1ddc"
+}

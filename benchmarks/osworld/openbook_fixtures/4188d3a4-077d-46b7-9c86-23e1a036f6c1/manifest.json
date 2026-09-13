@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/4188d3a4-077d-46b7-9c86-23e1a036f6c1/Freeze_row_column2.xlsx"
+    },
+    {
+      "body_file": "bodies/237bd011f931fd8767adb664cb8932ca52ceb0c46ef2f808ec9340014ef80552",
+      "body_sha256": "237bd011f931fd8767adb664cb8932ca52ceb0c46ef2f808ec9340014ef80552",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/4188d3a4-077d-46b7-9c86-23e1a036f6c1/Freeze_row_column2_gold.xlsx"
     }
   ],
   "schema_version": 1,

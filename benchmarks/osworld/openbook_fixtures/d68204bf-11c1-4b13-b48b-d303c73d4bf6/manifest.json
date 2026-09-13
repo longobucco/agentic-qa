@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/d68204bf-11c1-4b13-b48b-d303c73d4bf6/tilearray.png"
+    },
+    {
+      "body_file": "bodies/4b5e49c57c998c1fc32b336d882013b342944ba608d45d46f45d12054fc1ea5b",
+      "body_sha256": "4b5e49c57c998c1fc32b336d882013b342944ba608d45d46f45d12054fc1ea5b",
+      "headers": {
+        "content-type": "image/png"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/d68204bf-11c1-4b13-b48b-d303c73d4bf6/rearranged_gold.png"
     }
   ],
   "schema_version": 1,

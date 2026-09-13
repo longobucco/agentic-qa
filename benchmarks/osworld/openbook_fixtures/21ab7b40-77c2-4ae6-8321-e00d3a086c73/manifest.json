@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/21ab7b40-77c2-4ae6-8321-e00d3a086c73/PeriodRate.xlsx"
+    },
+    {
+      "body_file": "bodies/599cbdc6fe16b64b9628022bf55f26a488d1912c4b036359f3564c6146e1407a",
+      "body_sha256": "599cbdc6fe16b64b9628022bf55f26a488d1912c4b036359f3564c6146e1407a",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/21ab7b40-77c2-4ae6-8321-e00d3a086c73/1_PeriodRate_gt1.xlsx"
     }
   ],
   "schema_version": 1,

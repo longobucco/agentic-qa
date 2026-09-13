@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/455d3c66-7dc6-4537-a39a-36d3e9119df7/wssf-project-plan-on-a-page.pptx"
+    },
+    {
+      "body_file": "bodies/b949aca882814b35f09725681d0f362d437b8ab0b4649463907b5d1cb9785621",
+      "body_sha256": "b949aca882814b35f09725681d0f362d437b8ab0b4649463907b5d1cb9785621",
+      "headers": {
+        "content-type": "image/png"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/455d3c66-7dc6-4537-a39a-36d3e9119df7/wssf-project-plan-on-a-page.png"
     }
   ],
   "schema_version": 1,

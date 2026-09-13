@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/aa3a8974-2e85-438b-b29e-a64df44deb4b/Resize_Cells_Fit_Page.xlsx"
+    },
+    {
+      "body_file": "bodies/42ecfd5c8e81877db86d2b21d2bfaaf372466170a9fbe0927ccbed71e196b030",
+      "body_sha256": "42ecfd5c8e81877db86d2b21d2bfaaf372466170a9fbe0927ccbed71e196b030",
+      "headers": {
+        "content-type": "application/pdf"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/aa3a8974-2e85-438b-b29e-a64df44deb4b/Resize_Cells_Fit_Page_gt.pdf"
     }
   ],
   "schema_version": 1,

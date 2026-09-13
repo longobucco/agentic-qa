@@ -20,6 +20,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/da52d699-e8d2-4dc5-9191-a2199e0b6a9b/book_list_result.docx"
+    },
+    {
+      "body_file": "bodies/abb7895fe29369823b8e292d5a7bb8230e6bcc3bf00547dc0a11590fad0dce01",
+      "body_sha256": "abb7895fe29369823b8e292d5a7bb8230e6bcc3bf00547dc0a11590fad0dce01",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/da52d699-e8d2-4dc5-9191-a2199e0b6a9b/book_list_result_Gold.docx"
     }
   ],
   "schema_version": 1,

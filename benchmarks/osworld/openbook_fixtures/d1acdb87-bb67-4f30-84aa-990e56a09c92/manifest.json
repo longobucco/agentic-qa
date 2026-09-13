@@ -20,6 +20,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/d1acdb87-bb67-4f30-84aa-990e56a09c92/MUST_VISIT.xlsx"
+    },
+    {
+      "body_file": "bodies/fd60eecfc60cac1be90b81aa83c5a3322f321e39ac1e516bc023d967195bdd54",
+      "body_sha256": "fd60eecfc60cac1be90b81aa83c5a3322f321e39ac1e516bc023d967195bdd54",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/d1acdb87-bb67-4f30-84aa-990e56a09c92/MUST_VISIT_gold.xlsx"
     }
   ],
   "schema_version": 1,

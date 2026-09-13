@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/f918266a-b3e0-4914-865d-4faa564f1aef/calculator.zip"
+    },
+    {
+      "body_file": "bodies/936a6de07f8d181e921dd725984f254472ed23563e9dee5706d0ec94b489de8f",
+      "body_sha256": "936a6de07f8d181e921dd725984f254472ed23563e9dee5706d0ec94b489de8f",
+      "headers": {
+        "content-type": "text/plain"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/f918266a-b3e0-4914-865d-4faa564f1aef/log_Gold.txt"
     }
   ],
   "schema_version": 1,

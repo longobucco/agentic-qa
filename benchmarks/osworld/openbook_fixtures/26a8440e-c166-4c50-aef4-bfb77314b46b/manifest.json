@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/0326d92d-d218-48a8-9ca1-981cd6d064c7/SalesRep.xlsx"
+    },
+    {
+      "body_file": "bodies/36aeeb9844db1b4ca03e5e736773ad62088757eb37694ff452464f774c9b0b28",
+      "body_sha256": "36aeeb9844db1b4ca03e5e736773ad62088757eb37694ff452464f774c9b0b28",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/26a8440e-c166-4c50-aef4-bfb77314b46b/3_SalesRep_gt1.xlsx"
     }
   ],
   "schema_version": 1,

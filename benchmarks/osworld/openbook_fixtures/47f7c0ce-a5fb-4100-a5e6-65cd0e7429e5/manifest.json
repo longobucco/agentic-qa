@@ -20,6 +20,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/47f7c0ce-a5fb-4100-a5e6-65cd0e7429e5/Robotic_Workshop_Infographics.pptx"
+    },
+    {
+      "body_file": "bodies/9eeaa986f3d51e85bc5c21c95f4674b7e0400616d5599d63de1320b0d11fdebe",
+      "body_sha256": "9eeaa986f3d51e85bc5c21c95f4674b7e0400616d5599d63de1320b0d11fdebe",
+      "headers": {
+        "content-type": "image/png"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/47f7c0ce-a5fb-4100-a5e6-65cd0e7429e5/landscape.png"
     }
   ],
   "schema_version": 1,

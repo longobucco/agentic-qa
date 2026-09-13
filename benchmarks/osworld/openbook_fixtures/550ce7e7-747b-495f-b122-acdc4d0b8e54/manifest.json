@@ -10,6 +10,26 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/550ce7e7-747b-495f-b122-acdc4d0b8e54/New_Club_Spring_2018_Training.data"
+    },
+    {
+      "body_file": "bodies/8382628642c922dc8a092ccb42f1a2958e9ca9b699bfe5c509a280111a0a11a4",
+      "body_sha256": "8382628642c922dc8a092ccb42f1a2958e9ca9b699bfe5c509a280111a0a11a4",
+      "headers": {
+        "content-type": "application/octet-stream"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/550ce7e7-747b-495f-b122-acdc4d0b8e54/New_Club_Spring_2018_Training_with_strike.data"
+    },
+    {
+      "body_file": "bodies/7f11fe1048a41bd4391d9aa4d0c48f7f98310d86e640eb369b8983ee1b62afaf",
+      "body_sha256": "7f11fe1048a41bd4391d9aa4d0c48f7f98310d86e640eb369b8983ee1b62afaf",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/550ce7e7-747b-495f-b122-acdc4d0b8e54/New_Club_Spring_2018_Training_Gold_all_fonts_1.pptx"
     }
   ],
   "schema_version": 1,

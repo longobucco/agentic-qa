@@ -90,6 +90,36 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/3a93cae4-ad3e-403e-8c12-65303b271818/Course%20Timetable.xlsx"
+    },
+    {
+      "body_file": "bodies/dc2ef4bf25628503739be5dc86989145c13f0d09ea54f1c94228d4c734803e7f",
+      "body_sha256": "dc2ef4bf25628503739be5dc86989145c13f0d09ea54f1c94228d4c734803e7f",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/3a93cae4-ad3e-403e-8c12-65303b271818/Course%20Timetable%20Gold.xlsx"
+    },
+    {
+      "body_file": "bodies/15f76c4d75bb14a5d34df9bad1ccf07e733537ea3fc5562089a9e9b657f7b67b",
+      "body_sha256": "15f76c4d75bb14a5d34df9bad1ccf07e733537ea3fc5562089a9e9b657f7b67b",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/3a93cae4-ad3e-403e-8c12-65303b271818/Course%20Timetable%20Gold%202.xlsx"
+    },
+    {
+      "body_file": "bodies/560b6988b5d62447844137ee2b2764ae397f9e97faa17a57f4b1aa212a7c45d0",
+      "body_sha256": "560b6988b5d62447844137ee2b2764ae397f9e97faa17a57f4b1aa212a7c45d0",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/3a93cae4-ad3e-403e-8c12-65303b271818/Course%20Timetable%20Gold%203.xlsx"
     }
   ],
   "schema_version": 1,

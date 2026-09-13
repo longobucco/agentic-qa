@@ -20,6 +20,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/6ada715d-3aae-4a32-a6a7-429b2e43fb93/1.png"
+    },
+    {
+      "body_file": "bodies/4c00616bf875d84bbd9d3a141dc1882f274235db820279210037698e99ab3425",
+      "body_sha256": "4c00616bf875d84bbd9d3a141dc1882f274235db820279210037698e99ab3425",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/6ada715d-3aae-4a32-a6a7-429b2e43fb93/Viewing_Your_Class_Schedule_and_Textbooks_Gold.docx"
     }
   ],
   "schema_version": 1,

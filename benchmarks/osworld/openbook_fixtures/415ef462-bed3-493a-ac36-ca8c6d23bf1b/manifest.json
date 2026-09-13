@@ -80,6 +80,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/415ef462-bed3-493a-ac36-ca8c6d23bf1b/thunderbird-profile.tar.gz"
+    },
+    {
+      "body_file": "bodies/c4dd4c78d10d76197c7706be60ede45418ceadb5b99e561c2e49456aae6a74db",
+      "body_sha256": "c4dd4c78d10d76197c7706be60ede45418ceadb5b99e561c2e49456aae6a74db",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/415ef462-bed3-493a-ac36-ca8c6d23bf1b/tally_book_gt.xlsx"
     }
   ],
   "schema_version": 1,

@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/22a4636f-8179-4357-8e87-d1743ece1f81/Meeting-Agenda.docx"
+    },
+    {
+      "body_file": "bodies/0026491b6283424aacc029bcfd0fd657e8eaeb8d9fde66dbf6c1110009a9babb",
+      "body_sha256": "0026491b6283424aacc029bcfd0fd657e8eaeb8d9fde66dbf6c1110009a9babb",
+      "headers": {
+        "content-type": "application/pdf"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/22a4636f-8179-4357-8e87-d1743ece1f81/gold-Meeting-Agenda.pdf"
     }
   ],
   "schema_version": 1,

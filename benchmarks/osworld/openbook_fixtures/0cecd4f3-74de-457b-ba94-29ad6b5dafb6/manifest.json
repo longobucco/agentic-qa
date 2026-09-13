@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/0cecd4f3-74de-457b-ba94-29ad6b5dafb6/LARS_Science_Assessment_Resource_List_7-30-21.xlsx"
+    },
+    {
+      "body_file": "bodies/165192c2a2f342e54a80a41addfad5d3e6a5cdb916cf4d0f63022b2eb7d7c52b",
+      "body_sha256": "165192c2a2f342e54a80a41addfad5d3e6a5cdb916cf4d0f63022b2eb7d7c52b",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/0cecd4f3-74de-457b-ba94-29ad6b5dafb6/LARS_Science_Assessment_Resource_List_7-30-21_gold.xlsx"
     }
   ],
   "schema_version": 1,

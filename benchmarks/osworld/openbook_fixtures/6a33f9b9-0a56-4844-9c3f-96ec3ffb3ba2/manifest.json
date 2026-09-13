@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/6a33f9b9-0a56-4844-9c3f-96ec3ffb3ba2/sample-recruitment-phone-script.odt"
+    },
+    {
+      "body_file": "bodies/a2bbb4d2c48cffb539511301d84ac8aef95100e977f681119f219215860e1c2d",
+      "body_sha256": "a2bbb4d2c48cffb539511301d84ac8aef95100e977f681119f219215860e1c2d",
+      "headers": {
+        "content-type": "application/octet-stream"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/6a33f9b9-0a56-4844-9c3f-96ec3ffb3ba2/sample-recruitment-phone-script_Gold.odt"
     }
   ],
   "schema_version": 1,

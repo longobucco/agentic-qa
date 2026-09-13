@@ -20,6 +20,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/778efd0a-153f-4842-9214-f05fc176b877/planet.mp4"
+    },
+    {
+      "body_file": "bodies/98e1e255d3e8520add3501c5a791b4762f7dff8a810d295f87eeee94d319ae04",
+      "body_sha256": "98e1e255d3e8520add3501c5a791b4762f7dff8a810d295f87eeee94d319ae04",
+      "headers": {
+        "content-type": "application/octet-stream"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/778efd0a-153f-4842-9214-f05fc176b877/planet.wav"
     }
   ],
   "schema_version": 1,

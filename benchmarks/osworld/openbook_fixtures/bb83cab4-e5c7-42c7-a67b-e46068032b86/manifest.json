@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/bb83cab4-e5c7-42c7-a67b-e46068032b86/Unlocking-the-Power-of-ChatGPT.pptx"
+    },
+    {
+      "body_file": "bodies/1fbe947c92426690102971084a2cccfbd5f483b903bc597ebe94fc04c780d981",
+      "body_sha256": "1fbe947c92426690102971084a2cccfbd5f483b903bc597ebe94fc04c780d981",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/bb83cab4-e5c7-42c7-a67b-e46068032b86/script.docx"
     }
   ],
   "schema_version": 1,

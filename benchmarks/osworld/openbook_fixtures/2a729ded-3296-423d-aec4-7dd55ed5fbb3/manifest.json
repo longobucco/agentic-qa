@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/gimp/2a729ded-3296-423d-aec4-7dd55ed5fbb3/dog_with_background.png"
+    },
+    {
+      "body_file": "bodies/8be70fdebe02f0a5d54aeecfcc37baa0cc381019cc9770a0c347db491748ddc4",
+      "body_sha256": "8be70fdebe02f0a5d54aeecfcc37baa0cc381019cc9770a0c347db491748ddc4",
+      "headers": {
+        "content-type": "image/png"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/gimp/2a729ded-3296-423d-aec4-7dd55ed5fbb3/dog_cutout_gold.png"
     }
   ],
   "schema_version": 1,

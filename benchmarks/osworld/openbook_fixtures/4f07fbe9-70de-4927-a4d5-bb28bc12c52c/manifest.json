@@ -10,6 +10,26 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/4f07fbe9-70de-4927-a4d5-bb28bc12c52c/Padding_Decimals_In_Formular.xlsx"
+    },
+    {
+      "body_file": "bodies/1dd8b7285d7c63360d9fa72a9a47b0aa709328975c7228d70b04c96eda36b1dd",
+      "body_sha256": "1dd8b7285d7c63360d9fa72a9a47b0aa709328975c7228d70b04c96eda36b1dd",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/4f07fbe9-70de-4927-a4d5-bb28bc12c52c/Padding_Decimals_In_Formular_gold.xlsx"
+    },
+    {
+      "body_file": "bodies/073ee9f73488b7b3329368af29f6c1857836908a40aa57e65928e20340d9472b",
+      "body_sha256": "073ee9f73488b7b3329368af29f6c1857836908a40aa57e65928e20340d9472b",
+      "headers": {
+        "content-type": "text/csv"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/4f07fbe9-70de-4927-a4d5-bb28bc12c52c/Padding_Decimals_In_Formular_gold-Sheet1.csv"
     }
   ],
   "schema_version": 1,

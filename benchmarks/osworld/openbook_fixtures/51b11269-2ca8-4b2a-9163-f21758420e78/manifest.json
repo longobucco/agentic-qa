@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/51b11269-2ca8-4b2a-9163-f21758420e78/Arrang_Value_min_to_max.xlsx"
+    },
+    {
+      "body_file": "bodies/b7ecc16b48e56b4763c54017b1f1e7c9b5824700996a51f752ab34b335b993d6",
+      "body_sha256": "b7ecc16b48e56b4763c54017b1f1e7c9b5824700996a51f752ab34b335b993d6",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/51b11269-2ca8-4b2a-9163-f21758420e78/Arrang_Value_min_to_max_gold.xlsx"
     }
   ],
   "schema_version": 1,

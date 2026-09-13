@@ -10,6 +10,26 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/5cfb9197-e72b-454b-900e-c06b0c802b40/33_1.pptx"
+    },
+    {
+      "body_file": "bodies/1f9e0cf50c027d6a632d6509469ccb5f81b3fa0fe3458f4c8a9bd01d07be4084",
+      "body_sha256": "1f9e0cf50c027d6a632d6509469ccb5f81b3fa0fe3458f4c8a9bd01d07be4084",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/5cfb9197-e72b-454b-900e-c06b0c802b40/33_1_Gold.pptx"
+    },
+    {
+      "body_file": "bodies/e8326da78d9b9195dd0b1db43b88de34b270fedeb12d6f92862266d2753dd669",
+      "body_sha256": "e8326da78d9b9195dd0b1db43b88de34b270fedeb12d6f92862266d2753dd669",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/5cfb9197-e72b-454b-900e-c06b0c802b40/33_1_Gold_all_fonts.pptx"
     }
   ],
   "schema_version": 1,

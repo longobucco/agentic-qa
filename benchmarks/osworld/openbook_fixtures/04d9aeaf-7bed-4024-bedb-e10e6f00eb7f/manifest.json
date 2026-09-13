@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/04d9aeaf-7bed-4024-bedb-e10e6f00eb7f/SmallBalanceSheet.xlsx"
+    },
+    {
+      "body_file": "bodies/5f832b5537dd3e36920d2bced63c239f9b60f1b6d385c1c35cf6c75715daf1f5",
+      "body_sha256": "5f832b5537dd3e36920d2bced63c239f9b60f1b6d385c1c35cf6c75715daf1f5",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/04d9aeaf-7bed-4024-bedb-e10e6f00eb7f/4_SmallBalanceSheet_gt1.xlsx"
     }
   ],
   "schema_version": 1,

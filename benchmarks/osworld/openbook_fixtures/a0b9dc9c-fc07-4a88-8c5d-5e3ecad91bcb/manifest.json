@@ -10,6 +10,26 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/a0b9dc9c-fc07-4a88-8c5d-5e3ecad91bcb/thunderbird-profile.tar.gz"
+    },
+    {
+      "body_file": "bodies/7102b5169b2127921d0df2458abb669de773cd1c0cf405a3d6584c65515f49b9",
+      "body_sha256": "7102b5169b2127921d0df2458abb669de773cd1c0cf405a3d6584c65515f49b9",
+      "headers": {
+        "content-type": "application/octet-stream"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/a0b9dc9c-fc07-4a88-8c5d-5e3ecad91bcb/Amazon%20Web%20Services%20Invoice%20Available%20%5BAccount%3A%200123456789ab%5D.eml"
+    },
+    {
+      "body_file": "bodies/6100c64a3923aae14ddcd44d31d96935da069e7eb74f1f02a8e1779b141d83e3",
+      "body_sha256": "6100c64a3923aae14ddcd44d31d96935da069e7eb74f1f02a8e1779b141d83e3",
+      "headers": {
+        "content-type": "application/octet-stream"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/a0b9dc9c-fc07-4a88-8c5d-5e3ecad91bcb/Your%20receipt%20from%20X%20(formerly%20Twitter)%20%230123-4567.eml"
     }
   ],
   "schema_version": 1,

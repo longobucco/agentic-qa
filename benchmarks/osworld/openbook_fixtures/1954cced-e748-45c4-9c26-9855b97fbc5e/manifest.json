@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/1954cced-e748-45c4-9c26-9855b97fbc5e/Invoices.xlsx"
+    },
+    {
+      "body_file": "bodies/9aebd631ba0cac0157f3ab035b27af8f0e086bb4f1e22249f1bcc860aa814231",
+      "body_sha256": "9aebd631ba0cac0157f3ab035b27af8f0e086bb4f1e22249f1bcc860aa814231",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/1954cced-e748-45c4-9c26-9855b97fbc5e/8_Invoices_gt1.xlsx"
     }
   ],
   "schema_version": 1,

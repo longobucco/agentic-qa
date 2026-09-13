@@ -40,6 +40,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/9219480b-3aed-47fc-8bac-d2cffc5849f7/tetris.py"
+    },
+    {
+      "body_file": "bodies/b266e83242c035256b9a6b0904615318e5bb90fd7ef19f8648a9503e7a96c9ff",
+      "body_sha256": "b266e83242c035256b9a6b0904615318e5bb90fd7ef19f8648a9503e7a96c9ff",
+      "headers": {
+        "content-type": "application/octet-stream"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/9219480b-3aed-47fc-8bac-d2cffc5849f7/test.py"
     }
   ],
   "schema_version": 1,

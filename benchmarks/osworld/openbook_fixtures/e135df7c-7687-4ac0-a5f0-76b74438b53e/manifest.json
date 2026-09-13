@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/e135df7c-7687-4ac0-a5f0-76b74438b53e/annual-enterprise-survey-2021-financial-year-provisional.xlsx"
+    },
+    {
+      "body_file": "bodies/7e355909563d4a887eba065010408dcd8ac76eac80aef2975fb5043596ef6fdf",
+      "body_sha256": "7e355909563d4a887eba065010408dcd8ac76eac80aef2975fb5043596ef6fdf",
+      "headers": {
+        "content-type": "application/octet-stream"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/e135df7c-7687-4ac0-a5f0-76b74438b53e/annual-enterprise-survey-2021-financial-year-provisional.html"
     }
   ],
   "schema_version": 1,

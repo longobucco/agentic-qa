@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/2fe4b718-3bd7-46ec-bdce-b184f5653624/src.mp4"
+    },
+    {
+      "body_file": "bodies/9498200df29d9b53bfaa6f845c60025fab1ba42ce6fc030cf324bfe83bb763e1",
+      "body_sha256": "9498200df29d9b53bfaa6f845c60025fab1ba42ce6fc030cf324bfe83bb763e1",
+      "headers": {
+        "content-type": "application/octet-stream"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/2fe4b718-3bd7-46ec-bdce-b184f5653624/src_clip.gif"
     }
   ],
   "schema_version": 1,

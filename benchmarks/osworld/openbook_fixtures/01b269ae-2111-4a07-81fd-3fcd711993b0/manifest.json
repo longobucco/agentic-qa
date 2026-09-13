@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/01b269ae-2111-4a07-81fd-3fcd711993b0/Student_Level_Fill_Blank.xlsx"
+    },
+    {
+      "body_file": "bodies/a7d02419d122a3d755a41c7ca2e2bb3afabcc88138ef29b740148528ea0b6f8b",
+      "body_sha256": "a7d02419d122a3d755a41c7ca2e2bb3afabcc88138ef29b740148528ea0b6f8b",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/01b269ae-2111-4a07-81fd-3fcd711993b0/Student_Level_Fill_Blank_gold.xlsx"
     }
   ],
   "schema_version": 1,

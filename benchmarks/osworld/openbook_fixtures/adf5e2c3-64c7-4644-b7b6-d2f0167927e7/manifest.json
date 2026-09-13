@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/adf5e2c3-64c7-4644-b7b6-d2f0167927e7/Essay_Writing_English_for_uni.docx"
+    },
+    {
+      "body_file": "bodies/1ae0d141428acee7fd1221d9f7cc0cfcbb50316bc5998ae4bd7ba8842ddec05b",
+      "body_sha256": "1ae0d141428acee7fd1221d9f7cc0cfcbb50316bc5998ae4bd7ba8842ddec05b",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/adf5e2c3-64c7-4644-b7b6-d2f0167927e7/Essay_Writing_English_for_uni_Gold.docx"
     }
   ],
   "schema_version": 1,

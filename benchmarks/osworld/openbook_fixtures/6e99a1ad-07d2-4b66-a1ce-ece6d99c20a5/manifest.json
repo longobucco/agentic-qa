@@ -10,6 +10,26 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/6e99a1ad-07d2-4b66-a1ce-ece6d99c20a5/Keep_Two_decimal_points.xlsx"
+    },
+    {
+      "body_file": "bodies/34df867777b220c2934887fdcf3b4e3c49e3e9507b4e714be9a48a83be1ea36c",
+      "body_sha256": "34df867777b220c2934887fdcf3b4e3c49e3e9507b4e714be9a48a83be1ea36c",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/6e99a1ad-07d2-4b66-a1ce-ece6d99c20a5/Keep_Two_decimal_points_gold.xlsx"
+    },
+    {
+      "body_file": "bodies/056a91e4e7d38aecff3fc67ea5629887489d0edfab8ea7061cca87df8977b529",
+      "body_sha256": "056a91e4e7d38aecff3fc67ea5629887489d0edfab8ea7061cca87df8977b529",
+      "headers": {
+        "content-type": "text/csv"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/6e99a1ad-07d2-4b66-a1ce-ece6d99c20a5/Keep_Two_decimal_points_gold-Sheet1.csv"
     }
   ],
   "schema_version": 1,

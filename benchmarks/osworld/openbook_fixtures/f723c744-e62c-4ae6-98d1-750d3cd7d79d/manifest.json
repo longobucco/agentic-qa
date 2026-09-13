@@ -5,7 +5,7 @@
       "body_file": "bodies/1ec94535c02ac32c5a492f1277312c28ab6567ba6cf1783c01721eba5b914b0b",
       "body_sha256": "1ec94535c02ac32c5a492f1277312c28ab6567ba6cf1783c01721eba5b914b0b",
       "headers": {
-        "content-type": "image/png"
+        "content-type": "image/jpeg"
       },
       "method": "GET",
       "status": 200,

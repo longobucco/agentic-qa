@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/2afd31e2477a9a5b5fc7eee1615b03df4f8133b84d484ee7413e9a9828ca1a2d",
+      "body_sha256": "2afd31e2477a9a5b5fc7eee1615b03df4f8133b84d484ee7413e9a9828ca1a2d",
+      "headers": {
+        "content-type": "text/plain"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/acb0f96b-e27c-44d8-b55f-7cb76609dfcd/log_Gold.txt"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "acb0f96b-e27c-44d8-b55f-7cb76609dfcd"
+}

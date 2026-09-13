@@ -10,6 +10,46 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/78aed49a-a710-4321-a793-b611a7c5b56b/thunderbird-profile.tar.gz"
+    },
+    {
+      "body_file": "bodies/08a5b1813119bf532445bed320fd68cfc8dd51cff24f355d26ae2c8b8f01396b",
+      "body_sha256": "08a5b1813119bf532445bed320fd68cfc8dd51cff24f355d26ae2c8b8f01396b",
+      "headers": {
+        "content-type": "application/octet-stream"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/78aed49a-a710-4321-a793-b611a7c5b56b/have_seen.bin"
+    },
+    {
+      "body_file": "bodies/debcc97ef72a7e96cc12060c5a4dc897857396602e360ae81b665135f370f6b3",
+      "body_sha256": "debcc97ef72a7e96cc12060c5a4dc897857396602e360ae81b665135f370f6b3",
+      "headers": {
+        "content-type": "application/octet-stream"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/78aed49a-a710-4321-a793-b611a7c5b56b/Bills.bin"
+    },
+    {
+      "body_file": "bodies/4a9c8f160259171fcab61ef5beb26c6f4c82a7da9cb736dce08a0f0350bc3f5e",
+      "body_sha256": "4a9c8f160259171fcab61ef5beb26c6f4c82a7da9cb736dce08a0f0350bc3f5e",
+      "headers": {
+        "content-type": "application/pdf"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/78aed49a-a710-4321-a793-b611a7c5b56b/Invoice-01234567-89ab.pdf"
+    },
+    {
+      "body_file": "bodies/2e68601ee2812206fe2619704c9f0aac929b631b6e322413d12c58d69ba0c36c",
+      "body_sha256": "2e68601ee2812206fe2619704c9f0aac929b631b6e322413d12c58d69ba0c36c",
+      "headers": {
+        "content-type": "application/pdf"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/78aed49a-a710-4321-a793-b611a7c5b56b/Receipt-0123-4567.pdf"
     }
   ],
   "schema_version": 1,

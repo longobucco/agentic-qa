@@ -10,6 +10,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/aceb0368-56b8-4073-b70e-3dc9aee184e0/exam.zip"
+    },
+    {
+      "body_file": "bodies/7e6b3a6dae808cef87b2847933db04eb2138d82cf1d7b354ff1bbc88bb86f842",
+      "body_sha256": "7e6b3a6dae808cef87b2847933db04eb2138d82cf1d7b354ff1bbc88bb86f842",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/aceb0368-56b8-4073-b70e-3dc9aee184e0/grades.xlsx"
     }
   ],
   "schema_version": 1,

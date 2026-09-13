@@ -150,6 +150,16 @@
       "method": "GET",
       "status": 200,
       "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/2c1ebcd7-9c6d-4c9a-afad-900e381ecd5e/Course%20Timetable.xlsx"
+    },
+    {
+      "body_file": "bodies/8dee945aea1932a50da5600e6eedd37316b5cc70ef944a991e9f0666d763cd57",
+      "body_sha256": "8dee945aea1932a50da5600e6eedd37316b5cc70ef944a991e9f0666d763cd57",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/2c1ebcd7-9c6d-4c9a-afad-900e381ecd5e/case%20study%20gold.docx"
     }
   ],
   "schema_version": 1,
