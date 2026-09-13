@@ -42,10 +42,30 @@ class GuestProxyError(RuntimeError):
     pass
 
 
+_WRITE_CHUNK_BYTES = 65_000   # raw bytes per chunk -- see the size-limit note below
+
+
 def _write_guest_file(ctrl, remote_path, content):
-    b64 = base64.b64encode(content if isinstance(content, bytes) else content.encode()).decode()
+    """Confirmed live 2026-09-13: a single echo|base64 -d command carrying a real ~957KB fixture
+    body (post download_population_fixtures_curated -- small synthetic placeholders never hit
+    this before) got a 500 from the guest's own controller server. Binary-searched the actual
+    limit directly against a live sandbox (raw random payloads through the identical
+    echo|base64 -d pattern): 90,000 raw bytes succeeds, 100,000 gets the same 500 -- some
+    request/argv size limit on the controller's own /execute route, not diagnosed further (root
+    cause doesn't change the fix) since chunking sidesteps it regardless of the exact boundary.
+    65,000 leaves real margin under the measured 90K-100K threshold. Some authored bundles run
+    up to ~54MB, so this isn't a one-file fix: every write is split into sequential
+    _WRITE_CHUNK_BYTES-sized chunks (first truncates via '>', the rest append via '>>'), each
+    safely under the limit regardless of overall file size. Slower for large files (many round
+    trips instead of one) but correct at every size, which a single bigger-but-still-finite
+    chunk size would not be."""
+    raw = content if isinstance(content, bytes) else content.encode()
     remote_dir = remote_path.rsplit("/", 1)[0]
-    ctrl.execute(f"mkdir -p {remote_dir} && echo {b64} | base64 -d > {remote_path}", shell=True)
+    ctrl.execute(f"mkdir -p {remote_dir} && : > {remote_path}", shell=True)
+    for i in range(0, len(raw), _WRITE_CHUNK_BYTES) or [0]:
+        chunk = raw[i:i + _WRITE_CHUNK_BYTES]
+        b64 = base64.b64encode(chunk).decode()
+        ctrl.execute(f"echo {b64} | base64 -d >> {remote_path}", shell=True)
 
 
 def _push_proxy_source(ctrl):
