@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/b7a84074837e33be184bac095e0c6824bd818a79791c3358ef2cdcd352f046b4",
+      "body_sha256": "b7a84074837e33be184bac095e0c6824bd818a79791c3358ef2cdcd352f046b4",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/e528b65e-1107-4b8c-8988-490e4fece599/Geography_And_Magical_Realism.docx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "e528b65e-1107-4b8c-8988-490e4fece599"
+}

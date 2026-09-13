@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/2e6de0ae59acb3f54949e0777a0263584261ecc3f08c09192160a2e814cb6809",
+      "body_sha256": "2e6de0ae59acb3f54949e0777a0263584261ecc3f08c09192160a2e814cb6809",
+      "headers": {
+        "content-type": "application/zip"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/a74b607e-6bb5-4ea8-8a7c-5d97c7bbcd2a/Hello%20Extension.zip"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "a74b607e-6bb5-4ea8-8a7c-5d97c7bbcd2a"
+}

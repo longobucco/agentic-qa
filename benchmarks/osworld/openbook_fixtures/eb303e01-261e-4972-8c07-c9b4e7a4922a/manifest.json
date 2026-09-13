@@ -1,0 +1,27 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/ab4b65d92b40ad172f01f2ca5d7decd72fb1e970dc6ff2f7e8d25b09c7b57b44",
+      "body_sha256": "ab4b65d92b40ad172f01f2ca5d7decd72fb1e970dc6ff2f7e8d25b09c7b57b44",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/eb303e01-261e-4972-8c07-c9b4e7a4922a/lecture1-2021-with-ink.pptx"
+    },
+    {
+      "body_file": "bodies/2374d7b73e04d5d0fa3f3b8a5001da0ce17ee0318ec49d2280d6aad68f2efc32",
+      "body_sha256": "2374d7b73e04d5d0fa3f3b8a5001da0ce17ee0318ec49d2280d6aad68f2efc32",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/eb303e01-261e-4972-8c07-c9b4e7a4922a/notes.docx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "eb303e01-261e-4972-8c07-c9b4e7a4922a"
+}

@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/955f438f95a176a5d8e96ed3ec32ac11924ad44dc68c7e4d2480f10fe4fd4bab",
+      "body_sha256": "955f438f95a176a5d8e96ed3ec32ac11924ad44dc68c7e4d2480f10fe4fd4bab",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/6f4073b8-d8ea-4ade-8a18-c5d1d5d5aa9a/Conference.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "6f4073b8-d8ea-4ade-8a18-c5d1d5d5aa9a"
+}

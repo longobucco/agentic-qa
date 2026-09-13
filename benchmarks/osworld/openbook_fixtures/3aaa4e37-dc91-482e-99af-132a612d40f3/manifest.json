@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/aaef7cafd01fc824d496f8ae17b8d1e74dc0430263bcbbb45de682e47c5fd3b6",
+      "body_sha256": "aaef7cafd01fc824d496f8ae17b8d1e74dc0430263bcbbb45de682e47c5fd3b6",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/3aaa4e37-dc91-482e-99af-132a612d40f3/Export_Calc_to_CSV.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "3aaa4e37-dc91-482e-99af-132a612d40f3"
+}

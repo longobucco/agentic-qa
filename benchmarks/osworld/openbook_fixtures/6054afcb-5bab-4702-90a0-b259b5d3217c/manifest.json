@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/980d9dfc8a6787799cfd038caa34515642f0a42b895ce49ed17f518bb870266e",
+      "body_sha256": "980d9dfc8a6787799cfd038caa34515642f0a42b895ce49ed17f518bb870266e",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/6054afcb-5bab-4702-90a0-b259b5d3217c/Date_Budget_Variance_HideNA.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "6054afcb-5bab-4702-90a0-b259b5d3217c"
+}

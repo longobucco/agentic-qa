@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/89c0499971170ac3ae1c777393d535689055d0aa254eb7bd169a4cce3939f479",
+      "body_sha256": "89c0499971170ac3ae1c777393d535689055d0aa254eb7bd169a4cce3939f479",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/22a4636f-8179-4357-8e87-d1743ece1f81/Meeting-Agenda.docx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "22a4636f-8179-4357-8e87-d1743ece1f81"
+}

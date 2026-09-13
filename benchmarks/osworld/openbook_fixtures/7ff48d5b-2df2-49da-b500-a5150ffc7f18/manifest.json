@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/c51cd339007423af7fa992b0d1907a1d71d2ef6d41ec6a0b84bd7ad887bc2819",
+      "body_sha256": "c51cd339007423af7fa992b0d1907a1d71d2ef6d41ec6a0b84bd7ad887bc2819",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/7ff48d5b-2df2-49da-b500-a5150ffc7f18/All%20Locations.docx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "7ff48d5b-2df2-49da-b500-a5150ffc7f18"
+}

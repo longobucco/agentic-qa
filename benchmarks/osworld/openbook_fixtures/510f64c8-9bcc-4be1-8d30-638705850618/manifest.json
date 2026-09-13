@@ -1,0 +1,47 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/2c091c00bb63c1fc8724bbbf3fa407429b8e46c6dfe771f7a2656c65b1f88a97",
+      "body_sha256": "2c091c00bb63c1fc8724bbbf3fa407429b8e46c6dfe771f7a2656c65b1f88a97",
+      "headers": {
+        "content-type": "application/zip"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/510f64c8-9bcc-4be1-8d30-638705850618/vscodeEvalExtension.zip"
+    },
+    {
+      "body_file": "bodies/64e5822301cd230ece61946075bebb2d149c101c9102ea1149415ed92fc69ee1",
+      "body_sha256": "64e5822301cd230ece61946075bebb2d149c101c9102ea1149415ed92fc69ee1",
+      "headers": {
+        "content-type": "text/x-python"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/510f64c8-9bcc-4be1-8d30-638705850618/main.py"
+    },
+    {
+      "body_file": "bodies/94c262278cbe09e8f4bd8f99a9d989dc6c69e8dfc39ca67c53f20ed24c1fb80a",
+      "body_sha256": "94c262278cbe09e8f4bd8f99a9d989dc6c69e8dfc39ca67c53f20ed24c1fb80a",
+      "headers": {
+        "content-type": "application/octet-stream"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/510f64c8-9bcc-4be1-8d30-638705850618/README.md"
+    },
+    {
+      "body_file": "bodies/4ee65ae16e56fe8427ce16368295c4cd0077450756e24374be1a1156cda35efb",
+      "body_sha256": "4ee65ae16e56fe8427ce16368295c4cd0077450756e24374be1a1156cda35efb",
+      "headers": {
+        "content-type": "application/json"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/510f64c8-9bcc-4be1-8d30-638705850618/settings.json"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "510f64c8-9bcc-4be1-8d30-638705850618"
+}

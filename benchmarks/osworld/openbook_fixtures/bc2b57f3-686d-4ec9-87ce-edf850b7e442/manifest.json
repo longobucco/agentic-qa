@@ -1,0 +1,27 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/8c5d033a72430d63d292963a322ab7a2161a665a60b9b433d9a44a9fb8c63bbd",
+      "body_sha256": "8c5d033a72430d63d292963a322ab7a2161a665a60b9b433d9a44a9fb8c63bbd",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/bc2b57f3-686d-4ec9-87ce-edf850b7e442/workbook-with-sample-database.xlsx"
+    },
+    {
+      "body_file": "bodies/a54c0322f49bc48e742c28dd593cdd1a2b384f86eb9e3c60e3f9fa848f7cb032",
+      "body_sha256": "a54c0322f49bc48e742c28dd593cdd1a2b384f86eb9e3c60e3f9fa848f7cb032",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/bc2b57f3-686d-4ec9-87ce-edf850b7e442/reminder.docx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "bc2b57f3-686d-4ec9-87ce-edf850b7e442"
+}

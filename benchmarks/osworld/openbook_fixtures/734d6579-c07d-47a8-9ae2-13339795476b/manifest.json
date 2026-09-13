@@ -1,0 +1,27 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/d353c8899bbb85f6aa8fd4038dab453e46f731532d92451567022f9671f4e08a",
+      "body_sha256": "d353c8899bbb85f6aa8fd4038dab453e46f731532d92451567022f9671f4e08a",
+      "headers": {
+        "content-type": "application/octet-stream"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/gimp/734d6579-c07d-47a8-9ae2-13339795476b/white_background_with_object.xcf"
+    },
+    {
+      "body_file": "bodies/ffa7c94ac7307394e62a6c7a37c9d6718a9b24bd05d31e519250bb9609f2b806",
+      "body_sha256": "ffa7c94ac7307394e62a6c7a37c9d6718a9b24bd05d31e519250bb9609f2b806",
+      "headers": {
+        "content-type": "image/png"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/gimp/734d6579-c07d-47a8-9ae2-13339795476b/white_background_with_object.png"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "734d6579-c07d-47a8-9ae2-13339795476b"
+}

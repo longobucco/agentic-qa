@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/63b02a319f350d65643fe4923ea63f9b50eae7dedd2073a92b4e56e0315107d5",
+      "body_sha256": "63b02a319f350d65643fe4923ea63f9b50eae7dedd2073a92b4e56e0315107d5",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/30e3e107-1cfb-46ee-a755-2cd080d7ba6a/DemographicProfile.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "30e3e107-1cfb-46ee-a755-2cd080d7ba6a"
+}

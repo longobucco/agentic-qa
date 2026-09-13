@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/69d84c5e51932cab5108539875437ca2325d36f03d848586781a08f79dcb5d36",
+      "body_sha256": "69d84c5e51932cab5108539875437ca2325d36f03d848586781a08f79dcb5d36",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/a9f325aa-8c05-4e4f-8341-9e4358565f4f/Movie_titles_garbage_clean.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "a9f325aa-8c05-4e4f-8341-9e4358565f4f"
+}

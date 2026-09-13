@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/55a78a8f2469d28c3fcb4e417e615bb6c65a65094243c973cc3b1524162ab269",
+      "body_sha256": "55a78a8f2469d28c3fcb4e417e615bb6c65a65094243c973cc3b1524162ab269",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/37608790-6147-45d0-9f20-1137bb35703d/Employee_Roles_and_Ranks.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "37608790-6147-45d0-9f20-1137bb35703d"
+}

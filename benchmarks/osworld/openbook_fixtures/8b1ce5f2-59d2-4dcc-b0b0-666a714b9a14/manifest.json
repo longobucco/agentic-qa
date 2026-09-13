@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/a29c48e75f1b5894100a15e9ce204a0a599c7ce9bc5a8101d226dd1c4d68f70f",
+      "body_sha256": "a29c48e75f1b5894100a15e9ce204a0a599c7ce9bc5a8101d226dd1c4d68f70f",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/8b1ce5f2-59d2-4dcc-b0b0-666a714b9a14/Calendar_Highlight_Weekend_Days.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "8b1ce5f2-59d2-4dcc-b0b0-666a714b9a14"
+}

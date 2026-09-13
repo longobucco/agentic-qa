@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/7e9e0e25ef4d37d9aeedfa8578f10432156d0eea3b6c003fee8f5271293e6900",
+      "body_sha256": "7e9e0e25ef4d37d9aeedfa8578f10432156d0eea3b6c003fee8f5271293e6900",
+      "headers": {
+        "content-type": "video/mp4"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/vlc/aa4b5023-aef6-4ed9-bdc9-705f59ab9ad6/flipped_1984_Apple_Macintosh_Commercial.mp4"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "aa4b5023-aef6-4ed9-bdc9-705f59ab9ad6"
+}

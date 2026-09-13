@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/2cb82453a684fcde57610987b4622949bdd34a01eabf218120e132493a906286",
+      "body_sha256": "2cb82453a684fcde57610987b4622949bdd34a01eabf218120e132493a906286",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/347ef137-7eeb-4c80-a3bb-0951f26a8aff/Create_column_charts_using_statistics.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "347ef137-7eeb-4c80-a3bb-0951f26a8aff"
+}

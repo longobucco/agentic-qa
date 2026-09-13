@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/c9283c55bccdac033a2979700e92c679367520536331be9bf4c1b4dea315dca3",
+      "body_sha256": "c9283c55bccdac033a2979700e92c679367520536331be9bf4c1b4dea315dca3",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/4f07fbe9-70de-4927-a4d5-bb28bc12c52c/Padding_Decimals_In_Formular.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "4f07fbe9-70de-4927-a4d5-bb28bc12c52c"
+}

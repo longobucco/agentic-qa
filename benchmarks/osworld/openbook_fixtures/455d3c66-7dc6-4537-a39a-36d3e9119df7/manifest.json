@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/a4d6763abd0b629d247ccf3da312255977e72ab29c19613ed746ada68222c38f",
+      "body_sha256": "a4d6763abd0b629d247ccf3da312255977e72ab29c19613ed746ada68222c38f",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/455d3c66-7dc6-4537-a39a-36d3e9119df7/wssf-project-plan-on-a-page.pptx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "455d3c66-7dc6-4537-a39a-36d3e9119df7"
+}

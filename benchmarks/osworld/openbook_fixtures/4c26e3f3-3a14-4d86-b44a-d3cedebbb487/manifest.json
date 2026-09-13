@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/e625afeec91cd3f412e8df3859345b27ce7e1a415e5a40af29a7334f27645c4c",
+      "body_sha256": "e625afeec91cd3f412e8df3859345b27ce7e1a415e5a40af29a7334f27645c4c",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/4c26e3f3-3a14-4d86-b44a-d3cedebbb487/PPT-Template_widescreen.pptx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "4c26e3f3-3a14-4d86-b44a-d3cedebbb487"
+}

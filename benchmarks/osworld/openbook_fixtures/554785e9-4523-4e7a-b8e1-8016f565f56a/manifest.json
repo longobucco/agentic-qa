@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/4acbf30f243b4098fe571534d67f3b71f3aa17fe0abebbeba27db9fc79c52367",
+      "body_sha256": "4acbf30f243b4098fe571534d67f3b71f3aa17fe0abebbeba27db9fc79c52367",
+      "headers": {
+        "content-type": "image/png"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/gimp/554785e9-4523-4e7a-b8e1-8016f565f56a/woman_sitting_by_the_tree2.png"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "554785e9-4523-4e7a-b8e1-8016f565f56a"
+}

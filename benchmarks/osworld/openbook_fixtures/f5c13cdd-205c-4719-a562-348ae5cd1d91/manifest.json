@@ -1,0 +1,37 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/8686642b92dbd0150b8cd52657a78760f711b8f13ac736d169c8c8b8db258b8d",
+      "body_sha256": "8686642b92dbd0150b8cd52657a78760f711b8f13ac736d169c8c8b8db258b8d",
+      "headers": {
+        "content-type": "application/x-tar"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/f5c13cdd-205c-4719-a562-348ae5cd1d91/thunderbird-profile.tar.gz"
+    },
+    {
+      "body_file": "bodies/9c85b62bf73d0800b7782fd421e7a2d858a04b5753f8be5508bf3df3a970813e",
+      "body_sha256": "9c85b62bf73d0800b7782fd421e7a2d858a04b5753f8be5508bf3df3a970813e",
+      "headers": {
+        "content-type": "text/html"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/f5c13cdd-205c-4719-a562-348ae5cd1d91/Payment%20Reminder.html"
+    },
+    {
+      "body_file": "bodies/8d29bf43baed034172a06e10c858cbbc4e618261f6c644c2dcef367d657a5a61",
+      "body_sha256": "8d29bf43baed034172a06e10c858cbbc4e618261f6c644c2dcef367d657a5a61",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/f5c13cdd-205c-4719-a562-348ae5cd1d91/tuition.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "f5c13cdd-205c-4719-a562-348ae5cd1d91"
+}

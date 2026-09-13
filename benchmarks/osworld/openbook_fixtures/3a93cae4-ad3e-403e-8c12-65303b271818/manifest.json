@@ -1,0 +1,97 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/1cd5478b23ca18bf9f4711213fdfc2ab6f07412b5646a284247f38aa7d7a7ebc",
+      "body_sha256": "1cd5478b23ca18bf9f4711213fdfc2ab6f07412b5646a284247f38aa7d7a7ebc",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/2c1ebcd7-9c6d-4c9a-afad-900e381ecd5e/Zheng%20He%20.docx"
+    },
+    {
+      "body_file": "bodies/ba92e595b3a2d2147e7fa2bda12d5eb439d4d703ec37262d7ddc15a8e6d65799",
+      "body_sha256": "ba92e595b3a2d2147e7fa2bda12d5eb439d4d703ec37262d7ddc15a8e6d65799",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/2c1ebcd7-9c6d-4c9a-afad-900e381ecd5e/cassie.docx"
+    },
+    {
+      "body_file": "bodies/3f5c324a1cc3a42e6b39fe31434f1c14f3afcffe6b57f9d34baec193006e897b",
+      "body_sha256": "3f5c324a1cc3a42e6b39fe31434f1c14f3afcffe6b57f9d34baec193006e897b",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/2c1ebcd7-9c6d-4c9a-afad-900e381ecd5e/case%20study.docx"
+    },
+    {
+      "body_file": "bodies/8bc8de47fda4dbf497eb63c14565fa6296dc5dcfe18dae5f052ee189738ca6e1",
+      "body_sha256": "8bc8de47fda4dbf497eb63c14565fa6296dc5dcfe18dae5f052ee189738ca6e1",
+      "headers": {
+        "content-type": "application/pdf"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/2c1ebcd7-9c6d-4c9a-afad-900e381ecd5e/irregularrules02.pdf"
+    },
+    {
+      "body_file": "bodies/cf622918f45eb399a2159ab07c2f93a2919b49a9ab553549cf6c3f3d831b96ef",
+      "body_sha256": "cf622918f45eb399a2159ab07c2f93a2919b49a9ab553549cf6c3f3d831b96ef",
+      "headers": {
+        "content-type": "application/pdf"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/2c1ebcd7-9c6d-4c9a-afad-900e381ecd5e/irregularrules01.pdf"
+    },
+    {
+      "body_file": "bodies/ca7dfa501f1deb9b08a3bf7e80e5dffb8c5f393c5e883c84b8a8cf40b9ad40b4",
+      "body_sha256": "ca7dfa501f1deb9b08a3bf7e80e5dffb8c5f393c5e883c84b8a8cf40b9ad40b4",
+      "headers": {
+        "content-type": "application/pdf"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/2c1ebcd7-9c6d-4c9a-afad-900e381ecd5e/fragrules.pdf"
+    },
+    {
+      "body_file": "bodies/2ba19089498561dcdfb1255e0c5bd81aa1704dc4021cf518c094150d27fd3dfa",
+      "body_sha256": "2ba19089498561dcdfb1255e0c5bd81aa1704dc4021cf518c094150d27fd3dfa",
+      "headers": {
+        "content-type": "application/pdf"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/2c1ebcd7-9c6d-4c9a-afad-900e381ecd5e/csfsrules.pdf"
+    },
+    {
+      "body_file": "bodies/68b07805dbb9859a705948903cc8efd6c6af28d86b35735c57385524bbbe2a3e",
+      "body_sha256": "68b07805dbb9859a705948903cc8efd6c6af28d86b35735c57385524bbbe2a3e",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/2c1ebcd7-9c6d-4c9a-afad-900e381ecd5e/Public%20Lecture%20Teaching%20Plan.docx"
+    },
+    {
+      "body_file": "bodies/4f7d5cfa10edf0ea1d5af93aad32e00d7ce21461c1cc63632b0b6e99ee71072d",
+      "body_sha256": "4f7d5cfa10edf0ea1d5af93aad32e00d7ce21461c1cc63632b0b6e99ee71072d",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/3a93cae4-ad3e-403e-8c12-65303b271818/Course%20Timetable.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "3a93cae4-ad3e-403e-8c12-65303b271818"
+}

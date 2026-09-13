@@ -1,0 +1,47 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/173f6c788ba63b6fc695f00bdd28e82f362e47f99dedca8367ebb76f814fd82c",
+      "body_sha256": "173f6c788ba63b6fc695f00bdd28e82f362e47f99dedca8367ebb76f814fd82c",
+      "headers": {
+        "content-type": "text/x-python"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/9219480b-3aed-47fc-8bac-d2cffc5849f7/block.py"
+    },
+    {
+      "body_file": "bodies/094e808b626fbd936ceb800c3b055bcb432ec12a33b477bc745cf95caa333d69",
+      "body_sha256": "094e808b626fbd936ceb800c3b055bcb432ec12a33b477bc745cf95caa333d69",
+      "headers": {
+        "content-type": "text/x-python"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/9219480b-3aed-47fc-8bac-d2cffc5849f7/main.py"
+    },
+    {
+      "body_file": "bodies/fca04a7cc2e995f756bf9515d847d42b7447948ae53a4fbcde636f5bac2b5c13",
+      "body_sha256": "fca04a7cc2e995f756bf9515d847d42b7447948ae53a4fbcde636f5bac2b5c13",
+      "headers": {
+        "content-type": "text/x-python"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/9219480b-3aed-47fc-8bac-d2cffc5849f7/settings.py"
+    },
+    {
+      "body_file": "bodies/59ff97d002d5810e458e025d9943dafe53097e7c49026fefcdb789d5641f9b72",
+      "body_sha256": "59ff97d002d5810e458e025d9943dafe53097e7c49026fefcdb789d5641f9b72",
+      "headers": {
+        "content-type": "text/x-python"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/9219480b-3aed-47fc-8bac-d2cffc5849f7/tetris.py"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "9219480b-3aed-47fc-8bac-d2cffc5849f7"
+}

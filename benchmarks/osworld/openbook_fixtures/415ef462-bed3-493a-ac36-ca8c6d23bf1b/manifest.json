@@ -1,0 +1,87 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/5dcdb52ccc71ed241a5c8e5dbaeded0c4f04a55afb9a3bf016ccd482d6e3bbc0",
+      "body_sha256": "5dcdb52ccc71ed241a5c8e5dbaeded0c4f04a55afb9a3bf016ccd482d6e3bbc0",
+      "headers": {
+        "content-type": "application/pdf"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/415ef462-bed3-493a-ac36-ca8c6d23bf1b/invoice0123456789-2308.pdf"
+    },
+    {
+      "body_file": "bodies/c7d46f7959877d7c2328dab589e50e78067835a4260f42c14c7c215eff64642d",
+      "body_sha256": "c7d46f7959877d7c2328dab589e50e78067835a4260f42c14c7c215eff64642d",
+      "headers": {
+        "content-type": "application/pdf"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/415ef462-bed3-493a-ac36-ca8c6d23bf1b/invoice0123456789-2309.pdf"
+    },
+    {
+      "body_file": "bodies/ef7f60c837150b49bb0a44b35491fb6750113ee27e64b7825899b1f1585122f2",
+      "body_sha256": "ef7f60c837150b49bb0a44b35491fb6750113ee27e64b7825899b1f1585122f2",
+      "headers": {
+        "content-type": "application/pdf"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/415ef462-bed3-493a-ac36-ca8c6d23bf1b/invoice0123456789-2310.pdf"
+    },
+    {
+      "body_file": "bodies/6c4e360ccf903d419ee81b490189aaa1c047699b82c5fd36c6f6d3193804e755",
+      "body_sha256": "6c4e360ccf903d419ee81b490189aaa1c047699b82c5fd36c6f6d3193804e755",
+      "headers": {
+        "content-type": "application/pdf"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/415ef462-bed3-493a-ac36-ca8c6d23bf1b/invoice0123456789-2311.pdf"
+    },
+    {
+      "body_file": "bodies/2e68601ee2812206fe2619704c9f0aac929b631b6e322413d12c58d69ba0c36c",
+      "body_sha256": "2e68601ee2812206fe2619704c9f0aac929b631b6e322413d12c58d69ba0c36c",
+      "headers": {
+        "content-type": "application/pdf"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/415ef462-bed3-493a-ac36-ca8c6d23bf1b/Receipt-0123-4567.pdf"
+    },
+    {
+      "body_file": "bodies/4eec560f126c0774ce891bf405f3a63de83e1005d41963f714b5ad2af7ff4a6f",
+      "body_sha256": "4eec560f126c0774ce891bf405f3a63de83e1005d41963f714b5ad2af7ff4a6f",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/415ef462-bed3-493a-ac36-ca8c6d23bf1b/tally_book.xlsx"
+    },
+    {
+      "body_file": "bodies/adadd814627cf0a9c70d2edd8a034b026decd2f89902498cc173378c33b6d7c2",
+      "body_sha256": "adadd814627cf0a9c70d2edd8a034b026decd2f89902498cc173378c33b6d7c2",
+      "headers": {
+        "content-type": "application/x-tar"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/415ef462-bed3-493a-ac36-ca8c6d23bf1b/projects.tar.xz"
+    },
+    {
+      "body_file": "bodies/e8dd64f3b8c80a5a1b30561b2ed4e44b91dd0a98a836f69e2d9ba36661e01320",
+      "body_sha256": "e8dd64f3b8c80a5a1b30561b2ed4e44b91dd0a98a836f69e2d9ba36661e01320",
+      "headers": {
+        "content-type": "application/x-tar"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/415ef462-bed3-493a-ac36-ca8c6d23bf1b/thunderbird-profile.tar.gz"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "415ef462-bed3-493a-ac36-ca8c6d23bf1b"
+}

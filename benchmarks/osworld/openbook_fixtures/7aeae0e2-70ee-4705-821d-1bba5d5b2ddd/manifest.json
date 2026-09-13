@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/99af585e9a7f4bf65bfa61225cc09a86a4e99684f099eeafc01724cf0875e9fd",
+      "body_sha256": "99af585e9a7f4bf65bfa61225cc09a86a4e99684f099eeafc01724cf0875e9fd",
+      "headers": {
+        "content-type": "text/x-python"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/vs_code/7aeae0e2-70ee-4705-821d-1bba5d5b2ddd/main.py"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "7aeae0e2-70ee-4705-821d-1bba5d5b2ddd"
+}

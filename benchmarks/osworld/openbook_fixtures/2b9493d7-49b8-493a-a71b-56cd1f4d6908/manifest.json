@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/ae2cef007d681624ef0f00b7c745bda52f76f7b5a31a55001e20d630d94a2278",
+      "body_sha256": "ae2cef007d681624ef0f00b7c745bda52f76f7b5a31a55001e20d630d94a2278",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/2b9493d7-49b8-493a-a71b-56cd1f4d6908/15-MB-docx-file-download.docx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "2b9493d7-49b8-493a-a71b-56cd1f4d6908"
+}

@@ -1,0 +1,27 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/9c76c729e04c7e7bf1c495013221d764db68f18fc359844d1a91ae7bc1e953d4",
+      "body_sha256": "9c76c729e04c7e7bf1c495013221d764db68f18fc359844d1a91ae7bc1e953d4",
+      "headers": {
+        "content-type": "text/plain"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/d1acdb87-bb67-4f30-84aa-990e56a09c92/restaurants.txt"
+    },
+    {
+      "body_file": "bodies/986743e746dcfc3683eea8fffabb820217021a29689d8ae7909b31a0eee75207",
+      "body_sha256": "986743e746dcfc3683eea8fffabb820217021a29689d8ae7909b31a0eee75207",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/d1acdb87-bb67-4f30-84aa-990e56a09c92/MUST_VISIT.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "d1acdb87-bb67-4f30-84aa-990e56a09c92"
+}

@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/c66b6d7bf814e71acd4777353b7be5eca1c9735dc9f510fa61993d78aef492ca",
+      "body_sha256": "c66b6d7bf814e71acd4777353b7be5eca1c9735dc9f510fa61993d78aef492ca",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/936321ce-5236-426a-9a20-e0e3c5dc536f/Graphemes_Sound_Letter_Patterns.docx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "936321ce-5236-426a-9a20-e0e3c5dc536f"
+}

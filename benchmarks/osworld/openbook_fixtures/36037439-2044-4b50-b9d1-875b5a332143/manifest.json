@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/087008efb9d056df5fd9fbc724413d6a3f20cb14c7f1597d00bacac53d8342d6",
+      "body_sha256": "087008efb9d056df5fd9fbc724413d6a3f20cb14c7f1597d00bacac53d8342d6",
+      "headers": {
+        "content-type": "application/pdf"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/36037439-2044-4b50-b9d1-875b5a332143/shi17a.pdf"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "36037439-2044-4b50-b9d1-875b5a332143"
+}

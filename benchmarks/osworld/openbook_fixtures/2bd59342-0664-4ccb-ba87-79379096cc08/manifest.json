@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/f36ece8b45963773dee3ecbde97c3d51f023be1d08c759bc935c2cfd71e0cc82",
+      "body_sha256": "f36ece8b45963773dee3ecbde97c3d51f023be1d08c759bc935c2cfd71e0cc82",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/2bd59342-0664-4ccb-ba87-79379096cc08/OrderId_Month_Chart.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "2bd59342-0664-4ccb-ba87-79379096cc08"
+}

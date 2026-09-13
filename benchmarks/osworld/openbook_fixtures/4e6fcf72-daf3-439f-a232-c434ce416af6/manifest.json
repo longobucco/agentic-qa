@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/27e8792577422c2b67606cf5bce4159cc1606586d268f0e6ee585e7cbde20732",
+      "body_sha256": "27e8792577422c2b67606cf5bce4159cc1606586d268f0e6ee585e7cbde20732",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/4e6fcf72-daf3-439f-a232-c434ce416af6/Employee_Age_By_Birthday.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "4e6fcf72-daf3-439f-a232-c434ce416af6"
+}

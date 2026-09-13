@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/4249084517378a0c24a0ff20b5e7b771942f2bf96dce95fbee22598d337fcc5a",
+      "body_sha256": "4249084517378a0c24a0ff20b5e7b771942f2bf96dce95fbee22598d337fcc5a",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/04d9aeaf-7bed-4024-bedb-e10e6f00eb7f/SmallBalanceSheet.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "04d9aeaf-7bed-4024-bedb-e10e6f00eb7f"
+}

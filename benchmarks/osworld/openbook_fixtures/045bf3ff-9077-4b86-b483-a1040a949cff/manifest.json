@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/2f1f826c512fab955cc88de83793bc3670a851947e311411c93956f078fdaef6",
+      "body_sha256": "2f1f826c512fab955cc88de83793bc3670a851947e311411c93956f078fdaef6",
+      "headers": {
+        "content-type": "image/jpeg"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/gimp/045bf3ff-9077-4b86-b483-a1040a949cff/gate.jpeg"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "045bf3ff-9077-4b86-b483-a1040a949cff"
+}

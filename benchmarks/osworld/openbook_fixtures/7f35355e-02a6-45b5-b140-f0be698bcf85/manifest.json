@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/b334b8009f3b71582201a471bdfc725f8e380bf538be52321fa04073e644dff5",
+      "body_sha256": "b334b8009f3b71582201a471bdfc725f8e380bf538be52321fa04073e644dff5",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/7f35355e-02a6-45b5-b140-f0be698bcf85/stock.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "7f35355e-02a6-45b5-b140-f0be698bcf85"
+}

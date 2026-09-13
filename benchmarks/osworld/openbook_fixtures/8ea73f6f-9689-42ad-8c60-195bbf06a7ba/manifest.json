@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/81d7952786a5a079c4534bdc11349b9914ad6197ad66bfc5fc444f5f95955add",
+      "body_sha256": "81d7952786a5a079c4534bdc11349b9914ad6197ad66bfc5fc444f5f95955add",
+      "headers": {
+        "content-type": "image/jpeg"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/gimp/8ea73f6f-9689-42ad-8c60-195bbf06a7ba/low_resolution.jpeg"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "8ea73f6f-9689-42ad-8c60-195bbf06a7ba"
+}

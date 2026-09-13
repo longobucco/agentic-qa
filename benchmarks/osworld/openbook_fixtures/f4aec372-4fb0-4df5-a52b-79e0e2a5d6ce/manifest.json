@@ -1,0 +1,27 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/77d0eb7a65794fc72173bd158e14668c01613cae62324464c6dcbe244201d0bf",
+      "body_sha256": "77d0eb7a65794fc72173bd158e14668c01613cae62324464c6dcbe244201d0bf",
+      "headers": {
+        "content-type": "image/png"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/gimp/f4aec372-4fb0-4df5-a52b-79e0e2a5d6ce/Triangle_On_The_Side.png"
+    },
+    {
+      "body_file": "bodies/69465bf3e952ba7dacc22547cce379a7ac3ac7e5a4edd9e25d08c441209155c5",
+      "body_sha256": "69465bf3e952ba7dacc22547cce379a7ac3ac7e5a4edd9e25d08c441209155c5",
+      "headers": {
+        "content-type": "application/octet-stream"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/gimp/f4aec372-4fb0-4df5-a52b-79e0e2a5d6ce/Triangle_On_The_Side.xcf"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "f4aec372-4fb0-4df5-a52b-79e0e2a5d6ce"
+}

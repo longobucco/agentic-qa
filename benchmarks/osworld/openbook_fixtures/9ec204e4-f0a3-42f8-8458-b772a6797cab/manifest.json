@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/15c5875d7731c3459a2b54e0934a53770e8c84fd206917ad280001bd821ff008",
+      "body_sha256": "15c5875d7731c3459a2b54e0934a53770e8c84fd206917ad280001bd821ff008",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/9ec204e4-f0a3-42f8-8458-b772a6797cab/MLA_Workshop_061X_Works_Cited.pptx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "9ec204e4-f0a3-42f8-8458-b772a6797cab"
+}

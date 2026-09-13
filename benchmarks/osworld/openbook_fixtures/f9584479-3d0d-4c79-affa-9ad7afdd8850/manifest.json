@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/b3f924e716a00b7eb3f9baf8e4138aaa7993026c1036b5211a11ad889606b44f",
+      "body_sha256": "b3f924e716a00b7eb3f9baf8e4138aaa7993026c1036b5211a11ad889606b44f",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/f9584479-3d0d-4c79-affa-9ad7afdd8850/Quarterly_Product_Sales_by_Zone.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "f9584479-3d0d-4c79-affa-9ad7afdd8850"
+}

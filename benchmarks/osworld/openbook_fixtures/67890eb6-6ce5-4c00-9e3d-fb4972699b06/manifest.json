@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/3d4c12f50a5e42cf1a27d009faad14218796bd20c0004c3908df35a0eb9c1d94",
+      "body_sha256": "3d4c12f50a5e42cf1a27d009faad14218796bd20c0004c3908df35a0eb9c1d94",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/67890eb6-6ce5-4c00-9e3d-fb4972699b06/best_awards_acl.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "67890eb6-6ce5-4c00-9e3d-fb4972699b06"
+}

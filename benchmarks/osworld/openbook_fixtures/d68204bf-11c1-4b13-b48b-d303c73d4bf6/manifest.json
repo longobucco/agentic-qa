@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/3ad2cb1f1244c08687d3801a8eb64c71cc8012c7360e11e8614ae5b6f6634d0f",
+      "body_sha256": "3ad2cb1f1244c08687d3801a8eb64c71cc8012c7360e11e8614ae5b6f6634d0f",
+      "headers": {
+        "content-type": "image/png"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/d68204bf-11c1-4b13-b48b-d303c73d4bf6/tilearray.png"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "d68204bf-11c1-4b13-b48b-d303c73d4bf6"
+}

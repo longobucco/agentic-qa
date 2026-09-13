@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/0bfb8d1f761b9f0eb33e0afcf9608a20e0639694eeb834ad34e6588e3cca081e",
+      "body_sha256": "0bfb8d1f761b9f0eb33e0afcf9608a20e0639694eeb834ad34e6588e3cca081e",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/3e3fc409-bff3-4905-bf16-c968eee3f807/movies.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "3e3fc409-bff3-4905-bf16-c968eee3f807"
+}

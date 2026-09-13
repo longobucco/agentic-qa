@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/4d5f4c1128596c48b466f81c4940c60c631ff6e2dbfd0ab5d1d8588ea1f181e0",
+      "body_sha256": "4d5f4c1128596c48b466f81c4940c60c631ff6e2dbfd0ab5d1d8588ea1f181e0",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/e135df7c-7687-4ac0-a5f0-76b74438b53e/annual-enterprise-survey-2021-financial-year-provisional.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "e135df7c-7687-4ac0-a5f0-76b74438b53e"
+}

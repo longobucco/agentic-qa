@@ -1,0 +1,27 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/8882c25c4195105a0735b83b1294e200f75bd3cf7e75b358ba6fe8e2ce5ba029",
+      "body_sha256": "8882c25c4195105a0735b83b1294e200f75bd3cf7e75b358ba6fe8e2ce5ba029",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/da52d699-e8d2-4dc5-9191-a2199e0b6a9b/2023_validation_Book_Reading_Rate.xlsx"
+    },
+    {
+      "body_file": "bodies/594044dfbe3a7e468a18d2b6624d41c3391cb38e37b017483b05e997a559092d",
+      "body_sha256": "594044dfbe3a7e468a18d2b6624d41c3391cb38e37b017483b05e997a559092d",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/da52d699-e8d2-4dc5-9191-a2199e0b6a9b/book_list_result.docx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "da52d699-e8d2-4dc5-9191-a2199e0b6a9b"
+}

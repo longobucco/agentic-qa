@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/245f3064d64dead11e37b341ca5ab42e4435c6ac63ad0fe14c3f7513a37e249a",
+      "body_sha256": "245f3064d64dead11e37b341ca5ab42e4435c6ac63ad0fe14c3f7513a37e249a",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/adf5e2c3-64c7-4644-b7b6-d2f0167927e7/Essay_Writing_English_for_uni.docx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "adf5e2c3-64c7-4644-b7b6-d2f0167927e7"
+}

@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/3a3d75fae5a1ef3b91ac5fbba9ab94aadabce8f833e608634bbf8dda7e7afcfc",
+      "body_sha256": "3a3d75fae5a1ef3b91ac5fbba9ab94aadabce8f833e608634bbf8dda7e7afcfc",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/21ab7b40-77c2-4ae6-8321-e00d3a086c73/PeriodRate.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "21ab7b40-77c2-4ae6-8321-e00d3a086c73"
+}

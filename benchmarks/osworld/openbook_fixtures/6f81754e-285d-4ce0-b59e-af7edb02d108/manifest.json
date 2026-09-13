@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/2fa349ad07260342f07d632ef5125cb3f501b0e13d2181bb9944f33c96e4e1e4",
+      "body_sha256": "2fa349ad07260342f07d632ef5125cb3f501b0e13d2181bb9944f33c96e4e1e4",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/6f81754e-285d-4ce0-b59e-af7edb02d108/HK_train_record.docx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "6f81754e-285d-4ce0-b59e-af7edb02d108"
+}

@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/edd9fc166f619bc7534ea1a5f6d8d10c365015ea2a022c8259e11965212a729c",
+      "body_sha256": "edd9fc166f619bc7534ea1a5f6d8d10c365015ea2a022c8259e11965212a729c",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/ac9bb6cb-1888-43ab-81e4-a98a547918cd/saa-format-guide.pptx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "ac9bb6cb-1888-43ab-81e4-a98a547918cd"
+}

@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/b1c90b75d950875962f324c2224d62cc251c60925cd049f04571d6c07d6ac2cd",
+      "body_sha256": "b1c90b75d950875962f324c2224d62cc251c60925cd049f04571d6c07d6ac2cd",
+      "headers": {
+        "content-type": "video/mp4"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/vlc/8f080098-ddb1-424c-b438-4e96e5e4786e/Baby%20Justin%20Bieber.mp4"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "8f080098-ddb1-424c-b438-4e96e5e4786e"
+}

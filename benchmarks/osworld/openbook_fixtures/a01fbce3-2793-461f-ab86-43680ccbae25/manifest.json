@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/072ace8c61eab46ba6b4acb1f3d938cf93118e465d1106eda8cfd52b717678f5",
+      "body_sha256": "072ace8c61eab46ba6b4acb1f3d938cf93118e465d1106eda8cfd52b717678f5",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/a01fbce3-2793-461f-ab86-43680ccbae25/Set_Decimal_Separator_Dot.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "a01fbce3-2793-461f-ab86-43680ccbae25"
+}

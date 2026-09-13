@@ -1,0 +1,57 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/0d6875333c411d88ef8a68ed221577c69dcfec73793cdf89e6634b2c81805c91",
+      "body_sha256": "0d6875333c411d88ef8a68ed221577c69dcfec73793cdf89e6634b2c81805c91",
+      "headers": {
+        "content-type": "application/pdf"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/0c825995-5b70-4526-b663-113f4c999dd2/lpr_living_planet_report_2016.pdf"
+    },
+    {
+      "body_file": "bodies/57ac5f361b553b603ec6abea86859660ef98d2a74807bba430907eb622a76507",
+      "body_sha256": "57ac5f361b553b603ec6abea86859660ef98d2a74807bba430907eb622a76507",
+      "headers": {
+        "content-type": "application/pdf"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/0c825995-5b70-4526-b663-113f4c999dd2/279c656a32_ENGLISH_FULL.pdf"
+    },
+    {
+      "body_file": "bodies/086288cae15a2af040ed03b4fb267ce3bb38bc15287f5c5b2689880d34810582",
+      "body_sha256": "086288cae15a2af040ed03b4fb267ce3bb38bc15287f5c5b2689880d34810582",
+      "headers": {
+        "content-type": "application/pdf"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/0c825995-5b70-4526-b663-113f4c999dd2/7g37j96psg_WWF_AR2021_spreads.pdf"
+    },
+    {
+      "body_file": "bodies/7d0eade36acf681888adb25ea98b0919b6bb2347ebf5f1ef130dbb6ae2f878ac",
+      "body_sha256": "7d0eade36acf681888adb25ea98b0919b6bb2347ebf5f1ef130dbb6ae2f878ac",
+      "headers": {
+        "content-type": "application/pdf"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/0c825995-5b70-4526-b663-113f4c999dd2/GE%20Guidebook.pdf"
+    },
+    {
+      "body_file": "bodies/55a3021dbe4240b13c222fbf53a77d4cf3c6fa5dce2b257ae1b64131d5d9001c",
+      "body_sha256": "55a3021dbe4240b13c222fbf53a77d4cf3c6fa5dce2b257ae1b64131d5d9001c",
+      "headers": {
+        "content-type": "application/pdf"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/0c825995-5b70-4526-b663-113f4c999dd2/assessing_and_reporting_water_quality%28q%26a%29.pdf"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "0c825995-5b70-4526-b663-113f4c999dd2"
+}

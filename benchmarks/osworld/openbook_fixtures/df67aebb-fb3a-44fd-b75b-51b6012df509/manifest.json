@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/b72891462fe583aebd9c48bdaf431fa0ce20047b2de47b2249ac925fa221e7ef",
+      "body_sha256": "b72891462fe583aebd9c48bdaf431fa0ce20047b2de47b2249ac925fa221e7ef",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/df67aebb-fb3a-44fd-b75b-51b6012df509/references.docx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "df67aebb-fb3a-44fd-b75b-51b6012df509"
+}

@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/7372039590da7dd52d1ff7bb1745bb27a12c024dcdde7b51cf7617559096ebac",
+      "body_sha256": "7372039590da7dd52d1ff7bb1745bb27a12c024dcdde7b51cf7617559096ebac",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/873cafdd-a581-47f6-8b33-b9696ddb7b05/Recommended%20plugin%20list.docx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "873cafdd-a581-47f6-8b33-b9696ddb7b05"
+}

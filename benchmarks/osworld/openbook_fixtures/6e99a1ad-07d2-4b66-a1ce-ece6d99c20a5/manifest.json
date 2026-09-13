@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/43bb72a4f7c89180081d2c2cb143115ccab77962c84eded9bf12774676f05e51",
+      "body_sha256": "43bb72a4f7c89180081d2c2cb143115ccab77962c84eded9bf12774676f05e51",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/6e99a1ad-07d2-4b66-a1ce-ece6d99c20a5/Keep_Two_decimal_points.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "6e99a1ad-07d2-4b66-a1ce-ece6d99c20a5"
+}

@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/7e7e203b0906a4e8794b81f69e8b9294e89f2351d0d006dd1b51a103c3199aba",
+      "body_sha256": "7e7e203b0906a4e8794b81f69e8b9294e89f2351d0d006dd1b51a103c3199aba",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/68a25bd4-59c7-4f4d-975e-da0c8509c848/rsc-ebook-collection-2023.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "68a25bd4-59c7-4f4d-975e-da0c8509c848"
+}

@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/22a5800500081e352b37937c229f7d646cd83cad41e1e12ccdf24a34d0e3715c",
+      "body_sha256": "22a5800500081e352b37937c229f7d646cd83cad41e1e12ccdf24a34d0e3715c",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/236833a3-5704-47fc-888c-4f298f09f799/raw_paper_reading_2024_03_01.docx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "236833a3-5704-47fc-888c-4f298f09f799"
+}

@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/014f9f32109a44669ec3fb4bc7d4becf93ea5622cfe208100a2783851d887aa0",
+      "body_sha256": "014f9f32109a44669ec3fb4bc7d4becf93ea5622cfe208100a2783851d887aa0",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/d681960f-7bc3-4286-9913-a8812ba3261a/Student_Grades_and_Remarks.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "d681960f-7bc3-4286-9913-a8812ba3261a"
+}

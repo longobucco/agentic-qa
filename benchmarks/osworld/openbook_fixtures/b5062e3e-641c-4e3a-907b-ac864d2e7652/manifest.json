@@ -1,0 +1,47 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/ce9840204e13889f899e326def62005ed9871a0a6ab5d44f716343c4142ef045",
+      "body_sha256": "ce9840204e13889f899e326def62005ed9871a0a6ab5d44f716343c4142ef045",
+      "headers": {
+        "content-type": "application/pdf"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/b5062e3e-641c-4e3a-907b-ac864d2e7652/2312.13771.pdf"
+    },
+    {
+      "body_file": "bodies/a44180f3bad8ce54553007e721deb8bbb31be6779e1ee6bf80ab257765e7bff4",
+      "body_sha256": "a44180f3bad8ce54553007e721deb8bbb31be6779e1ee6bf80ab257765e7bff4",
+      "headers": {
+        "content-type": "application/pdf"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/b5062e3e-641c-4e3a-907b-ac864d2e7652/2402.07945.pdf"
+    },
+    {
+      "body_file": "bodies/8674b4ae17290bb797e5988706f765c75a3310a4e9d14cbd32497e40235ff795",
+      "body_sha256": "8674b4ae17290bb797e5988706f765c75a3310a4e9d14cbd32497e40235ff795",
+      "headers": {
+        "content-type": "application/pdf"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/b5062e3e-641c-4e3a-907b-ac864d2e7652/2401.13649.pdf"
+    },
+    {
+      "body_file": "bodies/c281b1c4460c807c33cc242d2c1d0d175c3454e01abc9c2ec03aff761c0c0a57",
+      "body_sha256": "c281b1c4460c807c33cc242d2c1d0d175c3454e01abc9c2ec03aff761c0c0a57",
+      "headers": {
+        "content-type": "application/pdf"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/b5062e3e-641c-4e3a-907b-ac864d2e7652/5950bf290a1570ea401bf98882128160-Paper-Datasets_and_Benchmarks.pdf"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "b5062e3e-641c-4e3a-907b-ac864d2e7652"
+}

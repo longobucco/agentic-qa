@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/29c478b49fbc9f460ad4a9c4d1b23b71513167c118f0ed5fec3de98c28ba5251",
+      "body_sha256": "29c478b49fbc9f460ad4a9c4d1b23b71513167c118f0ed5fec3de98c28ba5251",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/3ef2b351-8a84-4ff2-8724-d86eae9b842e/Constitution_Template_With_Guidelines.docx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "3ef2b351-8a84-4ff2-8724-d86eae9b842e"
+}

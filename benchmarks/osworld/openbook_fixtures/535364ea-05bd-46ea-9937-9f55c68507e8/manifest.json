@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/712b3eab23eeb201e55f1dc02d8cd936f19ddfad5d746cb7270870d123bb94fb",
+      "body_sha256": "712b3eab23eeb201e55f1dc02d8cd936f19ddfad5d746cb7270870d123bb94fb",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/535364ea-05bd-46ea-9937-9f55c68507e8/SummerSales.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "535364ea-05bd-46ea-9937-9f55c68507e8"
+}

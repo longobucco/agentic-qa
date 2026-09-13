@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/37cc29dd8f063d32f5b563abaacc7d14048c08f5f8b5e01e0348188b447ddc9a",
+      "body_sha256": "37cc29dd8f063d32f5b563abaacc7d14048c08f5f8b5e01e0348188b447ddc9a",
+      "headers": {
+        "content-type": "image/png"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/91190194-f406-4cd6-b3f9-c43fac942b22/cola.png"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "91190194-f406-4cd6-b3f9-c43fac942b22"
+}

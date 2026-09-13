@@ -1,0 +1,27 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/d913fe3fd5c42aa31a3feb66a83188e95acba5a3112e830b66c905a002fb865c",
+      "body_sha256": "d913fe3fd5c42aa31a3feb66a83188e95acba5a3112e830b66c905a002fb865c",
+      "headers": {
+        "content-type": "application/octet-stream"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/vs_code/847a96b6-df94-4927-97e6-8cc9ea66ced7/workspace1.code-workspace"
+    },
+    {
+      "body_file": "bodies/b5837447e80852ecc11a8edb3016156ab9ae0531988b696f903073ae17dad235",
+      "body_sha256": "b5837447e80852ecc11a8edb3016156ab9ae0531988b696f903073ae17dad235",
+      "headers": {
+        "content-type": "application/octet-stream"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/vs_code/847a96b6-df94-4927-97e6-8cc9ea66ced7/workspace2.code-workspace"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "847a96b6-df94-4927-97e6-8cc9ea66ced7"
+}

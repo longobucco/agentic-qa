@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/c7ff9a4ecda5d723f4024ef9b8db28f4821338520fecec8dc832e8f894c2f627",
+      "body_sha256": "c7ff9a4ecda5d723f4024ef9b8db28f4821338520fecec8dc832e8f894c2f627",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/02ce9a50-7af2-47ed-8596-af0c230501f8/top-10-linux-commands-for-newbies.docx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "02ce9a50-7af2-47ed-8596-af0c230501f8"
+}

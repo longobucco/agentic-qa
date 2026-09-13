@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/9928b7d3de0cf049a5c7b23c8d81c48287478b3ec82d49aa59a9ec404cc1a23c",
+      "body_sha256": "9928b7d3de0cf049a5c7b23c8d81c48287478b3ec82d49aa59a9ec404cc1a23c",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/358aa0a7-6677-453f-ae35-e440f004c31e/note-taking-strategies.file"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "358aa0a7-6677-453f-ae35-e440f004c31e"
+}

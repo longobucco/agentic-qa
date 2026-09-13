@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/36ad3069b90c7e3968b355aa655368e0a4078bffb6459621bc6ad9f15662a607",
+      "body_sha256": "36ad3069b90c7e3968b355aa655368e0a4078bffb6459621bc6ad9f15662a607",
+      "headers": {
+        "content-type": "image/webp"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/os/5ea617a3-0e86-4ba6-aab2-dac9aa2e8d57/poster_party_night.webp"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "5ea617a3-0e86-4ba6-aab2-dac9aa2e8d57"
+}

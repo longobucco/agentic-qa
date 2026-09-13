@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/c5945a6b459e337e984fe20cd653527f544acc5ee5784802386fb07198d6c4ac",
+      "body_sha256": "c5945a6b459e337e984fe20cd653527f544acc5ee5784802386fb07198d6c4ac",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/ce88f674-ab7a-43da-9201-468d38539e4a/AM_Last_Page_Template.pptx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "ce88f674-ab7a-43da-9201-468d38539e4a"
+}

@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/7e36c0099cf96f45ef92d59b6a8441541700d467e9af5fa7c33318df3e09ef83",
+      "body_sha256": "7e36c0099cf96f45ef92d59b6a8441541700d467e9af5fa7c33318df3e09ef83",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/4172ea6e-6b77-4edb-a9cc-c0014bd1603b/MaturityDate.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "4172ea6e-6b77-4edb-a9cc-c0014bd1603b"
+}

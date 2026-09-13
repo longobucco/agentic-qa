@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/2f7644c666168178f7017b3fa47ba2f3c15bda2ae33740d11d9817169b7e469d",
+      "body_sha256": "2f7644c666168178f7017b3fa47ba2f3c15bda2ae33740d11d9817169b7e469d",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/5d901039-a89c-4bfb-967b-bf66f4df075e/CPD_Background_Investigation_Process.pptx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "5d901039-a89c-4bfb-967b-bf66f4df075e"
+}

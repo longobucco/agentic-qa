@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/f75b66507210e365193e913d731fa6e1fb0c7b831f4609ec0b7e0a61c7d4b7fb",
+      "body_sha256": "f75b66507210e365193e913d731fa6e1fb0c7b831f4609ec0b7e0a61c7d4b7fb",
+      "headers": {
+        "content-type": "application/zip"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/f918266a-b3e0-4914-865d-4faa564f1aef/calculator.zip"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "f918266a-b3e0-4914-865d-4faa564f1aef"
+}

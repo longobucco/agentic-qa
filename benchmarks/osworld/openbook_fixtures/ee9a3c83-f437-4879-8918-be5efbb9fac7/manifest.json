@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/2dd8ca392783a86afc0b0120b333c7ff83bb5fcfb1a0088be6d5957e05da1c91",
+      "body_sha256": "2dd8ca392783a86afc0b0120b333c7ff83bb5fcfb1a0088be6d5957e05da1c91",
+      "headers": {
+        "content-type": "application/vnd.oasis.opendocument.spreadsheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/ee9a3c83-f437-4879-8918-be5efbb9fac7/file_example_ODS_5000.ods"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "ee9a3c83-f437-4879-8918-be5efbb9fac7"
+}

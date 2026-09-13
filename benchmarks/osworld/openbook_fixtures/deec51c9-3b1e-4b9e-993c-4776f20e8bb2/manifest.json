@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/dc6161d9953ae979d02e00ee3a28cdbec0b3f4b42c5a4ef525f0b8b70bb4dace",
+      "body_sha256": "dc6161d9953ae979d02e00ee3a28cdbec0b3f4b42c5a4ef525f0b8b70bb4dace",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/deec51c9-3b1e-4b9e-993c-4776f20e8bb2/New%20Large%20Language%20Models.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "deec51c9-3b1e-4b9e-993c-4776f20e8bb2"
+}

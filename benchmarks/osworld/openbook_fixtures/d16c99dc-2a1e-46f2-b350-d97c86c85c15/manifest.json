@@ -1,0 +1,27 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/e08ef7f647e9394682f3ee4858137c69cc931d2ace8b7bc618e25da83618d581",
+      "body_sha256": "e08ef7f647e9394682f3ee4858137c69cc931d2ace8b7bc618e25da83618d581",
+      "headers": {
+        "content-type": "image/png"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/gimp/d16c99dc-2a1e-46f2-b350-d97c86c85c15/dog_with_background.png"
+    },
+    {
+      "body_file": "bodies/ce178e548eea89d31c6836873ede95774f59f55284cb9dc9355e13fb8be214c2",
+      "body_sha256": "ce178e548eea89d31c6836873ede95774f59f55284cb9dc9355e13fb8be214c2",
+      "headers": {
+        "content-type": "application/octet-stream"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/gimp/d16c99dc-2a1e-46f2-b350-d97c86c85c15/dog_with_background_two_layers.xcf"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "d16c99dc-2a1e-46f2-b350-d97c86c85c15"
+}

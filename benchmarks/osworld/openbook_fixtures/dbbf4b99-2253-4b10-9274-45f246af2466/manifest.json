@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/31c0aeec617ddc8f6a60eea02a2594e6956a047c9f30d56f1416ff1520860aaf",
+      "body_sha256": "31c0aeec617ddc8f6a60eea02a2594e6956a047c9f30d56f1416ff1520860aaf",
+      "headers": {
+        "content-type": "application/octet-stream"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/gimp/dbbf4b99-2253-4b10-9274-45f246af2466/yicun.raw"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "dbbf4b99-2253-4b10-9274-45f246af2466"
+}

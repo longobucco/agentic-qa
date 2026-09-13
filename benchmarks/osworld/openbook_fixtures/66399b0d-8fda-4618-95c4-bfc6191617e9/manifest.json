@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/69550c72aca332f946ceb368fe369cca8ab611ad949c4142b971f9ef3ed42678",
+      "body_sha256": "69550c72aca332f946ceb368fe369cca8ab611ad949c4142b971f9ef3ed42678",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/66399b0d-8fda-4618-95c4-bfc6191617e9/Table_Of_Work_Effort_Instructions.docx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "66399b0d-8fda-4618-95c4-bfc6191617e9"
+}

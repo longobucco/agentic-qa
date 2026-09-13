@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/5eff9cf0ce47825fcac953282fcbc7cf144f12cf99f1ad6914ae345a0a995967",
+      "body_sha256": "5eff9cf0ce47825fcac953282fcbc7cf144f12cf99f1ad6914ae345a0a995967",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/1334ca3e-f9e3-4db8-9ca7-b4c653be7d17/Zoom_Out_Oversized_Cells.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "1334ca3e-f9e3-4db8-9ca7-b4c653be7d17"
+}

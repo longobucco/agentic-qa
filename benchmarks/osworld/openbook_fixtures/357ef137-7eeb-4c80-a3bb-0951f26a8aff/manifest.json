@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/a6f792dd99a2251bf7f2ed1f55896e3588718a4a53d291ecc5db25a5b3ac8b17",
+      "body_sha256": "a6f792dd99a2251bf7f2ed1f55896e3588718a4a53d291ecc5db25a5b3ac8b17",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/357ef137-7eeb-4c80-a3bb-0951f26a8aff/Multiply_Time_Number.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "357ef137-7eeb-4c80-a3bb-0951f26a8aff"
+}

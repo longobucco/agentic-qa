@@ -1,0 +1,77 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/f8aafd10d06413f62c9b0a2cc9829311cad1bd7b532af6a95af3299ee754f206",
+      "body_sha256": "f8aafd10d06413f62c9b0a2cc9829311cad1bd7b532af6a95af3299ee754f206",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/bf4e9888-f10f-47af-8dba-76413038b73c/4.3-Template_4.29.2016.pptx"
+    },
+    {
+      "body_file": "bodies/74d65fc57740264c7490318e2e2696eb8f681645755169cd607e189a048bda71",
+      "body_sha256": "74d65fc57740264c7490318e2e2696eb8f681645755169cd607e189a048bda71",
+      "headers": {
+        "content-type": "image/png"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/bf4e9888-f10f-47af-8dba-76413038b73c/pic1.png"
+    },
+    {
+      "body_file": "bodies/5e51e20a87a96df79e767131cf3cd61e9cf79e8c327073bb7c06eb598e8db6c1",
+      "body_sha256": "5e51e20a87a96df79e767131cf3cd61e9cf79e8c327073bb7c06eb598e8db6c1",
+      "headers": {
+        "content-type": "image/png"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/bf4e9888-f10f-47af-8dba-76413038b73c/pic2.png"
+    },
+    {
+      "body_file": "bodies/279df468773204169e12044d096a26f54b9cdf3c5c6e84c63176d5e32c2ffa88",
+      "body_sha256": "279df468773204169e12044d096a26f54b9cdf3c5c6e84c63176d5e32c2ffa88",
+      "headers": {
+        "content-type": "image/png"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/bf4e9888-f10f-47af-8dba-76413038b73c/pic3.png"
+    },
+    {
+      "body_file": "bodies/154b9f093efdb1bdd11bb17b20e6608198b3350e2b2aace67d3cc80901eb9ee1",
+      "body_sha256": "154b9f093efdb1bdd11bb17b20e6608198b3350e2b2aace67d3cc80901eb9ee1",
+      "headers": {
+        "content-type": "image/png"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/bf4e9888-f10f-47af-8dba-76413038b73c/pic4.png"
+    },
+    {
+      "body_file": "bodies/f158d4dbf9665b54203887b3b0a97d7fbfb2eebcffd078276223deb0170c9ec9",
+      "body_sha256": "f158d4dbf9665b54203887b3b0a97d7fbfb2eebcffd078276223deb0170c9ec9",
+      "headers": {
+        "content-type": "image/png"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/bf4e9888-f10f-47af-8dba-76413038b73c/pic5.png"
+    },
+    {
+      "body_file": "bodies/bb4728b23f6f5ca2a1e3c7eb46816ad9ba97be2f7f44aaa2a35d0b63db79dca1",
+      "body_sha256": "bb4728b23f6f5ca2a1e3c7eb46816ad9ba97be2f7f44aaa2a35d0b63db79dca1",
+      "headers": {
+        "content-type": "image/png"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/bf4e9888-f10f-47af-8dba-76413038b73c/pic6.png"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "bf4e9888-f10f-47af-8dba-76413038b73c"
+}

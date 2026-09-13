@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/eb02ccbbf5f1c6f706663c1594077b25e8bfc2bafa2c0364e914345b105bc77a",
+      "body_sha256": "eb02ccbbf5f1c6f706663c1594077b25e8bfc2bafa2c0364e914345b105bc77a",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/39be0d19-634d-4475-8768-09c130f5425d/41_3.pptx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "39be0d19-634d-4475-8768-09c130f5425d"
+}

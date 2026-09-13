@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/f4c410119a88653225d8016d2594ae395d5b020e7b40067af0e72f0754b3c22e",
+      "body_sha256": "f4c410119a88653225d8016d2594ae395d5b020e7b40067af0e72f0754b3c22e",
+      "headers": {
+        "content-type": "application/zip"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/5df7b33a-9f77-4101-823e-02f863e1c1ae/raw_book.zip"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "5df7b33a-9f77-4101-823e-02f863e1c1ae"
+}

@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/dfbb801f920024ef5a3227299cb30b163d6cebe2f3e5f84480bbb38c7ed40627",
+      "body_sha256": "dfbb801f920024ef5a3227299cb30b163d6cebe2f3e5f84480bbb38c7ed40627",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/81c425f5-78f3-4771-afd6-3d2973825947/OSP_Envelope_Price-List_2023_5000.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "81c425f5-78f3-4771-afd6-3d2973825947"
+}

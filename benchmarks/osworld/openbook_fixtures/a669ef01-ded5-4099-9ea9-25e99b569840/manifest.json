@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/d9aa9dbb713d739ca75623949a8b8b846610746dc24ecc0609011e456a7f4ccb",
+      "body_sha256": "d9aa9dbb713d739ca75623949a8b8b846610746dc24ecc0609011e456a7f4ccb",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/a669ef01-ded5-4099-9ea9-25e99b569840/Writing-Outlines.pptx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "a669ef01-ded5-4099-9ea9-25e99b569840"
+}

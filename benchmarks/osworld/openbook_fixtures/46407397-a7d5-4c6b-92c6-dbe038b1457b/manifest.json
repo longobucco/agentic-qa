@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/c617764797942d05f3931ff936c121da801b3819f8632b88816d46bad7056ad0",
+      "body_sha256": "c617764797942d05f3931ff936c121da801b3819f8632b88816d46bad7056ad0",
+      "headers": {
+        "content-type": "application/x-tar"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/46407397-a7d5-4c6b-92c6-dbe038b1457b/thunderbird.profile.tar.gz"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "46407397-a7d5-4c6b-92c6-dbe038b1457b"
+}

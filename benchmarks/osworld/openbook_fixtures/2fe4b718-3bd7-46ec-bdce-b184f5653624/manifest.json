@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/5e70b96ad27dc8581424be7069ee9de8da9388b716e6fe213d88385f19baf80a",
+      "body_sha256": "5e70b96ad27dc8581424be7069ee9de8da9388b716e6fe213d88385f19baf80a",
+      "headers": {
+        "content-type": "video/mp4"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/2fe4b718-3bd7-46ec-bdce-b184f5653624/src.mp4"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "2fe4b718-3bd7-46ec-bdce-b184f5653624"
+}

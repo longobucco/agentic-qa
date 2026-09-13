@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/e046cddeab16513e081c6b6573637278b486acabc69b329cf8347a784876ff29",
+      "body_sha256": "e046cddeab16513e081c6b6573637278b486acabc69b329cf8347a784876ff29",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/eb03d19a-b88d-4de4-8a64-ca0ac66f426b/Students_Class_Subject_Marks.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "eb03d19a-b88d-4de4-8a64-ca0ac66f426b"
+}

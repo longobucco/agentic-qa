@@ -1,0 +1,27 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/662a929926e06d62024feb6df1e01555237fd894f7a173c22d7395fc20dd0f96",
+      "body_sha256": "662a929926e06d62024feb6df1e01555237fd894f7a173c22d7395fc20dd0f96",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/778efd0a-153f-4842-9214-f05fc176b877/Minimalist_Business_Slides.pptx"
+    },
+    {
+      "body_file": "bodies/96e39ebcdb9fa37ca6c4c3d3c30a97ff29f1f614a707d32a6182d1bf6783c759",
+      "body_sha256": "96e39ebcdb9fa37ca6c4c3d3c30a97ff29f1f614a707d32a6182d1bf6783c759",
+      "headers": {
+        "content-type": "video/mp4"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/778efd0a-153f-4842-9214-f05fc176b877/planet.mp4"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "778efd0a-153f-4842-9214-f05fc176b877"
+}

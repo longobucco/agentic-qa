@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/42551f0a57ada6490ae4c4185a0631d5e28de3a4ae25d96d6cf1cd6f5f7688ee",
+      "body_sha256": "42551f0a57ada6490ae4c4185a0631d5e28de3a4ae25d96d6cf1cd6f5f7688ee",
+      "headers": {
+        "content-type": "application/x-tar"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/e2392362-125e-4f76-a2ee-524b183a3412/academicpages.github.io.tar.xz"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "e2392362-125e-4f76-a2ee-524b183a3412"
+}

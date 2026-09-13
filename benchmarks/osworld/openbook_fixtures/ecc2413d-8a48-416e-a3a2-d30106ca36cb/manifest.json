@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/82f131afdd70eff51751bdb433846f9fcd62728c5293bec7c962836eab7ec2db",
+      "body_sha256": "82f131afdd70eff51751bdb433846f9fcd62728c5293bec7c962836eab7ec2db",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/ecc2413d-8a48-416e-a3a2-d30106ca36cb/Sample_Statutory_Declaration.docx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "ecc2413d-8a48-416e-a3a2-d30106ca36cb"
+}

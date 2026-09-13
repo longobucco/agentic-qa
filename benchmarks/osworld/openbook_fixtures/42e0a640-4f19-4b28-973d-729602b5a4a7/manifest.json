@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/4bf3c94407240969c2dc55b098d2fab6b247f3b530fe48bae0f39a923b397300",
+      "body_sha256": "4bf3c94407240969c2dc55b098d2fab6b247f3b530fe48bae0f39a923b397300",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/1273e544-688f-496b-8d89-3e0f40aa0606/NetIncome.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "42e0a640-4f19-4b28-973d-729602b5a4a7"
+}

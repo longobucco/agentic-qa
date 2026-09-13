@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/019e40f4e8e5ee662b6d4038ec7f206e37a6fbc90b6ddd553b0bbe0d5081ef7a",
+      "body_sha256": "019e40f4e8e5ee662b6d4038ec7f206e37a6fbc90b6ddd553b0bbe0d5081ef7a",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/aa3a8974-2e85-438b-b29e-a64df44deb4b/Resize_Cells_Fit_Page.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "aa3a8974-2e85-438b-b29e-a64df44deb4b"
+}

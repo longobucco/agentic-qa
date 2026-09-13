@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/e08ef7f647e9394682f3ee4858137c69cc931d2ace8b7bc618e25da83618d581",
+      "body_sha256": "e08ef7f647e9394682f3ee4858137c69cc931d2ace8b7bc618e25da83618d581",
+      "headers": {
+        "content-type": "image/png"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/gimp/2a729ded-3296-423d-aec4-7dd55ed5fbb3/dog_with_background.png"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "2a729ded-3296-423d-aec4-7dd55ed5fbb3"
+}

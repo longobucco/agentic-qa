@@ -1,0 +1,37 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/44049ab454c0681e39637a936b30e74f670e1b59438e6a835357644fb4b7e2af",
+      "body_sha256": "44049ab454c0681e39637a936b30e74f670e1b59438e6a835357644fb4b7e2af",
+      "headers": {
+        "content-type": "image/jpeg"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/gimp/2e6f678f-472d-4c55-99cc-8e7c5c402a71/squirrel.jpeg"
+    },
+    {
+      "body_file": "bodies/f0c598f958ea0b4b2b64a62b7ec740843359dd813a3eef3abfe6fff65d22c23f",
+      "body_sha256": "f0c598f958ea0b4b2b64a62b7ec740843359dd813a3eef3abfe6fff65d22c23f",
+      "headers": {
+        "content-type": "image/jpeg"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/gimp/2e6f678f-472d-4c55-99cc-8e7c5c402a71/panda.jpeg"
+    },
+    {
+      "body_file": "bodies/a3c283ebeca79ea52bd4d02ec944312508eeaf8e55da1743d69ff9fe99b28c5c",
+      "body_sha256": "a3c283ebeca79ea52bd4d02ec944312508eeaf8e55da1743d69ff9fe99b28c5c",
+      "headers": {
+        "content-type": "image/jpeg"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/gimp/2e6f678f-472d-4c55-99cc-8e7c5c402a71/heron.jpeg"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "2e6f678f-472d-4c55-99cc-8e7c5c402a71"
+}

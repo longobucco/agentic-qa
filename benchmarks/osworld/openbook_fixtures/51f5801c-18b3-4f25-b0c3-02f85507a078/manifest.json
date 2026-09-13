@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/5ffcdc41c55a68224e9ef39dc9dc1b328c6ea577b1e91a5e538b90ad24a3ed5c",
+      "body_sha256": "5ffcdc41c55a68224e9ef39dc9dc1b328c6ea577b1e91a5e538b90ad24a3ed5c",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/51f5801c-18b3-4f25-b0c3-02f85507a078/Dickinson_Slides.pptx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "51f5801c-18b3-4f25-b0c3-02f85507a078"
+}

@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/51b35873bde4e9041a5e7557e52685db5fc92a8244c87bf65dbc0b19f3cd81f1",
+      "body_sha256": "51b35873bde4e9041a5e7557e52685db5fc92a8244c87bf65dbc0b19f3cd81f1",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/e246f6d8-78d7-44ac-b668-fcf47946cb50/Y22-2119-assign4.docx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "e246f6d8-78d7-44ac-b668-fcf47946cb50"
+}

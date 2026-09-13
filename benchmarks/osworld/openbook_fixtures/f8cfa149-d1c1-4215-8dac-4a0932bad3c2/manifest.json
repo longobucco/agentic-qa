@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/23c982f94d4604f73b7ee48185ad76d061d9245139c24fcc94de5c51fa6cfe25",
+      "body_sha256": "23c982f94d4604f73b7ee48185ad76d061d9245139c24fcc94de5c51fa6cfe25",
+      "headers": {
+        "content-type": "application/vnd.ms-excel"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/f8cfa149-d1c1-4215-8dac-4a0932bad3c2/file.xls"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "f8cfa149-d1c1-4215-8dac-4a0932bad3c2"
+}

@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/85e526d49bf00541382fd0e6469e7cd4ccce7f8dca7b947d412f22cf478eeccc",
+      "body_sha256": "85e526d49bf00541382fd0e6469e7cd4ccce7f8dca7b947d412f22cf478eeccc",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/c7c1e4c3-9e92-4eba-a4b8-689953975ea4/Professor_Contact.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "c7c1e4c3-9e92-4eba-a4b8-689953975ea4"
+}

@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/66d5f82285fb184699f607f6127568509ae2c4d7d08aac91dda972ac6ba93254",
+      "body_sha256": "66d5f82285fb184699f607f6127568509ae2c4d7d08aac91dda972ac6ba93254",
+      "headers": {
+        "content-type": "application/x-sh"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/os/4d117223-a354-47fb-8b45-62ab1390a95f/setup.sh"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "4d117223-a354-47fb-8b45-62ab1390a95f"
+}

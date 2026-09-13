@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/8f9da5481c2bcefefebae562e037a71b5b93163ff6b48295fd4df30b86cf8279",
+      "body_sha256": "8f9da5481c2bcefefebae562e037a71b5b93163ff6b48295fd4df30b86cf8279",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/035f41ba-6653-43ab-aa63-c86d449d62e5/IncomeStatement2.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "035f41ba-6653-43ab-aa63-c86d449d62e5"
+}

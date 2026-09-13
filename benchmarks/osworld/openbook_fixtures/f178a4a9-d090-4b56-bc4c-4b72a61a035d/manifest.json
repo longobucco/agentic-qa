@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/81c40f540211de5408329eae55e4409766f0fba09dbb4d7e640ac0e2f7669b47",
+      "body_sha256": "81c40f540211de5408329eae55e4409766f0fba09dbb4d7e640ac0e2f7669b47",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/f178a4a9-d090-4b56-bc4c-4b72a61a035d/loa-one-time-submission-sealand.docx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "f178a4a9-d090-4b56-bc4c-4b72a61a035d"
+}

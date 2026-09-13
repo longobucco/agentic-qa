@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/d0d3cfbb42f4d94b2ecff4adf6b21ae76c6eb4bc83f1c385b60f57750f0cf5cf",
+      "body_sha256": "d0d3cfbb42f4d94b2ecff4adf6b21ae76c6eb4bc83f1c385b60f57750f0cf5cf",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/7efeb4b1-3d19-4762-b163-63328d66303b/Order_Sales_Serial%23.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "7efeb4b1-3d19-4762-b163-63328d66303b"
+}

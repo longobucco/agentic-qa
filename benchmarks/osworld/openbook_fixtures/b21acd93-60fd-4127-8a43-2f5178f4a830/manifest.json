@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/f58ab6dfb76fa597fe8d2962838d01aa15b060bdd8c4981b02777a0faa3dc252",
+      "body_sha256": "f58ab6dfb76fa597fe8d2962838d01aa15b060bdd8c4981b02777a0faa3dc252",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/b21acd93-60fd-4127-8a43-2f5178f4a830/CCHU9045_Course_Outline_2019-20.docx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "b21acd93-60fd-4127-8a43-2f5178f4a830"
+}

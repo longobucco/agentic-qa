@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/aa1beb5f2d74bb06dd8c2ca21b7a47315de13cfa373c5ea53b09e32f0eaba38b",
+      "body_sha256": "aa1beb5f2d74bb06dd8c2ca21b7a47315de13cfa373c5ea53b09e32f0eaba38b",
+      "headers": {
+        "content-type": "application/zip"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/vs_code/70745df8-f2f5-42bd-8074-fbc10334fcc5/HW-8-main-20240320T121653Z-001.zip"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "70745df8-f2f5-42bd-8074-fbc10334fcc5"
+}

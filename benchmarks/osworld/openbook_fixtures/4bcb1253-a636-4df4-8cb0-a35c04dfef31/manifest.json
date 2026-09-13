@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/7500009b2c15e5f3097a39dfc683ee34cc4f5bcd621c94fb4ceaa937d44cb9fc",
+      "body_sha256": "7500009b2c15e5f3097a39dfc683ee34cc4f5bcd621c94fb4ceaa937d44cb9fc",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/4bcb1253-a636-4df4-8cb0-a35c04dfef31/View_Person_Organizational_Summary.docx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "4bcb1253-a636-4df4-8cb0-a35c04dfef31"
+}

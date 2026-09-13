@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/a14304ba0354ff5e48061b0bf335304e6ff4e2cc1039b4c9ff5677571b8e2edc",
+      "body_sha256": "a14304ba0354ff5e48061b0bf335304e6ff4e2cc1039b4c9ff5677571b8e2edc",
+      "headers": {
+        "content-type": "application/pdf"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/0e5303d4-8820-42f6-b18d-daf7e633de21/lecture0.pdf"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "0e5303d4-8820-42f6-b18d-daf7e633de21"
+}

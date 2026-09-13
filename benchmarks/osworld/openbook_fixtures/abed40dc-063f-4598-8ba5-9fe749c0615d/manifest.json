@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/0b4de861a9ad5caa5564d1a840abd1644cb4877766eae53ad13185a3df93563b",
+      "body_sha256": "0b4de861a9ad5caa5564d1a840abd1644cb4877766eae53ad13185a3df93563b",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/abed40dc-063f-4598-8ba5-9fe749c0615d/Names_Duplicate_Unique.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "abed40dc-063f-4598-8ba5-9fe749c0615d"
+}

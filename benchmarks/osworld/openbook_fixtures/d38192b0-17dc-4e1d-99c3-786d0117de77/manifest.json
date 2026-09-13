@@ -1,0 +1,37 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/db1e923997754a453688e60bcda8845a6bb2bb31e60d1997424633ce4e086983",
+      "body_sha256": "db1e923997754a453688e60bcda8845a6bb2bb31e60d1997424633ce4e086983",
+      "headers": {
+        "content-type": "application/pdf"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/thunderbird/d38192b0-17dc-4e1d-99c3-786d0117de77/invoice0123456789.pdf"
+    },
+    {
+      "body_file": "bodies/8a714a4102d6f3aa604c0fd2bb96e63ba51594485977ed5c8dd19af846ae07e8",
+      "body_sha256": "8a714a4102d6f3aa604c0fd2bb96e63ba51594485977ed5c8dd19af846ae07e8",
+      "headers": {
+        "content-type": "application/x-tar"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/thunderbird/dd84e895-72fd-4023-a336-97689ded257c/thunderbird-profile.tar.gz"
+    },
+    {
+      "body_file": "bodies/82643c9767ce9a21f5f31510e6bb112c96644d16ad4fe121cb828fae1afc0293",
+      "body_sha256": "82643c9767ce9a21f5f31510e6bb112c96644d16ad4fe121cb828fae1afc0293",
+      "headers": {
+        "content-type": "text/html"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/thunderbird/d38192b0-17dc-4e1d-99c3-786d0117de77/New-month%20AWS%20Bill.html"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "d38192b0-17dc-4e1d-99c3-786d0117de77"
+}

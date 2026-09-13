@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/47badb8dbe2d69e46871c161ff96b8319e640b52a8d17bcddda731abc90183a9",
+      "body_sha256": "47badb8dbe2d69e46871c161ff96b8319e640b52a8d17bcddda731abc90183a9",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/bb83cab4-e5c7-42c7-a67b-e46068032b86/Unlocking-the-Power-of-ChatGPT.pptx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "bb83cab4-e5c7-42c7-a67b-e46068032b86"
+}

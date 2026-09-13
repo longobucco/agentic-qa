@@ -1,0 +1,27 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/54aefeeabe2bac149663208ed6cf4a3435bd3c20effa7fbce79255ec378c1fe9",
+      "body_sha256": "54aefeeabe2bac149663208ed6cf4a3435bd3c20effa7fbce79255ec378c1fe9",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/09a37c51-e625-49f4-a514-20a773797a8a/requirement.docx"
+    },
+    {
+      "body_file": "bodies/ff165113328d8491d5d9044e6f22e6e23cd4cef31025b0ce6bb5a7b353245ad4",
+      "body_sha256": "ff165113328d8491d5d9044e6f22e6e23cd4cef31025b0ce6bb5a7b353245ad4",
+      "headers": {
+        "content-type": "image/jpeg"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/09a37c51-e625-49f4-a514-20a773797a8a/ChMkKV8wsR6IBfEtABYfc0Tgu9cAAA1lQHO_78AFh-L733.jpg"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "09a37c51-e625-49f4-a514-20a773797a8a"
+}

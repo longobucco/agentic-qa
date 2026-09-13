@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/5171ffecaeaafd363e0c0f858006ab57d7bc08ce109abd2b89c6748be137e1fe",
+      "body_sha256": "5171ffecaeaafd363e0c0f858006ab57d7bc08ce109abd2b89c6748be137e1fe",
+      "headers": {
+        "content-type": "video/mp4"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/vlc/efcf0d81-0835-4880-b2fd-d866e8bc2294/Interstellar%20Movie%20-%20Official%20Trailer.mp4"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "efcf0d81-0835-4880-b2fd-d866e8bc2294"
+}

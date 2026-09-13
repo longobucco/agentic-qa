@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/26932140b262b8886b42d82e3a8acd1e48a4c9c97abe803791e9cf1ab10d3ce8",
+      "body_sha256": "26932140b262b8886b42d82e3a8acd1e48a4c9c97abe803791e9cf1ab10d3ce8",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/d53ff5ee-3b1a-431e-b2be-30ed2673079b/presentation_instruction_2023_Feb.docx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "d53ff5ee-3b1a-431e-b2be-30ed2673079b"
+}

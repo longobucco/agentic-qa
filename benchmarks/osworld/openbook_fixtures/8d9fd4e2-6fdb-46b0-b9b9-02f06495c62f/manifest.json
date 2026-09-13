@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/6f01c5c8940852b6dbe0cd0a65bd1fabdfae07a961d59d36ddfe63e9638ce093",
+      "body_sha256": "6f01c5c8940852b6dbe0cd0a65bd1fabdfae07a961d59d36ddfe63e9638ce093",
+      "headers": {
+        "content-type": "video/mp4"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/vlc/8d9fd4e2-6fdb-46b0-b9b9-02f06495c62f/Optimus%20-%20Gen%202.mp4"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "8d9fd4e2-6fdb-46b0-b9b9-02f06495c62f"
+}

@@ -1,0 +1,27 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/561e4818da58e7c04303aef2f67add34c6f3a23a5d4595c3b64d9f9d3575c387",
+      "body_sha256": "561e4818da58e7c04303aef2f67add34c6f3a23a5d4595c3b64d9f9d3575c387",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/3680a5ee-6870-426a-a997-eba929a0d25c/file1.xlsx"
+    },
+    {
+      "body_file": "bodies/7a47e79c4eba05e337989ab7791e25c61f07817d299ee74f6e9b4437a731360e",
+      "body_sha256": "7a47e79c4eba05e337989ab7791e25c61f07817d299ee74f6e9b4437a731360e",
+      "headers": {
+        "content-type": "application/vnd.oasis.opendocument.spreadsheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/3680a5ee-6870-426a-a997-eba929a0d25c/file2.ods"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "3680a5ee-6870-426a-a997-eba929a0d25c"
+}

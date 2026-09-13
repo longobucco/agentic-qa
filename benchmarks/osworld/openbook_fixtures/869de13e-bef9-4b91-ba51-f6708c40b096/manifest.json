@@ -1,0 +1,147 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/fd56217a8e80145ad9bdcadfb4c54d892358ccbb4ed30e7ef57f4d0e4d9f1d7d",
+      "body_sha256": "fd56217a8e80145ad9bdcadfb4c54d892358ccbb4ed30e7ef57f4d0e4d9f1d7d",
+      "headers": {
+        "content-type": "application/zip"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/869de13e-bef9-4b91-ba51-f6708c40b096/2-if-for-array.zip"
+    },
+    {
+      "body_file": "bodies/be868188a905747995ca35286bbd4bec16ebb8c51732862e0e0d86184262ad87",
+      "body_sha256": "be868188a905747995ca35286bbd4bec16ebb8c51732862e0e0d86184262ad87",
+      "headers": {
+        "content-type": "application/vnd.ms-powerpoint"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/869de13e-bef9-4b91-ba51-f6708c40b096/07-cluster-kMean%20%281%29.ppt"
+    },
+    {
+      "body_file": "bodies/196b64ea8f72841cb0c4fc972ca82a28e74de926c402bb043305e12e05e012b7",
+      "body_sha256": "196b64ea8f72841cb0c4fc972ca82a28e74de926c402bb043305e12e05e012b7",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/869de13e-bef9-4b91-ba51-f6708c40b096/2023_validation_7bd855d8-463d-4ed5-93ca-5fe35145f733.xlsx"
+    },
+    {
+      "body_file": "bodies/1d9b2f6b778b67694c45099a6b05f79e608502f254a7aec51ec2492d6096306a",
+      "body_sha256": "1d9b2f6b778b67694c45099a6b05f79e608502f254a7aec51ec2492d6096306a",
+      "headers": {
+        "content-type": "application/zip"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/869de13e-bef9-4b91-ba51-f6708c40b096/assign1-data3.zip"
+    },
+    {
+      "body_file": "bodies/741f86ddb39aed8ac2013ff7e0be3c1ccbb2a1ec43b99a8849fa7c116dc26b61",
+      "body_sha256": "741f86ddb39aed8ac2013ff7e0be3c1ccbb2a1ec43b99a8849fa7c116dc26b61",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/869de13e-bef9-4b91-ba51-f6708c40b096/assignment_mark_frontpage.docx"
+    },
+    {
+      "body_file": "bodies/6bf304d9b16bab5d7e9e623898e9790ca08dd8e53656251363766d6490e5c29b",
+      "body_sha256": "6bf304d9b16bab5d7e9e623898e9790ca08dd8e53656251363766d6490e5c29b",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/869de13e-bef9-4b91-ba51-f6708c40b096/cco-return-to-school-survey-underlying-data-tables.xlsx"
+    },
+    {
+      "body_file": "bodies/372a973ad1fe52e02ae7455b5f93c9dd20dc344cb3352efa8043778550c13c75",
+      "body_sha256": "372a973ad1fe52e02ae7455b5f93c9dd20dc344cb3352efa8043778550c13c75",
+      "headers": {
+        "content-type": "application/pdf"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/869de13e-bef9-4b91-ba51-f6708c40b096/DOC_2480903712718068684.pdf"
+    },
+    {
+      "body_file": "bodies/0ebcfef3c83da5b2774bbdeee06b417365bc80a8ef15b8bb644c4c0499cf8b55",
+      "body_sha256": "0ebcfef3c83da5b2774bbdeee06b417365bc80a8ef15b8bb644c4c0499cf8b55",
+      "headers": {
+        "content-type": "application/pdf"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/869de13e-bef9-4b91-ba51-f6708c40b096/Family%20Status%20Equality-Eng%20%28Aug%202021%29.pdf"
+    },
+    {
+      "body_file": "bodies/f3ad6c38cb00e05f3334d0a9eb5cf7bb481110605f633208ff4ddf246fcaf1c5",
+      "body_sha256": "f3ad6c38cb00e05f3334d0a9eb5cf7bb481110605f633208ff4ddf246fcaf1c5",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/869de13e-bef9-4b91-ba51-f6708c40b096/IA_Format.docx"
+    },
+    {
+      "body_file": "bodies/5692a5514787a8c6727b4ff3b726a3385798bc68e12138d1d4af83947e2acf6e",
+      "body_sha256": "5692a5514787a8c6727b4ff3b726a3385798bc68e12138d1d4af83947e2acf6e",
+      "headers": {
+        "content-type": "application/pdf"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/869de13e-bef9-4b91-ba51-f6708c40b096/paper01.pdf"
+    },
+    {
+      "body_file": "bodies/4c1aaf622c6ee3166bb4af2999b866e05019e5a35ac5f832018a887e7b44508a",
+      "body_sha256": "4c1aaf622c6ee3166bb4af2999b866e05019e5a35ac5f832018a887e7b44508a",
+      "headers": {
+        "content-type": "application/pdf"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/869de13e-bef9-4b91-ba51-f6708c40b096/GLUE%3A%20A%20MULTI-TASK%20BENCHMARK%20AND%20ANALYSIS.pdf"
+    },
+    {
+      "body_file": "bodies/23f43a2b372c9e2a152acad177ef5ae016b898dfd784c0c7d93e046fa1845fd4",
+      "body_sha256": "23f43a2b372c9e2a152acad177ef5ae016b898dfd784c0c7d93e046fa1845fd4",
+      "headers": {
+        "content-type": "application/pdf"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/869de13e-bef9-4b91-ba51-f6708c40b096/1909.10351.pdf"
+    },
+    {
+      "body_file": "bodies/d3859b3adb02783a2b6cad951e5554b485cad1df53b737e08c93e8925e014632",
+      "body_sha256": "d3859b3adb02783a2b6cad951e5554b485cad1df53b737e08c93e8925e014632",
+      "headers": {
+        "content-type": "application/pdf"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/869de13e-bef9-4b91-ba51-f6708c40b096/1802.05365.pdf"
+    },
+    {
+      "body_file": "bodies/b7d72988fd8107d07f7d278bf0ba6621adb6ed47df74be4014fa4a01f03aff6a",
+      "body_sha256": "b7d72988fd8107d07f7d278bf0ba6621adb6ed47df74be4014fa4a01f03aff6a",
+      "headers": {
+        "content-type": "application/pdf"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/869de13e-bef9-4b91-ba51-f6708c40b096/1706.03762.pdf"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "869de13e-bef9-4b91-ba51-f6708c40b096"
+}

@@ -1,0 +1,57 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/632a23dd017a77701fb35026ac98fb9835d1b2f6694efc6c59f2a7a51f89f2d5",
+      "body_sha256": "632a23dd017a77701fb35026ac98fb9835d1b2f6694efc6c59f2a7a51f89f2d5",
+      "headers": {
+        "content-type": "image/jpeg"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/os/23393935-50c7-4a86-aeea-2b78fd089c5c/monk252520thailand252520wat252520arun252520scaled25255B225255D.jpg"
+    },
+    {
+      "body_file": "bodies/7c7ad32eb7c26a5341a7dd4c1fbc79cb94f00001b70ec2e7e682b113e82a0259",
+      "body_sha256": "7c7ad32eb7c26a5341a7dd4c1fbc79cb94f00001b70ec2e7e682b113e82a0259",
+      "headers": {
+        "content-type": "image/jpeg"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/os/23393935-50c7-4a86-aeea-2b78fd089c5c/hong-kong-china.jpg"
+    },
+    {
+      "body_file": "bodies/b510cb3593f77e29f283e0f72cc8708a64d21b0ef1fcba9a161cdcce620bb5e2",
+      "body_sha256": "b510cb3593f77e29f283e0f72cc8708a64d21b0ef1fcba9a161cdcce620bb5e2",
+      "headers": {
+        "content-type": "image/jpeg"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/os/23393935-50c7-4a86-aeea-2b78fd089c5c/hk_group_photo.jpg"
+    },
+    {
+      "body_file": "bodies/9e7a56130b24df94b1fa34364b533005c36cfd5ec506dbff4394e53665610df3",
+      "body_sha256": "9e7a56130b24df94b1fa34364b533005c36cfd5ec506dbff4394e53665610df3",
+      "headers": {
+        "content-type": "image/png"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/os/23393935-50c7-4a86-aeea-2b78fd089c5c/us_3.png"
+    },
+    {
+      "body_file": "bodies/f29dbb0ecc40d2517a7dd528448ea68dccf8d979bef6951c1146d4a5e089db71",
+      "body_sha256": "f29dbb0ecc40d2517a7dd528448ea68dccf8d979bef6951c1146d4a5e089db71",
+      "headers": {
+        "content-type": "image/jpeg"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/os/23393935-50c7-4a86-aeea-2b78fd089c5c/emnlp2023.jpg"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "23393935-50c7-4a86-aeea-2b78fd089c5c"
+}

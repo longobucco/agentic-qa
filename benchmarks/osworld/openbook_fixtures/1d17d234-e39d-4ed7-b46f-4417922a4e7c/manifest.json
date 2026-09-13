@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/10bf193a7f5de4f534acb34ad4de622b7556bdc1b523b9c832fd6119b56d2211",
+      "body_sha256": "10bf193a7f5de4f534acb34ad4de622b7556bdc1b523b9c832fd6119b56d2211",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/1d17d234-e39d-4ed7-b46f-4417922a4e7c/FutureValue.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "1d17d234-e39d-4ed7-b46f-4417922a4e7c"
+}

@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/44a4981d2dd13a56f4a4b9d4dff4d51e1e36d057d5d08cd74961302bedaf8f70",
+      "body_sha256": "44a4981d2dd13a56f4a4b9d4dff4d51e1e36d057d5d08cd74961302bedaf8f70",
+      "headers": {
+        "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/01b269ae-2111-4a07-81fd-3fcd711993b0/Student_Level_Fill_Blank.xlsx"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "01b269ae-2111-4a07-81fd-3fcd711993b0"
+}
