@@ -14,6 +14,7 @@ import tempfile
 from urllib.parse import urlparse
 
 from benchmarks.osworld import config
+from benchmarks.osworld.env.cdp_forwarder import CdpForwarder, CdpForwarderError
 from benchmarks.osworld.env.http_forwarder import (LoopbackForwarder,
                                                    split_for_getters)
 
@@ -206,7 +207,7 @@ class _EnvAdapter:
     """Minimal DesktopEnv stand-in that OSWorld's getters read from."""
 
     def __init__(self, controller, controller_url, action_history, cache_dir=None,
-                 getter_address=None, use_proxy=False):
+                 getter_address=None, use_proxy=False, chromium_port=None):
         # What the twelve URL-building getters will interpolate into "http://{ip}:{port}".
         # Splitting the https:// controller URL here is what made them talk plain HTTP to port
         # 443 (env/http_forwarder.py); the loopback forwarder is passed in instead.
@@ -226,7 +227,10 @@ class _EnvAdapter:
         # filed as EVAL_ERROR: 6 runs across 2 vlc tasks lost to a missing `vlc_port`
         # alone (inventory 2026-09-04). chromium_port is read in 9 places and
         # current_use_proxy in 2, so both were latent failures waiting on the right task.
-        self.chromium_port = 9222
+        # `chromium_port`: 9222 unless a CdpForwarder is up (open-book only, use_proxy=True) --
+        # see env/cdp_forwarder.py for why the literal guest port is otherwise unreachable from
+        # the harness host (oracle_unroutable) and what makes it reachable after all.
+        self.chromium_port = chromium_port or 9222
         self.vlc_port = 8080
         self._vm_machine = None
         # False for every existing (closed-book) caller. The open-book runner passes True here so
@@ -261,7 +265,12 @@ def evaluate_official(controller_url, task, action_history, cache_dir=None, use_
     `use_proxy`: False for every closed-book/baseline caller (unchanged behavior). The open-book
     runner passes True so a postconfig step that relaunches Chrome (several chrome-bucket tasks
     do: pkill then relaunch right before scoring) gets --proxy-server too, and so
-    current_use_proxy reads true for getters that branch on it (see _EnvAdapter)."""
+    current_use_proxy reads true for getters that branch on it (see _EnvAdapter). True also
+    activates a CdpForwarder (env/cdp_forwarder.py), making Chrome's CDP port reachable for
+    get_open_tabs_info/get_active_tab_info/get_active_tab_html_parse -- otherwise blocked by
+    the same defect this module already works around for the controller's own HTTP port
+    (oracle_unroutable, see g9_replication_validity.py). False (closed-book) keeps chromium_port
+    hardcoded at 9222 exactly as before -- unchanged, that decision is separate from this fix."""
     use_pinned_evaluators()     # must precede the import below: it decides what gets imported
     try:
         from desktop_env.controllers.python import PythonController
@@ -277,24 +286,44 @@ def evaluate_official(controller_url, task, action_history, cache_dir=None, use_
     with LoopbackForwarder(controller_url) as fwd:
         address = split_for_getters(controller_url, fwd)
         controller = PythonController(vm_ip=address[0], server_port=address[1])
-        env = _EnvAdapter(controller, controller_url, action_history, cache_dir=cache_dir,
-                          getter_address=address, use_proxy=use_proxy)
-        return _score(env, ev, func, controller_url, cache_dir, getters, metrics,
-                      use_proxy=use_proxy)
+        cdp_fwd = None
+        if use_proxy:
+            try:
+                cdp_fwd = CdpForwarder(
+                    controller_url, controller_port=config.CONTROLLER_PORT).start()
+            except CdpForwarderError as e:
+                print(f"[osworld] WARNING: CdpForwarder unavailable ({e}); any getter needing "
+                     f"Chrome's CDP port directly will fail exactly as it did before this fix")
+        try:
+            env = _EnvAdapter(controller, controller_url, action_history, cache_dir=cache_dir,
+                              getter_address=address, use_proxy=use_proxy,
+                              chromium_port=cdp_fwd.port if cdp_fwd else None)
+            return _score(env, ev, func, controller_url, cache_dir, getters, metrics,
+                         use_proxy=use_proxy, cdp_forwarder=cdp_fwd)
+        finally:
+            if cdp_fwd is not None:
+                cdp_fwd.stop()
 
 
-def _score(env, ev, func, controller_url, cache_dir, getters, metrics, use_proxy=False):
+def _score(env, ev, func, controller_url, cache_dir, getters, metrics, use_proxy=False,
+          cdp_forwarder=None):
     """The scoring pass itself, with the forwarder already up and `env` already addressed."""
 
     postconfig = ev.get("postconfig", [])
     if postconfig:
+        if use_proxy and cdp_forwarder is not None:
+            from benchmarks.osworld.env.cdp_forwarder import inject_remote_allow_origins
+            postconfig = inject_remote_allow_origins(postconfig)
         # reuse the caller's cache_dir instead of minting a fresh one here -- the caller (see
         # agent_computer._score) already owns cleanup of the one it passed in; a second,
         # uncleaned mkdtemp per scored run is exactly the kind of per-run temp-dir leak that
         # let 5400 stray dirs/files (3.6GB) accumulate over ~1000 run attempts (found live
         # 2026-08-16).
-        make_setup_controller(controller_url, cache_dir=cache_dir).setup(
-            postconfig, use_proxy=use_proxy)
+        postconfig_ctrl = make_setup_controller(controller_url, cache_dir=cache_dir)
+        if use_proxy and cdp_forwarder is not None:
+            postconfig_ctrl.vm_ip, postconfig_ctrl.chromium_port = \
+                cdp_forwarder.host, cdp_forwarder.port
+        postconfig_ctrl.setup(postconfig, use_proxy=use_proxy)
 
     if func == "infeasible":
         return 1.0 if _last_is_fail(env.action_history) else 0.0
