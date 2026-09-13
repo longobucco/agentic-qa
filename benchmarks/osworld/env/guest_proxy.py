@@ -126,7 +126,14 @@ def start(ctrl, bundle_dir, *, poll_tries=15, poll_interval=1.0):
     Controller.execute, on a slow certutil call) -- uncaught, that would propagate past
     env.sandbox's own except GuestProxyError and crash the provisioning worker thread instead of
     degrading to a clean ENVIRONMENT_ERROR. Every failure here is equally fatal to the run either
-    way, so normalizing the exception type is the fix, not chasing each individual cause."""
+    way, so normalizing the exception type is the fix, not chasing each individual cause.
+
+    connection_strategy=lazy: mitmproxy's default (eager) tries to actually connect upstream
+    during CONNECT handling, to learn real certificate details before forging its own -- so an
+    HTTPS request through the proxy to a genuinely non-resolvable host (any of our fixture
+    domains, by design) got a 502 from MITMPROXY ITSELF before our addon's request() hook ever
+    ran, confirmed live 2026-09-12 with curl. lazy defers the real connection until actually
+    needed, which our addon (always sets flow.response) ensures never happens."""
     try:
         ctrl.execute(
             f"pkill -f 'mitmdump.*--listen-port {_GUEST_PORT}' 2>/dev/null; sleep 1; true",
@@ -139,8 +146,8 @@ def start(ctrl, bundle_dir, *, poll_tries=15, poll_interval=1.0):
             f"cd {_GUEST_DIR} && "
             f"OSW_OPENBOOK_BUNDLE={_GUEST_DIR}/fixtures OSW_OPENBOOK_MISS_LOG={_MISS_LOG} "
             f"nohup mitmdump --mode regular --listen-port {_GUEST_PORT} "
-            f"--set confdir={_GUEST_CA_DIR} -s {_GUEST_DIR}/addon.py "
-            f">{_PROXY_LOG} 2>&1 & disown"
+            f"--set confdir={_GUEST_CA_DIR} --set connection_strategy=lazy "
+            f"-s {_GUEST_DIR}/addon.py >{_PROXY_LOG} 2>&1 & disown"
         )
         ctrl.execute(start_cmd, shell=True, timeout=20)
         for _ in range(poll_tries):

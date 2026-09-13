@@ -15,6 +15,24 @@ from core.codex_loop import ALLOWED_MCP_TOOLS, APPROVAL_MODE, DISABLED_FEATURES
 _ROOT = Path(__file__).resolve().parents[2]
 _LOCK = Path(__file__).resolve().parent / "astra_openbook_campaign_lock.json"
 _FIXTURES_DIR = Path(__file__).resolve().parent / "openbook_fixtures"
+_MANIFEST = Path(__file__).resolve().parent / "astra_openbook_manifest.json"
+_manifest_tags_cache = None
+
+
+def proxy_tags_for(task_id):
+    """Which proxy site(s) (beyond the guest-side Chrome proxy every open-book task gets) a task
+    needs, per scripts/build_astra_openbook_manifest.py's own tagging -- shared by the runner
+    (to route scoring through the host proxy) and env.sandbox (to route config-step downloads
+    through it too, see host_side_config_download)."""
+    global _manifest_tags_cache
+    if _manifest_tags_cache is None:
+        try:
+            data = json.loads(_MANIFEST.read_text())
+            _manifest_tags_cache = {t["task_id"]: set(t.get("proxy_tags") or [])
+                                    for t in data["tasks"]}
+        except (OSError, json.JSONDecodeError, KeyError):
+            _manifest_tags_cache = {}
+    return _manifest_tags_cache.get(task_id, set())
 
 
 class PreflightError(RuntimeError):
