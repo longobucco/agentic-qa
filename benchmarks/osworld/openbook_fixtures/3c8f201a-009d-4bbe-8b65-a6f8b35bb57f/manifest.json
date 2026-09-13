@@ -1,0 +1,17 @@
+{
+  "drive": [],
+  "http": [
+    {
+      "body_file": "bodies/0dc3b2df25855f9dca1a8cbb7bec80a6955cca135b1cc45c11ff10dc04a7a10c",
+      "body_sha256": "0dc3b2df25855f9dca1a8cbb7bec80a6955cca135b1cc45c11ff10dc04a7a10c",
+      "headers": {
+        "content-type": "image/jpeg"
+      },
+      "method": "GET",
+      "status": 200,
+      "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/3c8f201a-009d-4bbe-8b65-a6f8b35bb57f/kingbird.jpeg"
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "3c8f201a-009d-4bbe-8b65-a6f8b35bb57f"
+}

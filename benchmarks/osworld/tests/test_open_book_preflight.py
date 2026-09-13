@@ -81,19 +81,29 @@ def test_require_open_book_rejects_a_task_that_no_longer_classifies_as_open_book
             assert "now classifies as" in str(e)
 
 
-def _real_open_book_task(lock):
+def _real_open_book_task(lock, *, unauthored=False):
     """A fabricated near-empty task record reclassifies as closed-book (no URL, no download
     step) and gets rejected one check earlier than intended -- load the real task so
-    require_open_book's reclassification agrees with why the id is in the population."""
+    require_open_book's reclassification agrees with why the id is in the population.
+
+    `unauthored`: pick a task_id with no fixture bundle directory on disk. The population's
+    first id (population order, not authoring order) is no longer a safe default for this --
+    the download-fixture curation pass (2026-09-13) authored real bundles for 254 of 308
+    population tasks, so "the first id" now has an ~82% chance of already having one."""
     from benchmarks.osworld.tasks import load_tasks
     by_id = {t["id"]: t for t in load_tasks()}
-    task_id = next(iter(p._population_ids(lock)))
+    ids = p._population_ids(lock)
+    if unauthored:
+        authored = {d.name for d in p._FIXTURES_DIR.iterdir()} if p._FIXTURES_DIR.exists() else set()
+        task_id = next(tid for tid in ids if tid not in authored)
+    else:
+        task_id = next(iter(ids))
     return by_id[task_id]
 
 
 def test_task_check_reports_snapshot_proxy_missing_for_an_unauthored_bundle():
     lock = p.load_lock()
-    task = _real_open_book_task(lock)
+    task = _real_open_book_task(lock, unauthored=True)
     result = p.task_check(task, lock=lock)
     assert result["ready"] is False
     assert "SNAPSHOT_PROXY_MISSING" in result["reason"]

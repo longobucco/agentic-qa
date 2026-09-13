@@ -130,7 +130,7 @@ def _verify_launches(ctrl, steps, *, wait=3, retries=4):
     return f"launched app(s) never started: {', '.join(sorted(binaries))}"
 
 
-def _run_config(ctrl, task, *, use_proxy=False):
+def _run_config(ctrl, task, *, use_proxy=False, sandbox=None):
     """Run the task's config via OSWorld's own SetupController, then independently verify any
     "launch" step actually started (see _verify_launches). Returns None on success, an error
     string on failure -- never silently swallowed. No fallback to a naive per-step POST: config
@@ -141,7 +141,14 @@ def _run_config(ctrl, task, *, use_proxy=False):
     `use_proxy`: threaded into upstream SetupController.setup(steps, use_proxy=...) -- when True,
     any "launch" step starting google-chrome gets --proxy-server=http://127.0.0.1:18888 appended
     (setup.py:309-310). False (default) for every existing caller; only the open-book environment
-    (env.guest_proxy having already made something real listen there) passes True."""
+    (env.guest_proxy having already made something real listen there) passes True. True ALSO
+    activates a CdpForwarder (env/cdp_forwarder.py) and injects --remote-allow-origins=* into any
+    Chrome launch step, making chrome_open_tabs/chrome_close_tabs steps (raw CDP from the harness
+    host, previously always unroutable -- see g9_replication_validity.py's oracle_unroutable)
+    actually work. `sandbox`: the Daytona sandbox object, passed straight to CdpForwarder for its
+    authoritative get_preview_link() call -- omit only for callers that never provision one (e.g.
+    OSW_CONTROLLER_URL/OSW_SANDBOX_ID reuse paths), where CdpForwarder falls back to a verified
+    URL-pattern instead."""
     steps = task.get("config", [])
     if not steps:
         return None
@@ -154,11 +161,28 @@ def _run_config(ctrl, task, *, use_proxy=False):
     # 3.6GB leak across the temp-dir patterns in this codebase; see the matching fix in
     # agent_computer._score / osworld_eval.evaluate_official).
     cache_dir = tempfile.mkdtemp(prefix="osw_setup_cache_")
+    cdp_fwd = None
     try:
-        make_setup_controller(ctrl.base_url, cache_dir=cache_dir).setup(steps, use_proxy=use_proxy)
+        setup_ctrl = make_setup_controller(ctrl.base_url, cache_dir=cache_dir)
+        if use_proxy:
+            from benchmarks.osworld.env.cdp_forwarder import (
+                CdpForwarder, CdpForwarderError, inject_remote_allow_origins)
+            steps = inject_remote_allow_origins(steps)
+            try:
+                cdp_fwd = CdpForwarder(
+                    ctrl.base_url, sandbox=sandbox, controller_port=config.CONTROLLER_PORT
+                ).start()
+                setup_ctrl.vm_ip, setup_ctrl.chromium_port = cdp_fwd.host, cdp_fwd.port
+            except CdpForwarderError as e:
+                print(f"[osworld] WARNING: CdpForwarder unavailable ({e}); any "
+                     f"chrome_open_tabs/chrome_close_tabs step in this task's config will fail "
+                     f"exactly as it did before this fix")
+        setup_ctrl.setup(steps, use_proxy=use_proxy)
     except Exception as e:
         return f"config setup failed: {e}"
     finally:
+        if cdp_fwd is not None:
+            cdp_fwd.stop()
         shutil.rmtree(cache_dir, ignore_errors=True)
     return _verify_launches(ctrl, steps)
 
@@ -265,7 +289,7 @@ def _provision_and_configure_openbook(task, holder):
     proxy_tags = open_book_preflight.proxy_tags_for(task["id"])
     _HOST_SIDE_CONFIG_TAGS = {"host_side_config_download", "external_oauth_service"}
     if not (proxy_tags & _HOST_SIDE_CONFIG_TAGS):
-        return ctrl, _run_config(ctrl, task, use_proxy=True)
+        return ctrl, _run_config(ctrl, task, use_proxy=True, sandbox=sb)
 
     # A "download" config step (SetupController._download_setup) runs requests.get() on the
     # HARNESS HOST, not in the guest -- confirmed live 2026-09-12 (see
@@ -292,7 +316,7 @@ def _provision_and_configure_openbook(task, holder):
         with host_proxy.host_proxy(
             bundle_dir, needs_drive_mock="external_oauth_service" in proxy_tags,
         ) as handle, host_proxy.scoped_env(handle, no_proxy_hosts=no_proxy_hosts):
-            err = _run_config(ctrl, task, use_proxy=True)
+            err = _run_config(ctrl, task, use_proxy=True, sandbox=sb)
     except host_proxy.HostProxyError as e:
         return ctrl, f"open-book host proxy setup failed: {e}"
     return ctrl, err
