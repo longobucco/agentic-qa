@@ -19,7 +19,8 @@ from pathlib import Path
 
 _ADDON = Path(__file__).resolve().parents[1] / "openbook_proxy" / "addon.py"
 _DRIVE_MOCK = Path(__file__).resolve().parents[1] / "openbook_proxy" / "drive_mock.py"
-_PROXY_ENV_VARS = ("HTTP_PROXY", "HTTPS_PROXY", "http_proxy", "https_proxy", "REQUESTS_CA_BUNDLE")
+_PROXY_ENV_VARS = ("HTTP_PROXY", "HTTPS_PROXY", "http_proxy", "https_proxy", "REQUESTS_CA_BUNDLE",
+                  "NO_PROXY", "no_proxy")
 
 
 class HostProxyError(RuntimeError):
@@ -48,6 +49,25 @@ def _ca_cert_path(confdir):
     return Path(confdir) / "mitmproxy-ca-cert.pem"
 
 
+def _combined_ca_bundle(confdir, ca_cert):
+    """REQUESTS_CA_BUNDLE REPLACES requests' trust store, it doesn't add to it -- confirmed live
+    2026-09-12: pointing it at our mitmproxy CA alone broke TLS verification for the REAL Daytona
+    controller (a legitimately-signed, unproxied endpoint reached in the same requests session as
+    a proxied external download, e.g. SetupController._download_setup's upload-back-to-guest
+    call). A single bundle trusting both -- certifi's normal default plus our CA appended -- fixes
+    proxied AND direct HTTPS calls in the same scoped_env block. Cached in confdir; certifi's
+    bundle changes only on a dependency upgrade, so a stale copy is a rebuild away, not a
+    correctness risk."""
+    combined = Path(confdir) / "combined-ca-bundle.pem"
+    try:
+        import certifi
+        system_bundle = Path(certifi.where()).read_bytes()
+    except ImportError:
+        system_bundle = b""
+    combined.write_bytes(system_bundle + b"\n" + Path(ca_cert).read_bytes())
+    return combined
+
+
 @contextmanager
 def host_proxy(bundle_dir, *, needs_drive_mock=False, confdir=None, miss_log=None):
     """`confdir`: reuse the same pre-generated, pre-trusted CA the guest image bakes in (see
@@ -64,8 +84,14 @@ def host_proxy(bundle_dir, *, needs_drive_mock=False, confdir=None, miss_log=Non
     env["OSW_OPENBOOK_BUNDLE"] = str(bundle_dir)
     if miss_log:
         env["OSW_OPENBOOK_MISS_LOG"] = str(miss_log)
+    # connection_strategy=lazy: mitmproxy's default (eager) tries to actually connect upstream
+    # during CONNECT handling to learn real certificate details -- confirmed live 2026-09-12 that
+    # this produces a 502 from mitmproxy ITSELF for a genuinely non-resolvable fixture host,
+    # before our addon's request() hook (which always sets flow.response) ever runs. lazy defers
+    # the real connection until actually needed, which never happens here.
     cmd = ["mitmdump", "--mode", "regular", "--listen-host", "127.0.0.1",
-          "--listen-port", str(port), "--set", f"confdir={confdir}", "-s", str(_ADDON)]
+          "--listen-port", str(port), "--set", f"confdir={confdir}",
+          "--set", "connection_strategy=lazy", "-s", str(_ADDON)]
     if needs_drive_mock:
         cmd += ["-s", str(_DRIVE_MOCK)]
     proc = subprocess.Popen(cmd, env=env, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
@@ -75,8 +101,9 @@ def host_proxy(bundle_dir, *, needs_drive_mock=False, confdir=None, miss_log=Non
             raise HostProxyError(f"host mitmdump never started listening on 127.0.0.1:{port}")
         proxy_url = f"http://127.0.0.1:{port}"
         ca_cert = _ca_cert_path(confdir)
+        combined_ca_bundle = _combined_ca_bundle(confdir, ca_cert) if ca_cert.exists() else None
         yield {"proxy_url": proxy_url, "port": port,
-              "ca_cert": str(ca_cert) if ca_cert.exists() else None}
+              "ca_cert": str(combined_ca_bundle) if combined_ca_bundle else None}
     finally:
         proc.terminate()
         try:
@@ -86,17 +113,43 @@ def host_proxy(bundle_dir, *, needs_drive_mock=False, confdir=None, miss_log=Non
 
 
 @contextmanager
-def scoped_env(handle):
+def scoped_env(handle, *, no_proxy_hosts=()):
     """Set HTTP(S)_PROXY/REQUESTS_CA_BUNDLE process-wide for the duration of the `with` block
     only, then restore exactly what was there before -- `requests` (get_cloud_file) and pydrive2
     (get_googledrive_file) both read these from os.environ at call time, and neither takes a
     proxy argument the evaluator getters could be handed directly (they're upstream OSWorld code,
-    not ours to modify)."""
+    not ours to modify).
+
+    `no_proxy_hosts`: hostnames `requests` must reach directly, bypassing this proxy entirely.
+    Confirmed live 2026-09-12: SetupController._download_setup fetches the external URL AND THEN
+    uploads the result to the real Daytona controller (POST .../setup/upload) in the same
+    requests session -- a blanket HTTP_PROXY caught that upload too, so the controller's own
+    hostname must always be excluded whenever this wraps a call that also talks to the guest.
+
+    pydrive2 (get_googledrive_file, _googledrive_setup) doesn't use `requests` at all -- it's
+    built on httplib2, which reads http_proxy/https_proxy (already set above) but does NOT read
+    REQUESTS_CA_BUNDLE or any other env var for TLS trust; it only respects the module-level
+    `httplib2.CA_CERTS` path. Confirmed live 2026-09-12 with real pydrive2 1.21.3: without this,
+    every pydrive2 call failed TLS verification against our mitmproxy cert even with
+    REQUESTS_CA_BUNDLE correctly set. Patched and restored the same way as the env vars; a no-op
+    if httplib2 isn't installed (only pulled in by pydrive2, which not every task needs)."""
     previous = {k: os.environ.get(k) for k in _PROXY_ENV_VARS}
     os.environ["HTTP_PROXY"] = os.environ["http_proxy"] = handle["proxy_url"]
     os.environ["HTTPS_PROXY"] = os.environ["https_proxy"] = handle["proxy_url"]
     if handle.get("ca_cert"):
         os.environ["REQUESTS_CA_BUNDLE"] = handle["ca_cert"]
+    if no_proxy_hosts:
+        no_proxy_value = ",".join(no_proxy_hosts)
+        os.environ["NO_PROXY"] = os.environ["no_proxy"] = no_proxy_value
+    previous_ca_certs = None
+    httplib2_module = None
+    if handle.get("ca_cert"):
+        try:
+            import httplib2 as httplib2_module
+            previous_ca_certs = httplib2_module.CA_CERTS
+            httplib2_module.CA_CERTS = handle["ca_cert"]
+        except ImportError:
+            httplib2_module = None
     try:
         yield
     finally:
@@ -105,3 +158,5 @@ def scoped_env(handle):
                 os.environ.pop(key, None)
             else:
                 os.environ[key] = value
+        if httplib2_module is not None:
+            httplib2_module.CA_CERTS = previous_ca_certs

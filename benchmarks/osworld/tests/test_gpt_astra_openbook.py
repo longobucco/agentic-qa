@@ -126,6 +126,12 @@ def test_host_proxy_wraps_scoring_only_for_tasks_tagged_with_a_host_side_getter(
             "browser": type("C", (), {"base_url": "http://controller"})(), "setup_error": None
         })(), out=out)
     assert host_proxy_cm.called, "external_live_getter must route scoring through the host proxy"
+    no_proxy_hosts = scoped_env_cm.call_args.kwargs.get("no_proxy_hosts", ())
+    assert "127.0.0.1" in no_proxy_hosts and "localhost" in no_proxy_hosts, (
+        "evaluate_official's own LoopbackForwarder addresses 127.0.0.1 directly, never the "
+        "controller's real hostname -- excluding only the hostname leaves the vm_file result "
+        "read hijacked by our own fixture proxy (confirmed live: a 502 instead of a real 404)")
+    assert "controller" in no_proxy_hosts
 
 
 def test_host_proxy_is_skipped_for_a_purely_cdp_driven_task():

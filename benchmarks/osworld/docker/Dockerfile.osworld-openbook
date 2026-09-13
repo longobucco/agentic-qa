@@ -68,3 +68,36 @@ RUN mkdir -p /opt/osw_openbook/mitmproxy_confdir && \
 # NSS trust install happens at runtime (env/guest_proxy.py), not here: Chrome's --user-data-dir
 # (and therefore its NSS db) resolves against $HOME, which the base image's own Chrome wrapper
 # resolves at guest runtime, not at image build time.
+
+# System-wide CA trust, unlike Chrome's NSS db, is NOT $HOME-dependent -- /etc/ssl/certs is a
+# fixed system path, so this can be baked in once here rather than at guest_proxy.start() runtime.
+# Needed for the agent's own non-Chrome network access below (curl/wget/Python's requests and
+# urllib all verify TLS against the system store, not Chrome's NSS one).
+RUN cp /opt/osw_openbook/mitmproxy_confdir/mitmproxy-ca-cert.pem \
+        /usr/local/share/ca-certificates/osw-openbook-mitmproxy.crt && \
+    update-ca-certificates
+
+# Confirmed live 2026-09-12 (astra_openbook_campaign_lock.json's
+# known_issues.agent_driven_non_chrome_egress_not_proxied): the guest fixture proxy was reachable
+# ONLY via Chrome's own --proxy-server flag. If the AGENT itself fetches something via a terminal
+# wget/curl, or Python's urllib/requests through the run_python MCP tool, none of that has a path
+# to the fixture -- it hits the iptables lockdown and fails outright (safe, but not fixture-
+# served). Setting http(s)_proxy at the image root -- inherited by supervisord -> start.sh ->
+# main.py -> every subprocess.run the guest server spawns, exactly like XDG_CONFIG_HOME above --
+# routes that traffic through the SAME guest proxy (127.0.0.1:18888) Chrome already uses, with no
+# change needed to OSWorld's own vendored code. no_proxy excludes loopback so the guest's own
+# controller traffic (main.py itself, port 5000) is never accidentally routed through 18888.
+ENV http_proxy=http://127.0.0.1:18888 \
+    https_proxy=http://127.0.0.1:18888 \
+    HTTP_PROXY=http://127.0.0.1:18888 \
+    HTTPS_PROXY=http://127.0.0.1:18888 \
+    no_proxy=127.0.0.1,localhost \
+    NO_PROXY=127.0.0.1,localhost
+
+# Confirmed live 2026-09-12: curl/wget verify TLS against the system store (fixed above) and
+# worked immediately, but Python's `requests` (urllib3) ships its OWN bundled CA file via
+# certifi, independent of the OS trust store, and failed CERTIFICATE_VERIFY_FAILED even with the
+# system store already updated. REQUESTS_CA_BUNDLE overrides exactly that bundled file --
+# pointed at the system store update-ca-certificates just wrote (already a superset: standard
+# CAs plus ours), not a separately maintained copy.
+ENV REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt

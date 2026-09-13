@@ -8,7 +8,8 @@
     {
       "app": "libreoffice_writer",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -19,7 +20,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -29,7 +31,9 @@
     },
     {
       "app": "libreoffice_writer",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -48,7 +52,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -59,7 +64,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -70,7 +76,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -80,7 +87,9 @@
     },
     {
       "app": "gimp",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -90,7 +99,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -100,7 +110,9 @@
     },
     {
       "app": "vscode",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -110,7 +122,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -121,7 +134,8 @@
     {
       "app": "gimp",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -141,7 +155,8 @@
     {
       "app": "libreoffice_writer",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -152,7 +167,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -162,7 +178,9 @@
     },
     {
       "app": "thunderbird",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -172,7 +190,8 @@
     {
       "app": "libreoffice_writer",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -183,7 +202,8 @@
     {
       "app": "libreoffice_writer",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -194,7 +214,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -205,7 +226,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -216,7 +238,8 @@
     {
       "app": "libreoffice_writer",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -227,7 +250,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -239,7 +263,8 @@
       "app": "libreoffice_calc",
       "proxy_tags": [
         "external_live_getter",
-        "external_oauth_service"
+        "external_oauth_service",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download",
@@ -252,7 +277,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -271,7 +297,9 @@
     },
     {
       "app": "libreoffice_writer",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -281,7 +309,8 @@
     {
       "app": "chrome",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "browser_task",
@@ -292,7 +321,9 @@
     },
     {
       "app": "libreoffice_writer",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -302,7 +333,8 @@
     {
       "app": "vscode",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -312,7 +344,9 @@
     },
     {
       "app": "libreoffice_impress",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -321,7 +355,9 @@
     },
     {
       "app": "thunderbird",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -349,7 +385,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -360,7 +397,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -371,7 +409,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -382,7 +421,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -392,7 +432,9 @@
     },
     {
       "app": "thunderbird",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -411,7 +453,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -422,7 +465,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -433,7 +477,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -444,7 +489,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -455,7 +501,8 @@
     {
       "app": "libreoffice_writer",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -466,7 +513,8 @@
     {
       "app": "vscode",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -476,7 +524,9 @@
     },
     {
       "app": "libreoffice_impress",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -486,7 +536,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -497,7 +548,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -508,7 +560,8 @@
     {
       "app": "libreoffice_writer",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -520,7 +573,8 @@
       "app": "libreoffice_writer",
       "proxy_tags": [
         "external_live_getter",
-        "external_oauth_service"
+        "external_oauth_service",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download",
@@ -532,7 +586,9 @@
     },
     {
       "app": "os",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -542,7 +598,8 @@
     {
       "app": "chrome",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "browser_task",
@@ -554,7 +611,8 @@
     {
       "app": "vscode",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -565,7 +623,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -585,7 +644,8 @@
     {
       "app": "gimp",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -613,7 +673,9 @@
     },
     {
       "app": "libreoffice_writer",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -623,7 +685,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -633,7 +696,9 @@
     },
     {
       "app": "libreoffice_calc",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -643,7 +708,8 @@
     {
       "app": "?",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -653,7 +719,9 @@
     },
     {
       "app": "os",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -662,7 +730,9 @@
     },
     {
       "app": "gimp",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -672,7 +742,8 @@
     {
       "app": "vlc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -683,7 +754,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -694,7 +766,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -714,7 +787,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -733,7 +807,9 @@
     },
     {
       "app": "libreoffice_calc",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -743,7 +819,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -753,7 +830,9 @@
     },
     {
       "app": "chrome",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "browser_task",
         "external_setup:download"
@@ -764,7 +843,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -793,7 +873,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -803,7 +884,9 @@
     },
     {
       "app": "os",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -812,7 +895,9 @@
     },
     {
       "app": "vlc",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -821,7 +906,9 @@
     },
     {
       "app": "gimp",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -831,7 +918,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -842,7 +930,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -853,7 +942,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -864,7 +954,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -874,7 +965,9 @@
     },
     {
       "app": "libreoffice_impress",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -893,7 +986,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -903,7 +997,9 @@
     },
     {
       "app": "libreoffice_writer",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -912,7 +1008,9 @@
     },
     {
       "app": "thunderbird",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -921,7 +1019,9 @@
     },
     {
       "app": "thunderbird",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -930,7 +1030,9 @@
     },
     {
       "app": "os",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -940,7 +1042,8 @@
     {
       "app": "thunderbird",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -951,7 +1054,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -962,7 +1066,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -973,7 +1078,8 @@
     {
       "app": "chrome",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "browser_task",
@@ -985,7 +1091,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -995,7 +1102,9 @@
     },
     {
       "app": "gimp",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -1014,7 +1123,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1026,7 +1136,8 @@
       "app": "thunderbird",
       "proxy_tags": [
         "external_live_getter",
-        "external_oauth_service"
+        "external_oauth_service",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download",
@@ -1048,7 +1159,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1067,7 +1179,9 @@
     },
     {
       "app": "chrome",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "browser_task",
         "external_setup:download"
@@ -1087,7 +1201,8 @@
     {
       "app": "libreoffice_writer",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1098,7 +1213,8 @@
     {
       "app": "gimp",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1108,7 +1224,9 @@
     },
     {
       "app": "os",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -1118,7 +1236,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1128,7 +1247,9 @@
     },
     {
       "app": "libreoffice_calc",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -1138,7 +1259,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "external_oauth_service"
       ],
       "reasons": [
         "external_setup:googledrive",
@@ -1150,7 +1272,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1161,7 +1284,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1171,7 +1295,9 @@
     },
     {
       "app": "vscode",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -1181,7 +1307,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1192,7 +1319,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1203,7 +1331,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1213,7 +1342,9 @@
     },
     {
       "app": "thunderbird",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -1223,7 +1354,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1233,7 +1365,9 @@
     },
     {
       "app": "vscode",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -1243,7 +1377,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1254,7 +1389,8 @@
     {
       "app": "gimp",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1265,7 +1401,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1275,7 +1412,9 @@
     },
     {
       "app": "thunderbird",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -1284,7 +1423,9 @@
     },
     {
       "app": "gimp",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -1303,7 +1444,8 @@
     {
       "app": "chrome",
       "proxy_tags": [
-        "cdp_driven_live_getter"
+        "cdp_driven_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "browser_task",
@@ -1314,7 +1456,9 @@
     },
     {
       "app": "vlc",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -1324,7 +1468,8 @@
     {
       "app": "libreoffice_writer",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1334,7 +1479,9 @@
     },
     {
       "app": "os",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -1344,7 +1491,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1355,7 +1503,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1366,7 +1515,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1377,7 +1527,8 @@
     {
       "app": "libreoffice_writer",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1387,7 +1538,9 @@
     },
     {
       "app": "vscode",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -1396,7 +1549,9 @@
     },
     {
       "app": "os",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -1406,7 +1561,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1416,7 +1572,9 @@
     },
     {
       "app": "gimp",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -1426,7 +1584,8 @@
     {
       "app": "libreoffice_writer",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1436,7 +1595,9 @@
     },
     {
       "app": "chrome",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "browser_task",
         "external_setup:download"
@@ -1447,7 +1608,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1458,7 +1620,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1479,7 +1642,8 @@
     {
       "app": "libreoffice_writer",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1490,7 +1654,8 @@
     {
       "app": "libreoffice_writer",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1510,7 +1675,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1520,7 +1686,9 @@
     },
     {
       "app": "vscode",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -1529,7 +1697,9 @@
     },
     {
       "app": "libreoffice_calc",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -1538,7 +1708,9 @@
     },
     {
       "app": "os",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -1548,7 +1720,8 @@
     {
       "app": "libreoffice_writer",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1558,7 +1731,9 @@
     },
     {
       "app": "vscode",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -1568,7 +1743,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1578,7 +1754,9 @@
     },
     {
       "app": "os",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -1588,7 +1766,8 @@
     {
       "app": "libreoffice_writer",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1599,7 +1778,8 @@
     {
       "app": "gimp",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1610,7 +1790,8 @@
     {
       "app": "gimp",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1621,7 +1802,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1643,7 +1825,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1654,7 +1837,8 @@
     {
       "app": "gimp",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1665,7 +1849,8 @@
     {
       "app": "chrome",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "browser_task",
@@ -1679,7 +1864,8 @@
       "app": "thunderbird",
       "proxy_tags": [
         "external_live_getter",
-        "external_oauth_service"
+        "external_oauth_service",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download",
@@ -1692,7 +1878,8 @@
     {
       "app": "gimp",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1703,7 +1890,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1723,7 +1911,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1733,7 +1922,9 @@
     },
     {
       "app": "vscode",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -1742,7 +1933,9 @@
     },
     {
       "app": "thunderbird",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -1761,7 +1954,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1772,7 +1966,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1783,7 +1978,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1794,7 +1990,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1804,7 +2001,9 @@
     },
     {
       "app": "libreoffice_calc",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -1822,7 +2021,9 @@
     },
     {
       "app": "chrome",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "browser_task",
         "external_setup:download"
@@ -1833,7 +2034,8 @@
     {
       "app": "libreoffice_writer",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1862,7 +2064,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1873,7 +2076,8 @@
     {
       "app": "libreoffice_writer",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1883,7 +2087,9 @@
     },
     {
       "app": "vscode",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -1892,7 +2098,9 @@
     },
     {
       "app": "libreoffice_writer",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -1901,7 +2109,9 @@
     },
     {
       "app": "chrome",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "browser_task",
         "external_setup:download"
@@ -1912,7 +2122,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1923,7 +2134,8 @@
     {
       "app": "libreoffice_writer",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1934,7 +2146,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1946,7 +2159,8 @@
       "app": "libreoffice_writer",
       "proxy_tags": [
         "external_live_getter",
-        "external_oauth_service"
+        "external_oauth_service",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download",
@@ -1959,7 +2173,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1969,7 +2184,9 @@
     },
     {
       "app": "vlc",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -1979,7 +2196,8 @@
     {
       "app": "libreoffice_writer",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -1989,7 +2207,9 @@
     },
     {
       "app": "gimp",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -1999,7 +2219,8 @@
     {
       "app": "vlc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2010,7 +2231,8 @@
     {
       "app": "gimp",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2021,7 +2243,8 @@
     {
       "app": "vscode",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2032,7 +2255,8 @@
     {
       "app": "libreoffice_writer",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2061,7 +2285,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2072,7 +2297,8 @@
     {
       "app": "vscode",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2091,7 +2317,9 @@
     },
     {
       "app": "thunderbird",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -2100,7 +2328,9 @@
     },
     {
       "app": "thunderbird",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -2110,7 +2340,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2121,7 +2352,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2150,7 +2382,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2161,7 +2394,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2173,7 +2407,8 @@
       "app": "thunderbird",
       "proxy_tags": [
         "external_live_getter",
-        "external_oauth_service"
+        "external_oauth_service",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download",
@@ -2185,7 +2420,9 @@
     },
     {
       "app": "thunderbird",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -2194,7 +2431,9 @@
     },
     {
       "app": "thunderbird",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -2204,7 +2443,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2215,7 +2455,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2225,7 +2466,9 @@
     },
     {
       "app": "libreoffice_impress",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -2243,7 +2486,9 @@
     },
     {
       "app": "gimp",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -2252,7 +2497,9 @@
     },
     {
       "app": "chrome",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "browser_task",
         "external_setup:download"
@@ -2272,7 +2519,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2283,7 +2531,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2294,7 +2543,8 @@
     {
       "app": "vlc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2317,7 +2567,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2328,7 +2579,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2338,7 +2590,9 @@
     },
     {
       "app": "libreoffice_impress",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -2360,7 +2614,8 @@
     {
       "app": "thunderbird",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2371,7 +2626,8 @@
     {
       "app": "libreoffice_writer",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2391,7 +2647,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2402,7 +2659,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2430,7 +2688,9 @@
     },
     {
       "app": "gimp",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -2440,7 +2700,8 @@
     {
       "app": "libreoffice_writer",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2471,7 +2732,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2483,7 +2745,8 @@
       "app": "thunderbird",
       "proxy_tags": [
         "external_live_getter",
-        "external_oauth_service"
+        "external_oauth_service",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download",
@@ -2505,7 +2768,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2525,7 +2789,8 @@
     {
       "app": "libreoffice_writer",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2535,7 +2800,9 @@
     },
     {
       "app": "libreoffice_writer",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -2554,7 +2821,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2565,7 +2833,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2585,7 +2854,8 @@
     {
       "app": "thunderbird",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2595,7 +2865,9 @@
     },
     {
       "app": "libreoffice_impress",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -2604,7 +2876,9 @@
     },
     {
       "app": "vscode",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -2614,7 +2888,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2625,7 +2900,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2636,7 +2912,8 @@
     {
       "app": "thunderbird",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2655,7 +2932,9 @@
     },
     {
       "app": "libreoffice_impress",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -2665,7 +2944,8 @@
     {
       "app": "gimp",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2676,7 +2956,8 @@
     {
       "app": "chrome",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "browser_task",
@@ -2687,7 +2968,9 @@
     },
     {
       "app": "thunderbird",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -2697,7 +2980,8 @@
     {
       "app": "libreoffice_writer",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2708,7 +2992,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2719,7 +3004,8 @@
     {
       "app": "gimp",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2730,7 +3016,8 @@
     {
       "app": "thunderbird",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2750,7 +3037,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download",
@@ -2770,7 +3058,9 @@
     },
     {
       "app": "gimp",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -2790,7 +3080,9 @@
     },
     {
       "app": "thunderbird",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -2800,7 +3092,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2811,7 +3104,8 @@
     {
       "app": "chrome",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "browser_task",
@@ -2822,7 +3116,9 @@
     },
     {
       "app": "thunderbird",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -2832,7 +3128,8 @@
     {
       "app": "thunderbird",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2853,7 +3150,9 @@
     },
     {
       "app": "chrome",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "browser_task",
         "external_setup:download"
@@ -2864,7 +3163,8 @@
     {
       "app": "libreoffice_writer",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2874,7 +3174,9 @@
     },
     {
       "app": "gimp",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -2884,7 +3186,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2895,7 +3198,8 @@
     {
       "app": "libreoffice_writer",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2906,7 +3210,8 @@
     {
       "app": "gimp",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2917,7 +3222,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2928,7 +3234,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2939,7 +3246,8 @@
     {
       "app": "vscode",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2950,7 +3258,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2960,7 +3269,9 @@
     },
     {
       "app": "libreoffice_writer",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -2970,7 +3281,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2981,7 +3293,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -2992,7 +3305,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -3003,7 +3317,8 @@
     {
       "app": "vlc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -3022,7 +3337,9 @@
     },
     {
       "app": "libreoffice_writer",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -3031,7 +3348,9 @@
     },
     {
       "app": "thunderbird",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -3041,7 +3360,8 @@
     {
       "app": "libreoffice_impress",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -3060,7 +3380,9 @@
     },
     {
       "app": "gimp",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -3069,7 +3391,9 @@
     },
     {
       "app": "thunderbird",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -3088,7 +3412,8 @@
     {
       "app": "gimp",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -3108,7 +3433,8 @@
     {
       "app": "libreoffice_writer",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -3127,7 +3453,9 @@
     },
     {
       "app": "libreoffice_calc",
-      "proxy_tags": [],
+      "proxy_tags": [
+        "host_side_config_download"
+      ],
       "reasons": [
         "external_setup:download"
       ],
@@ -3137,7 +3465,8 @@
     {
       "app": "vscode",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -3148,7 +3477,8 @@
     {
       "app": "libreoffice_calc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"
@@ -3159,7 +3489,8 @@
     {
       "app": "vlc",
       "proxy_tags": [
-        "external_live_getter"
+        "external_live_getter",
+        "host_side_config_download"
       ],
       "reasons": [
         "external_setup:download"

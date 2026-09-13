@@ -12,6 +12,25 @@ guest-side one every open-book task needs for the agent's own Chrome. The other 
 EXTERNAL_LIVE_GETTERS entries (info_from_website/pdf_from_url/gotoRecreationPage_and_...) connect
 to the SANDBOX's own Chrome via CDP (playwright.connect_over_cdp) -- already covered by the guest
 proxy once Chrome is proxied, so they get an informational tag only, no separate handling.
+
+`host_side_config_download`: a "download" config step (SetupController._download_setup) runs
+`requests.get(url)` on the HARNESS HOST -- not in the guest at all -- caching the file locally and
+then uploading it into the sandbox over the controller's own /setup/upload route. Confirmed live
+2026-09-12 (docs: astra_openbook_campaign_lock.json's known_issues) after initially assuming this
+ran in-guest. This is the single largest reason bucket (251 of 308 tasks, closed_book.py's
+'external_setup:download') and is covered by the exact same host_proxy.py machinery already
+built for get_cloud_file -- env.sandbox._provision_and_configure_openbook wraps the whole
+SetupController.setup(steps) call in host_proxy.scoped_env when this tag is present.
+
+A "googledrive"-type config step (SetupController._googledrive_setup) is ALSO host-side pydrive2
+(GoogleAuth/GoogleDrive), tagged `external_oauth_service` here too -- the same tag the
+googledrive_file getter gets, so env.sandbox attaches drive_mock to the host proxy for config as
+well as scoring. A "login"-type config step (SetupController._login_setup) is different: it
+drives the GUEST's own Chrome over CDP (playwright.connect_over_cdp, then page.goto/page.fill) --
+guest-side traffic, not host-side -- and additionally requires faking a real Google login WEB
+PAGE (matching real form selectors), not just the OAuth token/Drive REST endpoints. Deliberately
+NOT tagged/supported here: left as documented, out-of-scope future work (see
+astra_openbook_campaign_lock.json's known_issues.login_setup_not_supported).
 """
 import hashlib
 import json
@@ -46,6 +65,10 @@ def getter_types(task):
     return sorted(types)
 
 
+def config_step_types(task):
+    return {str(step.get("type", "")).lower() for step in (task.get("config") or [])}
+
+
 def proxy_tags(task):
     """Which proxy site(s) this task needs, beyond the guest-side Chrome proxy every open-book
     task gets. Returns a sorted list of tags -- empty for a task whose evaluator never leaves the
@@ -56,6 +79,10 @@ def proxy_tags(task):
             tags.add(_HOST_SIDE_GETTER_TAGS[getter])
         elif getter in EXTERNAL_LIVE_GETTERS:
             tags.add("cdp_driven_live_getter")   # informational: guest proxy already covers it
+    if "download" in config_step_types(task):
+        tags.add("host_side_config_download")
+    if "googledrive" in config_step_types(task):
+        tags.add("external_oauth_service")
     return sorted(tags)
 
 

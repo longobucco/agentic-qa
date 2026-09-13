@@ -16,6 +16,7 @@ import shutil
 import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
+from urllib.parse import urlparse
 
 from benchmarks.osworld import config, open_book_preflight, tasks
 from benchmarks.osworld.env import host_proxy, osworld_eval
@@ -30,7 +31,6 @@ from core import results as results_io
 from core.agent_loop import extract_answer, preview
 from core.codex_loop import build_codex_cmd, run_codex_meta
 
-_MANIFEST_PATH = Path(__file__).resolve().parents[1] / "astra_openbook_manifest.json"
 _HOST_PROXY_TAGS = {"external_live_getter", "external_oauth_service"}
 # Detected in every persisted artifact before it's kept -- see _scan_for_secrets. The mock Drive
 # token is an internal fixture-gateway secret (drive_mock.py) that must never appear in an agent-
@@ -47,19 +47,11 @@ _SECRET_PATTERNS = (
 # same convention as gpt_astra.py.
 _codex_version = astra_common.codex_version
 
-_manifest_tags_cache = None
-
-
-def _proxy_tags_for(task_id):
-    global _manifest_tags_cache
-    if _manifest_tags_cache is None:
-        try:
-            data = json.loads(_MANIFEST_PATH.read_text())
-            _manifest_tags_cache = {t["task_id"]: set(t.get("proxy_tags") or [])
-                                    for t in data["tasks"]}
-        except (OSError, json.JSONDecodeError, KeyError):
-            _manifest_tags_cache = {}
-    return _manifest_tags_cache.get(task_id, set())
+# Re-exported (not called via open_book_preflight.proxy_tags_for directly) so tests can still
+# patch.object(gpt_astra_openbook, "_proxy_tags_for", ...) at this module's own call site --
+# same convention as _codex_version above. env.sandbox uses the shared function directly since
+# it has no equivalent test-patching need today.
+_proxy_tags_for = open_book_preflight.proxy_tags_for
 
 
 def preflight():
@@ -100,7 +92,19 @@ def _score_openbook(ctrl, task, answer, out, bundle_dir, proxy_tags):
     """Same shape as runners/common._score, plus: route the evaluator through the host-side
     proxy (scoped to just this call, via host_proxy.scoped_env) when the task's manifest tags say
     its evaluator makes its own network calls outside the sandbox (get_cloud_file /
-    get_googledrive_file) -- see build_astra_openbook_manifest.py's proxy_tags."""
+    get_googledrive_file) -- see build_astra_openbook_manifest.py's proxy_tags.
+
+    Confirmed live 2026-09-12: the same evaluate_official() call also reaches the REAL Daytona
+    controller directly (postconfig steps, the agent's own result vm_file read) in the same
+    requests session as the proxied cloud_file/googledrive fetch -- a blanket HTTP_PROXY caught
+    those too (fixture_miss instead of the real guest response), exactly the
+    env.sandbox._provision_and_configure_openbook bug this mirrors. Two hosts need excluding, not
+    one: the controller's own hostname (postconfig's requests.post calls use it directly), AND
+    127.0.0.1/localhost -- evaluate_official opens its own LoopbackForwarder
+    (env/http_forwarder.py) and PythonController.get_file (desktop_env.controllers.python) then
+    talks to THAT loopback address, not the controller's real hostname; confirmed live that
+    excluding only the real hostname still left the vm_file result read hijacked (502
+    fixture_miss) because the loopback port was never in NO_PROXY."""
     url = ctrl.base_url if ctrl else config.CONTROLLER_URL
     reward, err = None, None
     gold_dir = tempfile.mkdtemp(prefix="osw_openbook_gold_")
@@ -110,9 +114,13 @@ def _score_openbook(ctrl, task, answer, out, bundle_dir, proxy_tags):
         action_history = runner_common._action_history(answer)
         try:
             if needs_host_proxy:
+                controller_host = urlparse(url).hostname
+                no_proxy_hosts = ("127.0.0.1", "localhost")
+                if controller_host:
+                    no_proxy_hosts += (controller_host,)
                 with host_proxy.host_proxy(
                     bundle_dir, needs_drive_mock="external_oauth_service" in proxy_tags,
-                ) as handle, host_proxy.scoped_env(handle):
+                ) as handle, host_proxy.scoped_env(handle, no_proxy_hosts=no_proxy_hosts):
                     reward = _evaluate_with_retry(
                         url, task, action_history, gold_dir, use_proxy=True)
             else:

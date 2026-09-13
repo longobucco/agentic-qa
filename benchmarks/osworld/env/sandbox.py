@@ -261,7 +261,41 @@ def _provision_and_configure_openbook(task, holder):
         guest_proxy.start(ctrl, bundle_dir)
     except guest_proxy.GuestProxyError as e:
         return ctrl, f"open-book guest proxy setup failed: {e}"
-    return ctrl, _run_config(ctrl, task, use_proxy=True)
+
+    proxy_tags = open_book_preflight.proxy_tags_for(task["id"])
+    _HOST_SIDE_CONFIG_TAGS = {"host_side_config_download", "external_oauth_service"}
+    if not (proxy_tags & _HOST_SIDE_CONFIG_TAGS):
+        return ctrl, _run_config(ctrl, task, use_proxy=True)
+
+    # A "download" config step (SetupController._download_setup) runs requests.get() on the
+    # HARNESS HOST, not in the guest -- confirmed live 2026-09-12 (see
+    # astra_openbook_campaign_lock.json's known_issues.non_chrome_egress_not_proxied, which
+    # this closes for the config-download case). A "googledrive" config step
+    # (SetupController._googledrive_setup) is the same story with real pydrive2 calls instead --
+    # route both through the exact same host_proxy machinery already built for get_cloud_file,
+    # scoped to just this setup() call, attaching drive_mock only when the oauth tag is present.
+    #
+    # _download_setup ALSO uploads the fetched file back to the real Daytona controller
+    # (POST .../setup/upload) in the same requests session -- confirmed live that a blanket
+    # HTTP_PROXY intercepts that upload too (502 from our OWN fixture proxy, which has no entry
+    # for the controller's URL). The controller's own host must always be excluded; 127.0.0.1/
+    # localhost too, on the same reasoning gpt_astra_openbook._score_openbook documents (a
+    # different SetupController call path may address the guest via a loopback forwarder rather
+    # than the controller's real hostname -- not observed here, but cheap to guard against).
+    from urllib.parse import urlparse
+    from benchmarks.osworld.env import host_proxy
+    controller_host = urlparse(ctrl.base_url).hostname
+    no_proxy_hosts = ("127.0.0.1", "localhost")
+    if controller_host:
+        no_proxy_hosts += (controller_host,)
+    try:
+        with host_proxy.host_proxy(
+            bundle_dir, needs_drive_mock="external_oauth_service" in proxy_tags,
+        ) as handle, host_proxy.scoped_env(handle, no_proxy_hosts=no_proxy_hosts):
+            err = _run_config(ctrl, task, use_proxy=True)
+    except host_proxy.HostProxyError as e:
+        return ctrl, f"open-book host proxy setup failed: {e}"
+    return ctrl, err
 
 
 @contextmanager
