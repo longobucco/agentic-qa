@@ -242,3 +242,11 @@ def main(benchmark, argv=None):
 
     log("")
     reporting.summarize(benchmark.results_dir, runner.name, title=benchmark.name)
+
+
+if __name__ == "__main__":
+    import sys as _sys
+    _sys.exit("core.run has no benchmark of its own to run -- invoke the benchmark's own entry "
+              "point instead, e.g. `python -m benchmarks.osworld.run` (which imports and calls "
+              "core.run.main(build())). Running `python -m core.run` directly imports this "
+              "module without ever calling main(), so it silently does nothing.")

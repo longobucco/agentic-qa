@@ -86,18 +86,28 @@ def _real_open_book_task(lock, *, unauthored=False):
     step) and gets rejected one check earlier than intended -- load the real task so
     require_open_book's reclassification agrees with why the id is in the population.
 
-    `unauthored`: pick a task_id with no fixture bundle directory on disk. The population's
-    first id (population order, not authoring order) is no longer a safe default for this --
-    the download-fixture curation pass (2026-09-13) authored real bundles for 254 of 308
-    population tasks, so "the first id" now has an ~82% chance of already having one."""
+    `unauthored`: pick a task_id with no fixture bundle directory on disk. By 2026-09-14 the
+    curated population (258 ids) is fully authored (goldref + download fixture passes), so no
+    id inside `lock`'s own population qualifies any more -- fall back to the full, unfiltered
+    open-book id list (scripts/g_astra_openbook_ids.txt), which still has a few
+    deliberately-unauthored ids (the hard-ecommerce exclusions), and hand back a `lock` copy
+    whose population is widened to include that id (task_check's require_open_book only reads
+    _population_ids(lock), no sha check -- that's campaign_check's job, not exercised here)."""
     from benchmarks.osworld.tasks import load_tasks
     by_id = {t["id"]: t for t in load_tasks()}
-    ids = p._population_ids(lock)
     if unauthored:
         authored = {d.name for d in p._FIXTURES_DIR.iterdir()} if p._FIXTURES_DIR.exists() else set()
-        task_id = next(tid for tid in ids if tid not in authored)
+        full_ids_path = Path(__file__).resolve().parents[3] / "scripts" / "g_astra_openbook_ids.txt"
+        full_ids = [l.strip() for l in full_ids_path.read_text().splitlines()
+                    if l.strip() and not l.strip().startswith("#")]
+        task_id = next(tid for tid in full_ids if tid not in authored and tid in by_id)
+        extra = tempfile.NamedTemporaryFile(mode="w", suffix=".txt", delete=False)
+        extra.write(task_id + "\n")
+        extra.close()
+        lock["population"] = dict(lock["population"])
+        lock["population"]["paths"] = list(lock["population"]["paths"]) + [extra.name]
     else:
-        task_id = next(iter(ids))
+        task_id = next(iter(p._population_ids(lock)))
     return by_id[task_id]
 
 
