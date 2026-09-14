@@ -95,6 +95,11 @@ def preflight():
 
 
 def run(task, *, env, out, refs=None, dry=False):
+    if not dry:
+        # See gpt_astra_openbook.run's identical guard: without this, a stale eval.json from an
+        # earlier attempt at this run-dir survives a retry that short-circuits before scoring
+        # (e.g. into an infra error), and report.py reads it as the current verdict.
+        (Path(out) / "eval.json").unlink(missing_ok=True)
     started_at = datetime.now(timezone.utc).isoformat()
     ctrl = getattr(env, "browser", None)
     controller_url = ctrl.base_url if ctrl else config.CONTROLLER_URL

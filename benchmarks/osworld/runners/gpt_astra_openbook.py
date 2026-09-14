@@ -179,6 +179,13 @@ def _scan_for_secrets(out):
 
 
 def run(task, *, env, out, refs=None, dry=False):
+    if not dry:
+        # A retried attempt for this run-dir may short-circuit into an infra error before
+        # scoring (or into ENVIRONMENT_ERROR). Without this, a stale eval.json from an earlier
+        # attempt survives and report.py reads it as this run's current verdict, double-counting
+        # the task (once as a scored FAILURE/SUCCESS, once as an infra failure) and hiding that
+        # the real, current attempt never reached a verdict at all.
+        (Path(out) / "eval.json").unlink(missing_ok=True)
     started_at = datetime.now(timezone.utc).isoformat()
     ctrl = getattr(env, "browser", None)
     controller_url = ctrl.base_url if ctrl else config.CONTROLLER_URL
