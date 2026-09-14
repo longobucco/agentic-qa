@@ -104,12 +104,18 @@ def _score_openbook(ctrl, task, answer, out, bundle_dir, proxy_tags):
     (env/http_forwarder.py) and PythonController.get_file (desktop_env.controllers.python) then
     talks to THAT loopback address, not the controller's real hostname; confirmed live that
     excluding only the real hostname still left the vm_file result read hijacked (502
-    fixture_miss) because the loopback port was never in NO_PROXY."""
+    fixture_miss) because the loopback port was never in NO_PROXY.
+
+    Returns (rec, host_proxy_misses) -- the latter is None when this task never needed the host
+    proxy at all, and a (possibly empty) list otherwise; folded into network_provenance.json by
+    the caller so a host-side fixture_miss (e.g. b21acd93's intermittent 502) is visible in the
+    artifact instead of only surfacing as an opaque HTTPError in eval.json's reason string."""
     url = ctrl.base_url if ctrl else config.CONTROLLER_URL
     reward, err = None, None
     gold_dir = tempfile.mkdtemp(prefix="osw_openbook_gold_")
     gold_sha256 = {}
     needs_host_proxy = bool(proxy_tags & _HOST_PROXY_TAGS)
+    host_misses = None
     if url:
         action_history = runner_common._action_history(answer)
         try:
@@ -118,11 +124,24 @@ def _score_openbook(ctrl, task, answer, out, bundle_dir, proxy_tags):
                 no_proxy_hosts = ("127.0.0.1", "localhost")
                 if controller_host:
                     no_proxy_hosts += (controller_host,)
+                miss_log = tempfile.mktemp(prefix="osw_openbook_host_misses_", suffix=".jsonl")
                 with host_proxy.host_proxy(
                     bundle_dir, needs_drive_mock="external_oauth_service" in proxy_tags,
+                    miss_log=miss_log,
                 ) as handle, host_proxy.scoped_env(handle, no_proxy_hosts=no_proxy_hosts):
                     reward = _evaluate_with_retry(
                         url, task, action_history, gold_dir, use_proxy=True)
+                host_misses = []
+                try:
+                    with open(miss_log) as f:
+                        for line in f:
+                            line = line.strip()
+                            if line:
+                                host_misses.append(json.loads(line))
+                except FileNotFoundError:
+                    pass
+                finally:
+                    Path(miss_log).unlink(missing_ok=True)
             else:
                 reward = _evaluate_with_retry(
                     url, task, action_history, gold_dir, use_proxy=True)
@@ -132,15 +151,16 @@ def _score_openbook(ctrl, task, answer, out, bundle_dir, proxy_tags):
             gold_sha256 = osworld_eval.hash_gold_artifacts(gold_dir, task)
             shutil.rmtree(gold_dir, ignore_errors=True)
     if reward is not None:
-        return {"verdict": osworld_eval.reward_to_verdict(reward), "reward": reward,
-                "reason": f"official {task.get('evaluator', {}).get('func')} -> {reward:.2f}",
-                "source": "official", "gold_sha256": gold_sha256}
-    from benchmarks.osworld import evaluate
-    rec = {**evaluate.osworld_check(task, answer, None, out), "source": "offline_fallback",
-           "gold_sha256": gold_sha256}
-    if err:
-        rec["reason"] = f"{rec['reason']} (official eval errored: {err})"
-    return rec
+        rec = {"verdict": osworld_eval.reward_to_verdict(reward), "reward": reward,
+              "reason": f"official {task.get('evaluator', {}).get('func')} -> {reward:.2f}",
+              "source": "official", "gold_sha256": gold_sha256}
+    else:
+        from benchmarks.osworld import evaluate
+        rec = {**evaluate.osworld_check(task, answer, None, out), "source": "offline_fallback",
+              "gold_sha256": gold_sha256}
+        if err:
+            rec["reason"] = f"{rec['reason']} (official eval errored: {err})"
+    return rec, host_misses
 
 
 def _network_provenance(ctrl, bundle_dir, manifest_sha256, proxy_tags):
@@ -287,10 +307,12 @@ def run(task, *, env, out, refs=None, dry=False):
         })
         return ""
 
-    rec = _annotate_incidental(
-        _bounded("scoring", _score_openbook, ctrl, task, answer, out, bundle_dir, proxy_tags),
-        clean_finish,
-    )
+    score_result, host_proxy_misses = _bounded(
+        "scoring", _score_openbook, ctrl, task, answer, out, bundle_dir, proxy_tags)
+    rec = _annotate_incidental(score_result, clean_finish)
+    if host_proxy_misses is not None:
+        network_provenance["host_proxy_misses"] = host_proxy_misses
+        (out / "network_provenance.json").write_text(json.dumps(network_provenance, indent=2))
     if answer.strip().upper() == "FAIL":
         eval_state = {
             "capture_status": "not_applicable",

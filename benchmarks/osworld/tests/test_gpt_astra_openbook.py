@@ -41,7 +41,7 @@ def _run_with(meta, tmp, *, task_check=None, score=None):
          patch.object(gao, "run_codex_meta", return_value=dict(meta)) as run_meta, \
          patch.object(gao, "_codex_version", return_value="codex-cli 0.153.4"), \
          patch.object(gao, "_score_openbook",
-                      return_value=score or {"verdict": "FAILURE", "reward": 0.0}), \
+                      return_value=score or ({"verdict": "FAILURE", "reward": 0.0}, None)), \
          patch.object(gao, "_capture_eval_state", return_value=None):
         gao.run(_TASK, env=type("E", (), {"browser": None, "setup_error": None})(), out=out)
     read = lambda n: json.loads((out / n).read_text()) if (out / n).exists() else None
