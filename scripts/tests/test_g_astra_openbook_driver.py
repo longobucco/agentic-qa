@@ -35,8 +35,9 @@ def test_rate_limited_fraction_ignores_stale_pre_existing_infra_files():
             _write_infra(run_dir, "RATE_LIMITED")
             before = driver._snapshot_infra_mtimes(["t1"])
             # No new write after the snapshot -- this outcome is stale, not from "this batch".
-            fraction = driver._batch_rate_limited_fraction(["t1"], before)
-            assert fraction == 0.0
+            outcomes = driver._fresh_infra_outcomes(["t1"], before)
+            assert outcomes == []
+            assert driver._batch_rate_limited_fraction(outcomes) == 0.0
 
 
 def test_rate_limited_fraction_counts_a_freshly_written_infra_file():
@@ -46,8 +47,8 @@ def test_rate_limited_fraction_counts_a_freshly_written_infra_file():
             before = driver._snapshot_infra_mtimes(["t1"])  # nothing exists yet
             time.sleep(0.01)
             _write_infra(run_dir, "RATE_LIMITED")
-            fraction = driver._batch_rate_limited_fraction(["t1"], before)
-            assert fraction == 1.0
+            outcomes = driver._fresh_infra_outcomes(["t1"], before)
+            assert driver._batch_rate_limited_fraction(outcomes) == 1.0
 
 
 def test_rate_limited_fraction_is_zero_when_the_fresh_outcome_is_a_different_infra_class():
@@ -57,8 +58,40 @@ def test_rate_limited_fraction_is_zero_when_the_fresh_outcome_is_a_different_inf
             before = driver._snapshot_infra_mtimes(["t1"])
             time.sleep(0.01)
             _write_infra(run_dir, "HARNESS_ERROR")
-            fraction = driver._batch_rate_limited_fraction(["t1"], before)
-            assert fraction == 0.0
+            outcomes = driver._fresh_infra_outcomes(["t1"], before)
+            assert driver._batch_rate_limited_fraction(outcomes) == 0.0
+
+
+def test_main_stops_immediately_on_an_auth_error_instead_of_backing_off():
+    """Unlike RATE_LIMITED, an AUTH_ERROR (Codex CLI session revoked) never clears on its own --
+    backing off and retrying would just burn through the rest of the population producing more
+    of the same. The driver must exit instead of sleeping."""
+    with tempfile.TemporaryDirectory() as tmp:
+        results_dir = Path(tmp) / "results"
+        summary_path = Path(tmp) / "summary.json"
+        sleeps = []
+
+        def fake_run(cmd, cwd=None):
+            for task_id in cmd[cmd.index("--ids") + 1:]:
+                _write_infra(results_dir / task_id / "run_1", "AUTH_ERROR")
+            return type("R", (), {"returncode": 0})()
+
+        with patch.object(driver, "_RESULTS_DIR", results_dir), \
+             patch.object(driver, "_population_ids", return_value=["a", "b", "c", "d"]), \
+             patch.object(driver.subprocess, "run", side_effect=fake_run), \
+             patch.object(driver.time, "sleep", side_effect=lambda s: sleeps.append(s)), \
+             patch.object(driver.config, "OPENBOOK_IMAGE", "fake-image"):
+            try:
+                driver.main(["--batch-size", "2", "--runs", "1",
+                            "--summary-out", str(summary_path)])
+                assert False, "should have exited on AUTH_ERROR"
+            except SystemExit as e:
+                assert "AUTH_ERROR" in str(e)
+
+        assert sleeps == []
+        state = json.loads(summary_path.read_text())
+        assert state["batches_done"] == 1
+        assert "stopped_reason" in state
 
 
 def test_tasks_with_an_inconclusive_run_finds_environment_and_eval_errors():

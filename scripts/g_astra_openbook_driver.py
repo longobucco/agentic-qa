@@ -89,13 +89,11 @@ def _latest_infra_outcome(run_dir):
         return None
 
 
-def _batch_rate_limited_fraction(batch_ids, before_mtimes):
-    """Fraction of this batch's run-dirs whose infra_error.json was WRITTEN OR MODIFIED during
-    this batch's invocation and whose latest outcome is RATE_LIMITED -- `before_mtimes` (from
-    immediately before the subprocess call) distinguishes a fresh rate-limit hit from a stale
-    leftover file from some earlier, unrelated attempt."""
-    total = 0
-    rate_limited = 0
+def _fresh_infra_outcomes(batch_ids, before_mtimes):
+    """Outcome of every run-dir's infra_error.json WRITTEN OR MODIFIED during this batch's
+    invocation -- `before_mtimes` (from immediately before the subprocess call) distinguishes a
+    fresh hit from a stale leftover file from some earlier, unrelated attempt."""
+    out = []
     for task_id in batch_ids:
         for run_dir in _run_dirs_for(task_id):
             path = run_dir / "infra_error.json"
@@ -105,10 +103,12 @@ def _batch_rate_limited_fraction(batch_ids, before_mtimes):
             key = str(run_dir)
             if mtime <= before_mtimes.get(key, 0):
                 continue  # untouched by this batch
-            total += 1
-            if _latest_infra_outcome(run_dir) == "RATE_LIMITED":
-                rate_limited += 1
-    return (rate_limited / total) if total else 0.0
+            out.append(_latest_infra_outcome(run_dir))
+    return out
+
+
+def _batch_rate_limited_fraction(outcomes):
+    return (outcomes.count("RATE_LIMITED") / len(outcomes)) if outcomes else 0.0
 
 
 def _snapshot_infra_mtimes(batch_ids):
@@ -215,7 +215,20 @@ def main(argv=None):
                  f"continuing to the next batch regardless (per-task failures are expected; "
                  f"this only matters if EVERY batch does it, e.g. a lock/preflight problem)")
 
-        fraction = _batch_rate_limited_fraction(batch, before)
+        outcomes = _fresh_infra_outcomes(batch, before)
+        if "AUTH_ERROR" in outcomes:
+            state["stopped_reason"] = (
+                "AUTH_ERROR: the Codex CLI session was revoked (re-authenticate with the "
+                "codex CLI, e.g. `codex login`, then re-run this same command to resume -- "
+                "already-scored units are skipped automatically). Backing off would not have "
+                "helped: this doesn't clear on its own like a rate limit does."
+            )
+            state["batches_done"] = i + 1
+            state["stopped_at"] = datetime.now(timezone.utc).isoformat()
+            _write_summary(summary_path, state)
+            sys.exit(f"\n[batch {i + 1}/{len(batches)}] {state['stopped_reason']}")
+
+        fraction = _batch_rate_limited_fraction(outcomes)
         state["batches_done"] = i + 1
         state["last_batch_rate_limited_fraction"] = fraction
         state["updated_at"] = datetime.now(timezone.utc).isoformat()
