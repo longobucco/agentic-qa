@@ -21,8 +21,22 @@ _SUSPICIOUS = ("evaluator", "gold", "results", "task_spec")
 
 def api_error_status(meta, stderr=""):
     """Codex does not always put a usage limit in the JSONL error stream -- it can land only on
-    stderr. Missing it would let a throttled run be scored as if the agent had had its chance."""
+    stderr. Missing it would let a throttled run be scored as if the agent had had its chance.
+
+    Also detects OAuth token revocation ("refresh_token_invalidated" / 401 Unauthorized),
+    confirmed live 2026-09-15: a sustained rate-limit window was followed by the Codex CLI's own
+    session being revoked server-side ("Your access token could not be refreshed because your
+    refresh token was revoked"), which produces agent_num_turns=0 / stop_reason=error but was
+    NOT caught by the rate-limit patterns below -- 4 runs across 2 tasks were scored as genuine
+    FAILURE (reward 0.0, an evaluator run against an empty answer) before this was caught, a
+    real, permanent, unretried contamination since FAILURE is not in core.reporting's
+    _INCONCLUSIVE_VERDICTS. Returns the string "AUTH_REVOKED" (distinct from the int 429) so
+    callers can tell the two apart -- unlike a rate limit, backing off and retrying does nothing
+    for this until a human re-authenticates the Codex CLI."""
     text = (json.dumps(meta.get("errors") or "") + " " + (stderr or "")).lower()
+    if ("refresh_token_invalidated" in text or "refresh token was revoked" in text
+            or "token_revoked" in text or "401 unauthorized" in text):
+        return "AUTH_REVOKED"
     if "429" in text or "rate limit" in text or "usage limit" in text or "quota" in text:
         return 429
     return None
@@ -161,8 +175,13 @@ def provenance_astra(task, ctrl, started_at, codex_ver, *, model, reasoning_effo
 
 
 def rate_limit_rec(task, status):
+    """`status` is either the int 429 (a real, self-clearing rate limit -- the driver's backoff
+    is the right response) or the string "AUTH_REVOKED" (the Codex CLI session itself is dead --
+    no amount of waiting fixes this, a human has to re-authenticate). Distinct outcomes so a
+    campaign driver can tell them apart and stop instead of backing off pointlessly."""
+    outcome = "AUTH_ERROR" if status == "AUTH_REVOKED" else "RATE_LIMITED"
     return {
-        "id": task["id"], "outcome": "RATE_LIMITED", "error_type": "APIError",
+        "id": task["id"], "outcome": outcome, "error_type": "APIError",
         "error": f"api_error_status={status}",
         "at": datetime.now(timezone.utc).isoformat(),
     }
