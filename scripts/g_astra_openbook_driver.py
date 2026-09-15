@@ -154,6 +154,17 @@ def _tasks_with_an_inconclusive_run(ids):
 
 
 def main(argv=None):
+    # Confirmed live 2026-09-15: under nohup (stdout redirected to a file, not a TTY), Python
+    # fully buffers stdout by default -- this driver's own print() calls (batch/backoff markers)
+    # sat unflushed for long stretches while core.run's subprocess output (writing straight to
+    # the same fd, not through this buffer) appeared immediately, making the log look like batch
+    # boundaries and backoff events were missing or badly out of order. Line-buffering here fixes
+    # that without touching subprocess.run's own output.
+    try:
+        sys.stdout.reconfigure(line_buffering=True)
+    except (AttributeError, ValueError):
+        pass  # not a real stdout (e.g. captured by a test runner) -- nothing to reconfigure
+
     argv = argv if argv is not None else sys.argv[1:]
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--runs", type=int, default=3)
@@ -197,7 +208,7 @@ def main(argv=None):
         cmd = [sys.executable, "-m", "benchmarks.osworld.run",
               "--system", config.ASTRA_OPENBOOK_SYSTEM_NAME,
               "--runs", str(args.runs), "--ids", *batch]
-        print(f"[batch {i + 1}/{len(batches)}] {len(batch)} task(s): {' '.join(batch)}")
+        print(f"[batch {i + 1}/{len(batches)}] {len(batch)} task(s): {' '.join(batch)}", flush=True)
         result = subprocess.run(cmd, cwd=_ROOT)
         if result.returncode != 0:
             print(f"[batch {i + 1}/{len(batches)}] core.run exited {result.returncode} -- "
