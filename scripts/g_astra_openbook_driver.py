@@ -19,6 +19,16 @@ already has a scored eval.json -- restarting this script after a kill just re-wa
 batches and skips whatever already finished. RATE_LIMITED units are the deliberate exception:
 they never produce an eval.json, so a later pass naturally retries them.
 
+ENVIRONMENT_ERROR/EVAL_ERROR units are a DIFFERENT exception, in the other direction: they DO
+write an eval.json (an inconclusive one, per core/reporting.py's own _INCONCLUSIVE_VERDICTS), so
+is_done() treats them as finished forever, even one caused by a transient infra bug that gets
+fixed later in the same campaign (confirmed live 2026-09-15: a bundle-push read timeout, fixed
+in env/controller.py, would otherwise have left that task's run stuck on the pre-fix verdict).
+After the main batch pass, this driver does one extra pass: finds every task with such a
+verdict on any run and force-retries it once (--force re-does every run index for that task,
+not just the stuck one -- --ids has no per-run-index granularity). Pass --no-retry-inconclusive
+to skip this if you want the raw, unre-tried batch results instead.
+
 Requires the campaign lock to be status="frozen" (this script does not freeze it -- that
 remains a deliberate, separate decision each time a real campaign launch is intended) and
 OSW_OPENBOOK_IMAGE set in the environment; both are enforced by the existing
@@ -114,6 +124,35 @@ def _write_summary(path, state):
     path.write_text(json.dumps(state, indent=2))
 
 
+_INCONCLUSIVE_VERDICTS = {"ENVIRONMENT_ERROR", "EVAL_ERROR"}
+
+
+def _eval_verdict(run_dir):
+    path = run_dir / "eval.json"
+    if not path.exists():
+        return None
+    try:
+        return json.loads(path.read_text()).get("verdict")
+    except Exception:
+        return None
+
+
+def _tasks_with_an_inconclusive_run(ids):
+    """core.run's own is_done() treats ANY eval.json (verdict and all) as 'done' -- an
+    ENVIRONMENT_ERROR/EVAL_ERROR from a transient infra hiccup (e.g. the read-timeout fixed
+    2026-09-15) is otherwise stuck forever, never retried by a later resumed pass, even after
+    the underlying bug is fixed. Returns task ids (not run-dir paths: --force + --ids only takes
+    task ids, so a retry re-does every run index for that task) that have at least one such
+    verdict among their existing run-dirs."""
+    out = []
+    for task_id in ids:
+        for run_dir in _run_dirs_for(task_id):
+            if _eval_verdict(run_dir) in _INCONCLUSIVE_VERDICTS:
+                out.append(task_id)
+                break
+    return out
+
+
 def main(argv=None):
     argv = argv if argv is not None else sys.argv[1:]
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
@@ -126,6 +165,9 @@ def main(argv=None):
                          "RATE_LIMITED, back off before the next batch")
     ap.add_argument("--summary-out", default=str(_ROOT / "scripts" /
                                                  "g_astra_openbook_driver_state.json"))
+    ap.add_argument("--no-retry-inconclusive", action="store_true",
+                    help="skip the final pass that force-retries tasks stuck on an "
+                         "ENVIRONMENT_ERROR/EVAL_ERROR verdict (see _tasks_with_an_inconclusive_run)")
     ap.add_argument("--dry-run", action="store_true",
                     help="print the batch plan without invoking core.run")
     args = ap.parse_args(argv)
@@ -181,6 +223,25 @@ def main(argv=None):
             backoff = args.base_backoff_s  # a clean batch resets the backoff
 
         _write_summary(summary_path, state)
+
+    if not args.no_retry_inconclusive:
+        stuck = _tasks_with_an_inconclusive_run(ids)
+        state["inconclusive_retry"] = {"tasks": stuck, "count": len(stuck)}
+        _write_summary(summary_path, state)
+        if stuck:
+            print(f"\n{len(stuck)} task(s) have an ENVIRONMENT_ERROR/EVAL_ERROR verdict on at "
+                 f"least one run -- is_done() would otherwise leave them stuck forever, even "
+                 f"after an infra fix. Force-retrying once: {' '.join(stuck)}")
+            retry_batches = list(_batches(stuck, args.batch_size))
+            for i, batch in enumerate(retry_batches):
+                cmd = [sys.executable, "-m", "benchmarks.osworld.run",
+                      "--system", config.ASTRA_OPENBOOK_SYSTEM_NAME,
+                      "--force", "--runs", str(args.runs), "--ids", *batch]
+                print(f"[inconclusive-retry {i + 1}/{len(retry_batches)}] "
+                     f"{len(batch)} task(s): {' '.join(batch)}")
+                subprocess.run(cmd, cwd=_ROOT)
+            state["inconclusive_retry"]["completed_at"] = datetime.now(timezone.utc).isoformat()
+            _write_summary(summary_path, state)
 
     state["finished_at"] = datetime.now(timezone.utc).isoformat()
     _write_summary(summary_path, state)

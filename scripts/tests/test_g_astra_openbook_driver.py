@@ -17,6 +17,11 @@ def _write_infra(run_dir, outcome):
     (run_dir / "infra_error.json").write_text(json.dumps([{"outcome": outcome}]))
 
 
+def _write_eval(run_dir, verdict):
+    run_dir.mkdir(parents=True, exist_ok=True)
+    (run_dir / "eval.json").write_text(json.dumps({"verdict": verdict}))
+
+
 def test_batches_split_the_population_into_fixed_size_chunks():
     ids = [f"t{i}" for i in range(10)]
     batches = list(driver._batches(ids, 4))
@@ -54,6 +59,79 @@ def test_rate_limited_fraction_is_zero_when_the_fresh_outcome_is_a_different_inf
             _write_infra(run_dir, "HARNESS_ERROR")
             fraction = driver._batch_rate_limited_fraction(["t1"], before)
             assert fraction == 0.0
+
+
+def test_tasks_with_an_inconclusive_run_finds_environment_and_eval_errors():
+    with tempfile.TemporaryDirectory() as tmp:
+        with patch.object(driver, "_RESULTS_DIR", Path(tmp)):
+            _write_eval(Path(tmp) / "t1" / "run_1", "ENVIRONMENT_ERROR")
+            _write_eval(Path(tmp) / "t2" / "run_1", "EVAL_ERROR")
+            _write_eval(Path(tmp) / "t3" / "run_1", "SUCCESS")
+            _write_eval(Path(tmp) / "t4" / "run_1", "FAILURE")
+            stuck = driver._tasks_with_an_inconclusive_run(["t1", "t2", "t3", "t4", "t5"])
+            assert sorted(stuck) == ["t1", "t2"]
+
+
+def test_tasks_with_an_inconclusive_run_ignores_a_task_where_only_one_run_is_stuck_if_asked_for_a_clean_one():
+    """A task with run_1=SUCCESS and run_2=ENVIRONMENT_ERROR still counts (any stuck run is
+    enough to trigger a re-try of the whole task, since --force has no per-run granularity)."""
+    with tempfile.TemporaryDirectory() as tmp:
+        with patch.object(driver, "_RESULTS_DIR", Path(tmp)):
+            _write_eval(Path(tmp) / "t1" / "run_1", "SUCCESS")
+            _write_eval(Path(tmp) / "t1" / "run_2", "ENVIRONMENT_ERROR")
+            stuck = driver._tasks_with_an_inconclusive_run(["t1"])
+            assert stuck == ["t1"]
+
+
+def test_main_force_retries_inconclusive_tasks_after_the_main_pass():
+    with tempfile.TemporaryDirectory() as tmp:
+        results_dir = Path(tmp) / "results"
+        summary_path = Path(tmp) / "summary.json"
+        retry_cmds = []
+
+        def fake_run(cmd, cwd=None):
+            if "--force" in cmd:
+                retry_cmds.append(cmd)
+                return type("R", (), {"returncode": 0})()
+            # Main pass: "a" comes back stuck, "b" comes back clean.
+            _write_eval(results_dir / "a" / "run_1", "ENVIRONMENT_ERROR")
+            _write_eval(results_dir / "b" / "run_1", "SUCCESS")
+            return type("R", (), {"returncode": 0})()
+
+        with patch.object(driver, "_RESULTS_DIR", results_dir), \
+             patch.object(driver, "_population_ids", return_value=["a", "b"]), \
+             patch.object(driver.subprocess, "run", side_effect=fake_run), \
+             patch.object(driver.config, "OPENBOOK_IMAGE", "fake-image"):
+            driver.main(["--batch-size", "2", "--runs", "1",
+                        "--summary-out", str(summary_path)])
+
+        assert len(retry_cmds) == 1
+        assert "a" in retry_cmds[0] and "b" not in retry_cmds[0]
+        state = json.loads(summary_path.read_text())
+        assert state["inconclusive_retry"]["tasks"] == ["a"]
+
+
+def test_main_skips_the_inconclusive_retry_pass_when_asked():
+    with tempfile.TemporaryDirectory() as tmp:
+        results_dir = Path(tmp) / "results"
+        summary_path = Path(tmp) / "summary.json"
+        retry_cmds = []
+
+        def fake_run(cmd, cwd=None):
+            if "--force" in cmd:
+                retry_cmds.append(cmd)
+            else:
+                _write_eval(results_dir / "a" / "run_1", "ENVIRONMENT_ERROR")
+            return type("R", (), {"returncode": 0})()
+
+        with patch.object(driver, "_RESULTS_DIR", results_dir), \
+             patch.object(driver, "_population_ids", return_value=["a"]), \
+             patch.object(driver.subprocess, "run", side_effect=fake_run), \
+             patch.object(driver.config, "OPENBOOK_IMAGE", "fake-image"):
+            driver.main(["--batch-size", "2", "--runs", "1", "--no-retry-inconclusive",
+                        "--summary-out", str(summary_path)])
+
+        assert retry_cmds == []
 
 
 def test_main_backs_off_after_a_batch_that_is_mostly_rate_limited(monkeypatch):
