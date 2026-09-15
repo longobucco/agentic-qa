@@ -18,8 +18,14 @@ import urllib.request
 # task as an unretried ENVIRONMENT_ERROR; confirmed live in a real 10-task batch (2/10 failed
 # with this exact RemoteDisconnected). A small retry here mirrors the resilience Daytona's own
 # client already assumes is necessary against the same infrastructure.
+#
+# TimeoutError added 2026-09-15, confirmed live in the first real campaign batch: a large bundle
+# push (many sequential chunked writes) hit "TimeoutError: The read operation timed out" on one
+# chunk -- a plain socket read timeout, which urllib.request raises directly as TimeoutError/
+# socket.timeout (an alias since Python 3.10), never wrapped in URLError. The original fix
+# missed this because RemoteDisconnected was the only failure mode observed at the time.
 _RETRYABLE = (http.client.RemoteDisconnected, ConnectionResetError, ConnectionAbortedError,
-              urllib.error.URLError)
+              urllib.error.URLError, TimeoutError)
 _RETRIES = 3
 _RETRY_DELAY_S = 1.0
 
