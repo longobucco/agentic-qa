@@ -4,6 +4,7 @@ drops the connection N times before answering, no sandbox):
 """
 import json
 import threading
+import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 import benchmarks.osworld.env.controller as controller_mod
@@ -68,6 +69,47 @@ def test_execute_gives_up_after_exhausting_retries():
         except controller_mod._RETRYABLE:
             pass
         assert _FlakyOrigin.calls == controller_mod._RETRIES
+    finally:
+        server.shutdown()
+
+
+class _SlowOrigin(BaseHTTPRequestHandler):
+    """Accepts the connection but stalls past the client's read timeout for the first
+    `stalls_left` requests, then answers promptly -- mimics the live "TimeoutError: The read
+    operation timed out" seen mid-bundle-push on 2026-09-15, distinct from a dropped connection
+    (RemoteDisconnected): here the socket stays open, the response body just never arrives in
+    time."""
+    protocol_version = "HTTP/1.1"
+    stalls_left = 0
+    calls = 0
+
+    def log_message(self, *_a):
+        pass
+
+    def do_POST(self):
+        type(self).calls += 1
+        n = int(self.headers.get("Content-Length") or 0)
+        self.rfile.read(n)
+        if type(self).stalls_left > 0:
+            type(self).stalls_left -= 1
+            time.sleep(0.3)  # longer than the client's timeout below
+        body = json.dumps({"output": "ok"}).encode()
+        self.send_response(200)
+        self.send_header("Content-Type", "application/json")
+        self.send_header("Content-Length", str(len(body)))
+        self.end_headers()
+        self.wfile.write(body)
+
+
+def test_execute_retries_past_a_read_timeout_and_succeeds():
+    _SlowOrigin.stalls_left = 1
+    _SlowOrigin.calls = 0
+    server = _serve(_SlowOrigin)
+    try:
+        ctrl = Controller(f"http://127.0.0.1:{server.server_port}")
+        out = ctrl.execute("echo hi", shell=True, timeout=0.1)
+        assert out == "ok"
+        assert _SlowOrigin.calls == 2  # 1 timeout + 1 real success
     finally:
         server.shutdown()
 
