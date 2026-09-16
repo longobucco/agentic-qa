@@ -17,11 +17,14 @@ def _fake_ctrl(side_effect):
 
 
 def test_process_running_and_window_mapped_succeeds():
+    # wmctrl output deliberately uppercased ("VLC-Window-Title") against a lowercase binary
+    # name ("vlc") so this test actually exercises the `.lower()` calls in _window_mapped --
+    # it must fail if either `.lower()` were removed from the implementation.
     def side_effect(command, *, shell=False, timeout=120):
         if "pgrep" in command:
             return "12345"
         if "wmctrl" in command:
-            return "0x00000001  0 vlc-window-title"
+            return "0x00000001  0 VLC-Window-Title"
         raise AssertionError(f"unexpected command: {command}")
 
     ctrl = _fake_ctrl(side_effect)
