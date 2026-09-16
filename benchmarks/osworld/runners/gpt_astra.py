@@ -15,7 +15,7 @@ from benchmarks.osworld import config, tasks
 from benchmarks.osworld.prompts import agent_prompt
 from benchmarks.osworld.runners import astra_common
 from benchmarks.osworld.runners.agent_computer import (
-    _annotate_incidental, _bounded, _capture_eval_state, _environment_error_rec,
+    _a11y_health, _annotate_incidental, _bounded, _capture_eval_state, _environment_error_rec,
     _provenance, _score,
 )
 from core import results as results_io
@@ -202,6 +202,12 @@ def run(task, *, env, out, refs=None, dry=False):
         "instruction": task["instruction"], "answer": answer,
         "eval_state": eval_state, "provenance": provenance,
         **trace, **telemetry,
+        # Mirrors agent_computer.run's use of the same probe (runners/common.py's
+        # docstring): the Astra runner never recorded this, so every closed-book run with a
+        # genuinely blank desktop (screenshot/`a11y_tree` never showing real content, despite
+        # `agent_stop_reason=completed`) looked like a plain agent FAILURE with no on-disk
+        # signal to tell the two apart -- confirmed live across 16 of 32 closed-book "0/3" tasks.
+        **_a11y_health(ctrl),
     })
     results_io.write_eval(out, {"id": task["id"], **rec})
     return answer

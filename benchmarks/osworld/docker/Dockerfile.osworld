@@ -54,6 +54,9 @@ ENV DEBIAN_FRONTEND=noninteractive DISPLAY=:99
 #                         xdg-open prefers over `file` and does use the glob database. Confirmed
 #                         live: without it, xdg-open hangs on a real task .pptx; with it, soffice
 #                         opens in ~10s.
+#   git                   — several "os"/task configs shell out to `git clone` directly (e.g.
+#                           task acb0f96b-eacd-...); confirmed live it was never installed, so
+#                           every such task failed on FileNotFoundError regardless of the agent.
 RUN apt-get update && apt-get install -y --no-install-recommends \
         xvfb x11-utils openbox xterm scrot gnome-screenshot wmctrl \
         python3 python3-pip python3-tk python3-dev python-is-python3 \
@@ -65,6 +68,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libreoffice \
         gimp thunderbird vlc socat \
         gvfs pulseaudio pulseaudio-utils xdotool libnotify-bin \
+        git \
     && rm -rf /var/lib/apt/lists/*
 
 # Batch 3: chrome (task launch command is literally "google-chrome") and vscode ("code") aren't
@@ -103,6 +107,26 @@ RUN apt-get update && \
 # hardcoded /root, keeps this correct regardless of what HOME actually resolves to at runtime —
 # the same env var the getter asks the guest server to resolve on its own end.
 #
+# The `code` wrapper below needs a DIFFERENT fix from google-chrome's, not the same one -- an
+# earlier version of this comment used $HOME/.config/Code here by false analogy to google-chrome
+# above, and it does not work. The distinction that matters: google-chrome's evaluator getters
+# (evaluators/getters/chrome.py) call `os.getenv('HOME')` INSIDE the guest at eval time (confirmed
+# by reading that file), so whatever $HOME actually is here (this image has no `user` account --
+# everything runs as root, confirmed live via `whoami`/`ps aux`, so $HOME=/root, and /home/user
+# does not exist) stays self-consistent between write and read. VS Code's evaluators
+# (check_json_settings, check_json_keybindings) are the OTHER kind: a `vm_file`-type check in
+# data/osworld_verified.jsonl, whose literal `path` string (e.g.
+# "/home/user/.config/Code/User/keybindings.json") is handed straight to
+# desktop_env.evaluators.getters.file.get_vm_file -> env.controller.get_file(path) with zero
+# HOME/~ expansion (confirmed by reading that getter) -- 870 of the 871 vm_file paths in the
+# whole task set hardcode /home/user/... this same way, not just VS Code's. --user-data-dir must
+# therefore be the literal string /home/user/.config/Code, not $HOME/.config/Code (which resolves
+# to /root and reproduces the exact same class of bug one directory over) -- confirmed live across
+# 4 closed-book tasks (930fdb3b, 9439a27b, 9d425400, e2b5e914) where the agent's written config
+# matched the evaluator's expected value byte-for-byte, yet every evaluation still failed because
+# the file at the expected path never existed. mkdir -p creates /home/user itself, which nothing
+# else on this image does. --extensions-dir stays under /tmp: no evaluator reads it.
+#
 # Several evaluators' postconfig kills chrome and relaunches it right before reading state (e.g.
 # this task's own postconfig: pkill chrome -> relaunch -> a fixed 3s sleep -> read Preferences).
 # Confirmed live: on this guest, a cold Chrome start takes closer to a minute (no D-Bus system bus
@@ -117,7 +141,7 @@ RUN rm -f /usr/bin/google-chrome && \
         > /usr/bin/google-chrome && \
     chmod +x /usr/bin/google-chrome && \
     rm -f /usr/bin/code && \
-    printf '#!/bin/sh\nmkdir -p /tmp/code-profile /tmp/code-extensions\nexec /usr/share/code/bin/code --no-sandbox --user-data-dir=/tmp/code-profile --extensions-dir=/tmp/code-extensions "$@"\n' \
+    printf '#!/bin/sh\nmkdir -p /home/user/.config/Code /tmp/code-extensions\nexec /usr/share/code/bin/code --no-sandbox --user-data-dir=/home/user/.config/Code --extensions-dir=/tmp/code-extensions "$@"\n' \
         > /usr/bin/code && \
     chmod +x /usr/bin/code
 

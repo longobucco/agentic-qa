@@ -52,14 +52,28 @@ ASTRA_REASONING_EFFORT = os.environ.get("OSW_ASTRA_REASONING_EFFORT", "high").st
 ASTRA_CODEX_VERSION = os.environ.get("OSW_ASTRA_CODEX_VERSION", "0.153.4").strip()
 
 
+# Opt-in suffix for a deliberately SEPARATE results tree under the same model/effort/codex-
+# version identity -- e.g. re-running the frozen population against a new guest image digest
+# (config.IMAGE) to validate a fix, without touching or overwriting the existing campaign's
+# results/logs (image digest is not one of the knobs astra_system_name() names below, so without
+# this it would silently collide with "agent_computer_astra"). Empty by default: every existing
+# caller/result tree is unaffected.
+ASTRA_SYSTEM_SUFFIX = os.environ.get("OSW_ASTRA_SYSTEM_SUFFIX", "").strip()
+
+
 def astra_system_name():
     """Keep the canonical tree concise, but never pool any campaign override into it."""
     if (ASTRA_MODEL == "gpt-6-astra" and ASTRA_REASONING_EFFORT == "high"
             and ASTRA_CODEX_VERSION == "0.153.4"):
-        return "agent_computer_astra"
-    safe = lambda value: re.sub(r"[^a-zA-Z0-9]+", "", value) or "default"
-    return (f"agent_computer_{safe(ASTRA_MODEL)}_{safe(ASTRA_REASONING_EFFORT)}"
-            f"_codex{safe(ASTRA_CODEX_VERSION)}")
+        base = "agent_computer_astra"
+    else:
+        safe = lambda value: re.sub(r"[^a-zA-Z0-9]+", "", value) or "default"
+        base = (f"agent_computer_{safe(ASTRA_MODEL)}_{safe(ASTRA_REASONING_EFFORT)}"
+                f"_codex{safe(ASTRA_CODEX_VERSION)}")
+    if ASTRA_SYSTEM_SUFFIX:
+        safe_suffix = re.sub(r"[^a-zA-Z0-9]+", "", ASTRA_SYSTEM_SUFFIX) or "suffix"
+        return f"{base}_{safe_suffix}"
+    return base
 
 
 ASTRA_SYSTEM_NAME = astra_system_name()
@@ -215,8 +229,43 @@ PINNED_EVALUATORS = os.environ.get("OSW_PINNED_EVALUATORS", "1") != "0"
 
 IMAGE = os.environ.get(   # pinned by digest -- Daytona caches images by tag, not :latest
     "OSW_IMAGE",
+    # 2026-09-16: rebuilt from a Dockerfile.osworld carrying three fixes, all live-validated
+    # against a real sandbox on THIS digest (not just an apt-get-install claim -- see the
+    # Dockerfile's own "an apt-get install is not validation" discipline), against the
+    # agent_computer_astra closed-book campaign's 32 "0/3" tasks, none of which had reached a
+    # pinned digest with these fixes yet (see that campaign's own forensic report):
+    #   - VS Code's launch wrapper now uses --user-data-dir=/home/user/.config/Code (a literal
+    #     path, NOT $HOME/.config/Code -- this image has no `user` account, everything runs as
+    #     root with $HOME=/root, confirmed live via whoami/ps aux, and every vm_file-type VS Code
+    #     evaluator in data/osworld_verified.jsonl hands get_vm_file a literal
+    #     "/home/user/..." string with zero HOME/~ expansion, confirmed by reading
+    #     desktop_env/evaluators/getters/file.py -- unlike google-chrome's getters just above,
+    #     which resolve os.getenv('HOME') INSIDE the guest at eval time and so stay consistent
+    #     with $HOME on their own). Live-confirmed on a real sandbox: `code` now launches with
+    #     --user-data-dir=/home/user/.config/Code, and env.controller.get_file() against
+    #     /home/user/.config/Code/User/keybindings.json returns exactly what was written there --
+    #     the same round trip check_json_settings/check_json_keybindings perform. Previously a
+    #     correct agent write was scored FAILURE every time regardless (4 closed-book tasks:
+    #     930fdb3b, 9439a27b, 9d425400, e2b5e914).
+    #   - `git` added to the package list -- tasks that shell out to `git clone` (e.g. acb0f96b)
+    #     failed on FileNotFoundError regardless of the agent. Live-confirmed: `git --version`
+    #     now succeeds on a real sandbox.
+    #   - Inherits the D-Bus/AT-SPI bus fix from 4ce715b6 (2026-09-12), which the previous pinned
+    #     digest predated -- that commit's own message flagged this exact gap ("the pinned
+    #     default digest predates it... a11y_ok in result.json is what confirms or refutes it on
+    #     the first real run"). runners/gpt_astra.py now also records a11y_ok/a11y_nodes (it
+    #     never did before). Live-confirmed on a real sandbox: an IDLE desktop (nothing launched)
+    #     is legitimately a blank black screen with an empty <desktop-frame/> -- that alone is NOT
+    #     a bug, and is not what most of the campaign's 16 blank-desktop "0/3" tasks necessarily
+    #     were. With an app actually launched (`code`), tree_health went from
+    #     {"nodes": 0, "ok": False, "reason": "root node only..."} to
+    #     {"nodes": 17, "elements": 12, "ok": True} and the screenshot went from a 2-color (black
+    #     + cursor) image to one with 3148 distinct colors -- the AT-SPI bridge itself works once
+    #     an app exists to report through it. Whether this actually resolves those 16 tasks (vs. a
+    #     separate app-launch failure the bridge fix does not touch) is NOT yet known -- only a
+    #     real campaign run against this digest, with a11y_ok now recorded, can show that.
     "ghcr.io/longobucco/osworld-ab@sha256:"
-    "8917c3643b19f14d85aaa4f66ef87aa789854ae8529d6a6fe8151f0edc973f6b",
+    "2d3d9665f43b0726eafda32d493bd527ea7437781e09d9c85209063487750640",
 )
 # Open-book campaign: a SEPARATE image from IMAGE above -- the closed-book pin must never
 # silently start carrying mitmproxy/iptables/CA just because this file also defines
