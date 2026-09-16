@@ -57,8 +57,10 @@ export QT_LINUX_ACCESSIBILITY_ALWAYS_ON=1
 # slice of the task set -- blind even with a working bus. libreoffice-gtk3 is installed for this.
 export SAL_USE_VCLPLUGIN=gtk3
 
-# dconf has no writable backend without a session daemon here, so a failure is expected and
-# harmless -- the env vars above already carry the same switch. Never fail the guest over it.
+# GSETTINGS_BACKEND=keyfile (exported above) gives this a writable backend without a session
+# daemon, so this now typically succeeds rather than silently failing -- the env vars above
+# already carry the same switch either way, so this call staying belt-and-suspenders (|| true)
+# costs nothing if it ever doesn't.
 gsettings set org.gnome.desktop.interface toolkit-accessibility true 2>/dev/null || true
 
 # These two live in /usr/libexec on Ubuntu 22.04 and in /usr/lib/at-spi2-core on older releases,
@@ -88,6 +90,7 @@ else
     echo "WARNING: at-spi2-registryd not found -- /accessibility will return an empty tree" >&2
 fi
 
+# reads /etc/xdg/openbox/rc.xml by default (see docker/openbox-rc.xml -- Ctrl+Alt+T -> xterm)
 openbox &
 sleep 1
 

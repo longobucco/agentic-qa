@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openbox_config xmlns="http://openbox.org/3.4/rc">
+  <keyboard>
+    <!-- Several OSWorld evaluator postconfig steps open a fresh terminal via
+         pyautogui.hotkey('ctrl','alt','t') to read a live vm_terminal_output (e.g. task
+         13584542) - a GNOME/Unity convention openbox's own default keybindings don't include.
+         Bare xterm (this image's only terminal emulator, confirmed live: no GNOME Terminal
+         profile dialog exists here) is the correct target. -->
+    <keybind key="C-A-t">
+      <action name="Execute">
+        <command>xterm</command>
+      </action>
+    </keybind>
+  </keyboard>
+</openbox_config>

@@ -159,6 +159,10 @@ RUN rm -f /usr/bin/google-chrome && \
 COPY benchmarks/osworld/docker/timedatectl-shim.sh /usr/bin/timedatectl
 RUN chmod +x /usr/bin/timedatectl
 
+# openbox keybinding config -- see docker/openbox-rc.xml (Ctrl+Alt+T -> xterm, for evaluator
+# postconfig steps that open a fresh terminal via that shortcut).
+COPY benchmarks/osworld/docker/openbox-rc.xml /etc/xdg/openbox/rc.xml
+
 # pynput is in upstream's server/requirements.txt but unused by main.py/pyxcursor.py (its Linux
 # backend needs evdev, a C extension that's slow/flaky to build under QEMU emulation) — skipped.
 RUN pip3 install --no-cache-dir \
