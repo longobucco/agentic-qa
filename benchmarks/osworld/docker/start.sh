@@ -5,6 +5,24 @@ set -e
 # Xvfb (orphaned when python crashes after `exec`, or surviving a sandbox stop/start) makes the
 # next Xvfb fail to bind :99 -> permanent crash loop. -nolock avoids the lock file entirely.
 rm -f /tmp/.X99-lock /tmp/.X11-unix/X99
+# This image runs everything as root ($HOME=/root by default -- there is no `user` account,
+# confirmed live via whoami/ps aux). ~870 of 871 vm_file-type evaluator paths in
+# data/osworld_verified.jsonl hardcode /home/user/... literally (see Dockerfile.osworld's own
+# VS Code fix comment), and apps that resolve their config dir via $HOME (LibreOffice, VLC) need
+# $HOME to actually BE /home/user for their state to land where the evaluator looks. Exporting
+# this before anything else starts means every process inherits it, same ordering discipline as
+# the D-Bus session bus below.
+export HOME=/home/user
+mkdir -p "$HOME/Desktop" "$HOME/Downloads" "$HOME/.config"
+# gsettings persistence without a real session/dconf-service: this container has no session bus
+# wired for dconf's default backend (see the toolkit-accessibility gsettings call below, which is
+# already known to no-op for the same reason). keyfile is glib's own documented backend for
+# exactly this -- gsettings set/get read and write a plain file
+# ($HOME/.config/glib-2.0/settings/keyfile) instead of round-tripping through dconf-service, so a
+# value set in one process is visible to a get in a LATER, separate process (confirmed root cause
+# of task 3ce045a0: text-scaling-factor set successfully, read back correctly in the SAME shell,
+# but invisible to the evaluator's later, separate `gsettings get` call).
+export GSETTINGS_BACKEND=keyfile
 Xvfb :99 -screen 0 1280x1024x24 -nolock &
 sleep 2
 
