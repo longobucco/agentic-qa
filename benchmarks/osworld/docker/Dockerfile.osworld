@@ -163,6 +163,17 @@ RUN chmod +x /usr/bin/timedatectl
 # postconfig steps that open a fresh terminal via that shortcut).
 COPY benchmarks/osworld/docker/openbox-rc.xml /etc/xdg/openbox/rc.xml
 
+# Pre-warm VLC's plugin cache and seed a default vlcrc at build time. Three closed-book
+# evaluators (9195653c, 215dfd39, a5bbbcd5) relaunch vlc (pkill + relaunch) with ZERO sleep
+# before reading vlcrc straight off disk (get_vlc_config just does env.controller.get_file --
+# desktop_env/evaluators/getters/vlc.py) -- a cold plugin-cache scan or a not-yet-created vlcrc
+# in that split second reads as a missing/empty file (confirmed live: TypeError on a None read,
+# task 9195653c). Xvfb isn't available at build time, so run VLC headless just long enough to
+# build its cache and flush a default config, matching the Chrome cold-start discipline above.
+RUN HOME=/home/user mkdir -p /home/user/.config/vlc && \
+    HOME=/home/user xvfb-run -a --server-args="-screen 0 1280x1024x24" \
+        timeout 15 vlc --no-audio --intf dummy --play-and-exit /dev/null || true
+
 # pynput is in upstream's server/requirements.txt but unused by main.py/pyxcursor.py (its Linux
 # backend needs evdev, a C extension that's slow/flaky to build under QEMU emulation) — skipped.
 RUN pip3 install --no-cache-dir \
