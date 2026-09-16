@@ -45,6 +45,12 @@ def model_slug(model=None):
 # "agent_computer" (unpinned, mixed-model, historical) vs "agent_computer_sonnet5" (pinned).
 SYSTEM_NAME = f"agent_computer_{model_slug()}" if MODEL else "agent_computer"
 
+# Mirrors ASTRA_SYSTEM_SUFFIX below (same rationale: validating a new guest image digest against
+# the frozen population must never silently overwrite the existing campaign's results tree).
+SYSTEM_SUFFIX = os.environ.get("OSW_SYSTEM_SUFFIX", "").strip()
+if SYSTEM_SUFFIX:
+    SYSTEM_NAME = f"{SYSTEM_NAME}_{re.sub(r'[^a-zA-Z0-9]+', '', SYSTEM_SUFFIX) or 'suffix'}"
+
 # Independent GPT Astra replication. It deliberately does not reuse OSW_MODEL: setting the
 # Sonnet baseline model must never rename or redirect Astra's result tree.
 ASTRA_MODEL = os.environ.get("OSW_ASTRA_MODEL", "gpt-6-astra").strip()
