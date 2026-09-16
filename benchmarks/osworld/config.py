@@ -235,6 +235,49 @@ PINNED_EVALUATORS = os.environ.get("OSW_PINNED_EVALUATORS", "1") != "0"
 
 IMAGE = os.environ.get(   # pinned by digest -- Daytona caches images by tag, not :latest
     "OSW_IMAGE",
+    # 2026-09-16 (later same day): rebuilt again on top of the digest below, carrying the fixes
+    # from docs/superpowers/plans/2026-09-16-osworld-closed-book-infra-fixes.md -- targeting the
+    # Sonnet 5 closed-book campaign's 16 infra-attributed "0/3"/partial tasks (see that campaign's
+    # own forensic report, benchmarks/osworld/docs/sonnet5-open-vs-closed-book.md). Every change
+    # was static-verified during implementation (no Docker daemon in that dev environment) and
+    # task-reviewed individually plus a whole-branch final review (one Critical finding caught
+    # and fixed there, see below) before this digest was built; LIVE validation against a real
+    # sandbox is docs/superpowers/plans/...-infra-fixes.md's own Task 11, run separately from this
+    # build+push step:
+    #   - sudo installed -- SetupController never checks a config/postconfig shell command's own
+    #     exit code (only the HTTP status), so a missing sudo silently no-op'd `sudo -S` steps
+    #     (tasks e0df059f, 5812b315).
+    #   - gnome-settings-daemon installed -- ships the org.gnome.settings-daemon.plugins.power
+    #     gsettings schema (compiled separately from gsettings-desktop-schemas), missing before
+    #     (task bedcedc4).
+    #   - /usr/bin/timedatectl shim (docker/timedatectl-shim.sh) -- is_utc_0 hard-parses
+    #     `timedatectl status` line 3; no systemd on this image, so the real binary doesn't exist
+    #     (task b6781586).
+    #   - HOME=/home/user exported guest-wide in start.sh (not just per-app wrapper hacks) --
+    #     apps that resolve their own config dir via $HOME (LibreOffice, VLC) now land in
+    #     /home/user/... matching literal vm_file evaluator paths (tasks 2373b66a, 2cd43775,
+    #     5ced85fc, 8ba5ae7a).
+    #   - GSETTINGS_BACKEND=keyfile exported in start.sh -- gsettings set/get now persist to a
+    #     plain file instead of needing a dconf-service session bus this container never had, so
+    #     a value set by the agent is visible to a LATER, separate evaluator process (task
+    #     3ce045a0).
+    #   - openbox Ctrl+Alt+T -> xterm keybinding (docker/openbox-rc.xml) -- openbox's defaults
+    #     don't include it (a GNOME/Unity convention), but several evaluator postconfig steps
+    #     open a fresh terminal that way (task 13584542).
+    #   - VLC plugin-cache pre-warm + vlcrc seed at build time -- three evaluators pkill+relaunch
+    #     vlc with zero sleep before reading vlcrc off disk; a cold plugin-cache scan left the
+    #     file transiently missing/empty (tasks 9195653c, 215dfd39, a5bbbcd5).
+    #   - env.sandbox._verify_launches now also requires a mapped window (wmctrl), not just a
+    #     live process, before treating a "launch" config step as started -- a cold-started
+    #     process can paint nothing for several seconds, handing the agent a blank first
+    #     screenshot. Ships WITH an explicit exemption for socat (a headless CDP-forwarding relay
+    #     launched alongside chrome in 79 task configs, confirmed by auditing the full task set)
+    #     -- the whole-branch final review caught that the unexempted version would have turned
+    #     every one of those 79 tasks into a false ENVIRONMENT_ERROR on every run, regardless of
+    #     the agent; fixed and re-reviewed before this digest was built.
+    "ghcr.io/longobucco/osworld-ab@sha256:"
+    "dbb3bbf78d05588124e20b6286ebea221a4a97c1a793b11ae2ed40d2418cfe95",
+    # --- previous pin, kept for history ---
     # 2026-09-16: rebuilt from a Dockerfile.osworld carrying three fixes, all live-validated
     # against a real sandbox on THIS digest (not just an apt-get-install claim -- see the
     # Dockerfile's own "an apt-get install is not validation" discipline), against the
@@ -270,8 +313,9 @@ IMAGE = os.environ.get(   # pinned by digest -- Daytona caches images by tag, no
     #     an app exists to report through it. Whether this actually resolves those 16 tasks (vs. a
     #     separate app-launch failure the bridge fix does not touch) is NOT yet known -- only a
     #     real campaign run against this digest, with a11y_ok now recorded, can show that.
-    "ghcr.io/longobucco/osworld-ab@sha256:"
-    "2d3d9665f43b0726eafda32d493bd527ea7437781e09d9c85209063487750640",
+    #     (superseded by the digest above -- kept only as a comment, not passed as a default)
+    #     "ghcr.io/longobucco/osworld-ab@sha256:"
+    #     "2d3d9665f43b0726eafda32d493bd527ea7437781e09d9c85209063487750640"
 )
 # Open-book campaign: a SEPARATE image from IMAGE above -- the closed-book pin must never
 # silently start carrying mitmproxy/iptables/CA just because this file also defines
