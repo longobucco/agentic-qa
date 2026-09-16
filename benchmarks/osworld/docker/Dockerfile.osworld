@@ -57,6 +57,13 @@ ENV DEBIAN_FRONTEND=noninteractive DISPLAY=:99
 #   git                   — several "os"/task configs shell out to `git clone` directly (e.g.
 #                           task acb0f96b-eacd-...); confirmed live it was never installed, so
 #                           every such task failed on FileNotFoundError regardless of the agent.
+# sudo -- many official task configs/postconfigs pipe {CLIENT_PASSWORD} through "sudo -S";
+# SetupController never checks the shell command's own exit code (only the HTTP status), so
+# a missing sudo silently no-ops these steps instead of failing loudly (confirmed live: e0df059f's
+# precondition mkdir, 5812b315's postconfig).
+# gnome-settings-daemon -- ships the org.gnome.settings-daemon.plugins.power gsettings schema
+# (compiled separately from gsettings-desktop-schemas above); without it any gsettings get/set
+# against that schema fails outright (confirmed: task bedcedc4).
 RUN apt-get update && apt-get install -y --no-install-recommends \
         xvfb x11-utils openbox xterm scrot gnome-screenshot wmctrl \
         python3 python3-pip python3-tk python3-dev python-is-python3 \
@@ -64,10 +71,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libreoffice-gtk3 \
         libglib2.0-bin gsettings-desktop-schemas \
         xdg-utils desktop-file-utils shared-mime-info file libfile-mimeinfo-perl \
-        supervisor curl \
+        supervisor curl sudo \
         libreoffice \
         gimp thunderbird vlc socat \
         gvfs pulseaudio pulseaudio-utils xdotool libnotify-bin \
+        gnome-settings-daemon \
         git \
     && rm -rf /var/lib/apt/lists/*
 
@@ -144,6 +152,12 @@ RUN rm -f /usr/bin/google-chrome && \
     printf '#!/bin/sh\nmkdir -p /home/user/.config/Code /tmp/code-extensions\nexec /usr/share/code/bin/code --no-sandbox --user-data-dir=/home/user/.config/Code --extensions-dir=/tmp/code-extensions "$@"\n' \
         > /usr/bin/code && \
     chmod +x /usr/bin/code
+
+# timedatectl shim -- see docker/timedatectl-shim.sh for why (no systemd on this image, but
+# is_utc_0 hard-parses `timedatectl status` line 3; confirmed live: task b6781586 IndexErrors on
+# the evaluator side with the real binary absent).
+COPY benchmarks/osworld/docker/timedatectl-shim.sh /usr/bin/timedatectl
+RUN chmod +x /usr/bin/timedatectl
 
 # pynput is in upstream's server/requirements.txt but unused by main.py/pyxcursor.py (its Linux
 # backend needs evdev, a C extension that's slow/flaky to build under QEMU emulation) — skipped.
