@@ -115,19 +115,35 @@ def _process_running(ctrl, name):
     return bool((ctrl.execute(f"pgrep -f {name}", shell=True) or "").strip())
 
 
+def _window_mapped(ctrl, name):
+    """wmctrl lists mapped (visible, painted) windows by WM_CLASS/title substring -- stricter
+    than _process_running's pgrep, which only proves the process forked, not that it rendered.
+    Falls back to True (don't block) if wmctrl itself errors, so a wmctrl hiccup never becomes a
+    new false-failure mode on top of the one this is fixing."""
+    out = ctrl.execute("wmctrl -l", shell=True)
+    if out is None:
+        return True
+    return name.lower() in out.lower()
+
+
 def _verify_launches(ctrl, steps, *, wait=3, retries=4):
     """SetupController._launch_setup doesn't raise on failure (unlike _open_setup) -- a missing
     app binary silently "succeeds", so a bad launch would otherwise surface as an agent FAILURE
-    that was never the agent's fault. Independently confirm every launched process started."""
+    that was never the agent's fault. Independently confirm every launched process started AND
+    mapped a window -- a cold-started process can be alive for several seconds before painting
+    anything, during which the agent's first screenshot would be handed over blank (observed:
+    closed-book tasks 215dfd39/a5bbbcd5/28cc3b7e run 1, filed as "blank screen for the entire
+    session" -- a process-only check would have missed this)."""
     binaries = {b for s in steps if s.get("type") == "launch" for b in [_launch_binary(s)] if b}
     if not binaries:
         return None
     for _ in range(retries):
         time.sleep(wait)
-        binaries = {b for b in binaries if not _process_running(ctrl, b)}
+        binaries = {b for b in binaries
+                    if not (_process_running(ctrl, b) and _window_mapped(ctrl, b))}
         if not binaries:
             return None
-    return f"launched app(s) never started: {', '.join(sorted(binaries))}"
+    return f"launched app(s) never started/rendered: {', '.join(sorted(binaries))}"
 
 
 def _run_config(ctrl, task, *, use_proxy=False, sandbox=None):
