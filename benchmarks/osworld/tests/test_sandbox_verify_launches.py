@@ -62,3 +62,34 @@ def test_wmctrl_error_falls_back_to_true_and_does_not_block_success():
     with patch("time.sleep"):
         result = sandbox._verify_launches(ctrl, STEPS)
     assert result is None
+
+
+SOCAT_STEPS = [{"type": "launch",
+                "parameters": {"command": "socat tcp-listen:9222,fork tcp:localhost:1337"}}]
+
+
+def test_headless_binary_with_no_window_still_succeeds():
+    # socat is a headless CDP-forwarding TCP relay (used alongside google-chrome in 79 real
+    # OSWorld task configs) -- it never maps a window. If _window_mapped were ever actually
+    # invoked for it, wmctrl is rigged to return a string that does NOT contain "socat", which
+    # would fail the old (pre-exemption) check. The exemption must short-circuit before that.
+    def side_effect(command, *, shell=False, timeout=120):
+        if "pgrep" in command:
+            return "12345"
+        if "wmctrl" in command:
+            return "0x00000001  0 some-other-app"
+        raise AssertionError(f"unexpected command: {command}")
+
+    ctrl = _fake_ctrl(side_effect)
+    with patch("time.sleep"):
+        result = sandbox._verify_launches(ctrl, SOCAT_STEPS)
+    assert result is None
+
+
+def test_window_mapped_short_circuits_for_headless_binary_without_calling_wmctrl():
+    # Proves the headless exemption happens BEFORE any wmctrl call, not just that it happens to
+    # pass despite one -- ctrl.execute is rigged to raise if invoked at all.
+    ctrl = MagicMock()
+    ctrl.execute.side_effect = AssertionError("wmctrl should never be called for socat")
+    assert sandbox._window_mapped(ctrl, "socat") is True
+    ctrl.execute.assert_not_called()

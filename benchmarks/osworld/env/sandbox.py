@@ -115,11 +115,25 @@ def _process_running(ctrl, name):
     return bool((ctrl.execute(f"pgrep -f {name}", shell=True) or "").strip())
 
 
+# Launch targets that never open a window (headless/background helpers) -- checking them for a
+# mapped window would always fail after _verify_launches's retries, turning a perfectly working
+# environment into a false failure. socat is the one confirmed real case: used as a CDP-
+# forwarding TCP relay alongside google-chrome in 79 task configs (see Dockerfile.osworld's own
+# comment on the socat package), and never draws a window. Exempt, not removed from checking
+# entirely -- _process_running still catches a socat that dies on startup; only the window-map
+# requirement is skipped for it.
+_HEADLESS_LAUNCH_BINARIES = {"socat"}
+
+
 def _window_mapped(ctrl, name):
     """wmctrl lists mapped (visible, painted) windows by WM_CLASS/title substring -- stricter
     than _process_running's pgrep, which only proves the process forked, not that it rendered.
     Falls back to True (don't block) if wmctrl itself errors, so a wmctrl hiccup never becomes a
-    new false-failure mode on top of the one this is fixing."""
+    new false-failure mode on top of the one this is fixing. Also returns True unconditionally
+    for known headless launch targets (see _HEADLESS_LAUNCH_BINARIES) -- they legitimately never
+    map a window, so requiring one would itself be a false-failure mode."""
+    if name in _HEADLESS_LAUNCH_BINARIES:
+        return True
     out = ctrl.execute("wmctrl -l", shell=True)
     if out is None:
         return True
