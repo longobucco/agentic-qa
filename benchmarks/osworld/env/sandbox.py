@@ -13,6 +13,7 @@ Two things handled here rather than by hand:
 CLI: python -m benchmarks.osworld.env.sandbox up|down <id>|list|resume <id>
 """
 import os
+import re
 import shutil
 import sys
 import tempfile
@@ -108,6 +109,15 @@ def provision(image=None, *, disk=10, memory=8, cpu=4, auto_stop=20, on_created=
 def _launch_binary(step):
     cmd = step.get("parameters", {}).get("command", "")
     tokens = cmd if isinstance(cmd, list) else cmd.split()
+    # Skip any leading shell-style KEY=VALUE env-var assignments (e.g. "VLC_VERBOSE=-1 vlc
+    # --no-audio ...", used by 18 tasks in the official task set) -- otherwise tokens[0] is the
+    # env assignment, not the actual binary, and _window_mapped's wmctrl -l (which lists window
+    # titles, not command lines) can never match it. Confirmed live: this silently turned 4 real
+    # closed-book tasks (8ba5ae7a, 9195653c, a5bbbcd5, 215dfd39) into false ENVIRONMENT_ERRORs
+    # the moment the window-mapped check shipped -- _process_running's pgrep -f had tolerated it
+    # by accident (substring match against the whole command line), wmctrl -l does not.
+    while tokens and re.match(r'^[A-Za-z_][A-Za-z0-9_]*=', tokens[0]):
+        tokens = tokens[1:]
     return os.path.basename(tokens[0]) if tokens else None
 
 
