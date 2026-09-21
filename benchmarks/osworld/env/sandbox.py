@@ -102,6 +102,15 @@ def _ensure_controller_up(sb):
 _DESKTOP_READY_COLOR_THRESHOLD = 8
 _DESKTOP_READY_TIMEOUT_S = 30
 _DESKTOP_READY_POLL_S = 2
+# Confirmed live 2026-09-21 (Astra canary, task 3ce045a0): a desktop can pass a single-shot
+# readiness check -- render real content the very first time it's looked at -- and then go
+# solid black again within under a minute, before the agent's own first screenshot. A 70s
+# pure-idle control probe against the same task/image never reproduced it, so this is a startup
+# race that only some sandbox boots hit, not a steady-state one a longer single check would
+# catch. Requiring the SAME desktop to render on two reads spaced apart, instead of trusting the
+# first one, is what actually distinguishes "settled" from "mid-race".
+_DESKTOP_READY_STABLE_CHECKS = 2
+_DESKTOP_READY_STABLE_INTERVAL_S = 3
 
 
 def _desktop_rendered(ctrl):
@@ -122,7 +131,9 @@ def _desktop_rendered(ctrl):
         return False
 
 
-def _wait_for_desktop_ready(ctrl, *, timeout=_DESKTOP_READY_TIMEOUT_S, poll=_DESKTOP_READY_POLL_S):
+def _wait_for_desktop_ready(ctrl, *, timeout=_DESKTOP_READY_TIMEOUT_S, poll=_DESKTOP_READY_POLL_S,
+                             stable_checks=_DESKTOP_READY_STABLE_CHECKS,
+                             stable_interval=_DESKTOP_READY_STABLE_INTERVAL_S):
     """Block (bounded) until the guest desktop is actually painting real content, not just until
     the HTTP server is reachable (see Controller.ready(), which only checks /screenshot doesn't
     raise -- a blank Xvfb buffer returns a perfectly valid 200 OK). Returns None once ready, or a
@@ -135,16 +146,26 @@ def _wait_for_desktop_ready(ctrl, *, timeout=_DESKTOP_READY_TIMEOUT_S, poll=_DES
     unlike _verify_launches (which only checks apps the task's own config explicitly launches
     and is a no-op for a task with config=[]). Confirmed live: task 937087b6 (config=[], no
     launch step at all) still hit a blank/unrendered desktop -- a check that only fires for
-    "launch" steps cannot catch that class of failure."""
+    "launch" steps cannot catch that class of failure.
+
+    Requires `stable_checks` consecutive rendered reads, spaced `stable_interval` seconds apart,
+    before declaring ready (see _DESKTOP_READY_STABLE_CHECKS for why a single instantaneous read
+    isn't enough). Any non-rendered read resets the streak, so a flicker right after an apparent
+    pass does not get grandfathered in -- the two checks have to be back to back."""
     deadline = time.monotonic() + timeout
+    consecutive = 0
     while True:
         if _desktop_rendered(ctrl):
-            return None
+            consecutive += 1
+            if consecutive >= stable_checks:
+                return None
+        else:
+            consecutive = 0
         if time.monotonic() >= deadline:
-            return (f"desktop never rendered real content within {timeout}s (screenshot stayed "
-                     f"near-blank/monochrome) -- Xvfb/openbox/D-Bus startup race, not specific "
-                     f"to any task or app")
-        time.sleep(poll)
+            return (f"desktop never rendered stable content within {timeout}s (screenshot "
+                     f"stayed near-blank/monochrome, or rendered then relapsed before settling) "
+                     f"-- Xvfb/openbox/D-Bus startup race, not specific to any task or app")
+        time.sleep(stable_interval if consecutive else poll)
 
 
 def provision(image=None, *, disk=10, memory=8, cpu=4, auto_stop=20, on_created=None):
