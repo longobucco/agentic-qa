@@ -136,18 +136,33 @@ _HEADLESS_LAUNCH_BINARIES = {"socat"}
 
 
 def _window_mapped(ctrl, name):
-    """wmctrl lists mapped (visible, painted) windows by WM_CLASS/title substring -- stricter
-    than _process_running's pgrep, which only proves the process forked, not that it rendered.
-    Falls back to True (don't block) if wmctrl itself errors, so a wmctrl hiccup never becomes a
-    new false-failure mode on top of the one this is fixing. Also returns True unconditionally
-    for known headless launch targets (see _HEADLESS_LAUNCH_BINARIES) -- they legitimately never
-    map a window, so requiring one would itself be a false-failure mode."""
+    """wmctrl lists mapped (visible, painted) windows -- stricter than _process_running's pgrep,
+    which only proves the process forked, not that it rendered. Falls back to True (don't block)
+    if wmctrl itself errors, so a wmctrl hiccup never becomes a new false-failure mode on top of
+    the one this is fixing. Also returns True unconditionally for known headless launch targets
+    (see _HEADLESS_LAUNCH_BINARIES) -- they legitimately never map a window, so requiring one
+    would itself be a false-failure mode.
+
+    -x adds each window's WM_CLASS to wmctrl's output (WINDOW_ID DESKTOP_ID WM_CLASS.INSTANCE
+    HOSTNAME TITLE) -- a stable, machine-readable app identifier that (unlike the free-form,
+    human-facing window TITLE) usually echoes the binary's own name. Confirmed live: the launch
+    binary "google-chrome" never appears in Chrome's window TITLE ("Google Chrome", a space, not
+    a hyphen -- .lower() fixes case but not that), so a title-only check always failed for it,
+    turning the single largest task category in the whole benchmark (~88 chrome tasks) into a
+    false ENVIRONMENT_ERROR. Adding -x is a strict superset of the previous check (the title is
+    still in the output, plus the class now too), so it cannot break any match that used to
+    succeed. The hyphen/underscore-to-space normalization below is an extra generic safety net
+    for any binary/window-identifier pair that still doesn't share exact punctuation even via
+    WM_CLASS."""
     if name in _HEADLESS_LAUNCH_BINARIES:
         return True
-    out = ctrl.execute("wmctrl -l", shell=True)
+    out = ctrl.execute("wmctrl -lx", shell=True)
     if out is None:
         return True
-    return name.lower() in out.lower()
+    if name.lower() in out.lower():
+        return True
+    normalize = lambda s: s.lower().replace('-', ' ').replace('_', ' ')
+    return normalize(name) in normalize(out)
 
 
 def _verify_launches(ctrl, steps, *, wait=3, retries=4):

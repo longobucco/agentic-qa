@@ -93,3 +93,58 @@ def test_window_mapped_short_circuits_for_headless_binary_without_calling_wmctrl
     ctrl.execute.side_effect = AssertionError("wmctrl should never be called for socat")
     assert sandbox._window_mapped(ctrl, "socat") is True
     ctrl.execute.assert_not_called()
+
+
+def test_window_mapped_title_only_output_still_fails_without_wm_class():
+    # Isolates what -x specifically buys us: a window whose TITLE never mentions the app name at
+    # all (e.g. a document/page title, the common real-world case), so neither the raw substring
+    # check NOR the hyphen/underscore normalization can bridge title text to binary name -- only
+    # a WM_CLASS column could. NOTE: an earlier draft of this test used a title that spelled out
+    # "Google Chrome" (space-separated) with no class column, expecting False. That was wrong:
+    # under the exact fix code, normalize(name) = "google chrome" is already a literal substring
+    # of any title that spells the app name with a space (e.g. "New Tab - Google Chrome"), so the
+    # normalization step alone (independent of -x) resolves that particular case. This test uses
+    # a title that names neither the binary nor its human-readable form, which is what actually
+    # requires WM_CLASS.
+    def side_effect(command, *, shell=False, timeout=120):
+        return "0x00000001  0 Untitled Document - MyEditor"
+
+    ctrl = _fake_ctrl(side_effect)
+    assert sandbox._window_mapped(ctrl, "google-chrome") is False
+
+
+def test_window_mapped_matches_via_wm_class_column():
+    # The actual fix validation: a realistic `wmctrl -lx` line carries a WM_CLASS column
+    # ("google-chrome.Google-chrome") that echoes the binary name verbatim, even though the
+    # TITLE column ("New Tab - Google Chrome") still would not match on its own.
+    def side_effect(command, *, shell=False, timeout=120):
+        return ("0x00000001  0 google-chrome.Google-chrome  host  "
+                "New Tab - Google Chrome")
+
+    ctrl = _fake_ctrl(side_effect)
+    assert sandbox._window_mapped(ctrl, "google-chrome") is True
+
+
+def test_window_mapped_uses_wmctrl_lx_command():
+    # Confirms the actual command sent is "wmctrl -lx" (the -x flag), not the old "wmctrl -l".
+    ctrl = MagicMock()
+    ctrl.execute.return_value = "0x00000001  0 google-chrome.Google-chrome  host  New Tab"
+    sandbox._window_mapped(ctrl, "google-chrome")
+    ctrl.execute.assert_called_once()
+    called_command = ctrl.execute.call_args.args[0]
+    assert called_command == "wmctrl -lx"
+
+
+def test_window_mapped_normalizes_hyphen_underscore_mismatch():
+    # Generic normalization fallback: binary name "my_app" (underscore) vs. WM_CLASS
+    # "my-app.MyApp" (hyphen) -- the raw substring check fails on punctuation alone; only the
+    # hyphen/underscore-to-space normalization makes them equal ("my app" == "my app").
+    def side_effect(command, *, shell=False, timeout=120):
+        return "0x00000001  0 my-app.MyApp  host  Some Window Title"
+
+    ctrl = _fake_ctrl(side_effect)
+    # Sanity: prove the raw (non-normalized) substring check alone would fail, so this test is
+    # actually exercising the normalization fallback and not a lucky substring match.
+    raw_out = side_effect("wmctrl -lx")
+    assert "my_app" not in raw_out.lower()
+    assert sandbox._window_mapped(ctrl, "my_app") is True
