@@ -12,6 +12,7 @@ Two things handled here rather than by hand:
 
 CLI: python -m benchmarks.osworld.env.sandbox up|down <id>|list|resume <id>
 """
+import io
 import os
 import re
 import shutil
@@ -21,6 +22,8 @@ import time
 from concurrent.futures import ThreadPoolExecutor, TimeoutError as FutureTimeoutError
 from contextlib import contextmanager
 from pathlib import Path
+
+from PIL import Image
 
 from benchmarks.osworld import config
 from benchmarks.osworld.env.controller import Controller
@@ -87,6 +90,61 @@ def _ensure_controller_up(sb):
                 return ctrl
             time.sleep(2)
     raise RuntimeError(f"OSWorld controller never became ready on sandbox {sb.id}")
+
+
+# A blank Xvfb framebuffer (nothing painted onto it yet) is visually near-monochrome: one flat
+# background color, maybe a cursor. A real, rendered desktop -- even a completely idle one with
+# no app open, just openbox's own background/decorations -- has far more color variety than
+# that. Counting distinct colors rather than checking for literal black/a specific RGB value
+# means this makes no assumption about openbox's theme, the guest's resolution, or which app (if
+# any) is on screen -- it works identically whether the eventual foreground is a browser, an
+# office app, or nothing at all.
+_DESKTOP_READY_COLOR_THRESHOLD = 8
+_DESKTOP_READY_TIMEOUT_S = 30
+_DESKTOP_READY_POLL_S = 2
+
+
+def _desktop_rendered(ctrl):
+    """True once the guest's screenshot shows real visual content, not a blank/uninitialized
+    framebuffer. Never raises -- a transient screenshot failure here means "not ready yet", the
+    same as a genuinely blank one, so the caller's retry loop is the only place that gives up."""
+    try:
+        raw = ctrl.screenshot()
+        img = Image.open(io.BytesIO(raw)).convert("RGB")
+        img.thumbnail((200, 200))  # downsampling preserves color diversity, not detail; keeps
+                                    # this cheap to run on every retry
+        colors = img.getcolors(maxcolors=100000)
+        # getcolors() returns None if the image has MORE than maxcolors distinct colors -- given
+        # a 200x200 thumbnail (40000px) and maxcolors=100000, None can only mean "so much color
+        # variety it didn't even need to give up counting", i.e. unambiguously rendered.
+        return colors is None or len(colors) > _DESKTOP_READY_COLOR_THRESHOLD
+    except Exception:
+        return False
+
+
+def _wait_for_desktop_ready(ctrl, *, timeout=_DESKTOP_READY_TIMEOUT_S, poll=_DESKTOP_READY_POLL_S):
+    """Block (bounded) until the guest desktop is actually painting real content, not just until
+    the HTTP server is reachable (see Controller.ready(), which only checks /screenshot doesn't
+    raise -- a blank Xvfb buffer returns a perfectly valid 200 OK). Returns None once ready, or a
+    diagnostic error string if it never became ready within the timeout budget -- the caller
+    treats a non-None return the same as any other setup failure (ENVIRONMENT_ERROR), so this
+    task's run is correctly excluded from scoring rather than silently handed to the agent
+    against a desktop that was never going to render.
+
+    Deliberately unconditional -- runs whether or not the task has any `config` "launch" steps,
+    unlike _verify_launches (which only checks apps the task's own config explicitly launches
+    and is a no-op for a task with config=[]). Confirmed live: task 937087b6 (config=[], no
+    launch step at all) still hit a blank/unrendered desktop -- a check that only fires for
+    "launch" steps cannot catch that class of failure."""
+    deadline = time.monotonic() + timeout
+    while True:
+        if _desktop_rendered(ctrl):
+            return None
+        if time.monotonic() >= deadline:
+            return (f"desktop never rendered real content within {timeout}s (screenshot stayed "
+                     f"near-blank/monochrome) -- Xvfb/openbox/D-Bus startup race, not specific "
+                     f"to any task or app")
+        time.sleep(poll)
 
 
 def provision(image=None, *, disk=10, memory=8, cpu=4, auto_stop=20, on_created=None):
@@ -203,7 +261,15 @@ def _run_config(ctrl, task, *, use_proxy=False, sandbox=None):
     actually work. `sandbox`: the Daytona sandbox object, passed straight to CdpForwarder for its
     authoritative get_preview_link() call -- omit only for callers that never provision one (e.g.
     OSW_CONTROLLER_URL/OSW_SANDBOX_ID reuse paths), where CdpForwarder falls back to a verified
-    URL-pattern instead."""
+    URL-pattern instead.
+
+    Also gates on _wait_for_desktop_ready before anything else, unconditionally (even for a task
+    with no config steps at all) -- see that function's own docstring for why Controller.ready()
+    alone isn't a sufficient readiness signal.
+    """
+    not_ready = _wait_for_desktop_ready(ctrl)
+    if not_ready:
+        return not_ready
     steps = task.get("config", [])
     if not steps:
         return None
