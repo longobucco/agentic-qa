@@ -57,14 +57,32 @@ def test_wait_for_desktop_ready_returns_none_once_rendered_after_a_few_polls():
         _blank_screenshot(),
         _blank_screenshot(),
         _rendered_screenshot(),
+        _rendered_screenshot(),  # confirms the first rendered read wasn't a one-off flicker
     ]
     with patch("time.sleep") as mock_sleep:
         result = sandbox._wait_for_desktop_ready(ctrl, timeout=30, poll=2)
     assert result is None
-    assert ctrl.screenshot.call_count == 3
-    # slept between the two blank polls before the rendered one landed, not zero times (i.e.
-    # this didn't just happen to pass on the very first screenshot)
-    assert mock_sleep.call_count == 2
+    assert ctrl.screenshot.call_count == 4
+    # slept between every pair of reads, not zero times (i.e. this didn't just happen to pass
+    # on the very first screenshot)
+    assert mock_sleep.call_count == 3
+
+
+def test_wait_for_desktop_ready_requires_sustained_render_not_a_single_flicker():
+    # Reproduces the exact race this gate exists to catch (confirmed live 2026-09-21): the
+    # desktop renders real content on the very first read, then relapses to blank before a
+    # second read confirms it -- a single-shot check would have declared this ready.
+    ctrl = MagicMock()
+    ctrl.screenshot.side_effect = [
+        _rendered_screenshot(),  # looks ready...
+        _blank_screenshot(),     # ...but relapses before the confirming read
+        _rendered_screenshot(),
+        _rendered_screenshot(),  # now genuinely stable across two consecutive reads
+    ]
+    with patch("time.sleep"):
+        result = sandbox._wait_for_desktop_ready(ctrl, timeout=30, poll=2)
+    assert result is None
+    assert ctrl.screenshot.call_count == 4
 
 
 def test_wait_for_desktop_ready_returns_error_string_after_timeout_exhausted():
