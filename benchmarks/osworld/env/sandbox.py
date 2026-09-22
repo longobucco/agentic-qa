@@ -92,36 +92,39 @@ def _ensure_controller_up(sb):
     raise RuntimeError(f"OSWorld controller never became ready on sandbox {sb.id}")
 
 
-# A blank Xvfb framebuffer (nothing painted onto it yet) is visually near-monochrome: one flat
-# background color, maybe a cursor. A real, rendered desktop -- even a completely idle one with
-# no app open, just openbox's own background/decorations -- has far more color variety than
-# that. Counting distinct colors rather than checking for literal black/a specific RGB value
-# means this makes no assumption about openbox's theme, the guest's resolution, or which app (if
-# any) is on screen -- it works identically whether the eventual foreground is a browser, an
-# office app, or nothing at all.
+# What this check can and can't discriminate (corrected 2026-09-22, see below): an X server with
+# no window manager, or an X server with a window manager but zero windows open, both look
+# near-monochrome -- one flat background color plus the mouse cursor's few antialiased edge
+# pixels, ~10-11 distinct colors on a 200x200 thumbnail. Confirmed live: openbox itself never
+# paints a root-window background (no wallpaper tool -- xsetroot/feh/nitrogen -- is installed),
+# so a genuinely healthy, fully-booted desktop with no app open is visually indistinguishable
+# from a dead one by color count alone. Opening any window changes this immediately and
+# drastically (confirmed live: launching bare xterm on an idle 11-color desktop jumped it to
+# 222; a real app in active use, e.g. Chrome, showed 800-1000+).
 #
-# The threshold itself was wrong from this gate's introduction: confirmed live 2026-09-21 by
-# extracting the actual screenshot bytes from a real "black screen" Astra failure (task
-# bedcedc4) and counting its colors directly -- a solid black desktop with only the mouse
-# cursor drawn on it already produces ~10 distinct colors (31991/40000 px pure (0,0,0), the
-# other ~9 colors being single antialiased edge pixels from the cursor icon), comfortably
-# clearing the old threshold of 8. That means every gate check on an actually-black desktop was
-# reporting "ready" -- the two-consecutive-reads fix in the same commit as this comment made the
-# check happen twice, but twice-wrong is still wrong when the single-shot version was never
-# discriminating in the first place. A real rendered desktop (confirmed against a genuine
-# successful run, task bb5e4c0d with Chrome open) shows 800-1000+ colors on the same 200x200
-# thumbnail -- two orders of magnitude more. 50 sits with wide margin above the ~10-color
-# cursor-only noise floor and far below any genuine rendered content observed so far.
-_DESKTOP_READY_COLOR_THRESHOLD = 50
+# So this gate cannot verify "the task's target app has rendered" -- that was this threshold's
+# purpose before 2026-09-22, and it was wrong: a version raised to 50 (to actually require
+# app-level content) made EVERY task without its own app-launching config step -- this check
+# runs before `task.get("config")` even executes -- time out and misreport ENVIRONMENT_ERROR on
+# a perfectly healthy, merely-still-empty desktop. Confirmed live: a fresh, verified-healthy
+# sandbox (Xvfb and openbox both genuinely running, confirmed via `ps`) sits at 11 colors until
+# something opens a window, indefinitely -- there is no "settling" to wait out.
+#
+# What the threshold CAN still do, and is scoped back to doing: catch a screenshot pipeline that
+# isn't even producing the baseline cursor-on-background image at all (Xvfb never came up, or a
+# genuinely corrupt/flat capture with no cursor rendered) -- that failure mode reads as 0-1
+# colors, comfortably below 8. A legitimately empty-but-healthy desktop, at ~10-11, comfortably
+# clears it. Left at its original value; the increase to 50 tried in the same session and found
+# to regress task coverage was reverted.
+_DESKTOP_READY_COLOR_THRESHOLD = 8
 _DESKTOP_READY_TIMEOUT_S = 30
 _DESKTOP_READY_POLL_S = 2
-# Confirmed live 2026-09-21 (Astra canary, task 3ce045a0): a desktop can pass a single-shot
-# readiness check -- render real content the very first time it's looked at -- and then go
-# solid black again within under a minute, before the agent's own first screenshot. A 70s
-# pure-idle control probe against the same task/image never reproduced it, so this is a startup
-# race that only some sandbox boots hit, not a steady-state one a longer single check would
-# catch. Requiring the SAME desktop to render on two reads spaced apart, instead of trusting the
-# first one, is what actually distinguishes "settled" from "mid-race".
+# Sustained-check shape (2 consecutive rendered reads, 3s apart) kept even though the
+# specific race it was written for (2026-09-21, task 3ce045a0: gate passes, then the agent's
+# own first screenshot is solid black) turned out to have a different explanation than assumed
+# at the time -- see the threshold comment above. A legitimately empty desktop reads the same
+# ~10-11 colors on both reads, so this costs a few extra seconds without narrowing what tasks
+# can pass; kept as cheap insurance against a real transient screenshot glitch on a single read.
 _DESKTOP_READY_STABLE_CHECKS = 2
 _DESKTOP_READY_STABLE_INTERVAL_S = 3
 
