@@ -99,7 +99,20 @@ def _ensure_controller_up(sb):
 # means this makes no assumption about openbox's theme, the guest's resolution, or which app (if
 # any) is on screen -- it works identically whether the eventual foreground is a browser, an
 # office app, or nothing at all.
-_DESKTOP_READY_COLOR_THRESHOLD = 8
+#
+# The threshold itself was wrong from this gate's introduction: confirmed live 2026-09-21 by
+# extracting the actual screenshot bytes from a real "black screen" Astra failure (task
+# bedcedc4) and counting its colors directly -- a solid black desktop with only the mouse
+# cursor drawn on it already produces ~10 distinct colors (31991/40000 px pure (0,0,0), the
+# other ~9 colors being single antialiased edge pixels from the cursor icon), comfortably
+# clearing the old threshold of 8. That means every gate check on an actually-black desktop was
+# reporting "ready" -- the two-consecutive-reads fix in the same commit as this comment made the
+# check happen twice, but twice-wrong is still wrong when the single-shot version was never
+# discriminating in the first place. A real rendered desktop (confirmed against a genuine
+# successful run, task bb5e4c0d with Chrome open) shows 800-1000+ colors on the same 200x200
+# thumbnail -- two orders of magnitude more. 50 sits with wide margin above the ~10-color
+# cursor-only noise floor and far below any genuine rendered content observed so far.
+_DESKTOP_READY_COLOR_THRESHOLD = 50
 _DESKTOP_READY_TIMEOUT_S = 30
 _DESKTOP_READY_POLL_S = 2
 # Confirmed live 2026-09-21 (Astra canary, task 3ce045a0): a desktop can pass a single-shot
