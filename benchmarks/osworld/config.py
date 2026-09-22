@@ -235,6 +235,20 @@ PINNED_EVALUATORS = os.environ.get("OSW_PINNED_EVALUATORS", "1") != "0"
 
 IMAGE = os.environ.get(   # pinned by digest -- Daytona caches images by tag, not :latest
     "OSW_IMAGE",
+    # 2026-09-22: rebuilt on top of the digest below, adding ONE package: nautilus. Found live
+    # re-checking open-book campaign failures -- task 415ef462's own official config has a
+    # "launch" step for `nautilus /home/user/Documents/Finance` (GNOME Files), which silently
+    # no-op'd because the binary was never installed (same SetupController blind spot as the
+    # missing-sudo fix below: only the HTTP status is checked, never the shell command's exit
+    # code). 10 tasks in data/osworld_verified.jsonl launch nautilus directly in their own
+    # config, so this is generic infra, not a fix aimed at one task's checker. No other change
+    # in this rebuild -- the host-side fixes below this pin (env-var-prefix launch parsing,
+    # wmctrl -lx window matching, the desktop-readiness gate) all live in env/sandbox.py, which
+    # runs on the harness host, not inside the guest image, so they took effect immediately on
+    # merge without needing a rebuild.
+    "ghcr.io/longobucco/osworld-ab@sha256:"
+    "72ce5805a6568e9f818069aa490d572d560ed80cfe247491892756bf9eb055d3",
+    # --- previous pin, kept for history ---
     # 2026-09-16 (later same day): rebuilt again on top of the digest below, carrying the fixes
     # from docs/superpowers/plans/2026-09-16-osworld-closed-book-infra-fixes.md -- targeting the
     # Sonnet 5 closed-book campaign's 16 infra-attributed "0/3"/partial tasks (see that campaign's
@@ -275,8 +289,9 @@ IMAGE = os.environ.get(   # pinned by digest -- Daytona caches images by tag, no
     #     -- the whole-branch final review caught that the unexempted version would have turned
     #     every one of those 79 tasks into a false ENVIRONMENT_ERROR on every run, regardless of
     #     the agent; fixed and re-reviewed before this digest was built.
-    "ghcr.io/longobucco/osworld-ab@sha256:"
-    "dbb3bbf78d05588124e20b6286ebea221a4a97c1a793b11ae2ed40d2418cfe95",
+    #     (superseded by the digest above -- kept only as a comment, not passed as a default)
+    #     "ghcr.io/longobucco/osworld-ab@sha256:"
+    #     "dbb3bbf78d05588124e20b6286ebea221a4a97c1a793b11ae2ed40d2418cfe95"
     # --- previous pin, kept for history ---
     # 2026-09-16: rebuilt from a Dockerfile.osworld carrying three fixes, all live-validated
     # against a real sandbox on THIS digest (not just an apt-get-install claim -- see the
