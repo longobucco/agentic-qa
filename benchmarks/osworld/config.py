@@ -87,7 +87,11 @@ def astra_system_name():
                 f"_codex{safe(ASTRA_CODEX_VERSION)}")
     if ASTRA_SYSTEM_SUFFIX:
         safe_suffix = re.sub(r"[^a-zA-Z0-9]+", "", ASTRA_SYSTEM_SUFFIX) or "suffix"
-        return f"{base}_{safe_suffix}"
+        base = f"{base}_{safe_suffix}"
+    # The zoom/batch arm (config.ZOOM_BATCH) never pools into a baseline tree. Read from the
+    # environment directly: ZOOM_BATCH itself is defined further down this module.
+    if os.environ.get("OSW_ZOOM_BATCH", "0") == "1":
+        base = f"{base}_zoombatch"
     return base
 
 
@@ -194,6 +198,9 @@ INLOOP_VERIFY_SKIP_APPS = {
 # explicit that a11y trees are incomplete on custom-rendered widgets. Off by default -- opt in
 # per-run, like every other arm.
 GROUNDING = os.environ.get("OSW_GROUNDING", "0") == "1"
+# Zoom + batched-action MCP tools for both CLIs (docs/superpowers/plans/2026-09-24-osworld-
+# protocol-alignment.md Task 4). Off by default; its own results trees (see below/astra_system_name).
+ZOOM_BATCH = os.environ.get("OSW_ZOOM_BATCH", "0") == "1"
 # Re-read the tree after a click_element and tell the model when nothing changed. This is the
 # action-level half of the mechanism (a click that did nothing is detectable locally, with no
 # model call and no oracle) and costs one extra /accessibility round trip per click.
@@ -209,6 +216,8 @@ GROUNDING_MIN_SCORE = float(os.environ.get("OSW_GROUNDING_MIN_SCORE", "0.45"))
 # GROUNDING is not known yet at that point.
 if GROUNDING:
     SYSTEM_NAME = f"{SYSTEM_NAME}_grounding"
+if ZOOM_BATCH:
+    SYSTEM_NAME = f"{SYSTEM_NAME}_zoombatch"
 
 # Verify-Replan (docs/verify-replan-minimal-integration-plan.md): a second, separate runner
 # (runners/verify_replan.py) -- not a flag on agent_computer, so the baseline path is provably

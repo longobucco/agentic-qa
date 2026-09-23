@@ -23,8 +23,13 @@ ALLOWED_MCP_TOOLS = (
 APPROVAL_MODE = "dangerously-bypass-approvals-and-sandbox"
 
 
+def allowed_mcp_tools(zoom_batch):
+    """The Astra toolset: the frozen baseline, plus zoom/batch in that arm."""
+    return ALLOWED_MCP_TOOLS + (("zoom", "batch") if zoom_batch else ())
+
+
 def build_codex_cmd(prompt, *, model, cwd, controller_url, reasoning_effort=None,
-                    python_bin=None):
+                    python_bin=None, zoom_batch=False):
     """Build an isolated `codex exec` invocation with only the task's OSWorld MCP configured."""
     python_bin = python_bin or sys.executable
     repo_root = str(Path(__file__).resolve().parent.parent)
@@ -34,7 +39,9 @@ def build_codex_cmd(prompt, *, model, cwd, controller_url, reasoning_effort=None
     mcp_env = (
         "{ OSW_CONTROLLER_URL = " + json.dumps(controller_url or "")
         + ", PYTHONPATH = " + json.dumps(repo_root)
-        + ", OSW_RESTRICT_RUN_PYTHON = \"1\" }"
+        + ", OSW_RESTRICT_RUN_PYTHON = \"1\""
+        + (", OSW_ZOOM_BATCH = \"1\"" if zoom_batch else "")
+        + " }"
     )
     cmd = [
         "codex", "exec", "--json", "--color", "never", "--model", model,

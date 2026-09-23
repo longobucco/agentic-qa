@@ -34,6 +34,8 @@ from core import results as results_io
 GROUNDING_TOOLS = [
     "mcp__osworld__find_element", "mcp__osworld__click_element", "mcp__osworld__list_elements",
 ]
+# mcp/zoom_batch_tools.register() -- the zoom/batch arm (config.ZOOM_BATCH).
+ZOOM_BATCH_TOOLS = ["mcp__osworld__zoom", "mcp__osworld__batch"]
 
 
 def _effort_kwargs():
@@ -54,7 +56,8 @@ def _allowed_tools():
     Kept here rather than in common.OSWORLD_TOOLS on purpose: that module's extraction discipline
     is that it reads no G5-arm config knob (see its docstring), and GROUNDING is one.
     """
-    return OSWORLD_TOOLS + (GROUNDING_TOOLS if config.GROUNDING else [])
+    return (OSWORLD_TOOLS + (GROUNDING_TOOLS if config.GROUNDING else [])
+            + (ZOOM_BATCH_TOOLS if config.ZOOM_BATCH else []))
 
 
 def _grounding_precheck(ctrl):
