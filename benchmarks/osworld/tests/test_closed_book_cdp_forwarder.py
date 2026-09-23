@@ -29,6 +29,7 @@ def test_enable_cdp_forwarder_alone_does_not_turn_on_use_proxy():
     fake_cdp_fwd = MagicMock(host="127.0.0.1", port=12345)
 
     with patch.object(sandbox, "_wait_for_desktop_ready", return_value=None), \
+         patch.object(sandbox, "_screen_size_mismatch", return_value=None), \
          patch("benchmarks.osworld.env.osworld_eval.make_setup_controller",
                return_value=fake_setup_ctrl), \
          patch("benchmarks.osworld.env.cdp_forwarder.CdpForwarder") as MockForwarder, \
@@ -53,6 +54,7 @@ def test_neither_flag_skips_the_cdp_forwarder_entirely():
     fake_setup_ctrl = MagicMock()
 
     with patch.object(sandbox, "_wait_for_desktop_ready", return_value=None), \
+         patch.object(sandbox, "_screen_size_mismatch", return_value=None), \
          patch("benchmarks.osworld.env.osworld_eval.make_setup_controller",
                return_value=fake_setup_ctrl), \
          patch("benchmarks.osworld.env.cdp_forwarder.CdpForwarder") as MockForwarder, \
@@ -74,6 +76,7 @@ def test_use_proxy_true_still_implies_the_forwarder_unchanged_from_before_the_sp
     fake_cdp_fwd = MagicMock(host="127.0.0.1", port=12345)
 
     with patch.object(sandbox, "_wait_for_desktop_ready", return_value=None), \
+         patch.object(sandbox, "_screen_size_mismatch", return_value=None), \
          patch("benchmarks.osworld.env.osworld_eval.make_setup_controller",
                return_value=fake_setup_ctrl), \
          patch("benchmarks.osworld.env.cdp_forwarder.CdpForwarder") as MockForwarder, \

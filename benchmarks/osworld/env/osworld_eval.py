@@ -177,7 +177,8 @@ def make_setup_controller(controller_url, *, cache_dir=None):
     u = urlparse(controller_url)
     sc = SetupController(vm_ip=u.hostname or "localhost",
                          server_port=u.port or (443 if u.scheme == "https" else 5000),
-                         cache_dir=cache_dir or tempfile.mkdtemp(prefix="osw_setup_cache_"))
+                         cache_dir=cache_dir or tempfile.mkdtemp(prefix="osw_setup_cache_"),
+                         screen_width=config.SCREEN_WIDTH, screen_height=config.SCREEN_HEIGHT)
     sc.http_server = controller_url.rstrip("/")
     sc.http_server_setup_root = controller_url.rstrip("/") + "/setup"
     return sc
