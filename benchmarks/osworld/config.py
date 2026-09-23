@@ -235,6 +235,17 @@ PINNED_EVALUATORS = os.environ.get("OSW_PINNED_EVALUATORS", "1") != "0"
 
 IMAGE = os.environ.get(   # pinned by digest -- Daytona caches images by tag, not :latest
     "OSW_IMAGE",
+    # 2026-09-23 (later same day): rebuilt on top of the digest below, adding
+    # ENV XDG_CONFIG_HOME=/opt/osw_xdg_unused -- extends the SAME Chrome anti-hijacking fix
+    # open-book already had (docker/Dockerfile.osworld-openbook, 2026-09-12) to closed-book.
+    # Found live re-validating the CDP-routing fix just below: even with routing fixed, Chrome
+    # itself never bound --remote-debugging-port at all ("DevTools remote debugging requires a
+    # non-default data directory" in its own log) -- nothing downstream (socat, CdpForwarder)
+    # could have worked regardless. Same one-line fix as open-book's; the actual Chrome profile
+    # directory used is unaffected (still $HOME/.config/google-chrome).
+    "ghcr.io/longobucco/osworld-ab@sha256:"
+    "2c9c677ab54574433f4c41b0446f2c798a2b0acd951bc1de51b2fead5eeac02f",
+    # --- previous pin, kept for history ---
     # 2026-09-23: rebuilt on top of the digest below, running VLC as a dedicated non-root user
     # (vlcuser) via a shim at /usr/bin/vlc -- VLC categorically refuses to start as root
     # ("VLC is not supposed to be run as root. Sorry."), confirmed live to be the TRUE root
@@ -246,8 +257,8 @@ IMAGE = os.environ.get(   # pinned by digest -- Daytona caches images by tag, no
     # fixed there back on 2026-09-13 but never extended to closed-book pending this decision.
     # See docker/vlc-shim.sh and env/sandbox.py's `enable_cdp_forwarder` docstring for the full
     # story on each.
-    "ghcr.io/longobucco/osworld-ab@sha256:"
-    "c20e8b979ee31b8b8b760c3b824a7e350f786e662302821712b1460511fe3c29",
+    #     "ghcr.io/longobucco/osworld-ab@sha256:"
+    #     "c20e8b979ee31b8b8b760c3b824a7e350f786e662302821712b1460511fe3c29"
     # --- previous pin, kept for history ---
     # 2026-09-22: rebuilt on top of the digest below, adding ONE package: nautilus. Found live
     # re-checking open-book campaign failures -- task 415ef462's own official config has a
