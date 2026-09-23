@@ -200,4 +200,5 @@ benchmarks/osworld/results/agent_computer/*/run_*/conversation.jsonl
 
 # fetched by data/download_evaluators.py at the pinned upstream commit -- not source
 benchmarks/osworld/data/evaluators/
+benchmarks/osworld/data/controllers/
 .worktrees/
