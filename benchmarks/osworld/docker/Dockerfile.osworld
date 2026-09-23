@@ -16,6 +16,26 @@ FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteractive DISPLAY=:99
 
+# Chromium (confirmed live, both Chrome 151.0.7922.108 and a newer 153.0.8010.36) refuses remote
+# debugging with "DevTools remote debugging requires a non-default data directory" whenever
+# --user-data-dir's VALUE equals what chrome::GetDefaultUserDataDirectory() would compute
+# anyway -- true here even though the launch wrapper (below) passes it explicitly, because the
+# wrapper's own explicit value ($HOME/.config/google-chrome) IS the platform default (an
+# anti-hijacking check added ~M92, comparing values, not "was the flag passed"). The wrapper
+# can't point elsewhere: desktop_env's evaluator getters hardcode reading Chrome's profile from
+# that exact path. Fix: point ONLY Chrome's notion of "what the default would have been"
+# somewhere else, via XDG_CONFIG_HOME (chrome::DIR_USER_DATA's own computation reads this on
+# Linux) -- the actual profile directory used is still whatever --user-data-dir says, unaffected
+# by this var (Preferences/Bookmarks/History still land in $HOME/.config/google-chrome as
+# before). Originally applied ONLY to docker/Dockerfile.osworld-openbook (2026-09-12) -- "NOT
+# yet applied to the shared closed-book image ... that decision is separate" -- extended here
+# 2026-09-23 after confirming live it's what actually blocks EVERY closed-book task launching
+# Chrome with --remote-debugging-port (chrome_open_tabs/chrome_close_tabs config steps, 51
+# tasks): even with CDP routing fixed (env/sandbox.py's enable_cdp_forwarder), Chrome itself
+# never bound the debug port at all without this, confirmed via chrome's own log
+# ("DevTools remote debugging requires a non-default data directory").
+ENV XDG_CONFIG_HOME=/opt/osw_xdg_unused
+
 # add only the apps your subset needs; python3-pyatspi is required for /accessibility (imported
 # unconditionally on Linux — without it the guest server won't even start). NOTE: having the
 # package is necessary and NOT sufficient — /accessibility returned an empty `<desktop-frame/>` on
