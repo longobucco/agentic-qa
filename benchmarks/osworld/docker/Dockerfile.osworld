@@ -200,9 +200,17 @@ RUN chmod +x /usr/bin/vlc
 # get_vlc_config expects vlcrc (os.path.expanduser('~/.config/vlc/vlcrc') with HOME=/home/user).
 # "Other" permissions rather than a shared group/chown keeps this correct regardless of which
 # uid happens to own a given file when a later task's config step creates it as root.
+#
+# `-ac` on the ephemeral xvfb-run server: unlike the runtime Xvfb (`Xvfb :99 ... -nolock`, no
+# auth required at all), xvfb-run generates its OWN Xauthority cookie for whoever invokes it
+# (root, during this build) -- confirmed live 2026-09-23: without `-ac`, vlcuser's connection
+# attempt through the shim failed with "Authorization required, but no authorization protocol
+# specified" (X11 access control, not the root-refusal this whole block already works around).
+# `-ac` disables that access control on this throwaway, build-only display, matching the
+# runtime Xvfb's already-open behavior.
 RUN HOME=/home/user mkdir -p /home/user/.config/vlc && \
     chmod -R o+rwX /home/user && \
-    HOME=/home/user xvfb-run -a --server-args="-screen 0 1280x1024x24" \
+    HOME=/home/user xvfb-run -a --server-args="-screen 0 1280x1024x24 -ac" \
         timeout 15 vlc --no-audio --intf dummy --play-and-exit /dev/null || true
 
 # pynput is in upstream's server/requirements.txt but unused by main.py/pyxcursor.py (its Linux
