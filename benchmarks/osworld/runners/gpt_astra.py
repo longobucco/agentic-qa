@@ -21,10 +21,11 @@ from benchmarks.osworld.runners.agent_computer import (
 from core import results as results_io
 from core.agent_loop import extract_answer, preview
 from core.codex_loop import (
-    ALLOWED_MCP_TOOLS, APPROVAL_MODE, DISABLED_FEATURES, build_codex_cmd, run_codex_meta,
+    ALLOWED_MCP_TOOLS, APPROVAL_MODE, DISABLED_FEATURES, allowed_mcp_tools, build_codex_cmd,
+    run_codex_meta,
 )
 
-_LOCK = Path(__file__).resolve().parents[1] / "astra_campaign_lock.json"
+_LOCK = config.ASTRA_CAMPAIGN_LOCK
 # Codex/Astra-specific telemetry, rate-limit detection, tool audit and provenance now live in
 # astra_common.py (shared with runners/gpt_astra_openbook.py) -- re-exported under their original
 # names so this module's own callers/tests (patch.object(gpt_astra, "_codex_version", ...), etc.)
@@ -77,7 +78,7 @@ def _validate_campaign_lock():
     policy = lock["tool_policy"]
     if (policy["approval_mode"] != APPROVAL_MODE
             or tuple(policy["disabled_features"]) != DISABLED_FEATURES
-            or tuple(policy["allowed_mcp_tools"]) != ALLOWED_MCP_TOOLS):
+            or tuple(policy["allowed_mcp_tools"]) != allowed_mcp_tools(config.ZOOM_BATCH)):
         raise SystemExit("Astra tool policy differs from the frozen campaign lock")
 
 
