@@ -241,6 +241,8 @@ class _EnvAdapter:
         self.current_use_proxy = use_proxy
         self.action_history = action_history
         self.controller = controller
+        self._controller_url = controller_url
+        self._setup_controller = None
 
     @property
     def vm_machine(self):
@@ -254,6 +256,17 @@ class _EnvAdapter:
         if self._vm_machine is None:
             self._vm_machine = _guest_machine(self.controller)
         return self._vm_machine
+
+    @property
+    def setup_controller(self):
+        """A real SetupController on the guest, built lazily. The official vscode_config getter
+        calls env.setup_controller._activate_window_setup(...) before replaying the command
+        palette; without this attribute every such task ended as EVAL_ERROR (AttributeError) and
+        was silently dropped from the scored population (53ad5833, 4 runs, found 2026-09-24)."""
+        if self._setup_controller is None:
+            self._setup_controller = make_setup_controller(self._controller_url,
+                                                           cache_dir=self.cache_dir)
+        return self._setup_controller
 
 
 def evaluate_official(controller_url, task, action_history, cache_dir=None, use_proxy=False,
