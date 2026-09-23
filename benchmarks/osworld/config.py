@@ -65,6 +65,11 @@ if SYSTEM_SUFFIX:
 ASTRA_MODEL = os.environ.get("OSW_ASTRA_MODEL", "gpt-6-astra").strip()
 ASTRA_REASONING_EFFORT = os.environ.get("OSW_ASTRA_REASONING_EFFORT", "high").strip()
 ASTRA_CODEX_VERSION = os.environ.get("OSW_ASTRA_CODEX_VERSION", "0.153.4").strip()
+# Which frozen Astra campaign lock the preflight enforces. Default: the original 291-task
+# campaign. The protocol-aligned campaigns (docs/superpowers/plans/2026-09-24-osworld-protocol-
+# alignment.md) select their own lock, so the original one is never edited.
+ASTRA_CAMPAIGN_LOCK = (Path(__file__).resolve().parent
+                       / os.environ.get("OSW_ASTRA_CAMPAIGN_LOCK", "astra_campaign_lock.json"))
 
 
 # Opt-in suffix for a deliberately SEPARATE results tree under the same model/effort/codex-
