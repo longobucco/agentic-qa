@@ -42,8 +42,17 @@ def model_slug(model=None):
     return _MODEL_SLUGS.get(model, model.replace("claude-", "").replace(".", "").replace("-", ""))
 
 
+# Protocol knobs (docs/superpowers/plans/2026-09-24-osworld-protocol-alignment.md). Empty/None
+# keep the historical behavior (CLI default effort, CLI default output-token limit).
+EFFORT = os.environ.get("OSW_EFFORT", "").strip()
+_mot = os.environ.get("OSW_MAX_OUTPUT_TOKENS", "").strip()
+MAX_OUTPUT_TOKENS = int(_mot) if _mot else None
+
 # "agent_computer" (unpinned, mixed-model, historical) vs "agent_computer_sonnet5" (pinned).
 SYSTEM_NAME = f"agent_computer_{model_slug()}" if MODEL else "agent_computer"
+# An effort override is a different protocol: never pool it into the default-effort tree.
+if EFFORT:
+    SYSTEM_NAME = f"{SYSTEM_NAME}_effort{re.sub(r'[^a-zA-Z0-9]+', '', EFFORT)}"
 
 # Mirrors ASTRA_SYSTEM_SUFFIX below (same rationale: validating a new guest image digest against
 # the frozen population must never silently overwrite the existing campaign's results tree).

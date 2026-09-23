@@ -20,7 +20,7 @@ from benchmarks.osworld.runners.common import (
     _capture_eval_state, _clean_finish, _environment_error_rec, _evaluate_with_retry,
     _evaluator_provenance, _mcp_config, _model_mismatch, _POST_RUN_TIMEOUT_S, _provenance,
     _rate_limit_infra_rec, _rate_limit_result_rec, _save_conversation_transcript, _score,
-    _served_by, _a11y_health,
+    _served_by, _a11y_health, claude_env,
 )
 from core.agent_loop import build_claude_cmd, extract_answer, preview, run_claude_meta
 from core import results as results_io
@@ -34,6 +34,18 @@ from core import results as results_io
 GROUNDING_TOOLS = [
     "mcp__osworld__find_element", "mcp__osworld__click_element", "mcp__osworld__list_elements",
 ]
+
+
+def _effort_kwargs():
+    """Protocol knobs (OSW_EFFORT / OSW_MAX_OUTPUT_TOKENS) as call kwargs, present only when set:
+    with neither set, the baseline build_claude_cmd/run_claude_meta calls stay exactly as they
+    were (test_dry_run_argv_is_a_stable_snapshot_for_a_fixed_task_and_config pins that)."""
+    return {"effort": config.EFFORT} if config.EFFORT else {}
+
+
+def _env_kwargs():
+    env = claude_env()
+    return {"env": env} if env else {}
 
 
 def _allowed_tools():
@@ -199,8 +211,9 @@ def _inloop_verify(ctrl, task, answer, meta, mcp_config_path, out):
             _INLOOP_RETRY_PROMPT.format(instruction=task.get("instruction", ""), reason=reason),
             model=config.MODEL or None, max_turns=config.INLOOP_VERIFY_MAX_TURNS,
             mcp_config=mcp_config_path, allowed_tools=_allowed_tools(), resume=session_id,
+            **_effort_kwargs(),
         )
-        meta2 = run_claude_meta(cmd2, timeout=config.TASK_TIMEOUT)
+        meta2 = run_claude_meta(cmd2, timeout=config.TASK_TIMEOUT, **_env_kwargs())
     except Exception as e:
         print(f"[osworld] in-loop verify retry failed: {e}")
         return answer, meta, {**base, "inloop_verify_error": f"retry call failed: {e}"}
@@ -256,6 +269,7 @@ def run(task, *, env, out, refs=None, dry=False):
         mcp_config=mcp_config_path,
         allowed_tools=_allowed_tools(),
         extra=_extra_flags(),
+        **_effort_kwargs(),
     )
     if dry:
         print("DRY-RUN command:\n ", preview(cmd))
@@ -264,7 +278,7 @@ def run(task, *, env, out, refs=None, dry=False):
 
     inloop_telemetry = {}
     try:
-        meta = run_claude_meta(cmd, timeout=config.TASK_TIMEOUT)
+        meta = run_claude_meta(cmd, timeout=config.TASK_TIMEOUT, **_env_kwargs())
         # Kept alive past this first call, on purpose: idea #15's follow-up turn (below) needs
         # the SAME --mcp-config to --resume this session with the OSWorld tools still available.
         # Deleting it right after the first call (as this used to) would make any retry attempt

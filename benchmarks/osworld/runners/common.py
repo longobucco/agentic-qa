@@ -165,9 +165,21 @@ def _provenance(task, ctrl, started_at):
         "task_timeout": config.TASK_TIMEOUT,
         "observation": config.OBSERVATION,
         "action_space": config.ACTION_SPACE,
+        "effort": config.EFFORT or None,
+        "max_output_tokens": config.MAX_OUTPUT_TOKENS,
+        "max_steps": config.MAX_STEPS,
+        "screen_size": f"{config.SCREEN_WIDTH}x{config.SCREEN_HEIGHT}",
         "started_at": started_at,
         "finished_at": datetime.now(timezone.utc).isoformat(),
     }
+
+
+def claude_env():
+    """Child environment for `claude -p`: the parent's, plus the output-token limit when the
+    protocol sets one. None keeps the historical behavior (inherit unchanged)."""
+    if not config.MAX_OUTPUT_TOKENS:
+        return None
+    return {**os.environ, "CLAUDE_CODE_MAX_OUTPUT_TOKENS": str(config.MAX_OUTPUT_TOKENS)}
 
 
 def _a11y_health(ctrl):
