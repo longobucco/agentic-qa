@@ -280,7 +280,7 @@ def _verify_launches(ctrl, steps, *, wait=3, retries=4):
     return f"launched app(s) never started/rendered: {', '.join(sorted(binaries))}"
 
 
-def _run_config(ctrl, task, *, use_proxy=False, sandbox=None):
+def _run_config(ctrl, task, *, use_proxy=False, enable_cdp_forwarder=False, sandbox=None):
     """Run the task's config via OSWorld's own SetupController, then independently verify any
     "launch" step actually started (see _verify_launches). Returns None on success, an error
     string on failure -- never silently swallowed. No fallback to a naive per-step POST: config
@@ -290,15 +290,31 @@ def _run_config(ctrl, task, *, use_proxy=False, sandbox=None):
 
     `use_proxy`: threaded into upstream SetupController.setup(steps, use_proxy=...) -- when True,
     any "launch" step starting google-chrome gets --proxy-server=http://127.0.0.1:18888 appended
-    (setup.py:309-310). False (default) for every existing caller; only the open-book environment
-    (env.guest_proxy having already made something real listen there) passes True. True ALSO
-    activates a CdpForwarder (env/cdp_forwarder.py) and injects --remote-allow-origins=* into any
-    Chrome launch step, making chrome_open_tabs/chrome_close_tabs steps (raw CDP from the harness
-    host, previously always unroutable -- see g9_replication_validity.py's oracle_unroutable)
-    actually work. `sandbox`: the Daytona sandbox object, passed straight to CdpForwarder for its
+    (setup.py:309-310). False (default) for every existing caller except the open-book
+    environment (env.guest_proxy having already made something real listen there).
+
+    `enable_cdp_forwarder`: independent of `use_proxy` (2026-09-23 split -- the two used to be
+    the same flag; see below for why). Activates a CdpForwarder (env/cdp_forwarder.py) and
+    injects --remote-allow-origins=* into any Chrome launch step, making chrome_open_tabs/
+    chrome_close_tabs steps (raw CDP from the harness host, previously always unroutable -- see
+    g9_replication_validity.py's oracle_unroutable) actually work. True for every caller
+    (closed-book included, as of this split) -- CdpForwarder.start() probes Chrome's CDP port
+    immediately and raises CdpForwarderError (caught below, logged, harmless) if nothing is
+    listening yet, so enabling it unconditionally costs nothing on a task that never launches
+    Chrome. `sandbox`: the Daytona sandbox object, passed straight to CdpForwarder for its
     authoritative get_preview_link() call -- omit only for callers that never provision one (e.g.
     OSW_CONTROLLER_URL/OSW_SANDBOX_ID reuse paths), where CdpForwarder falls back to a verified
     URL-pattern instead.
+
+    Why split from `use_proxy`: that flag ALSO controls the open-book-specific
+    --proxy-server=127.0.0.1:18888 injection above, which requires the open-book guest fixture
+    proxy to actually be listening there -- true only for open-book. The CDP-routing fix has
+    nothing to do with that proxy; conflating them meant extending CDP routing to closed-book
+    would have wrongly injected a --proxy-server flag pointing at nothing. Confirmed live
+    2026-09-23: closed-book chrome_open_tabs/chrome_close_tabs tasks (51 in the full task set)
+    hit this exact routing gap (`BrowserType.connect_over_cdp: connect ETIMEDOUT`), previously
+    undiagnosed for closed-book because the fix existed but was deliberately scoped to
+    open-book only pending this decision.
 
     Also gates on _wait_for_desktop_ready before anything else, unconditionally (even for a task
     with no config steps at all) -- see that function's own docstring for why Controller.ready()
@@ -322,7 +338,7 @@ def _run_config(ctrl, task, *, use_proxy=False, sandbox=None):
     cdp_fwd = None
     try:
         setup_ctrl = make_setup_controller(ctrl.base_url, cache_dir=cache_dir)
-        if use_proxy:
+        if use_proxy or enable_cdp_forwarder:
             from benchmarks.osworld.env.cdp_forwarder import (
                 CdpForwarder, CdpForwarderError, inject_remote_allow_origins)
             steps = inject_remote_allow_origins(steps)
@@ -375,7 +391,7 @@ def _provision_and_configure(task, holder):
         ctrl = _ensure_controller_up(sb)
     else:
         sb, ctrl = provision(on_created=lambda s: holder.update(sb=s))
-    return ctrl, _run_config(ctrl, task)
+    return ctrl, _run_config(ctrl, task, enable_cdp_forwarder=True, sandbox=sb)
 
 
 @contextmanager
@@ -384,7 +400,7 @@ def osworld_environment(task, *, port=None):
     if config.CONTROLLER_URL:
         _warn_reuse_once("OSW_CONTROLLER_URL set")
         ctrl = Controller(config.CONTROLLER_URL)
-        err = _run_config(ctrl, task)
+        err = _run_config(ctrl, task, enable_cdp_forwarder=True)
         yield Env(port=None, browser=ctrl, setup_error=err)
         return
 
