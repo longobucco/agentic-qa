@@ -89,6 +89,9 @@ ENV XDG_CONFIG_HOME=/opt/osw_xdg_unused
 # multi-app scenario; without the binary installed, that launch step silently no-ops (same
 # SetupController blind spot as the missing-sudo case above) and _verify_launches correctly
 # reports "launched app(s) never started/rendered: nautilus" (confirmed live 2026-09-22).
+# evince/eog/totem/picard -- default Ubuntu PDF viewer, image viewer, media player, and
+# MusicBrainz Picard: 11 of the 361 published tasks need them (tags pdf/image/
+# ubuntu_media_player/picard).
 RUN apt-get update && apt-get install -y --no-install-recommends \
         xvfb x11-utils openbox xterm scrot gnome-screenshot wmctrl \
         python3 python3-pip python3-tk python3-dev python-is-python3 \
@@ -102,6 +105,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         gvfs pulseaudio pulseaudio-utils xdotool libnotify-bin \
         gnome-settings-daemon \
         nautilus \
+        evince eog totem picard \
         git \
     && rm -rf /var/lib/apt/lists/*
 

@@ -379,9 +379,14 @@ SANDBOX_ID = os.environ.get("OSW_SANDBOX_ID", "").strip()
 # apps installed and validated in docker/Dockerfile.osworld; tasks.load_tasks() skips anything
 # else by default (OSW_INCLUDE_ALL_APPS=1 overrides).
 SUPPORTED_APPS = {
-    "libreoffice_calc", "libreoffice_writer", "libreoffice_impress",
+    "libreoffice_calc", "libreoffice_writer", "libreoffice_impress", "libreoffice",
     "gimp", "thunderbird", "vlc", "chrome", "vscode",
+    # file-type tags opened with the default Ubuntu viewers, plus two desktop apps -- all in
+    # the official Ubuntu VM, installed in docker/Dockerfile.osworld
+    "pdf", "image", "picard", "ubuntu_media_player",
 }
+# "verified361": the published OSWorld-Verified population (release minus login tasks).
+POPULATION = os.environ.get("OSW_POPULATION", "").strip()
 # "os": a generic desktop/OS-level capability tag (terminal use, file manager, ...) that shows
 # up alongside a task's real app tag(s), e.g. ['vlc', 'os'] or ['vscode', 'os'] -- not an
 # installable app, same category as "terminal". Found live 2026-08-19: treating it as an

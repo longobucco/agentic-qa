@@ -11,7 +11,16 @@ from core.tasks import load_jsonl
 # tasks previously marked out of scope. Lowercase + space->underscore handles most variants
 # (e.g. "libreoffice calc" -> "libreoffice_calc", "Chrome" -> "chrome") on their own; only
 # genuine shorthands need an explicit alias here.
-_APP_ALIASES = {"vs_code": "vscode", "calc": "libreoffice_calc", "writer": "libreoffice_writer"}
+_APP_ALIASES = {"vs_code": "vscode", "calc": "libreoffice_calc", "writer": "libreoffice_writer",
+                "browser": "chrome"}
+
+_LOGIN_STEP_TYPES = {"login", "googledrive"}
+
+
+def is_login_task(task):
+    """Needs a real account login during setup -- excluded from the published 361-task
+    OSWorld-Verified population (369 - 8 = 361)."""
+    return any(s.get("type") in _LOGIN_STEP_TYPES for s in (task.get("config") or []))
 
 
 def _normalize_app(name):
@@ -48,6 +57,8 @@ def load_tasks():
             f"OSW_RELEASE={config.RELEASE} python -m benchmarks.osworld.data.download_data"
         )
     all_tasks = load_jsonl(config.TASKS_FILE)
+    if config.POPULATION == "verified361":
+        return [t for t in all_tasks if not is_login_task(t)]
     if config.INCLUDE_ALL_APPS:
         return all_tasks
     in_scope = config.SUPPORTED_APPS | config.ALWAYS_PRESENT_CAPABILITIES
