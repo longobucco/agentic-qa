@@ -37,7 +37,8 @@ def _mcp_config(controller_url):
     spec = {
         "type": "stdio", "command": "python",
         "args": ["-m", "benchmarks.osworld.mcp.server"],
-        "env": {"OSW_CONTROLLER_URL": controller_url or ""},
+        "env": {"OSW_CONTROLLER_URL": controller_url or "",
+                **({"OSW_ZOOM_BATCH": "1"} if config.ZOOM_BATCH else {})},
     }
     f = tempfile.NamedTemporaryFile("w", suffix=".json", delete=False)
     json.dump({"mcpServers": {"osworld": spec}}, f)

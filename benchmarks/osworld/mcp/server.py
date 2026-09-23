@@ -104,5 +104,13 @@ if os.environ.get("OSW_GROUNDING", "0") == "1":
     grounding_tools.register(mcp, _ctrl)
 
 
+# Zoom + batched actions (config.ZOOM_BATCH, docs/superpowers/plans/2026-09-24-osworld-protocol-
+# alignment.md Task 4): same gating rule as run_python and grounding above.
+if os.environ.get("OSW_ZOOM_BATCH", "0") == "1":
+    from benchmarks.osworld.mcp import zoom_batch_tools
+
+    zoom_batch_tools.register(mcp, _ctrl)
+
+
 if __name__ == "__main__":
     mcp.run()

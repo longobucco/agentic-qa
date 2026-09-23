@@ -116,6 +116,7 @@ def run(task, *, env, out, refs=None, dry=False):
     cmd = build_codex_cmd(
         agent_prompt(task), model=config.ASTRA_MODEL, cwd=workdir,
         controller_url=controller_url, reasoning_effort=config.ASTRA_REASONING_EFFORT or None,
+        zoom_batch=config.ZOOM_BATCH,
     )
     if dry:
         print("DRY-RUN command:\n ", preview(cmd))

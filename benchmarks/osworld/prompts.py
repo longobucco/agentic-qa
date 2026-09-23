@@ -1,6 +1,6 @@
 """Prompt for the OSWorld desktop agent."""
 from benchmarks.osworld.config import (
-    GROUNDING, MAX_STEPS, OBSERVATION, RESTRICT_RUN_PYTHON, SELF_VERIFY,
+    GROUNDING, MAX_STEPS, OBSERVATION, RESTRICT_RUN_PYTHON, SELF_VERIFY, ZOOM_BATCH,
 )
 
 # G5 idea #11 (docs/g5-arm-restrict-run-python-plan.md): when RESTRICT_RUN_PYTHON also denies the
@@ -17,6 +17,12 @@ RUN_PYTHON_LINE = "  run_python(code)        -> run arbitrary pyautogui code (es
 GROUNDING_LINES = """  find_element(description, role="")    -> where a NAMED element is, without clicking
   click_element(description, role="")   -> click a NAMED element, and report if nothing changed
   list_elements(role="", name_contains="") -> the interactive elements currently on screen
+"""
+
+# Zoom + batch arm (config.ZOOM_BATCH): advertised only when mcp/server.py registers the tools --
+# same rule as RUN_PYTHON_LINE (docs/finding-confabulation-under-tool-denial.md).
+ZOOM_BATCH_LINES = """  zoom(x0, y0, x1, y1)    -> an enlarged view of a screen region (clicks stay in full-screen pixels)
+  batch(actions)          -> several click/move/scroll/type/key/wait actions in one call, stops at the first failure
 """
 
 # Deliberately short, and framed as "when", not "always". Forcing every click through the tree
@@ -44,7 +50,7 @@ You control the computer ONLY through these MCP tools (there is NO browser and N
   move(x, y) / scroll(dx, dy)
   type(text)              -> type a string at the current focus
   key("ctrl+s")           -> press a key combination
-{run_python_line}{grounding_lines}  wait(seconds)
+{run_python_line}{grounding_lines}{zoom_batch_lines}  wait(seconds)
 
 Procedure:
 1. Call screenshot() (and a11y_tree() when you need precise coordinates) to observe the desktop.
@@ -83,5 +89,6 @@ def agent_prompt(task):
         self_verify=SELF_VERIFY_BLOCK if SELF_VERIFY else "",
         run_python_line="" if RESTRICT_RUN_PYTHON else RUN_PYTHON_LINE,
         grounding_lines=GROUNDING_LINES if GROUNDING else "",
+        zoom_batch_lines=ZOOM_BATCH_LINES if ZOOM_BATCH else "",
         grounding=GROUNDING_BLOCK if GROUNDING else "",
     )
