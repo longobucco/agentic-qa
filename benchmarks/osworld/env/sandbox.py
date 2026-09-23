@@ -280,6 +280,21 @@ def _verify_launches(ctrl, steps, *, wait=3, retries=4):
     return f"launched app(s) never started/rendered: {', '.join(sorted(binaries))}"
 
 
+def _screen_size_mismatch(ctrl):
+    """None if the guest's real screenshot size equals config.SCREEN_WIDTH x SCREEN_HEIGHT, else
+    an error string. Never raises: an unreadable screenshot is reported, not crashed on."""
+    try:
+        w, h = Image.open(io.BytesIO(ctrl.screenshot())).size
+    except Exception as e:
+        return f"could not read guest screenshot size: {type(e).__name__}: {e}"
+    want = (config.SCREEN_WIDTH, config.SCREEN_HEIGHT)
+    if (w, h) != want:
+        return (f"guest screen is {w}x{h} but the harness is configured for "
+                f"{want[0]}x{want[1]} (OSW_SCREEN_WIDTH/HEIGHT vs docker/start.sh Xvfb) -- "
+                f"task-config coordinates would land off target")
+    return None
+
+
 def _run_config(ctrl, task, *, use_proxy=False, enable_cdp_forwarder=False, sandbox=None):
     """Run the task's config via OSWorld's own SetupController, then independently verify any
     "launch" step actually started (see _verify_launches). Returns None on success, an error
@@ -323,6 +338,9 @@ def _run_config(ctrl, task, *, use_proxy=False, enable_cdp_forwarder=False, sand
     not_ready = _wait_for_desktop_ready(ctrl)
     if not_ready:
         return not_ready
+    size_err = _screen_size_mismatch(ctrl)
+    if size_err:
+        return size_err
     steps = task.get("config", [])
     if not steps:
         return None

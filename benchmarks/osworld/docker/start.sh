@@ -29,7 +29,7 @@ chmod -R o+rwX "$HOME"
 # of task 3ce045a0: text-scaling-factor set successfully, read back correctly in the SAME shell,
 # but invisible to the evaluator's later, separate `gsettings get` call).
 export GSETTINGS_BACKEND=keyfile
-Xvfb :99 -screen 0 1280x1024x24 -nolock &
+Xvfb :99 -screen 0 1920x1080x24 -nolock &
 sleep 2
 
 # --- AT-SPI accessibility bus -------------------------------------------------

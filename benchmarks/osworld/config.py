@@ -114,6 +114,11 @@ def system_from_argv(argv=None):
 
 MAX_TURNS = int(os.environ.get("OSW_MAX_TURNS", "150"))   # desktop GUI turns run >4x web-nav ones
 MAX_STEPS = int(os.environ.get("OSW_MAX_STEPS", "30"))
+# Guest screen size. Must match docker/start.sh's Xvfb line and is passed explicitly to
+# SetupController, whose own default (1920x1080) drives {SCREEN_WIDTH}/{SCREEN_WIDTH_HALF}
+# substitution in task configs -- the two used to disagree (Xvfb ran 1280x1024).
+SCREEN_WIDTH = int(os.environ.get("OSW_SCREEN_WIDTH", "1920"))
+SCREEN_HEIGHT = int(os.environ.get("OSW_SCREEN_HEIGHT", "1080"))
 TASK_TIMEOUT = int(os.environ.get("OSW_TASK_TIMEOUT", "3600"))
 
 OBSERVATION = os.environ.get("OSW_OBSERVATION", "screenshot+a11y")

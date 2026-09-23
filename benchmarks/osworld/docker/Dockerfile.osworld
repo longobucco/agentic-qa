@@ -230,7 +230,7 @@ RUN chmod +x /usr/bin/vlc
 # runtime Xvfb's already-open behavior.
 RUN HOME=/home/user mkdir -p /home/user/.config/vlc && \
     chmod -R o+rwX /home/user && \
-    HOME=/home/user xvfb-run -a --server-args="-screen 0 1280x1024x24 -ac" \
+    HOME=/home/user xvfb-run -a --server-args="-screen 0 1920x1080x24 -ac" \
         timeout 15 vlc --no-audio --intf dummy --play-and-exit /dev/null || true
 
 # pynput is in upstream's server/requirements.txt but unused by main.py/pyxcursor.py (its Linux
