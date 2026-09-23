@@ -235,6 +235,20 @@ PINNED_EVALUATORS = os.environ.get("OSW_PINNED_EVALUATORS", "1") != "0"
 
 IMAGE = os.environ.get(   # pinned by digest -- Daytona caches images by tag, not :latest
     "OSW_IMAGE",
+    # 2026-09-23: rebuilt on top of the digest below, running VLC as a dedicated non-root user
+    # (vlcuser) via a shim at /usr/bin/vlc -- VLC categorically refuses to start as root
+    # ("VLC is not supposed to be run as root. Sorry."), confirmed live to be the TRUE root
+    # cause of every VLC ENVIRONMENT_ERROR ("launched app(s) never started/rendered: vlc") for
+    # all 22 VLC tasks, not the cold-start timing issue previously assumed. Also extends the
+    # CDP-routing fix (host-side, env/sandbox.py -- already live without a rebuild) to
+    # closed-book: chrome_open_tabs/chrome_close_tabs config steps (51 tasks in the full task
+    # set) were unroutable from the harness host, exactly the open-book oracle_unroutable defect
+    # fixed there back on 2026-09-13 but never extended to closed-book pending this decision.
+    # See docker/vlc-shim.sh and env/sandbox.py's `enable_cdp_forwarder` docstring for the full
+    # story on each.
+    "ghcr.io/longobucco/osworld-ab@sha256:"
+    "c20e8b979ee31b8b8b760c3b824a7e350f786e662302821712b1460511fe3c29",
+    # --- previous pin, kept for history ---
     # 2026-09-22: rebuilt on top of the digest below, adding ONE package: nautilus. Found live
     # re-checking open-book campaign failures -- task 415ef462's own official config has a
     # "launch" step for `nautilus /home/user/Documents/Finance` (GNOME Files), which silently
@@ -246,8 +260,8 @@ IMAGE = os.environ.get(   # pinned by digest -- Daytona caches images by tag, no
     # wmctrl -lx window matching, the desktop-readiness gate) all live in env/sandbox.py, which
     # runs on the harness host, not inside the guest image, so they took effect immediately on
     # merge without needing a rebuild.
-    "ghcr.io/longobucco/osworld-ab@sha256:"
-    "72ce5805a6568e9f818069aa490d572d560ed80cfe247491892756bf9eb055d3",
+    #     "ghcr.io/longobucco/osworld-ab@sha256:"
+    #     "72ce5805a6568e9f818069aa490d572d560ed80cfe247491892756bf9eb055d3"
     # --- previous pin, kept for history ---
     # 2026-09-16 (later same day): rebuilt again on top of the digest below, carrying the fixes
     # from docs/superpowers/plans/2026-09-16-osworld-closed-book-infra-fixes.md -- targeting the
