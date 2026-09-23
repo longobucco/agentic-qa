@@ -255,7 +255,8 @@ class _EnvAdapter:
         return self._vm_machine
 
 
-def evaluate_official(controller_url, task, action_history, cache_dir=None, use_proxy=False):
+def evaluate_official(controller_url, task, action_history, cache_dir=None, use_proxy=False,
+                       enable_cdp_forwarder=True):
     """Return OSWorld's reward for this task (0..1), or None if desktop_env isn't importable.
 
     `cache_dir`: where the official getters land any gold reference they download. Pass one to
@@ -265,12 +266,18 @@ def evaluate_official(controller_url, task, action_history, cache_dir=None, use_
     `use_proxy`: False for every closed-book/baseline caller (unchanged behavior). The open-book
     runner passes True so a postconfig step that relaunches Chrome (several chrome-bucket tasks
     do: pkill then relaunch right before scoring) gets --proxy-server too, and so
-    current_use_proxy reads true for getters that branch on it (see _EnvAdapter). True also
-    activates a CdpForwarder (env/cdp_forwarder.py), making Chrome's CDP port reachable for
-    get_open_tabs_info/get_active_tab_info/get_active_tab_html_parse -- otherwise blocked by
-    the same defect this module already works around for the controller's own HTTP port
-    (oracle_unroutable, see g9_replication_validity.py). False (closed-book) keeps chromium_port
-    hardcoded at 9222 exactly as before -- unchanged, that decision is separate from this fix."""
+    current_use_proxy reads true for getters that branch on it (see _EnvAdapter).
+
+    `enable_cdp_forwarder`: independent of `use_proxy` (2026-09-23 split, see env/sandbox.py's
+    matching split on `_run_config` for the full rationale -- the two used to be one flag,
+    conflating the open-book-only --proxy-server injection with a CDP-routing fix that both
+    books need equally). Activates a CdpForwarder (env/cdp_forwarder.py), making Chrome's CDP
+    port reachable for get_open_tabs_info/get_active_tab_info/get_active_tab_html_parse --
+    otherwise blocked by the same defect this module already works around for the controller's
+    own HTTP port (oracle_unroutable, see g9_replication_validity.py). Defaults True: every
+    caller wants CDP routing to work, so the CdpForwarder.start() probe (which raises and is
+    caught harmlessly when nothing is listening on Chrome's CDP port yet) is unconditional
+    unless a caller explicitly opts out."""
     use_pinned_evaluators()     # must precede the import below: it decides what gets imported
     try:
         from desktop_env.controllers.python import PythonController
@@ -287,7 +294,7 @@ def evaluate_official(controller_url, task, action_history, cache_dir=None, use_
         address = split_for_getters(controller_url, fwd)
         controller = PythonController(vm_ip=address[0], server_port=address[1])
         cdp_fwd = None
-        if use_proxy:
+        if use_proxy or enable_cdp_forwarder:
             try:
                 cdp_fwd = CdpForwarder(
                     controller_url, controller_port=config.CONTROLLER_PORT).start()
@@ -311,7 +318,7 @@ def _score(env, ev, func, controller_url, cache_dir, getters, metrics, use_proxy
 
     postconfig = ev.get("postconfig", [])
     if postconfig:
-        if use_proxy and cdp_forwarder is not None:
+        if cdp_forwarder is not None:
             from benchmarks.osworld.env.cdp_forwarder import inject_remote_allow_origins
             postconfig = inject_remote_allow_origins(postconfig)
         # reuse the caller's cache_dir instead of minting a fresh one here -- the caller (see
@@ -320,7 +327,7 @@ def _score(env, ev, func, controller_url, cache_dir, getters, metrics, use_proxy
         # let 5400 stray dirs/files (3.6GB) accumulate over ~1000 run attempts (found live
         # 2026-08-16).
         postconfig_ctrl = make_setup_controller(controller_url, cache_dir=cache_dir)
-        if use_proxy and cdp_forwarder is not None:
+        if cdp_forwarder is not None:
             postconfig_ctrl.vm_ip, postconfig_ctrl.chromium_port = \
                 cdp_forwarder.host, cdp_forwarder.port
         postconfig_ctrl.setup(postconfig, use_proxy=use_proxy)
