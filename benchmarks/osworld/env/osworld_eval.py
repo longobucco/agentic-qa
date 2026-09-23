@@ -113,6 +113,37 @@ def use_pinned_evaluators():
     return stamp.read_text().strip()
 
 
+PINNED_CONTROLLERS = config.DATA_DIR / "controllers"
+
+
+def use_pinned_setup_controller():
+    """Overlay controllers/setup.py fetched at UPSTREAM_COMMIT onto the installed desktop_env, the
+    same way use_pinned_evaluators does for the evaluators: config/postconfig steps then run on
+    the SetupController the task data was written for (data/download_evaluators.py says why).
+
+    Returns the commit in use, or None when the pinned file isn't on disk (setup then runs on the
+    installed release; evaluator_provenance() records which)."""
+    stamp = PINNED_CONTROLLERS / "PINNED_COMMIT"
+    if not config.PINNED_EVALUATORS or not stamp.is_file():
+        return None
+    use_pinned_evaluators()   # the pinned setup.py imports desktop_env.evaluators.metrics.utils
+    try:
+        import desktop_env.controllers as controllers
+    except Exception:
+        return None
+    path = str(PINNED_CONTROLLERS)
+    if path not in controllers.__path__:
+        controllers.__path__.insert(0, path)
+    mod = sys.modules.get("desktop_env.controllers.setup")
+    if mod is not None and not str(getattr(mod, "__file__", "")).startswith(path):
+        # Already imported from the installed release (desktop_env/__init__ pulls it in):
+        # evict it, and the parent's attribute, so the next import resolves to the pinned file.
+        del sys.modules["desktop_env.controllers.setup"]
+        if getattr(controllers, "setup", None) is mod:
+            delattr(controllers, "setup")
+    return stamp.read_text().strip()
+
+
 def _drop_installed_submodules(pinned_path):
     """Evict `desktop_env.evaluators.*` modules already loaded from the installed release.
 
@@ -165,14 +196,26 @@ def evaluator_provenance():
     except Exception:
         pass
     in_effect = bool(commit) and where is not None and where.startswith(str(PINNED_EVALUATORS))
+    # Same discipline for the SetupController that ran config/postconfig: where it resolves from.
+    setup_commit = use_pinned_setup_controller()
+    setup_where = None
+    try:
+        from desktop_env.controllers import setup as setup_mod
+        setup_where = str(pathlib.Path(setup_mod.__file__).resolve())
+    except Exception:
+        pass
+    setup_in_effect = (bool(setup_commit) and setup_where is not None
+                       and setup_where.startswith(str(PINNED_CONTROLLERS.resolve())))
     return {"evaluator_commit": commit if in_effect else None,
             "evaluator_package": installed,
-            "evaluator_source": "pinned" if in_effect else "installed"}
+            "evaluator_source": "pinned" if in_effect else "installed",
+            "setup_controller_commit": setup_commit if setup_in_effect else None}
 
 
 def make_setup_controller(controller_url, *, cache_dir=None):
     """A real SetupController pointed at our controller_url (config/postconfig dispatch is real
     host-side logic per step type, not a 1:1 REST route name — don't hand-roll it)."""
+    use_pinned_setup_controller()
     from desktop_env.controllers.setup import SetupController
     u = urlparse(controller_url)
     sc = SetupController(vm_ip=u.hostname or "localhost",

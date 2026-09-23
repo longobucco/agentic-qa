@@ -36,6 +36,14 @@ RAW_BASE = f"https://raw.githubusercontent.com/xlang-ai/OSWorld/{UPSTREAM_COMMIT
 OUT = pathlib.Path(__file__).resolve().parent / "evaluators"
 STAMP = OUT / "PINNED_COMMIT"       # what env/osworld_eval.py checks before trusting the tree
 
+# The SetupController that runs task config/postconfig steps, from the same commit. The
+# installed 1.0.2 is behind the task data too: 2 tasks use a postconfig step type it lacks
+# (chrome_inject_js) and 1 passes a launch parameter it rejects (wait_for_cdp), so their
+# setup/postconfig died whatever the agent did.
+# Overlaid by env/osworld_eval.py::use_pinned_setup_controller; its imports all exist in 1.0.2.
+CONTROLLER_FILES = ("desktop_env/controllers/setup.py",)
+CONTROLLERS_OUT = pathlib.Path(__file__).resolve().parent / "controllers"
+
 
 def _fetch(url, *, timeout=60):
     return urllib.request.urlopen(url, timeout=timeout).read()
@@ -60,6 +68,12 @@ def main():
         n += 1
     STAMP.write_text(UPSTREAM_COMMIT + "\n")
     print(f"wrote {n} file(s) -> {OUT}")
+
+    CONTROLLERS_OUT.mkdir(parents=True, exist_ok=True)
+    for path in CONTROLLER_FILES:
+        (CONTROLLERS_OUT / path.rsplit("/", 1)[1]).write_bytes(_fetch(RAW_BASE + path))
+    (CONTROLLERS_OUT / "PINNED_COMMIT").write_text(UPSTREAM_COMMIT + "\n")
+    print(f"wrote {len(CONTROLLER_FILES)} controller file(s) -> {CONTROLLERS_OUT}")
     print("scoring picks this up automatically; verify with:\n"
           "  python -c \"from benchmarks.osworld.env import osworld_eval as e; "
           "print(e.evaluator_provenance())\"")
