@@ -14,6 +14,12 @@ rm -f /tmp/.X99-lock /tmp/.X11-unix/X99
 # the D-Bus session bus below.
 export HOME=/home/user
 mkdir -p "$HOME/Desktop" "$HOME/Downloads" "$HOME/.config"
+# vlcuser (Dockerfile.osworld -- VLC refuses to run as root) needs write access under the same
+# $HOME tree every other app's config/media lives under, including whatever a later task's own
+# config step creates here as root (e.g. downloaded media files VLC then needs to read). The
+# build-time chmod only covers what existed at build time; each fresh sandbox boot re-applies it
+# to whatever this specific task's config just created.
+chmod -R o+rwX "$HOME"
 # gsettings persistence without a real session/dconf-service: this container has no session bus
 # wired for dconf's default backend (see the toolkit-accessibility gsettings call below, which is
 # already known to no-op for the same reason). keyfile is glib's own documented backend for
