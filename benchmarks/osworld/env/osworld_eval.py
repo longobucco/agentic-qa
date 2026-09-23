@@ -227,8 +227,14 @@ def make_setup_controller(controller_url, *, cache_dir=None):
     return sc
 
 
+# Float noise only: an exact match computed through floating point can land a hair under 1.0
+# (compare_audios -> 0.9999999999923035 on 778efd0a). A genuinely partial score stays a failure.
+_SUCCESS_TOLERANCE = 1e-6
+
+
 def reward_to_verdict(reward):
-    return "SUCCESS" if reward is not None and float(reward) >= 1.0 else "FAILURE"
+    ok = reward is not None and float(reward) >= 1.0 - _SUCCESS_TOLERANCE
+    return "SUCCESS" if ok else "FAILURE"
 
 
 def _last_is_fail(action_history):
