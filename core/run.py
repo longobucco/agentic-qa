@@ -46,6 +46,9 @@ _HARNESS_ENV_KEYS = (
     "OSW_RELEASE", "OSW_MAX_TURNS", "OSW_MAX_STEPS", "OSW_TASK_TIMEOUT",
     "OSW_OBSERVATION", "OSW_ACTION_SPACE", "OSW_IMAGE",
     "OSW_ASTRA_MODEL", "OSW_ASTRA_REASONING_EFFORT", "OSW_ASTRA_CODEX_VERSION",
+    # Protocol knobs of docs/superpowers/plans/2026-09-24-osworld-protocol-alignment.md.
+    "OSW_EFFORT", "OSW_MAX_OUTPUT_TOKENS", "OSW_POPULATION", "OSW_SCREEN_WIDTH",
+    "OSW_SCREEN_HEIGHT", "OSW_RESTRICT_RUN_PYTHON", "OSW_ENFORCE_SANDBOX", "OSW_ZOOM_BATCH",
     # Verify-Replan (docs/verify-replan-minimal-integration-plan.md): recovery cap, per-role
     # timeouts/turn budgets and confidence floor all change what the harness measures, so an
     # A/B against the baseline runner is only fair when these are pinned and visible too.

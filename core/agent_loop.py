@@ -22,7 +22,8 @@ def extract_answer(text: str) -> str:
 
 
 def build_claude_cmd(prompt, *, model=None, max_turns=None, add_dir=None,
-                     mcp_config=None, allowed_tools=None, extra=None, resume=None):
+                     mcp_config=None, allowed_tools=None, extra=None, resume=None,
+                     effort=None):
     """Assemble a `claude -p ... --output-format json` argv.
 
     Covers every runner/judge shape: a plain agent (add_dir), an MCP runner (mcp_config +
@@ -46,6 +47,8 @@ def build_claude_cmd(prompt, *, model=None, max_turns=None, add_dir=None,
         cmd += ["--allowedTools", *allowed_tools]
     if extra:
         cmd += list(extra)
+    if effort:
+        cmd += ["--effort", effort]
     if model:
         cmd += ["--model", model]
     if resume:
