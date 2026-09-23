@@ -169,14 +169,39 @@ RUN chmod +x /usr/bin/timedatectl
 # postconfig steps that open a fresh terminal via that shortcut).
 COPY benchmarks/osworld/docker/openbox-rc.xml /etc/xdg/openbox/rc.xml
 
-# Pre-warm VLC's plugin cache and seed a default vlcrc at build time. Three closed-book
-# evaluators (9195653c, 215dfd39, a5bbbcd5) relaunch vlc (pkill + relaunch) with ZERO sleep
-# before reading vlcrc straight off disk (get_vlc_config just does env.controller.get_file --
-# desktop_env/evaluators/getters/vlc.py) -- a cold plugin-cache scan or a not-yet-created vlcrc
-# in that split second reads as a missing/empty file (confirmed live: TypeError on a None read,
-# task 9195653c). Xvfb isn't available at build time, so run VLC headless just long enough to
-# build its cache and flush a default config, matching the Chrome cold-start discipline above.
+# VLC refuses to run at all as root ("VLC is not supposed to be run as root. Sorry."), confirmed
+# live 2026-09-23: this image runs everything as root (no `user` account -- see the VS Code
+# profile-path comment above for why), so every VLC task's own official launch command (plain
+# "vlc ...") died instantly, 100% of the time, for all 22 VLC tasks in the task set -- not the
+# "cold-start timing" issue previously assumed and partially worked around below. VLC's own
+# official root-bypass binary, vlc-wrapper, is already in this package but needs $SUDO_UID to
+# know which user to drop to -- only set when a real (non-root) user runs `sudo vlc-wrapper`,
+# never true for our direct-root invocation -- confirmed live: "Cannot determine unprivileged
+# user for VLC!". Simpler and more direct: create a dedicated non-root user and re-exec the real
+# binary as that user ourselves via a shim installed at VLC's own path, so every task's existing
+# "vlc ..." launch command keeps working unmodified. `-s /usr/sbin/nologin`: this user is never
+# logged into interactively, only invoked via `sudo -u vlcuser` from the shim.
+RUN useradd -m -s /usr/sbin/nologin vlcuser
+RUN mv /usr/bin/vlc /usr/bin/vlc.real
+COPY benchmarks/osworld/docker/vlc-shim.sh /usr/bin/vlc
+RUN chmod +x /usr/bin/vlc
+
+# Pre-warm VLC's plugin cache and seed a default vlcrc at build time, AS vlcuser -- through the
+# same shim VLC always runs through now, so this also functions as a build-time smoke test of
+# the shim itself. Three closed-book evaluators (9195653c, 215dfd39, a5bbbcd5) relaunch vlc
+# (pkill + relaunch) with ZERO sleep before reading vlcrc straight off disk (get_vlc_config just
+# does env.controller.get_file -- desktop_env/evaluators/getters/vlc.py) -- a cold plugin-cache
+# scan or a not-yet-created vlcrc in that split second reads as a missing/empty file (confirmed
+# live: TypeError on a None read, task 9195653c). Xvfb isn't available at build time, so run VLC
+# headless just long enough to build its cache and flush a default config, matching the Chrome
+# cold-start discipline above. `chmod -R o+rwX /home/user`: vlcuser needs write access to the
+# SAME /home/user tree every other app's config/media lives under (evaluators hardcode
+# /home/user/... paths -- see the VS Code comment above) -- confirmed live this is also where
+# get_vlc_config expects vlcrc (os.path.expanduser('~/.config/vlc/vlcrc') with HOME=/home/user).
+# "Other" permissions rather than a shared group/chown keeps this correct regardless of which
+# uid happens to own a given file when a later task's config step creates it as root.
 RUN HOME=/home/user mkdir -p /home/user/.config/vlc && \
+    chmod -R o+rwX /home/user && \
     HOME=/home/user xvfb-run -a --server-args="-screen 0 1280x1024x24" \
         timeout 15 vlc --no-audio --intf dummy --play-and-exit /dev/null || true
 
