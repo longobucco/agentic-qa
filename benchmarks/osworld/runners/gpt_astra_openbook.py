@@ -55,6 +55,11 @@ _proxy_tags_for = open_book_preflight.proxy_tags_for
 
 
 def preflight():
+    # The official protocol (runners/gpt_astra.py) is closed-book only: this runner builds the
+    # legacy prompt/tools and never gets the protocol's system prompt, isolation or timings.
+    if config.OFFICIAL:
+        raise SystemExit("OSW_PROTOCOL=official is not supported by the open-book runner "
+                         "(gpt_astra_openbook): unset OSW_PROTOCOL")
     open_book_preflight.campaign_check()
 
 

@@ -5,9 +5,11 @@ provider-specific parsing here so benchmark runners only consume a small, stable
 """
 import json
 import os
+import re
 import signal
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 DISABLED_FEATURES = (
@@ -21,6 +23,10 @@ ALLOWED_MCP_TOOLS = (
     "type", "key", "wait",
 )
 APPROVAL_MODE = "dangerously-bypass-approvals-and-sandbox"
+# The config key that replaces Codex's own base instructions with a file's text. Found on the
+# 0.153.4 binary (`model_instructions_file` in its ConfigToml) and verified live: the session's
+# rollout then records base_instructions {text: <file>, provenance: custom} and the model obeys it.
+BASE_INSTRUCTIONS_KEY = "model_instructions_file"
 
 
 def allowed_mcp_tools(zoom_batch, official=False):
@@ -32,8 +38,14 @@ def allowed_mcp_tools(zoom_batch, official=False):
 
 
 def build_codex_cmd(prompt, *, model, cwd, controller_url, reasoning_effort=None,
-                    python_bin=None, mcp_extra_env=None):
-    """Build an isolated `codex exec` invocation with only the task's OSWorld MCP configured."""
+                    python_bin=None, mcp_extra_env=None, base_instructions=None,
+                    extra_config=None):
+    """Build an isolated `codex exec` invocation with only the task's OSWorld MCP configured.
+
+    base_instructions replaces Codex's own base instructions: the text is written to a fresh temp
+    file passed as BASE_INSTRUCTIONS_KEY (remove it after the run: base_instructions_file(cmd)).
+    extra_config is a sequence of TOML `key=value` overrides, each passed as `-c`. With neither,
+    the command is exactly the historical one."""
     python_bin = python_bin or sys.executable
     repo_root = str(Path(__file__).resolve().parent.parent)
     # The MCP child starts in ``cwd``; retain access to the benchmark package without relying on
@@ -66,8 +78,54 @@ def build_codex_cmd(prompt, *, model, cwd, controller_url, reasoning_effort=None
     ]
     if reasoning_effort:
         cmd += ["-c", f"model_reasoning_effort={json.dumps(reasoning_effort)}"]
+    if base_instructions is not None:
+        fd, path = tempfile.mkstemp(prefix="osw-codex-instructions-", suffix=".md")
+        with os.fdopen(fd, "w") as fh:
+            fh.write(base_instructions)
+        cmd += ["-c", f"{BASE_INSTRUCTIONS_KEY}={json.dumps(path)}"]
+    for override in extra_config or ():
+        cmd += ["-c", override]
     cmd.append(prompt)
     return cmd
+
+
+def base_instructions_file(cmd):
+    """The base-instructions temp file build_codex_cmd wrote for `cmd`, or None."""
+    prefix = f"{BASE_INSTRUCTIONS_KEY}="
+    for arg in cmd[:-1]:
+        if arg.startswith(prefix):
+            return json.loads(arg[len(prefix):])
+    return None
+
+
+_NESTED_TOOL_RE = re.compile(r"declare const tools: \{ ([A-Za-z_][A-Za-z0-9_]*)\(")
+
+
+def offered_tools_from_trace(stderr):
+    """Tools the model was offered, from the first `response.created` event Codex logs under
+    RUST_LOG=tungstenite::protocol=trace (the server echoes the request's `tools`). Neither the
+    `exec --json` stream nor the rollout records them. Names are `<namespace>.<tool>` and, for the
+    code-mode host's nested tools declared in its description, `exec.<tool>`. MCP tools are
+    deferred by Codex (reachable via the host's ALL_TOOLS, not declared), so they don't appear.
+    None when no such event is found (e.g. the transport was not the logged websocket)."""
+    for line in (stderr or "").splitlines():
+        if '"type":"response.created"' not in line or "{" not in line:
+            continue
+        try:
+            response = json.loads(line[line.index("{"):]).get("response") or {}
+        except ValueError:
+            continue
+        names = []
+        for tool in response.get("tools") or []:
+            members = tool.get("tools") if tool.get("type") == "namespace" else [tool]
+            prefix = f"{tool.get('name')}." if tool.get("type") == "namespace" else ""
+            for member in members or []:
+                names.append(f"{prefix}{member.get('name')}")
+                if member.get("name") == "exec":
+                    names += [f"exec.{n}"
+                              for n in _NESTED_TOOL_RE.findall(member.get("description") or "")]
+        return names
+    return None
 
 
 def _parse_events(raw):
