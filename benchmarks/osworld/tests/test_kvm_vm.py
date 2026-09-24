@@ -1,9 +1,12 @@
 """kvm backend: the official OSWorld VM in upstream's Docker-provider container, with the
 published (random) host ports used by every consumer. All against a fake docker client."""
+import os
 from types import SimpleNamespace as NS
 from unittest.mock import MagicMock, patch
 
 import pytest
+from docker.errors import APIError, ContainerError, ImageNotFound
+from docker.types import Mount
 
 from benchmarks.osworld import config
 from benchmarks.osworld.env import kvm_vm
@@ -35,7 +38,9 @@ def test_container_matches_upstream_docker_provider(monkeypatch):
     assert client.containers.run.call_args.args[0] == config.KVM_IMAGE
     assert kw["environment"] == {"DISK_SIZE": "32G", "RAM_SIZE": "4G", "CPU_CORES": "4"}
     assert kw["devices"] == ["/dev/kvm"] and kw["cap_add"] == ["NET_ADMIN"]
-    assert kw["volumes"] == {config.KVM_QCOW2: {"bind": "/System.qcow2", "mode": "ro"}}
+    assert "volumes" not in kw
+    assert kw["mounts"] == [Mount(target="/System.qcow2", source=os.path.abspath(config.KVM_QCOW2),
+                                  type="bind", read_only=True)]
     assert set(kw["ports"]) == {5000, 9222, 8080, 8006}
     assert ctrl.base_url == f"http://{config.KVM_ADDR}:32801"
     assert (ctrl.chromium_port, ctrl.vlc_port) == (32802, 32803)
@@ -252,3 +257,79 @@ def test_run_config_default_single_attempt_ignores_false_as_before():
         err = sandbox._run_config(NS(base_url="http://x:1"), {"id": "t", "config": [
             {"type": "sleep", "parameters": {"seconds": 0}}]})
     assert err is None and vl.called and sc.setup.call_count == 1
+
+
+# --- preflight: fails closed, one specific message per problem -------------------------------
+
+def _pf_client():
+    c = MagicMock()
+    c.containers.run.return_value = b""
+    return c
+
+
+@pytest.fixture
+def sha_set(monkeypatch):
+    monkeypatch.setattr(config, "KVM_QCOW2_SHA256", "ab" * 32)
+    monkeypatch.setattr(config, "KVM_QCOW2", "rel/Ubuntu.qcow2")
+
+
+def test_preflight_happy_path(sha_set):
+    c = _pf_client()
+    kvm_vm.preflight(client=c)
+    c.ping.assert_called_once()
+    c.images.get.assert_called_once_with(config.KVM_IMAGE)
+    kvm_call, q_call = c.containers.run.call_args_list
+    assert kvm_call.kwargs["devices"] == ["/dev/kvm"]
+    assert "test -e /dev/kvm" in " ".join(kvm_call.kwargs["entrypoint"])
+    assert q_call.kwargs["mounts"] == [Mount(target="/q", source=os.path.abspath(
+        "rel/Ubuntu.qcow2"), type="bind", read_only=True)]
+    assert "volumes" not in q_call.kwargs
+    assert "test -f /q && test -s /q" in " ".join(q_call.kwargs["entrypoint"])
+    for call in (kvm_call, q_call):
+        assert call.args[0] == config.KVM_IMAGE and call.kwargs["remove"] is True
+
+
+def test_preflight_sha_unset_fails_before_touching_docker(monkeypatch):
+    monkeypatch.setattr(config, "KVM_QCOW2_SHA256", "")
+    c = _pf_client()
+    with pytest.raises(SystemExit, match="OSW_KVM_QCOW2_SHA256 not set"):
+        kvm_vm.preflight(client=c)
+    assert not c.ping.called and not c.containers.run.called
+
+
+def test_preflight_docker_unreachable(sha_set):
+    c = _pf_client()
+    c.ping.side_effect = APIError("connection refused")
+    with pytest.raises(SystemExit, match="docker daemon unreachable"):
+        kvm_vm.preflight(client=c)
+    assert not c.containers.run.called
+
+
+def test_preflight_image_missing(sha_set):
+    c = _pf_client()
+    c.images.get.side_effect = ImageNotFound("no such image")
+    with pytest.raises(SystemExit, match=r"image .* not found.*kvm_host_setup\.sh.*docker pull"):
+        kvm_vm.preflight(client=c)
+    assert not c.containers.run.called
+
+
+def test_preflight_dev_kvm_missing(sha_set):
+    c = _pf_client()
+    c.containers.run.side_effect = APIError("error gathering device information /dev/kvm")
+    with pytest.raises(SystemExit, match="/dev/kvm"):
+        kvm_vm.preflight(client=c)
+    assert c.containers.run.call_count == 1   # the qcow2 probe never ran
+
+
+def test_preflight_qcow2_missing_on_host(sha_set):
+    c = _pf_client()
+    c.containers.run.side_effect = [b"", APIError("bind source path does not exist")]
+    with pytest.raises(SystemExit, match=r"qcow2 missing .*rel/Ubuntu\.qcow2"):
+        kvm_vm.preflight(client=c)
+
+
+def test_preflight_qcow2_not_a_regular_nonempty_file(sha_set):
+    c = _pf_client()
+    c.containers.run.side_effect = [b"", ContainerError("c", 1, "test", config.KVM_IMAGE, b"")]
+    with pytest.raises(SystemExit, match=r"rel/Ubuntu\.qcow2 is not a regular non-empty file"):
+        kvm_vm.preflight(client=c)
