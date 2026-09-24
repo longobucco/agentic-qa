@@ -299,6 +299,15 @@ PINNED_EVALUATORS = os.environ.get("OSW_PINNED_EVALUATORS", "1") != "0"
 
 IMAGE = os.environ.get(   # pinned by digest -- Daytona caches images by tag, not :latest
     "OSW_IMAGE",
+    # 2026-09-24: rebuilt on top of the digest below with the guest screen at 1920x1080 (Xvfb
+    # and the VLC prewarm display; the published OSWorld-Verified setting, matching the
+    # SetupController's placeholder substitution) and four packages 11 of the 361 published
+    # tasks need: evince, eog, totem, picard. Required by env/sandbox.py's screen-size gate:
+    # the previous image runs Xvfb at 1280x1024 and every run on it now ends as
+    # ENVIRONMENT_ERROR by design.
+    "ghcr.io/longobucco/osworld-ab@sha256:"
+    "759b54f8b15fbb03544f8ac193ce86115d935a3dd8554a1c44b30f904ed07ea2",
+    # --- previous pin, kept for history ---
     # 2026-09-23 (later same day): rebuilt on top of the digest below, adding
     # ENV XDG_CONFIG_HOME=/opt/osw_xdg_unused -- extends the SAME Chrome anti-hijacking fix
     # open-book already had (docker/Dockerfile.osworld-openbook, 2026-09-12) to closed-book.
@@ -307,8 +316,8 @@ IMAGE = os.environ.get(   # pinned by digest -- Daytona caches images by tag, no
     # non-default data directory" in its own log) -- nothing downstream (socat, CdpForwarder)
     # could have worked regardless. Same one-line fix as open-book's; the actual Chrome profile
     # directory used is unaffected (still $HOME/.config/google-chrome).
-    "ghcr.io/longobucco/osworld-ab@sha256:"
-    "2c9c677ab54574433f4c41b0446f2c798a2b0acd951bc1de51b2fead5eeac02f",
+    #     "ghcr.io/longobucco/osworld-ab@sha256:"
+    #     "2c9c677ab54574433f4c41b0446f2c798a2b0acd951bc1de51b2fead5eeac02f"
     # --- previous pin, kept for history ---
     # 2026-09-23: rebuilt on top of the digest below, running VLC as a dedicated non-root user
     # (vlcuser) via a shim at /usr/bin/vlc -- VLC categorically refuses to start as root
