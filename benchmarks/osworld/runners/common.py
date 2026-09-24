@@ -33,12 +33,25 @@ OSWORLD_TOOLS = [
 ]
 
 
+def mcp_child_env():
+    """Protocol env the MCP server child must see. Both CLIs pass only what they are given, so
+    the server can't read these from the runner's environment."""
+    env = {}
+    if config.ZOOM_BATCH:
+        env["OSW_ZOOM_BATCH"] = "1"
+    if config.OFFICIAL:
+        env.update(OSW_PROTOCOL="official", OSW_MAX_STEPS=str(config.MAX_STEPS),
+                   OSW_SLEEP_AFTER_EXECUTION=str(config.SLEEP_AFTER_EXECUTION),
+                   OSW_SCREEN_WIDTH=str(config.SCREEN_WIDTH),
+                   OSW_SCREEN_HEIGHT=str(config.SCREEN_HEIGHT))
+    return env
+
+
 def _mcp_config(controller_url):
     spec = {
         "type": "stdio", "command": "python",
         "args": ["-m", "benchmarks.osworld.mcp.server"],
-        "env": {"OSW_CONTROLLER_URL": controller_url or "",
-                **({"OSW_ZOOM_BATCH": "1"} if config.ZOOM_BATCH else {})},
+        "env": {"OSW_CONTROLLER_URL": controller_url or "", **mcp_child_env()},
     }
     f = tempfile.NamedTemporaryFile("w", suffix=".json", delete=False)
     json.dump({"mcpServers": {"osworld": spec}}, f)

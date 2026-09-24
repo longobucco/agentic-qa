@@ -115,5 +115,5 @@ def test_flag_reaches_both_mcp_children(monkeypatch):
         os.unlink(path)
     assert env["OSW_ZOOM_BATCH"] == "1"
     cmd = codex_loop.build_codex_cmd("p", model="m", cwd="/tmp", controller_url="http://c",
-                                     zoom_batch=True)
+                                     mcp_extra_env={"OSW_ZOOM_BATCH": "1"})
     assert 'OSW_ZOOM_BATCH = "1"' in " ".join(cmd)
