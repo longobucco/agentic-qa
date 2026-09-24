@@ -36,6 +36,8 @@ def build():
             self_eval=True,
         ),
     }
+    for name in runners:
+        config.assert_new_infra_system(name)
     return Benchmark(
         name="OSWorld",
         results_dir=config.RESULTS_DIR,

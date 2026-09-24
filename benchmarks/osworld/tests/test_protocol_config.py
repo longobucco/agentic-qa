@@ -12,18 +12,18 @@ def _reload(**env):
     base.update(env)
     with patch.dict(os.environ, base):
         c = importlib.reload(config)
-        vals = (c.SYSTEM_NAME, c.ASTRA_SYSTEM_NAME, c.OFFICIAL, c.BACKEND, c.TASK_TIMEOUT)
+        vals = (c.SYSTEM_NAME, c.ASTRA_SYSTEM_NAME, c.PROTOCOL, c.BACKEND, c.TASK_TIMEOUT)
     importlib.reload(config)
     return vals
 
 
 def test_official_kvm_names_and_timeout():
-    name, astra, official, backend, timeout = _reload(
+    name, astra, protocol, backend, timeout = _reload(
         OSW_PROTOCOL="official", OSW_BACKEND="kvm", OSW_EFFORT="max",
         OSW_SYSTEM_SUFFIX="protocol361", OSW_ASTRA_SYSTEM_SUFFIX="protocol361")
     assert name == "agent_computer_sonnet5_effortmax_protocol361_official_kvm"
     assert astra == "agent_computer_gpt6astra_max_codex01534_protocol361_official_kvm"
-    assert official and backend == "kvm" and timeout == 14400
+    assert protocol == "official" and backend == "kvm" and timeout == 14400
 
 
 def test_unknown_values_are_refused():

@@ -1,6 +1,4 @@
 """Load OSWorld task specs; bucket by app under test."""
-import sys
-
 from benchmarks.osworld import config
 from core.tasks import load_jsonl
 
@@ -57,23 +55,7 @@ def load_tasks():
             f"OSW_RELEASE={config.RELEASE} python -m benchmarks.osworld.data.download_data"
         )
     all_tasks = load_jsonl(config.TASKS_FILE)
-    if config.POPULATION == "verified361":
-        return [t for t in all_tasks if not is_login_task(t)]
-    if config.INCLUDE_ALL_APPS:
-        return all_tasks
-    in_scope = config.SUPPORTED_APPS | config.ALWAYS_PRESENT_CAPABILITIES
-    out = [t for t in all_tasks
-           if {_normalize_app(a) for a in (t.get("related_apps") or [])} <= in_scope]
-    skipped = len(all_tasks) - len(out)
-    if skipped:
-        # stderr, not stdout: callers that capture load_tasks()'s stdout as data (e.g. the
-        # watchdog's --print-order, redirected straight into the driver's task-id list file)
-        # would otherwise get this diagnostic line mixed in as a bogus "task id".
-        print(f"[osworld] {len(out)} runnable tasks; skipped {skipped} outside the validated "
-              f"app scope ({sorted(config.SUPPORTED_APPS)}) — set OSW_INCLUDE_ALL_APPS=1 to run "
-              f"everything (expect ENVIRONMENT_ERROR, or a misdiagnosed FAILURE, outside this set)",
-              file=sys.stderr)
-    return out
+    return [t for t in all_tasks if not is_login_task(t)]
 
 
 def load_refs():

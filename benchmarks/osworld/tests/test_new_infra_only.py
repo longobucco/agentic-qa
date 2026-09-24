@@ -136,3 +136,94 @@ def test_codex_non_mcp_tool_call_is_a_terminal_failure(monkeypatch, tmp_path):
     assert ev["verdict"] == "FAILURE" and ev["reward"] == 0.0
     assert ev["tool_surface_violation"] == ["command_execution"]
     assert not (tmp_path / "infra_error.json").exists()
+
+
+PHASE1_TREES = [
+    "agent_computer", "agent_computer_astra", "agent_computer_astra_broadcanary20260922",
+    "agent_computer_astra_broadcanary20260922_openbook", "agent_computer_astra_fixedimg",
+    "agent_computer_astra_infracanary20260921", "agent_computer_astra_openbook",
+    "agent_computer_astra_openbookcanarynautilus20260922_openbook",
+    "agent_computer_astra_openbookfailuresrecheck20260922_openbook",
+    "agent_computer_astra_probe", "agent_computer_astra_quotaprobe20260922",
+    "agent_computer_astra_vlccdpvalidation20260923",
+    "agent_computer_astra_xdgcdpvalidation20260923", "agent_computer_sonnet5",
+    "verify_replan_sonnet5", "verify_replan_sonnet5_auditonly", "_probes",
+]
+
+
+@pytest.mark.parametrize("name", PHASE1_TREES)
+def test_every_phase1_tree_is_refused(name):
+    from benchmarks.osworld import config
+    with pytest.raises(SystemExit, match="phase1-daytona-frozen"):
+        config.assert_new_infra_system(name)
+
+
+@pytest.mark.parametrize("name", [
+    "agent_computer_sonnet5_effortmax_canary20260924_official",
+    "agent_computer_gpt6astra_max_codex01534_canary20260924_official",
+    "agent_computer_sonnet5_effortmax_protocol361_official_kvm",
+])
+def test_new_infra_trees_are_accepted(name):
+    from benchmarks.osworld import config
+    assert config.assert_new_infra_system(name) == name
+
+
+def test_sonnet_canary_tree_name_is_stable(monkeypatch):
+    config = _reload_config(monkeypatch, OSW_MODEL="claude-sonnet-5", OSW_EFFORT="max",
+                            OSW_SYSTEM_SUFFIX="canary20260924")
+    try:
+        assert config.SYSTEM_NAME == "agent_computer_sonnet5_effortmax_canary20260924_official"
+    finally:
+        _reload_config(monkeypatch)
+
+
+def test_neutral_legacy_values_are_accepted(monkeypatch):
+    """Review Focus 1: an inherited shell/MCP child env with 'off' values still starts."""
+    config = _reload_config(monkeypatch, OSW_ZOOM_BATCH="0", OSW_PINNED_EVALUATORS="1",
+                            OSW_PROTOCOL="official", OSW_POPULATION="verified361")
+    try:
+        assert config.PROTOCOL == "official" and config.POPULATION == "verified361"
+    finally:
+        _reload_config(monkeypatch)
+
+
+@pytest.mark.parametrize("env", [
+    {"OSW_ZOOM_BATCH": "1"}, {"OSW_GROUNDING": "1"}, {"OSW_INLOOP_VERIFY": "1"},
+    {"OSW_VR_MAX_RECOVERIES": "0"}, {"OSW_PINNED_EVALUATORS": "0"}, {"OSW_MAX_TURNS": "50"},
+])
+def test_active_legacy_knobs_are_refused(env):
+    from benchmarks.osworld import config
+    with pytest.raises(SystemExit, match="phase1-daytona-frozen"):
+        config._refuse_legacy_knobs(env)
+
+
+@pytest.mark.parametrize("env", [{"OSW_PROTOCOL": "legacy"}, {"OSW_POPULATION": "all"},
+                                 {"OSW_RELEASE": "full"}])
+def test_non_official_protocol_or_population_is_refused(monkeypatch, env):
+    with pytest.raises(SystemExit):
+        _reload_config(monkeypatch, **env)
+    _reload_config(monkeypatch)
+
+
+def test_build_refuses_a_phase1_runner_name(monkeypatch):
+    from benchmarks.osworld import config
+    monkeypatch.setattr(config, "SYSTEM_NAME", "agent_computer_sonnet5")
+    with pytest.raises(SystemExit, match="phase1-daytona-frozen"):
+        benchmark.build()
+
+
+def test_report_defaults_to_the_current_tree_and_refuses_phase1(monkeypatch, capsys):
+    """Review Focus 5."""
+    import sys
+    from benchmarks.osworld import config, report
+    monkeypatch.setattr(sys, "argv", ["report", "agent_computer"])
+    with pytest.raises(SystemExit, match="phase1-daytona-frozen"):
+        report.main()
+    seen = []
+    monkeypatch.setattr(report, "summarize", lambda root, system, title: seen.append(system))
+    for name in ("_source_breakdown", "_mean_reward_line", "_incidental_breakdown",
+                 "_tool_surface_violation_line"):
+        monkeypatch.setattr(report, name, lambda system: None)
+    monkeypatch.setattr(sys, "argv", ["report"])
+    report.main()
+    assert seen == [config.SYSTEM_NAME]

@@ -58,22 +58,6 @@ def test_provenance_reports_where_the_metrics_really_came_from():
     assert str(pathlib.Path(inspect.getfile(metrics)).parent).startswith(str(PINNED))
 
 
-def test_provenance_says_installed_when_the_overlay_is_switched_off():
-    from benchmarks.osworld import config
-    was = config.PINNED_EVALUATORS
-    config.PINNED_EVALUATORS = False
-    try:
-        # force a fresh resolution so the assertion is about this call, not a cached module
-        for name in [n for n in sys.modules if n.startswith("desktop_env.evaluators.")]:
-            del sys.modules[name]
-        prov = osworld_eval.evaluator_provenance()
-        assert prov["evaluator_commit"] is None
-        assert prov["evaluator_source"] == "installed"
-    finally:
-        config.PINNED_EVALUATORS = was
-        osworld_eval.use_pinned_evaluators()
-
-
 def test_the_env_adapter_carries_the_attributes_the_pinned_getters_read():
     """vm_machine joined chromium_port/vlc_port on this list the day the pinned tree went in:
     getters/chrome.py reads env.vm_machine.lower() and cost 3 runs on 873cafdd."""

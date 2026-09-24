@@ -26,12 +26,6 @@ class _FakeEnv:
 TASK = {"id": "t", "instruction": "Do X", "evaluator": {}}
 
 
-def _official(monkeypatch):
-    monkeypatch.setattr(config, "OFFICIAL", True)
-    monkeypatch.setattr(config, "PROTOCOL", "official")
-    monkeypatch.setattr(config, "INLOOP_VERIFY", False)
-
-
 def _read(out, name):
     p = out / name
     return json.loads(p.read_text()) if p.exists() else None
@@ -57,7 +51,6 @@ def _snapshot(tools):
 
 def _claude_run(monkeypatch, tmp_path, *, meta, on_call=None, mcp_state=True, home=None):
     """A non-dry official Claude run: fake CLI, real transcript lookup under a fake $HOME."""
-    _official(monkeypatch)
     home = home or tmp_path / "home"
     (home / ".claude" / "projects").mkdir(parents=True, exist_ok=True)
     monkeypatch.setattr(common.Path, "home", classmethod(lambda cls: home))
@@ -220,7 +213,6 @@ def test_claude_run_without_the_mcp_state_is_an_unscored_harness_error(monkeypat
 
 def _codex_run(monkeypatch, tmp_path, *, mcp_state=True):
     from benchmarks.osworld.tests.test_official_codex_runner import _computer, _rollout_lines
-    _official(monkeypatch)
     rollout = tmp_path / "rollout.jsonl"
     rollout.write_text(_rollout_lines(leaky=False))
     events = [_computer(1, {"action": "screenshot"})]
@@ -406,7 +398,6 @@ def test_codex_preflight_skips_only_the_session_probe_for_the_driver_run(monkeyp
     monkeypatch.setattr(gpt_astra, "_validate_campaign_lock", lambda: calls.append("lock"))
     monkeypatch.setattr(gpt_astra.astra_common, "check_codex_cli", lambda **kw: calls.append("cli"))
     monkeypatch.setattr(gpt_astra, "official_session_preflight", lambda: calls.append("probe"))
-    monkeypatch.setattr(config, "OFFICIAL", True)
     monkeypatch.setenv("OSW_OFFICIAL_PREFLIGHT_OK", "drv-1")
     monkeypatch.setenv("OSW_KVM_DRIVER_RUN", "drv-1")
     gpt_astra.preflight()
@@ -429,10 +420,12 @@ def _reload_max_steps(**env):
     return value
 
 
-def test_max_steps_defaults_to_100_under_official_only():
-    assert _reload_max_steps() == 30
-    assert _reload_max_steps(OSW_PROTOCOL="official") == 100
-    assert _reload_max_steps(OSW_PROTOCOL="official", OSW_MAX_STEPS="42") == 42
+def test_max_steps_defaults_to_100():
+    """Upstream's own step budget (run_multienv_claude.py --max_steps 100): the only path this
+    branch runs (was previously gated on OSW_PROTOCOL=official; the new infrastructure has no
+    other protocol -- see config.PROTOCOL)."""
+    assert _reload_max_steps() == 100
+    assert _reload_max_steps(OSW_MAX_STEPS="42") == 42
 
 
 def test_provenance_image_is_the_kvm_image_on_kvm(monkeypatch):
