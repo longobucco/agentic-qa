@@ -74,6 +74,21 @@ def _mean_reward_line(system):
               f"scored run(s)")
 
 
+def tool_surface_violation_count(system):
+    """Runs the official protocol scored a terminal FAILURE because the agent used a tool
+    other than `computer` (task 7b: eval.json carries `tool_surface_violation`, never
+    infra_error.json). Reported on its own so it stays distinguishable from an ordinary agent
+    FAILURE rather than silently blending into the pass rate."""
+    return sum(1 for rec in _eval_records(system) if rec.get("tool_surface_violation"))
+
+
+def _tool_surface_violation_line(system):
+    n = tool_surface_violation_count(system)
+    if n:
+        print(f"Tool-surface violations (terminal FAILURE, agent used a non-`computer` "
+             f"tool): {n}")
+
+
 def _source_breakdown(system):
     """Who scored each run — OSWorld's own evaluator, or our weaker offline fallback (only
     covers exact_match/check_include_exclude — see evaluate.py)? Mixing the two into one pass
@@ -180,6 +195,7 @@ def main():
     _source_breakdown(system)
     _mean_reward_line(system)
     _incidental_breakdown(system)
+    _tool_surface_violation_line(system)
     if system == config.ASTRA_OPENBOOK_SYSTEM_NAME:
         _openbook_breakdown(system)
 

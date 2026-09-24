@@ -264,6 +264,26 @@ def test_official_run_clean_audit_is_empty(monkeypatch, tmp_path):
     assert result["agent_non_computer_tool_calls"] == []
 
 
+def test_official_run_terminal_failure_on_tool_surface_violation(monkeypatch, tmp_path):
+    # Task 7b, parity with the Codex arm: a non-empty agent_non_computer_tool_calls is a
+    # terminal FAILURE (never infra_error.json), so resume never selectively re-runs it.
+    lines = [{"type": "assistant", "message": {"content": [
+        {"type": "tool_use", "name": "mcp__osworld__computer", "input": {"action": "x"}},
+        {"type": "tool_use", "name": "Read", "input": {}}]}}]
+    answer, events, scored = _official_run(monkeypatch, tmp_path, lines)
+    verdict = json.loads((tmp_path / "eval.json").read_text())
+    assert verdict == {
+        "id": "t", "verdict": "FAILURE", "reward": 0.0, "source": "harness",
+        "reason": "tool surface violation: Read",
+        "tool_surface_violation": ["Read"],
+    }
+    assert not (tmp_path / "infra_error.json").exists()
+    assert "score" not in events
+    assert ("wait", config.PRE_EVAL_WAIT_S) not in events
+    from core import results as results_io
+    assert results_io.is_done(tmp_path)
+
+
 @pytest.mark.parametrize("meta,expected", [
     ({"subtype": "success", "is_error": False, "result": "no answer line"}, True),
     ({"subtype": "error_max_turns", "is_error": False, "result": "ANSWER: DONE"}, False),

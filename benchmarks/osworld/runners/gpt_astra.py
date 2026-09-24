@@ -381,15 +381,30 @@ def run(task, *, env, out, refs=None, dry=False):
             "instruction": task["instruction"], "answer": answer,
             "provenance": provenance, **trace, **telemetry,
         })
-        results_io.write_infra_error(out, {
-            "id": task["id"], "outcome": "HARNESS_ERROR",
-            "error_type": "ToolSurfaceViolation",
-            "error": (f"Codex used tools other than `computer`: "
-                      f"{official_telemetry['agent_non_computer_tool_calls']}"
-                      if official_telemetry.get("agent_non_computer_tool_calls")
-                      else f"Codex used non-MCP tools: {meta.get('tool_names')}"),
-            "at": datetime.now(timezone.utc).isoformat(),
-        })
+        names = (official_telemetry.get("agent_non_computer_tool_calls")
+                 or meta.get("tool_names") or [])
+        if config.OFFICIAL:
+            # Ruling (task 7b): under the official protocol a tool-surface violation is a
+            # TERMINAL failure, not an infra error -- excluding or retrying it would
+            # selectively resample toward runs that happen not to violate, biasing the score
+            # upward either way. Score it 0 and label it clearly instead; never infra_error.json
+            # (that would leave is_done() False and a later --runs invocation would re-roll it).
+            results_io.write_eval(out, {
+                "id": task["id"], "verdict": "FAILURE", "reward": 0.0, "source": "harness",
+                "reason": f"tool surface violation: {', '.join(names)}",
+                "tool_surface_violation": names,
+            })
+        else:
+            # Legacy (flag-off) path: unchanged -- an infra error, retried on resume.
+            results_io.write_infra_error(out, {
+                "id": task["id"], "outcome": "HARNESS_ERROR",
+                "error_type": "ToolSurfaceViolation",
+                "error": (f"Codex used tools other than `computer`: "
+                          f"{official_telemetry['agent_non_computer_tool_calls']}"
+                          if official_telemetry.get("agent_non_computer_tool_calls")
+                          else f"Codex used non-MCP tools: {meta.get('tool_names')}"),
+                "at": datetime.now(timezone.utc).isoformat(),
+            })
         return ""
 
     protocol_wait(config.PRE_EVAL_WAIT_S)   # upstream: sleep 20 before evaluate
