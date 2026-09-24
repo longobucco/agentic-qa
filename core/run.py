@@ -44,13 +44,13 @@ _print_lock = threading.Lock()
 _HARNESS_ENV_KEYS = (
     "WV_MODEL", "WV_MAX_TURNS", "WA_MAX_TURNS", "WA_TASK_TIMEOUT",
     "BC_MAX_TURNS", "BC_TASK_TIMEOUT", "BU_PROVIDER", "BU_MODEL", "BU_IMAGE",
-    # OSWorld pins the observation/action profile + image so a desktop A/B is auditable.
+    # OSWorld pins the release, step budget, timeout and guest image so a desktop A/B is auditable.
     "OSW_RELEASE", "OSW_MAX_STEPS", "OSW_TASK_TIMEOUT", "OSW_IMAGE",
     "OSW_ASTRA_MODEL", "OSW_ASTRA_REASONING_EFFORT", "OSW_ASTRA_CODEX_VERSION",
-    # Protocol knobs of docs/superpowers/plans/2026-09-24-osworld-protocol-alignment.md.
+    # Protocol knobs.
     "OSW_EFFORT", "OSW_MAX_OUTPUT_TOKENS", "OSW_POPULATION", "OSW_SCREEN_WIDTH",
     "OSW_SCREEN_HEIGHT",
-    # Official-fidelity knobs (docs/superpowers/plans/2026-09-24-osworld-official-fidelity.md).
+    # Official-fidelity knobs.
     "OSW_PROTOCOL", "OSW_BACKEND", "OSW_KVM_IMAGE", "OSW_KVM_QCOW2_SHA256",
     "OSW_SLEEP_AFTER_EXECUTION", "OSW_POST_SETUP_WAIT_S", "OSW_PRE_EVAL_WAIT_S",
     "OSW_KVM_CLIENT_PASSWORD", "OSW_CLAUDE_CODE_VERSION",

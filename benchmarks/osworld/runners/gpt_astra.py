@@ -24,7 +24,7 @@ from benchmarks.osworld.runners.agent_computer import (
     _official_system_prompt, _provenance, _score,
 )
 from core import results as results_io
-from core.agent_loop import extract_answer, preview
+from core.agent_loop import preview
 from core.codex_loop import (
     APPROVAL_MODE, DISABLED_FEATURES, _is_tool_item, _parse_events, allowed_mcp_tools,
     base_instructions_file, build_codex_cmd, offered_tools_from_trace, run_codex_meta,
@@ -194,15 +194,9 @@ def _validate_campaign_lock():
         if lock[key] != actual:
             raise SystemExit(f"Astra campaign lock mismatch for {key}: {actual!r} != {lock[key]!r}")
     population = lock["population"]
-    ids_paths = population.get("paths") or [population["path"]]
     root = Path(__file__).resolve().parents[3]
-    ids = [line for path in ids_paths for line in (root / path).read_text().splitlines()
+    ids = [line for path in population["paths"] for line in (root / path).read_text().splitlines()
            if line.strip() and not line.lstrip().startswith("#")]
-    exclude_path = population.get("exclude_path")
-    if exclude_path:
-        excluded = {line.strip() for line in (root / exclude_path).read_text().splitlines()
-                    if line.strip() and not line.lstrip().startswith("#")}
-        ids = [task_id for task_id in ids if task_id not in excluded]
     ids_bytes = ("\n".join(ids) + "\n").encode()
     digest = hashlib.sha256(ids_bytes).hexdigest()
     if digest != population["sha256"]:

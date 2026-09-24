@@ -1,13 +1,6 @@
-"""Shared, policy-free primitives extracted from runners/agent_computer.py so another runner
-can reuse the exact same MCP config shape, telemetry, provenance, post-run watchdog, transcript
-capture, and scoring logic without importing agent_computer's own orchestration or G5-arm policy
-knobs.
-
-Extraction discipline (see the plan's own instruction, Section 6): only primitives whose
-behavior is already pinned by benchmarks/osworld/tests/test_runner.py's characterization tests
-moved here, verbatim. Nothing in this module reads a G5-arm-specific config knob
-(ENFORCE_SANDBOX, RESTRICT_RUN_PYTHON, INLOOP_VERIFY) -- those stay in the runner that owns that
-policy. agent_computer.py re-imports every name below so existing external imports of
+"""Shared, policy-free primitives used by both runners/agent_computer.py and runners/gpt_astra.py:
+the MCP config shape, telemetry, provenance, post-run watchdog, transcript capture, and scoring
+logic. agent_computer.py re-imports every name below so existing external imports of
 `benchmarks.osworld.runners.agent_computer._mcp_config` etc. keep resolving unchanged.
 """
 import hashlib

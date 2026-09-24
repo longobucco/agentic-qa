@@ -7,8 +7,8 @@ from benchmarks.osworld import config
 
 def _reload(**env):
     base = {"OSW_MODEL": "claude-sonnet-5", "OSW_EFFORT": "", "OSW_SYSTEM_SUFFIX": "",
-            "OSW_ASTRA_SYSTEM_SUFFIX": "", "OSW_ZOOM_BATCH": "0", "OSW_GROUNDING": "0",
-            "OSW_PROTOCOL": "", "OSW_BACKEND": "", "OSW_TASK_TIMEOUT": ""}
+            "OSW_ASTRA_SYSTEM_SUFFIX": "", "OSW_PROTOCOL": "", "OSW_BACKEND": "",
+            "OSW_TASK_TIMEOUT": ""}
     base.update(env)
     with patch.dict(os.environ, base):
         c = importlib.reload(config)

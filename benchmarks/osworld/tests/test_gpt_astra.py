@@ -101,7 +101,7 @@ def test_provenance_says_unknown_rather_than_guessing_when_no_rollout_exists():
     assert rec["model_requested"] == config.ASTRA_MODEL
 
 
-def _run_with(meta, tmp, *, non_computer_calls=(), mcp_started=True):
+def _run_with(meta, tmp):
     """Drive run() through the official path against a stubbed Codex, returning
     (result, eval, infra). Defaults to a clean, audited run (no rollout needed): the official
     audit and MCP-liveness lookups are stubbed directly, same as the runner's own official-run
@@ -109,15 +109,14 @@ def _run_with(meta, tmp, *, non_computer_calls=(), mcp_started=True):
     out = Path(tmp)
     task = {"id": "t1", "instruction": "do it", "related_apps": ["libreoffice_calc"],
             "evaluator": {"func": "exact_match", "result": {"type": "vm_file"}}}
-    mcp_state = {"started": True, "steps_used": 3, "max_steps": 100} if mcp_started else None
+    mcp_state = {"started": True, "steps_used": 3, "max_steps": 100}
     with patch.object(gpt_astra, "run_codex_meta", return_value=dict(meta)), \
          patch.object(gpt_astra, "_codex_version", return_value="codex-cli 0.153.4"), \
          patch.object(gpt_astra, "_score", return_value={"verdict": "FAILURE", "reward": 0.0}), \
          patch.object(gpt_astra, "_capture_eval_state", return_value=None), \
          patch.object(gpt_astra, "protocol_wait", lambda s: None), \
          patch.object(gpt_astra, "_official_audit", return_value={
-             "agent_non_computer_tool_calls": list(non_computer_calls) if non_computer_calls is not None else None,
-             "agent_context_leaks": [] if non_computer_calls is not None else None,
+             "agent_non_computer_tool_calls": [], "agent_context_leaks": [],
              "agent_offered_tools": None}), \
          patch.object(gpt_astra, "read_mcp_state", return_value=mcp_state):
         gpt_astra.run(task, env=type("E", (), {"browser": None, "setup_error": None})(), out=out)
