@@ -51,6 +51,54 @@ def test_desktop_rendered_false_not_raises_when_screenshot_raises():
     assert sandbox._desktop_rendered(ctrl) is False
 
 
+def _solid(size, color):
+    return _png_bytes(Image.new("RGB", size, color=color))
+
+
+def _with_cursor_patch(size):
+    # black background + a small white patch standing in for the mouse cursor -- exactly 2
+    # distinct colors, no antialiasing (PNG is lossless), regardless of screen resolution
+    img = Image.new("RGB", size, color=(0, 0, 0))
+    px = img.load()
+    w, h = size
+    for x in range(w - 20, w - 10):
+        for y in range(h - 20, h - 10):
+            px[x, y] = (255, 255, 255)
+    return _png_bytes(img)
+
+
+def test_desktop_rendered_false_for_single_color_1920x1080():
+    # resolution-independence regression: a single flat color at full 1920x1080 must still read
+    # as not-rendered (this is the "Xvfb buffer never painted" failure mode the gate exists to
+    # catch)
+    ctrl = MagicMock()
+    ctrl.screenshot.return_value = _solid((1920, 1080), (10, 10, 10))
+    assert sandbox._desktop_rendered(ctrl) is False
+
+
+def test_desktop_rendered_true_for_1920x1080_black_with_cursor_patch():
+    # the exact case that broke the old thumbnail-based threshold: an empty-but-healthy desktop
+    # at 1920x1080 (see sandbox.py's _DESKTOP_READY_MIN_COLORS comment) -- must now read as
+    # rendered since it's a real, cheaply-verifiable >=2-color frame
+    ctrl = MagicMock()
+    ctrl.screenshot.return_value = _with_cursor_patch((1920, 1080))
+    assert sandbox._desktop_rendered(ctrl) is True
+
+
+def test_desktop_rendered_true_for_1280x1024_black_with_cursor_patch():
+    # same scenario at the original calibration resolution -- proves the criterion no longer
+    # depends on screen size in either direction
+    ctrl = MagicMock()
+    ctrl.screenshot.return_value = _with_cursor_patch((1280, 1024))
+    assert sandbox._desktop_rendered(ctrl) is True
+
+
+def test_desktop_rendered_true_for_colorful_image():
+    ctrl = MagicMock()
+    ctrl.screenshot.return_value = _rendered_screenshot()
+    assert sandbox._desktop_rendered(ctrl) is True
+
+
 def test_wait_for_desktop_ready_returns_none_once_rendered_after_a_few_polls():
     ctrl = MagicMock()
     ctrl.screenshot.side_effect = [
