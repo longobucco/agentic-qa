@@ -414,7 +414,7 @@ _TRANSIENT_EVAL_ERRORS = (
 )
 
 
-def _evaluate_with_retry(url, task, action_history, cache_dir):
+def _evaluate_with_retry(url, task, action_history, cache_dir, **backend_kw):
     """Retry the official evaluator on a transient proxy failure (_TRANSIENT_EVAL_ERRORS).
 
     Backoff is exponential (5s, 15s, 45s) rather than the flat 5s this used to use: the
@@ -424,11 +424,15 @@ def _evaluate_with_retry(url, task, action_history, cache_dir):
     Repeating the scoring attempt is safe: the evaluator's postconfig steps are idempotent
     and its getters only READ desktop state, so a retry re-reads the same desktop rather
     than mutating what it is about to grade.
+
+    `backend_kw`: passed straight to evaluate_official (see _score: the kvm backend's mapped
+    ports, and whether a CdpForwarder is needed at all).
     """
     last_err = None
     for attempt in range(_EVAL_RETRY_ATTEMPTS):
         try:
-            return osworld_eval.evaluate_official(url, task, action_history, cache_dir=cache_dir)
+            return osworld_eval.evaluate_official(url, task, action_history, cache_dir=cache_dir,
+                                                  **backend_kw)
         except _TRANSIENT_EVAL_ERRORS as e:
             last_err = e
             if attempt < _EVAL_RETRY_ATTEMPTS - 1:
@@ -445,7 +449,15 @@ def _score(ctrl, task, answer, out):
     gold_sha256 = {}
     if url:
         try:
-            reward = _evaluate_with_retry(url, task, _action_history(answer), gold_dir)
+            # kvm: the official VM's CDP/VLC ports are published on routable host ports, so
+            # no CdpForwarder (Daytona-only workaround) and every consumer uses the mapped
+            # values. A Daytona controller has no such attributes -> upstream defaults.
+            reward = _evaluate_with_retry(
+                url, task, _action_history(answer), gold_dir,
+                enable_cdp_forwarder=config.BACKEND != "kvm",
+                chromium_port=getattr(ctrl, "chromium_port", None),
+                vlc_port=getattr(ctrl, "vlc_port", None),
+                client_password=getattr(ctrl, "client_password", ""))
         except Exception as e:
             err = f"{type(e).__name__}: {e}"   # desktop unreachable / getter failed -> fall back
         finally:
