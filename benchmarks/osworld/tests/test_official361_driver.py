@@ -265,6 +265,12 @@ def test_main_checks_knobs_that_come_from_the_repo_dotenv(monkeypatch, capsys):
     assert "OSW_GROUNDING" in capsys.readouterr().err
 
 
+def test_driver_knob_table_agrees_with_config_legacy_neutral_values():
+    for name, neutral in driver._HARNESS_KNOB_DEFAULTS.items():
+        if name in config._LEGACY_KNOB_NEUTRAL:
+            assert config._LEGACY_KNOB_NEUTRAL[name] == neutral, name
+
+
 # ---- signal handling (pre-review fix 3) ----------------------------------------------------
 
 def _sleeper(ignore_term=False):
