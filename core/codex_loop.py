@@ -12,6 +12,8 @@ import sys
 import tempfile
 from pathlib import Path
 
+from core import procgroups
+
 DISABLED_FEATURES = (
     "shell_tool", "browser_use", "computer_use", "browser_use_external",
     "browser_use_full_cdp_access", "apps", "plugins", "skill_search", "multi_agent",
@@ -274,21 +276,30 @@ def session_context(session_id, root=None):
 
 
 def run_codex_meta(cmd, *, timeout, env=None):
-    """Run Codex in its own process group and retain partial JSONL on timeout."""
+    """Run Codex in its own process group and retain partial JSONL on timeout.
+
+    Registers the group with `core.procgroups` for the duration of the call (unregistered in a
+    `finally`) so an interrupted `core.run.main()` can reap it even if this call never reaches
+    its own timeout path -- see core/procgroups.py for why."""
     proc = subprocess.Popen(
         cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
         stdin=subprocess.DEVNULL, env=env, start_new_session=True,
     )
+    pgid = os.getpgid(proc.pid)
+    procgroups.register(pgid)
     timed_out = False
     try:
-        stdout, stderr = proc.communicate(timeout=timeout)
-    except subprocess.TimeoutExpired:
-        timed_out = True
         try:
-            os.killpg(os.getpgid(proc.pid), signal.SIGKILL)
-        except ProcessLookupError:
-            pass
-        stdout, stderr = proc.communicate()
+            stdout, stderr = proc.communicate(timeout=timeout)
+        except subprocess.TimeoutExpired:
+            timed_out = True
+            try:
+                os.killpg(pgid, signal.SIGKILL)
+            except ProcessLookupError:
+                pass
+            stdout, stderr = proc.communicate()
+    finally:
+        procgroups.unregister(pgid)
     meta = parse_codex_output(stdout, returncode=proc.returncode or 0, timed_out=timed_out)
     meta["stderr"] = stderr or ""
     return meta

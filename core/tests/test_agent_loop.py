@@ -1,9 +1,12 @@
 """Unit tests for core/agent_loop.py's subprocess handling:
   python -m core.tests.test_agent_loop
 """
+import os
 import sys
+import threading
 import time
 
+from core import procgroups
 from core.agent_loop import _run_raw, extract_answer
 
 _GRANDCHILD_HANG_S = 15   # worst-case regression runtime if the process-group kill breaks
@@ -45,6 +48,36 @@ def test_run_raw_kills_the_whole_process_group_on_timeout():
         f"was not closed, so communicate() waited out its {_GRANDCHILD_HANG_S}s sleep instead "
         f"of returning shortly after the timeout"
     )
+
+
+def test_run_raw_registers_its_process_group_while_running_and_unregisters_after():
+    """core.procgroups is how core.run reaps orphaned agent CLIs on SIGTERM/SIGINT/exception --
+    _run_raw must register the child's pgid as soon as it's spawned, and unregister it once
+    Popen actually exits, on every path (this test covers the normal-exit path)."""
+    seen = {}
+
+    def watch():
+        # poll for the registration to appear while the child sleeps
+        deadline = time.monotonic() + 5
+        while time.monotonic() < deadline:
+            with procgroups._lock:
+                if procgroups._pgids:
+                    seen["pgids"] = set(procgroups._pgids)
+                    return
+            time.sleep(0.02)
+
+    before = set()
+    with procgroups._lock:
+        before = set(procgroups._pgids)
+    t = threading.Thread(target=watch)
+    t.start()
+    _run_raw([sys.executable, "-c", "import time; time.sleep(0.5)"], timeout=10)
+    t.join(timeout=5)
+
+    assert seen.get("pgids", set()) - before, "no new pgid was registered while the child ran"
+    with procgroups._lock:
+        after = set(procgroups._pgids)
+    assert after == before, f"pgid left registered after normal exit: {after - before}"
 
 
 def main():
