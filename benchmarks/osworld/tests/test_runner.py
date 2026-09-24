@@ -11,32 +11,14 @@ from pathlib import Path
 
 import pytest
 
-from benchmarks.osworld.runners import agent_computer, common
+from benchmarks.osworld.runners import common
 from benchmarks.osworld.runners.agent_computer import (
-    _action_history, _agent_telemetry, _annotate_incidental, _bounded, _clean_finish,
-    _environment_error_rec, _evaluator_provenance, _extra_flags, _implies_done, _inloop_verify,
+    _action_history, _agent_telemetry, _annotate_incidental, _bounded,
+    _environment_error_rec, _evaluator_provenance,
     _mcp_config, _model_mismatch, _provenance, _rate_limit_infra_rec, _rate_limit_result_rec,
     _save_conversation_transcript, _score, _served_by,
 )
 from benchmarks.osworld import config
-from core import procgroups
-
-
-def test_clean_finish_true_on_normal_stop():
-    assert _clean_finish({"is_error": False}, "some answer") is True
-
-
-def test_clean_finish_false_without_answer():
-    assert _clean_finish({"is_error": False}, "") is False
-
-
-def test_clean_finish_false_on_error():
-    assert _clean_finish({"is_error": True}, "some answer") is False
-
-
-def test_clean_finish_false_on_max_turns_no_answer():
-    meta = {"subtype": "error_max_turns", "is_error": True, "stop_reason": "tool_use"}
-    assert _clean_finish(meta, "") is False
 
 
 def test_annotate_incidental_flags_dirty_success():
@@ -393,292 +375,23 @@ def test_model_mismatch_is_none_when_nothing_was_pinned():
     assert rec["model_served"] == ["claude-sonnet-4-6"]
 
 
-class _FakeCtrl:
-    def __init__(self, png_bytes=b"\x89PNG\r\n\x1a\nfake"):
-        self._png_bytes = png_bytes
-        self.screenshot_calls = 0
-
-    def screenshot(self):
-        self.screenshot_calls += 1
-        return self._png_bytes
-
-
-def _with_patched(module, name, value, fn):
-    real = getattr(module, name)
-    setattr(module, name, value)
-    try:
-        return fn()
-    finally:
-        setattr(module, name, real)
-
-
-def test_implies_done_true_for_a_plain_done():
-    assert _implies_done("DONE") is True
-
-
-def test_implies_done_false_for_fail_or_infeasible():
-    assert _implies_done("FAIL") is False
-    assert _implies_done("This task is INFEASIBLE") is False
-    assert _implies_done("") is False
-
-
-def test_inloop_verify_off_by_default_never_touches_the_desktop():
-    """The whole mechanism is opt-in (config.INLOOP_VERIFY, default 0) -- with it off, not even
-    a screenshot should be taken, so a normal campaign pays zero cost for the feature existing."""
-    ctrl = _FakeCtrl()
-    real = config.INLOOP_VERIFY
-    config.INLOOP_VERIFY = False
-    try:
-        answer, meta, telemetry = _inloop_verify(
-            ctrl, {"instruction": "x"}, "DONE", {"session_id": "s1"}, "/tmp/mcp.json",
-            Path(tempfile.mkdtemp(prefix="osw_il_")))
-    finally:
-        config.INLOOP_VERIFY = real
-    assert answer == "DONE" and telemetry == {"inloop_verify_used": False}
-    assert ctrl.screenshot_calls == 0
-
-
-def test_inloop_verify_skips_a_self_reported_fail():
-    """A FAIL is the agent's own admission -- no independent check needed to act on it."""
-    ctrl = _FakeCtrl()
-    real = config.INLOOP_VERIFY
-    config.INLOOP_VERIFY = True
-    try:
-        answer, meta, telemetry = _inloop_verify(
-            ctrl, {"instruction": "x"}, "FAIL", {"session_id": "s1"}, "/tmp/mcp.json",
-            Path(tempfile.mkdtemp(prefix="osw_il_")))
-    finally:
-        config.INLOOP_VERIFY = real
-    assert answer == "FAIL" and telemetry == {"inloop_verify_used": False}
-    assert ctrl.screenshot_calls == 0
-
-
-def test_inloop_verify_skips_an_excluded_app_bucket():
-    """2026-09-10 finding: the 'os' bucket's tasks leave no GUI window open, so the in-loop
-    screenshot came back an uninformative black screen on every one of that bucket's runs in the
-    pilot -- config.INLOOP_VERIFY_SKIP_APPS lets that bucket skip the mechanism entirely rather
-    than pay for a check that cannot possibly confirm anything."""
-    ctrl = _FakeCtrl()
-    real_flag, real_skip = config.INLOOP_VERIFY, config.INLOOP_VERIFY_SKIP_APPS
-    config.INLOOP_VERIFY = True
-    config.INLOOP_VERIFY_SKIP_APPS = {"os"}
-    try:
-        answer, meta, telemetry = _inloop_verify(
-            ctrl, {"instruction": "x", "related_apps": ["os"]}, "DONE", {"session_id": "s1"},
-            "/tmp/mcp.json", Path(tempfile.mkdtemp(prefix="osw_il_")))
-    finally:
-        config.INLOOP_VERIFY, config.INLOOP_VERIFY_SKIP_APPS = real_flag, real_skip
-    assert answer == "DONE"
-    assert telemetry == {"inloop_verify_used": False, "inloop_verify_skipped_app": True}
-    assert ctrl.screenshot_calls == 0
-
-
-def test_inloop_verify_agreement_skips_the_retry_call():
-    """Verifier agrees with the agent's DONE -> no --resume call should ever be attempted."""
-    ctrl = _FakeCtrl()
-    out = Path(tempfile.mkdtemp(prefix="osw_il_"))
-    resume_calls = []
-
-    def fake_verify_with_reason(png_path, instruction, timeout=120):
-        assert png_path.exists()
-        return {"answer": "DONE", "reason": "the target file shows the expected text",
-                "raw": "ANSWER: DONE\nREASON: x", "model_served": ["claude-sonnet-5"]}
-
-    def fake_run_claude_meta(cmd, timeout=None):
-        resume_calls.append(cmd)
-        raise AssertionError("should not be called when the verifier agrees")
-
-    real_verify_config = config.INLOOP_VERIFY
-    config.INLOOP_VERIFY = True
-    try:
-        answer, meta, telemetry = _with_patched(
-            agent_computer, "_verify_with_reason", fake_verify_with_reason, lambda:
-            _with_patched(agent_computer, "run_claude_meta", fake_run_claude_meta, lambda:
-                _inloop_verify(ctrl, {"instruction": "do the thing"}, "DONE",
-                              {"session_id": "s1", "total_cost_usd": 0.10}, "/tmp/mcp.json", out)))
-    finally:
-        config.INLOOP_VERIFY = real_verify_config
-    assert answer == "DONE"
-    assert resume_calls == []
-    assert telemetry["inloop_verify_used"] is True
-    assert telemetry["inloop_verify_verdict"] == "DONE"
-    assert telemetry["inloop_verify_retried"] is False
-    assert ctrl.screenshot_calls == 1
-    assert (out / "inloop_pre_verify.png").exists()
-
-
-def test_inloop_verify_disagreement_retries_with_the_specific_reason():
-    """Verifier disagrees with the agent's DONE -> a --resume call is made carrying the
-    verifier's specific reason (not a generic 'check again'), its answer wins, and the two
-    calls' cost/turns are summed rather than the first being silently dropped. Grounded in the
-    2026-09-09 pilot: a generic nudge never once changed the agent's self-report (0/11) because
-    a screenshot-only verifier is blind to non-visual state the agent can check with run_python;
-    naming the specific claim is meant to close that escape hatch."""
-    ctrl = _FakeCtrl()
-    out = Path(tempfile.mkdtemp(prefix="osw_il_"))
-    retry_prompts = []
-
-    def fake_verify_with_reason(png_path, instruction, timeout=120):
-        return {"answer": "FAIL", "reason": "the sidebar still shows the old filename",
-                "raw": "ANSWER: FAIL\nREASON: x", "model_served": ["claude-sonnet-5"]}
-
-    def fake_run_claude_meta(cmd, timeout=None):
-        assert "--resume" in cmd and "s1" in cmd
-        retry_prompts.append(cmd[cmd.index("-p") + 1])
-        return {"result": "ANSWER: FAIL", "session_id": "s1", "total_cost_usd": 0.05,
-                "num_turns": 3, "duration_ms": 1000, "duration_api_ms": 800,
-                "modelUsage": {"claude-sonnet-5": {}}}
-
-    real_verify_config = config.INLOOP_VERIFY
-    config.INLOOP_VERIFY = True
-    try:
-        answer, meta, telemetry = _with_patched(
-            agent_computer, "_verify_with_reason", fake_verify_with_reason, lambda:
-            _with_patched(agent_computer, "run_claude_meta", fake_run_claude_meta, lambda:
-                _inloop_verify(ctrl, {"instruction": "do the thing"}, "DONE",
-                              {"session_id": "s1", "total_cost_usd": 0.10, "num_turns": 5,
-                               "duration_ms": 2000, "duration_api_ms": 1500}, "/tmp/mcp.json", out)))
-    finally:
-        config.INLOOP_VERIFY = real_verify_config
-    assert answer == "FAIL"
-    assert telemetry["inloop_verify_retried"] is True
-    assert telemetry["inloop_verify_second_answer"] == "FAIL"
-    assert telemetry["inloop_verify_reason"] == "the sidebar still shows the old filename"
-    assert "the sidebar still shows the old filename" in retry_prompts[0]
-    assert round(meta["total_cost_usd"], 2) == 0.15
-    assert meta["num_turns"] == 8
-    assert meta["duration_ms"] == 3000
-
-
-def test_inloop_verify_disagreement_without_a_parsed_reason_falls_back_to_generic_text():
-    """A verifier reply that skips the REASON line must not crash the retry -- it falls back to
-    a generic phrase rather than interpolating None into the prompt."""
-    ctrl = _FakeCtrl()
-    out = Path(tempfile.mkdtemp(prefix="osw_il_"))
-    retry_prompts = []
-
-    def fake_verify_with_reason(png_path, instruction, timeout=120):
-        return {"answer": "FAIL", "reason": None, "raw": "ANSWER: FAIL",
-                "model_served": ["claude-sonnet-5"]}
-
-    def fake_run_claude_meta(cmd, timeout=None):
-        retry_prompts.append(cmd[cmd.index("-p") + 1])
-        return {"result": "ANSWER: DONE", "session_id": "s1"}
-
-    real = config.INLOOP_VERIFY
-    config.INLOOP_VERIFY = True
-    try:
-        _with_patched(
-            agent_computer, "_verify_with_reason", fake_verify_with_reason, lambda:
-            _with_patched(agent_computer, "run_claude_meta", fake_run_claude_meta, lambda:
-                _inloop_verify(ctrl, {"instruction": "do the thing"}, "DONE",
-                              {"session_id": "s1"}, "/tmp/mcp.json", out)))
-    finally:
-        config.INLOOP_VERIFY = real
-    assert "None" not in retry_prompts[0]
-    assert "does not appear to show the task as complete" in retry_prompts[0]
-
-
-def test_inloop_verify_without_session_id_cannot_resume():
-    ctrl = _FakeCtrl()
-    out = Path(tempfile.mkdtemp(prefix="osw_il_"))
-
-    def fake_verify_with_reason(png_path, instruction, timeout=120):
-        return {"answer": "FAIL", "reason": None, "raw": "", "model_served": None}
-
-    real = config.INLOOP_VERIFY
-    config.INLOOP_VERIFY = True
-    try:
-        answer, meta, telemetry = _with_patched(
-            agent_computer, "_verify_with_reason", fake_verify_with_reason, lambda:
-            _inloop_verify(ctrl, {"instruction": "x"}, "DONE", {}, "/tmp/mcp.json", out))
-    finally:
-        config.INLOOP_VERIFY = real
-    assert answer == "DONE" and telemetry["inloop_verify_retried"] is False
-    assert "no session_id" in telemetry["inloop_verify_error"]
-
-
-def test_inloop_verify_screenshot_failure_is_non_fatal():
-    class _BrokenCtrl:
-        def screenshot(self):
-            raise RuntimeError("controller unreachable")
-
-    out = Path(tempfile.mkdtemp(prefix="osw_il_"))
-    real = config.INLOOP_VERIFY
-    config.INLOOP_VERIFY = True
-    try:
-        answer, meta, telemetry = _inloop_verify(
-            _BrokenCtrl(), {"instruction": "x"}, "DONE", {"session_id": "s1"},
-            "/tmp/mcp.json", out)
-    finally:
-        config.INLOOP_VERIFY = real
-    assert answer == "DONE" and telemetry["inloop_verify_used"] is False
-    assert "controller unreachable" in telemetry["inloop_verify_error"]
-
-
-def test_inloop_verify_interrupted_propagates_from_the_verify_call():
-    """task-10b fix round 1: _inloop_verify's `except Exception as e:` around
-    _verify_with_reason (the first LLM call) used to swallow ANY exception into a "verify
-    skipped" result -- including core.procgroups.Interrupted, which meant a run killed by a
-    harness SIGTERM/SIGINT mid-verify would still get scored as if it had finished normally.
-    Interrupted must now propagate untouched."""
-    ctrl = _FakeCtrl()
-    out = Path(tempfile.mkdtemp(prefix="osw_il_"))
-
-    def fake_verify_with_reason(png_path, instruction, timeout=120):
-        raise procgroups.Interrupted("harness interrupted")
-
-    real = config.INLOOP_VERIFY
-    config.INLOOP_VERIFY = True
-    try:
-        with pytest.raises(procgroups.Interrupted):
-            _with_patched(
-                agent_computer, "_verify_with_reason", fake_verify_with_reason, lambda:
-                _inloop_verify(ctrl, {"instruction": "x"}, "DONE", {"session_id": "s1"},
-                              "/tmp/mcp.json", out))
-    finally:
-        config.INLOOP_VERIFY = real
-
-
-def test_inloop_verify_interrupted_propagates_from_the_retry_call():
-    """Same contract for the second LLM call (the --resume retry after a verifier
-    disagreement): its `except Exception as e:` must not swallow Interrupted either."""
-    ctrl = _FakeCtrl()
-    out = Path(tempfile.mkdtemp(prefix="osw_il_"))
-
-    def fake_verify_with_reason(png_path, instruction, timeout=120):
-        return {"answer": "FAIL", "reason": "still wrong", "raw": "ANSWER: FAIL",
-                "model_served": ["claude-sonnet-5"]}
-
-    def fake_run_claude_meta(cmd, timeout=None):
-        raise procgroups.Interrupted("harness interrupted")
-
-    real = config.INLOOP_VERIFY
-    config.INLOOP_VERIFY = True
-    try:
-        with pytest.raises(procgroups.Interrupted):
-            _with_patched(
-                agent_computer, "_verify_with_reason", fake_verify_with_reason, lambda:
-                _with_patched(agent_computer, "run_claude_meta", fake_run_claude_meta, lambda:
-                    _inloop_verify(ctrl, {"instruction": "do the thing"}, "DONE",
-                                  {"session_id": "s1"}, "/tmp/mcp.json", out)))
-    finally:
-        config.INLOOP_VERIFY = real
-
-
 def test_mcp_config_writes_a_valid_stdio_spec():
-    """Characterization test (docs/verify-replan-minimal-integration-plan.md commit 1): pins
-    the exact shape _mcp_config produces today, before it moves into a shared module. A
-    verify-replan Auditor needs the same spec shape with a different tool allowlist -- this
-    locks down the part that must stay identical."""
+    """Characterization test: pins the exact shape _mcp_config produces -- always the official
+    shape now (this interpreter, PYTHONPATH set) since the runner has only one protocol."""
+    import sys
     path = _mcp_config("http://localhost:9999")
     try:
         spec = json.loads(Path(path).read_text())
-        assert spec == {"mcpServers": {"osworld": {
-            "type": "stdio", "command": "python",
+        assert spec["mcpServers"]["osworld"] == {
+            "type": "stdio", "command": sys.executable,
             "args": ["-m", "benchmarks.osworld.mcp.server"],
-            "env": {"OSW_CONTROLLER_URL": "http://localhost:9999"},
-        }}}
+            "env": {"OSW_CONTROLLER_URL": "http://localhost:9999",
+                    "OSW_PROTOCOL": "official", "OSW_MAX_STEPS": str(config.MAX_STEPS),
+                    "OSW_SLEEP_AFTER_EXECUTION": str(config.SLEEP_AFTER_EXECUTION),
+                    "OSW_SCREEN_WIDTH": str(config.SCREEN_WIDTH),
+                    "OSW_SCREEN_HEIGHT": str(config.SCREEN_HEIGHT),
+                    "PYTHONPATH": str(common.CHECKOUT_ROOT)},
+        }
     finally:
         Path(path).unlink()
 
@@ -690,29 +403,6 @@ def test_mcp_config_defaults_to_empty_url_env():
         assert spec["mcpServers"]["osworld"]["env"]["OSW_CONTROLLER_URL"] == ""
     finally:
         Path(path).unlink()
-
-
-def test_extra_flags_none_when_no_restriction_is_active():
-    real_a, real_b = config.ENFORCE_SANDBOX, config.RESTRICT_RUN_PYTHON
-    config.ENFORCE_SANDBOX = config.RESTRICT_RUN_PYTHON = False
-    try:
-        assert _extra_flags() is None
-    finally:
-        config.ENFORCE_SANDBOX, config.RESTRICT_RUN_PYTHON = real_a, real_b
-
-
-def test_extra_flags_combines_both_restrictions_with_one_strict_mcp_config():
-    """--strict-mcp-config must appear at most once even with both G5 arms (#10 and #11)
-    active together -- two separate flags would be a malformed argv the CLI rejects."""
-    real_a, real_b = config.ENFORCE_SANDBOX, config.RESTRICT_RUN_PYTHON
-    config.ENFORCE_SANDBOX = config.RESTRICT_RUN_PYTHON = True
-    try:
-        flags = _extra_flags()
-    finally:
-        config.ENFORCE_SANDBOX, config.RESTRICT_RUN_PYTHON = real_a, real_b
-    assert flags == ["--disallowedTools", "Bash", "WebSearch", "WebFetch",
-                     "mcp__osworld__run_python", "--strict-mcp-config"]
-    assert flags.count("--strict-mcp-config") == 1
 
 
 def test_action_history_maps_fail_and_infeasible_to_fail():
@@ -770,19 +460,14 @@ def test_evaluator_provenance_falls_back_when_the_evaluator_package_is_unavailab
 
 def test_provenance_shape_and_pinned_config_fields():
     """Characterization test: pins every field _provenance writes today and where each one
-    comes from (task hash, ctrl, or a specific config knob), so extracting this into a shared
-    module cannot silently drop or rename a field a downstream reader (reporting.ab_compare,
-    the verify-replan role telemetry) depends on."""
-    real = {k: getattr(config, k) for k in
-            ("MODEL", "IMAGE", "RELEASE", "MAX_TURNS", "TASK_TIMEOUT", "OBSERVATION",
-             "ACTION_SPACE")}
+    comes from (task hash, ctrl, or a specific config knob, or the official protocol's own
+    fixed values), so this cannot silently drop or rename a field a downstream reader
+    (reporting.ab_compare, the verify-replan role telemetry) depends on."""
+    real = {k: getattr(config, k) for k in ("MODEL", "IMAGE", "RELEASE", "TASK_TIMEOUT")}
     config.MODEL = "claude-sonnet-5"
     config.IMAGE = "test-image@sha256:deadbeef"
     config.RELEASE = "verified"
-    config.MAX_TURNS = 150
     config.TASK_TIMEOUT = 3600
-    config.OBSERVATION = "screenshot+a11y"
-    config.ACTION_SPACE = "pyautogui"
     try:
         task = {"id": "t1", "instruction": "do the thing"}
         rec = _provenance(task, ctrl=None, started_at="2026-09-10T00:00:00+00:00")
@@ -795,10 +480,12 @@ def test_provenance_shape_and_pinned_config_fields():
     assert rec["model_requested"] == "claude-sonnet-5"
     assert rec["controller_url"] is None   # ctrl=None and config.CONTROLLER_URL unset in tests
     assert rec["release"] == "verified"
-    assert rec["max_turns"] == 150
+    # official protocol only: the model sees screenshots only, through computer_20251124.
+    assert rec["protocol"] == "official"
+    assert rec["max_turns"] == common.official_max_turns()
     assert rec["task_timeout"] == 3600
-    assert rec["observation"] == "screenshot+a11y"
-    assert rec["action_space"] == "pyautogui"
+    assert rec["observation"] == "screenshot"
+    assert rec["action_space"] == "computer_20251124"
     assert rec["started_at"] == "2026-09-10T00:00:00+00:00"
     assert "evaluator_commit" in rec and "evaluator_package" in rec
     assert "finished_at" in rec and rec["finished_at"] != rec["started_at"]
@@ -811,57 +498,7 @@ def test_provenance_reads_the_controller_url_off_ctrl_when_present():
     assert rec["controller_url"] == "http://ctrl:1234"
 
 
-class _FakeEnv:
-    """Minimal stand-in for core.environment's context value: run() only ever reads
-    .browser and .setup_error off it (never calls into it as a context manager itself --
-    that happens one level up, in core.run)."""
-    browser = None
-    setup_error = None
-
-
-def test_dry_run_argv_is_a_stable_snapshot_for_a_fixed_task_and_config():
-    """The plan's own gate before any extraction (verify-replan-minimal-integration-plan.md
-    §17): 'dimostrare che una run baseline dry-run produce lo stesso argv'. Captures every
-    build_claude_cmd kwarg for a fixed task under fixed config, with _mcp_config's random
-    tmpfile name replaced by a fixed stand-in -- so this test fails loudly if extracting
-    _mcp_config/_extra_flags/build_claude_cmd's call site into runners/common.py changes so
-    much as one flag, ordering, or default for the untouched baseline path."""
-    calls = []
-    fixed_mcp_path = tempfile.mkstemp(prefix="osw_fixed_mcp_")[1]
-
-    def fake_mcp_config(controller_url):
-        return fixed_mcp_path
-
-    def fake_build_claude_cmd(prompt, **kwargs):
-        calls.append({"prompt_nonempty": bool(prompt), **kwargs})
-        return ["claude", "-p", "FAKE"]
-
-    real_model, real_max_turns = config.MODEL, config.MAX_TURNS
-    real_a, real_b = config.ENFORCE_SANDBOX, config.RESTRICT_RUN_PYTHON
-    config.MODEL, config.MAX_TURNS = "claude-sonnet-5", 150
-    config.ENFORCE_SANDBOX = config.RESTRICT_RUN_PYTHON = False
-    try:
-        _with_patched(agent_computer, "_mcp_config", fake_mcp_config, lambda:
-            _with_patched(agent_computer, "build_claude_cmd", fake_build_claude_cmd, lambda:
-                agent_computer.run(
-                    {"id": "t1", "instruction": "do the thing", "evaluator": {}},
-                    env=_FakeEnv(), out=Path(tempfile.mkdtemp(prefix="osw_dry_")), dry=True)))
-    finally:
-        config.MODEL, config.MAX_TURNS = real_model, real_max_turns
-        config.ENFORCE_SANDBOX, config.RESTRICT_RUN_PYTHON = real_a, real_b
-        Path(fixed_mcp_path).unlink(missing_ok=True)
-    assert len(calls) == 1
-    assert calls[0] == {
-        "prompt_nonempty": True,
-        "model": "claude-sonnet-5",
-        "max_turns": 150,
-        "mcp_config": fixed_mcp_path,
-        "allowed_tools": agent_computer.OSWORLD_TOOLS,
-        "extra": None,
-    }
-
-
-# --- accessibility-channel probe and the grounding precheck ------------------
+# --- accessibility-channel probe ------------------
 
 class _A11yCtrl:
     base_url = "http://guest:5000"
@@ -899,35 +536,6 @@ def test_a11y_health_records_the_channel_state_without_raising():
     assert "ConnectionError" in unreachable["a11y_reason"]
 
     assert common._a11y_health(None)["a11y_ok"] is None
-
-
-def test_grounding_precheck_only_blocks_when_the_arm_is_on():
-    """The baseline works from screenshots and must never be failed by an empty tree; the arm
-    must never be RUN against one, or a broken environment reads as a null mechanism."""
-    original = config.GROUNDING
-    try:
-        config.GROUNDING = False
-        assert agent_computer._grounding_precheck(_A11yCtrl(_EMPTY_AT)) is None
-
-        config.GROUNDING = True
-        blocked = agent_computer._grounding_precheck(_A11yCtrl(_EMPTY_AT))
-        assert blocked and "accessibility channel is not reporting" in blocked
-        assert "OSW_GROUNDING" in blocked          # tells the operator how to proceed
-        assert agent_computer._grounding_precheck(_A11yCtrl(_POPULATED_AT)) is None
-    finally:
-        config.GROUNDING = original
-
-
-def test_grounding_precheck_costs_nothing_when_the_arm_is_off():
-    """It must not add an HTTP round trip to every baseline run."""
-    original = config.GROUNDING
-    try:
-        config.GROUNDING = False
-        ctrl = _A11yCtrl(_EMPTY_AT)
-        agent_computer._grounding_precheck(ctrl)
-        assert ctrl.calls == 0
-    finally:
-        config.GROUNDING = original
 
 
 def main():

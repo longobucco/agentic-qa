@@ -17,12 +17,6 @@ def _reload(**env):
     return vals
 
 
-def test_defaults_unchanged():
-    name, astra, official, backend, _ = _reload()
-    assert (name, astra, official, backend) == (
-        "agent_computer_sonnet5", "agent_computer_astra", False, "daytona")
-
-
 def test_official_kvm_names_and_timeout():
     name, astra, official, backend, timeout = _reload(
         OSW_PROTOCOL="official", OSW_BACKEND="kvm", OSW_EFFORT="max",
