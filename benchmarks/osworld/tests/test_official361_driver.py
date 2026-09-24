@@ -13,6 +13,7 @@ from benchmarks.osworld import config, tasks
 from scripts import g_official361_driver as driver
 
 _ROOT = Path(__file__).resolve().parents[3]
+_IMAGE = "happysixd/osworld-docker@sha256:" + "0123456789abcdef" * 4   # a pinned digest
 
 
 def _unit(task_id, run_idx, fresh=None, history=()):
@@ -144,6 +145,12 @@ class _FakePopen:
             out = config.RESULTS_DIR / system / tid / f"run_{k}"
             out.mkdir(parents=True, exist_ok=True)
             path = out / "infra_error.json"
+            if outcome == "EVAL":
+                (out / "eval.json").write_text("{}")
+                continue
+            if outcome == "GARBAGE":
+                path.write_text("{not json")
+                continue
             hist = json.loads(path.read_text()) if path.exists() else []
             path.write_text(json.dumps(hist + [{"outcome": outcome}]))
 
@@ -167,9 +174,12 @@ def test_run_round_launches_one_child_per_batch_and_reports_fresh_outcomes(tmp_p
         assert cmd[cmd.index("--runs") + 1] == "5"
         assert cmd[cmd.index("--concurrency") + 1] == "1"
         assert "--force" not in cmd
+    no_outcome = lambda u, n: {**u, "no_outcome": True, "no_outcomes": n}
+    outcome = lambda u: {**u, "no_outcome": False, "no_outcomes": 0}
     assert results == [
-        _batch(0, [_unit("a", 1, "RATE_LIMITED", ["RATE_LIMITED"]), _unit("a", 2)]),
-        _batch(2, [_unit("b", 1, None, ["INFRA_FLAKE"])]),
+        _batch(0, [outcome(_unit("a", 1, "RATE_LIMITED", ["RATE_LIMITED"])),
+                   no_outcome(_unit("a", 2), 1)]),
+        _batch(2, [no_outcome(_unit("b", 1, None, ["INFRA_FLAKE"]), 1)]),
     ]
     assert driver.decide(results) == "stop"   # b's child failed without writing anything
 
@@ -180,7 +190,7 @@ def test_dry_run_prints_the_plan_and_runs_nothing(tmp_path):
     fake_bin = tmp_path / "bin"
     fake_bin.mkdir()
     env = {k: v for k, v in os.environ.items() if not k.startswith("OSW_")}
-    env.update({"PYTHONPATH": str(_ROOT), "ARM": "sonnet", "PARALLEL": "3",
+    env.update({"PYTHONPATH": str(_ROOT), "ARM": "sonnet", "PARALLEL": "3", "OSW_KVM_IMAGE": _IMAGE,
                 "PATH": f"{fake_bin}:{env.get('PATH', '')}"})
     for name in ("claude", "codex", "docker"):   # would leave a marker if anything ran them
         exe = fake_bin / name
@@ -215,7 +225,7 @@ def test_dry_run_prints_the_plan_and_runs_nothing(tmp_path):
     ("OSW_MODEL", "claude-opus-4-8"), ("OSW_EFFORT", "high"), ("OSW_SYSTEM_SUFFIX", "x"),
 ])
 def test_env_conflicts_names_each_harness_altering_variable(name, value):
-    conflicts = driver.env_conflicts("sonnet", {name: value})
+    conflicts = driver.env_conflicts("sonnet", {"OSW_KVM_IMAGE": _IMAGE, name: value})
     assert len(conflicts) == 1 and conflicts[0].startswith(name + "=")
 
 
@@ -224,7 +234,7 @@ def test_env_conflicts_accepts_defaults_protocol_values_and_host_settings():
                "OSW_TASK_TIMEOUT": "", "OSW_OBSERVATION": "screenshot+a11y",
                "OSW_PROTOCOL": "official", "OSW_BACKEND": "kvm", "OSW_MAX_STEPS": "100",
                "OSW_KVM_ADDR": "10.0.0.2", "OSW_KVM_QCOW2": "/data/Ubuntu.qcow2",
-               "OSW_ASTRA_REASONING_EFFORT": "xhigh"}
+               "OSW_ASTRA_REASONING_EFFORT": "xhigh", "OSW_KVM_IMAGE": _IMAGE}
     assert driver.env_conflicts("sonnet", environ) == []
     assert driver.env_conflicts("astra", environ) == []
     assert driver.env_conflicts("astra", {**environ, "OSW_ASTRA_CAMPAIGN_LOCK": "a.json"}) == [
@@ -293,6 +303,8 @@ fb.build = lambda: types.SimpleNamespace(runners=_Runners())
 sys.modules["benchmarks.osworld.benchmark"] = fb
 d._ROOT = tmp
 (tmp / "scripts").mkdir()
+if mode == "prestuck":   # t0#1 already failed 3x (non-quota) in an earlier session
+    d._infra_history = lambda s, t, k: ["HARNESS_ERROR"] * 3 if (t, k) == ("t0", 1) else []
 if mode == "done":
     d.pending_units = lambda system, runs: []
 else:
@@ -317,8 +329,15 @@ def fake_popen(cmd, **kw):   # a fake run.py child: sleeps; the second one ignor
     code = ("import os, signal, sys, time\\n"
             + ("signal.signal(signal.SIGTERM, signal.SIG_IGN)\\n" if n[0] == 2 else "")
             + "open(sys.argv[1] + '.run', 'w').write(os.environ.get('OSW_KVM_DRIVER_RUN', ''))\\n"
+            # what run.py's core.run.main does first: load the repo .env with setdefault
+            + "sys.path.insert(0, sys.argv[2]); from core.dotenv import load_dotenv\\n"
+            + "load_dotenv(sys.argv[3])\\n"
+            + "import json; open(sys.argv[1] + '.env', 'w').write(json.dumps("
+            + "{k: os.environ.get(k) for k in ('OSW_ZOOM_BATCH', 'OSW_TASK_TIMEOUT')}))\\n"
             + "open(sys.argv[1], 'w').write(str(os.getpid()))\\ntime.sleep(120)\\n")
-    return _real([sys.executable, "-c", code, str(tmp / f"child{n[0]}.pid")])
+    (tmp / "dotenv").write_text("OSW_ZOOM_BATCH=1\\nOSW_TASK_TIMEOUT=60\\n")
+    return _real([sys.executable, "-c", code, str(tmp / f"child{n[0]}.pid"), sys.argv[2],
+                  str(tmp / "dotenv")])
 d.subprocess.Popen = fake_popen
 sys.exit(d.main([]))
 """
@@ -328,7 +347,7 @@ def _start_driver(tmp_path, mode):
     helper = tmp_path / "helper.py"
     helper.write_text(_DRIVER_UNDER_TEST)
     env = {k: v for k, v in os.environ.items() if not k.startswith("OSW_")}
-    env.update({"ARM": "sonnet", "PARALLEL": "2"})
+    env.update({"ARM": "sonnet", "PARALLEL": "2", "OSW_KVM_IMAGE": _IMAGE})
     return subprocess.Popen([sys.executable, str(helper), str(tmp_path), str(_ROOT), mode],
                             env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
 
@@ -364,6 +383,19 @@ def test_sigterm_terminates_the_children_sweeps_this_runs_containers_and_exits_n
     assert json.loads((tmp_path / "removed.json").read_text()) == {"force": True, "v": True}
     log = (tmp_path / "scripts" / "g_official361_sonnet.log").read_text()
     assert "SIGTERM" in log and "1 killed" in log and "removed 1 container" in log
+    # every harness knob reaches the child pinned at its default, so the repo .env's setdefault
+    # can no longer inject one mid-campaign (minor 4)
+    assert json.loads((tmp_path / "child1.pid.env").read_text()) == {
+        "OSW_ZOOM_BATCH": "0", "OSW_TASK_TIMEOUT": ""}
+
+
+def test_a_unit_already_stuck_from_an_earlier_session_stops_before_any_vm_starts(tmp_path):
+    proc = _start_driver(tmp_path, "prestuck")
+    out, _ = proc.communicate(timeout=30)
+    assert proc.returncode == 3, out
+    assert not (tmp_path / "child1.pid").exists()
+    log = (tmp_path / "scripts" / "g_official361_sonnet.log").read_text()
+    assert "STOP" in log and "t0#1" in log
 
 
 def test_a_docker_error_during_the_sweep_is_logged_not_raised_over_the_signal_exit(tmp_path):
@@ -443,4 +475,57 @@ def test_sweep_refuses_an_empty_run_id():
 
 
 def test_driver_run_id_is_not_on_the_refuse_list():
-    assert driver.env_conflicts("sonnet", {"OSW_KVM_DRIVER_RUN": "abc"}) == []
+    environ = {"OSW_KVM_IMAGE": _IMAGE, "OSW_KVM_DRIVER_RUN": "abc"}
+    assert driver.env_conflicts("sonnet", environ) == []
+
+
+# ---- fix round 1 ----------------------------------------------------------------------------
+
+@pytest.mark.parametrize("image", [None, "", "happysixd/osworld-docker",
+                                   "happysixd/osworld-docker:latest",
+                                   "other/osworld-docker@sha256:" + "0" * 64,
+                                   "happysixd/osworld-docker@sha256:" + "0" * 63,
+                                   "happysixd/osworld-docker@sha256:" + "A" * 64])
+def test_the_kvm_image_must_be_a_pinned_digest_of_the_official_image(image):
+    environ = {} if image is None else {"OSW_KVM_IMAGE": image}
+    conflicts = driver.env_conflicts("sonnet", environ)
+    assert len(conflicts) == 1 and conflicts[0].startswith("OSW_KVM_IMAGE=")
+    assert driver.env_conflicts("sonnet", {"OSW_KVM_IMAGE": _IMAGE}) == []
+
+
+def test_child_env_pins_every_harness_knob_at_its_default():
+    env = driver.child_env("sonnet", {})
+    assert env == {**driver._HARNESS_KNOB_DEFAULTS, **driver.protocol_env("sonnet", {})}
+    assert env["OSW_TASK_TIMEOUT"] == "" and env["OSW_ZOOM_BATCH"] == "0"
+
+
+def test_stuck_pending_finds_units_stuck_in_an_earlier_session(tmp_path, monkeypatch):
+    monkeypatch.setattr(config, "RESULTS_DIR", tmp_path)
+    for (tid, k), hist in {("a", 1): ["HARNESS_ERROR", "INFRA_FLAKE", "HARNESS_ERROR"],
+                           ("b", 1): ["RATE_LIMITED"] * 4 + ["HARNESS_ERROR"] * 2}.items():
+        out = tmp_path / "sys" / tid / f"run_{k}"
+        out.mkdir(parents=True)
+        (out / "infra_error.json").write_text(json.dumps([{"outcome": o} for o in hist]))
+    assert driver.stuck_pending("sys", [("a", 1), ("b", 1), ("c", 1)]) == [("a", 1)]
+
+
+def test_a_unit_that_ends_with_no_outcome_counts_toward_the_stuck_rule(tmp_path, monkeypatch):
+    monkeypatch.setattr(config, "RESULTS_DIR", tmp_path)
+    monkeypatch.setattr(driver.subprocess, "Popen", _FakePopen)
+    _FakePopen.launched = []
+    # a#1 scored; a#2 wrote nothing; a#3 left an unparsable infra_error.json
+    _FakePopen.script = {"a": (0, {("a", 1): "EVAL", ("a", 3): "GARBAGE"})}
+    no_outcomes = {("a", 2): 2}   # two earlier rounds of this session already ended that way
+    results = driver.run_round("sys", [["a"]], [("a", 1), ("a", 2), ("a", 3)], runs=5,
+                               log_file=None, no_outcomes=no_outcomes)
+    units = {(u["task_id"], u["run_idx"]): u for u in results[0]["units"]}
+    assert not units[("a", 1)]["no_outcome"]
+    assert units[("a", 2)]["no_outcome"] and units[("a", 2)]["no_outcomes"] == 3
+    assert units[("a", 3)]["no_outcome"] and units[("a", 3)]["no_outcomes"] == 1
+    assert no_outcomes == {("a", 2): 3, ("a", 3): 1}
+    assert driver.stuck_units(results) == [("a", 2)]
+    assert driver.decide(results) == "stop"
+    # rate limits never count, a no-outcome does
+    rl = _unit("q", 1, fresh=None, history=["HARNESS_ERROR", "RATE_LIMITED", "HARNESS_ERROR"])
+    assert driver.stuck_units([_batch(0, [{**rl, "no_outcomes": 1}])]) == [("q", 1)]
+    assert driver.stuck_units([_batch(0, [rl])]) == []
