@@ -170,6 +170,10 @@ def _provenance(task, ctrl, started_at):
         "max_output_tokens": config.MAX_OUTPUT_TOKENS,
         "max_steps": config.MAX_STEPS,
         "screen_size": f"{config.SCREEN_WIDTH}x{config.SCREEN_HEIGHT}",
+        "protocol": config.PROTOCOL or None,
+        "backend": config.BACKEND,
+        "kvm_image": config.KVM_IMAGE if config.BACKEND == "kvm" else None,
+        "kvm_qcow2_sha256": config.KVM_QCOW2_SHA256 or None,
         "started_at": started_at,
         "finished_at": datetime.now(timezone.utc).isoformat(),
     }
