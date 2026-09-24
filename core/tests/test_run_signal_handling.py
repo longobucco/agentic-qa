@@ -216,8 +216,8 @@ def test_main_sigterm_at_concurrency_2_reaps_both_in_flight_units():
 # between the agent call and the next spawner call -- if it just blindly sleeps, an interrupt
 # that lands while a worker is inside that wait isn't noticed until the sleep finishes, which
 # can dwarf core.run's shutdown(wait=True) grace period. This drives a real main() whose fake
-# runner calls the REAL common.protocol_wait(30) (config.OFFICIAL patched True), and verifies
-# a SIGTERM sent mid-wait is noticed at once (exit well under 30s), not waited out.
+# runner calls the REAL common.protocol_wait(30), and verifies a SIGTERM sent mid-wait is
+# noticed at once (exit well under 30s), not waited out.
 _PROTOCOL_WAIT_DRIVER_TEMPLATE = '''
 from pathlib import Path
 from contextlib import contextmanager
@@ -225,10 +225,7 @@ from contextlib import contextmanager
 from core.run import Benchmark, Runner, main
 from core.judge import Judge
 from core.environment import Env
-from benchmarks.osworld import config
 from benchmarks.osworld.runners.common import protocol_wait
-
-config.OFFICIAL = True
 
 RESULTS_DIR = Path(__RESULTS_DIR__)
 MARKER_DIR = Path(__MARKER_DIR__)

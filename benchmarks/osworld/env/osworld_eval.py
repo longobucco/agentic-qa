@@ -99,7 +99,7 @@ def use_pinned_evaluators():
     verdict is never silently attributed to the wrong evaluator).
     """
     stamp = PINNED_EVALUATORS / "PINNED_COMMIT"
-    if not config.PINNED_EVALUATORS or not stamp.is_file():
+    if not stamp.is_file():
         return None
     try:
         import desktop_env.evaluators as evaluators
@@ -125,7 +125,7 @@ def use_pinned_setup_controller():
     Returns the commit in use, or None when the pinned file isn't on disk (setup then runs on the
     installed release; evaluator_provenance() records which)."""
     stamp = PINNED_CONTROLLERS / "PINNED_COMMIT"
-    if not config.PINNED_EVALUATORS or not stamp.is_file():
+    if not stamp.is_file():
         return None
     use_pinned_evaluators()   # the pinned setup.py imports desktop_env.evaluators.metrics.utils
     try:
@@ -218,8 +218,6 @@ def pinned_code_problems():
     A campaign must refuse to start on a checkout missing data/evaluators or data/controllers
     (python -m benchmarks.osworld.data.download_evaluators): the fallback to the installed
     desktop_env 1.0.2 is silent and loses tasks (see data/download_evaluators.py)."""
-    if not config.PINNED_EVALUATORS:
-        return ["OSW_PINNED_EVALUATORS=0: scoring on the installed desktop_env"]
     prov = evaluator_provenance()
     problems = []
     for key in ("evaluator_commit", "setup_controller_commit"):
@@ -288,8 +286,7 @@ class _EnvAdapter:
     """Minimal DesktopEnv stand-in that OSWorld's getters read from."""
 
     def __init__(self, controller, controller_url, action_history, cache_dir=None,
-                 getter_address=None, use_proxy=False, chromium_port=None, vlc_port=None,
-                 client_password=""):
+                 getter_address=None, chromium_port=None, vlc_port=None, client_password=""):
         # What the twelve URL-building getters will interpolate into "http://{ip}:{port}".
         # Splitting the https:// controller URL here is what made them talk plain HTTP to port
         # 443 (env/http_forwarder.py); the loopback forwarder is passed in instead.
@@ -307,21 +304,19 @@ class _EnvAdapter:
         # per-provider overrides DesktopEnv computes for port-mapped Docker.
         # Omitting them raised AttributeError *inside* the getter, which the runner then
         # filed as EVAL_ERROR: 6 runs across 2 vlc tasks lost to a missing `vlc_port`
-        # alone (inventory 2026-09-04). chromium_port is read in 9 places and
-        # current_use_proxy in 2, so both were latent failures waiting on the right task.
-        # `chromium_port`: 9222 unless a CdpForwarder is up (open-book only, use_proxy=True) --
-        # see env/cdp_forwarder.py for why the literal guest port is otherwise unreachable from
-        # the harness host (oracle_unroutable) and what makes it reachable after all.
+        # alone (inventory 2026-09-04). chromium_port is read in 9 places, so it was a latent
+        # failure waiting on the right task.
+        # `chromium_port`: 9222 unless a CdpForwarder is up -- see env/cdp_forwarder.py for why
+        # the literal guest port is otherwise unreachable from the harness host
+        # (oracle_unroutable) and what makes it reachable after all.
         # On the kvm backend both are the container's published host ports (env/kvm_vm.py).
         self.chromium_port = chromium_port or 9222
         self.vlc_port = vlc_port or 8080
         self.client_password = client_password
         self._vm_machine = None
-        # False for every existing (closed-book) caller. The open-book runner passes True here so
-        # a getter that has to relaunch Chrome mid-evaluation (its CDP connection dropped) reads
-        # this and relaunches WITH --proxy-server, same as chrome.py's own
-        # get_gotoRecreationPage_and_get_html_content fallback already does when it's set.
-        self.current_use_proxy = use_proxy
+        # Plain attribute, not a knob: some upstream getters read it directly
+        # (chrome.py::get_gotoRecreationPage_and_get_html_content's --proxy-server fallback).
+        self.current_use_proxy = False
         self.action_history = action_history
         self.controller = controller
         self._controller_url = controller_url
@@ -353,7 +348,7 @@ class _EnvAdapter:
         return self._setup_controller
 
 
-def evaluate_official(controller_url, task, action_history, cache_dir=None, use_proxy=False,
+def evaluate_official(controller_url, task, action_history, cache_dir=None,
                        enable_cdp_forwarder=True, chromium_port=None, vlc_port=None,
                        client_password=""):
     """Return OSWorld's reward for this task (0..1), or None if desktop_env isn't importable.
@@ -362,15 +357,7 @@ def evaluate_official(controller_url, task, action_history, cache_dir=None, use_
     hash those afterwards (hash_gold_artifacts); omitted, a throwaway temp dir is used, which
     keeps the historical behaviour for callers that don't care.
 
-    `use_proxy`: False for every closed-book/baseline caller (unchanged behavior). The open-book
-    runner passes True so a postconfig step that relaunches Chrome (several chrome-bucket tasks
-    do: pkill then relaunch right before scoring) gets --proxy-server too, and so
-    current_use_proxy reads true for getters that branch on it (see _EnvAdapter).
-
-    `enable_cdp_forwarder`: independent of `use_proxy` (2026-09-23 split, see env/sandbox.py's
-    matching split on `_run_config` for the full rationale -- the two used to be one flag,
-    conflating the open-book-only --proxy-server injection with a CDP-routing fix that both
-    books need equally). Activates a CdpForwarder (env/cdp_forwarder.py), making Chrome's CDP
+    `enable_cdp_forwarder`: activates a CdpForwarder (env/cdp_forwarder.py), making Chrome's CDP
     port reachable for get_open_tabs_info/get_active_tab_info/get_active_tab_html_parse --
     otherwise blocked by the same defect this module already works around for the controller's
     own HTTP port (oracle_unroutable, see g9_replication_validity.py). Defaults True: every
@@ -399,7 +386,7 @@ def evaluate_official(controller_url, task, action_history, cache_dir=None, use_
         address = split_for_getters(controller_url, None if chromium_port else fwd)
         controller = PythonController(vm_ip=address[0], server_port=address[1])
         cdp_fwd = None
-        if use_proxy or enable_cdp_forwarder:
+        if enable_cdp_forwarder:
             try:
                 cdp_fwd = CdpForwarder(
                     controller_url, controller_port=config.CONTROLLER_PORT).start()
@@ -408,19 +395,19 @@ def evaluate_official(controller_url, task, action_history, cache_dir=None, use_
                      f"Chrome's CDP port directly will fail exactly as it did before this fix")
         try:
             env = _EnvAdapter(controller, controller_url, action_history, cache_dir=cache_dir,
-                              getter_address=address, use_proxy=use_proxy,
+                              getter_address=address,
                               chromium_port=cdp_fwd.port if cdp_fwd else chromium_port,
                               vlc_port=vlc_port, client_password=client_password)
             return _score(env, ev, func, controller_url, cache_dir, getters, metrics,
-                         use_proxy=use_proxy, cdp_forwarder=cdp_fwd, chromium_port=chromium_port,
+                         cdp_forwarder=cdp_fwd, chromium_port=chromium_port,
                          vlc_port=vlc_port, client_password=client_password)
         finally:
             if cdp_fwd is not None:
                 cdp_fwd.stop()
 
 
-def _score(env, ev, func, controller_url, cache_dir, getters, metrics, use_proxy=False,
-          cdp_forwarder=None, chromium_port=None, vlc_port=None, client_password=""):
+def _score(env, ev, func, controller_url, cache_dir, getters, metrics, cdp_forwarder=None,
+          chromium_port=None, vlc_port=None, client_password=""):
     """The scoring pass itself, with the forwarder already up and `env` already addressed."""
 
     postconfig = ev.get("postconfig", [])
@@ -439,7 +426,7 @@ def _score(env, ev, func, controller_url, cache_dir, getters, metrics, use_proxy
         if cdp_forwarder is not None:
             postconfig_ctrl.vm_ip, postconfig_ctrl.chromium_port = \
                 cdp_forwarder.host, cdp_forwarder.port
-        postconfig_ctrl.setup(postconfig, use_proxy=use_proxy)
+        postconfig_ctrl.setup(postconfig, use_proxy=False)
 
     if func == "infeasible":
         return 1.0 if _last_is_fail(env.action_history) else 0.0

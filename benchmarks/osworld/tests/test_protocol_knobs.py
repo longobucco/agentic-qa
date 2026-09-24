@@ -15,7 +15,7 @@ def test_effort_flag_is_added_only_when_set():
 
 def test_claude_env_sets_output_tokens_only_when_configured(monkeypatch):
     monkeypatch.setattr(config, "MAX_OUTPUT_TOKENS", None)
-    assert common.claude_env() is None
+    assert "CLAUDE_CODE_MAX_OUTPUT_TOKENS" not in common.claude_env()
     monkeypatch.setattr(config, "MAX_OUTPUT_TOKENS", 128000)
     env = common.claude_env()
     assert env["CLAUDE_CODE_MAX_OUTPUT_TOKENS"] == "128000"
@@ -40,15 +40,18 @@ def test_effort_changes_the_results_tree_name():
                                  "OSW_SYSTEM_SUFFIX": ""}):
         with_effort = importlib.reload(config).SYSTEM_NAME
     importlib.reload(config)
-    assert base == "agent_computer_sonnet5"
-    assert with_effort == "agent_computer_sonnet5_effortmax"
+    assert base == "agent_computer_sonnet5_official"
+    assert with_effort == "agent_computer_sonnet5_effortmax_official"
 
 
-def test_runner_passes_effort_and_env_only_when_set(monkeypatch, tmp_path):
+def test_runner_passes_effort_only_when_set_and_env_always(monkeypatch, tmp_path):
+    """_env_kwargs always carries an env block now (claude_env() always sets
+    DISABLE_AUTOUPDATER); only the output-token limit inside it is conditional."""
     from benchmarks.osworld.runners import agent_computer
     monkeypatch.setattr(config, "EFFORT", "")
     monkeypatch.setattr(config, "MAX_OUTPUT_TOKENS", None)
-    assert agent_computer._effort_kwargs() == {} and agent_computer._env_kwargs() == {}
+    assert agent_computer._effort_kwargs() == {}
+    assert "CLAUDE_CODE_MAX_OUTPUT_TOKENS" not in agent_computer._env_kwargs()["env"]
     monkeypatch.setattr(config, "EFFORT", "max")
     monkeypatch.setattr(config, "MAX_OUTPUT_TOKENS", 128000)
     assert agent_computer._effort_kwargs() == {"effort": "max"}

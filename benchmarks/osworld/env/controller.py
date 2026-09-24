@@ -12,12 +12,12 @@ import urllib.request
 
 # Daytona's own SDK retries transient connection drops against its control plane (confirmed
 # live 2026-09-14: "Retrying ... after connection broken by RemoteDisconnected" against
-# /api/sandbox/<id>) -- but urllib.request.urlopen here does not, and guest_proxy.start() issues
-# hundreds of sequential calls pushing one large fixture bundle (env/guest_proxy.py's chunked
-# writes). A single dropped connection anywhere in that sequence previously killed the whole
-# task as an unretried ENVIRONMENT_ERROR; confirmed live in a real 10-task batch (2/10 failed
-# with this exact RemoteDisconnected). A small retry here mirrors the resilience Daytona's own
-# client already assumes is necessary against the same infrastructure.
+# /api/sandbox/<id>) -- but urllib.request.urlopen here does not, and a task's config setup can
+# issue hundreds of sequential calls pushing large payloads to the guest. A single dropped
+# connection anywhere in that sequence previously killed the whole task as an unretried
+# ENVIRONMENT_ERROR; confirmed live in a real 10-task batch (2/10 failed with this exact
+# RemoteDisconnected). A small retry here mirrors the resilience Daytona's own client already
+# assumes is necessary against the same infrastructure.
 #
 # TimeoutError added 2026-09-15, confirmed live in the first real campaign batch: a large bundle
 # push (many sequential chunked writes) hit "TimeoutError: The read operation timed out" on one

@@ -1,6 +1,5 @@
 #!/bin/bash
-# Prepare a Linux x86_64 host with KVM to run the official OSWorld VM
-# (docs/superpowers/plans/2026-09-24-osworld-official-fidelity.md, Task 9).
+# Prepare a Linux x86_64 host with KVM to run the official OSWorld VM.
 set -euo pipefail
 DIR="${OSW_KVM_DIR:-/opt/osworld}"
 URL="https://huggingface.co/datasets/xlangai/ubuntu_osworld/resolve/main/Ubuntu.qcow2.zip"

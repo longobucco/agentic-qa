@@ -1,5 +1,4 @@
-"""Unit tests for runners/astra_common.py's api_error_status/rate_limit_rec -- shared between
-gpt_astra.py and gpt_astra_openbook.py:
+"""Unit tests for runners/astra_common.py's api_error_status/rate_limit_rec, used by gpt_astra.py:
   python -m benchmarks.osworld.tests.test_astra_common
 """
 from benchmarks.osworld.runners import astra_common
