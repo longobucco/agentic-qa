@@ -33,10 +33,22 @@ the pending set from disk. After every round, `decide` looks at what the childre
 Tool-surface violations are not infra errors: they write a terminal FAILURE eval.json and are
 never retried. MAX_HOURS is checked between rounds. Everything (the driver's own lines and the
 children's output) goes to scripts/g_official361_<arm>.log.
+
+No protocol drift from the caller's shell (or the repo .env, which every child loads): before
+exporting anything, the driver refuses (exit 2, naming each variable) when the caller has set a harness-altering knob (_HARNESS_KNOB_DEFAULTS
+below) to anything but its default, or one of the variables it exports to a different value.
+Deliberately not checked: OSW_KVM_* (host settings, validated by the kvm preflight),
+OSW_ASTRA_REASONING_EFFORT (the caller's campaign decision), and knobs no code path of these two
+kvm arms reads -- OSW_IMAGE, OSW_PROVISION_TIMEOUT (Daytona only), OSW_OPENBOOK_* (open-book
+runner), OSW_VR_* (verify-replan runner), OSW_RAW_BASE/OSW_INDEX (data download), OSW_PROBE_*.
+
+Signals: SIGTERM/SIGINT make the driver SIGTERM its running run.py children, wait up to
+CHILD_GRACE_S, SIGKILL whatever is left, log it and exit 128 + signum -- no orphaned children.
 """
 import argparse
 import json
 import os
+import signal
 import subprocess
 import sys
 import time
@@ -52,6 +64,38 @@ BATCH_TASKS = 5
 BACKOFF_S = 1800
 RATE_LIMIT_THRESHOLD = 0.5
 MAX_NON_QUOTA_INFRA_ERRORS = 3
+CHILD_GRACE_S = 60
+
+# Every OSW_* knob a run.py child of these arms reads that changes the harness (tools, prompts,
+# budgets, timings, scoring, which tasks, which VM), with the value that means "unset". Empty
+# string: any non-empty value changes behavior.
+_HARNESS_KNOB_DEFAULTS = {
+    "OSW_RELEASE": "verified",
+    "OSW_ZOOM_BATCH": "0",
+    "OSW_GROUNDING": "0",
+    "OSW_GROUNDING_VERIFY": "1",
+    "OSW_GROUNDING_MIN_SCORE": "0.45",
+    "OSW_SELF_VERIFY": "0",
+    "OSW_INLOOP_VERIFY": "0",
+    "OSW_INLOOP_VERIFY_MAX_TURNS": "40",
+    "OSW_INLOOP_VERIFY_SKIP_APPS": "os",
+    "OSW_RESTRICT_RUN_PYTHON": "0",
+    "OSW_ENFORCE_SANDBOX": "0",
+    "OSW_OBSERVATION": "screenshot+a11y",
+    "OSW_ACTION_SPACE": "pyautogui",
+    "OSW_MAX_TURNS": "150",
+    "OSW_TASK_TIMEOUT": "",            # unset -> 14400 under the protocol
+    "OSW_SLEEP_AFTER_EXECUTION": "0.5",
+    "OSW_POST_SETUP_WAIT_S": "60",
+    "OSW_PRE_EVAL_WAIT_S": "20",
+    "OSW_POST_RUN_TIMEOUT": "600",
+    "OSW_INCLUDE_ALL_APPS": "",
+    "OSW_PINNED_EVALUATORS": "1",
+    "OSW_CONTROLLER_URL": "",          # reuse an existing desktop instead of a fresh VM
+    "OSW_CONTROLLER_PORT": "5000",
+    "OSW_SANDBOX_ID": "",
+    "OSW_ASTRA_CODEX_VERSION": "0.153.4",
+}
 
 _COMMON_ENV = {
     "OSW_PROTOCOL": "official",
@@ -78,6 +122,54 @@ def protocol_env(arm, environ):
                 "OSW_ASTRA_CAMPAIGN_LOCK": "astra_official361_lock.json",
                 "OSW_ASTRA_SYSTEM_SUFFIX": "protocol361"}
     raise SystemExit(f"ARM={arm!r}: expected 'sonnet' or 'astra'")
+
+
+def env_conflicts(arm, environ):
+    """`NAME=value (...)` for every caller variable that would make the campaign drift from the
+    protocol: a harness knob off its default, or an exported variable set to another value."""
+    out = []
+    for name, default in _HARNESS_KNOB_DEFAULTS.items():
+        value = environ.get(name)
+        if value is not None and value.strip() != default:
+            out.append(f"{name}={value!r} (the protocol requires it unset or {default!r})")
+    for name, required in protocol_env(arm, environ).items():
+        value = environ.get(name)
+        if value is not None and value.strip() != required:
+            out.append(f"{name}={value!r} (the protocol requires {required!r})")
+    return out
+
+
+def terminate_children(procs, grace_s, log):
+    """SIGTERM every still-running child, wait up to `grace_s` in total, SIGKILL the rest.
+    Returns (signalled, killed)."""
+    running = [p for p in procs if p.poll() is None]
+    for p in running:
+        p.terminate()
+    deadline = time.time() + grace_s
+    killed = 0
+    for p in running:
+        try:
+            p.wait(timeout=max(0.0, deadline - time.time()))
+        except subprocess.TimeoutExpired:
+            p.kill()
+            p.wait()
+            killed += 1
+    log(f"sent SIGTERM to {len(running)} running run.py child(ren); {killed} killed after "
+        f"{grace_s}s grace")
+    return len(running), killed
+
+
+class _Interrupted(Exception):
+    def __init__(self, signum):
+        super().__init__(signum)
+        self.signum = signum
+
+
+def _raise_interrupted(signum, frame):
+    raise _Interrupted(signum)
+
+
+_children = []   # run.py children currently running (terminated on SIGTERM/SIGINT)
 
 
 def batches(task_ids, size):
@@ -141,11 +233,14 @@ def run_round(system, round_batches, pending, runs, log_file):
     for b in round_batches:
         cmd = [sys.executable, "-m", "benchmarks.osworld.run", "--system", system,
                "--runs", str(runs), "--concurrency", "1", "--ids", *b]
-        procs.append(subprocess.Popen(cmd, cwd=_ROOT, stdout=log_file,
-                                      stderr=subprocess.STDOUT if log_file else None))
+        proc = subprocess.Popen(cmd, cwd=_ROOT, stdout=log_file,
+                                stderr=subprocess.STDOUT if log_file else None)
+        procs.append(proc)
+        _children.append(proc)
     out = []
     for b, proc in zip(round_batches, procs):
         rc = proc.wait()
+        _children.remove(proc)
         units = []
         for tid, k in units_of[tuple(b)]:
             hist = _infra_history(system, tid, k)
@@ -162,10 +257,20 @@ def main(argv=None):
                     help="print the planned batches and exit without running anything")
     args = ap.parse_args(argv)
 
+    # The repo-root .env first (setdefault: the shell wins), as core.run.main does in every child:
+    # a knob set there reaches the children too, so the drift check below must see it, and the
+    # in-process preflight then sees what the children see.
+    from core.dotenv import load_dotenv
+    load_dotenv()
+    arm = os.environ.get("ARM", "").strip()
+    conflicts = env_conflicts(arm, os.environ)
+    if conflicts:
+        print("refusing to start: the caller's environment would change the protocol:\n  "
+              + "\n  ".join(conflicts), file=sys.stderr)
+        return 2
     if "benchmarks.osworld.config" in sys.modules:
         raise SystemExit("benchmarks.osworld.config was imported before the protocol "
                          "environment was exported; it would ignore it")
-    arm = os.environ.get("ARM", "").strip()
     os.environ.update(protocol_env(arm, os.environ))
     parallel = int(os.environ.get("PARALLEL", "1"))
     max_hours = float(os.environ.get("MAX_HOURS", "48"))
@@ -193,9 +298,22 @@ def main(argv=None):
 
     log(f"=== start ARM={arm} SYSTEM={system} PARALLEL={parallel} runs={RUNS} "
         f"max_hours={max_hours} ===")
+    for signum in (signal.SIGTERM, signal.SIGINT):
+        signal.signal(signum, _raise_interrupted)
+    try:
+        return _campaign(system, parallel, max_hours, log, log_file)
+    except _Interrupted as e:
+        for signum in (signal.SIGTERM, signal.SIGINT):   # a second Ctrl-C must not cut cleanup
+            signal.signal(signum, signal.SIG_IGN)
+        name = signal.Signals(e.signum).name
+        log(f"=== {name} received: stopping the running run.py children ===")
+        terminate_children(list(_children), CHILD_GRACE_S, log)
+        return 128 + e.signum
+
+
+def _campaign(system, parallel, max_hours, log, log_file):
+    """Preflight, then rounds until nothing is pending, MAX_HOURS, or a stop decision."""
     from benchmarks.osworld.benchmark import build
-    from core.dotenv import load_dotenv
-    load_dotenv()   # same as core.run.main, so the in-process preflight sees what children see
     try:
         build().runners[system].preflight()
     except SystemExit as e:
