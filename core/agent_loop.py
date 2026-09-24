@@ -74,7 +74,13 @@ def _run_raw(cmd, *, timeout, env=None, cwd=None) -> str:
     Runs in its own process group (`start_new_session`) and kills the WHOLE group on timeout,
     not just the direct child. The group is also registered with `core.procgroups` for the
     duration of the call (unregistered in a `finally`) so an interrupted `core.run.main()` can
-    reap it even on a path that never reaches this function's own timeout handling.
+    reap it even on a path that never reaches this function's own timeout handling. If the
+    harness is already interrupted (`procgroups.is_interrupted()`) when called, raises
+    `procgroups.Interrupted` without starting a process at all; if the harness is interrupted
+    WHILE this call is in flight, its group is killed by the signal handler (not by this
+    function's own timeout), and this raises `procgroups.Interrupted` instead of returning
+    the partial stdout -- a caller must never mistake a killed-by-interrupt run for a normal
+    (or even a timed-out) one, since core.run scores exactly the latter two.
 
     Observed live: `claude -p` with an MCP server (e.g. OSWorld's
     stdio server) spawns that server as a grandchild inheriting the stdout pipe; a plain
@@ -97,22 +103,33 @@ def _run_raw(cmd, *, timeout, env=None, cwd=None) -> str:
     prompts carry a trailing, uninstructed list of sibling task ids. Likely inert (no
     imperative attached) but real contamination; DEVNULL severs it at the source so it can't
     recur regardless of what shell pattern a future driver uses."""
+    if procgroups.is_interrupted():
+        raise procgroups.Interrupted("harness interrupted before the agent CLI could start")
     proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True,
                              stdin=subprocess.DEVNULL, env=env, cwd=cwd,
                              start_new_session=True)
-    pgid = os.getpgid(proc.pid)
+    pgid = proc.pid   # == the new process group's id under start_new_session=True (setsid);
+                        # os.getpgid(proc.pid) can raise ProcessLookupError for a child that
+                        # already exited by the time we ask, which proc.pid never can.
     procgroups.register(pgid)
     try:
         try:
             stdout, _ = proc.communicate(timeout=timeout)
-            return stdout
         except subprocess.TimeoutExpired:
             try:
                 os.killpg(pgid, signal.SIGKILL)
             except ProcessLookupError:
                 pass
             stdout, _ = proc.communicate()   # drain whatever's buffered now that the tree is dead
-            return stdout or ""
+            stdout = stdout or ""
+        if procgroups.is_interrupted():
+            # The group may have ended here because the harness's signal handler killpg'd it
+            # (not because of this call's own timeout, whether or not TimeoutExpired also
+            # fired). Never hand a caller partial output from a run that was actually killed --
+            # core.run must record this as an infra interruption, not a scored result.
+            raise procgroups.Interrupted(
+                "agent CLI process group was reaped by a harness interrupt, not its own timeout")
+        return stdout
     finally:
         procgroups.unregister(pgid)
 

@@ -17,6 +17,22 @@ import threading
 _lock = threading.Lock()
 _pgids = set()
 
+# Process-wide: set by core.run's signal handler BEFORE it calls kill_all(), so a spawner whose
+# group is being killed *because the harness itself is shutting down* can tell that apart from
+# its own ordinary timeout and raise Interrupted instead of quietly returning partial output
+# that would otherwise get judged and scored as if the run had actually finished.
+_interrupted = threading.Event()
+
+
+class Interrupted(Exception):
+    """Raised by a spawner (`core.agent_loop._run_raw`, `core.codex_loop.run_codex_meta`) when
+    the agent CLI's process group ended because the harness was interrupted (SIGTERM/SIGINT),
+    not because of the spawner's own timeout -- or when the harness was already interrupted
+    before the spawner got a chance to start a process at all. Callers must let this propagate
+    all the way to `core.run`'s `work()`, which records it as an infra outcome ("INTERRUPTED")
+    and never writes eval.json for it -- swallowing it into an ordinary result would silently
+    score a run that was actually killed mid-flight."""
+
 
 def register(pgid):
     """Record `pgid` as a live agent process group."""
@@ -29,6 +45,17 @@ def unregister(pgid):
     normal exit, timeout, or exception). Safe to call even if `pgid` was never registered."""
     with _lock:
         _pgids.discard(pgid)
+
+
+def mark_interrupted():
+    """Record that the harness itself has been interrupted (called by core.run's signal handler
+    BEFORE kill_all()). Sticky for the life of the process -- there is no `clear()` because a
+    harness process that has started shutting down never un-shuts-down."""
+    _interrupted.set()
+
+
+def is_interrupted():
+    return _interrupted.is_set()
 
 
 def kill_all(sig=signal.SIGKILL):

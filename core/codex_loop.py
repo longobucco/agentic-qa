@@ -280,12 +280,21 @@ def run_codex_meta(cmd, *, timeout, env=None):
 
     Registers the group with `core.procgroups` for the duration of the call (unregistered in a
     `finally`) so an interrupted `core.run.main()` can reap it even if this call never reaches
-    its own timeout path -- see core/procgroups.py for why."""
+    its own timeout path -- see core/procgroups.py for why. If the harness is already
+    interrupted when called, raises `procgroups.Interrupted` without starting Codex at all; if
+    the harness is interrupted WHILE this call is in flight (its group killed by the signal
+    handler, not by this function's own timeout), raises `procgroups.Interrupted` instead of
+    returning the partial JSONL as a normal result -- callers must never let a killed-by-
+    interrupt run get parsed and scored like a real (or even a timed-out) one."""
+    if procgroups.is_interrupted():
+        raise procgroups.Interrupted("harness interrupted before Codex could start")
     proc = subprocess.Popen(
         cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
         stdin=subprocess.DEVNULL, env=env, start_new_session=True,
     )
-    pgid = os.getpgid(proc.pid)
+    pgid = proc.pid   # == the new process group's id under start_new_session=True (setsid);
+                        # os.getpgid(proc.pid) can raise ProcessLookupError for a child that
+                        # already exited by the time we ask, which proc.pid never can.
     procgroups.register(pgid)
     timed_out = False
     try:
@@ -298,6 +307,9 @@ def run_codex_meta(cmd, *, timeout, env=None):
             except ProcessLookupError:
                 pass
             stdout, stderr = proc.communicate()
+        if procgroups.is_interrupted():
+            raise procgroups.Interrupted(
+                "Codex process group was reaped by a harness interrupt, not its own timeout")
     finally:
         procgroups.unregister(pgid)
     meta = parse_codex_output(stdout, returncode=proc.returncode or 0, timed_out=timed_out)
