@@ -185,6 +185,8 @@ def _official_run(monkeypatch, tmp_path, events, *, raw=None, errors=None, rollo
 
     def fake_meta(cmd, **kw):
         order.append("codex")
+        # the official MCP server's liveness/step state (final fix wave S2)
+        (tmp_path / "mcp_state.json").write_text('{"started": true, "steps_used": 1}')
         return dict(meta)
 
     def fake_score(ctrl, task, answer, out):

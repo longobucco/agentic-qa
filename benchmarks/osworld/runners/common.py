@@ -13,7 +13,10 @@ policy. agent_computer.py re-imports every name below so existing external impor
 import hashlib
 import json
 import os
+import re
 import shutil
+import subprocess
+import sys
 import tempfile
 import time
 from concurrent.futures import ThreadPoolExecutor, TimeoutError as FutureTimeoutError
@@ -37,9 +40,15 @@ OSWORLD_TOOLS = [
 ]
 
 
-def mcp_child_env():
+# Written by the official MCP server into the run's out dir (OSW_MCP_STATE_FILE): proof it
+# started, plus the steps it counted (mcp/official_computer.write_state).
+MCP_STATE_FILE = "mcp_state.json"
+
+
+def mcp_child_env(out_dir=None):
     """Protocol env the MCP server child must see. Both CLIs pass only what they are given, so
-    the server can't read these from the runner's environment."""
+    the server can't read these from the runner's environment. Under the official protocol,
+    `out_dir` (the run's output dir) also names the server's liveness/step state file."""
     env = {}
     if config.ZOOM_BATCH:
         env["OSW_ZOOM_BATCH"] = "1"
@@ -48,18 +57,46 @@ def mcp_child_env():
                    OSW_SLEEP_AFTER_EXECUTION=str(config.SLEEP_AFTER_EXECUTION),
                    OSW_SCREEN_WIDTH=str(config.SCREEN_WIDTH),
                    OSW_SCREEN_HEIGHT=str(config.SCREEN_HEIGHT))
+        if out_dir is not None:
+            env["OSW_MCP_STATE_FILE"] = str(Path(out_dir) / MCP_STATE_FILE)
     return env
 
 
-def _mcp_config(controller_url):
+def reset_mcp_state(out_dir):
+    """Remove a state file left by an earlier attempt at this run dir, before the agent starts:
+    only the file this run's server writes may count as proof it started."""
+    (Path(out_dir) / MCP_STATE_FILE).unlink(missing_ok=True)
+
+
+def read_mcp_state(out_dir):
+    """The official MCP server's state for this run ({"started", "steps_used", "max_steps"}),
+    or None when it never wrote one (it didn't start, or crashed before startup finished)."""
+    try:
+        state = json.loads((Path(out_dir) / MCP_STATE_FILE).read_text())
+    except (OSError, ValueError):
+        return None
+    return state if isinstance(state, dict) and state.get("started") else None
+
+
+def mcp_unavailable_infra_rec(task):
+    """The agent ran but the official MCP server never reported starting: the agent had no
+    `computer` tool, so the run measures the harness, not the model -- never scored, retried."""
+    return {"id": task["id"], "outcome": "HARNESS_ERROR", "error_type": "McpServerUnavailable",
+            "error": f"official MCP server wrote no {MCP_STATE_FILE} (it never started)",
+            "at": datetime.now(timezone.utc).isoformat()}
+
+
+def _mcp_config(controller_url, out_dir=None):
     spec = {
         "type": "stdio", "command": "python",
         "args": ["-m", "benchmarks.osworld.mcp.server"],
-        "env": {"OSW_CONTROLLER_URL": controller_url or "", **mcp_child_env()},
+        "env": {"OSW_CONTROLLER_URL": controller_url or "", **mcp_child_env(out_dir)},
     }
     if config.OFFICIAL:
         # The official protocol starts the CLI (and so this child) in an empty temp dir, not
-        # the repo: keep the benchmark package importable, as core/codex_loop.py does for Codex.
+        # the repo: keep the benchmark package importable, as core/codex_loop.py does for Codex,
+        # and run it with this interpreter (same as Codex), not whatever `python` is on PATH.
+        spec["command"] = sys.executable
         spec["env"]["PYTHONPATH"] = str(CHECKOUT_ROOT)
     f = tempfile.NamedTemporaryFile("w", suffix=".json", delete=False)
     json.dump({"mcpServers": {"osworld": spec}}, f)
@@ -171,7 +208,7 @@ def _provenance(task, ctrl, started_at):
     return {
         "task_sha256": hashlib.sha256(
             json.dumps(task, sort_keys=True).encode()).hexdigest(),
-        "image": config.IMAGE,
+        "image": config.KVM_IMAGE if config.BACKEND == "kvm" else config.IMAGE,
         # The model we ASKED for. Empty means no --model was passed and the CLI picked its own
         # default -- the gap that let the G3 campaign run across three different models without
         # anything on disk recording it (see config.MODEL). What actually served the request is
@@ -202,10 +239,42 @@ def _provenance(task, ctrl, started_at):
 
 def claude_env():
     """Child environment for `claude -p`: the parent's, plus the output-token limit when the
-    protocol sets one. None keeps the historical behavior (inherit unchanged)."""
-    if not config.MAX_OUTPUT_TOKENS:
+    protocol sets one and, under the official protocol, the auto-updater off (the CLI must stay
+    at config.CLAUDE_CODE_VERSION for the whole campaign). None keeps the historical behavior
+    (inherit unchanged)."""
+    extra = {}
+    if config.MAX_OUTPUT_TOKENS:
+        extra["CLAUDE_CODE_MAX_OUTPUT_TOKENS"] = str(config.MAX_OUTPUT_TOKENS)
+    if config.OFFICIAL:
+        extra["DISABLE_AUTOUPDATER"] = "1"
+    return {**os.environ, **extra} if extra else None
+
+
+_CLAUDE_CLI_VERSION = {}
+
+
+def claude_cli_version(*, cached=True):
+    """`claude --version` (e.g. "2.1.280" from "2.1.280 (Claude Code)"), run with the same env
+    as a real run; None when the CLI can't be run or says nothing. Cached per process so every
+    run's provenance records it without a subprocess each time; the preflight asks fresh."""
+    if cached and "v" in _CLAUDE_CLI_VERSION:
+        return _CLAUDE_CLI_VERSION["v"]
+    try:
+        out = subprocess.run(["claude", "--version"], capture_output=True, text=True,
+                             timeout=30, check=True, env=claude_env()).stdout.strip()
+    except (OSError, subprocess.SubprocessError):
         return None
-    return {**os.environ, "CLAUDE_CODE_MAX_OUTPUT_TOKENS": str(config.MAX_OUTPUT_TOKENS)}
+    version = out.split()[0] if out else None
+    _CLAUDE_CLI_VERSION["v"] = version
+    return version
+
+
+def official_probe_already_passed():
+    """True when the campaign driver already ran the live-model isolation probe for THIS driver
+    run (it exports OSW_OFFICIAL_PREFLIGHT_OK=<its run id> next to OSW_KVM_DRIVER_RUN): children
+    then skip only that probe, never the cheap checks."""
+    ok = os.environ.get("OSW_OFFICIAL_PREFLIGHT_OK", "").strip()
+    return bool(ok) and ok == os.environ.get("OSW_KVM_DRIVER_RUN", "").strip()
 
 
 def protocol_wait(seconds, *, sleep=None):
@@ -331,6 +400,28 @@ def claude_session_file(session_id):
         return None
     matches = list(Path.home().glob(f".claude/projects/*/{session_id}.jsonl"))
     return matches[0] if matches else None
+
+
+def claude_project_dir_name(cwd):
+    """The ~/.claude/projects/<name> Claude Code files a session under for `cwd`: every
+    non-alphanumeric character becomes '-' (verified on disk, CLI 2.1.280: .../T/osw_claude__x
+    -> -private-var-...-T-osw-claude--x)."""
+    return re.sub(r"[^a-zA-Z0-9]", "-", str(cwd))
+
+
+def claude_workdir_session_file(workdir):
+    """The newest session transcript Claude Code wrote for a run started in `workdir`, or None.
+    For a run whose envelope carries no session_id (e.g. killed at TASK_TIMEOUT): the official
+    run's cwd is a fresh temp dir, so its project dir holds only that run's session. Matched on
+    the encoded basename (the full path may be realpath'd, e.g. /var -> /private/var)."""
+    if not workdir:
+        return None
+    name = claude_project_dir_name(os.path.basename(str(workdir).rstrip("/")))
+    try:
+        matches = list(Path.home().glob(f".claude/projects/*{name}/*.jsonl"))
+    except OSError:
+        return None
+    return max(matches, key=lambda p: p.stat().st_mtime) if matches else None
 
 
 def claude_transcript_tool_names(path):
