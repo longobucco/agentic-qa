@@ -58,6 +58,26 @@ def is_interrupted():
     return _interrupted.is_set()
 
 
+def wait_interrupted(timeout):
+    """Block up to `timeout` seconds, or return as soon as the harness is interrupted --
+    whichever comes first. True if it returned because of an interrupt (the caller should
+    treat the wait as cut short, not completed), False on a plain timeout. This is what makes
+    a long settle sleep (e.g. `benchmarks.osworld.runners.common.protocol_wait`'s
+    POST_SETUP_WAIT_S=60) notice a SIGTERM/SIGINT immediately instead of only at the NEXT
+    spawner call -- without it, `core.run`'s `ex.shutdown(wait=True, ...)` could block for the
+    full 60s, long enough for a campaign driver's own grace period to SIGKILL the whole
+    process before an INTERRUPTED infra record is ever written (task-10b fix round 2)."""
+    return _interrupted.wait(timeout)
+
+
+def _reset_for_tests():
+    """Test-only: clear the interrupted flag. Production code must NEVER call this -- the flag
+    is deliberately sticky (see mark_interrupted). Exists only so an in-process test that
+    exercises mark_interrupted()/is_interrupted() doesn't permanently poison every later test
+    in the same pytest session; every such test must call this in a `finally`."""
+    _interrupted.clear()
+
+
 def kill_all(sig=signal.SIGKILL):
     """Best-effort killpg of every currently-registered group. Does not raise: a group that's
     already gone (ProcessLookupError) or not ours to signal (PermissionError) is skipped, so one

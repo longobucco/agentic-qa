@@ -24,6 +24,7 @@ import requests
 
 from benchmarks.osworld import config, evaluate, grounding, tasks
 from benchmarks.osworld.env import osworld_eval
+from core import procgroups
 
 # The checkout this harness runs from (benchmarks/osworld/runners/ -> repo root).
 CHECKOUT_ROOT = Path(__file__).resolve().parents[3]
@@ -207,11 +208,25 @@ def claude_env():
     return {**os.environ, "CLAUDE_CODE_MAX_OUTPUT_TOKENS": str(config.MAX_OUTPUT_TOKENS)}
 
 
-def protocol_wait(seconds, *, sleep=time.sleep):
+def protocol_wait(seconds, *, sleep=None):
     """Upstream's fixed settle sleeps (after setup, before evaluate) -- official protocol only;
-    a no-op otherwise, so the legacy harness keeps its timings."""
-    if config.OFFICIAL:
+    a no-op otherwise, so the legacy harness keeps its timings.
+
+    Interruptible by default: waits on `core.procgroups`' interrupted flag (via
+    `wait_interrupted`) rather than blocking blindly, so a harness SIGTERM/SIGINT during this
+    wait is noticed AT ONCE (raises `procgroups.Interrupted`) instead of only at the next
+    spawner call -- up to POST_SETUP_WAIT_S/PRE_EVAL_WAIT_S (60s/20s) later, long enough that
+    core.run's `ex.shutdown(wait=True, ...)` could still be blocked when the campaign driver's
+    own grace period SIGKILLs the whole process, losing the INTERRUPTED infra record entirely
+    (task-10b fix round 2). `sleep` (test injection) replaces the wait mechanism outright and
+    is never interrupted -- existing tests use it to observe the call without a real delay."""
+    if not config.OFFICIAL:
+        return
+    if sleep is not None:
         sleep(seconds)
+        return
+    if procgroups.wait_interrupted(seconds):
+        raise procgroups.Interrupted("harness interrupted during protocol_wait")
 
 
 def _claude_assistant_blocks(path):

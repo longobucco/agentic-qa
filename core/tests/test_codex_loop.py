@@ -133,6 +133,36 @@ def test_run_codex_meta_registers_its_process_group_while_running_and_unregister
     assert after == before, f"pgid left registered after normal exit: {after - before}"
 
 
+def test_run_codex_meta_register_race_kills_the_child_and_raises_interrupted():
+    """task-10b fix round 2: same register-race contract as core.agent_loop._run_raw -- if the
+    harness is interrupted in the window between run_codex_meta's pre-spawn check and
+    procgroups.register(pgid), kill_all() already ran and never saw this pgid. Must re-check
+    right after registering and killpg it itself."""
+    real_register = procgroups.register
+
+    def racy_register(pgid):
+        real_register(pgid)
+        procgroups.mark_interrupted()
+
+    procgroups.register = racy_register
+    try:
+        t0 = time.monotonic()
+        raised = False
+        try:
+            run_codex_meta([sys.executable, "-c", "import time; time.sleep(60)"], timeout=10)
+        except procgroups.Interrupted:
+            raised = True
+        elapsed = time.monotonic() - t0
+        assert raised, "register-race did not raise procgroups.Interrupted"
+        assert elapsed < 5, (
+            f"run_codex_meta took {elapsed:.1f}s -- the racily-registered child was not "
+            f"actually killed, so communicate() waited instead of returning promptly"
+        )
+    finally:
+        procgroups.register = real_register
+        procgroups._reset_for_tests()
+
+
 def main():
     tests = [value for name, value in sorted(globals().items()) if name.startswith("test_")]
     for test in tests:

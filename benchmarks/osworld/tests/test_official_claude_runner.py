@@ -1,4 +1,6 @@
 import json
+import threading
+import time
 from unittest.mock import patch
 
 import pytest
@@ -51,6 +53,28 @@ def test_protocol_wait_only_under_official(monkeypatch):
     monkeypatch.setattr(config, "OFFICIAL", True)
     common.protocol_wait(60, sleep=slept.append)
     assert slept == [60]
+
+
+def test_protocol_wait_is_interrupted_by_the_flag_instead_of_blocking_the_full_wait(monkeypatch):
+    """task-10b fix round 2: without this, an in-flight worker inside the real
+    POST_SETUP_WAIT_S=60 settle sleep only notices a harness SIGTERM/SIGINT at the NEXT
+    spawner call -- long enough that core.run's shutdown(wait=True) could still be blocked
+    when the campaign driver's own grace period SIGKILLs the whole process, losing the
+    INTERRUPTED infra record entirely. protocol_wait must return (by raising) the moment the
+    flag is set, not after `seconds`."""
+    monkeypatch.setattr(config, "OFFICIAL", True)
+    timer = threading.Timer(0.05, procgroups.mark_interrupted)
+    timer.start()
+    try:
+        t0 = time.monotonic()
+        with pytest.raises(procgroups.Interrupted):
+            common.protocol_wait(30)   # no `sleep=` override: exercises the real Event wait
+        elapsed = time.monotonic() - t0
+        assert elapsed < 5, (
+            f"protocol_wait blocked {elapsed:.1f}s instead of returning promptly on interrupt")
+    finally:
+        timer.cancel()
+        procgroups._reset_for_tests()
 
 
 def test_build_claude_cmd_system_prompt_only_when_set():

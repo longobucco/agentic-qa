@@ -296,6 +296,15 @@ def run_codex_meta(cmd, *, timeout, env=None):
                         # os.getpgid(proc.pid) can raise ProcessLookupError for a child that
                         # already exited by the time we ask, which proc.pid never can.
     procgroups.register(pgid)
+    if procgroups.is_interrupted():
+        # Check->register race: see the identical comment in core.agent_loop._run_raw -- the
+        # harness could have been interrupted (and kill_all() could have already run) in the
+        # window between the pre-spawn check above and this registration. Finish the job
+        # ourselves; the post-reap check below still turns this into procgroups.Interrupted.
+        try:
+            os.killpg(pgid, signal.SIGKILL)
+        except ProcessLookupError:
+            pass
     timed_out = False
     try:
         try:

@@ -211,6 +211,109 @@ def test_main_sigterm_at_concurrency_2_reaps_both_in_flight_units():
         assert _wait_until_dead(pid), f"SIGTERM did not reap {tid}'s agent process"
 
 
+# --- task-10b fix round 2: an in-flight worker notices the interrupt only at its NEXT
+# spawner call. Under the official protocol, common.protocol_wait(POST_SETUP_WAIT_S=60) sits
+# between the agent call and the next spawner call -- if it just blindly sleeps, an interrupt
+# that lands while a worker is inside that wait isn't noticed until the sleep finishes, which
+# can dwarf core.run's shutdown(wait=True) grace period. This drives a real main() whose fake
+# runner calls the REAL common.protocol_wait(30) (config.OFFICIAL patched True), and verifies
+# a SIGTERM sent mid-wait is noticed at once (exit well under 30s), not waited out.
+_PROTOCOL_WAIT_DRIVER_TEMPLATE = '''
+from pathlib import Path
+from contextlib import contextmanager
+
+from core.run import Benchmark, Runner, main
+from core.judge import Judge
+from core.environment import Env
+from benchmarks.osworld import config
+from benchmarks.osworld.runners.common import protocol_wait
+
+config.OFFICIAL = True
+
+RESULTS_DIR = Path(__RESULTS_DIR__)
+MARKER_DIR = Path(__MARKER_DIR__)
+TASK_IDS = __TASK_IDS__
+
+
+@contextmanager
+def env_cm(task, *, port=None):
+    (MARKER_DIR / ("env_entered_" + task["id"])).write_text("1")
+    try:
+        yield Env(port=None)
+    finally:
+        (MARKER_DIR / ("env_exited_" + task["id"])).write_text("1")
+
+
+def run_fn(task, *, env, out, refs=None, dry=False):
+    (MARKER_DIR / ("unit_started_" + task["id"])).write_text("1")
+    protocol_wait(30)   # upstream-style settle sleep -- must be interrupted, not waited out
+    return "ANSWER: DONE"
+
+
+def judge_fn(task, answer, ref, out):
+    return {"verdict": "SUCCESS", "reason": "ok"}
+
+
+benchmark = Benchmark(
+    name="fake10b",
+    results_dir=RESULTS_DIR,
+    load_tasks=lambda: [{"id": tid} for tid in TASK_IDS],
+    runners={"fake": Runner(name="fake", run=run_fn, environment=env_cm,
+                            concurrency_safe=True)},
+    judge=Judge(fn=judge_fn, is_deterministic=True),
+)
+
+main(benchmark, argv=["--system", "fake", "--concurrency", "1"])
+'''
+
+
+def _run_protocol_wait_driver(task_ids):
+    """Same shape as _run_driver, for the protocol_wait-based script. Returns (returncode,
+    elapsed_seconds, results_dir, marker_dir)."""
+    results_dir = Path(tempfile.mkdtemp(prefix="osw10b_pw_results_"))
+    marker_dir = Path(tempfile.mkdtemp(prefix="osw10b_pw_markers_"))
+    script = (_PROTOCOL_WAIT_DRIVER_TEMPLATE
+              .replace("__RESULTS_DIR__", repr(str(results_dir)))
+              .replace("__MARKER_DIR__", repr(str(marker_dir)))
+              .replace("__TASK_IDS__", repr(task_ids)))
+    script_path = Path(tempfile.mkdtemp(prefix="osw10b_pw_script_")) / "driver.py"
+    script_path.write_text(script)
+    proc = subprocess.Popen([sys.executable, str(script_path)], cwd=os.getcwd())
+    try:
+        deadline = time.monotonic() + 10
+        while time.monotonic() < deadline:
+            if (marker_dir / f"unit_started_{task_ids[0]}").exists():
+                break
+            time.sleep(0.05)
+        else:
+            raise AssertionError("driver never started its unit")
+        time.sleep(0.3)   # let protocol_wait's Event.wait() actually be entered before signalling
+        t0 = time.monotonic()
+        proc.send_signal(signal.SIGTERM)
+        rc = proc.wait(timeout=15)
+        elapsed = time.monotonic() - t0
+    finally:
+        if proc.poll() is None:
+            proc.kill()
+            proc.wait(timeout=5)
+    return rc, elapsed, results_dir, marker_dir
+
+
+def test_main_sigterm_during_protocol_wait_exits_promptly_and_records_interrupted():
+    rc, elapsed, results_dir, marker_dir = _run_protocol_wait_driver(["t1"])
+    assert rc == 128 + signal.SIGTERM, f"expected exit {128 + signal.SIGTERM}, got {rc}"
+    assert elapsed < 10, (
+        f"took {elapsed:.1f}s to exit after SIGTERM during a 30s protocol_wait -- the wait "
+        f"was not interrupted, it was waited out"
+    )
+
+    t1_run = results_dir / "fake" / "t1" / "run_1"
+    assert not (t1_run / "eval.json").exists()
+    infra = json.loads((t1_run / "infra_error.json").read_text())
+    assert infra[-1]["outcome"] == "INTERRUPTED"
+    assert (marker_dir / "env_exited_t1").exists()
+
+
 def main():
     fns = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
     for fn in fns:
