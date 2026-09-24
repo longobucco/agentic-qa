@@ -70,15 +70,14 @@ def model_slug(model=None):
     return _MODEL_SLUGS.get(model, model.replace("claude-", "").replace(".", "").replace("-", ""))
 
 
-# Protocol knobs (docs/superpowers/plans/2026-09-24-osworld-protocol-alignment.md). Empty/None
-# keep the historical behavior (CLI default effort, CLI default output-token limit).
+# Protocol knobs. Empty/None keep the CLI's own default (default effort, default output-token
+# limit).
 EFFORT = os.environ.get("OSW_EFFORT", "").strip()
 _mot = os.environ.get("OSW_MAX_OUTPUT_TOKENS", "").strip()
 MAX_OUTPUT_TOKENS = int(_mot) if _mot else None
 
-# Official-fidelity knobs (docs/superpowers/plans/2026-09-24-osworld-official-fidelity.md,
-# spec benchmarks/osworld/docs/fidelity-audit.md). The official protocol is the only path this
-# branch runs: PROTOCOL is a constant, and OSW_PROTOCOL may only assert what is already true.
+# Official-fidelity knobs. The official protocol is the only path this branch runs: PROTOCOL is
+# a constant, and OSW_PROTOCOL may only assert what is already true.
 PROTOCOL = "official"
 _osw_protocol = os.environ.get("OSW_PROTOCOL", "").strip()
 if _osw_protocol not in ("", "official"):
@@ -231,15 +230,12 @@ IMAGE = os.environ.get(   # pinned by digest -- Daytona caches images by tag, no
     #     "ghcr.io/longobucco/osworld-ab@sha256:"
     #     "72ce5805a6568e9f818069aa490d572d560ed80cfe247491892756bf9eb055d3"
     # --- previous pin, kept for history ---
-    # 2026-09-16 (later same day): rebuilt again on top of the digest below, carrying the fixes
-    # from docs/superpowers/plans/2026-09-16-osworld-closed-book-infra-fixes.md -- targeting the
-    # Sonnet 5 closed-book campaign's 16 infra-attributed "0/3"/partial tasks (see that campaign's
-    # own forensic report, benchmarks/osworld/docs/sonnet5-open-vs-closed-book.md). Every change
+    # 2026-09-16 (later same day): rebuilt again on top of the digest below, targeting the
+    # Sonnet 5 closed-book campaign's 16 infra-attributed "0/3"/partial tasks. Every change
     # was static-verified during implementation (no Docker daemon in that dev environment) and
     # task-reviewed individually plus a whole-branch final review (one Critical finding caught
     # and fixed there, see below) before this digest was built; LIVE validation against a real
-    # sandbox is docs/superpowers/plans/...-infra-fixes.md's own Task 11, run separately from this
-    # build+push step:
+    # sandbox was run separately from this build+push step:
     #   - sudo installed -- SetupController never checks a config/postconfig shell command's own
     #     exit code (only the HTTP status), so a missing sudo silently no-op'd `sudo -S` steps
     #     (tasks e0df059f, 5812b315).
