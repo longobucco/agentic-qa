@@ -108,17 +108,6 @@ def test_official_argv(monkeypatch, tmp_path):
     assert "Read" in disallowed and "Bash" in disallowed
 
 
-def test_official_argv_ignores_legacy_restriction_arms(monkeypatch, tmp_path):
-    """The G5 deny-list arms must not add a second --disallowedTools/--strict-mcp-config."""
-    monkeypatch.setattr(config, "ENFORCE_SANDBOX", True)
-    monkeypatch.setattr(config, "RESTRICT_RUN_PYTHON", True)
-    extra = _official_argv(monkeypatch, tmp_path)["extra"]
-    assert extra.count("--disallowedTools") == 1
-    assert extra.count("--strict-mcp-config") == 1
-    assert extra == ["--disallowedTools", *agent_computer.CLAUDE_BUILTIN_TOOLS,
-                     "--strict-mcp-config", *agent_computer.CLAUDE_ISOLATION_FLAGS]
-
-
 def test_official_password_only_on_kvm(monkeypatch, tmp_path):
     monkeypatch.setattr(config, "KVM_CLIENT_PASSWORD", "sekret-pw")
     monkeypatch.setattr(config, "BACKEND", "daytona")

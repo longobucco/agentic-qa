@@ -107,35 +107,13 @@ def _source_breakdown(system):
                   f"OSWorld's own evaluator — treat those verdicts as less trustworthy.")
 
 
-def _infra_last_records(system):
-    """Last infra_error.json entry per run dir (write_infra_error appends; only the latest
-    attempt's outcome matters for a snapshot report)."""
-    base = config.RESULTS_DIR / system
-    if not base.exists():
-        return
-    for tdir in base.iterdir():
-        if not tdir.is_dir():
-            continue
-        for rdir in tdir.iterdir():
-            if not (rdir.is_dir() and is_run_dir(rdir.name)):
-                continue
-            path = rdir / "infra_error.json"
-            if not path.exists():
-                continue
-            try:
-                records = json.loads(path.read_text())
-                if records:
-                    yield records[-1]
-            except Exception:
-                continue
-
-
 def main():
     argv = sys.argv[1:]
     if len(argv) >= 3 and argv[0] == "--compare":
-        ab_compare(config.RESULTS_DIR, argv[1], argv[2], title="OSWorld")
+        a, b = config.assert_new_infra_system(argv[1]), config.assert_new_infra_system(argv[2])
+        ab_compare(config.RESULTS_DIR, a, b, title="OSWorld")
         return
-    system = argv[0] if argv else "agent_computer"
+    system = config.assert_new_infra_system(argv[0] if argv else config.SYSTEM_NAME)
     summarize(config.RESULTS_DIR, system, title="OSWorld")
     _source_breakdown(system)
     _mean_reward_line(system)

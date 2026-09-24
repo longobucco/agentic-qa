@@ -40,8 +40,8 @@ def test_effort_changes_the_results_tree_name():
                                  "OSW_SYSTEM_SUFFIX": ""}):
         with_effort = importlib.reload(config).SYSTEM_NAME
     importlib.reload(config)
-    assert base == "agent_computer_sonnet5"
-    assert with_effort == "agent_computer_sonnet5_effortmax"
+    assert base == "agent_computer_sonnet5_official"
+    assert with_effort == "agent_computer_sonnet5_effortmax_official"
 
 
 def test_runner_passes_effort_only_when_set_and_env_always(monkeypatch, tmp_path):

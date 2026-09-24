@@ -99,7 +99,7 @@ def use_pinned_evaluators():
     verdict is never silently attributed to the wrong evaluator).
     """
     stamp = PINNED_EVALUATORS / "PINNED_COMMIT"
-    if not config.PINNED_EVALUATORS or not stamp.is_file():
+    if not stamp.is_file():
         return None
     try:
         import desktop_env.evaluators as evaluators
@@ -125,7 +125,7 @@ def use_pinned_setup_controller():
     Returns the commit in use, or None when the pinned file isn't on disk (setup then runs on the
     installed release; evaluator_provenance() records which)."""
     stamp = PINNED_CONTROLLERS / "PINNED_COMMIT"
-    if not config.PINNED_EVALUATORS or not stamp.is_file():
+    if not stamp.is_file():
         return None
     use_pinned_evaluators()   # the pinned setup.py imports desktop_env.evaluators.metrics.utils
     try:
@@ -218,8 +218,6 @@ def pinned_code_problems():
     A campaign must refuse to start on a checkout missing data/evaluators or data/controllers
     (python -m benchmarks.osworld.data.download_evaluators): the fallback to the installed
     desktop_env 1.0.2 is silent and loses tasks (see data/download_evaluators.py)."""
-    if not config.PINNED_EVALUATORS:
-        return ["OSW_PINNED_EVALUATORS=0: scoring on the installed desktop_env"]
     prov = evaluator_provenance()
     problems = []
     for key in ("evaluator_commit", "setup_controller_commit"):

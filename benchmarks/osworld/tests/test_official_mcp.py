@@ -1,5 +1,5 @@
-"""Task 5: the official `computer` tool registered on the MCP server (config.OFFICIAL), plus
-protocol env forwarded to both CLIs' MCP children.
+"""The official `computer` tool registered on the MCP server, plus protocol env forwarded to
+both CLIs' MCP children.
 """
 import asyncio
 import base64
@@ -55,8 +55,6 @@ def test_official_registers_only_computer_and_returns_text_image_text():
 
 def test_child_env_forwards_protocol(monkeypatch):
     from benchmarks.osworld.runners import common
-    monkeypatch.setattr(config, "OFFICIAL", True)
-    monkeypatch.setattr(config, "PROTOCOL", "official")
     env = common.mcp_child_env()
     assert env["OSW_PROTOCOL"] == "official" and env["OSW_MAX_STEPS"] == str(config.MAX_STEPS)
     cmd = codex_loop.build_codex_cmd("p", model="m", cwd="/tmp", controller_url="http://c",
