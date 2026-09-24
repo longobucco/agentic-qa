@@ -4,6 +4,7 @@ gold-hashing logic in runners/agent_computer.py (pure, no desktop/LLM):
 """
 import hashlib
 import json
+import shutil
 import tempfile
 import time
 from pathlib import Path
@@ -139,8 +140,163 @@ def test_score_falls_back_to_eval_error_without_a_controller():
         rec = _score(None, task, "Budget", d)
         assert rec["verdict"] == "EVAL_ERROR"
         assert rec["source"] == "offline_fallback"
+        assert rec["eval_artifacts"] == []   # no controller -> nothing was ever downloaded
     finally:
         shutil.rmtree(d)
+
+
+class _FakeScoreCtrl:
+    """Just enough of a Controller for _score's `url = ctrl.base_url if ctrl else ...` line."""
+    def __init__(self, base_url="http://fake-controller"):
+        self.base_url = base_url
+
+
+def test_collect_eval_artifacts_copies_files_with_correct_manifest():
+    """Task 11c requirement 1+3: the files the getters actually placed in the scoring cache
+    dir end up under <run dir>/eval_artifacts/, with a manifest entry per file."""
+    from benchmarks.osworld.runners.common import _collect_eval_artifacts
+    cache = Path(tempfile.mkdtemp(prefix="osw_test_cache_"))
+    out = Path(tempfile.mkdtemp(prefix="osw_test_out_"))
+    try:
+        data = b"the file the evaluator actually compared"
+        (cache / "result.docx").write_bytes(data)
+        manifest = _collect_eval_artifacts(str(cache), out, {})
+        assert len(manifest) == 1
+        entry = manifest[0]
+        assert entry["name"] == "result.docx"
+        assert entry["kept"] is True
+        assert entry["size"] == len(data)
+        assert entry["sha256"] == hashlib.sha256(data).hexdigest()
+        copied = out / "eval_artifacts" / "result.docx"
+        assert copied.read_bytes() == data
+    finally:
+        shutil.rmtree(cache, ignore_errors=True)
+        shutil.rmtree(out, ignore_errors=True)
+
+
+def test_collect_eval_artifacts_empty_cache_dir_is_empty_list():
+    from benchmarks.osworld.runners.common import _collect_eval_artifacts
+    out = Path(tempfile.mkdtemp(prefix="osw_test_out_"))
+    try:
+        assert _collect_eval_artifacts("/nonexistent/cache/dir", out, {}) == []
+    finally:
+        shutil.rmtree(out, ignore_errors=True)
+
+
+def test_collect_eval_artifacts_skips_oversized_file_but_lists_it():
+    """Requirement 2: a single file over the 50MB cap is not copied, but still shows up with
+    its size and sha256 so it's identifiable."""
+    from benchmarks.osworld.runners import common
+    from benchmarks.osworld.runners.common import _collect_eval_artifacts
+    cache = Path(tempfile.mkdtemp(prefix="osw_test_cache_"))
+    out = Path(tempfile.mkdtemp(prefix="osw_test_out_"))
+    orig_cap = common._EVAL_ARTIFACT_MAX_FILE_BYTES
+    try:
+        common._EVAL_ARTIFACT_MAX_FILE_BYTES = 3   # small cap -> real bytes trip it, no mocking
+        big = cache / "huge.bin"
+        big.write_bytes(b"0123456789")
+        manifest = _collect_eval_artifacts(str(cache), out, {})
+        assert len(manifest) == 1
+        assert manifest[0]["kept"] is False
+        assert manifest[0]["size"] == 10
+        assert manifest[0]["sha256"] == hashlib.sha256(b"0123456789").hexdigest()
+        assert not (out / "eval_artifacts" / "huge.bin").exists()
+    finally:
+        common._EVAL_ARTIFACT_MAX_FILE_BYTES = orig_cap
+        shutil.rmtree(cache, ignore_errors=True)
+        shutil.rmtree(out, ignore_errors=True)
+
+
+def test_collect_eval_artifacts_enforces_total_cap():
+    """Requirement 2: once the running total would exceed the per-run cap, later files are
+    listed but not copied, even though each is individually under the single-file cap."""
+    from benchmarks.osworld.runners import common
+    from benchmarks.osworld.runners.common import _collect_eval_artifacts
+    cache = Path(tempfile.mkdtemp(prefix="osw_test_cache_"))
+    out = Path(tempfile.mkdtemp(prefix="osw_test_out_"))
+    orig_cap = common._EVAL_ARTIFACT_MAX_TOTAL_BYTES
+    try:
+        common._EVAL_ARTIFACT_MAX_TOTAL_BYTES = 10
+        (cache / "a.bin").write_bytes(b"1234567890")   # exactly at cap -> kept
+        (cache / "b.bin").write_bytes(b"1")             # would push over -> not kept
+        manifest = {e["name"]: e for e in _collect_eval_artifacts(str(cache), out, {})}
+        assert manifest["a.bin"]["kept"] is True
+        assert manifest["b.bin"]["kept"] is False
+        assert (out / "eval_artifacts" / "a.bin").exists()
+        assert not (out / "eval_artifacts" / "b.bin").exists()
+    finally:
+        common._EVAL_ARTIFACT_MAX_TOTAL_BYTES = orig_cap
+        shutil.rmtree(cache, ignore_errors=True)
+        shutil.rmtree(out, ignore_errors=True)
+
+
+def test_collect_eval_artifacts_copy_error_recorded_not_raised():
+    """Requirement 3: when the copy itself fails, the error is recorded in the manifest, never
+    raised -- diagnostics must never crash a run."""
+    from benchmarks.osworld.runners import common
+    from benchmarks.osworld.runners.common import _collect_eval_artifacts
+    cache = Path(tempfile.mkdtemp(prefix="osw_test_cache_"))
+    out = Path(tempfile.mkdtemp(prefix="osw_test_out_"))
+    try:
+        (cache / "result.bin").write_bytes(b"data")
+        with pytest.MonkeyPatch.context() as mp:
+            def boom(*a, **kw):
+                raise OSError("disk full")
+            mp.setattr(common.shutil, "copyfile", boom)
+            manifest = _collect_eval_artifacts(str(cache), out, {})   # must not raise
+        assert len(manifest) == 1
+        assert manifest[0]["kept"] is False
+        assert "error" in manifest[0] and "disk full" in manifest[0]["error"]
+    finally:
+        shutil.rmtree(cache, ignore_errors=True)
+        shutil.rmtree(out, ignore_errors=True)
+
+
+def test_score_populates_eval_artifacts_manifest_on_success():
+    """Requirement 4: both arms get this through common._score. A fake evaluator that writes
+    into the cache dir it's handed must show up in _score's returned eval_artifacts."""
+    from benchmarks.osworld.runners import common
+
+    def fake_evaluate_with_retry(url, task, action_history, cache_dir, **kw):
+        (Path(cache_dir) / "downloaded_gold.bin").write_bytes(b"gold bytes")
+        return 1.0
+
+    out = Path(tempfile.mkdtemp(prefix="osw_test_out_"))
+    try:
+        with pytest.MonkeyPatch.context() as mp:
+            mp.setattr(common, "_evaluate_with_retry", fake_evaluate_with_retry)
+            task = {"evaluator": {"func": "exact_match"}}
+            rec = common._score(_FakeScoreCtrl(), task, "answer", out)
+        assert rec["verdict"] == "SUCCESS"
+        names = {e["name"] for e in rec["eval_artifacts"]}
+        assert names == {"downloaded_gold.bin"}
+        assert (out / "eval_artifacts" / "downloaded_gold.bin").read_bytes() == b"gold bytes"
+    finally:
+        shutil.rmtree(out, ignore_errors=True)
+
+
+def test_score_keeps_eval_artifacts_when_evaluator_raises_after_writing_a_file():
+    """Requirement 5: scoring can fail AFTER some getters already ran (found live -- see the
+    brief). The files that were written must still be captured, and the verdict path (offline
+    fallback, EVAL_ERROR) must be exactly what it was before this change."""
+    from benchmarks.osworld.runners import common
+
+    def fake_evaluate_with_retry(url, task, action_history, cache_dir, **kw):
+        (Path(cache_dir) / "partial_result.bin").write_bytes(b"partial")
+        raise RuntimeError("getter blew up mid-scoring")
+
+    out = Path(tempfile.mkdtemp(prefix="osw_test_out_"))
+    try:
+        with pytest.MonkeyPatch.context() as mp:
+            mp.setattr(common, "_evaluate_with_retry", fake_evaluate_with_retry)
+            task = {"evaluator": {"func": "exact_match", "expected": {"rules": "x"}}}
+            rec = common._score(_FakeScoreCtrl(), task, "answer", out)
+        assert rec["verdict"] == "EVAL_ERROR"
+        assert rec["source"] == "offline_fallback"
+        names = {e["name"] for e in rec["eval_artifacts"]}
+        assert names == {"partial_result.bin"}
+    finally:
+        shutil.rmtree(out, ignore_errors=True)
 
 
 _RATE_LIMITED_TASK = {"id": "t1", "instruction": "do the thing",
@@ -784,3 +940,9 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+def test_collect_eval_artifacts_without_a_run_dir_is_a_noop(tmp_path):
+    """Diagnostics must never break scoring: a caller without a run dir (out=None) gets []."""
+    (tmp_path / "f.bin").write_bytes(b"x")
+    assert common._collect_eval_artifacts(tmp_path, None, {"id": "t", "evaluator": {}}) == []
