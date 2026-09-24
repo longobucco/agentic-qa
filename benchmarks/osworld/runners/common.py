@@ -19,13 +19,14 @@ import subprocess
 import sys
 import tempfile
 import time
+import xml.etree.ElementTree as ET
 from concurrent.futures import ThreadPoolExecutor, TimeoutError as FutureTimeoutError
 from datetime import datetime, timezone
 from pathlib import Path
 
 import requests
 
-from benchmarks.osworld import config, evaluate, grounding, tasks
+from benchmarks.osworld import config, evaluate, tasks
 from benchmarks.osworld.env import osworld_eval
 from core import procgroups
 
@@ -50,8 +51,6 @@ def mcp_child_env(out_dir=None):
     the server can't read these from the runner's environment. Under the official protocol,
     `out_dir` (the run's output dir) also names the server's liveness/step state file."""
     env = {}
-    if config.ZOOM_BATCH:
-        env["OSW_ZOOM_BATCH"] = "1"
     if config.OFFICIAL:
         env.update(OSW_PROTOCOL="official", OSW_MAX_STEPS=str(config.MAX_STEPS),
                    OSW_SLEEP_AFTER_EXECUTION=str(config.SLEEP_AFTER_EXECUTION),
@@ -430,6 +429,84 @@ def claude_transcript_tool_names(path):
     return [b.get("name") for b in _claude_assistant_blocks(path) if b.get("type") == "tool_use"]
 
 
+# Ubuntu's accessibility tree wraps geometry in a namespaced attribute (see the guest's
+# /accessibility route); these are the only pieces of the pure-logic accessibility parsing
+# _a11y_health needs -- just enough to count nodes with usable screen geometry, not the full
+# target-resolution machinery.
+_A11Y_NS_COMPONENT = "https://accessibility.ubuntu.example.org/ns/component"
+_A11Y_COORD_RE = re.compile(r"-?\d+")
+
+
+def _a11y_pair(raw):
+    """Parse the tree's "(x, y)" / "(w, h)" attribute form."""
+    if not raw:
+        return None
+    nums = _A11Y_COORD_RE.findall(raw)
+    if len(nums) < 2:
+        return None
+    return int(nums[0]), int(nums[1])
+
+
+def _a11y_unwrap_tree(raw):
+    """The guest's /accessibility route does NOT return raw XML: it returns a JSON object
+    `{"AT": "<desktop-frame .../>"}`. Accepts either shape (and tolerates the extra
+    `{"result": ...}` layer the MCP transport adds when a tool result is logged)."""
+    if not isinstance(raw, str):
+        return ""
+    text = raw.strip()
+    if not text.startswith("{"):
+        return text
+    for _ in range(2):          # at most {"result": "{\"AT\": ...}"}
+        try:
+            obj = json.loads(text)
+        except (ValueError, TypeError):
+            return text
+        if not isinstance(obj, dict):
+            return text
+        nxt = obj.get("AT") if "AT" in obj else obj.get("result")
+        if not isinstance(nxt, str):
+            return text
+        text = nxt.strip()
+        if text.startswith("<"):
+            return text
+    return text
+
+
+def _a11y_tree_health(raw):
+    """Is the accessibility channel actually reporting? -> {"nodes", "elements", "ok", "reason"}.
+
+    `nodes` counts child elements of the root, `elements` those with usable geometry. `ok` is
+    False for the three distinguishable failures -- unreachable/blank, unparseable, and the
+    root-only tree that this harness produced on all 456 captures before the AT-SPI bus was added
+    to docker/start.sh.
+    """
+    xml = _a11y_unwrap_tree(raw)
+    if not xml.strip():
+        return {"nodes": 0, "elements": 0, "ok": False, "reason": "empty response"}
+    try:
+        root = ET.fromstring(xml)
+    except ET.ParseError as e:
+        return {"nodes": 0, "elements": 0, "ok": False, "reason": f"unparseable: {e}"}
+    nodes = sum(1 for _ in root.iter()) - 1
+    if nodes <= 0:
+        return {"nodes": 0, "elements": 0, "ok": False,
+                "reason": "root node only -- the AT-SPI bridge is not reporting this desktop"}
+    elements = 0
+    for node in root.iter():
+        pos = _a11y_pair(node.get(f"{{{_A11Y_NS_COMPONENT}}}screencoord"))
+        size = _a11y_pair(node.get(f"{{{_A11Y_NS_COMPONENT}}}size"))
+        if not pos or not size:
+            continue
+        x, y = pos
+        w, h = size
+        if x < 0 or y < 0 or w <= 0 or h <= 0:
+            continue
+        elements += 1
+    return {"nodes": nodes, "elements": elements, "ok": elements > 0,
+            "reason": None if elements else
+                      f"{nodes} node(s) but none with usable geometry"}
+
+
 def _a11y_health(ctrl):
     """One /accessibility probe per run, recorded in result.json as `a11y_*`.
 
@@ -446,7 +523,7 @@ def _a11y_health(ctrl):
     if ctrl is None:
         return {"a11y_ok": None, "a11y_nodes": None, "a11y_reason": "no controller"}
     try:
-        health = _bounded("a11y probe", lambda: grounding.tree_health(ctrl.a11y_tree()))
+        health = _bounded("a11y probe", lambda: _a11y_tree_health(ctrl.a11y_tree()))
     except Exception as e:
         return {"a11y_ok": False, "a11y_nodes": 0, "a11y_reason": f"{type(e).__name__}: {e}"}
     # _bounded raises RuntimeError on timeout, so the except above is the timeout path too --

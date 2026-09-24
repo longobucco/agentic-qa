@@ -29,6 +29,7 @@ def test_build_codex_cmd_pins_model_and_isolates_user_config(tmp_path):
             "browser_use_full_cdp_access", "goals", "sleep_tool", "view_image",
             "unified_exec"} <= disabled
     assert "code_mode_host" not in disabled
+    assert "OSW_RESTRICT_RUN_PYTHON" not in joined
 
 
 def test_parse_codex_output_extracts_last_message_usage_and_thread():

@@ -36,16 +36,8 @@ def _server(**env):
         return importlib.import_module("benchmarks.osworld.mcp.server")
 
 
-def test_baseline_tools_unchanged_without_the_flag():
-    s = _server(OSW_PROTOCOL="", OSW_ZOOM_BATCH="0", OSW_GROUNDING="0")
-    names = [t.name for t in asyncio.run(s.mcp.list_tools())]
-    assert names == ["screenshot", "a11y_tree", "click", "double_click", "right_click", "move",
-                     "scroll", "type", "key", "run_python", "wait"]
-    _reset()
-
-
 def test_official_registers_only_computer_and_returns_text_image_text():
-    s = _server(OSW_PROTOCOL="official", OSW_MAX_STEPS="5")
+    s = _server(OSW_MAX_STEPS="5")
     assert [t.name for t in asyncio.run(s.mcp.list_tools())] == ["computer"]
     buf = io.BytesIO()
     Image.new("RGB", (config.SCREEN_WIDTH, config.SCREEN_HEIGHT)).save(buf, format="PNG")
@@ -70,4 +62,4 @@ def test_child_env_forwards_protocol(monkeypatch):
     cmd = codex_loop.build_codex_cmd("p", model="m", cwd="/tmp", controller_url="http://c",
                                      mcp_extra_env=env)
     assert 'OSW_PROTOCOL = "official"' in " ".join(cmd)
-    assert codex_loop.allowed_mcp_tools(False, official=True) == ("computer",)
+    assert codex_loop.allowed_mcp_tools() == ("computer",)
