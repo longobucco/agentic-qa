@@ -77,6 +77,16 @@ def _timeline_event(timeline, phase, **fields):
     timeline.append({"phase": phase, "at": datetime.now(timezone.utc).isoformat(), **fields})
 
 
+def preflight():
+    """This runner is always registered with environment=osworld_environment (Daytona) --
+    benchmark.py's kvm backend selection (Task 9) only applies to agent_computer/gpt_astra.
+    Without this, OSW_BACKEND=kvm would silently run verify-replan on Daytona anyway instead of
+    refusing like the runners that were never kvm-wired."""
+    if config.BACKEND == "kvm":
+        raise SystemExit("OSW_BACKEND=kvm is not supported by verify_replan (its environment "
+                         "stays osworld_environment/Daytona): unset OSW_BACKEND")
+
+
 def run(task, *, env, out, refs=None, dry=False):
     started_at = datetime.now(timezone.utc).isoformat()
     ctrl = getattr(env, "browser", None)

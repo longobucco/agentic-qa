@@ -3,10 +3,36 @@ self_eval (it scores with OSWorld's official evaluators while the desktop is liv
 eval.json), so core.run uses that verdict. Serial (provisioning is heavy).
 """
 from benchmarks.osworld import config, evaluate, tasks
-from benchmarks.osworld.env import osworld_eval
+from benchmarks.osworld.env import kvm_vm, osworld_eval
 from benchmarks.osworld.env.sandbox import osworld_environment, osworld_openbook_environment
 from benchmarks.osworld.runners import agent_computer, gpt_astra, gpt_astra_openbook, verify_replan
 from core.run import Benchmark, Runner
+
+
+def _env_for_backend():
+    """config.BACKEND == "kvm": the official VM on a user-provided Linux/KVM host (Task 8,
+    env/kvm_vm.py). Otherwise unchanged: the existing per-task Daytona desktop. Only the Sonnet
+    and Astra closed-book runners are wired to this -- the open-book and verify-replan runners
+    keep osworld_environment/osworld_openbook_environment always, and refuse OSW_BACKEND=kvm in
+    their own preflight instead of silently running on Daytona anyway (see gpt_astra_openbook.
+    preflight and verify_replan.preflight)."""
+    return kvm_vm.kvm_environment if config.BACKEND == "kvm" else osworld_environment
+
+
+def _with_kvm_preflight(pf):
+    """Under the kvm backend, run kvm_vm.preflight() (host capability: /dev/kvm, docker, the
+    pinned qcow2) before the runner's own preflight (pinned-code check, official-protocol tool/
+    leak preflight, etc) -- cheapest failure first, so a bad host is reported without ever
+    reaching the runner-specific checks. With the daytona backend (today's default) this is a
+    no-op passthrough: `pf` runs exactly as it did before this task existed."""
+    if config.BACKEND != "kvm":
+        return pf
+
+    def combined():
+        kvm_vm.preflight()
+        if pf:
+            pf()
+    return combined
 
 
 def build():
@@ -18,10 +44,10 @@ def build():
         config.SYSTEM_NAME: Runner(
             name=config.SYSTEM_NAME,
             run=agent_computer.run,
-            environment=osworld_environment,
+            environment=_env_for_backend(),
             needs_browser=False,
             concurrency_safe=False,
-            preflight=agent_computer.preflight,
+            preflight=_with_kvm_preflight(agent_computer.preflight),
             self_eval=True,          # scores with OSWorld's own evaluators; writes eval.json
         ),
         # Independent model replication: GPT Astra via Codex CLI, with the same OSWorld MCP,
@@ -29,10 +55,10 @@ def build():
         config.ASTRA_SYSTEM_NAME: Runner(
             name=config.ASTRA_SYSTEM_NAME,
             run=gpt_astra.run,
-            environment=osworld_environment,
+            environment=_env_for_backend(),
             needs_browser=False,
             concurrency_safe=False,
-            preflight=gpt_astra.preflight,
+            preflight=_with_kvm_preflight(gpt_astra.preflight),
             self_eval=True,
         ),
         # Open-book Astra campaign (docs/g_astra_open_book_runner_implementation.md): same model,
@@ -56,6 +82,7 @@ def build():
             environment=osworld_environment,
             needs_browser=False,
             concurrency_safe=False,
+            preflight=verify_replan.preflight,
             self_eval=True,
         ),
     }

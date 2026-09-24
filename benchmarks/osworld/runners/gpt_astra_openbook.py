@@ -60,6 +60,14 @@ def preflight():
     if config.OFFICIAL:
         raise SystemExit("OSW_PROTOCOL=official is not supported by the open-book runner "
                          "(gpt_astra_openbook): unset OSW_PROTOCOL")
+    # The kvm backend (Task 9, benchmarks/osworld/env/kvm_vm.py) publishes each guest port on a
+    # random host port; this runner's scoring path (open_book_preflight / the proxy-routed
+    # evaluator) doesn't thread those mapped ports through, so it would silently reach the wrong
+    # port -- refuse instead, same discipline as the OFFICIAL refusal just above.
+    if config.BACKEND == "kvm":
+        raise SystemExit("OSW_BACKEND=kvm is not supported by the open-book runner "
+                         "(gpt_astra_openbook): its scoring path doesn't thread mapped ports; "
+                         "unset OSW_BACKEND")
     open_book_preflight.campaign_check()
 
 
