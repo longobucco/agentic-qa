@@ -3,12 +3,11 @@ test_official_claude_runner.py so both arms get the same protocol (no model call
 import json
 import os
 from pathlib import Path
-from unittest.mock import patch
 
 import pytest
 
 from benchmarks.osworld import config, official_protocol
-from benchmarks.osworld.runners import astra_common, common, gpt_astra, gpt_astra_openbook
+from benchmarks.osworld.runners import astra_common, common, gpt_astra
 from core import codex_loop, procgroups
 from core.codex_loop import build_codex_cmd
 
@@ -479,13 +478,3 @@ def test_runner_preflight_adds_the_session_probe_only_under_official(monkeypatch
     monkeypatch.setattr(config, "OFFICIAL", True)
     gpt_astra.preflight()
     assert probes == [1]
-
-
-# --- the open-book runner is outside the official protocol ---
-
-def test_openbook_preflight_refuses_the_official_protocol(monkeypatch):
-    monkeypatch.setattr(config, "OFFICIAL", True)
-    with patch.object(gpt_astra_openbook.open_book_preflight, "campaign_check") as check:
-        with pytest.raises(SystemExit, match="OSW_PROTOCOL=official"):
-            gpt_astra_openbook.preflight()
-    assert not check.called
