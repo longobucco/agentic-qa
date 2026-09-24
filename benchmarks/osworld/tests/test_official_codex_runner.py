@@ -234,7 +234,10 @@ def test_official_rate_limited_run_skips_the_pre_eval_wait(monkeypatch, tmp_path
     assert verdict is None and infra[-1]["outcome"] == "RATE_LIMITED"
 
 
-def test_official_run_refuses_to_score_a_non_computer_tool_call(monkeypatch, tmp_path):
+def test_official_run_terminal_failure_on_tool_surface_violation(monkeypatch, tmp_path):
+    # Ruling (task 7b): a tool-surface violation is a terminal FAILURE, not an infra error --
+    # excluding/retrying it would selectively resample toward runs that happen not to violate,
+    # biasing the score. It must be scored 0 and clearly labeled, with no re-run possible.
     events = [_computer(1, {"action": "screenshot"}),
               _ev({"id": "item_2", "type": "web_search", "query": "answer"})]
     rollout = tmp_path / "rollout.jsonl"
@@ -244,8 +247,15 @@ def test_official_run_refuses_to_score_a_non_computer_tool_call(monkeypatch, tmp
     _, order, _, result, verdict, infra = _official_run(monkeypatch, tmp_path, events,
                                                         rollout=rollout)
     assert result["agent_non_computer_tool_calls"] == ["web_search", "exec.apply_patch"]
-    assert verdict is None and infra[-1]["error_type"] == "ToolSurfaceViolation"
+    assert verdict == {
+        "id": "t", "verdict": "FAILURE", "reward": 0.0, "source": "harness",
+        "reason": "tool surface violation: web_search, exec.apply_patch",
+        "tool_surface_violation": ["web_search", "exec.apply_patch"],
+    }
+    assert infra is None   # never infra_error.json -- see the ruling above
     assert "score" not in order
+    from core import results as results_io
+    assert results_io.is_done(tmp_path)   # terminal: resume must never retry this run
 
 
 def test_official_run_records_the_audit(monkeypatch, tmp_path):
