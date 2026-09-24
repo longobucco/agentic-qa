@@ -33,31 +33,27 @@ from core import procgroups
 # The checkout this harness runs from (benchmarks/osworld/runners/ -> repo root).
 CHECKOUT_ROOT = Path(__file__).resolve().parents[3]
 
-OSWORLD_TOOLS = [
-    "mcp__osworld__screenshot", "mcp__osworld__a11y_tree",
-    "mcp__osworld__click", "mcp__osworld__double_click", "mcp__osworld__right_click",
-    "mcp__osworld__move", "mcp__osworld__scroll", "mcp__osworld__type",
-    "mcp__osworld__key", "mcp__osworld__run_python", "mcp__osworld__wait",
-]
-
 
 # Written by the official MCP server into the run's out dir (OSW_MCP_STATE_FILE): proof it
 # started, plus the steps it counted (mcp/official_computer.write_state).
 MCP_STATE_FILE = "mcp_state.json"
 
 
+def official_max_turns():
+    """A safety net only: the MCP server's step budget binds first."""
+    return 2 * config.MAX_STEPS + 20
+
+
 def mcp_child_env(out_dir=None):
     """Protocol env the MCP server child must see. Both CLIs pass only what they are given, so
-    the server can't read these from the runner's environment. Under the official protocol,
-    `out_dir` (the run's output dir) also names the server's liveness/step state file."""
-    env = {}
-    if config.OFFICIAL:
-        env.update(OSW_PROTOCOL="official", OSW_MAX_STEPS=str(config.MAX_STEPS),
-                   OSW_SLEEP_AFTER_EXECUTION=str(config.SLEEP_AFTER_EXECUTION),
-                   OSW_SCREEN_WIDTH=str(config.SCREEN_WIDTH),
-                   OSW_SCREEN_HEIGHT=str(config.SCREEN_HEIGHT))
-        if out_dir is not None:
-            env["OSW_MCP_STATE_FILE"] = str(Path(out_dir) / MCP_STATE_FILE)
+    the server can't read these from the runner's environment. `out_dir` (the run's output dir),
+    when given, also names the server's liveness/step state file."""
+    env = {"OSW_PROTOCOL": "official", "OSW_MAX_STEPS": str(config.MAX_STEPS),
+           "OSW_SLEEP_AFTER_EXECUTION": str(config.SLEEP_AFTER_EXECUTION),
+           "OSW_SCREEN_WIDTH": str(config.SCREEN_WIDTH),
+           "OSW_SCREEN_HEIGHT": str(config.SCREEN_HEIGHT)}
+    if out_dir is not None:
+        env["OSW_MCP_STATE_FILE"] = str(Path(out_dir) / MCP_STATE_FILE)
     return env
 
 
@@ -91,12 +87,11 @@ def _mcp_config(controller_url, out_dir=None):
         "args": ["-m", "benchmarks.osworld.mcp.server"],
         "env": {"OSW_CONTROLLER_URL": controller_url or "", **mcp_child_env(out_dir)},
     }
-    if config.OFFICIAL:
-        # The official protocol starts the CLI (and so this child) in an empty temp dir, not
-        # the repo: keep the benchmark package importable, as core/codex_loop.py does for Codex,
-        # and run it with this interpreter (same as Codex), not whatever `python` is on PATH.
-        spec["command"] = sys.executable
-        spec["env"]["PYTHONPATH"] = str(CHECKOUT_ROOT)
+    # The official protocol starts the CLI (and so this child) in an empty temp dir, not
+    # the repo: keep the benchmark package importable, as core/codex_loop.py does for Codex,
+    # and run it with this interpreter (same as Codex), not whatever `python` is on PATH.
+    spec["command"] = sys.executable
+    spec["env"]["PYTHONPATH"] = str(CHECKOUT_ROOT)
     f = tempfile.NamedTemporaryFile("w", suffix=".json", delete=False)
     json.dump({"mcpServers": {"osworld": spec}}, f)
     f.close()
@@ -219,15 +214,17 @@ def _provenance(task, ctrl, started_at):
         # the evaluator library was (see data/download_evaluators.py), so a pass rate is only
         # comparable against another one carrying the same value here.
         **_evaluator_provenance(),
-        "max_turns": config.MAX_TURNS,
+        "max_turns": official_max_turns(),
         "task_timeout": config.TASK_TIMEOUT,
-        "observation": config.OBSERVATION,
-        "action_space": config.ACTION_SPACE,
+        # Under the official protocol the model sees screenshots only, through the
+        # computer_20251124 tool -- the only observation/action-space pair this runner offers.
+        "observation": "screenshot",
+        "action_space": "computer_20251124",
         "effort": config.EFFORT or None,
         "max_output_tokens": config.MAX_OUTPUT_TOKENS,
         "max_steps": config.MAX_STEPS,
         "screen_size": f"{config.SCREEN_WIDTH}x{config.SCREEN_HEIGHT}",
-        "protocol": config.PROTOCOL or None,
+        "protocol": "official",
         "backend": config.BACKEND,
         "kvm_image": config.KVM_IMAGE if config.BACKEND == "kvm" else None,
         "kvm_qcow2_sha256": config.KVM_QCOW2_SHA256 or None,
@@ -238,15 +235,12 @@ def _provenance(task, ctrl, started_at):
 
 def claude_env():
     """Child environment for `claude -p`: the parent's, plus the output-token limit when the
-    protocol sets one and, under the official protocol, the auto-updater off (the CLI must stay
-    at config.CLAUDE_CODE_VERSION for the whole campaign). None keeps the historical behavior
-    (inherit unchanged)."""
-    extra = {}
+    protocol sets one and the auto-updater off (the CLI must stay at config.CLAUDE_CODE_VERSION
+    for the whole campaign)."""
+    extra = {"DISABLE_AUTOUPDATER": "1"}
     if config.MAX_OUTPUT_TOKENS:
         extra["CLAUDE_CODE_MAX_OUTPUT_TOKENS"] = str(config.MAX_OUTPUT_TOKENS)
-    if config.OFFICIAL:
-        extra["DISABLE_AUTOUPDATER"] = "1"
-    return {**os.environ, **extra} if extra else None
+    return {**os.environ, **extra}
 
 
 _CLAUDE_CLI_VERSION = {}
@@ -277,8 +271,7 @@ def official_probe_already_passed():
 
 
 def protocol_wait(seconds, *, sleep=None):
-    """Upstream's fixed settle sleeps (after setup, before evaluate) -- official protocol only;
-    a no-op otherwise, so the legacy harness keeps its timings.
+    """Upstream's fixed settle sleeps (after setup, before evaluate).
 
     Interruptible by default: waits on `core.procgroups`' interrupted flag (via
     `wait_interrupted`) rather than blocking blindly, so a harness SIGTERM/SIGINT during this
@@ -288,8 +281,6 @@ def protocol_wait(seconds, *, sleep=None):
     own grace period SIGKILLs the whole process, losing the INTERRUPTED infra record entirely
     (task-10b fix round 2). `sleep` (test injection) replaces the wait mechanism outright and
     is never interrupted -- existing tests use it to observe the call without a real delay."""
-    if not config.OFFICIAL:
-        return
     if sleep is not None:
         sleep(seconds)
         return
@@ -554,13 +545,6 @@ def _model_mismatch(meta):
         print(f"[osworld] WARNING model mismatch: pinned {config.MODEL!r} but the CLI reports "
               f"{served or 'nothing'} -- this run is NOT comparable to the pinned campaign")
     return {"model_served": served or None, "model_pinned": True, "model_mismatch": mismatch}
-
-
-def _clean_finish(meta, answer):
-    """Did the agent finish on its own (printed ANSWER) or get cut off (max-turns/error)? A
-    SUCCESS without a clean finish means the desktop state already happened to satisfy the
-    evaluator -- incidental, not evidence the agent completed the task."""
-    return bool(answer) and not meta.get("is_error", False)
 
 
 def _annotate_incidental(rec, clean_finish):

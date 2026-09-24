@@ -10,7 +10,6 @@ benchmarks/osworld/tests/test_runner.py's characterization tests for the frozen 
 import contextlib
 import json
 import os
-import re
 import shutil
 import tempfile
 
@@ -18,35 +17,24 @@ from datetime import datetime, timezone
 
 from benchmarks.osworld import config, official_protocol, tasks
 from benchmarks.osworld.env import osworld_eval
-from benchmarks.osworld.prompts import agent_prompt
 from benchmarks.osworld.runners.common import (
-    OSWORLD_TOOLS, _action_history, _agent_telemetry, _annotate_incidental, _bounded,
-    _capture_eval_state, _clean_finish, _environment_error_rec, _evaluate_with_retry,
-    _evaluator_provenance, _mcp_config, _model_mismatch, _POST_RUN_TIMEOUT_S, _provenance,
-    _rate_limit_infra_rec, _rate_limit_result_rec, _save_conversation_transcript, _score,
-    _served_by, _a11y_health, claude_cli_version, claude_env, claude_session_file,
-    claude_transcript_actions, claude_transcript_context_leaks, claude_transcript_offered_tools,
-    claude_transcript_tool_names, claude_workdir_session_file, mcp_unavailable_infra_rec,
-    official_probe_already_passed, protocol_wait, read_mcp_state, reset_mcp_state,
+    _a11y_health, _action_history, _agent_telemetry, _annotate_incidental, _bounded,
+    _capture_eval_state, _environment_error_rec, _evaluate_with_retry, _evaluator_provenance,
+    _mcp_config, _model_mismatch, _POST_RUN_TIMEOUT_S, _provenance, _rate_limit_infra_rec,
+    _rate_limit_result_rec, _save_conversation_transcript, _score, _served_by, claude_cli_version,
+    claude_env, claude_session_file, claude_transcript_actions, claude_transcript_context_leaks,
+    claude_transcript_offered_tools, claude_transcript_tool_names, claude_workdir_session_file,
+    mcp_unavailable_infra_rec, official_max_turns, official_probe_already_passed, protocol_wait,
+    read_mcp_state, reset_mcp_state,
 )
 from core.agent_loop import _run_raw, build_claude_cmd, extract_answer, preview, run_claude_meta
-from core import procgroups
 from core import results as results_io
 
 
-# Grounding harness (config.GROUNDING, docs/grounding-harness-plan.md). Names must match what
-# mcp/grounding_tools.register() attaches to the `osworld` FastMCP instance, prefix included --
-# a wrong prefix here is silent under --dangerously-skip-permissions (which makes --allowedTools
-# pre-approval rather than a gate), so a mismatch can go unnoticed for several commits.
-GROUNDING_TOOLS = [
-    "mcp__osworld__find_element", "mcp__osworld__click_element", "mcp__osworld__list_elements",
-]
-# mcp/zoom_batch_tools.register() -- the zoom/batch arm (config.ZOOM_BATCH).
-ZOOM_BATCH_TOOLS = ["mcp__osworld__zoom", "mcp__osworld__batch"]
-# Official protocol (config.OFFICIAL): every non-MCP tool Claude Code offers, all denied so the
-# agent acts only through the `computer` tool, as upstream's agent does. Read from the `init`
-# event's `tools` of `claude -p --output-format stream-json --verbose` on CLI 2.1.280,
-# 2026-09-24 -- a newer CLI may add tools, so re-read it when the pinned CLI changes.
+# Every non-MCP tool Claude Code offers, all denied so the agent acts only through the
+# `computer` tool, as upstream's agent does. Read from the `init` event's `tools` of
+# `claude -p --output-format stream-json --verbose` on CLI 2.1.280, 2026-09-24 -- a newer CLI
+# may add tools, so re-read it when the pinned CLI changes.
 CLAUDE_BUILTIN_TOOLS = [
     "Task", "Artifact", "ArtifactComments", "ArtifactData", "Bash", "CronCreate", "CronDelete",
     "CronList", "DesignSync", "Edit", "EnterWorktree", "ExitWorktree", "ListAgents", "Monitor",
@@ -147,14 +135,6 @@ def official_tool_preflight():
     return None
 
 
-def _refuse_official_inloop_verify():
-    """The in-loop verifier's --resume retry is a harness intervention upstream has no
-    counterpart for (and it would run with the legacy toolset) -- refuse the combination."""
-    if config.OFFICIAL and config.INLOOP_VERIFY:
-        raise SystemExit("OSW_PROTOCOL=official is incompatible with OSW_INLOOP_VERIFY "
-                         "(INLOOP_VERIFY): unset one of them")
-
-
 def claude_version_preflight():
     """The official protocol was verified on one Claude Code CLI (config.CLAUDE_CODE_VERSION):
     refuse any other, or an unreadable `claude --version` (run with the real runs' env)."""
@@ -165,16 +145,17 @@ def claude_version_preflight():
 
 
 def preflight():
-    """Sonnet runner preflight: today's pinned-code check; under the official protocol also the
-    in-loop-verify refusal, the pinned CLI version and the built-in tool drift guard. The last
-    one is a live model call: a campaign driver child skips it when the driver already ran it
-    for this driver run (common.official_probe_already_passed) -- every cheap check still runs."""
+    """Sonnet runner preflight: refuse an unpinned model, then today's pinned-code check, the
+    pinned CLI version and the built-in tool drift guard. The last one is a live model call: a
+    campaign driver child skips it when the driver already ran it for this driver run
+    (common.official_probe_already_passed) -- every cheap check still runs."""
+    if not config.MODEL:
+        raise SystemExit("OSW_MODEL is required: the official Claude runner never runs the "
+                         "CLI's default model")
     osworld_eval.pinned_code_preflight()
-    if config.OFFICIAL:
-        _refuse_official_inloop_verify()
-        claude_version_preflight()
-        if not official_probe_already_passed():
-            official_tool_preflight()
+    claude_version_preflight()
+    if not official_probe_already_passed():
+        official_tool_preflight()
 
 
 def _effort_kwargs():
@@ -189,84 +170,12 @@ def _env_kwargs():
     return {"env": env} if env else {}
 
 
-def _allowed_tools():
-    """The baseline OSWorld toolset, plus the grounding arm's tools when that arm is on.
-
-    Kept here rather than in common.OSWORLD_TOOLS on purpose: that module's extraction discipline
-    is that it reads no G5-arm config knob (see its docstring), and GROUNDING is one.
-    """
-    return (OSWORLD_TOOLS + (GROUNDING_TOOLS if config.GROUNDING else [])
-            + (ZOOM_BATCH_TOOLS if config.ZOOM_BATCH else []))
-
-
-def _grounding_precheck(ctrl):
-    """Refuse to spend a grounding run against a dead accessibility channel.
-
-    Only when the arm is ON: the baseline does not depend on a11y (the agent works from
-    screenshots), so an empty tree is a recorded fact there, not a reason to fail a run. With the
-    arm on it IS the reason -- every find_element/click_element would resolve nothing and the run
-    would look like a null result for the mechanism rather than a broken environment. That
-    confusion already cost this project a whole analysis: the channel was empty on all 456
-    captures across every campaign and nothing on disk said so.
-
-    Returns an error string to abort with, or None to proceed.
-    """
-    if not config.GROUNDING:
-        return None
-    health = _a11y_health(ctrl)
-    if health.get("a11y_ok"):
-        return None
-    return (f"grounding arm requested but the accessibility channel is not reporting "
-            f"({health.get('a11y_reason')}); nodes={health.get('a11y_nodes')}. Rebuild the guest "
-            f"image with the AT-SPI bus from docker/start.sh and re-pin config.IMAGE, or unset "
-            f"OSW_GROUNDING -- see docs/grounding-harness-plan.md Section 8.")
-
-
-def _grounding_telemetry():
-    """Per-run record of the grounding arm's settings, merged into result.json.
-
-    The results tree is already suffixed when the arm is on (config.SYSTEM_NAME), but a directory
-    name records only that the arm ran, not how it was configured -- and GROUNDING_MIN_SCORE
-    changes what resolves, so two runs under the same tree are not comparable without it.
-    """
-    if not config.GROUNDING:
-        return {"grounding_used": False}
-    return {
-        "grounding_used": True,
-        "grounding_verify": config.GROUNDING_VERIFY,
-        "grounding_min_score": config.GROUNDING_MIN_SCORE,
-    }
-
-
-def _extra_flags():
-    """Extra claude CLI flags for the G5 tool-restriction arms (config.ENFORCE_SANDBOX, idea
-    #10; config.RESTRICT_RUN_PYTHON, idea #11). Both use --disallowedTools, a real deny list
-    (unlike --allowedTools, which only suppresses the confirmation prompt without restricting
-    availability -- see ENFORCE_SANDBOX's own comment in config.py) -- combined into one flag
-    list rather than two separate ones so --strict-mcp-config appears at most once."""
-    disallowed = []
-    if config.ENFORCE_SANDBOX:
-        disallowed += ["Bash", "WebSearch", "WebFetch"]
-    if config.RESTRICT_RUN_PYTHON:
-        disallowed += ["mcp__osworld__run_python"]
-    if not disallowed:
-        return None
-    return ["--disallowedTools", *disallowed, "--strict-mcp-config"]
-
-
-def _official_max_turns():
-    """A safety net only: the MCP server's step budget binds first."""
-    return 2 * config.MAX_STEPS + 20
-
-
 def _run_provenance(task, ctrl, started_at):
-    """_provenance, with max_turns set to the limit actually passed to the CLI."""
+    """_provenance, plus the runtime fields the Codex arm also records
+    (astra_common.provenance_astra)."""
     prov = _provenance(task, ctrl, started_at)
-    if config.OFFICIAL:
-        prov["max_turns"] = _official_max_turns()
-        # Same fields as the Codex arm (astra_common.provenance_astra).
-        prov["agent_runtime"] = "claude_code"
-        prov["agent_runtime_version"] = claude_cli_version()
+    prov["agent_runtime"] = "claude_code"
+    prov["agent_runtime_version"] = claude_cli_version()
     return prov
 
 
@@ -325,14 +234,13 @@ def _official_system_prompt():
 
 def _official_cmd_kwargs(task):
     """build_claude_cmd kwargs under the official protocol: the bare instruction as the user
-    turn, upstream's system prompt, only the `computer` tool. The deny list is built alone (not
-    merged with _extra_flags) -- it already covers the G5 arms' built-ins, and the MCP server
-    registers no run_python here -- so --disallowedTools/--strict-mcp-config appear once."""
+    turn, upstream's system prompt, only the `computer` tool, and the deny list covering every
+    other built-in -- so --disallowedTools/--strict-mcp-config appear exactly once."""
     return {
         "prompt": task["instruction"],
         "system_prompt": _official_system_prompt(),
         "allowed_tools": [OFFICIAL_TOOL],
-        "max_turns": _official_max_turns(),
+        "max_turns": official_max_turns(),
         "extra": ["--disallowedTools", *CLAUDE_BUILTIN_TOOLS, "--strict-mcp-config",
                   *CLAUDE_ISOLATION_FLAGS],
     }
@@ -351,139 +259,7 @@ def _official_answer(out, text, transcript):
     return official_protocol.final_action([text], [])
 
 
-def _implies_done(answer):
-    """Same DONE/FAIL split as _action_history, exposed on its own: the in-loop verifier only
-    engages when the agent claims completion -- a self-reported FAIL is already the agent's own
-    admission and needs no independent check to act on."""
-    a = (answer or "").strip().upper()
-    return bool(a) and not (a.startswith("FAIL") or "INFEASIBLE" in a)
-
-
-# Idea #15 pilot (2026-09-09, 6 tasks / 18 runs, docs/g5-arm-inloop-verify-pilot -- see
-# analysis): the generic nudge below ("does not confirm... check again") never once changed the
-# agent's self-report (0/11 retries). Reading the retried transcripts explained why: the verifier
-# is screenshot-only, so it is structurally blind to any success criterion that isn't visible in
-# a screenshot (audio volume, on-disk file contents, background config keys) -- and the agent,
-# which DOES have run_python to check those directly, reasonably discounts a same-generic
-# disagreement it can explain away ("the review saw a black screen because I'd closed my
-# terminal", etc.). The fix tried here is NOT giving the verifier more tools (that would reopen
-# the oracle-contamination risk documented in the project doc's Section 6 -- a verifier that can
-# read files/run code can read the same evaluator/gold sources the agent did) -- it is making the
-# verifier's disagreement specific enough that a generic "must be non-visual" dismissal doesn't
-# trivially apply.
-_INLOOP_VERIFIER_PROMPT = """Read the image file at the EXACT absolute path: {path} -- it is a \
-screenshot of a Linux desktop, taken at the end of an attempt to complete a task. Do not search \
-for anything else; the path given is correct and complete.
-
-The task instruction was: {instruction}
-
-Based ONLY on what you see in the screenshot, does the desktop state satisfy this instruction? \
-Answer with exactly two lines:
-ANSWER: DONE or ANSWER: FAIL
-REASON: one brief sentence naming the SPECIFIC element, text, or state that is present, \
-missing, or wrong -- not a generic restatement of the instruction."""
-
-_INLOOP_RETRY_PROMPT = """An independent review of the current screen does not confirm the \
-task is complete. The task instruction was: {instruction}
-
-Specifically, the review said: {reason}
-
-Address that specific point. If the task is not actually finished, continue working until it \
-genuinely is, then give your final answer in exactly the same format as before: 'ANSWER: DONE' \
-or 'ANSWER: FAIL'. If you are confident the task truly is already complete despite this specific \
-concern, explain concretely why that exact point is wrong or not applicable, then repeat \
-'ANSWER: DONE'."""
-
-_REASON_RE = re.compile(r"^REASON:\s*(.*)$", re.MULTILINE)
-
-
-def _verify_with_reason(png_path, instruction, *, timeout=120):
-    """Same mechanism as g5_verifier_check.verify() (fresh context, screenshot + instruction
-    only, Read-only) but kept as its own call rather than reusing that function, so tightening
-    the in-loop prompt here can never change what #9/#12 measure or how they reproduce."""
-    prompt = _INLOOP_VERIFIER_PROMPT.format(path=png_path, instruction=instruction)
-    cmd = build_claude_cmd(prompt, max_turns=4, allowed_tools=["Read"], model=config.MODEL or None)
-    meta = run_claude_meta(cmd, timeout=timeout)
-    text = meta.get("result", "")
-    m = _REASON_RE.search(text)
-    return {"answer": extract_answer(text), "reason": m.group(1).strip() if m else None,
-            "raw": text, "model_served": _served_by(meta)}
-
-
-def _inloop_verify(ctrl, task, answer, meta, mcp_config_path, out):
-    """G5 idea #15: on a self-reported DONE, run an independent check (fresh context, screenshot
-    only, no memory of the attempt) while the desktop is still live, and on disagreement give the
-    agent one real follow-up turn via --resume, naming the verifier's specific reason rather than
-    a generic "check again" (see the pilot post-mortem above). Returns (answer, meta,
-    extra_telemetry) -- unchanged from the inputs whenever the mechanism is off, doesn't apply, or
-    errors, so a failure here can never break an otherwise normal run.
-    """
-    if not config.INLOOP_VERIFY or not _implies_done(answer):
-        return answer, meta, {"inloop_verify_used": False}
-    if tasks.app_of(task) in config.INLOOP_VERIFY_SKIP_APPS:
-        return answer, meta, {"inloop_verify_used": False, "inloop_verify_skipped_app": True}
-    try:
-        png_path = out / "inloop_pre_verify.png"
-        png_path.write_bytes(ctrl.screenshot())
-        v = _verify_with_reason(png_path.resolve(), task.get("instruction", ""))
-    except procgroups.Interrupted:
-        raise   # the harness itself is shutting down -- never swallow this into a "skipped"
-                # result; core.run's work() must see it and record an INTERRUPTED infra outcome
-    except Exception as e:
-        print(f"[osworld] in-loop verify skipped (capture/verify failed): {e}")
-        return answer, meta, {"inloop_verify_used": False, "inloop_verify_error": str(e)}
-
-    base = {
-        "inloop_verify_used": True,
-        "inloop_verify_verdict": v["answer"],
-        "inloop_verify_reason": v["reason"],
-        "inloop_verify_model": v["model_served"],
-        "inloop_verify_first_answer": answer,
-        "inloop_verify_retried": False,
-    }
-    if (v["answer"] or "").strip().upper().startswith("DONE"):
-        return answer, meta, base   # verifier agrees -- no retry
-
-    session_id = meta.get("session_id")
-    if not session_id:
-        return answer, meta, {**base, "inloop_verify_error": "no session_id to resume"}
-    reason = v["reason"] or "the current screen does not appear to show the task as complete"
-    try:
-        cmd2 = build_claude_cmd(
-            _INLOOP_RETRY_PROMPT.format(instruction=task.get("instruction", ""), reason=reason),
-            model=config.MODEL or None, max_turns=config.INLOOP_VERIFY_MAX_TURNS,
-            mcp_config=mcp_config_path, allowed_tools=_allowed_tools(), resume=session_id,
-            **_effort_kwargs(),
-        )
-        meta2 = run_claude_meta(cmd2, timeout=config.TASK_TIMEOUT, **_env_kwargs())
-    except procgroups.Interrupted:
-        raise   # ditto: a harness interrupt must propagate, not be recorded as a retry failure
-    except Exception as e:
-        print(f"[osworld] in-loop verify retry failed: {e}")
-        return answer, meta, {**base, "inloop_verify_error": f"retry call failed: {e}"}
-
-    # Two real API calls were made regardless of whether the second produced a usable answer --
-    # cost/turns/duration must sum both, or a retry that changes nothing still silently
-    # under-reports what it spent (the same species of gap _agent_telemetry was written to
-    # close for the outer call).
-    summed = {
-        "total_cost_usd": (meta.get("total_cost_usd") or 0) + (meta2.get("total_cost_usd") or 0),
-        "num_turns": (meta.get("num_turns") or 0) + (meta2.get("num_turns") or 0),
-        "duration_ms": (meta.get("duration_ms") or 0) + (meta2.get("duration_ms") or 0),
-        "duration_api_ms": (meta.get("duration_api_ms") or 0) + (meta2.get("duration_api_ms") or 0),
-    }
-    answer2 = extract_answer(meta2.get("result", ""))
-    if not answer2:
-        # resumed call produced nothing usable -- keep the original answer text, but the spend
-        # was real either way, so still fold it into what gets recorded.
-        return answer, {**meta, **summed}, {**base, "inloop_verify_retried": True,
-                                            "inloop_verify_second_answer": None}
-    return answer2, {**meta2, **summed}, {**base, "inloop_verify_retried": True,
-                                          "inloop_verify_second_answer": answer2}
-
-
 def run(task, *, env, out, refs=None, dry=False):
-    _refuse_official_inloop_verify()   # core.run skips preflight on --dry-run
     started_at = datetime.now(timezone.utc).isoformat()
     ctrl = getattr(env, "browser", None)
     controller_url = ctrl.base_url if ctrl else config.CONTROLLER_URL
@@ -496,71 +272,32 @@ def run(task, *, env, out, refs=None, dry=False):
         results_io.write_eval(out, rec["eval"])
         return ""
 
-    # Before building the command: an arm whose channel is dead produces meaningless data, and
-    # the failure has to be loud rather than look like a null result (see _grounding_precheck).
-    grounding_block = _grounding_precheck(ctrl) if not dry else None
-    if grounding_block:
-        rec = _environment_error_rec(task, grounding_block)
-        rec["result"]["provenance"] = _run_provenance(task, ctrl, started_at)
-        results_io.write_result(out, rec["result"])
-        results_io.write_eval(out, rec["eval"])
-        return ""
-
-    # official: the MCP server also writes its liveness/step state into this run's dir. The
-    # legacy call keeps its exact shape (test_runner.py's characterization tests pin it).
-    mcp_config_path = _mcp_config(controller_url, **({"out_dir": out} if config.OFFICIAL else {}))
-    if config.OFFICIAL:
-        official = _official_cmd_kwargs(task)
-        cmd = build_claude_cmd(
-            official.pop("prompt"),
-            model=config.MODEL or None,
-            mcp_config=mcp_config_path,
-            **official,
-            **_effort_kwargs(),
-        )
-    else:
-        cmd = build_claude_cmd(
-            agent_prompt(task),
-            model=config.MODEL or None,
-            max_turns=config.MAX_TURNS,
-            mcp_config=mcp_config_path,
-            allowed_tools=_allowed_tools(),
-            extra=_extra_flags(),
-            **_effort_kwargs(),
-        )
+    # The MCP server also writes its liveness/step state into this run's dir.
+    mcp_config_path = _mcp_config(controller_url, out_dir=out)
+    official = _official_cmd_kwargs(task)
+    cmd = build_claude_cmd(
+        official.pop("prompt"),
+        model=config.MODEL or None,
+        mcp_config=mcp_config_path,
+        **official,
+        **_effort_kwargs(),
+    )
     if dry:
         print("DRY-RUN command:\n ", preview(cmd))
         os.unlink(mcp_config_path)
         return None
 
-    if config.OFFICIAL:
-        reset_mcp_state(out)   # only this run's server may prove it started
-        # As gpt_astra.run does: a stale eval.json from an earlier attempt at this run dir must
-        # not survive a retry that now ends in an infra error (unaudited / no MCP server).
-        (out / "eval.json").unlink(missing_ok=True)
+    reset_mcp_state(out)   # only this run's server may prove it started
+    # As gpt_astra.run does: a stale eval.json from an earlier attempt at this run dir must
+    # not survive a retry that now ends in an infra error (unaudited / no MCP server).
+    (out / "eval.json").unlink(missing_ok=True)
     protocol_wait(config.POST_SETUP_WAIT_S)   # upstream: sleep 60 after reset, before step 1
 
-    inloop_telemetry = {}
     workdir = None
     try:
-        # official: an empty temp cwd isolates the session from repo/project context; the
-        # legacy call is unchanged (no cwd kwarg). In-loop verify is refused under the
-        # protocol, so no --resume below needs this dir after it is removed.
-        with (_isolated_workdir() if config.OFFICIAL else contextlib.nullcontext()) as workdir:
-            meta = run_claude_meta(cmd, timeout=config.TASK_TIMEOUT, **_env_kwargs(),
-                                   **({"cwd": workdir} if workdir else {}))
-        # Kept alive past this first call, on purpose: idea #15's follow-up turn (below) needs
-        # the SAME --mcp-config to --resume this session with the OSWorld tools still available.
-        # Deleting it right after the first call (as this used to) would make any retry attempt
-        # silently lose desktop control -- moved into the same try/finally that now spans both
-        # calls so the file outlives whichever one actually happens.
-        if ctrl and not meta.get("api_error_status"):
-            first_answer = extract_answer(meta.get("result", ""))
-            # the returned answer is discarded here -- `meta` (possibly the resumed call's
-            # envelope) is re-extracted the same way as any other run just below, so there is
-            # exactly one place that turns a `meta` into the recorded `answer`.
-            _, meta, inloop_telemetry = _inloop_verify(
-                ctrl, task, first_answer, meta, mcp_config_path, out)
+        # An empty temp cwd isolates the session from repo/project context.
+        with _isolated_workdir() as workdir:
+            meta = run_claude_meta(cmd, timeout=config.TASK_TIMEOUT, cwd=workdir, **_env_kwargs())
     finally:
         # written fresh per run (NamedTemporaryFile(delete=False)); the claude subprocess has
         # exited by now (run_claude_meta blocks until it does) so it's safe to remove. Without
@@ -591,24 +328,20 @@ def run(task, *, env, out, refs=None, dry=False):
 
     text = meta.get("result", "")
     answer = extract_answer(text)
-    clean_finish = _clean_finish(meta, answer)
     results_io.write_output(out, text)
     transcript = _save_conversation_transcript(meta, out, task["id"])
-    official_telemetry = {}
-    if config.OFFICIAL:
-        if not transcript.get("transcript_saved") and not meta.get("session_id"):
-            transcript = _recover_transcript(workdir, out, transcript)
-        answer = _official_answer(out, text, transcript)
-        clean_finish = _official_clean_finish(meta)
-        official_telemetry = _official_audit(out, transcript)
-        mcp_state = read_mcp_state(out)
-        official_telemetry["agent_steps_used"] = mcp_state.get("steps_used") if mcp_state else None
+    if not transcript.get("transcript_saved") and not meta.get("session_id"):
+        transcript = _recover_transcript(workdir, out, transcript)
+    answer = _official_answer(out, text, transcript)
+    clean_finish = _official_clean_finish(meta)
+    official_telemetry = _official_audit(out, transcript)
+    mcp_state = read_mcp_state(out)
+    official_telemetry["agent_steps_used"] = mcp_state.get("steps_used") if mcp_state else None
 
     telemetry = _agent_telemetry(meta)
     telemetry["agent_clean_finish"] = clean_finish
 
-    if config.OFFICIAL and (official_telemetry["agent_non_computer_tool_calls"] is None
-                            or mcp_state is None):
+    if (official_telemetry["agent_non_computer_tool_calls"] is None or mcp_state is None):
         # Unscored, retried (infra_error.json, never eval.json), same rule as the Codex arm:
         # either what the agent called can't be verified (no transcript, even recovered), or
         # the MCP server never started, so the agent had no `computer` tool at all.
@@ -635,7 +368,7 @@ def run(task, *, env, out, refs=None, dry=False):
         return ""
 
     non_computer = official_telemetry.get("agent_non_computer_tool_calls")
-    if config.OFFICIAL and non_computer:
+    if non_computer:
         # Ruling (task 7b), parity with the Codex arm (runners/gpt_astra.py run()): a
         # tool-surface violation is a TERMINAL failure, not something to skip or retry --
         # either would selectively resample toward runs that happen not to violate, biasing
@@ -650,9 +383,7 @@ def run(task, *, env, out, refs=None, dry=False):
             **transcript,
             **_model_mismatch(meta),
             **telemetry,
-            **inloop_telemetry,
             **official_telemetry,
-            **_grounding_telemetry(),
             **_a11y_health(ctrl),
         })
         results_io.write_eval(out, {
@@ -674,9 +405,7 @@ def run(task, *, env, out, refs=None, dry=False):
         **transcript,
         **_model_mismatch(meta),
         **telemetry,
-        **inloop_telemetry,
         **official_telemetry,
-        **_grounding_telemetry(),
         **_a11y_health(ctrl),
     })
     rec = _annotate_incidental(_bounded("scoring", _score, ctrl, task, answer, out), clean_finish)

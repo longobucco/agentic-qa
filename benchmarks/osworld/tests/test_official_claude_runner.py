@@ -46,11 +46,8 @@ def test_transcript_actions_skips_garbage_and_string_content(tmp_path):
     assert calls == []
 
 
-def test_protocol_wait_only_under_official(monkeypatch):
+def test_protocol_wait_calls_sleep(monkeypatch):
     slept = []
-    monkeypatch.setattr(config, "OFFICIAL", False)
-    common.protocol_wait(60, sleep=slept.append)
-    monkeypatch.setattr(config, "OFFICIAL", True)
     common.protocol_wait(60, sleep=slept.append)
     assert slept == [60]
 
@@ -62,7 +59,6 @@ def test_protocol_wait_is_interrupted_by_the_flag_instead_of_blocking_the_full_w
     when the campaign driver's own grace period SIGKILLs the whole process, losing the
     INTERRUPTED infra record entirely. protocol_wait must return (by raising) the moment the
     flag is set, not after `seconds`."""
-    monkeypatch.setattr(config, "OFFICIAL", True)
     timer = threading.Timer(0.05, procgroups.mark_interrupted)
     timer.start()
     try:
@@ -87,7 +83,6 @@ def test_build_claude_cmd_system_prompt_only_when_set():
 
 
 def _official_argv(monkeypatch, tmp_path):
-    monkeypatch.setattr(config, "OFFICIAL", True)
     monkeypatch.setattr(config, "PROTOCOL", "official")
     monkeypatch.setattr(config, "MODEL", "claude-sonnet-5")
     calls = []
@@ -140,9 +135,7 @@ def test_builtin_tools_cover_every_non_mcp_tool():
 
 def _official_run(monkeypatch, tmp_path, transcript_lines, spy=None):
     """Non-dry official run with the CLI, transcript copy and scoring faked out."""
-    monkeypatch.setattr(config, "OFFICIAL", True)
     monkeypatch.setattr(config, "PROTOCOL", "official")
-    monkeypatch.setattr(config, "INLOOP_VERIFY", False)
     events = []
     scored = {}
 
@@ -196,9 +189,7 @@ def test_run_claude_meta_interrupted_propagates_without_writing_eval(monkeypatch
     agent_computer.run()'s only wrapping around the main run_claude_meta call is a bare
     try/finally (mcp_config cleanup), never an `except Exception`, so this is a regression guard
     that no future refactor adds one that would swallow it into a scored/failed result."""
-    monkeypatch.setattr(config, "OFFICIAL", True)
     monkeypatch.setattr(config, "PROTOCOL", "official")
-    monkeypatch.setattr(config, "INLOOP_VERIFY", False)
 
     def fake_meta(cmd, **kw):
         raise procgroups.Interrupted("harness interrupted")
@@ -270,32 +261,17 @@ def test_tool_preflight_runs_the_cli_with_the_configured_model(monkeypatch, tmp_
     assert cmd[cmd.index("--model") + 1] == "claude-sonnet-5"
 
 
-def test_runner_preflight_only_adds_protocol_checks_under_official(monkeypatch):
+def test_preflight_always_runs_pinned_code_version_and_tool_checks(monkeypatch):
     calls = []
+    monkeypatch.setattr(config, "MODEL", "claude-sonnet-5")
     monkeypatch.setattr(agent_computer.osworld_eval, "pinned_code_preflight",
                         lambda: calls.append("pinned"))
     monkeypatch.setattr(agent_computer, "official_tool_preflight",
                         lambda: calls.append("tools"))
-    monkeypatch.setattr(agent_computer, "claude_version_preflight", lambda: None)
-    monkeypatch.setattr(config, "INLOOP_VERIFY", False)
-    monkeypatch.setattr(config, "OFFICIAL", False)
+    monkeypatch.setattr(agent_computer, "claude_version_preflight",
+                        lambda: calls.append("version"))
     agent_computer.preflight()
-    assert calls == ["pinned"]
-    monkeypatch.setattr(config, "OFFICIAL", True)
-    agent_computer.preflight()
-    assert calls == ["pinned", "pinned", "tools"]
-
-
-def test_official_refuses_inloop_verify_at_preflight_and_run(monkeypatch, tmp_path):
-    monkeypatch.setattr(agent_computer.osworld_eval, "pinned_code_preflight", lambda: None)
-    monkeypatch.setattr(agent_computer, "official_tool_preflight", lambda: None)
-    monkeypatch.setattr(config, "OFFICIAL", True)
-    monkeypatch.setattr(config, "INLOOP_VERIFY", True)
-    with pytest.raises(SystemExit, match="INLOOP_VERIFY"):
-        agent_computer.preflight()
-    with pytest.raises(SystemExit, match="INLOOP_VERIFY"):
-        agent_computer.run({"id": "t", "instruction": "Do X", "evaluator": {}},
-                           env=_FakeEnv(), out=tmp_path, dry=True)
+    assert calls == ["pinned", "version", "tools"]
 
 
 def test_transcript_tool_names(tmp_path):
@@ -362,22 +338,10 @@ def test_official_run_records_clean_finish_without_answer_line(monkeypatch, tmp_
     assert result["agent_clean_finish"] is True
 
 
-def test_legacy_clean_finish_unchanged():
-    assert common._clean_finish({"subtype": "success"}, "") is False
-    assert common._clean_finish({"is_error": False}, "DONE") is True
-
-
 def test_official_provenance_records_the_cli_turn_limit(monkeypatch, tmp_path):
     _official_run(monkeypatch, tmp_path, [])
     result = json.loads((tmp_path / "result.json").read_text())
     assert result["provenance"]["max_turns"] == 2 * config.MAX_STEPS + 20
-
-
-def test_legacy_provenance_turn_limit_unchanged(monkeypatch):
-    monkeypatch.setattr(config, "OFFICIAL", False)
-    monkeypatch.setattr(config, "MAX_TURNS", 150)
-    prov = agent_computer._run_provenance({"id": "t"}, None, "now")
-    assert prov["max_turns"] == 150
 
 
 # --- fix round 1: host-context isolation and the leak guard ---
@@ -434,7 +398,6 @@ def test_official_kwargs_carry_isolation_settings(monkeypatch, tmp_path):
 
 
 def test_official_mcp_config_carries_pythonpath(monkeypatch):
-    monkeypatch.setattr(config, "OFFICIAL", True)
     path = common._mcp_config("http://x")
     try:
         spec = json.loads(open(path).read())["mcpServers"]["osworld"]
@@ -442,17 +405,6 @@ def test_official_mcp_config_carries_pythonpath(monkeypatch):
         import os
         os.unlink(path)
     assert spec["env"]["PYTHONPATH"] == str(common.CHECKOUT_ROOT)
-
-
-def test_legacy_mcp_config_has_no_pythonpath(monkeypatch):
-    monkeypatch.setattr(config, "OFFICIAL", False)
-    path = common._mcp_config("http://x")
-    try:
-        spec = json.loads(open(path).read())["mcpServers"]["osworld"]
-    finally:
-        import os
-        os.unlink(path)
-    assert "PYTHONPATH" not in spec["env"]
 
 
 def test_official_run_uses_a_fresh_empty_cwd_and_records_leaks(monkeypatch, tmp_path):

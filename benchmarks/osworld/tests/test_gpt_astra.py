@@ -129,7 +129,8 @@ def _run_with(meta, tmp):
     with patch.object(gpt_astra, "run_codex_meta", return_value=dict(meta)), \
          patch.object(gpt_astra, "_codex_version", return_value="codex-cli 0.153.4"), \
          patch.object(gpt_astra, "_score", return_value={"verdict": "FAILURE", "reward": 0.0}), \
-         patch.object(gpt_astra, "_capture_eval_state", return_value=None):
+         patch.object(gpt_astra, "_capture_eval_state", return_value=None), \
+         patch.object(gpt_astra, "protocol_wait", lambda s: None):
         gpt_astra.run(task, env=type("E", (), {"browser": None, "setup_error": None})(), out=out)
     read = lambda n: json.loads((out / n).read_text()) if (out / n).exists() else None
     return read("result.json"), read("eval.json"), read("infra_error.json")
@@ -181,7 +182,8 @@ def test_eval_state_capture_follows_official_scoring_postconfig():
          patch.object(gpt_astra, "_score", side_effect=lambda *a: (
              order.append("score") or {"verdict": "FAILURE", "reward": 0.0})), \
          patch.object(gpt_astra, "_capture_eval_state", side_effect=lambda *a: (
-             order.append("capture") or "postconfig artifact")):
+             order.append("capture") or "postconfig artifact")), \
+         patch.object(gpt_astra, "protocol_wait", lambda s: None):
         gpt_astra.run(task, env=type("E", (), {
             "browser": type("C", (), {"base_url": "http://controller"})(), "setup_error": None
         })(),
@@ -196,7 +198,8 @@ def test_agent_declared_fail_does_not_fetch_an_uncreated_postconfig_file():
     with patch.object(gpt_astra, "run_codex_meta", return_value=_meta(result="ANSWER: FAIL")), \
          patch.object(gpt_astra, "_codex_version", return_value="codex-cli 0.153.4"), \
          patch.object(gpt_astra, "_score", return_value={"verdict": "FAILURE", "reward": 0.0}), \
-         patch.object(gpt_astra, "_capture_eval_state") as capture:
+         patch.object(gpt_astra, "_capture_eval_state") as capture, \
+         patch.object(gpt_astra, "protocol_wait", lambda s: None):
         gpt_astra.run(task, env=type("E", (), {
             "browser": type("C", (), {"base_url": "http://controller"})(), "setup_error": None
         })(), out=out)

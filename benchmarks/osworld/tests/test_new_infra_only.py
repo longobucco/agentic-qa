@@ -6,6 +6,37 @@ import pytest
 
 from benchmarks.osworld import benchmark
 
+
+def test_claude_runner_builds_the_official_command_without_the_protocol_flag(monkeypatch, tmp_path):
+    from benchmarks.osworld import config
+    from benchmarks.osworld.runners import agent_computer
+    monkeypatch.setattr(config, "MODEL", "claude-sonnet-5")
+    captured = {}
+    monkeypatch.setattr(agent_computer, "build_claude_cmd",
+                        lambda prompt, **kw: captured.update(prompt=prompt, **kw) or ["claude"])
+    task = {"id": "t1", "instruction": "Open the file.", "related_apps": ["os"]}
+    agent_computer.run(task, env=None, out=tmp_path, dry=True)
+    assert captured["prompt"] == "Open the file."          # bare instruction, no legacy prompt
+    assert captured["allowed_tools"] == ["mcp__osworld__computer"]
+    assert "--strict-mcp-config" in captured["extra"]
+
+
+def test_claude_preflight_refuses_an_unpinned_model(monkeypatch):
+    from benchmarks.osworld import config
+    from benchmarks.osworld.runners import agent_computer
+    monkeypatch.setattr(config, "MODEL", "")
+    with pytest.raises(SystemExit, match="OSW_MODEL is required"):
+        agent_computer.preflight()
+
+
+def test_provenance_records_the_official_observation_and_action_space():
+    from benchmarks.osworld.runners import common
+    prov = common._provenance({"id": "t1", "related_apps": []}, None, "2026-09-24T00:00:00Z")
+    assert prov["protocol"] == "official"
+    assert prov["observation"] == "screenshot"
+    assert prov["action_space"] == "computer_20251124"
+    assert prov["max_turns"] == common.official_max_turns()
+
 REMOVED_MODULES = [
     "benchmarks.osworld.runners.verify_replan",
     "benchmarks.osworld.runners.gpt_astra_openbook",
