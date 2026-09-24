@@ -167,10 +167,16 @@ def _install_signal_handlers():
     `ex.shutdown(wait=True, cancel_futures=True)` -- this function only sets the flag and kills
     the groups; it never touches the executor.
 
-    SIGTERM is converted into `SystemExit(128+signum)` rather than `os._exit`, so the
-    `finally` blocks in environment context managers (e.g. stopping/removing a KVM container)
-    still run as the process unwinds. SIGINT (Ctrl-C) kills the groups first and then raises
-    KeyboardInterrupt as usual, so existing Ctrl-C behavior is unchanged apart from the reap.
+    SIGTERM is converted into `SystemExit(128+signum)` rather than `os._exit`, so `_main`'s own
+    `except BaseException` around its as_completed loop can catch it and call
+    `ex.shutdown(wait=True, cancel_futures=True)`. The `finally` blocks in environment context
+    managers (e.g. stopping/removing a KVM container) do NOT run here on the main thread --
+    they run on the WORKER thread, as `procgroups.Interrupted` unwinds through `work()`'s
+    `with runner.environment(...) as env:` block; `wait=True` is what makes the main thread
+    block long enough for that teardown to actually finish before the process exits. SIGINT
+    (Ctrl-C) kills the groups first and then raises KeyboardInterrupt as usual, so existing
+    Ctrl-C behavior is unchanged apart from the reap (and the same executor-shutdown handling
+    in `_main`).
     """
     if threading.current_thread() is not threading.main_thread():
         return
@@ -272,6 +278,14 @@ def _main(benchmark, argv=None):
         port = ports.get() if runner.needs_browser else None
         try:
             with runner.environment(task, port=port) as env:
+                if procgroups.is_interrupted():
+                    # Provisioning (e.g. a KVM container) may itself have been slow enough for
+                    # the interrupt to land while it ran, uninterruptible in its own right --
+                    # catch that here, before the runner is ever called, so teardown starts at
+                    # once instead of waiting for the agent CLI to be spawned and then notice.
+                    raise procgroups.Interrupted(
+                        "harness interrupted after environment provisioning, "
+                        "before the agent call")
                 answer = runner.run(task, env=env, out=out, refs=refs)
             verdict = None
             if need_eval and runner.self_eval:

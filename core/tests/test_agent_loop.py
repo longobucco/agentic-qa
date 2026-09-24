@@ -80,6 +80,40 @@ def test_run_raw_registers_its_process_group_while_running_and_unregisters_after
     assert after == before, f"pgid left registered after normal exit: {after - before}"
 
 
+def test_run_raw_register_race_kills_the_child_and_raises_interrupted():
+    """task-10b fix round 2: if the harness is interrupted in the tiny window between
+    _run_raw's pre-spawn is_interrupted() check and procgroups.register(pgid), the signal
+    handler's kill_all() already ran and NEVER SAW this pgid (it wasn't registered yet) -- the
+    child would otherwise be left running, orphaned, forever. _run_raw must re-check right
+    after registering and killpg it itself if that race happened; the existing post-reap check
+    then still turns this into procgroups.Interrupted."""
+    real_register = procgroups.register
+
+    def racy_register(pgid):
+        # simulates the harness being interrupted in exactly this window: register, THEN the
+        # flag flips (as if the signal handler's mark_interrupted()+kill_all() ran right here).
+        real_register(pgid)
+        procgroups.mark_interrupted()
+
+    procgroups.register = racy_register
+    try:
+        t0 = time.monotonic()
+        raised = False
+        try:
+            _run_raw([sys.executable, "-c", "import time; time.sleep(60)"], timeout=10)
+        except procgroups.Interrupted:
+            raised = True
+        elapsed = time.monotonic() - t0
+        assert raised, "register-race did not raise procgroups.Interrupted"
+        assert elapsed < 5, (
+            f"_run_raw took {elapsed:.1f}s -- the racily-registered child was not actually "
+            f"killed, so communicate() waited instead of returning promptly"
+        )
+    finally:
+        procgroups.register = real_register
+        procgroups._reset_for_tests()
+
+
 def main():
     fns = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
     for fn in fns:

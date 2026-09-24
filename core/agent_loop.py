@@ -112,6 +112,16 @@ def _run_raw(cmd, *, timeout, env=None, cwd=None) -> str:
                         # os.getpgid(proc.pid) can raise ProcessLookupError for a child that
                         # already exited by the time we ask, which proc.pid never can.
     procgroups.register(pgid)
+    if procgroups.is_interrupted():
+        # Check->register race: the harness could have been interrupted (and kill_all() could
+        # have already run) in the window between the pre-spawn check above and this
+        # registration -- kill_all() never saw this pgid because it wasn't registered yet, so
+        # it's still alive and would otherwise be orphaned. Finish the job ourselves; the
+        # post-reap check below still turns this into procgroups.Interrupted either way.
+        try:
+            os.killpg(pgid, signal.SIGKILL)
+        except ProcessLookupError:
+            pass
     try:
         try:
             stdout, _ = proc.communicate(timeout=timeout)
