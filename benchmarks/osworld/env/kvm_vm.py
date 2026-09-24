@@ -11,6 +11,7 @@ Every consumer reaches the guest at KVM_ADDR + the mapped port: the controller (
 SetupController and the evaluator adapter (9222 for CDP, 8080 for VLC). No CdpForwarder here:
 unlike Daytona, the published CDP port is directly routable."""
 from contextlib import contextmanager
+import os
 import time
 
 import requests
@@ -22,6 +23,16 @@ from core.environment import Env
 _GUEST_PORTS = (5000, 9222, 8080, 8006)
 _READY_TIMEOUT_S = 300
 _SETUP_ATTEMPTS = 5   # desktop_env.py MAX_RETRIES
+
+
+def _qcow2_mount(target):
+    """Read-only bind of the qcow2, as upstream's volumes={path: {"mode": "ro"}} -- but as an
+    explicit Mount, which the daemon refuses when the host path is missing (the legacy volumes
+    bind silently creates it as an empty directory). abspath as upstream does: a relative path
+    would otherwise be taken for a named volume."""
+    from docker.types import Mount
+    return Mount(target=target, source=os.path.abspath(config.KVM_QCOW2), type="bind",
+                 read_only=True)
 
 
 def _docker_client():
@@ -66,7 +77,7 @@ def kvm_environment(task, *, port=None, client=None):
         config.KVM_IMAGE,
         environment={"DISK_SIZE": "32G", "RAM_SIZE": "4G", "CPU_CORES": "4"},
         cap_add=["NET_ADMIN"], devices=["/dev/kvm"],
-        volumes={config.KVM_QCOW2: {"bind": "/System.qcow2", "mode": "ro"}},
+        mounts=[_qcow2_mount("/System.qcow2")],
         ports={p: None for p in _GUEST_PORTS}, detach=True)
     try:
         ports = published_ports(container)
@@ -84,13 +95,36 @@ def kvm_environment(task, *, port=None, client=None):
 
 
 def preflight(client=None):
-    """Refuse a campaign whose host can't run the official VM."""
-    client = client or _docker_client()
-    client.ping()
-    client.images.get(config.KVM_IMAGE)
-    probe = client.containers.run("alpine", ["sh", "-c", "test -e /dev/kvm && test -s /q"],
-                                  volumes={config.KVM_QCOW2: {"bind": "/q", "mode": "ro"}},
-                                  devices=["/dev/kvm"], remove=True)
+    """Refuse a campaign whose host can't run the official VM, with one SystemExit naming the
+    specific problem. Cheap checks first (sha256 set, daemon reachable, image present), then two
+    throwaway probe containers on the image itself, so /dev/kvm and qcow2 failures stay apart."""
+    from docker.errors import APIError, ContainerError, DockerException, ImageNotFound
     if not config.KVM_QCOW2_SHA256:
         raise SystemExit("OSW_KVM_QCOW2_SHA256 not set (scripts/kvm_host_setup.sh prints it)")
-    return probe
+    try:
+        client = client or _docker_client()
+        client.ping()
+    except DockerException as e:
+        raise SystemExit(f"kvm preflight: docker daemon unreachable at "
+                         f"{config.KVM_DOCKER_HOST} ({e})")
+    try:
+        client.images.get(config.KVM_IMAGE)
+    except ImageNotFound:
+        raise SystemExit(f"kvm preflight: image {config.KVM_IMAGE} not found on the docker host "
+                         f"(run scripts/kvm_host_setup.sh, or docker pull {config.KVM_IMAGE})")
+
+    def probe(check, **kw):
+        return client.containers.run(config.KVM_IMAGE, entrypoint=["sh", "-c", check],
+                                     remove=True, **kw)
+
+    try:
+        probe("test -e /dev/kvm", devices=["/dev/kvm"])
+    except (APIError, ContainerError) as e:
+        raise SystemExit(f"kvm preflight: /dev/kvm missing or unusable on the docker host ({e})")
+    qcow2 = os.path.abspath(config.KVM_QCOW2)
+    try:
+        probe("test -f /q && test -s /q", mounts=[_qcow2_mount("/q")])
+    except ContainerError:
+        raise SystemExit(f"kvm preflight: qcow2 at {qcow2} is not a regular non-empty file")
+    except APIError as e:
+        raise SystemExit(f"kvm preflight: qcow2 missing on the docker host at {qcow2} ({e})")
