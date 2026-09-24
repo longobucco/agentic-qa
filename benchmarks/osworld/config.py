@@ -48,6 +48,30 @@ EFFORT = os.environ.get("OSW_EFFORT", "").strip()
 _mot = os.environ.get("OSW_MAX_OUTPUT_TOKENS", "").strip()
 MAX_OUTPUT_TOKENS = int(_mot) if _mot else None
 
+# Official-fidelity knobs (docs/superpowers/plans/2026-09-24-osworld-official-fidelity.md,
+# spec benchmarks/osworld/docs/fidelity-audit.md). Unset = today's harness, unchanged.
+PROTOCOL = os.environ.get("OSW_PROTOCOL", "").strip()
+if PROTOCOL not in ("", "official"):
+    raise SystemExit(f"OSW_PROTOCOL={PROTOCOL!r}: expected '' or 'official'")
+OFFICIAL = PROTOCOL == "official"
+BACKEND = os.environ.get("OSW_BACKEND", "").strip() or "daytona"
+if BACKEND not in ("daytona", "kvm"):
+    raise SystemExit(f"OSW_BACKEND={BACKEND!r}: expected 'daytona' or 'kvm'")
+# Upstream timings: lib_run_single.run_single_example (sleep 60 after reset, sleep 20 before
+# evaluate) and run_multienv_claude.py --sleep_after_execution 0.5.
+SLEEP_AFTER_EXECUTION = float(os.environ.get("OSW_SLEEP_AFTER_EXECUTION", "0.5"))
+POST_SETUP_WAIT_S = int(os.environ.get("OSW_POST_SETUP_WAIT_S", "60"))
+PRE_EVAL_WAIT_S = int(os.environ.get("OSW_PRE_EVAL_WAIT_S", "20"))
+# kvm backend: upstream's Docker provider (desktop_env/providers/docker/provider.py) on a
+# user-provided Linux host with /dev/kvm. DOCKER_HOST may be local or ssh://user@host;
+# KVM_ADDR is the address the harness uses to reach the container's published ports.
+KVM_DOCKER_HOST = os.environ.get("OSW_KVM_DOCKER_HOST", "unix:///var/run/docker.sock").strip()
+KVM_ADDR = os.environ.get("OSW_KVM_ADDR", "127.0.0.1").strip()
+KVM_QCOW2 = os.environ.get("OSW_KVM_QCOW2", "/opt/osworld/Ubuntu.qcow2").strip()
+KVM_QCOW2_SHA256 = os.environ.get("OSW_KVM_QCOW2_SHA256", "").strip()
+KVM_IMAGE = os.environ.get("OSW_KVM_IMAGE", "happysixd/osworld-docker").strip()
+KVM_CLIENT_PASSWORD = os.environ.get("OSW_KVM_CLIENT_PASSWORD", "password")
+
 # "agent_computer" (unpinned, mixed-model, historical) vs "agent_computer_sonnet5" (pinned).
 SYSTEM_NAME = f"agent_computer_{model_slug()}" if MODEL else "agent_computer"
 # An effort override is a different protocol: never pool it into the default-effort tree.
@@ -97,6 +121,10 @@ def astra_system_name():
     # environment directly: ZOOM_BATCH itself is defined further down this module.
     if os.environ.get("OSW_ZOOM_BATCH", "0") == "1":
         base = f"{base}_zoombatch"
+    if os.environ.get("OSW_PROTOCOL", "").strip() == "official":
+        base = f"{base}_official"
+    if (os.environ.get("OSW_BACKEND", "").strip() or "daytona") == "kvm":
+        base = f"{base}_kvm"
     return base
 
 
@@ -137,7 +165,7 @@ MAX_STEPS = int(os.environ.get("OSW_MAX_STEPS", "30"))
 # substitution in task configs -- the two used to disagree (Xvfb ran 1280x1024).
 SCREEN_WIDTH = int(os.environ.get("OSW_SCREEN_WIDTH", "1920"))
 SCREEN_HEIGHT = int(os.environ.get("OSW_SCREEN_HEIGHT", "1080"))
-TASK_TIMEOUT = int(os.environ.get("OSW_TASK_TIMEOUT", "3600"))
+TASK_TIMEOUT = int(os.environ.get("OSW_TASK_TIMEOUT") or ("14400" if OFFICIAL else "3600"))
 
 OBSERVATION = os.environ.get("OSW_OBSERVATION", "screenshot+a11y")
 ACTION_SPACE = os.environ.get("OSW_ACTION_SPACE", "pyautogui")
@@ -223,6 +251,10 @@ if GROUNDING:
     SYSTEM_NAME = f"{SYSTEM_NAME}_grounding"
 if ZOOM_BATCH:
     SYSTEM_NAME = f"{SYSTEM_NAME}_zoombatch"
+if OFFICIAL:
+    SYSTEM_NAME = f"{SYSTEM_NAME}_official"
+if BACKEND == "kvm":
+    SYSTEM_NAME = f"{SYSTEM_NAME}_kvm"
 
 # Verify-Replan (docs/verify-replan-minimal-integration-plan.md): a second, separate runner
 # (runners/verify_replan.py) -- not a flag on agent_computer, so the baseline path is provably
