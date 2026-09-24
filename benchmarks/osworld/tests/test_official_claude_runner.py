@@ -1,8 +1,11 @@
 import json
 from unittest.mock import patch
 
+import pytest
+
 from benchmarks.osworld import config
 from benchmarks.osworld.runners import agent_computer, common
+from core import procgroups
 from core.agent_loop import build_claude_cmd
 
 
@@ -158,6 +161,31 @@ def test_official_run_answer_from_transcript_and_timings(monkeypatch, tmp_path):
                       ("wait", config.PRE_EVAL_WAIT_S), "score"]
     result = json.loads((tmp_path / "result.json").read_text())
     assert result["answer"] == "FAIL"
+
+
+def test_run_claude_meta_interrupted_propagates_without_writing_eval(monkeypatch, tmp_path):
+    """task-10b fix round 1: core.procgroups.Interrupted (the harness itself was SIGTERM'd/
+    SIGINT'd mid-agent-call, not the agent's own timeout) must reach core.run's work() intact --
+    agent_computer.run()'s only wrapping around the main run_claude_meta call is a bare
+    try/finally (mcp_config cleanup), never an `except Exception`, so this is a regression guard
+    that no future refactor adds one that would swallow it into a scored/failed result."""
+    monkeypatch.setattr(config, "OFFICIAL", True)
+    monkeypatch.setattr(config, "PROTOCOL", "official")
+    monkeypatch.setattr(config, "INLOOP_VERIFY", False)
+
+    def fake_meta(cmd, **kw):
+        raise procgroups.Interrupted("harness interrupted")
+
+    monkeypatch.setattr(agent_computer, "_mcp_config", lambda url: str(tmp_path / "m.json"))
+    (tmp_path / "m.json").write_text("{}")
+    monkeypatch.setattr(agent_computer, "run_claude_meta", fake_meta)
+    monkeypatch.setattr(agent_computer, "protocol_wait", lambda s: None)
+
+    with pytest.raises(procgroups.Interrupted):
+        agent_computer.run({"id": "t", "instruction": "Do X", "evaluator": {}},
+                           env=_FakeEnv(), out=tmp_path)
+    assert not (tmp_path / "eval.json").exists()
+    assert not (tmp_path / "result.json").exists()
 
 
 def test_official_run_missing_transcript_falls_back_to_final_text(monkeypatch, tmp_path):

@@ -9,7 +9,7 @@ import pytest
 
 from benchmarks.osworld import config, official_protocol
 from benchmarks.osworld.runners import astra_common, common, gpt_astra, gpt_astra_openbook
-from core import codex_loop
+from core import codex_loop, procgroups
 from core.codex_loop import build_codex_cmd
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -200,6 +200,26 @@ def _official_run(monkeypatch, tmp_path, events, *, raw=None, errors=None, rollo
                            env=_FakeEnv(), out=tmp_path)
     read = lambda n: json.loads((tmp_path / n).read_text()) if (tmp_path / n).exists() else None
     return answer, order, scored, read("result.json"), read("eval.json"), read("infra_error.json")
+
+
+def test_run_codex_meta_interrupted_propagates_without_writing_eval(monkeypatch, tmp_path):
+    """task-10b fix round 1: same contract as the Claude arm (test_official_claude_runner.py) --
+    gpt_astra.run()'s only wrapping around run_codex_meta is a bare try/finally (workdir
+    cleanup), never an `except Exception`, so core.procgroups.Interrupted must reach core.run's
+    work() intact rather than get swallowed into a scored/failed result."""
+    _official(monkeypatch)
+
+    def fake_meta(cmd, **kw):
+        raise procgroups.Interrupted("harness interrupted")
+
+    monkeypatch.setattr(gpt_astra, "run_codex_meta", fake_meta)
+    monkeypatch.setattr(gpt_astra, "protocol_wait", lambda s: None)
+
+    with pytest.raises(procgroups.Interrupted):
+        gpt_astra.run({"id": "t", "instruction": "Do X", "evaluator": {}},
+                      env=_FakeEnv(), out=tmp_path)
+    assert not (tmp_path / "eval.json").exists()
+    assert not (tmp_path / "result.json").exists()
 
 
 def test_official_run_answer_from_events_and_timings(monkeypatch, tmp_path):
