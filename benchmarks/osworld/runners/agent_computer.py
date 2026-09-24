@@ -8,9 +8,12 @@ runners/verify_replan.py (docs/verify-replan-minimal-integration-plan.md). Re-im
 name so every existing external reference to e.g. `agent_computer._mcp_config` keeps resolving
 -- see benchmarks/osworld/tests/test_runner.py's characterization tests for the frozen contract.
 """
+import contextlib
 import json
 import os
 import re
+import shutil
+import tempfile
 
 from datetime import datetime, timezone
 
@@ -22,7 +25,8 @@ from benchmarks.osworld.runners.common import (
     _capture_eval_state, _clean_finish, _environment_error_rec, _evaluate_with_retry,
     _evaluator_provenance, _mcp_config, _model_mismatch, _POST_RUN_TIMEOUT_S, _provenance,
     _rate_limit_infra_rec, _rate_limit_result_rec, _save_conversation_transcript, _score,
-    _served_by, _a11y_health, claude_env, claude_transcript_actions, claude_transcript_tool_names,
+    _served_by, _a11y_health, claude_env, claude_session_file, claude_transcript_actions,
+    claude_transcript_context_leaks, claude_transcript_offered_tools, claude_transcript_tool_names,
     protocol_wait,
 )
 from core.agent_loop import _run_raw, build_claude_cmd, extract_answer, preview, run_claude_meta
@@ -49,20 +53,51 @@ CLAUDE_BUILTIN_TOOLS = [
     "NotebookEdit", "PushNotification", "Read", "RemoteTrigger", "ReportFindings",
     "ScheduleWakeup", "SendMessage", "Skill", "TaskStop", "ToolSearch", "WebFetch", "WebSearch",
     "Write",
+    # Not in the init event's `tools`, yet offered to the model: seen in the session's
+    # system-prompt snapshot (CLI 2.1.280, 2026-09-24, task-6-report.md fix round 1).
+    "Glob", "Grep", "ListMcpResourcesTool", "ReadMcpResourceTool", "ReadMcpResourceDirTool",
 ]
 OFFICIAL_TOOL = "mcp__osworld__computer"
+# Official-run isolation from host context (hooks, plugins, user/project settings), verified
+# live on CLI 2.1.280 (task-6-report.md, fix round 1): no setting sources means no user
+# settings, so no plugins or their SessionStart hooks; disableAllHooks drops any hook left.
+# Together with the empty cwd (_isolated_workdir) this also removes project memory/CLAUDE.md,
+# git status and the repo path. `--bare` would go further but requires API-key auth.
+CLAUDE_ISOLATION_FLAGS = ["--setting-sources", "", "--settings",
+                          json.dumps({"disableAllHooks": True})]
+# The one kind no supported CLI mechanism removes under OAuth (subscription) auth: the account
+# e-mail, injected from the OAuth account as session_context.userEmail. Recorded per run in
+# agent_context_leaks; the preflight tolerates only this.
+OFFICIAL_TOLERATED_LEAKS = ("user_email",)
 
 
-def official_tool_preflight(*, stream=None):
-    """Guard against CLAUDE_BUILTIN_TOOLS drifting from the CLI actually installed: one tiny
-    session, and refuse the campaign if its `init` event offers a non-MCP tool the deny list
-    doesn't name (it would stay available to the agent). The init event is searched for, not
-    assumed first -- SessionStart hooks emit their own events before it. `stream` (the CLI's
-    stream-json stdout) is for tests; None runs the real CLI."""
-    if stream is None:
-        cmd = ["claude", "-p", "reply ok", "--output-format", "stream-json", "--verbose",
-               "--max-turns", "1"] + (["--model", config.MODEL] if config.MODEL else [])
-        stream = _run_raw(cmd, timeout=300)
+@contextlib.contextmanager
+def _isolated_workdir():
+    """A fresh, empty cwd for the official CLI session (removed afterwards): no repo CLAUDE.md,
+    no project auto-memory keyed by the repo path, no git status, no repo path in the
+    environment block. Verified live on CLI 2.1.280 (task-6-report.md, fix round 1)."""
+    d = tempfile.mkdtemp(prefix="osw_claude_")
+    try:
+        yield d
+    finally:
+        shutil.rmtree(d, ignore_errors=True)
+
+
+def official_tool_preflight():
+    """Probe the installed CLI once, isolated exactly like an official run (same deny list,
+    isolation flags, system prompt and empty cwd; no MCP server), and refuse the campaign when:
+    - its `init` event offers a non-MCP tool CLAUDE_BUILTIN_TOOLS doesn't name (it would stay
+      available to the agent). The init event is searched for, not assumed first -- hooks can
+      emit events before it;
+    - its session transcript is missing, shows host context reaching the model beyond
+      OFFICIAL_TOLERATED_LEAKS (see common.claude_transcript_context_leaks), or shows the
+      model offered any non-MCP tool (the init event does not list every such tool)."""
+    kw = _official_cmd_kwargs({"instruction": "reply ok"})
+    cmd = (["claude", "-p", kw["prompt"], "--output-format", "stream-json", "--verbose",
+            "--max-turns", "1", *kw["extra"], "--system-prompt", kw["system_prompt"]]
+           + (["--model", config.MODEL] if config.MODEL else []))
+    with _isolated_workdir() as workdir:
+        stream = _run_raw(cmd, timeout=300, cwd=workdir)
     init = None
     for line in (stream or "").splitlines():
         try:
@@ -81,6 +116,25 @@ def official_tool_preflight(*, stream=None):
         raise SystemExit(f"official protocol: the installed claude CLI offers built-in tools "
                          f"not in CLAUDE_BUILTIN_TOOLS (they would not be denied): "
                          f"{', '.join(unknown)} -- add them to agent_computer.CLAUDE_BUILTIN_TOOLS")
+    session = claude_session_file(init.get("session_id"))
+    if session is None:
+        raise SystemExit("official protocol: no session transcript for the isolation probe "
+                         f"(session {init.get('session_id')!r}); cannot verify no host context "
+                         "reaches the agent")
+    offered = claude_transcript_offered_tools(session)
+    if offered is None:
+        raise SystemExit(f"official protocol: the isolation probe recorded no offered-tool "
+                         f"snapshot; cannot verify the deny list (probe transcript {session})")
+    still = [t for t in offered if not t.startswith("mcp__")]
+    if still:
+        raise SystemExit(f"official protocol: built-in tools still offered to the model despite "
+                         f"--disallowedTools: {', '.join(still)} -- add them to "
+                         f"agent_computer.CLAUDE_BUILTIN_TOOLS (probe transcript {session})")
+    leaks = [k for k in claude_transcript_context_leaks(session)
+             if k not in OFFICIAL_TOLERATED_LEAKS]
+    if leaks:
+        raise SystemExit(f"official protocol: host context still reaches the agent despite the "
+                         f"isolation flags: {', '.join(leaks)} (probe transcript {session})")
     return None
 
 
@@ -199,15 +253,27 @@ def _official_clean_finish(meta):
 
 
 def _official_audit(out, transcript):
-    """Tool calls other than `computer` seen in this run's transcript (None if it wasn't
-    saved, so an unverifiable run isn't recorded as clean)."""
+    """Per-run audit from this run's transcript: tool calls other than `computer`, host
+    context kinds that reached the agent, and the tools the model was offered. All None if it
+    wasn't saved, so an unverifiable run isn't recorded as clean."""
+    path = out / "conversation.jsonl"
+    unknown = {"agent_non_computer_tool_calls": None, "agent_context_leaks": None,
+               "agent_offered_tools": None}
     if not transcript.get("transcript_saved"):
-        return None
+        return unknown
     try:
-        names = claude_transcript_tool_names(out / "conversation.jsonl")
+        return {"agent_non_computer_tool_calls":
+                    [n for n in claude_transcript_tool_names(path) if n != OFFICIAL_TOOL],
+                "agent_context_leaks": claude_transcript_context_leaks(path),
+                "agent_offered_tools": claude_transcript_offered_tools(path)}
     except OSError:
-        return None
-    return [n for n in names if n != OFFICIAL_TOOL]
+        return unknown
+
+
+def _official_system_prompt():
+    return official_protocol.system_prompt(
+        max_steps=config.MAX_STEPS,
+        client_password=config.KVM_CLIENT_PASSWORD if config.BACKEND == "kvm" else "")
 
 
 def _official_cmd_kwargs(task):
@@ -217,12 +283,11 @@ def _official_cmd_kwargs(task):
     registers no run_python here -- so --disallowedTools/--strict-mcp-config appear once."""
     return {
         "prompt": task["instruction"],
-        "system_prompt": official_protocol.system_prompt(
-            max_steps=config.MAX_STEPS,
-            client_password=config.KVM_CLIENT_PASSWORD if config.BACKEND == "kvm" else ""),
+        "system_prompt": _official_system_prompt(),
         "allowed_tools": [OFFICIAL_TOOL],
         "max_turns": _official_max_turns(),
-        "extra": ["--disallowedTools", *CLAUDE_BUILTIN_TOOLS, "--strict-mcp-config"],
+        "extra": ["--disallowedTools", *CLAUDE_BUILTIN_TOOLS, "--strict-mcp-config",
+                  *CLAUDE_ISOLATION_FLAGS],
     }
 
 
@@ -418,7 +483,12 @@ def run(task, *, env, out, refs=None, dry=False):
 
     inloop_telemetry = {}
     try:
-        meta = run_claude_meta(cmd, timeout=config.TASK_TIMEOUT, **_env_kwargs())
+        # official: an empty temp cwd isolates the session from repo/project context; the
+        # legacy call is unchanged (no cwd kwarg). In-loop verify is refused under the
+        # protocol, so no --resume below needs this dir after it is removed.
+        with (_isolated_workdir() if config.OFFICIAL else contextlib.nullcontext()) as workdir:
+            meta = run_claude_meta(cmd, timeout=config.TASK_TIMEOUT, **_env_kwargs(),
+                                   **({"cwd": workdir} if workdir else {}))
         # Kept alive past this first call, on purpose: idea #15's follow-up turn (below) needs
         # the SAME --mcp-config to --resume this session with the OSWorld tools still available.
         # Deleting it right after the first call (as this used to) would make any retry attempt
@@ -468,7 +538,7 @@ def run(task, *, env, out, refs=None, dry=False):
     if config.OFFICIAL:
         answer = _official_answer(out, text, transcript)
         clean_finish = _official_clean_finish(meta)
-        official_telemetry["agent_non_computer_tool_calls"] = _official_audit(out, transcript)
+        official_telemetry = _official_audit(out, transcript)
 
     protocol_wait(config.PRE_EVAL_WAIT_S)   # upstream: sleep 20 before evaluate
     eval_state = _bounded("eval-state capture", _capture_eval_state, ctrl, task, out) if ctrl else None

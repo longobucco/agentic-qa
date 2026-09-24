@@ -61,11 +61,13 @@ def build_claude_cmd(prompt, *, model=None, max_turns=None, add_dir=None,
     return cmd
 
 
-def _run_raw(cmd, *, timeout, env=None) -> str:
+def _run_raw(cmd, *, timeout, env=None, cwd=None) -> str:
     """`env` (optional) overrides the child environment — used by the containerized runner to
     hand the orchestrator a PATH where bare `agent-browser` is shadowed, so it can only drive
     the browser via `docker exec` (no host browser). None => inherit the parent environment.
-    On timeout, returns whatever stdout was captured rather than raising.
+    On timeout, returns whatever stdout was captured rather than raising. `cwd` (optional) is
+    the child's working directory; None => inherit (the OSWorld official protocol starts the
+    CLI in an empty temp dir so no repo/project context is attached to the session).
 
     Runs in its own process group (`start_new_session`) and kills the WHOLE group on timeout,
     not just the direct child. Observed live: `claude -p` with an MCP server (e.g. OSWorld's
@@ -90,7 +92,8 @@ def _run_raw(cmd, *, timeout, env=None) -> str:
     imperative attached) but real contamination; DEVNULL severs it at the source so it can't
     recur regardless of what shell pattern a future driver uses."""
     proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True,
-                             stdin=subprocess.DEVNULL, env=env, start_new_session=True)
+                             stdin=subprocess.DEVNULL, env=env, cwd=cwd,
+                             start_new_session=True)
     try:
         stdout, _ = proc.communicate(timeout=timeout)
         return stdout
@@ -113,13 +116,13 @@ def run_claude(cmd, *, timeout, env=None) -> str:
         return raw
 
 
-def run_claude_meta(cmd, *, timeout, env=None) -> dict:
+def run_claude_meta(cmd, *, timeout, env=None, cwd=None) -> dict:
     """Like `run_claude`, but returns the full JSON envelope instead of just the result text —
     use when a caller needs `num_turns`/`stop_reason`/`is_error` to tell a clean finish (agent
     printed its answer and stopped on its own) from a truncated one (hit --max-turns or errored)
     that happened to score SUCCESS anyway because the desktop state was already correct. `{}` if
     the output isn't the expected JSON envelope."""
-    raw = _run_raw(cmd, timeout=timeout, env=env)
+    raw = _run_raw(cmd, timeout=timeout, env=env, cwd=cwd)
     try:
         return json.loads(raw)
     except Exception:

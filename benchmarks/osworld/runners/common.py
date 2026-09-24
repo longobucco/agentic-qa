@@ -25,6 +25,9 @@ import requests
 from benchmarks.osworld import config, evaluate, grounding, tasks
 from benchmarks.osworld.env import osworld_eval
 
+# The checkout this harness runs from (benchmarks/osworld/runners/ -> repo root).
+CHECKOUT_ROOT = Path(__file__).resolve().parents[3]
+
 OSWORLD_TOOLS = [
     "mcp__osworld__screenshot", "mcp__osworld__a11y_tree",
     "mcp__osworld__click", "mcp__osworld__double_click", "mcp__osworld__right_click",
@@ -53,6 +56,10 @@ def _mcp_config(controller_url):
         "args": ["-m", "benchmarks.osworld.mcp.server"],
         "env": {"OSW_CONTROLLER_URL": controller_url or "", **mcp_child_env()},
     }
+    if config.OFFICIAL:
+        # The official protocol starts the CLI (and so this child) in an empty temp dir, not
+        # the repo: keep the benchmark package importable, as core/codex_loop.py does for Codex.
+        spec["env"]["PYTHONPATH"] = str(CHECKOUT_ROOT)
     f = tempfile.NamedTemporaryFile("w", suffix=".json", delete=False)
     json.dump({"mcpServers": {"osworld": spec}}, f)
     f.close()
@@ -236,6 +243,79 @@ def claude_transcript_actions(path):
         elif block.get("type") == "tool_use" and block.get("name") == "mcp__osworld__computer":
             calls.append(block.get("input") or {})
     return texts, calls
+
+
+def _host_path_markers():
+    """Paths whose appearance in a session means host/repo context reached the agent: this
+    checkout, the main repo when it is a git worktree, and the harness's own cwd (where the CLI
+    would otherwise have started). Home and / are never markers (too broad)."""
+    marks = {str(CHECKOUT_ROOT), os.getcwd()}
+    if CHECKOUT_ROOT.parent.name == ".worktrees":
+        marks.add(str(CHECKOUT_ROOT.parent.parent))
+    return sorted(m for m in marks if m not in ("/", str(Path.home())))
+
+
+def claude_transcript_context_leaks(path):
+    """Host context kinds the CLI attached to a Claude Code session (sorted, [] when clean):
+    hook_context (SessionStart/plugin hook output), memory (auto-memory or CLAUDE.md files),
+    user_email and git_status (session_context), repo_path (the checkout or harness cwd, e.g.
+    in the environment block). Upstream's agent sees only its system prompt and the task."""
+    raw = Path(path).read_text(errors="replace")
+    leaks = set()
+    for line in raw.splitlines():
+        try:
+            ev = json.loads(line)
+        except ValueError:
+            continue
+        if not isinstance(ev, dict) or ev.get("type") != "attachment":
+            continue
+        att = ev.get("attachment") or {}
+        kind = att.get("type") or ""
+        # Claude Code's DEFAULT system prompt explains the MEMORY.md convention; only a
+        # memory file actually attached counts, not the system-prompt snapshot mentioning it.
+        if kind != "prompt_snapshot" and "MEMORY.md" in line:
+            leaks.add("memory")
+        if kind.startswith("hook_"):
+            leaks.add("hook_context")
+        elif kind == "instructions":   # CLAUDE.md / auto-memory files
+            leaks.add("memory")
+        elif kind == "session_context":
+            ctx = att.get("context") or {}
+            if ctx.get("userEmail"):
+                leaks.add("user_email")
+            if ctx.get("gitStatus"):
+                leaks.add("git_status")
+        elif kind == "environment" and (att.get("snapshot") or {}).get("isGitRepo"):
+            leaks.add("git_status")
+    if any(m in raw for m in _host_path_markers()):
+        leaks.add("repo_path")
+    return sorted(leaks)
+
+
+def claude_transcript_offered_tools(path):
+    """Names of the tools the model was actually offered, from the session's last
+    system-prompt snapshot that lists tools (None if there is none). Authoritative where the
+    stream-json init event is not: on CLI 2.1.280 init omitted Glob/Grep/MCP-resource tools
+    that the model was nonetheless given."""
+    offered = None
+    for line in Path(path).read_text(errors="replace").splitlines():
+        try:
+            ev = json.loads(line)
+        except ValueError:
+            continue
+        att = ev.get("attachment") if isinstance(ev, dict) else None
+        if isinstance(att, dict) and att.get("type") == "prompt_snapshot" and "tools" in att:
+            offered = [t.get("name") for t in att.get("tools") or [] if isinstance(t, dict)]
+    return offered
+
+
+def claude_session_file(session_id):
+    """Claude Code's own transcript for a session (same lookup as
+    _save_conversation_transcript), or None."""
+    if not session_id:
+        return None
+    matches = list(Path.home().glob(f".claude/projects/*/{session_id}.jsonl"))
+    return matches[0] if matches else None
 
 
 def claude_transcript_tool_names(path):
