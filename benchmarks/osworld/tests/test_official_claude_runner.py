@@ -94,7 +94,7 @@ def test_official_argv_ignores_legacy_restriction_arms(monkeypatch, tmp_path):
     assert extra.count("--disallowedTools") == 1
     assert extra.count("--strict-mcp-config") == 1
     assert extra == ["--disallowedTools", *agent_computer.CLAUDE_BUILTIN_TOOLS,
-                     "--strict-mcp-config"]
+                     "--strict-mcp-config", *agent_computer.CLAUDE_ISOLATION_FLAGS]
 
 
 def test_official_password_only_on_kvm(monkeypatch, tmp_path):
@@ -111,7 +111,7 @@ def test_builtin_tools_cover_every_non_mcp_tool():
         assert t in agent_computer.CLAUDE_BUILTIN_TOOLS
 
 
-def _official_run(monkeypatch, tmp_path, transcript_lines):
+def _official_run(monkeypatch, tmp_path, transcript_lines, spy=None):
     """Non-dry official run with the CLI, transcript copy and scoring faked out."""
     monkeypatch.setattr(config, "OFFICIAL", True)
     monkeypatch.setattr(config, "PROTOCOL", "official")
@@ -121,6 +121,8 @@ def _official_run(monkeypatch, tmp_path, transcript_lines):
 
     def fake_meta(cmd, **kw):
         events.append("claude")
+        if spy:
+            spy(cmd, **kw)
         return {"result": "all good", "session_id": "s1", "subtype": "success",
                 "is_error": False}
 
@@ -174,40 +176,31 @@ def test_official_run_missing_transcript_falls_back_to_final_text(monkeypatch, t
 import pytest  # noqa: E402
 
 
-def _stream(tools):
-    return "\n".join(json.dumps(e) for e in [
-        {"type": "system", "subtype": "hook_started", "hook_id": "h"},
-        {"type": "system", "subtype": "init", "tools": tools},
-        {"type": "result", "subtype": "success"},
-    ]) + "\n"
-
-
-def test_tool_preflight_passes_when_every_builtin_is_known():
+def test_tool_preflight_passes_when_every_builtin_is_known(monkeypatch, tmp_path):
     tools = [*agent_computer.CLAUDE_BUILTIN_TOOLS, "mcp__playwright__browser_click"]
-    assert agent_computer.official_tool_preflight(stream=_stream(tools)) is None
+    _probe(monkeypatch, tmp_path, _clean_lines("/private/tmp/x") + [_snapshot([])], tools=tools)
+    assert agent_computer.official_tool_preflight() is None
 
 
-def test_tool_preflight_finds_init_after_hook_events_and_names_unknown_tools():
-    tools = [*agent_computer.CLAUDE_BUILTIN_TOOLS, "Glob", "mcp__x__y", "NewTool"]
+def test_tool_preflight_finds_init_after_hook_events_and_names_unknown_tools(monkeypatch, tmp_path):
+    tools = [*agent_computer.CLAUDE_BUILTIN_TOOLS, "OtherTool", "mcp__x__y", "NewTool"]
+    _probe(monkeypatch, tmp_path, _clean_lines("/private/tmp/x"), tools=tools)
     with pytest.raises(SystemExit) as e:
-        agent_computer.official_tool_preflight(stream=_stream(tools))
-    assert "Glob" in str(e.value) and "NewTool" in str(e.value)
+        agent_computer.official_tool_preflight()
+    assert "OtherTool" in str(e.value) and "NewTool" in str(e.value)
     assert "mcp__x__y" not in str(e.value)
 
 
-def test_tool_preflight_refuses_without_an_init_event():
+def test_tool_preflight_refuses_without_an_init_event(monkeypatch):
+    monkeypatch.setattr(agent_computer, "_run_raw",
+                        lambda cmd, **kw: '{"type": "system", "subtype": "x"}\nnoise')
     with pytest.raises(SystemExit):
-        agent_computer.official_tool_preflight(stream='{"type": "system", "subtype": "x"}\nnoise')
+        agent_computer.official_tool_preflight()
 
 
-def test_tool_preflight_runs_the_cli_with_the_configured_model(monkeypatch):
-    seen = {}
-
-    def fake_raw(cmd, *, timeout, env=None):
-        seen["cmd"] = cmd
-        return _stream(agent_computer.CLAUDE_BUILTIN_TOOLS)
+def test_tool_preflight_runs_the_cli_with_the_configured_model(monkeypatch, tmp_path):
     monkeypatch.setattr(config, "MODEL", "claude-sonnet-5")
-    monkeypatch.setattr(agent_computer, "_run_raw", fake_raw)
+    seen = _probe(monkeypatch, tmp_path, _clean_lines("/private/tmp/x") + [_snapshot([])])
     agent_computer.official_tool_preflight()
     cmd = seen["cmd"]
     assert cmd[:3] == ["claude", "-p", "reply ok"]
@@ -303,3 +296,196 @@ def test_legacy_provenance_turn_limit_unchanged(monkeypatch):
     monkeypatch.setattr(config, "MAX_TURNS", 150)
     prov = agent_computer._run_provenance({"id": "t"}, None, "now")
     assert prov["max_turns"] == 150
+
+
+# --- fix round 1: host-context isolation and the leak guard ---
+
+def _leaky_lines(repo):
+    return [
+        {"type": "attachment", "attachment": {"type": "hook_additional_context",
+                                              "content": ["You have superpowers."]}},
+        {"type": "attachment", "attachment": {"type": "instructions", "files": [
+            {"path": "/h/.claude/projects/x/memory/MEMORY.md", "type": "AutoMem"}]}},
+        {"type": "attachment", "attachment": {"type": "session_context", "context": {
+            "userEmail": "The user's email address is a@b.c.", "gitStatus": "M x"}}},
+        {"type": "attachment", "attachment": {"type": "environment", "snapshot": {
+            "workingDirectory": repo, "isGitRepo": True}}},
+    ]
+
+
+def _clean_lines(tmpdir):
+    return [
+        {"type": "attachment", "attachment": {"type": "environment", "snapshot": {
+            "workingDirectory": tmpdir, "isGitRepo": False}}},
+        {"type": "attachment", "attachment": {"type": "date", "date": "2026-09-24"}},
+        {"type": "assistant", "message": {"content": [{"type": "text", "text": "ok"}]}},
+    ]
+
+
+def _write(p, lines):
+    p.write_text("\n".join(json.dumps(l) for l in lines))
+    return p
+
+
+def test_leak_scanner_flags_every_host_context_kind(tmp_path):
+    repo = str(common.CHECKOUT_ROOT)
+    leaks = common.claude_transcript_context_leaks(_write(tmp_path / "c.jsonl", _leaky_lines(repo)))
+    assert leaks == ["git_status", "hook_context", "memory", "repo_path", "user_email"]
+
+
+def test_leak_scanner_clean_transcript(tmp_path):
+    # the default system prompt's MEMORY.md instructions in a snapshot are not a memory leak
+    lines = _clean_lines("/private/tmp/osw_claude_x") + [
+        {"type": "attachment", "attachment": {"type": "prompt_snapshot",
+                                              "systemPrompt": ["add a pointer in `MEMORY.md`"]}}]
+    p = _write(tmp_path / "c.jsonl", lines)
+    assert common.claude_transcript_context_leaks(p) == []
+
+
+def test_official_kwargs_carry_isolation_settings(monkeypatch, tmp_path):
+    extra = _official_argv(monkeypatch, tmp_path)["extra"]
+    i = extra.index("--setting-sources")
+    assert extra[i + 1] == ""
+    settings = json.loads(extra[extra.index("--settings") + 1])
+    assert settings == {"disableAllHooks": True}
+    assert extra.count("--disallowedTools") == 1
+
+
+def test_official_mcp_config_carries_pythonpath(monkeypatch):
+    monkeypatch.setattr(config, "OFFICIAL", True)
+    path = common._mcp_config("http://x")
+    try:
+        spec = json.loads(open(path).read())["mcpServers"]["osworld"]
+    finally:
+        import os
+        os.unlink(path)
+    assert spec["env"]["PYTHONPATH"] == str(common.CHECKOUT_ROOT)
+
+
+def test_legacy_mcp_config_has_no_pythonpath(monkeypatch):
+    monkeypatch.setattr(config, "OFFICIAL", False)
+    path = common._mcp_config("http://x")
+    try:
+        spec = json.loads(open(path).read())["mcpServers"]["osworld"]
+    finally:
+        import os
+        os.unlink(path)
+    assert "PYTHONPATH" not in spec["env"]
+
+
+def test_official_run_uses_a_fresh_empty_cwd_and_records_leaks(monkeypatch, tmp_path):
+    import os
+    seen = {}
+
+    def spy(cmd, **kw):
+        seen["cwd"] = kw.get("cwd")
+        seen["empty"] = bool(kw.get("cwd")) and os.path.isdir(kw["cwd"]) and not os.listdir(kw["cwd"])
+    _official_run(monkeypatch, tmp_path, _leaky_lines(str(common.CHECKOUT_ROOT)), spy=spy)
+    assert seen["empty"] is True
+    assert not str(seen["cwd"]).startswith(str(common.CHECKOUT_ROOT))
+    assert not os.path.exists(seen["cwd"])   # removed after the run
+    result = json.loads((tmp_path / "result.json").read_text())
+    assert "hook_context" in result["agent_context_leaks"]
+
+
+def test_official_run_leaks_none_without_transcript(monkeypatch, tmp_path):
+    _official_run(monkeypatch, tmp_path, None)
+    result = json.loads((tmp_path / "result.json").read_text())
+    assert result["agent_context_leaks"] is None
+
+
+def _probe(monkeypatch, tmp_path, transcript_lines, tools=None):
+    """official_tool_preflight against a fake CLI: returns the argv/cwd it ran with."""
+    seen = {}
+    home = tmp_path / "home"
+    proj = home / ".claude" / "projects" / "p"
+    proj.mkdir(parents=True)
+    monkeypatch.setattr(common.Path, "home", classmethod(lambda cls: home))
+
+    def fake_raw(cmd, *, timeout, env=None, cwd=None):
+        seen.update(cmd=cmd, cwd=cwd)
+        if transcript_lines is not None:
+            _write(proj / "sid-1.jsonl", transcript_lines)
+        stream = [{"type": "system", "subtype": "hook_started"},
+                  {"type": "system", "subtype": "init", "session_id": "sid-1",
+                   "tools": tools if tools is not None else agent_computer.CLAUDE_BUILTIN_TOOLS}]
+        return "\n".join(json.dumps(e) for e in stream)
+    monkeypatch.setattr(agent_computer, "_run_raw", fake_raw)
+    return seen
+
+
+def test_tool_preflight_probe_uses_the_run_isolation(monkeypatch, tmp_path):
+    seen = _probe(monkeypatch, tmp_path, _clean_lines("/private/tmp/x") + [_snapshot([])])
+    agent_computer.official_tool_preflight()
+    cmd = seen["cmd"]
+    assert cmd[cmd.index("--setting-sources") + 1] == ""
+    assert "--settings" in cmd and "--strict-mcp-config" in cmd
+    assert cmd[cmd.index("--system-prompt") + 1].startswith("<SYSTEM_CAPABILITY>")
+    assert seen["cwd"] and not str(seen["cwd"]).startswith(str(common.CHECKOUT_ROOT))
+
+
+def test_tool_preflight_fails_closed_on_context_leaks(monkeypatch, tmp_path):
+    _probe(monkeypatch, tmp_path, _leaky_lines(str(common.CHECKOUT_ROOT)) + [_snapshot([])])
+    with pytest.raises(SystemExit) as e:
+        agent_computer.official_tool_preflight()
+    for kind in ("hook_context", "memory", "git_status", "repo_path"):
+        assert kind in str(e.value)
+
+
+def test_tool_preflight_tolerates_only_the_oauth_account_email(monkeypatch, tmp_path):
+    lines = _clean_lines("/private/tmp/x") + [
+        {"type": "attachment", "attachment": {"type": "session_context", "context": {
+            "userEmail": "The user's email address is a@b.c."}}}, _snapshot([])]
+    _probe(monkeypatch, tmp_path, lines)
+    agent_computer.official_tool_preflight()   # does not raise
+
+
+def test_tool_preflight_fails_closed_without_the_probe_transcript(monkeypatch, tmp_path):
+    _probe(monkeypatch, tmp_path, None)
+    with pytest.raises(SystemExit, match="transcript"):
+        agent_computer.official_tool_preflight()
+
+
+def _snapshot(tools):
+    return {"type": "attachment", "attachment": {"type": "prompt_snapshot", "systemPrompt": ["x"],
+                                                 "tools": [{"name": t} for t in tools]}}
+
+
+def test_offered_tools_come_from_the_last_prompt_snapshot(tmp_path):
+    p = _write(tmp_path / "c.jsonl", [
+        {"type": "attachment", "attachment": {"type": "prompt_snapshot", "systemPrompt": ["x"]}},
+        _snapshot(["Glob", "mcp__osworld__computer"])])
+    assert common.claude_transcript_offered_tools(p) == ["Glob", "mcp__osworld__computer"]
+    assert common.claude_transcript_offered_tools(_write(tmp_path / "d.jsonl", [])) is None
+
+
+def test_hidden_builtins_seen_only_in_the_snapshot_are_denied():
+    for t in ("Glob", "Grep", "ListMcpResourcesTool", "ReadMcpResourceTool",
+              "ReadMcpResourceDirTool"):
+        assert t in agent_computer.CLAUDE_BUILTIN_TOOLS
+
+
+def test_tool_preflight_probe_runs_with_the_full_official_deny_list(monkeypatch, tmp_path):
+    seen = _probe(monkeypatch, tmp_path, _clean_lines("/private/tmp/x") + [_snapshot([])])
+    agent_computer.official_tool_preflight()
+    cmd = seen["cmd"]
+    denied = cmd[cmd.index("--disallowedTools") + 1:cmd.index("--strict-mcp-config")]
+    assert denied == agent_computer.CLAUDE_BUILTIN_TOOLS
+
+
+def test_tool_preflight_fails_closed_when_a_builtin_is_still_offered(monkeypatch, tmp_path):
+    _probe(monkeypatch, tmp_path, _clean_lines("/private/tmp/x") + [_snapshot(["LSP"])])
+    with pytest.raises(SystemExit, match="LSP"):
+        agent_computer.official_tool_preflight()
+
+
+def test_tool_preflight_fails_closed_without_a_tool_snapshot(monkeypatch, tmp_path):
+    _probe(monkeypatch, tmp_path, _clean_lines("/private/tmp/x"))
+    with pytest.raises(SystemExit, match="offered"):
+        agent_computer.official_tool_preflight()
+
+
+def test_official_run_records_offered_tools(monkeypatch, tmp_path):
+    _official_run(monkeypatch, tmp_path, [_snapshot(["mcp__osworld__computer"])])
+    result = json.loads((tmp_path / "result.json").read_text())
+    assert result["agent_offered_tools"] == ["mcp__osworld__computer"]
