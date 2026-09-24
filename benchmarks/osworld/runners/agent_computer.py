@@ -540,10 +540,39 @@ def run(task, *, env, out, refs=None, dry=False):
         clean_finish = _official_clean_finish(meta)
         official_telemetry = _official_audit(out, transcript)
 
-    protocol_wait(config.PRE_EVAL_WAIT_S)   # upstream: sleep 20 before evaluate
-    eval_state = _bounded("eval-state capture", _capture_eval_state, ctrl, task, out) if ctrl else None
     telemetry = _agent_telemetry(meta)
     telemetry["agent_clean_finish"] = clean_finish
+
+    non_computer = official_telemetry.get("agent_non_computer_tool_calls")
+    if config.OFFICIAL and non_computer:
+        # Ruling (task 7b), parity with the Codex arm (runners/gpt_astra.py run()): a
+        # tool-surface violation is a TERMINAL failure, not something to skip or retry --
+        # either would selectively resample toward runs that happen not to violate, biasing
+        # the score. `None` (audit unverifiable, e.g. no transcript) is left untouched here,
+        # same as before this task.
+        results_io.write_result(out, {
+            "id": task["id"],
+            "bucket": tasks.bucket_of(task),
+            "instruction": task["instruction"],
+            "answer": answer,
+            "provenance": _run_provenance(task, ctrl, started_at),
+            **transcript,
+            **_model_mismatch(meta),
+            **telemetry,
+            **inloop_telemetry,
+            **official_telemetry,
+            **_grounding_telemetry(),
+            **_a11y_health(ctrl),
+        })
+        results_io.write_eval(out, {
+            "id": task["id"], "verdict": "FAILURE", "reward": 0.0, "source": "harness",
+            "reason": f"tool surface violation: {', '.join(non_computer)}",
+            "tool_surface_violation": non_computer,
+        })
+        return answer
+
+    protocol_wait(config.PRE_EVAL_WAIT_S)   # upstream: sleep 20 before evaluate
+    eval_state = _bounded("eval-state capture", _capture_eval_state, ctrl, task, out) if ctrl else None
     results_io.write_result(out, {
         "id": task["id"],
         "bucket": tasks.bucket_of(task),
