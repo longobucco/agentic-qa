@@ -130,61 +130,6 @@ def _infra_last_records(system):
                 continue
 
 
-def _openbook_breakdown(system):
-    """Open-book-only breakdown (docs/g_astra_open_book_runner_implementation.md's "Reporting"):
-    scored task/run count by app/reason/snapshot profile, inconclusive counts by infra class,
-    rate-limit attempts excluded from performance metrics, and the digests every aggregate was
-    computed under -- deliberately never averaged together with the closed-book report's own
-    numbers (a different system name, a separate `python -m benchmarks.osworld.report` call)."""
-    manifest_path = config.HERE / "astra_openbook_manifest.json"
-    tags_by_id = {}
-    try:
-        manifest = json.loads(manifest_path.read_text())
-        tags_by_id = {t["task_id"]: t for t in manifest["tasks"]}
-    except Exception:
-        pass
-
-    scored, by_app, by_reason, by_profile = 0, {}, {}, {}
-    for rec in _eval_records(system):
-        if rec.get("source") == "environment":
-            continue
-        scored += 1
-        info = tags_by_id.get(rec.get("id"), {})
-        by_app[info.get("app", "?")] = by_app.get(info.get("app", "?"), 0) + 1
-        for reason in info.get("reasons") or ["?"]:
-            by_reason[reason] = by_reason.get(reason, 0) + 1
-        profile = info.get("snapshot_profile", "?")
-        by_profile[profile] = by_profile.get(profile, 0) + 1
-
-    inconclusive, rate_limited = {}, 0
-    for rec in _infra_last_records(system):
-        outcome = rec.get("outcome", "?")
-        if outcome == "RATE_LIMITED":
-            rate_limited += 1
-        else:
-            inconclusive[outcome] = inconclusive.get(outcome, 0) + 1
-
-    lock_path = config.HERE / "astra_openbook_campaign_lock.json"
-    lock_status = None
-    try:
-        lock_status = json.loads(lock_path.read_text()).get("status")
-    except Exception:
-        pass
-
-    print(f"\nOpen-book: {scored} scored run(s) (excludes ENVIRONMENT_ERROR); "
-         f"{rate_limited} rate-limited attempt(s) excluded from performance metrics; "
-         f"campaign lock status={lock_status!r}.")
-    if by_app:
-        print("  by app:      " + ", ".join(f"{k}={v}" for k, v in sorted(by_app.items())))
-    if by_reason:
-        print("  by reason:   " + ", ".join(f"{k}={v}" for k, v in sorted(by_reason.items())))
-    if by_profile:
-        print("  by profile:  " + ", ".join(f"{k}={v}" for k, v in sorted(by_profile.items())))
-    if inconclusive:
-        print("  inconclusive by class: "
-             + ", ".join(f"{k}={v}" for k, v in sorted(inconclusive.items())))
-
-
 def main():
     argv = sys.argv[1:]
     if len(argv) >= 3 and argv[0] == "--compare":
@@ -196,8 +141,6 @@ def main():
     _mean_reward_line(system)
     _incidental_breakdown(system)
     _tool_surface_violation_line(system)
-    if system == config.ASTRA_OPENBOOK_SYSTEM_NAME:
-        _openbook_breakdown(system)
 
 
 if __name__ == "__main__":

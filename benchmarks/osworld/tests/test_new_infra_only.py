@@ -83,3 +83,56 @@ def test_codex_allowed_mcp_tools_is_computer_only():
 def test_legacy_mcp_channel_is_gone(name):
     with pytest.raises(ModuleNotFoundError):
         importlib.import_module(name)
+
+
+def _reload_config(monkeypatch, **env):
+    for k in [k for k in __import__("os").environ if k.startswith("OSW_")]:
+        monkeypatch.delenv(k, raising=False)
+    for k, v in env.items():
+        monkeypatch.setenv(k, v)
+    from benchmarks.osworld import config
+    return importlib.reload(config)
+
+
+def test_astra_canary_tree_name_is_stable(monkeypatch):
+    config = _reload_config(monkeypatch, OSW_ASTRA_REASONING_EFFORT="max",
+                            OSW_ASTRA_SYSTEM_SUFFIX="canary20260924")
+    try:
+        assert config.ASTRA_SYSTEM_NAME == \
+            "agent_computer_gpt6astra_max_codex01534_canary20260924_official"
+    finally:
+        _reload_config(monkeypatch)
+
+
+def test_astra_defaults_are_the_official_campaign(monkeypatch):
+    config = _reload_config(monkeypatch)
+    try:
+        assert config.ASTRA_REASONING_EFFORT == "max"
+        assert config.ASTRA_CAMPAIGN_LOCK.name == "astra_official361_lock.json"
+        assert config.ASTRA_SYSTEM_NAME == "agent_computer_gpt6astra_max_codex01534_official"
+    finally:
+        _reload_config(monkeypatch)
+
+
+def test_codex_non_mcp_tool_call_is_a_terminal_failure(monkeypatch, tmp_path):
+    """Review Focus 4: Codex reports non-MCP calls while the official audit list is empty."""
+    import json
+    from benchmarks.osworld.runners import gpt_astra
+    monkeypatch.setattr(gpt_astra, "run_codex_meta", lambda cmd, timeout: {
+        "raw": '{"type":"thread.started"}\n', "stderr": "", "events": [], "result": "",
+        "session_id": "s1", "non_mcp_tool_calls": 1, "tool_names": ["command_execution"]})
+    monkeypatch.setattr(gpt_astra, "_official_audit", lambda *a: {
+        "agent_non_computer_tool_calls": [], "agent_context_leaks": [],
+        "agent_offered_tools": None})
+    monkeypatch.setattr(gpt_astra, "read_mcp_state",
+                        lambda out: {"started": True, "steps_used": 3, "max_steps": 100})
+    monkeypatch.setattr(gpt_astra, "protocol_wait", lambda s: None)
+    monkeypatch.setattr(gpt_astra, "_codex_version", lambda: "0.153.4")
+    monkeypatch.setattr(gpt_astra, "_write_tool_audit",
+                        lambda out, events: {"contaminated": False, "evidence": []})
+    task = {"id": "t1", "instruction": "Do it.", "related_apps": ["os"]}
+    gpt_astra.run(task, env=None, out=tmp_path)
+    ev = json.loads((tmp_path / "eval.json").read_text())
+    assert ev["verdict"] == "FAILURE" and ev["reward"] == 0.0
+    assert ev["tool_surface_violation"] == ["command_execution"]
+    assert not (tmp_path / "infra_error.json").exists()

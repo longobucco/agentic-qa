@@ -22,7 +22,7 @@ def test_official_kvm_names_and_timeout():
         OSW_PROTOCOL="official", OSW_BACKEND="kvm", OSW_EFFORT="max",
         OSW_SYSTEM_SUFFIX="protocol361", OSW_ASTRA_SYSTEM_SUFFIX="protocol361")
     assert name == "agent_computer_sonnet5_effortmax_protocol361_official_kvm"
-    assert astra == "agent_computer_astra_protocol361_official_kvm"
+    assert astra == "agent_computer_gpt6astra_max_codex01534_protocol361_official_kvm"
     assert official and backend == "kvm" and timeout == 14400
 
 

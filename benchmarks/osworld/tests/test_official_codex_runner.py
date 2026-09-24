@@ -1,5 +1,6 @@
 """The Codex (GPT-Astra) runner under the official protocol -- mirrors
 test_official_claude_runner.py so both arms get the same protocol (no model call)."""
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -84,13 +85,7 @@ class _FakeEnv:
     setup_error = None
 
 
-def _official(monkeypatch):
-    monkeypatch.setattr(config, "OFFICIAL", True)
-    monkeypatch.setattr(config, "PROTOCOL", "official")
-
-
 def test_official_dry_run_command(monkeypatch, tmp_path, capsys):
-    _official(monkeypatch)
     calls = []
     real = gpt_astra.build_codex_cmd
 
@@ -114,34 +109,25 @@ def test_official_dry_run_command(monkeypatch, tmp_path, capsys):
     assert not Path(path).exists()
 
 
-def test_legacy_dry_run_command_has_no_protocol_parts(monkeypatch, tmp_path):
-    monkeypatch.setattr(config, "OFFICIAL", False)
-    calls = []
-    monkeypatch.setattr(gpt_astra, "build_codex_cmd",
-                        lambda prompt, **kw: calls.append((prompt, kw)) or ["codex"])
-    gpt_astra.run({"id": "t", "instruction": "Do X", "evaluator": {}},
-                  env=_FakeEnv(), out=tmp_path, dry=True)
-    prompt, kw = calls[0]
-    assert prompt != "Do X" and "Do X" in prompt
-    assert "base_instructions" not in kw and "extra_config" not in kw
-
-
 # --- campaign lock ---
 
 def test_official_lock_validates_once_effort_matches(monkeypatch):
-    _official(monkeypatch)
     monkeypatch.setattr(gpt_astra, "_LOCK", OFFICIAL_LOCK)
     monkeypatch.setattr(config, "ASTRA_REASONING_EFFORT", "max")
-    monkeypatch.setattr(config, "ZOOM_BATCH", False)
     gpt_astra._validate_campaign_lock()
 
 
 def test_official_lock_contents():
     lock = json.loads(OFFICIAL_LOCK.read_text())
-    base = json.loads((ROOT / "benchmarks/osworld/astra_protocol361_lock.json").read_text())
+    ids_path = ROOT / "scripts/g_protocol361_ids.txt"
+    ids = [line for line in ids_path.read_text().splitlines()
+          if line.strip() and not line.lstrip().startswith("#")]
+    digest = hashlib.sha256(("\n".join(ids) + "\n").encode()).hexdigest()
     assert lock["tool_policy"]["allowed_mcp_tools"] == ["computer"]
     assert lock["reasoning_effort"] == "max"   # user decision 2026-09-24: Codex's highest level
-    assert lock["population"] == base["population"]
+    assert lock["population"]["paths"] == ["scripts/g_protocol361_ids.txt"]
+    assert lock["population"]["count"] == len(ids) == 361
+    assert lock["population"]["sha256"] == digest
     assert lock["protocol"] == {
         "plan": "docs/superpowers/plans/2026-09-24-osworld-official-fidelity.md",
         "protocol": "official", "backend": "kvm", "screen": "1920x1080", "max_steps": 100,
@@ -151,24 +137,14 @@ def test_official_lock_contents():
 
 def test_official_lock_refuses_another_effort(monkeypatch):
     monkeypatch.setattr(gpt_astra, "_LOCK", OFFICIAL_LOCK)
-    _official(monkeypatch)
     monkeypatch.setattr(config, "ASTRA_REASONING_EFFORT", "high")
     with pytest.raises(SystemExit, match="reasoning_effort"):
         gpt_astra._validate_campaign_lock()   # the lock pins max
 
 
-def test_legacy_lock_refused_under_official(monkeypatch):
-    _official(monkeypatch)
-    monkeypatch.setattr(gpt_astra, "_LOCK", ROOT / "benchmarks/osworld/astra_protocol361_lock.json")
-    monkeypatch.setattr(config, "ASTRA_REASONING_EFFORT", "REQUIRES_USER_DECISION")
-    with pytest.raises(SystemExit, match="tool policy"):
-        gpt_astra._validate_campaign_lock()
-
-
 # --- the official run ---
 
 def _official_run(monkeypatch, tmp_path, events, *, raw=None, errors=None, rollout="clean"):
-    _official(monkeypatch)
     if rollout == "clean":
         rollout = tmp_path / "clean_rollout.jsonl"
         rollout.write_text(_rollout_lines(leaky=False))
@@ -205,8 +181,6 @@ def test_run_codex_meta_interrupted_propagates_without_writing_eval(monkeypatch,
     gpt_astra.run()'s only wrapping around run_codex_meta is a bare try/finally (workdir
     cleanup), never an `except Exception`, so core.procgroups.Interrupted must reach core.run's
     work() intact rather than get swallowed into a scored/failed result."""
-    _official(monkeypatch)
-
     def fake_meta(cmd, **kw):
         raise procgroups.Interrupted("harness interrupted")
 
@@ -412,7 +386,6 @@ def _tolerated_trace():
 
 
 def _preflight(monkeypatch, tmp_path, *, stderr, rollout_text, session="s1"):
-    _official(monkeypatch)
     seen = {}
     rollout = tmp_path / "rollout.jsonl"
     if rollout_text is not None:
@@ -462,15 +435,11 @@ def test_session_preflight_fails_closed_without_the_rollout(monkeypatch, tmp_pat
         _preflight(monkeypatch, tmp_path, stderr=_tolerated_trace(), rollout_text=None)
 
 
-def test_runner_preflight_adds_the_session_probe_only_under_official(monkeypatch):
+def test_runner_preflight_always_adds_the_session_probe(monkeypatch):
     probes = []
     monkeypatch.setattr(gpt_astra.osworld_eval, "pinned_code_preflight", lambda: None)
     monkeypatch.setattr(gpt_astra, "_validate_campaign_lock", lambda: None)
     monkeypatch.setattr(gpt_astra.astra_common, "check_codex_cli", lambda **kw: None)
     monkeypatch.setattr(gpt_astra, "official_session_preflight", lambda: probes.append(1))
-    monkeypatch.setattr(config, "OFFICIAL", False)
-    gpt_astra.preflight()
-    assert probes == []
-    monkeypatch.setattr(config, "OFFICIAL", True)
     gpt_astra.preflight()
     assert probes == [1]
