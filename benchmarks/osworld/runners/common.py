@@ -546,6 +546,80 @@ def _evaluate_with_retry(url, task, action_history, cache_dir, **backend_kw):
     raise last_err
 
 
+# Task 11c: bound how much of the scoring cache dir eval_artifacts keeps, so a stray huge
+# download never blows up a run dir. Module-level (not local constants) so a test can lower
+# them to exercise the cap logic without writing gigabytes of fixture data.
+_EVAL_ARTIFACT_MAX_FILE_BYTES = 50 * 1024 * 1024      # single-file cap
+_EVAL_ARTIFACT_MAX_TOTAL_BYTES = 200 * 1024 * 1024    # per-run cap across all kept files
+
+
+def _sha256_file(path):
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def _collect_eval_artifacts(cache_dir, out, task):
+    """Copy the files the official getters actually placed in `cache_dir` into
+    <out>/eval_artifacts/ -- the real state the verdict was computed from. Both the agent's
+    result files (get_vm_file etc) and the expected/gold files (get_cloud_file etc) land in
+    this one dir (see osworld_eval.hash_gold_artifacts, which already narrows to just the gold
+    names for hashing); this keeps both, since a failed run is usually only diagnosable by
+    comparing the two. Deliberately NOT the same thing as _capture_eval_state, which runs
+    BEFORE the evaluator's postconfig (document save, archive unzip, ...) and so often
+    captures stale state -- this runs right after scoring, whatever the verdict, and right
+    before the caller removes cache_dir (found live analysing the 2026-09-24 canary: two failed
+    runs were undiagnosable because neither captured what the evaluator actually compared).
+
+    Bounded per _EVAL_ARTIFACT_MAX_FILE_BYTES / _EVAL_ARTIFACT_MAX_TOTAL_BYTES: a file over
+    either cap is listed (name/size/sha256) but not copied (kept: False) -- still identifiable
+    against a fresh download even though the bytes themselves weren't kept.
+
+    Diagnostics-only: never raises. An unreadable file or a failed copy is recorded in the
+    returned manifest instead -- this must never change a verdict or crash an otherwise-good
+    run.
+    """
+    manifest = []
+    cache = Path(cache_dir)
+    if out is None or not cache.is_dir():   # nowhere to keep them / nothing was downloaded
+        return manifest
+    gold_names = set(osworld_eval.gold_dest_filenames(task))
+    dest_root = out / "eval_artifacts"
+    total = 0
+    try:
+        paths = sorted(p for p in cache.rglob("*") if p.is_file())
+    except OSError as e:
+        return [{"error": f"{type(e).__name__}: {e}"}]
+    for path in paths:
+        name = path.relative_to(cache).as_posix()
+        entry = {"name": name, "kept": False}
+        if name in gold_names:
+            entry["is_gold"] = True
+        try:
+            size = path.stat().st_size
+            entry["size"] = size
+            entry["sha256"] = _sha256_file(path)
+        except OSError as e:
+            entry["error"] = f"{type(e).__name__}: {e}"
+            manifest.append(entry)
+            continue
+        oversize = (size > _EVAL_ARTIFACT_MAX_FILE_BYTES
+                    or total + size > _EVAL_ARTIFACT_MAX_TOTAL_BYTES)
+        if not oversize:
+            try:
+                dest = dest_root / name
+                dest.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(path, dest)
+                entry["kept"] = True
+                total += size
+            except OSError as e:
+                entry["error"] = f"{type(e).__name__}: {e}"
+        manifest.append(entry)
+    return manifest
+
+
 def _score(ctrl, task, answer, out):
     url = ctrl.base_url if ctrl else config.CONTROLLER_URL
     reward, err = None, None
@@ -553,34 +627,41 @@ def _score(ctrl, task, answer, out):
     # (see osworld_eval.hash_gold_artifacts)
     gold_dir = tempfile.mkdtemp(prefix="osw_gold_")
     gold_sha256 = {}
-    if url:
-        try:
-            # kvm: the official VM's CDP/VLC ports are published on routable host ports, so
-            # no CdpForwarder (Daytona-only workaround) and every consumer uses the mapped
-            # values. A Daytona controller has no such attributes -> upstream defaults.
-            reward = _evaluate_with_retry(
-                url, task, _action_history(answer), gold_dir,
-                enable_cdp_forwarder=config.BACKEND != "kvm",
-                chromium_port=getattr(ctrl, "chromium_port", None),
-                vlc_port=getattr(ctrl, "vlc_port", None),
-                client_password=getattr(ctrl, "client_password", ""))
-        except Exception as e:
-            err = f"{type(e).__name__}: {e}"   # desktop unreachable / getter failed -> fall back
-        finally:
+    try:
+        if url:
+            try:
+                # kvm: the official VM's CDP/VLC ports are published on routable host ports, so
+                # no CdpForwarder (Daytona-only workaround) and every consumer uses the mapped
+                # values. A Daytona controller has no such attributes -> upstream defaults.
+                reward = _evaluate_with_retry(
+                    url, task, _action_history(answer), gold_dir,
+                    enable_cdp_forwarder=config.BACKEND != "kvm",
+                    chromium_port=getattr(ctrl, "chromium_port", None),
+                    vlc_port=getattr(ctrl, "vlc_port", None),
+                    client_password=getattr(ctrl, "client_password", ""))
+            except Exception as e:
+                err = f"{type(e).__name__}: {e}"   # desktop unreachable / getter failed -> fall back
             # scoring can fail after the gold was already fetched -- still worth recording
             gold_sha256 = osworld_eval.hash_gold_artifacts(gold_dir, task)
-            # hashed, no longer needed -- an unattended multi-day campaign otherwise leaks one
-            # of these per run (found live 2026-08-16: 5400 stray temp dirs/files, 3.6GB, after
-            # ~1000 run attempts -- see _mcp_config's own tempfile, cleaned up by its caller)
-            shutil.rmtree(gold_dir, ignore_errors=True)
+    finally:
+        # Task 11c: keep the files the getters placed in gold_dir -- result AND gold/expected
+        # side -- before it's removed below. Runs whatever happened above: a clean score, a
+        # scoring exception (some getters may already have written their file), or no
+        # controller at all (a no-op then -- nothing was ever downloaded, manifest is []).
+        eval_artifacts = _collect_eval_artifacts(gold_dir, out, task)
+        # hashed/copied, no longer needed -- an unattended multi-day campaign otherwise leaks one
+        # of these per run (found live 2026-08-16: 5400 stray temp dirs/files, 3.6GB, after
+        # ~1000 run attempts -- see _mcp_config's own tempfile, cleaned up by its caller)
+        shutil.rmtree(gold_dir, ignore_errors=True)
     if reward is not None:   # OSWorld's official evaluators
         return {"verdict": osworld_eval.reward_to_verdict(reward), "reward": reward,
                 "reason": f"official {task.get('evaluator', {}).get('func')} -> {reward:.2f}",
-                "source": "official", "gold_sha256": gold_sha256}
+                "source": "official", "gold_sha256": gold_sha256,
+                "eval_artifacts": eval_artifacts}
     # fallback: no verified way to score without the official evaluator (see evaluate.py) --
     # always EVAL_ERROR, kept only as a diagnostic of whatever state we did capture.
     rec = {**evaluate.osworld_check(task, answer, None, out), "source": "offline_fallback",
-           "gold_sha256": gold_sha256}
+           "gold_sha256": gold_sha256, "eval_artifacts": eval_artifacts}
     if err:
         rec["reason"] = f"{rec['reason']} (official eval errored: {err})"
     return rec
