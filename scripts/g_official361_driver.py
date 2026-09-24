@@ -44,6 +44,13 @@ runner), OSW_VR_* (verify-replan runner), OSW_RAW_BASE/OSW_INDEX (data download)
 
 Signals: SIGTERM/SIGINT make the driver SIGTERM its running run.py children, wait up to
 CHILD_GRACE_S, SIGKILL whatever is left, log it and exit 128 + signum -- no orphaned children.
+A child killed that way never reaches kvm_environment's finally (Python's default SIGTERM action
+runs none, and the VM lives in a worker thread a KeyboardInterrupt never reaches), so each driver
+process exports a unique OSW_KVM_DRIVER_RUN, kvm_environment labels every container with it,
+and after terminating the children -- and on every exit, as a safety sweep -- the driver
+force-removes the containers on OSW_KVM_DOCKER_HOST carrying exactly its label. Containers with
+another or no label (e.g. the other arm's campaign on the same host) are never touched.
+OSW_KVM_DRIVER_RUN is internal: always overwritten, never on the refuse list.
 """
 import argparse
 import json
@@ -52,6 +59,7 @@ import signal
 import subprocess
 import sys
 import time
+import uuid
 from collections import Counter
 from pathlib import Path
 
@@ -157,6 +165,42 @@ def terminate_children(procs, grace_s, log):
     log(f"sent SIGTERM to {len(running)} running run.py child(ren); {killed} killed after "
         f"{grace_s}s grace")
     return len(running), killed
+
+
+_DRIVER_RUN_LABEL = "osworld.driver_run"   # == kvm_vm.DRIVER_RUN_LABEL (not imported: config)
+
+
+def _docker_client():
+    from benchmarks.osworld.env import kvm_vm
+    return kvm_vm._docker_client()
+
+
+def sweep_containers(run_id, log, client=None):
+    """Force-remove (with volumes) every container labelled osworld.driver_run == `run_id`;
+    return how many were removed. The label is re-checked here, not only trusted to the daemon's
+    filter: another driver's containers must never be touched. Docker errors are logged, never
+    raised (this runs on the way out, possibly under a signal exit code)."""
+    if not run_id:
+        raise ValueError("empty driver run id: would match every container started outside a "
+                         "driver")
+    removed = 0
+    try:
+        client = client or _docker_client()
+        found = client.containers.list(all=True,
+                                       filters={"label": f"{_DRIVER_RUN_LABEL}={run_id}"})
+        for c in found:
+            if (c.labels or {}).get(_DRIVER_RUN_LABEL) != run_id:
+                continue
+            try:
+                c.remove(force=True, v=True)
+                removed += 1
+            except Exception as e:
+                log(f"container sweep: could not remove {c.id}: {e!r}")
+        log(f"container sweep: removed {removed} container(s) labelled "
+            f"{_DRIVER_RUN_LABEL}={run_id}")
+    except Exception as e:
+        log(f"container sweep failed ({removed} removed): {e!r}")
+    return removed
 
 
 class _Interrupted(Exception):
@@ -296,8 +340,10 @@ def main(argv=None):
         log_file.write(line + "\n")
         log_file.flush()
 
+    run_id = uuid.uuid4().hex
+    os.environ["OSW_KVM_DRIVER_RUN"] = run_id   # inherited by every child -> container label
     log(f"=== start ARM={arm} SYSTEM={system} PARALLEL={parallel} runs={RUNS} "
-        f"max_hours={max_hours} ===")
+        f"max_hours={max_hours} driver_run={run_id} ===")
     for signum in (signal.SIGTERM, signal.SIGINT):
         signal.signal(signum, _raise_interrupted)
     try:
@@ -309,6 +355,12 @@ def main(argv=None):
         log(f"=== {name} received: stopping the running run.py children ===")
         terminate_children(list(_children), CHILD_GRACE_S, log)
         return 128 + e.signum
+    finally:
+        for signum in (signal.SIGTERM, signal.SIGINT):
+            signal.signal(signum, signal.SIG_IGN)
+        if _children:   # an unexpected exception mid-round: never sweep under live children
+            terminate_children(list(_children), CHILD_GRACE_S, log)
+        sweep_containers(run_id, log)
 
 
 def _campaign(system, parallel, max_hours, log, log_file):

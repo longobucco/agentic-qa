@@ -23,6 +23,7 @@ from core.environment import Env
 _GUEST_PORTS = (5000, 9222, 8080, 8006)
 _READY_TIMEOUT_S = 300
 _SETUP_ATTEMPTS = 5   # desktop_env.py MAX_RETRIES
+DRIVER_RUN_LABEL = "osworld.driver_run"
 
 
 def _qcow2_mount(target):
@@ -71,14 +72,19 @@ def _configure(ctrl, task):
 @contextmanager
 def kvm_environment(task, *, port=None, client=None):
     """One fresh official VM per run. Whatever raises (setup, agent, scoring, Ctrl-C), the
-    container is stopped and removed -- remove runs even when stop itself raises."""
+    container is stopped and removed -- remove runs even when stop itself raises. A process
+    killed outright never reaches that finally, so the container is also labelled with the
+    campaign driver's run id (OSW_KVM_DRIVER_RUN, "" outside a driver): the driver removes its
+    own labelled containers after terminating its children (scripts/g_official361_driver.py)."""
     client = client or _docker_client()
     container = client.containers.run(
         config.KVM_IMAGE,
         environment={"DISK_SIZE": "32G", "RAM_SIZE": "4G", "CPU_CORES": "4"},
         cap_add=["NET_ADMIN"], devices=["/dev/kvm"],
         mounts=[_qcow2_mount("/System.qcow2")],
-        ports={p: None for p in _GUEST_PORTS}, detach=True)
+        ports={p: None for p in _GUEST_PORTS}, detach=True,
+        labels={DRIVER_RUN_LABEL: os.environ.get("OSW_KVM_DRIVER_RUN", ""),
+                "osworld.task": task["id"]})
     try:
         ports = published_ports(container)
         ctrl = Controller(f"http://{config.KVM_ADDR}:{ports[5000]}")
