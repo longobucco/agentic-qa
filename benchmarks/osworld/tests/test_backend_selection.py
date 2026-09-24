@@ -37,8 +37,6 @@ def _reload(**env):
         names = _Names()
         names.SYSTEM_NAME = c.SYSTEM_NAME
         names.ASTRA_SYSTEM_NAME = c.ASTRA_SYSTEM_NAME
-        names.ASTRA_OPENBOOK_SYSTEM_NAME = c.ASTRA_OPENBOOK_SYSTEM_NAME
-        names.VR_SYSTEM_NAME = c.VR_SYSTEM_NAME
         names.BACKEND = c.BACKEND
         try:
             yield built, names
@@ -61,41 +59,6 @@ def test_kvm_backend_selects_kvm_environment_for_sonnet_and_astra():
     with _reload(OSW_BACKEND="kvm", OSW_KVM_QCOW2_SHA256="deadbeef") as (built, c):
         assert built.runners[c.SYSTEM_NAME].environment is kvm_vm.kvm_environment
         assert built.runners[c.ASTRA_SYSTEM_NAME].environment is kvm_vm.kvm_environment
-
-
-def test_kvm_backend_does_not_touch_openbook_or_verify_replan_environment():
-    from benchmarks.osworld.env.sandbox import osworld_environment, osworld_openbook_environment
-    with _reload(OSW_BACKEND="kvm", OSW_KVM_QCOW2_SHA256="deadbeef") as (built, c):
-        assert (built.runners[c.ASTRA_OPENBOOK_SYSTEM_NAME].environment
-                is osworld_openbook_environment)
-        assert built.runners[c.VR_SYSTEM_NAME].environment is osworld_environment
-
-
-def test_openbook_preflight_refuses_kvm_backend():
-    with _reload(OSW_BACKEND="kvm", OSW_KVM_QCOW2_SHA256="deadbeef") as (built, c):
-        with pytest.raises(SystemExit):
-            built.runners[c.ASTRA_OPENBOOK_SYSTEM_NAME].preflight()
-
-
-def test_openbook_preflight_unaffected_by_daytona_backend():
-    """With the flag unset, the open-book runner's own OFFICIAL refusal / campaign_check path is
-    unchanged -- this only proves the new kvm branch isn't taken, not the whole preflight (that's
-    test_open_book_preflight.py's job)."""
-    with _reload() as (built, c):
-        assert c.BACKEND == "daytona"
-
-
-def test_verify_replan_preflight_refuses_kvm_backend():
-    with _reload(OSW_BACKEND="kvm", OSW_KVM_QCOW2_SHA256="deadbeef") as (built, c):
-        assert built.runners[c.VR_SYSTEM_NAME].preflight is not None
-        with pytest.raises(SystemExit):
-            built.runners[c.VR_SYSTEM_NAME].preflight()
-
-
-def test_verify_replan_preflight_ok_under_daytona():
-    with _reload() as (built, c):
-        # No SystemExit -- verify_replan has no other preflight requirement today.
-        built.runners[c.VR_SYSTEM_NAME].preflight()
 
 
 def test_kvm_combined_preflight_runs_kvm_check_before_the_runners_own(monkeypatch):

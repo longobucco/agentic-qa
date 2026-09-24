@@ -20,10 +20,7 @@ DISABLED_FEATURES = (
     "multi_agent_v2", "image_generation", "in_app_browser", "in_app_local_automation",
     "goals", "sleep_tool", "tool_suggest", "view_image", "shell_snapshot", "unified_exec",
 )
-ALLOWED_MCP_TOOLS = (
-    "screenshot", "a11y_tree", "click", "double_click", "right_click", "move", "scroll",
-    "type", "key", "wait",
-)
+ALLOWED_MCP_TOOLS = ("computer",)
 APPROVAL_MODE = "dangerously-bypass-approvals-and-sandbox"
 # The config key that replaces Codex's own base instructions with a file's text. Found on the
 # 0.153.4 binary (`model_instructions_file` in its ConfigToml) and verified live: the session's
@@ -31,12 +28,9 @@ APPROVAL_MODE = "dangerously-bypass-approvals-and-sandbox"
 BASE_INSTRUCTIONS_KEY = "model_instructions_file"
 
 
-def allowed_mcp_tools(zoom_batch, official=False):
-    """The Astra toolset: the frozen baseline, plus zoom/batch in that arm -- or, under the
-    official protocol, upstream's single `computer` tool (never combined with zoom/batch)."""
-    if official:
-        return ("computer",)
-    return ALLOWED_MCP_TOOLS + (("zoom", "batch") if zoom_batch else ())
+def allowed_mcp_tools():
+    """The official protocol's tool surface: upstream's single `computer` tool."""
+    return ALLOWED_MCP_TOOLS
 
 
 def build_codex_cmd(prompt, *, model, cwd, controller_url, reasoning_effort=None,
@@ -56,7 +50,6 @@ def build_codex_cmd(prompt, *, model, cwd, controller_url, reasoning_effort=None
     mcp_env = (
         "{ OSW_CONTROLLER_URL = " + json.dumps(controller_url or "")
         + ", PYTHONPATH = " + json.dumps(repo_root)
-        + ", OSW_RESTRICT_RUN_PYTHON = \"1\""
         + "".join(f", {key} = {json.dumps(value)}" for key, value in (mcp_extra_env or {}).items())
         + " }"
     )

@@ -21,7 +21,6 @@ import tempfile
 import time
 from concurrent.futures import ThreadPoolExecutor, TimeoutError as FutureTimeoutError
 from contextlib import contextmanager
-from pathlib import Path
 
 from PIL import Image
 
@@ -297,8 +296,8 @@ def _screen_size_mismatch(ctrl):
     return None
 
 
-def _run_config(ctrl, task, *, use_proxy=False, enable_cdp_forwarder=False, sandbox=None,
-                setup_attempts=1, verify_launches=True):
+def _run_config(ctrl, task, *, enable_cdp_forwarder=False, sandbox=None, setup_attempts=1,
+                verify_launches=True):
     """Run the task's config via OSWorld's own SetupController, then independently verify any
     "launch" step actually started (see _verify_launches). Returns None on success, an error
     string on failure -- never silently swallowed. No fallback to a naive per-step POST: config
@@ -306,33 +305,16 @@ def _run_config(ctrl, task, *, use_proxy=False, enable_cdp_forwarder=False, sand
     on "download"/"open". An unprepared environment is worse than none -- the caller must see
     the error and skip driving the agent rather than run it blind.
 
-    `use_proxy`: threaded into upstream SetupController.setup(steps, use_proxy=...) -- when True,
-    any "launch" step starting google-chrome gets --proxy-server=http://127.0.0.1:18888 appended
-    (setup.py:309-310). False (default) for every existing caller except the open-book
-    environment (env.guest_proxy having already made something real listen there).
-
-    `enable_cdp_forwarder`: independent of `use_proxy` (2026-09-23 split -- the two used to be
-    the same flag; see below for why). Activates a CdpForwarder (env/cdp_forwarder.py) and
-    injects --remote-allow-origins=* into any Chrome launch step, making chrome_open_tabs/
-    chrome_close_tabs steps (raw CDP from the harness host, previously always unroutable -- see
-    g9_replication_validity.py's oracle_unroutable) actually work. True for every caller
-    (closed-book included, as of this split) -- CdpForwarder.start() probes Chrome's CDP port
-    immediately and raises CdpForwarderError (caught below, logged, harmless) if nothing is
-    listening yet, so enabling it unconditionally costs nothing on a task that never launches
-    Chrome. `sandbox`: the Daytona sandbox object, passed straight to CdpForwarder for its
-    authoritative get_preview_link() call -- omit only for callers that never provision one (e.g.
+    `enable_cdp_forwarder`: activates a CdpForwarder (env/cdp_forwarder.py) and injects
+    --remote-allow-origins=* into any Chrome launch step, making chrome_open_tabs/
+    chrome_close_tabs steps (raw CDP from the harness host, previously always unroutable) actually
+    work. True for every caller -- CdpForwarder.start() probes Chrome's CDP port immediately and
+    raises CdpForwarderError (caught below, logged, harmless) if nothing is listening yet, so
+    enabling it unconditionally costs nothing on a task that never launches Chrome. `sandbox`: the
+    Daytona sandbox object, passed straight to CdpForwarder for its authoritative
+    get_preview_link() call -- omit only for callers that never provision one (e.g.
     OSW_CONTROLLER_URL/OSW_SANDBOX_ID reuse paths), where CdpForwarder falls back to a verified
     URL-pattern instead.
-
-    Why split from `use_proxy`: that flag ALSO controls the open-book-specific
-    --proxy-server=127.0.0.1:18888 injection above, which requires the open-book guest fixture
-    proxy to actually be listening there -- true only for open-book. The CDP-routing fix has
-    nothing to do with that proxy; conflating them meant extending CDP routing to closed-book
-    would have wrongly injected a --proxy-server flag pointing at nothing. Confirmed live
-    2026-09-23: closed-book chrome_open_tabs/chrome_close_tabs tasks (51 in the full task set)
-    hit this exact routing gap (`BrowserType.connect_over_cdp: connect ETIMEDOUT`), previously
-    undiagnosed for closed-book because the fix existed but was deliberately scoped to
-    open-book only pending this decision.
 
     Also gates on _wait_for_desktop_ready before anything else, unconditionally (even for a task
     with no config steps at all) -- see that function's own docstring for why Controller.ready()
@@ -368,7 +350,7 @@ def _run_config(ctrl, task, *, use_proxy=False, enable_cdp_forwarder=False, sand
             ctrl.base_url, cache_dir=cache_dir, chromium_port=getattr(ctrl, "chromium_port", None),
             vlc_port=getattr(ctrl, "vlc_port", None),
             client_password=getattr(ctrl, "client_password", ""))
-        if use_proxy or enable_cdp_forwarder:
+        if enable_cdp_forwarder:
             from benchmarks.osworld.env.cdp_forwarder import (
                 CdpForwarder, CdpForwarderError, inject_remote_allow_origins)
             steps = inject_remote_allow_origins(steps)
@@ -384,7 +366,7 @@ def _run_config(ctrl, task, *, use_proxy=False, enable_cdp_forwarder=False, sand
         for attempt in range(setup_attempts):
             if attempt:
                 time.sleep(5)
-            if setup_ctrl.setup(steps, use_proxy=use_proxy) is not False:
+            if setup_ctrl.setup(steps, use_proxy=False) is not False:
                 break
         else:
             # A single attempt (the default) ignores a False return exactly as before; only a
@@ -465,105 +447,6 @@ def osworld_environment(task, *, port=None):
             except Exception:
                 pass
 
-
-def _provision_and_configure_openbook(task, holder):
-    """Same shape as _provision_and_configure, plus: start the guest fixture proxy and lock down
-    egress (env.guest_proxy) BEFORE running the task's config, so any "launch" step's
-    --proxy-server=... (use_proxy=True) actually points at something already listening.
-
-    Task-scoped preflight (open_book_preflight.task_check) runs FIRST, before provisioning --
-    a task with no fixture bundle costs nothing beyond the check itself, rather than paying for
-    a sandbox it was never going to be able to run against."""
-    from benchmarks.osworld import open_book_preflight
-    from benchmarks.osworld.env import guest_proxy
-    if not config.OPENBOOK_IMAGE:
-        return None, ("OSW_OPENBOOK_IMAGE not set -- the closed-book image (config.IMAGE) has "
-                      "no mitmproxy/CA/iptables layer; refusing to provision against it")
-    check = open_book_preflight.task_check(task)
-    if not check["ready"]:
-        return None, check["reason"]
-    bundle_dir = Path(check["bundle_dir"])
-    if config.SANDBOX_ID:
-        _warn_reuse_once("OSW_SANDBOX_ID set")
-        d = _client()
-        sb = next((s for s in d.list() if s.id == config.SANDBOX_ID), None)
-        if sb is None:
-            raise SystemExit(f"OSW_SANDBOX_ID={config.SANDBOX_ID} not found")
-        holder["sb"] = sb
-        _ensure_running(sb)
-        ctrl = _ensure_controller_up(sb)
-    else:
-        sb, ctrl = provision(image=config.OPENBOOK_IMAGE, on_created=lambda s: holder.update(sb=s))
-    try:
-        guest_proxy.start(ctrl, bundle_dir)
-    except guest_proxy.GuestProxyError as e:
-        return ctrl, f"open-book guest proxy setup failed: {e}"
-
-    proxy_tags = open_book_preflight.proxy_tags_for(task["id"])
-    _HOST_SIDE_CONFIG_TAGS = {"host_side_config_download", "external_oauth_service"}
-    if not (proxy_tags & _HOST_SIDE_CONFIG_TAGS):
-        return ctrl, _run_config(ctrl, task, use_proxy=True, sandbox=sb)
-
-    # A "download" config step (SetupController._download_setup) runs requests.get() on the
-    # HARNESS HOST, not in the guest -- confirmed live 2026-09-12 (see
-    # astra_openbook_campaign_lock.json's known_issues.non_chrome_egress_not_proxied, which
-    # this closes for the config-download case). A "googledrive" config step
-    # (SetupController._googledrive_setup) is the same story with real pydrive2 calls instead --
-    # route both through the exact same host_proxy machinery already built for get_cloud_file,
-    # scoped to just this setup() call, attaching drive_mock only when the oauth tag is present.
-    #
-    # _download_setup ALSO uploads the fetched file back to the real Daytona controller
-    # (POST .../setup/upload) in the same requests session -- confirmed live that a blanket
-    # HTTP_PROXY intercepts that upload too (502 from our OWN fixture proxy, which has no entry
-    # for the controller's URL). The controller's own host must always be excluded; 127.0.0.1/
-    # localhost too, on the same reasoning gpt_astra_openbook._score_openbook documents (a
-    # different SetupController call path may address the guest via a loopback forwarder rather
-    # than the controller's real hostname -- not observed here, but cheap to guard against).
-    from urllib.parse import urlparse
-    from benchmarks.osworld.env import host_proxy
-    controller_host = urlparse(ctrl.base_url).hostname
-    no_proxy_hosts = ("127.0.0.1", "localhost")
-    if controller_host:
-        no_proxy_hosts += (controller_host,)
-    try:
-        with host_proxy.host_proxy(
-            bundle_dir, needs_drive_mock="external_oauth_service" in proxy_tags,
-        ) as handle, host_proxy.scoped_env(handle, no_proxy_hosts=no_proxy_hosts):
-            err = _run_config(ctrl, task, use_proxy=True, sandbox=sb)
-    except host_proxy.HostProxyError as e:
-        return ctrl, f"open-book host proxy setup failed: {e}"
-    return ctrl, err
-
-
-@contextmanager
-def osworld_openbook_environment(task, *, port=None):
-    """Open-book counterpart of osworld_environment: identical provisioning, but the guest
-    fixture proxy is up and the egress lockdown confirmed before the task's config (and
-    therefore Chrome) ever runs. Does not support OSW_CONTROLLER_URL reuse -- a reused desktop's
-    proxy/lockdown state from a PREVIOUS task is exactly the cross-task contamination the frozen
-    manifest's per-task bundle is supposed to rule out; open-book campaigns always provision
-    fresh (OSW_SANDBOX_ID reuse is still allowed, same as the baseline path, since guest_proxy.
-    start() is re-applied idempotently every call regardless)."""
-    holder = {}
-    ex = ThreadPoolExecutor(max_workers=1)
-    try:
-        fut = ex.submit(_provision_and_configure_openbook, task, holder)
-        try:
-            ctrl, err = fut.result(timeout=_PROVISION_TIMEOUT_S)
-        except FutureTimeoutError:
-            raise RuntimeError(
-                f"open-book sandbox provisioning/setup exceeded {_PROVISION_TIMEOUT_S}s -- "
-                f"treated as a hang, not a legitimate wait"
-            ) from None
-        yield Env(port=None, browser=ctrl, setup_error=err)
-    finally:
-        ex.shutdown(wait=False)
-        sb = holder.get("sb")
-        if sb is not None and not config.SANDBOX_ID:
-            try:
-                sb.delete()
-            except Exception:
-                pass
 
 
 def _main(argv):

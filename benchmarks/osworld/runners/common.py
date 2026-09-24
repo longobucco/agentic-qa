@@ -1,13 +1,6 @@
-"""Shared, policy-free primitives extracted from runners/agent_computer.py so a second runner
-(runners/verify_replan.py, docs/verify-replan-minimal-integration-plan.md) can reuse the exact
-same MCP config shape, telemetry, provenance, post-run watchdog, transcript capture, and
-scoring logic without importing agent_computer's own orchestration or G5-arm policy knobs.
-
-Extraction discipline (see the plan's own instruction, Section 6): only primitives whose
-behavior is already pinned by benchmarks/osworld/tests/test_runner.py's characterization tests
-moved here, verbatim. Nothing in this module reads a G5-arm-specific config knob
-(ENFORCE_SANDBOX, RESTRICT_RUN_PYTHON, INLOOP_VERIFY) -- those stay in the runner that owns that
-policy. agent_computer.py re-imports every name below so existing external imports of
+"""Shared, policy-free primitives used by both runners/agent_computer.py and runners/gpt_astra.py:
+the MCP config shape, telemetry, provenance, post-run watchdog, transcript capture, and scoring
+logic. agent_computer.py re-imports every name below so existing external imports of
 `benchmarks.osworld.runners.agent_computer._mcp_config` etc. keep resolving unchanged.
 """
 import hashlib
@@ -19,25 +12,19 @@ import subprocess
 import sys
 import tempfile
 import time
+import xml.etree.ElementTree as ET
 from concurrent.futures import ThreadPoolExecutor, TimeoutError as FutureTimeoutError
 from datetime import datetime, timezone
 from pathlib import Path
 
 import requests
 
-from benchmarks.osworld import config, evaluate, grounding, tasks
+from benchmarks.osworld import config, evaluate, tasks
 from benchmarks.osworld.env import osworld_eval
 from core import procgroups
 
 # The checkout this harness runs from (benchmarks/osworld/runners/ -> repo root).
 CHECKOUT_ROOT = Path(__file__).resolve().parents[3]
-
-OSWORLD_TOOLS = [
-    "mcp__osworld__screenshot", "mcp__osworld__a11y_tree",
-    "mcp__osworld__click", "mcp__osworld__double_click", "mcp__osworld__right_click",
-    "mcp__osworld__move", "mcp__osworld__scroll", "mcp__osworld__type",
-    "mcp__osworld__key", "mcp__osworld__run_python", "mcp__osworld__wait",
-]
 
 
 # Written by the official MCP server into the run's out dir (OSW_MCP_STATE_FILE): proof it
@@ -45,20 +32,21 @@ OSWORLD_TOOLS = [
 MCP_STATE_FILE = "mcp_state.json"
 
 
+def official_max_turns():
+    """A safety net only: the MCP server's step budget binds first."""
+    return 2 * config.MAX_STEPS + 20
+
+
 def mcp_child_env(out_dir=None):
     """Protocol env the MCP server child must see. Both CLIs pass only what they are given, so
-    the server can't read these from the runner's environment. Under the official protocol,
-    `out_dir` (the run's output dir) also names the server's liveness/step state file."""
-    env = {}
-    if config.ZOOM_BATCH:
-        env["OSW_ZOOM_BATCH"] = "1"
-    if config.OFFICIAL:
-        env.update(OSW_PROTOCOL="official", OSW_MAX_STEPS=str(config.MAX_STEPS),
-                   OSW_SLEEP_AFTER_EXECUTION=str(config.SLEEP_AFTER_EXECUTION),
-                   OSW_SCREEN_WIDTH=str(config.SCREEN_WIDTH),
-                   OSW_SCREEN_HEIGHT=str(config.SCREEN_HEIGHT))
-        if out_dir is not None:
-            env["OSW_MCP_STATE_FILE"] = str(Path(out_dir) / MCP_STATE_FILE)
+    the server can't read these from the runner's environment. `out_dir` (the run's output dir),
+    when given, also names the server's liveness/step state file."""
+    env = {"OSW_PROTOCOL": "official", "OSW_MAX_STEPS": str(config.MAX_STEPS),
+           "OSW_SLEEP_AFTER_EXECUTION": str(config.SLEEP_AFTER_EXECUTION),
+           "OSW_SCREEN_WIDTH": str(config.SCREEN_WIDTH),
+           "OSW_SCREEN_HEIGHT": str(config.SCREEN_HEIGHT)}
+    if out_dir is not None:
+        env["OSW_MCP_STATE_FILE"] = str(Path(out_dir) / MCP_STATE_FILE)
     return env
 
 
@@ -92,12 +80,11 @@ def _mcp_config(controller_url, out_dir=None):
         "args": ["-m", "benchmarks.osworld.mcp.server"],
         "env": {"OSW_CONTROLLER_URL": controller_url or "", **mcp_child_env(out_dir)},
     }
-    if config.OFFICIAL:
-        # The official protocol starts the CLI (and so this child) in an empty temp dir, not
-        # the repo: keep the benchmark package importable, as core/codex_loop.py does for Codex,
-        # and run it with this interpreter (same as Codex), not whatever `python` is on PATH.
-        spec["command"] = sys.executable
-        spec["env"]["PYTHONPATH"] = str(CHECKOUT_ROOT)
+    # The official protocol starts the CLI (and so this child) in an empty temp dir, not
+    # the repo: keep the benchmark package importable, as core/codex_loop.py does for Codex,
+    # and run it with this interpreter (same as Codex), not whatever `python` is on PATH.
+    spec["command"] = sys.executable
+    spec["env"]["PYTHONPATH"] = str(CHECKOUT_ROOT)
     f = tempfile.NamedTemporaryFile("w", suffix=".json", delete=False)
     json.dump({"mcpServers": {"osworld": spec}}, f)
     f.close()
@@ -220,15 +207,17 @@ def _provenance(task, ctrl, started_at):
         # the evaluator library was (see data/download_evaluators.py), so a pass rate is only
         # comparable against another one carrying the same value here.
         **_evaluator_provenance(),
-        "max_turns": config.MAX_TURNS,
+        "max_turns": official_max_turns(),
         "task_timeout": config.TASK_TIMEOUT,
-        "observation": config.OBSERVATION,
-        "action_space": config.ACTION_SPACE,
+        # Under the official protocol the model sees screenshots only, through the
+        # computer_20251124 tool -- the only observation/action-space pair this runner offers.
+        "observation": "screenshot",
+        "action_space": "computer_20251124",
         "effort": config.EFFORT or None,
         "max_output_tokens": config.MAX_OUTPUT_TOKENS,
         "max_steps": config.MAX_STEPS,
         "screen_size": f"{config.SCREEN_WIDTH}x{config.SCREEN_HEIGHT}",
-        "protocol": config.PROTOCOL or None,
+        "protocol": "official",
         "backend": config.BACKEND,
         "kvm_image": config.KVM_IMAGE if config.BACKEND == "kvm" else None,
         "kvm_qcow2_sha256": config.KVM_QCOW2_SHA256 or None,
@@ -239,15 +228,12 @@ def _provenance(task, ctrl, started_at):
 
 def claude_env():
     """Child environment for `claude -p`: the parent's, plus the output-token limit when the
-    protocol sets one and, under the official protocol, the auto-updater off (the CLI must stay
-    at config.CLAUDE_CODE_VERSION for the whole campaign). None keeps the historical behavior
-    (inherit unchanged)."""
-    extra = {}
+    protocol sets one and the auto-updater off (the CLI must stay at config.CLAUDE_CODE_VERSION
+    for the whole campaign)."""
+    extra = {"DISABLE_AUTOUPDATER": "1"}
     if config.MAX_OUTPUT_TOKENS:
         extra["CLAUDE_CODE_MAX_OUTPUT_TOKENS"] = str(config.MAX_OUTPUT_TOKENS)
-    if config.OFFICIAL:
-        extra["DISABLE_AUTOUPDATER"] = "1"
-    return {**os.environ, **extra} if extra else None
+    return {**os.environ, **extra}
 
 
 _CLAUDE_CLI_VERSION = {}
@@ -278,8 +264,7 @@ def official_probe_already_passed():
 
 
 def protocol_wait(seconds, *, sleep=None):
-    """Upstream's fixed settle sleeps (after setup, before evaluate) -- official protocol only;
-    a no-op otherwise, so the legacy harness keeps its timings.
+    """Upstream's fixed settle sleeps (after setup, before evaluate).
 
     Interruptible by default: waits on `core.procgroups`' interrupted flag (via
     `wait_interrupted`) rather than blocking blindly, so a harness SIGTERM/SIGINT during this
@@ -289,8 +274,6 @@ def protocol_wait(seconds, *, sleep=None):
     own grace period SIGKILLs the whole process, losing the INTERRUPTED infra record entirely
     (task-10b fix round 2). `sleep` (test injection) replaces the wait mechanism outright and
     is never interrupted -- existing tests use it to observe the call without a real delay."""
-    if not config.OFFICIAL:
-        return
     if sleep is not None:
         sleep(seconds)
         return
@@ -430,6 +413,84 @@ def claude_transcript_tool_names(path):
     return [b.get("name") for b in _claude_assistant_blocks(path) if b.get("type") == "tool_use"]
 
 
+# Ubuntu's accessibility tree wraps geometry in a namespaced attribute (see the guest's
+# /accessibility route); these are the only pieces of the pure-logic accessibility parsing
+# _a11y_health needs -- just enough to count nodes with usable screen geometry, not the full
+# target-resolution machinery.
+_A11Y_NS_COMPONENT = "https://accessibility.ubuntu.example.org/ns/component"
+_A11Y_COORD_RE = re.compile(r"-?\d+")
+
+
+def _a11y_pair(raw):
+    """Parse the tree's "(x, y)" / "(w, h)" attribute form."""
+    if not raw:
+        return None
+    nums = _A11Y_COORD_RE.findall(raw)
+    if len(nums) < 2:
+        return None
+    return int(nums[0]), int(nums[1])
+
+
+def _a11y_unwrap_tree(raw):
+    """The guest's /accessibility route does NOT return raw XML: it returns a JSON object
+    `{"AT": "<desktop-frame .../>"}`. Accepts either shape (and tolerates the extra
+    `{"result": ...}` layer the MCP transport adds when a tool result is logged)."""
+    if not isinstance(raw, str):
+        return ""
+    text = raw.strip()
+    if not text.startswith("{"):
+        return text
+    for _ in range(2):          # at most {"result": "{\"AT\": ...}"}
+        try:
+            obj = json.loads(text)
+        except (ValueError, TypeError):
+            return text
+        if not isinstance(obj, dict):
+            return text
+        nxt = obj.get("AT") if "AT" in obj else obj.get("result")
+        if not isinstance(nxt, str):
+            return text
+        text = nxt.strip()
+        if text.startswith("<"):
+            return text
+    return text
+
+
+def _a11y_tree_health(raw):
+    """Is the accessibility channel actually reporting? -> {"nodes", "elements", "ok", "reason"}.
+
+    `nodes` counts child elements of the root, `elements` those with usable geometry. `ok` is
+    False for the three distinguishable failures -- unreachable/blank, unparseable, and the
+    root-only tree that this harness produced on all 456 captures before the AT-SPI bus was added
+    to docker/start.sh.
+    """
+    xml = _a11y_unwrap_tree(raw)
+    if not xml.strip():
+        return {"nodes": 0, "elements": 0, "ok": False, "reason": "empty response"}
+    try:
+        root = ET.fromstring(xml)
+    except ET.ParseError as e:
+        return {"nodes": 0, "elements": 0, "ok": False, "reason": f"unparseable: {e}"}
+    nodes = sum(1 for _ in root.iter()) - 1
+    if nodes <= 0:
+        return {"nodes": 0, "elements": 0, "ok": False,
+                "reason": "root node only -- the AT-SPI bridge is not reporting this desktop"}
+    elements = 0
+    for node in root.iter():
+        pos = _a11y_pair(node.get(f"{{{_A11Y_NS_COMPONENT}}}screencoord"))
+        size = _a11y_pair(node.get(f"{{{_A11Y_NS_COMPONENT}}}size"))
+        if not pos or not size:
+            continue
+        x, y = pos
+        w, h = size
+        if x < 0 or y < 0 or w <= 0 or h <= 0:
+            continue
+        elements += 1
+    return {"nodes": nodes, "elements": elements, "ok": elements > 0,
+            "reason": None if elements else
+                      f"{nodes} node(s) but none with usable geometry"}
+
+
 def _a11y_health(ctrl):
     """One /accessibility probe per run, recorded in result.json as `a11y_*`.
 
@@ -446,7 +507,7 @@ def _a11y_health(ctrl):
     if ctrl is None:
         return {"a11y_ok": None, "a11y_nodes": None, "a11y_reason": "no controller"}
     try:
-        health = _bounded("a11y probe", lambda: grounding.tree_health(ctrl.a11y_tree()))
+        health = _bounded("a11y probe", lambda: _a11y_tree_health(ctrl.a11y_tree()))
     except Exception as e:
         return {"a11y_ok": False, "a11y_nodes": 0, "a11y_reason": f"{type(e).__name__}: {e}"}
     # _bounded raises RuntimeError on timeout, so the except above is the timeout path too --
@@ -477,13 +538,6 @@ def _model_mismatch(meta):
         print(f"[osworld] WARNING model mismatch: pinned {config.MODEL!r} but the CLI reports "
               f"{served or 'nothing'} -- this run is NOT comparable to the pinned campaign")
     return {"model_served": served or None, "model_pinned": True, "model_mismatch": mismatch}
-
-
-def _clean_finish(meta, answer):
-    """Did the agent finish on its own (printed ANSWER) or get cut off (max-turns/error)? A
-    SUCCESS without a clean finish means the desktop state already happened to satisfy the
-    evaluator -- incidental, not evidence the agent completed the task."""
-    return bool(answer) and not meta.get("is_error", False)
 
 
 def _annotate_incidental(rec, clean_finish):

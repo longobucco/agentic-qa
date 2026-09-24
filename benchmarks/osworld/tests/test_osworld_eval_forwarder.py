@@ -8,8 +8,7 @@ What this pins down is the plumbing the JSONDecodeError finding turned on: the g
 "http://{env.vm_ip}:{env.server_port}/execute" itself, so unless those two point at something
 that speaks plain HTTP and forwards the POST intact, scoring cannot work. The other half --
 that http://<proxy-host>:443 answers 400 text/html -- was measured live against a real Daytona
-URL and is recorded in docs/finding-sonnet5-oracle-http-scheme.md; it can't be unit-tested
-without a sandbox.
+URL; it can't be unit-tested without a sandbox.
 """
 import json
 import threading

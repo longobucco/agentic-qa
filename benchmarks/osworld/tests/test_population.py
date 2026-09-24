@@ -25,17 +25,7 @@ def test_release_minus_login_is_361(release):
     assert sum(tasks.is_login_task(t) for t in release) == 8
 
 
-def test_verified361_population(release, monkeypatch):
-    monkeypatch.setattr(config, "POPULATION", "verified361")
+def test_verified361_population(release):
     got = tasks.load_tasks()
     assert len(got) == 361
     assert not any(tasks.is_login_task(t) for t in got)
-
-
-def test_every_app_in_the_361_is_in_scope(release):
-    scope = config.SUPPORTED_APPS | config.ALWAYS_PRESENT_CAPABILITIES
-    for t in release:
-        if tasks.is_login_task(t):
-            continue
-        apps = {tasks._normalize_app(a) for a in (t.get("related_apps") or [])}
-        assert apps <= scope, (t["id"], apps - scope)

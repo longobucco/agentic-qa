@@ -1,4 +1,4 @@
-"""The official OSWorld Claude agent's computer tool, served over MCP (config.OFFICIAL).
+"""The official OSWorld Claude agent's computer tool, served over MCP.
 
 Mirrors upstream step handling (mm_agents/anthropic/main.py, ~lines 554-600 and ~880-895, plus
 lib_run_single.py):

@@ -213,7 +213,7 @@ def test_evaluate_official_with_mapped_ports_addresses_the_vm_directly():
     from benchmarks.osworld.env import osworld_eval
     seen = {}
 
-    def fake_score(env, ev, func, url, cache_dir, getters, metrics, use_proxy=False,
+    def fake_score(env, ev, func, url, cache_dir, getters, metrics,
                    cdp_forwarder=None, **kw):
         seen.update(vm_ip=env.vm_ip, server_port=env.server_port, chromium=env.chromium_port,
                     vlc=env.vlc_port, pw=env.client_password, fwd=cdp_forwarder, kw=kw)

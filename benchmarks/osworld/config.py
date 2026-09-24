@@ -8,7 +8,35 @@ HERE = Path(__file__).resolve().parent
 DATA_DIR = HERE / "data"
 RESULTS_DIR = HERE / "results"
 
+# Knobs of the Phase 1 harness (legacy arms, verify-replan, open-book, app-scope filter). The new
+# infrastructure has none of them: an active value is refused rather than silently ignored, so a
+# stale shell can never believe it is running an arm. The neutral value (what the legacy harness
+# treated as "off") is accepted, since inherited environments still carry it.
+_LEGACY_KNOB_NEUTRAL = {
+    "OSW_SELF_VERIFY": "0", "OSW_ENFORCE_SANDBOX": "0", "OSW_RESTRICT_RUN_PYTHON": "0",
+    "OSW_INLOOP_VERIFY": "0", "OSW_INLOOP_VERIFY_MAX_TURNS": "40",
+    "OSW_INLOOP_VERIFY_SKIP_APPS": "os", "OSW_GROUNDING": "0", "OSW_GROUNDING_VERIFY": "1",
+    "OSW_GROUNDING_MIN_SCORE": "0.45", "OSW_ZOOM_BATCH": "0",
+    "OSW_OBSERVATION": "screenshot+a11y", "OSW_ACTION_SPACE": "pyautogui", "OSW_MAX_TURNS": "150",
+    "OSW_INCLUDE_ALL_APPS": "", "OSW_PINNED_EVALUATORS": "1", "OSW_OPENBOOK_IMAGE": "",
+}
+
+
+def _refuse_legacy_knobs(environ=None):
+    environ = os.environ if environ is None else environ
+    active = [f"{k}={environ[k]!r}" for k, neutral in _LEGACY_KNOB_NEUTRAL.items()
+              if environ.get(k, "").strip() not in ("", neutral)]
+    active += [f"{k}={v!r}" for k, v in environ.items() if k.startswith("OSW_VR_") and v.strip()]
+    if active:
+        raise SystemExit("Phase 1 harness knobs are not supported on the new-infrastructure "
+                         f"branches (see tag phase1-daytona-frozen): {', '.join(sorted(active))}")
+
+
+_refuse_legacy_knobs()
+
 RELEASE = os.environ.get("OSW_RELEASE", "verified").strip().lower()
+if RELEASE not in ("verified",):
+    raise SystemExit(f"OSW_RELEASE={RELEASE!r}: expected 'verified' (unset also works)")
 TASKS_FILE = DATA_DIR / f"osworld_{RELEASE}.jsonl"
 
 # The single most consequential knob in the harness, and until 2026-09-07 the ONLY one that was
@@ -42,18 +70,18 @@ def model_slug(model=None):
     return _MODEL_SLUGS.get(model, model.replace("claude-", "").replace(".", "").replace("-", ""))
 
 
-# Protocol knobs (docs/superpowers/plans/2026-09-24-osworld-protocol-alignment.md). Empty/None
-# keep the historical behavior (CLI default effort, CLI default output-token limit).
+# Protocol knobs. Empty/None keep the CLI's own default (default effort, default output-token
+# limit).
 EFFORT = os.environ.get("OSW_EFFORT", "").strip()
 _mot = os.environ.get("OSW_MAX_OUTPUT_TOKENS", "").strip()
 MAX_OUTPUT_TOKENS = int(_mot) if _mot else None
 
-# Official-fidelity knobs (docs/superpowers/plans/2026-09-24-osworld-official-fidelity.md,
-# spec benchmarks/osworld/docs/fidelity-audit.md). Unset = today's harness, unchanged.
-PROTOCOL = os.environ.get("OSW_PROTOCOL", "").strip()
-if PROTOCOL not in ("", "official"):
-    raise SystemExit(f"OSW_PROTOCOL={PROTOCOL!r}: expected '' or 'official'")
-OFFICIAL = PROTOCOL == "official"
+# Official-fidelity knobs. The official protocol is the only path this branch runs: PROTOCOL is
+# a constant, and OSW_PROTOCOL may only assert what is already true.
+PROTOCOL = "official"
+_osw_protocol = os.environ.get("OSW_PROTOCOL", "").strip()
+if _osw_protocol not in ("", "official"):
+    raise SystemExit(f"OSW_PROTOCOL={_osw_protocol!r}: expected '' or 'official'")
 BACKEND = os.environ.get("OSW_BACKEND", "").strip() or "daytona"
 if BACKEND not in ("daytona", "kvm"):
     raise SystemExit(f"OSW_BACKEND={BACKEND!r}: expected 'daytona' or 'kvm'")
@@ -75,8 +103,9 @@ KVM_CLIENT_PASSWORD = os.environ.get("OSW_KVM_CLIENT_PASSWORD", "password")
 # flags, transcript layout): the official preflight refuses any other `claude --version`.
 CLAUDE_CODE_VERSION = os.environ.get("OSW_CLAUDE_CODE_VERSION", "").strip() or "2.1.280"
 
-# "agent_computer" (unpinned, mixed-model, historical) vs "agent_computer_sonnet5" (pinned).
-SYSTEM_NAME = f"agent_computer_{model_slug()}" if MODEL else "agent_computer"
+# "unpinned" only appears transiently at import time; preflight() refuses to run without
+# OSW_MODEL set, so no run ever writes to an "agent_computer_unpinned" tree.
+SYSTEM_NAME = f"agent_computer_{model_slug() or 'unpinned'}"
 # An effort override is a different protocol: never pool it into the default-effort tree.
 if EFFORT:
     SYSTEM_NAME = f"{SYSTEM_NAME}_effort{re.sub(r'[^a-zA-Z0-9]+', '', EFFORT)}"
@@ -90,212 +119,66 @@ if SYSTEM_SUFFIX:
 # Independent GPT Astra replication. It deliberately does not reuse OSW_MODEL: setting the
 # Sonnet baseline model must never rename or redirect Astra's result tree.
 ASTRA_MODEL = os.environ.get("OSW_ASTRA_MODEL", "gpt-6-astra").strip()
-ASTRA_REASONING_EFFORT = os.environ.get("OSW_ASTRA_REASONING_EFFORT", "high").strip()
+ASTRA_REASONING_EFFORT = os.environ.get("OSW_ASTRA_REASONING_EFFORT", "max").strip()
 ASTRA_CODEX_VERSION = os.environ.get("OSW_ASTRA_CODEX_VERSION", "0.153.4").strip()
-# Which frozen Astra campaign lock the preflight enforces. Default: the original 291-task
-# campaign. The protocol-aligned campaigns (docs/superpowers/plans/2026-09-24-osworld-protocol-
-# alignment.md) select their own lock, so the original one is never edited.
+# Which frozen Astra campaign lock the preflight enforces. Default: the official-fidelity
+# 361-task campaign (astra_official361_lock.json) -- the only lock this branch carries.
 ASTRA_CAMPAIGN_LOCK = (Path(__file__).resolve().parent
-                       / os.environ.get("OSW_ASTRA_CAMPAIGN_LOCK", "astra_campaign_lock.json"))
+                       / os.environ.get("OSW_ASTRA_CAMPAIGN_LOCK", "astra_official361_lock.json"))
 
 
 # Opt-in suffix for a deliberately SEPARATE results tree under the same model/effort/codex-
 # version identity -- e.g. re-running the frozen population against a new guest image digest
 # (config.IMAGE) to validate a fix, without touching or overwriting the existing campaign's
 # results/logs (image digest is not one of the knobs astra_system_name() names below, so without
-# this it would silently collide with "agent_computer_astra"). Empty by default: every existing
+# this it would silently collide with the plain campaign tree). Empty by default: every existing
 # caller/result tree is unaffected.
 ASTRA_SYSTEM_SUFFIX = os.environ.get("OSW_ASTRA_SYSTEM_SUFFIX", "").strip()
 
 
 def astra_system_name():
-    """Keep the canonical tree concise, but never pool any campaign override into it."""
-    if (ASTRA_MODEL == "gpt-6-astra" and ASTRA_REASONING_EFFORT == "high"
-            and ASTRA_CODEX_VERSION == "0.153.4"):
-        base = "agent_computer_astra"
-    else:
-        safe = lambda value: re.sub(r"[^a-zA-Z0-9]+", "", value) or "default"
-        base = (f"agent_computer_{safe(ASTRA_MODEL)}_{safe(ASTRA_REASONING_EFFORT)}"
-                f"_codex{safe(ASTRA_CODEX_VERSION)}")
+    """Never pool a campaign override into another one's results tree."""
+    safe = lambda value: re.sub(r"[^a-zA-Z0-9]+", "", value) or "default"
+    base = (f"agent_computer_{safe(ASTRA_MODEL)}_{safe(ASTRA_REASONING_EFFORT)}"
+            f"_codex{safe(ASTRA_CODEX_VERSION)}")
     if ASTRA_SYSTEM_SUFFIX:
         safe_suffix = re.sub(r"[^a-zA-Z0-9]+", "", ASTRA_SYSTEM_SUFFIX) or "suffix"
         base = f"{base}_{safe_suffix}"
-    # The zoom/batch arm (config.ZOOM_BATCH) never pools into a baseline tree. Read from the
-    # environment directly: ZOOM_BATCH itself is defined further down this module.
-    if os.environ.get("OSW_ZOOM_BATCH", "0") == "1":
-        base = f"{base}_zoombatch"
-    if os.environ.get("OSW_PROTOCOL", "").strip() == "official":
-        base = f"{base}_official"
-    if (os.environ.get("OSW_BACKEND", "").strip() or "daytona") == "kvm":
+    # The only protocol this branch runs: always the official one.
+    base = f"{base}_official"
+    if BACKEND == "kvm":
         base = f"{base}_kvm"
     return base
 
 
 ASTRA_SYSTEM_NAME = astra_system_name()
 
-# Open-book Astra campaign (docs/g_astra_open_book_runner_implementation.md): same model/effort/
-# codex-version knobs as the closed-book campaign (same _system_name suffixing discipline, so an
-# override still can't pool into the canonical tree) -- deliberately its own results root, never
-# unioned with agent_computer_astra's.
-ASTRA_OPENBOOK_SYSTEM_NAME = f"{ASTRA_SYSTEM_NAME}_openbook"
+# The only results trees the new infrastructure may write or report: <runner>_official[_kvm].
+# No Phase 1 tree carries this suffix, so a run here can never write into one.
+NEW_INFRA_SYSTEM_RE = re.compile(r"agent_computer_[a-z0-9]+(?:_[a-z0-9]+)*_official(?:_kvm)?")
 
 
-def resolve_system(system=None):
-    """Which results tree an offline analysis should read.
-
-    Explicit argument wins; otherwise the pinned model decides, so
-    `OSW_MODEL=claude-sonnet-5 python -m benchmarks.osworld.analysis.<x>` reads that model's
-    tree instead of silently pooling it with the historical mixed-model one.
-    """
-    return system or SYSTEM_NAME
+def assert_new_infra_system(name):
+    if not NEW_INFRA_SYSTEM_RE.fullmatch(name or ""):
+        raise SystemExit(f"results tree {name!r} is not a new-infrastructure tree "
+                         "(agent_computer_…_official[_kvm]); Phase 1 trees are frozen under the "
+                         "tag phase1-daytona-frozen")
+    return name
 
 
-def system_from_argv(argv=None):
-    """`--system <name>` for the analysis CLIs; None when absent (env/default then decides)."""
-    import sys
-    argv = sys.argv if argv is None else argv
-    for i, a in enumerate(argv):
-        if a == "--system" and i + 1 < len(argv):
-            return argv[i + 1]
-        if a.startswith("--system="):
-            return a.split("=", 1)[1]
-    return None
-
-MAX_TURNS = int(os.environ.get("OSW_MAX_TURNS", "150"))   # desktop GUI turns run >4x web-nav ones
 # Upstream's step budget (run_multienv_claude.py --max_steps 100) under the official protocol.
-MAX_STEPS = int(os.environ.get("OSW_MAX_STEPS", "100" if OFFICIAL else "30"))
+MAX_STEPS = int(os.environ.get("OSW_MAX_STEPS", "100"))
 # Guest screen size. Must match docker/start.sh's Xvfb line and is passed explicitly to
 # SetupController, whose own default (1920x1080) drives {SCREEN_WIDTH}/{SCREEN_WIDTH_HALF}
 # substitution in task configs -- the two used to disagree (Xvfb ran 1280x1024).
 SCREEN_WIDTH = int(os.environ.get("OSW_SCREEN_WIDTH", "1920"))
 SCREEN_HEIGHT = int(os.environ.get("OSW_SCREEN_HEIGHT", "1080"))
-TASK_TIMEOUT = int(os.environ.get("OSW_TASK_TIMEOUT") or ("14400" if OFFICIAL else "3600"))
+TASK_TIMEOUT = int(os.environ.get("OSW_TASK_TIMEOUT") or "14400")
 
-OBSERVATION = os.environ.get("OSW_OBSERVATION", "screenshot+a11y")
-ACTION_SPACE = os.environ.get("OSW_ACTION_SPACE", "pyautogui")
-# G5 ARM_SELF_VERIFY (docs/g5-arm-self-verify-plan.md): appends a mandatory re-observe-and-check
-# step to the prompt before the final ANSWER, targeting G8's false-completion and
-# infeasibility-blindness findings. Off by default -- opt in per-run, not a permanent prompt change.
-SELF_VERIFY = os.environ.get("OSW_SELF_VERIFY", "0") == "1"
-# G5 idea #10 (docs/g5-arm-sandbox-enforcement-plan.md): the real fix for the artifact's
-# sandbox-escape finding -- `--allowedTools` only suppresses the confirmation prompt, it doesn't
-# restrict availability. `--disallowedTools Bash WebSearch WebFetch` + `--strict-mcp-config`
-# (drops any MCP server not in --mcp-config, closing the "second, unrelated Playwright MCP
-# server" half of the same finding) genuinely blocks the escape while leaving the OSWorld MCP
-# tools intact -- verified live 2026-08-30 against a dummy MCP server: honest refusal, real
-# ToolSearch "not found", no confabulation. `--tools ""` (tried first) was rejected: it also
-# disables the legitimate MCP tools, not just Bash/Read/WebSearch, which starves the agent of
-# any real capability and reliably produces confabulated fake tool calls instead -- see
-# docs/finding-confabulation-under-tool-denial.md. Off by default -- opt in per-run.
-ENFORCE_SANDBOX = os.environ.get("OSW_ENFORCE_SANDBOX", "0") == "1"
-# G5 idea #11 (docs/g5-arm-restrict-run-python-plan.md): run_python (free-form pyautogui code) is
-# called nearly as often as screenshot across real transcripts (2415 vs 3105 calls, 198
-# transcripts, analysis/g5_run_python_usage.py) -- the agent defaults to scripting instead of the
-# discrete click/type/key tools the harness is built to measure. `--disallowedTools
-# mcp__osworld__run_python` removes just that one MCP tool from the toolset the model is even
-# offered, leaving the other 10 OSWorld tools untouched -- verified live 2026-08-30 against a
-# dummy MCP server: the model reports run_python as genuinely absent, no confabulated substitute,
-# same clean-denial mechanism idea #10 already validated for Bash/WebSearch/WebFetch. Off by
-# default -- opt in per-run.
-RESTRICT_RUN_PYTHON = os.environ.get("OSW_RESTRICT_RUN_PYTHON", "0") == "1"
-# G5 idea #15 (in-loop independent verification, direct operationalization of #9/#12): #1's
-# SELF_VERIFY (above) re-observes with the SAME agent that already decided DONE -- validated
-# null, 0/12 runs changed. #9/#12 showed a FRESH call with no memory of the attempt, judging
-# only the final screenshot, disagrees with a wrong self-report at a real rate (up to 55.2% by
-# app -- g8_failure_taxonomy's "believed it finished but the oracle said no"). Both were always
-# offline, after the desktop state was already fixed -- neither could ever change a verdict.
-# This wires the same independent check into the LIVE run: when the agent self-reports DONE,
-# take the current screenshot (desktop is still up, before _capture_eval_state/scoring), run
-# the same single-turn Read-only verifier call as g5_verifier_check.verify(), and on
-# disagreement resume the SAME claude session (--resume, confirmed live 2026-09-09 to preserve
-# session_id/model/tool-state across the boundary) with one follow-up turn -- a genuine second
-# attempt, not a relabeling of the first. Off by default -- opt in per-run.
-INLOOP_VERIFY = os.environ.get("OSW_INLOOP_VERIFY", "0") == "1"
-INLOOP_VERIFY_MAX_TURNS = int(os.environ.get("OSW_INLOOP_VERIFY_MAX_TURNS", "40"))
-# 2026-09-09/10 pilot (12 tasks / 36 runs, generic then reason-specific nudge): the "os" bucket's
-# tasks are almost all terminal/background-config changes that leave no GUI window open, so the
-# in-loop screenshot came back "entirely black, only a mouse cursor visible" on all 6 of that
-# bucket's runs, both variants -- a screenshot-based verifier is structurally blind here
-# regardless of prompt wording, so paying for the extra call/retry on this bucket is pure waste,
-# not a milder version of the mechanism. Comma-separated task buckets (see tasks.bucket_of) to
-# skip entirely; empty disables the exclusion.
-INLOOP_VERIFY_SKIP_APPS = {
-    a.strip() for a in os.environ.get("OSW_INLOOP_VERIFY_SKIP_APPS", "os").split(",") if a.strip()
-}
-
-# Grounding harness (docs/grounding-harness-plan.md): adds find_element/click_element/
-# list_elements to the OSWorld MCP server, resolving a NAMED target through the accessibility tree
-# instead of having the model emit (x, y) from a screenshot. Unlike every earlier G5 arm this acts
-# before the wrong state exists rather than auditing it afterwards -- motivated by
-# analysis/g10_grounding_signal.py, where targeting is the ONLY measured feature separating the
-# always-fail bucket from always-pass (re-clicks within 8px at 10.9% vs 8.3% of clicks, z = 2.40,
-# p < 0.05; the flaky bucket worst on every metric) once budget, observation capability,
-# derive-and-compare behaviour and requirement complexity are all ruled out. `click(x, y)` is
-# untouched and still offered: this is an added channel, and the 2026 grounding literature is
-# explicit that a11y trees are incomplete on custom-rendered widgets. Off by default -- opt in
-# per-run, like every other arm.
-GROUNDING = os.environ.get("OSW_GROUNDING", "0") == "1"
-# Zoom + batched-action MCP tools for both CLIs (docs/superpowers/plans/2026-09-24-osworld-
-# protocol-alignment.md Task 4). Off by default; its own results trees (see below/astra_system_name).
-ZOOM_BATCH = os.environ.get("OSW_ZOOM_BATCH", "0") == "1"
-# Re-read the tree after a click_element and tell the model when nothing changed. This is the
-# action-level half of the mechanism (a click that did nothing is detectable locally, with no
-# model call and no oracle) and costs one extra /accessibility round trip per click.
-GROUNDING_VERIFY = os.environ.get("OSW_GROUNDING_VERIFY", "1") == "1"
-# Score floor below which a candidate is not offered at all. Tuned so a prefix-only match still
-# resolves but an unrelated element does not: too low and the agent clicks confidently on the
-# wrong control, which is worse than being told to read the screenshot.
-GROUNDING_MIN_SCORE = float(os.environ.get("OSW_GROUNDING_MIN_SCORE", "0.45"))
-# Its own results tree. The baseline tree holds 982 runs that the g10 analysis and every published
-# number in this project depend on; a grounding run writing into it would silently contaminate the
-# very comparison this arm exists to make. Same reasoning as VR_SYSTEM_NAME's suffix below, and
-# the reason it is applied here rather than at SYSTEM_NAME's own definition is only ordering --
-# GROUNDING is not known yet at that point.
-if GROUNDING:
-    SYSTEM_NAME = f"{SYSTEM_NAME}_grounding"
-if ZOOM_BATCH:
-    SYSTEM_NAME = f"{SYSTEM_NAME}_zoombatch"
-if OFFICIAL:
-    SYSTEM_NAME = f"{SYSTEM_NAME}_official"
+# The only protocol this branch runs: always the official one.
+SYSTEM_NAME = f"{SYSTEM_NAME}_official"
 if BACKEND == "kvm":
     SYSTEM_NAME = f"{SYSTEM_NAME}_kvm"
-
-# Verify-Replan (docs/verify-replan-minimal-integration-plan.md): a second, separate runner
-# (runners/verify_replan.py) -- not a flag on agent_computer, so the baseline path is provably
-# unaffected (see the runner's own module docstring and its characterization tests).
-# Section 8: "OSW_MAX_TURNS non può essere assegnato integralmente a ogni sessione" -- each role
-# gets its own budget rather than inheriting the baseline executor's 150.
-VR_INITIAL_MAX_TURNS = int(os.environ.get("OSW_VR_INITIAL_MAX_TURNS", "100"))
-VR_AUDITOR_MAX_TURNS = int(os.environ.get("OSW_VR_AUDITOR_MAX_TURNS", "12"))
-VR_RECOVERY_MAX_TURNS = int(os.environ.get("OSW_VR_RECOVERY_MAX_TURNS", "38"))
-VR_FINAL_AUDITOR_MAX_TURNS = int(os.environ.get("OSW_VR_FINAL_AUDITOR_MAX_TURNS", "12"))
-VR_MAX_RECOVERIES = int(os.environ.get("OSW_VR_MAX_RECOVERIES", "1"))
-# Its own results tree, keyed the same way as SYSTEM_NAME above (so a non-Sonnet-5 variant can
-# never silently mix into the pinned pilot's tree), AND by whether recovery is even possible:
-# Section 13's "audit-only" arm (OSW_VR_MAX_RECOVERIES=0, measures the auditor alone) and the
-# "verify-replan" arm (recoveries on) would otherwise both write to plain
-# "verify_replan_sonnet5" and silently overwrite each other's runs on the same 30-task pilot
-# manifest -- the exact class of bug the model-pinning post-mortem (Section 4 of the project
-# doc) already burned this project on once.
-VR_SYSTEM_NAME = (f"verify_replan_{model_slug()}" if MODEL else "verify_replan") + (
-    "_auditonly" if VR_MAX_RECOVERIES == 0 else "")
-VR_INITIAL_TIMEOUT = int(os.environ.get("OSW_VR_INITIAL_TIMEOUT", "2400"))
-VR_AUDIT_TIMEOUT = int(os.environ.get("OSW_VR_AUDIT_TIMEOUT", "300"))
-VR_RECOVERY_TIMEOUT = int(os.environ.get("OSW_VR_RECOVERY_TIMEOUT", "900"))
-VR_TOTAL_TIMEOUT = int(os.environ.get("OSW_VR_TOTAL_TIMEOUT", "3600"))
-# Empty means "inherit OSW_MODEL" -- kept as its own knob (rather than always reading MODEL
-# directly) so a future ablation can pin a cheaper auditor model without touching the executor.
-VR_AUDITOR_MODEL = os.environ.get("OSW_VR_AUDITOR_MODEL", "").strip()
-VR_MIN_CONFIDENCE = os.environ.get("OSW_VR_MIN_CONFIDENCE", "medium").strip().lower()
-VR_AUDIT_ON_FAIL = os.environ.get("OSW_VR_AUDIT_ON_FAIL", "1") == "1"
-VR_CAPTURE_EVERY_OBS = os.environ.get("OSW_VR_CAPTURE_EVERY_OBS", "1") == "1"
-
-# Score with the evaluator tree fetched at data/download_data.py::UPSTREAM_COMMIT
-# (data/download_evaluators.py) rather than whatever `desktop_env` release pip resolved. On by
-# default once that tree is on disk; set OSW_PINNED_EVALUATORS=0 to keep a campaign scored by
-# the installed release for the rest of its run, when mid-campaign homogeneity matters more
-# than correctness on the six tasks the installed release can't score at all.
-PINNED_EVALUATORS = os.environ.get("OSW_PINNED_EVALUATORS", "1") != "0"
 
 IMAGE = os.environ.get(   # pinned by digest -- Daytona caches images by tag, not :latest
     "OSW_IMAGE",
@@ -347,15 +230,12 @@ IMAGE = os.environ.get(   # pinned by digest -- Daytona caches images by tag, no
     #     "ghcr.io/longobucco/osworld-ab@sha256:"
     #     "72ce5805a6568e9f818069aa490d572d560ed80cfe247491892756bf9eb055d3"
     # --- previous pin, kept for history ---
-    # 2026-09-16 (later same day): rebuilt again on top of the digest below, carrying the fixes
-    # from docs/superpowers/plans/2026-09-16-osworld-closed-book-infra-fixes.md -- targeting the
-    # Sonnet 5 closed-book campaign's 16 infra-attributed "0/3"/partial tasks (see that campaign's
-    # own forensic report, benchmarks/osworld/docs/sonnet5-open-vs-closed-book.md). Every change
+    # 2026-09-16 (later same day): rebuilt again on top of the digest below, targeting the
+    # Sonnet 5 closed-book campaign's 16 infra-attributed "0/3"/partial tasks. Every change
     # was static-verified during implementation (no Docker daemon in that dev environment) and
     # task-reviewed individually plus a whole-branch final review (one Critical finding caught
     # and fixed there, see below) before this digest was built; LIVE validation against a real
-    # sandbox is docs/superpowers/plans/...-infra-fixes.md's own Task 11, run separately from this
-    # build+push step:
+    # sandbox was run separately from this build+push step:
     #   - sudo installed -- SetupController never checks a config/postconfig shell command's own
     #     exit code (only the HTTP status), so a missing sudo silently no-op'd `sudo -S` steps
     #     (tasks e0df059f, 5812b315).
@@ -430,34 +310,20 @@ IMAGE = os.environ.get(   # pinned by digest -- Daytona caches images by tag, no
     #     "ghcr.io/longobucco/osworld-ab@sha256:"
     #     "2d3d9665f43b0726eafda32d493bd527ea7437781e09d9c85209063487750640"
 )
-# Open-book campaign: a SEPARATE image from IMAGE above -- the closed-book pin must never
-# silently start carrying mitmproxy/iptables/CA just because this file also defines
-# ASTRA_OPENBOOK_SYSTEM_NAME. Built FROM the pinned IMAGE digest (docker/Dockerfile.osworld-
-# openbook), not from ubuntu:22.04, specifically to inherit its validated Chrome build rather
-# than re-download "latest stable" (see that Dockerfile's own docstring for why that matters).
-# Empty until a canary has passed and this is set explicitly -- open_book_preflight.campaign_check
-# has no image digest to validate yet, so there is nothing to silently fall back to.
-OPENBOOK_IMAGE = os.environ.get("OSW_OPENBOOK_IMAGE", "").strip()
 
 CONTROLLER_PORT = int(os.environ.get("OSW_CONTROLLER_PORT", "5000"))
 
 CONTROLLER_URL = os.environ.get("OSW_CONTROLLER_URL", "").strip()   # skip provisioning
 SANDBOX_ID = os.environ.get("OSW_SANDBOX_ID", "").strip()
 
-# apps installed and validated in docker/Dockerfile.osworld; tasks.load_tasks() skips anything
-# else by default (OSW_INCLUDE_ALL_APPS=1 overrides).
-SUPPORTED_APPS = {
-    "libreoffice_calc", "libreoffice_writer", "libreoffice_impress", "libreoffice",
-    "gimp", "thunderbird", "vlc", "chrome", "vscode",
-    # file-type tags opened with the default Ubuntu viewers, plus two desktop apps -- all in
-    # the official Ubuntu VM, installed in docker/Dockerfile.osworld
-    "pdf", "image", "picard", "ubuntu_media_player",
-}
-# "verified361": the published OSWorld-Verified population (release minus login tasks).
-POPULATION = os.environ.get("OSW_POPULATION", "").strip()
+# The published OSWorld-Verified population (release minus login tasks) is the only one this
+# branch runs: OSW_POPULATION may only assert what is already true.
+POPULATION = "verified361"
+_osw_population = os.environ.get("OSW_POPULATION", "").strip()
+if _osw_population not in ("", "verified361"):
+    raise SystemExit(f"OSW_POPULATION={_osw_population!r}: expected '' or 'verified361'")
 # "os": a generic desktop/OS-level capability tag (terminal use, file manager, ...) that shows
 # up alongside a task's real app tag(s), e.g. ['vlc', 'os'] or ['vscode', 'os'] -- not an
 # installable app, same category as "terminal". Found live 2026-08-19: treating it as an
 # unsupported app was excluding 85 otherwise-runnable tasks from the population for no reason.
 ALWAYS_PRESENT_CAPABILITIES = {"terminal", "os"}   # not apps -- always in the image
-INCLUDE_ALL_APPS = bool(os.environ.get("OSW_INCLUDE_ALL_APPS", "").strip())

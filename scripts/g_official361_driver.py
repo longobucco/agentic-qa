@@ -1,6 +1,5 @@
 """Campaign driver for the official-protocol OSWorld-Verified campaigns (361 tasks x 5 runs) on
-the kvm backend (docs/superpowers/plans/2026-09-24-osworld-official-fidelity.md, Task 10):
-parallel shards, quota-safe, preflight first.
+the kvm backend: parallel shards, quota-safe, preflight first.
 
     ARM=sonnet|astra PARALLEL=K MAX_HOURS=H .venv/bin/python scripts/g_official361_driver.py
     ... --dry-run    # print the planned batches, run nothing
@@ -36,8 +35,8 @@ the pending set from disk. After every round, `decide` looks at what the childre
     way), or >= 80% of the units attempted in the round ended with an infra error that is
     neither RATE_LIMITED nor INTERRUPTED (systemic failure, e.g. every VM failing setup
     (ENV_SETUP_FAILED) -- burning through the population would only pile up infra records);
-  - "backoff": >= 50% of the units just attempted ended RATE_LIMITED -- sleep 1800 s (same poll
-    as the open-book driver: quota resets are hours apart) and try again;
+  - "backoff": >= 50% of the units just attempted ended RATE_LIMITED -- sleep 1800 s (quota
+    resets are hours apart) and try again;
   - "continue" otherwise.
 Tool-surface violations are not infra errors: they write a terminal FAILURE eval.json and are
 never retried. MAX_HOURS is checked between rounds. Everything (the driver's own lines and the
@@ -57,8 +56,10 @@ environment, so a mid-campaign .env edit cannot inject one through core.run's lo
 OSW_KVM_* (host settings: address, docker host, qcow2 path/sha256 -- the kvm preflight checks
 they are set/present, not their identity), OSW_ASTRA_REASONING_EFFORT (the caller's campaign
 decision), and knobs no code path of these two kvm arms reads -- OSW_IMAGE,
-OSW_PROVISION_TIMEOUT (Daytona only), OSW_OPENBOOK_* (open-book runner), OSW_VR_*
-(verify-replan runner), OSW_RAW_BASE/OSW_INDEX (data download), OSW_PROBE_*.
+OSW_PROVISION_TIMEOUT (Daytona only), OSW_RAW_BASE/OSW_INDEX (data download), OSW_PROBE_*.
+Most Phase 1 knobs that config itself refuses at import (config._LEGACY_KNOB_NEUTRAL) are also
+in _HARNESS_KNOB_DEFAULTS, at the same neutral values, so the driver names them before any child
+starts; the rest (OSW_OPENBOOK_IMAGE, OSW_VR_*) are left to config's own refusal.
 
 Stuck units: before each round, a pending unit whose infra_error.json already holds >= 3
 records that are neither RATE_LIMITED nor INTERRUPTED (an operator/driver stop is not a unit
