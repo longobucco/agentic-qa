@@ -422,10 +422,10 @@ def test_bounded_raises_runtime_error_past_its_timeout():
     `common` (where _bounded is now defined, post-extraction), not on the `agent_computer` name
     that merely re-imports it -- a function reads module globals off its own __globals__, i.e.
     the module it was DEFINED in, so patching the importer's copy of the name has no effect on
-    what the function actually sees. Caught this exact gap live while verifying the extraction
-    (docs/verify-replan-minimal-integration-plan.md commit 2): before this fix, this test's
-    patch on `agent_computer._POST_RUN_TIMEOUT_S` silently did nothing post-extraction and
-    `_bounded` ran out its real 600s default instead of the intended 0.05s."""
+    what the function actually sees. Caught this exact gap live while verifying the extraction:
+    before this fix, this test's patch on `agent_computer._POST_RUN_TIMEOUT_S` silently did
+    nothing post-extraction and `_bounded` ran out its real 600s default instead of the intended
+    0.05s."""
     real_timeout = common._POST_RUN_TIMEOUT_S
     common._POST_RUN_TIMEOUT_S = 0.05
     try:
@@ -462,7 +462,7 @@ def test_provenance_shape_and_pinned_config_fields():
     """Characterization test: pins every field _provenance writes today and where each one
     comes from (task hash, ctrl, or a specific config knob, or the official protocol's own
     fixed values), so this cannot silently drop or rename a field a downstream reader
-    (reporting.ab_compare, the verify-replan role telemetry) depends on."""
+    (reporting.ab_compare) depends on."""
     real = {k: getattr(config, k) for k in ("MODEL", "IMAGE", "RELEASE", "TASK_TIMEOUT")}
     config.MODEL = "claude-sonnet-5"
     config.IMAGE = "test-image@sha256:deadbeef"
