@@ -12,6 +12,8 @@ import re
 import signal
 import subprocess
 
+from core import procgroups
+
 ANSWER_RE = re.compile(r"^ANSWER:\s*(.*)$", re.MULTILINE)
 
 
@@ -70,7 +72,11 @@ def _run_raw(cmd, *, timeout, env=None, cwd=None) -> str:
     CLI in an empty temp dir so no repo/project context is attached to the session).
 
     Runs in its own process group (`start_new_session`) and kills the WHOLE group on timeout,
-    not just the direct child. Observed live: `claude -p` with an MCP server (e.g. OSWorld's
+    not just the direct child. The group is also registered with `core.procgroups` for the
+    duration of the call (unregistered in a `finally`) so an interrupted `core.run.main()` can
+    reap it even on a path that never reaches this function's own timeout handling.
+
+    Observed live: `claude -p` with an MCP server (e.g. OSWorld's
     stdio server) spawns that server as a grandchild inheriting the stdout pipe; a plain
     `subprocess.run(..., timeout=...)` only kills the direct child on TimeoutExpired, so the
     orphaned grandchild keeps the pipe open and `communicate()` blocks forever waiting for EOF
@@ -94,16 +100,21 @@ def _run_raw(cmd, *, timeout, env=None, cwd=None) -> str:
     proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True,
                              stdin=subprocess.DEVNULL, env=env, cwd=cwd,
                              start_new_session=True)
+    pgid = os.getpgid(proc.pid)
+    procgroups.register(pgid)
     try:
-        stdout, _ = proc.communicate(timeout=timeout)
-        return stdout
-    except subprocess.TimeoutExpired:
         try:
-            os.killpg(os.getpgid(proc.pid), signal.SIGKILL)
-        except ProcessLookupError:
-            pass
-        stdout, _ = proc.communicate()   # drain whatever's buffered now that the tree is dead
-        return stdout or ""
+            stdout, _ = proc.communicate(timeout=timeout)
+            return stdout
+        except subprocess.TimeoutExpired:
+            try:
+                os.killpg(pgid, signal.SIGKILL)
+            except ProcessLookupError:
+                pass
+            stdout, _ = proc.communicate()   # drain whatever's buffered now that the tree is dead
+            return stdout or ""
+    finally:
+        procgroups.unregister(pgid)
 
 
 def run_claude(cmd, *, timeout, env=None) -> str:

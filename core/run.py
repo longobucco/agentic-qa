@@ -22,12 +22,14 @@ import argparse
 import json
 import os
 import queue
+import signal
 import threading
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
 from typing import Callable
 
+from core import procgroups
 from core import results as results_io
 from core import reporting
 from core.agent_loop import preview
@@ -141,8 +143,52 @@ def _parser(benchmark):
     return ap
 
 
+def _install_signal_handlers():
+    """Install SIGTERM/SIGINT handlers that reap every registered agent CLI process group
+    (`core.procgroups`) before the interrupt propagates. A benchmark run's agent spawners
+    (`core.agent_loop._run_raw`, `core.codex_loop.run_codex_meta`) already killpg their own
+    child on THEIR OWN timeout; this covers the harness process itself being torn down
+    (campaign driver SIGTERM, Ctrl-C, or an unhandled exception unwinding `main`) -- without
+    it, the agent CLI (+ its MCP-server grandchild) is orphaned with no timeout, spending
+    subscription quota against a VM that's being removed underneath it.
+
+    Only installed in the main thread: `signal.signal` raises ValueError from any other thread
+    (e.g. a `--concurrency` worker), and the benchmark's own worker threads never need it --
+    they don't own the process's signal disposition. With no handler installed, nothing about
+    a run changes (no groups are ever left un-reaped that wouldn't be anyway).
+
+    SIGTERM is converted into `SystemExit(128+signum)` rather than `os._exit`, so the
+    `finally` blocks in environment context managers (e.g. stopping/removing a KVM container)
+    still run as the process unwinds. SIGINT (Ctrl-C) kills the groups first and then raises
+    KeyboardInterrupt as usual, so existing Ctrl-C behavior is unchanged apart from the reap.
+    """
+    if threading.current_thread() is not threading.main_thread():
+        return
+
+    def _on_sigterm(signum, frame):
+        procgroups.kill_all()
+        raise SystemExit(128 + signum)
+
+    def _on_sigint(signum, frame):
+        procgroups.kill_all()
+        raise KeyboardInterrupt()
+
+    signal.signal(signal.SIGTERM, _on_sigterm)
+    signal.signal(signal.SIGINT, _on_sigint)
+
+
 def main(benchmark, argv=None):
     load_dotenv()   # repo-root .env -> every benchmark run shares DAYTONA/OPENAI/... keys
+    _install_signal_handlers()
+    try:
+        _main(benchmark, argv)
+    finally:
+        # Belt-and-braces: an unhandled exception unwinding this frame must not leave an agent
+        # CLI's process group running past the VM/container it was driving being torn down.
+        procgroups.kill_all()
+
+
+def _main(benchmark, argv=None):
     args = _parser(benchmark).parse_args(argv)
     runner = benchmark.runners[args.system]
     judge = benchmark.judge
