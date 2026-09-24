@@ -2,7 +2,7 @@
   "frozen_at": "2026-09-24T10:06:09Z",
   "release": "osworld_verified",
   "model": "gpt-6-astra",
-  "reasoning_effort": "REQUIRES_USER_DECISION",
+  "reasoning_effort": "max",
   "codex_cli_version": "0.153.4",
   "population": {
     "paths": [
@@ -60,5 +60,6 @@
     "screen": "1920x1080",
     "max_steps": 100,
     "system_prompt_channel": "model_instructions_file"
-  }
+  },
+  "reasoning_effort_note": "user decision 2026-09-24: highest level Codex 0.153.4 accepts for gpt-6-astra; supported values reported by the API: none, minimal, low, medium, high, xhigh, max"
 }
