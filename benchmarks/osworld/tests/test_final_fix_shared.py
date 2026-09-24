@@ -216,6 +216,7 @@ def test_claude_run_without_the_mcp_state_is_an_unscored_harness_error(monkeypat
     out = tmp_path / "out"
     out.mkdir()
     (out / "mcp_state.json").write_text('{"started": true, "steps_used": 3}')   # stale
+    (out / "eval.json").write_text('{"verdict": "SUCCESS"}')   # stale, from an earlier attempt
     _, out, seen = _claude_run(monkeypatch, tmp_path, meta={}, mcp_state=False,
                                on_call=_write_session_for_cwd([_computer_use()]))
     infra = _read(out, "infra_error.json")[-1]
