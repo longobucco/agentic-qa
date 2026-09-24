@@ -324,6 +324,11 @@ d._docker_client = lambda: types.SimpleNamespace(containers=_Containers())
 
 _real = subprocess.Popen
 n = [0]
+if mode == "grandchild":   # a fake run.py that is a real core.run.main (see _GRANDCHILD_RUN_PY)
+    d.pending_units = lambda system, runs: [("t0", 1)]
+    d.subprocess.Popen = lambda cmd, **kw: _real(
+        [sys.executable, str(tmp / "run_py.py"), sys.argv[2], str(tmp)], **kw)
+    sys.exit(d.main([]))
 def fake_popen(cmd, **kw):   # a fake run.py child: sleeps; the second one ignores SIGTERM
     n[0] += 1
     code = ("import os, signal, sys, time\\n"
@@ -529,3 +534,104 @@ def test_a_unit_that_ends_with_no_outcome_counts_toward_the_stuck_rule(tmp_path,
     rl = _unit("q", 1, fresh=None, history=["HARNESS_ERROR", "RATE_LIMITED", "HARNESS_ERROR"])
     assert driver.stuck_units([_batch(0, [{**rl, "no_outcomes": 1}])]) == [("q", 1)]
     assert driver.stuck_units([_batch(0, [rl])]) == []
+
+
+# ---- fix round 2 (after task 10b: core.run reaps agent groups on interrupt) -----------------
+
+def test_interrupted_records_never_count_toward_the_stuck_rule(tmp_path, monkeypatch):
+    # an operator/driver stop is not a unit failure, exactly like a rate limit
+    interrupted = ["INTERRUPTED", "HARNESS_ERROR", "INTERRUPTED", "HARNESS_ERROR", "INTERRUPTED"]
+    assert driver.stuck_units([_batch(0, [_unit("i", 1, "INTERRUPTED", interrupted)])]) == []
+    assert driver.stuck_units([_batch(0, [_unit("i", 1, "HARNESS_ERROR",
+                                                interrupted + ["HARNESS_ERROR"])])]) == [("i", 1)]
+    monkeypatch.setattr(config, "RESULTS_DIR", tmp_path)
+    out = tmp_path / "sys" / "i" / "run_1"
+    out.mkdir(parents=True)
+    (out / "infra_error.json").write_text(json.dumps([{"outcome": o} for o in interrupted]))
+    assert driver.stuck_pending("sys", [("i", 1)]) == []
+
+
+def test_child_grace_covers_an_orderly_kvm_teardown_and_is_what_terminate_children_uses(
+        monkeypatch):
+    assert driver.CHILD_GRACE_S == 180
+    monkeypatch.setattr(driver, "CHILD_GRACE_S", 1)
+    stubborn = _sleeper(ignore_term=True)
+    lines = []
+    assert driver.terminate_children([stubborn], log=lines.append) == (1, 1)
+    assert stubborn.poll() == -9
+    assert any("SIGKILL" in l and "container label sweep" in l for l in lines)
+
+
+_GRANDCHILD_RUN_PY = """
+import os, sys
+from contextlib import contextmanager
+from pathlib import Path
+sys.path.insert(0, sys.argv[1])
+from core.agent_loop import _run_raw
+from core.environment import Env
+from core.judge import Judge
+from core.run import Benchmark, Runner, main
+tmp = Path(sys.argv[2])
+open(tmp / "child.pid", "w").write(str(os.getpid()))
+
+
+@contextmanager
+def env_cm(task, *, port=None):
+    try:
+        yield Env(port=None)
+    finally:
+        (tmp / "teardown_ran").write_text("1")
+
+
+def run_fn(task, *, env, out, refs=None, dry=False):
+    # the real spawner path: its own session (start_new_session), registered in core.procgroups
+    code = ("import os, time; open(" + repr(str(tmp / "grandchild.pid"))
+            + ", 'w').write(str(os.getpid())); time.sleep(120)")
+    _run_raw([sys.executable, "-c", code], timeout=300)
+    return "DONE"
+
+
+main(Benchmark(name="fake", results_dir=tmp / "results",
+               load_tasks=lambda: [{"id": "t0"}],
+               runners={"fake": Runner(name="fake", run=run_fn, environment=env_cm)},
+               judge=Judge(fn=lambda *a: {"verdict": "SUCCESS", "reason": ""},
+                           is_deterministic=True)),
+     argv=["--system", "fake"])
+"""
+
+
+def test_sigterm_reaches_the_agent_grandchild_group_through_a_real_core_run_child(tmp_path):
+    import signal
+    import time
+    (tmp_path / "run_py.py").write_text(_GRANDCHILD_RUN_PY)
+    proc = _start_driver(tmp_path, "grandchild")
+    gc_file = tmp_path / "grandchild.pid"
+    deadline = time.time() + 30
+    while not (gc_file.exists() and gc_file.read_text()):
+        assert time.time() < deadline and proc.poll() is None, proc.communicate()[0]
+        time.sleep(0.1)
+    time.sleep(0.5)   # let _run_raw register the group
+    grandchild = int(gc_file.read_text())
+    assert os.getpgid(grandchild) == grandchild   # it leads its own session/group
+    proc.send_signal(signal.SIGTERM)
+    out, _ = proc.communicate(timeout=60)
+    assert proc.returncode == 128 + signal.SIGTERM, out
+    deadline = time.time() + 5
+    while time.time() < deadline:
+        try:
+            os.killpg(grandchild, 0)
+        except (ProcessLookupError, PermissionError):
+            break
+        time.sleep(0.05)
+    else:
+        pytest.fail("the agent grandchild's process group survived the driver's SIGTERM")
+    with pytest.raises(ProcessLookupError):   # the run.py child was reaped by the driver
+        os.kill(int((tmp_path / "child.pid").read_text()), 0)
+    assert (tmp_path / "teardown_ran").exists()   # the child's environment teardown ran
+    infra = json.loads((tmp_path / "results" / "fake" / "t0" / "run_1" / "infra_error.json")
+                       .read_text())
+    assert infra[-1]["outcome"] == "INTERRUPTED"
+    log = (tmp_path / "scripts" / "g_official361_sonnet.log").read_text()
+    assert "0 killed" in log and "SIGKILL" not in log   # orderly exit within the grace period
+    assert json.loads((tmp_path / "sweep.json").read_text())["label"].startswith(
+        "osworld.driver_run=")
