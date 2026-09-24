@@ -26,16 +26,22 @@ import urllib.request
 # missed this because RemoteDisconnected was the only failure mode observed at the time.
 _RETRYABLE = (http.client.RemoteDisconnected, ConnectionResetError, ConnectionAbortedError,
               urllib.error.URLError, TimeoutError)
+# Connection-level drops only (no TimeoutError): a request that never reached the guest is safe
+# to resend, but a request that timed out waiting for the response may have already run its
+# pyautogui side effects there -- resending it would replay them. Used by execute()'s
+# retry_timeouts=False path (see its docstring): upstream's own PythonController.
+# execute_python_command breaks on ReadTimeout and never re-POSTs for the same reason.
+_RETRYABLE_NO_TIMEOUT = tuple(e for e in _RETRYABLE if e is not TimeoutError)
 _RETRIES = 3
 _RETRY_DELAY_S = 1.0
 
 
-def _with_retry(fn):
+def _with_retry(fn, retryable=_RETRYABLE):
     last = None
     for attempt in range(_RETRIES):
         try:
             return fn()
-        except _RETRYABLE as e:
+        except retryable as e:
             last = e
             if attempt < _RETRIES - 1:
                 time.sleep(_RETRY_DELAY_S)
@@ -54,14 +60,14 @@ class Controller:
         data = _with_retry(call)
         return data if raw else data.decode()
 
-    def _post_json(self, path, payload, *, timeout=None):
+    def _post_json(self, path, payload, *, timeout=None, retry_timeouts=True):
         def call():
             req = urllib.request.Request(
                 f"{self.base_url}{path}", data=json.dumps(payload).encode(),
                 headers={"Content-Type": "application/json"})
             with urllib.request.urlopen(req, timeout=timeout or self.timeout) as r:
                 return r.read().decode()
-        return _with_retry(call)
+        return _with_retry(call, _RETRYABLE if retry_timeouts else _RETRYABLE_NO_TIMEOUT)
 
     def _post_form(self, path, form, *, timeout=None):
         def call():
@@ -82,8 +88,12 @@ class Controller:
         # actions run through /run_python (there is no /pyautogui route)
         return self._post_json("/run_python", {"code": code})
 
-    def execute(self, command, *, shell=False, timeout=120):
-        out = self._post_json("/execute", {"command": command, "shell": shell}, timeout=timeout)
+    def execute(self, command, *, shell=False, timeout=120, retry_timeouts=True):
+        # retry_timeouts=False: don't resend a request that timed out waiting for its response
+        # (see _RETRYABLE_NO_TIMEOUT above) -- used by the official computer-tool engine, whose
+        # actions may have already run on the guest by the time the response times out.
+        out = self._post_json("/execute", {"command": command, "shell": shell}, timeout=timeout,
+                               retry_timeouts=retry_timeouts)
         try:
             return json.loads(out).get("output", out)
         except Exception:

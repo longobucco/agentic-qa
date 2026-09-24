@@ -114,6 +114,28 @@ def test_execute_retries_past_a_read_timeout_and_succeeds():
         server.shutdown()
 
 
+def test_execute_with_retry_timeouts_false_does_not_retry_a_read_timeout():
+    # Mirrors upstream PythonController.execute_python_command: it breaks on ReadTimeout and
+    # never re-POSTs, because a timed-out /execute may have already run pyautogui side effects
+    # on the guest -- re-sending it would replay those side effects. Our own engine
+    # (mcp/official_computer.py) passes retry_timeouts=False for this reason; every other
+    # caller keeps today's default (True) so the anti-hijacking connection/timeout resilience
+    # from the docstring above stays intact.
+    _SlowOrigin.stalls_left = 99
+    _SlowOrigin.calls = 0
+    server = _serve(_SlowOrigin)
+    try:
+        ctrl = Controller(f"http://127.0.0.1:{server.server_port}")
+        try:
+            ctrl.execute("echo hi", shell=True, timeout=0.1, retry_timeouts=False)
+            assert False, "should have raised the timeout, not retried it"
+        except TimeoutError:
+            pass
+        assert _SlowOrigin.calls == 1
+    finally:
+        server.shutdown()
+
+
 def test_a_clean_call_needs_no_retry():
     _FlakyOrigin.drops_left = 0
     _FlakyOrigin.calls = 0
