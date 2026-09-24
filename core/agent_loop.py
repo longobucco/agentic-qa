@@ -23,7 +23,7 @@ def extract_answer(text: str) -> str:
 
 def build_claude_cmd(prompt, *, model=None, max_turns=None, add_dir=None,
                      mcp_config=None, allowed_tools=None, extra=None, resume=None,
-                     effort=None):
+                     effort=None, system_prompt=None):
     """Assemble a `claude -p ... --output-format json` argv.
 
     Covers every runner/judge shape: a plain agent (add_dir), an MCP runner (mcp_config +
@@ -34,6 +34,9 @@ def build_claude_cmd(prompt, *, model=None, max_turns=None, add_dir=None,
     one -- verified live 2026-09-09 to preserve session_id, pinned model, and tool/MCP state
     across the boundary, so a follow-up prompt picks up exactly where the resumed session left
     off (same desktop state, same allowed tools) rather than re-provisioning from scratch.
+
+    `system_prompt` (OSWorld official protocol) replaces Claude Code's default system prompt;
+    None => omitted, so every other caller's argv is unchanged.
     """
     cmd = ["claude", "-p", prompt, "--output-format", "json",
            "--dangerously-skip-permissions"]
@@ -47,6 +50,8 @@ def build_claude_cmd(prompt, *, model=None, max_turns=None, add_dir=None,
         cmd += ["--allowedTools", *allowed_tools]
     if extra:
         cmd += list(extra)
+    if system_prompt:
+        cmd += ["--system-prompt", system_prompt]
     if effort:
         cmd += ["--effort", effort]
     if model:

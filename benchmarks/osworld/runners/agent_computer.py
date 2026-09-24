@@ -13,14 +13,14 @@ import re
 
 from datetime import datetime, timezone
 
-from benchmarks.osworld import config, tasks
+from benchmarks.osworld import config, official_protocol, tasks
 from benchmarks.osworld.prompts import agent_prompt
 from benchmarks.osworld.runners.common import (
     OSWORLD_TOOLS, _action_history, _agent_telemetry, _annotate_incidental, _bounded,
     _capture_eval_state, _clean_finish, _environment_error_rec, _evaluate_with_retry,
     _evaluator_provenance, _mcp_config, _model_mismatch, _POST_RUN_TIMEOUT_S, _provenance,
     _rate_limit_infra_rec, _rate_limit_result_rec, _save_conversation_transcript, _score,
-    _served_by, _a11y_health, claude_env,
+    _served_by, _a11y_health, claude_env, claude_transcript_actions, protocol_wait,
 )
 from core.agent_loop import build_claude_cmd, extract_answer, preview, run_claude_meta
 from core import results as results_io
@@ -36,6 +36,17 @@ GROUNDING_TOOLS = [
 ]
 # mcp/zoom_batch_tools.register() -- the zoom/batch arm (config.ZOOM_BATCH).
 ZOOM_BATCH_TOOLS = ["mcp__osworld__zoom", "mcp__osworld__batch"]
+# Official protocol (config.OFFICIAL): every non-MCP tool Claude Code offers, all denied so the
+# agent acts only through the `computer` tool, as upstream's agent does. Read from the `init`
+# event's `tools` of `claude -p --output-format stream-json --verbose` on CLI 2.1.280,
+# 2026-09-24 -- a newer CLI may add tools, so re-read it when the pinned CLI changes.
+CLAUDE_BUILTIN_TOOLS = [
+    "Task", "Artifact", "ArtifactComments", "ArtifactData", "Bash", "CronCreate", "CronDelete",
+    "CronList", "DesignSync", "Edit", "EnterWorktree", "ExitWorktree", "ListAgents", "Monitor",
+    "NotebookEdit", "PushNotification", "Read", "RemoteTrigger", "ReportFindings",
+    "ScheduleWakeup", "SendMessage", "Skill", "TaskStop", "ToolSearch", "WebFetch", "WebSearch",
+    "Write",
+]
 
 
 def _effort_kwargs():
@@ -113,6 +124,36 @@ def _extra_flags():
     if not disallowed:
         return None
     return ["--disallowedTools", *disallowed, "--strict-mcp-config"]
+
+
+def _official_cmd_kwargs(task):
+    """build_claude_cmd kwargs under the official protocol: the bare instruction as the user
+    turn, upstream's system prompt, only the `computer` tool. The deny list is built alone (not
+    merged with _extra_flags) -- it already covers the G5 arms' built-ins, and the MCP server
+    registers no run_python here -- so --disallowedTools/--strict-mcp-config appear once."""
+    return {
+        "prompt": task["instruction"],
+        "system_prompt": official_protocol.system_prompt(
+            max_steps=config.MAX_STEPS,
+            client_password=config.KVM_CLIENT_PASSWORD if config.BACKEND == "kvm" else ""),
+        "allowed_tools": ["mcp__osworld__computer"],
+        # A safety net only: the MCP server's step budget binds first.
+        "max_turns": 2 * config.MAX_STEPS + 20,
+        "extra": ["--disallowedTools", *CLAUDE_BUILTIN_TOOLS, "--strict-mcp-config"],
+    }
+
+
+def _official_answer(out, text, transcript):
+    """Upstream's termination rule over the whole session (official_protocol.final_action),
+    read from the transcript this run just saved; without one (a leftover file from an earlier
+    attempt doesn't count), only the final text is left to judge."""
+    if transcript.get("transcript_saved"):
+        try:
+            return official_protocol.final_action(
+                *claude_transcript_actions(out / "conversation.jsonl"))
+        except OSError:
+            pass
+    return official_protocol.final_action([text], [])
 
 
 def _implies_done(answer):
@@ -265,19 +306,31 @@ def run(task, *, env, out, refs=None, dry=False):
         return ""
 
     mcp_config_path = _mcp_config(controller_url)
-    cmd = build_claude_cmd(
-        agent_prompt(task),
-        model=config.MODEL or None,
-        max_turns=config.MAX_TURNS,
-        mcp_config=mcp_config_path,
-        allowed_tools=_allowed_tools(),
-        extra=_extra_flags(),
-        **_effort_kwargs(),
-    )
+    if config.OFFICIAL:
+        official = _official_cmd_kwargs(task)
+        cmd = build_claude_cmd(
+            official.pop("prompt"),
+            model=config.MODEL or None,
+            mcp_config=mcp_config_path,
+            **official,
+            **_effort_kwargs(),
+        )
+    else:
+        cmd = build_claude_cmd(
+            agent_prompt(task),
+            model=config.MODEL or None,
+            max_turns=config.MAX_TURNS,
+            mcp_config=mcp_config_path,
+            allowed_tools=_allowed_tools(),
+            extra=_extra_flags(),
+            **_effort_kwargs(),
+        )
     if dry:
         print("DRY-RUN command:\n ", preview(cmd))
         os.unlink(mcp_config_path)
         return None
+
+    protocol_wait(config.POST_SETUP_WAIT_S)   # upstream: sleep 60 after reset, before step 1
 
     inloop_telemetry = {}
     try:
@@ -327,7 +380,10 @@ def run(task, *, env, out, refs=None, dry=False):
     clean_finish = _clean_finish(meta, answer)
     results_io.write_output(out, text)
     transcript = _save_conversation_transcript(meta, out, task["id"])
+    if config.OFFICIAL:
+        answer = _official_answer(out, text, transcript)
 
+    protocol_wait(config.PRE_EVAL_WAIT_S)   # upstream: sleep 20 before evaluate
     eval_state = _bounded("eval-state capture", _capture_eval_state, ctrl, task, out) if ctrl else None
     telemetry = _agent_telemetry(meta)
     telemetry["agent_clean_finish"] = clean_finish

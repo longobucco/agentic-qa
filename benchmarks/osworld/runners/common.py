@@ -200,6 +200,40 @@ def claude_env():
     return {**os.environ, "CLAUDE_CODE_MAX_OUTPUT_TOKENS": str(config.MAX_OUTPUT_TOKENS)}
 
 
+def protocol_wait(seconds, *, sleep=time.sleep):
+    """Upstream's fixed settle sleeps (after setup, before evaluate) -- official protocol only;
+    a no-op otherwise, so the legacy harness keeps its timings."""
+    if config.OFFICIAL:
+        sleep(seconds)
+
+
+def claude_transcript_actions(path):
+    """(assistant text blocks, `computer` tool_use inputs) from a Claude Code session JSONL, in
+    order -- what official_protocol.final_action needs to apply upstream's termination rule.
+    Unparseable lines are skipped; a string `content` counts as one text block."""
+    texts, calls = [], []
+    for line in Path(path).read_text(errors="replace").splitlines():
+        try:
+            ev = json.loads(line)
+        except ValueError:
+            continue
+        if not isinstance(ev, dict) or ev.get("type") != "assistant":
+            continue
+        content = (ev.get("message") or {}).get("content")
+        if isinstance(content, str):
+            texts.append(content)
+            continue
+        for block in content or []:
+            if not isinstance(block, dict):
+                continue
+            if block.get("type") == "text":
+                texts.append(block.get("text") or "")
+            elif (block.get("type") == "tool_use"
+                  and block.get("name") == "mcp__osworld__computer"):
+                calls.append(block.get("input") or {})
+    return texts, calls
+
+
 def _a11y_health(ctrl):
     """One /accessibility probe per run, recorded in result.json as `a11y_*`.
 
