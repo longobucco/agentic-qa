@@ -195,3 +195,139 @@ def test_dry_run_prints_the_plan_and_runs_nothing(tmp_path):
     assert all(1 <= len(b) <= 5 for b in plan["batches"])
     assert len({t for b in plan["batches"] for t in b}) == len(sum(plan["batches"], []))
     assert not list(tmp_path.glob("*_ran"))
+
+
+# ---- refusal of harness-altering knobs (pre-review fix 2) ----------------------------------
+
+@pytest.mark.parametrize("name,value", [
+    ("OSW_ZOOM_BATCH", "1"), ("OSW_GROUNDING", "1"), ("OSW_SELF_VERIFY", "1"),
+    ("OSW_INLOOP_VERIFY", "1"), ("OSW_RESTRICT_RUN_PYTHON", "1"), ("OSW_ENFORCE_SANDBOX", "1"),
+    ("OSW_OBSERVATION", "screenshot"), ("OSW_ACTION_SPACE", "computer_13"),
+    ("OSW_MAX_TURNS", "100"), ("OSW_TASK_TIMEOUT", "3600"),
+    ("OSW_SLEEP_AFTER_EXECUTION", "0"), ("OSW_POST_SETUP_WAIT_S", "0"),
+    ("OSW_PRE_EVAL_WAIT_S", "0"), ("OSW_INCLUDE_ALL_APPS", "1"), ("OSW_PINNED_EVALUATORS", "0"),
+    ("OSW_CONTROLLER_URL", "http://x:5000"), ("OSW_SANDBOX_ID", "sb-1"),
+    ("OSW_RELEASE", "other"), ("OSW_ASTRA_CODEX_VERSION", "0.1.0"),
+    ("OSW_POST_RUN_TIMEOUT", "60"),
+    # the protocol's own values, set differently by the caller
+    ("OSW_PROTOCOL", ""), ("OSW_BACKEND", "daytona"), ("OSW_POPULATION", "all"),
+    ("OSW_MAX_STEPS", "30"), ("OSW_SCREEN_WIDTH", "1280"), ("OSW_SCREEN_HEIGHT", "720"),
+    ("OSW_MODEL", "claude-opus-4-8"), ("OSW_EFFORT", "high"), ("OSW_SYSTEM_SUFFIX", "x"),
+])
+def test_env_conflicts_names_each_harness_altering_variable(name, value):
+    conflicts = driver.env_conflicts("sonnet", {name: value})
+    assert len(conflicts) == 1 and conflicts[0].startswith(name + "=")
+
+
+def test_env_conflicts_accepts_defaults_protocol_values_and_host_settings():
+    environ = {"OSW_ZOOM_BATCH": "0", "OSW_PINNED_EVALUATORS": "1", "OSW_MAX_TURNS": "150",
+               "OSW_TASK_TIMEOUT": "", "OSW_OBSERVATION": "screenshot+a11y",
+               "OSW_PROTOCOL": "official", "OSW_BACKEND": "kvm", "OSW_MAX_STEPS": "100",
+               "OSW_KVM_ADDR": "10.0.0.2", "OSW_KVM_QCOW2": "/data/Ubuntu.qcow2",
+               "OSW_ASTRA_REASONING_EFFORT": "xhigh"}
+    assert driver.env_conflicts("sonnet", environ) == []
+    assert driver.env_conflicts("astra", environ) == []
+    assert driver.env_conflicts("astra", {**environ, "OSW_ASTRA_CAMPAIGN_LOCK": "a.json"}) == [
+        "OSW_ASTRA_CAMPAIGN_LOCK='a.json' (the protocol requires "
+        "'astra_official361_lock.json')"]
+
+
+def test_main_refuses_with_exit_2_naming_every_conflicting_variable(monkeypatch, capsys):
+    import core.dotenv
+    monkeypatch.setattr(core.dotenv, "load_dotenv", lambda: None)
+    monkeypatch.setenv("ARM", "sonnet")
+    monkeypatch.setenv("OSW_ZOOM_BATCH", "1")
+    monkeypatch.setenv("OSW_MAX_STEPS", "30")
+    assert driver.main(["--dry-run"]) == 2
+    err = capsys.readouterr().err
+    assert "OSW_ZOOM_BATCH" in err and "OSW_MAX_STEPS" in err
+
+
+def test_main_checks_knobs_that_come_from_the_repo_dotenv(monkeypatch, capsys):
+    # core.run.main loads the repo-root .env in every child, so a knob set only there would
+    # otherwise reach the children unchecked.
+    import core.dotenv
+    monkeypatch.setattr(core.dotenv, "load_dotenv",
+                        lambda: monkeypatch.setenv("OSW_GROUNDING", "1"))
+    monkeypatch.setenv("ARM", "sonnet")
+    monkeypatch.delenv("OSW_GROUNDING", raising=False)
+    assert driver.main(["--dry-run"]) == 2
+    assert "OSW_GROUNDING" in capsys.readouterr().err
+
+
+# ---- signal handling (pre-review fix 3) ----------------------------------------------------
+
+def _sleeper(ignore_term=False):
+    code = ("import signal, time\n"
+            + ("signal.signal(signal.SIGTERM, signal.SIG_IGN)\n" if ignore_term else "")
+            + "print('up', flush=True)\ntime.sleep(60)\n")
+    p = subprocess.Popen([sys.executable, "-c", code], stdout=subprocess.PIPE, text=True)
+    assert p.stdout.readline().strip() == "up"   # handler installed before we signal it
+    return p
+
+
+def test_terminate_children_sends_sigterm_then_kills_after_the_grace_period():
+    polite, stubborn = _sleeper(), _sleeper(ignore_term=True)
+    finished = _sleeper()
+    finished.kill()
+    finished.wait()
+    lines = []
+    terminated, killed = driver.terminate_children([polite, stubborn, finished], grace_s=1,
+                                                   log=lines.append)
+    assert (terminated, killed) == (2, 1)
+    assert polite.poll() == -15 and stubborn.poll() == -9
+    assert lines
+
+
+_DRIVER_UNDER_SIGNAL = """
+import os, subprocess, sys, types
+from pathlib import Path
+sys.path.insert(0, sys.argv[2])
+import scripts.g_official361_driver as d
+tmp = Path(sys.argv[1])
+fb = types.ModuleType("benchmarks.osworld.benchmark")
+class _Runners(dict):
+    def __missing__(self, k):
+        return types.SimpleNamespace(preflight=lambda: None)
+fb.build = lambda: types.SimpleNamespace(runners=_Runners())
+sys.modules["benchmarks.osworld.benchmark"] = fb
+d._ROOT = tmp
+(tmp / "scripts").mkdir()
+d.pending_units = lambda system, runs: [(f"t{i}", 1) for i in range(10)]
+d.CHILD_GRACE_S = 2
+_real = subprocess.Popen
+n = [0]
+def fake_popen(cmd, **kw):   # a fake run.py child: sleeps; the second one ignores SIGTERM
+    n[0] += 1
+    code = ("import os, signal, sys, time\\n"
+            + ("signal.signal(signal.SIGTERM, signal.SIG_IGN)\\n" if n[0] == 2 else "")
+            + "open(sys.argv[1], 'w').write(str(os.getpid()))\\ntime.sleep(120)\\n")
+    return _real([sys.executable, "-c", code, str(tmp / f"child{n[0]}.pid")])
+d.subprocess.Popen = fake_popen
+sys.exit(d.main([]))
+"""
+
+
+def test_sigterm_to_the_driver_terminates_its_children_and_exits_nonzero(tmp_path):
+    import signal
+    import time
+    helper = tmp_path / "helper.py"
+    helper.write_text(_DRIVER_UNDER_SIGNAL)
+    env = {k: v for k, v in os.environ.items() if not k.startswith("OSW_")}
+    env.update({"ARM": "sonnet", "PARALLEL": "2"})
+    proc = subprocess.Popen([sys.executable, str(helper), str(tmp_path), str(_ROOT)], env=env,
+                            stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+    pid_files = [tmp_path / "child1.pid", tmp_path / "child2.pid"]
+    deadline = time.time() + 30
+    while not all(p.exists() and p.read_text() for p in pid_files):
+        assert time.time() < deadline and proc.poll() is None, proc.communicate()[0]
+        time.sleep(0.1)
+    time.sleep(0.5)   # let the stubborn child install its SIG_IGN handler
+    proc.send_signal(signal.SIGTERM)
+    out, _ = proc.communicate(timeout=30)
+    assert proc.returncode == 128 + signal.SIGTERM, out
+    for p in pid_files:
+        with pytest.raises(ProcessLookupError):
+            os.kill(int(p.read_text()), 0)
+    log = (tmp_path / "scripts" / "g_official361_sonnet.log").read_text()
+    assert "SIGTERM" in log and "1 killed" in log
