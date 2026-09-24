@@ -96,7 +96,7 @@ def _official_argv(monkeypatch, tmp_path):
         calls.append({"prompt": prompt, **kw})
         return ["claude"]
     with patch.object(agent_computer, "build_claude_cmd", fake_build), \
-         patch.object(agent_computer, "_mcp_config", lambda url: str(tmp_path / "m.json")):
+         patch.object(agent_computer, "_mcp_config", lambda url, **kw: str(tmp_path / "m.json")):
         (tmp_path / "m.json").write_text("{}")
         agent_computer.run({"id": "t", "instruction": "Do X", "evaluator": {}},
                            env=_FakeEnv(), out=tmp_path, dry=True)
@@ -150,6 +150,8 @@ def _official_run(monkeypatch, tmp_path, transcript_lines, spy=None):
         events.append("claude")
         if spy:
             spy(cmd, **kw)
+        # the official MCP server's liveness/step state (final fix wave S2)
+        (tmp_path / "mcp_state.json").write_text('{"started": true, "steps_used": 2}')
         return {"result": "all good", "session_id": "s1", "subtype": "success",
                 "is_error": False}
 
@@ -165,9 +167,10 @@ def _official_run(monkeypatch, tmp_path, transcript_lines, spy=None):
         scored["answer"] = answer
         return {"verdict": "FAILURE"}
 
-    monkeypatch.setattr(agent_computer, "_mcp_config", lambda url: str(tmp_path / "m.json"))
+    monkeypatch.setattr(agent_computer, "_mcp_config", lambda url, **kw: str(tmp_path / "m.json"))
     (tmp_path / "m.json").write_text("{}")
     monkeypatch.setattr(agent_computer, "run_claude_meta", fake_meta)
+    monkeypatch.setattr(agent_computer, "claude_cli_version", lambda **kw: "2.1.280")
     monkeypatch.setattr(agent_computer, "_save_conversation_transcript", fake_save)
     monkeypatch.setattr(agent_computer, "_score", fake_score)
     monkeypatch.setattr(agent_computer, "protocol_wait", lambda s: events.append(("wait", s)))
@@ -200,7 +203,7 @@ def test_run_claude_meta_interrupted_propagates_without_writing_eval(monkeypatch
     def fake_meta(cmd, **kw):
         raise procgroups.Interrupted("harness interrupted")
 
-    monkeypatch.setattr(agent_computer, "_mcp_config", lambda url: str(tmp_path / "m.json"))
+    monkeypatch.setattr(agent_computer, "_mcp_config", lambda url, **kw: str(tmp_path / "m.json"))
     (tmp_path / "m.json").write_text("{}")
     monkeypatch.setattr(agent_computer, "run_claude_meta", fake_meta)
     monkeypatch.setattr(agent_computer, "protocol_wait", lambda s: None)
@@ -216,11 +219,16 @@ def test_official_run_missing_transcript_falls_back_to_final_text(monkeypatch, t
     # a leftover transcript from an earlier attempt must not be read as this run's
     (tmp_path / "conversation.jsonl").write_text(json.dumps(
         {"type": "assistant", "message": {"content": "[INFEASIBLE]"}}))
-    answer, _, _ = _official_run(monkeypatch, tmp_path, None)
-    assert answer == "DONE"
+    answer, events, _ = _official_run(monkeypatch, tmp_path, None)
     # unverifiable, not clean: no transcript means no audit
     result = json.loads((tmp_path / "result.json").read_text())
+    assert result["answer"] == "DONE"
     assert result["agent_non_computer_tool_calls"] is None
+    # final fix wave S1: an unaudited run is never scored (parity with the Codex arm)
+    assert answer == "" and "score" not in events
+    infra = json.loads((tmp_path / "infra_error.json").read_text())[-1]
+    assert infra["error_type"] == "ToolAuditUnavailable"
+    assert not (tmp_path / "eval.json").exists()
 
 
 # --- pre-review fixes: tool drift guards, in-loop verify refusal, clean finish, provenance ---
@@ -229,7 +237,8 @@ import pytest  # noqa: E402
 
 
 def test_tool_preflight_passes_when_every_builtin_is_known(monkeypatch, tmp_path):
-    tools = [*agent_computer.CLAUDE_BUILTIN_TOOLS, "mcp__playwright__browser_click"]
+    # any other MCP tool is refused (final fix wave S3, test_final_fix_shared.py)
+    tools = [*agent_computer.CLAUDE_BUILTIN_TOOLS, "mcp__osworld__computer"]
     _probe(monkeypatch, tmp_path, _clean_lines("/private/tmp/x") + [_snapshot([])], tools=tools)
     assert agent_computer.official_tool_preflight() is None
 
@@ -267,6 +276,7 @@ def test_runner_preflight_only_adds_protocol_checks_under_official(monkeypatch):
                         lambda: calls.append("pinned"))
     monkeypatch.setattr(agent_computer, "official_tool_preflight",
                         lambda: calls.append("tools"))
+    monkeypatch.setattr(agent_computer, "claude_version_preflight", lambda: None)
     monkeypatch.setattr(config, "INLOOP_VERIFY", False)
     monkeypatch.setattr(config, "OFFICIAL", False)
     agent_computer.preflight()

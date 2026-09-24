@@ -22,6 +22,8 @@ lib_run_single.py):
 A call is one step; a batched call is one step; the first screenshot is free (upstream hands
 the agent the initial screenshot with the task). Beyond the budget nothing executes."""
 import io
+import json
+import os
 import time
 
 from PIL import Image as PILImage
@@ -57,6 +59,18 @@ def _zoom(png, region):
     buf = io.BytesIO()
     crop.resize(size, PILImage.Resampling.LANCZOS).save(buf, format="PNG")
     return buf.getvalue()
+
+
+def write_state(path, *, steps_used, max_steps):
+    """Liveness + step accounting for the runner (OSW_MCP_STATE_FILE, runners/common.py): written
+    at server startup and after every `computer` call. Atomic (temp file + rename) so the runner
+    never reads a half-written file. No-op when no path is configured."""
+    if not path:
+        return
+    tmp = f"{path}.tmp"
+    with open(tmp, "w") as f:
+        json.dump({"started": True, "steps_used": steps_used, "max_steps": max_steps}, f)
+    os.replace(tmp, path)
 
 
 class ComputerSession:

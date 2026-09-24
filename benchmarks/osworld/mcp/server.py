@@ -133,9 +133,12 @@ if not _OFFICIAL and os.environ.get("OSW_ZOOM_BATCH", "0") == "1":
 
 
 if _OFFICIAL:
-    from benchmarks.osworld.mcp.official_computer import ComputerSession
+    from benchmarks.osworld.mcp.official_computer import ComputerSession, write_state
 
     _session = ComputerSession(_ctrl, max_steps=int(os.environ.get("OSW_MAX_STEPS", "100")))
+    # The runner's proof that this server started, and its step count (OSW_MCP_STATE_FILE).
+    _STATE_FILE = os.environ.get("OSW_MCP_STATE_FILE", "")
+    write_state(_STATE_FILE, steps_used=0, max_steps=_session.max_steps)
 
     @mcp.tool()
     def computer(action: str = "", coordinate: list[int] | None = None,
@@ -155,8 +158,12 @@ if _OFFICIAL:
             action=action, coordinate=coordinate, start_coordinate=start_coordinate, text=text,
             scroll_direction=scroll_direction, scroll_amount=scroll_amount, duration=duration,
             repeat=repeat, region=region, actions=actions).items() if v not in (None, "")}
-        return [Image(data=v, format="png") if k == "image" else v
-                for k, v in _session.call(inp)]
+        try:
+            items = _session.call(inp)
+        finally:
+            write_state(_STATE_FILE, steps_used=_session.steps_used,
+                        max_steps=_session.max_steps)
+        return [Image(data=v, format="png") if k == "image" else v for k, v in items]
 
 
 if __name__ == "__main__":
