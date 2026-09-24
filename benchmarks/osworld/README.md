@@ -183,8 +183,7 @@ analysis CLIs.** Without it they read `agent_computer`, the mixed tree — where
 
 Alignment of the harness with the official OSWorld harness (xlang-ai/OSWorld @ `091f5ef`) and with
 the protocol published in the Claude Sonnet 5 System Card (361 tasks, 1080p, 100 steps, max
-effort, pass@1 over 5 runs). Rationale, results and residual differences:
-`docs/osworld-rapporto-tecnico-tesi.md`. Plans: `docs/superpowers/plans/2026-09-24-*`.
+effort, pass@1 over 5 runs).
 
 - **`OSW_PROTOCOL=official`** (both agent CLIs, identical):
   - the MCP server exposes one `computer` tool that translates actions with upstream's own
