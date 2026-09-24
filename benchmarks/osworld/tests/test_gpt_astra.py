@@ -39,26 +39,6 @@ def test_cost_estimate_does_not_double_charge_cached_tokens():
     assert _estimated_api_cost(None, 0, 1) is None
 
 
-def test_default_campaign_has_canonical_result_tree():
-    assert config.ASTRA_MODEL == "gpt-6-astra"
-    assert config.ASTRA_REASONING_EFFORT == "high"
-    assert config.ASTRA_CODEX_VERSION == "0.153.4"
-    assert config.ASTRA_SYSTEM_NAME == "agent_computer_astra"
-
-
-def test_campaign_overrides_cannot_pool_into_canonical_tree():
-    original = (config.ASTRA_MODEL, config.ASTRA_REASONING_EFFORT,
-                config.ASTRA_CODEX_VERSION)
-    try:
-        config.ASTRA_CODEX_VERSION = "different/version"
-        name = config.astra_system_name()
-    finally:
-        (config.ASTRA_MODEL, config.ASTRA_REASONING_EFFORT,
-         config.ASTRA_CODEX_VERSION) = original
-    assert name != "agent_computer_astra"
-    assert "/" not in name
-
-
 def _rollout(root, session_id, *, model="gpt-6-astra", effort="high"):
     d = Path(root) / "2026" / "09" / "09"
     d.mkdir(parents=True, exist_ok=True)
@@ -121,16 +101,25 @@ def test_provenance_says_unknown_rather_than_guessing_when_no_rollout_exists():
     assert rec["model_requested"] == config.ASTRA_MODEL
 
 
-def _run_with(meta, tmp):
-    """Drive run() against a stubbed Codex, returning (result, eval, infra)."""
+def _run_with(meta, tmp, *, non_computer_calls=(), mcp_started=True):
+    """Drive run() through the official path against a stubbed Codex, returning
+    (result, eval, infra). Defaults to a clean, audited run (no rollout needed): the official
+    audit and MCP-liveness lookups are stubbed directly, same as the runner's own official-run
+    tests (test_official_codex_runner.py)."""
     out = Path(tmp)
     task = {"id": "t1", "instruction": "do it", "related_apps": ["libreoffice_calc"],
             "evaluator": {"func": "exact_match", "result": {"type": "vm_file"}}}
+    mcp_state = {"started": True, "steps_used": 3, "max_steps": 100} if mcp_started else None
     with patch.object(gpt_astra, "run_codex_meta", return_value=dict(meta)), \
          patch.object(gpt_astra, "_codex_version", return_value="codex-cli 0.153.4"), \
          patch.object(gpt_astra, "_score", return_value={"verdict": "FAILURE", "reward": 0.0}), \
          patch.object(gpt_astra, "_capture_eval_state", return_value=None), \
-         patch.object(gpt_astra, "protocol_wait", lambda s: None):
+         patch.object(gpt_astra, "protocol_wait", lambda s: None), \
+         patch.object(gpt_astra, "_official_audit", return_value={
+             "agent_non_computer_tool_calls": list(non_computer_calls) if non_computer_calls is not None else None,
+             "agent_context_leaks": [] if non_computer_calls is not None else None,
+             "agent_offered_tools": None}), \
+         patch.object(gpt_astra, "read_mcp_state", return_value=mcp_state):
         gpt_astra.run(task, env=type("E", (), {"browser": None, "setup_error": None})(), out=out)
     read = lambda n: json.loads((out / n).read_text()) if (out / n).exists() else None
     return read("result.json"), read("eval.json"), read("infra_error.json")
@@ -183,7 +172,12 @@ def test_eval_state_capture_follows_official_scoring_postconfig():
              order.append("score") or {"verdict": "FAILURE", "reward": 0.0})), \
          patch.object(gpt_astra, "_capture_eval_state", side_effect=lambda *a: (
              order.append("capture") or "postconfig artifact")), \
-         patch.object(gpt_astra, "protocol_wait", lambda s: None):
+         patch.object(gpt_astra, "protocol_wait", lambda s: None), \
+         patch.object(gpt_astra, "_official_audit", return_value={
+             "agent_non_computer_tool_calls": [], "agent_context_leaks": [],
+             "agent_offered_tools": None}), \
+         patch.object(gpt_astra, "read_mcp_state",
+                      return_value={"started": True, "steps_used": 3, "max_steps": 100}):
         gpt_astra.run(task, env=type("E", (), {
             "browser": type("C", (), {"base_url": "http://controller"})(), "setup_error": None
         })(),
@@ -192,14 +186,27 @@ def test_eval_state_capture_follows_official_scoring_postconfig():
 
 
 def test_agent_declared_fail_does_not_fetch_an_uncreated_postconfig_file():
+    """Under the official protocol the answer is read from the event log, not an ANSWER line
+    (official_protocol.final_action): an [INFEASIBLE] marker anywhere in an assistant message
+    is upstream's FAIL trigger."""
     task = {"id": "t1", "instruction": "do it", "related_apps": ["libreoffice_calc"],
             "evaluator": {"func": "exact_match", "result": {"type": "vm_file"}}}
     out = Path(tempfile.mkdtemp())
-    with patch.object(gpt_astra, "run_codex_meta", return_value=_meta(result="ANSWER: FAIL")), \
+    infeasible_raw = json.dumps({
+        "type": "item.completed",
+        "item": {"id": "item_0", "type": "agent_message", "text": "cannot do it [INFEASIBLE]"},
+    }) + "\n"
+    with patch.object(gpt_astra, "run_codex_meta",
+                      return_value=_meta(result="cannot do it [INFEASIBLE]", raw=infeasible_raw)), \
          patch.object(gpt_astra, "_codex_version", return_value="codex-cli 0.153.4"), \
          patch.object(gpt_astra, "_score", return_value={"verdict": "FAILURE", "reward": 0.0}), \
          patch.object(gpt_astra, "_capture_eval_state") as capture, \
-         patch.object(gpt_astra, "protocol_wait", lambda s: None):
+         patch.object(gpt_astra, "protocol_wait", lambda s: None), \
+         patch.object(gpt_astra, "_official_audit", return_value={
+             "agent_non_computer_tool_calls": [], "agent_context_leaks": [],
+             "agent_offered_tools": None}), \
+         patch.object(gpt_astra, "read_mcp_state",
+                      return_value={"started": True, "steps_used": 3, "max_steps": 100}):
         gpt_astra.run(task, env=type("E", (), {
             "browser": type("C", (), {"base_url": "http://controller"})(), "setup_error": None
         })(), out=out)

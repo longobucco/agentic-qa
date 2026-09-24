@@ -90,13 +90,12 @@ if SYSTEM_SUFFIX:
 # Independent GPT Astra replication. It deliberately does not reuse OSW_MODEL: setting the
 # Sonnet baseline model must never rename or redirect Astra's result tree.
 ASTRA_MODEL = os.environ.get("OSW_ASTRA_MODEL", "gpt-6-astra").strip()
-ASTRA_REASONING_EFFORT = os.environ.get("OSW_ASTRA_REASONING_EFFORT", "high").strip()
+ASTRA_REASONING_EFFORT = os.environ.get("OSW_ASTRA_REASONING_EFFORT", "max").strip()
 ASTRA_CODEX_VERSION = os.environ.get("OSW_ASTRA_CODEX_VERSION", "0.153.4").strip()
-# Which frozen Astra campaign lock the preflight enforces. Default: the original 291-task
-# campaign. The protocol-aligned campaigns (docs/superpowers/plans/2026-09-24-osworld-protocol-
-# alignment.md) select their own lock, so the original one is never edited.
+# Which frozen Astra campaign lock the preflight enforces. Default: the official-fidelity
+# 361-task campaign (astra_official361_lock.json) -- the only lock this branch carries.
 ASTRA_CAMPAIGN_LOCK = (Path(__file__).resolve().parent
-                       / os.environ.get("OSW_ASTRA_CAMPAIGN_LOCK", "astra_campaign_lock.json"))
+                       / os.environ.get("OSW_ASTRA_CAMPAIGN_LOCK", "astra_official361_lock.json"))
 
 
 # Opt-in suffix for a deliberately SEPARATE results tree under the same model/effort/codex-
@@ -109,35 +108,21 @@ ASTRA_SYSTEM_SUFFIX = os.environ.get("OSW_ASTRA_SYSTEM_SUFFIX", "").strip()
 
 
 def astra_system_name():
-    """Keep the canonical tree concise, but never pool any campaign override into it."""
-    if (ASTRA_MODEL == "gpt-6-astra" and ASTRA_REASONING_EFFORT == "high"
-            and ASTRA_CODEX_VERSION == "0.153.4"):
-        base = "agent_computer_astra"
-    else:
-        safe = lambda value: re.sub(r"[^a-zA-Z0-9]+", "", value) or "default"
-        base = (f"agent_computer_{safe(ASTRA_MODEL)}_{safe(ASTRA_REASONING_EFFORT)}"
-                f"_codex{safe(ASTRA_CODEX_VERSION)}")
+    """Never pool a campaign override into another one's results tree."""
+    safe = lambda value: re.sub(r"[^a-zA-Z0-9]+", "", value) or "default"
+    base = (f"agent_computer_{safe(ASTRA_MODEL)}_{safe(ASTRA_REASONING_EFFORT)}"
+            f"_codex{safe(ASTRA_CODEX_VERSION)}")
     if ASTRA_SYSTEM_SUFFIX:
         safe_suffix = re.sub(r"[^a-zA-Z0-9]+", "", ASTRA_SYSTEM_SUFFIX) or "suffix"
         base = f"{base}_{safe_suffix}"
-    # The zoom/batch arm (config.ZOOM_BATCH) never pools into a baseline tree. Read from the
-    # environment directly: ZOOM_BATCH itself is defined further down this module.
-    if os.environ.get("OSW_ZOOM_BATCH", "0") == "1":
-        base = f"{base}_zoombatch"
-    if os.environ.get("OSW_PROTOCOL", "").strip() == "official":
-        base = f"{base}_official"
-    if (os.environ.get("OSW_BACKEND", "").strip() or "daytona") == "kvm":
+    # The only protocol this branch runs: always the official one.
+    base = f"{base}_official"
+    if BACKEND == "kvm":
         base = f"{base}_kvm"
     return base
 
 
 ASTRA_SYSTEM_NAME = astra_system_name()
-
-# Open-book Astra campaign (docs/g_astra_open_book_runner_implementation.md): same model/effort/
-# codex-version knobs as the closed-book campaign (same _system_name suffixing discipline, so an
-# override still can't pool into the canonical tree) -- deliberately its own results root, never
-# unioned with agent_computer_astra's.
-ASTRA_OPENBOOK_SYSTEM_NAME = f"{ASTRA_SYSTEM_NAME}_openbook"
 
 
 def resolve_system(system=None):

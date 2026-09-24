@@ -1,12 +1,11 @@
-"""Codex/GPT-Astra-specific shared primitives, extracted from runners/gpt_astra.py so a second
-runner (runners/gpt_astra_openbook.py) can reuse the exact same telemetry, rate-limit detection,
-tool audit and Codex-provenance logic without duplicating it.
+"""Codex/GPT-Astra-specific shared primitives, extracted from runners/gpt_astra.py so its
+telemetry, rate-limit detection, tool audit and Codex-provenance logic isn't inlined into the
+runner itself.
 
 Deliberately separate from runners/common.py: that module is Claude-CLI-specific (its own
 docstring says so -- MCP config shape for the `claude` binary, `~/.claude/projects` transcript
 lookup, `modelUsage` parsing), none of which applies to Codex's JSONL stream or
-`~/.codex/sessions` rollout files. Nothing here reads a closed-book-only policy knob (there isn't
-one yet) -- both runners import the same names, no runner-specific branching lives in this file.
+`~/.codex/sessions` rollout files.
 """
 import json
 import re

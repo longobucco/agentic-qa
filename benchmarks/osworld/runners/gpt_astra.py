@@ -1,7 +1,8 @@
-"""OSWorld Verified replica driven by GPT Astra through the Codex CLI.
+"""OSWorld Verified replica driven by GPT Astra through the Codex CLI, under the official
+protocol only.
 
 The environment, MCP action surface and official evaluator are identical to agent_computer;
-only the model/agent runtime changes. Results live under ``agent_computer_astra``.
+only the model/agent runtime changes. Results live under ``config.ASTRA_SYSTEM_NAME``.
 """
 import json
 import hashlib
@@ -13,7 +14,6 @@ from pathlib import Path
 
 from benchmarks.osworld import config, official_protocol, tasks
 from benchmarks.osworld.env import osworld_eval
-from benchmarks.osworld.prompts import agent_prompt
 from benchmarks.osworld.runners import astra_common
 from benchmarks.osworld.runners.common import (
     mcp_child_env, mcp_unavailable_infra_rec, official_probe_already_passed, protocol_wait,
@@ -32,20 +32,14 @@ from core.codex_loop import (
 )
 
 
-def _astra_prompt(task):
-    """Codex never has run_python (core/codex_loop.py forces OSW_RESTRICT_RUN_PYTHON=1 in the MCP
-    child), so the prompt must never advertise it, whatever the runner process's env says."""
-    return agent_prompt(task, offer_run_python=False)
-
-
 _LOCK = config.ASTRA_CAMPAIGN_LOCK
 
-# Official protocol (config.OFFICIAL): the upstream system prompt replaces Codex's own base
-# instructions (core.codex_loop.BASE_INSTRUCTIONS_KEY) and the bare instruction is the user turn.
-# Everything else Codex would put in front of the model is removed with its supported config keys
-# below -- each verified on 0.153.4 against the session's rollout and the tool list the server
-# echoes (task-7-report.md). --ignore-user-config/--ignore-rules, DISABLED_FEATURES and the fresh
-# empty cwd (run(), below) already apply to every run.
+# The upstream system prompt replaces Codex's own base instructions
+# (core.codex_loop.BASE_INSTRUCTIONS_KEY) and the bare instruction is the user turn. Everything
+# else Codex would put in front of the model is removed with its supported config keys below --
+# each verified on 0.153.4 against the session's rollout and the tool list the server echoes
+# (task-7-report.md). --ignore-user-config/--ignore-rules, DISABLED_FEATURES and the fresh empty
+# cwd (run(), below) already apply to every run.
 CODEX_ISOLATION_CONFIG = (
     "include_environment_context=false",              # <environment_context>: cwd, shell, tz, date
     "include_permissions_instructions=false",         # <permissions instructions>
@@ -167,10 +161,9 @@ def official_session_preflight():
     if leaks:
         raise SystemExit(f"official protocol: host context still reaches the agent despite "
                          f"CODEX_ISOLATION_CONFIG: {', '.join(leaks)} (probe rollout {rollout})")
-# Codex/Astra-specific telemetry, rate-limit detection, tool audit and provenance now live in
-# astra_common.py (shared with runners/gpt_astra_openbook.py) -- re-exported under their original
-# names so this module's own callers/tests (patch.object(gpt_astra, "_codex_version", ...), etc.)
-# keep resolving unchanged.
+# Codex/Astra-specific telemetry, rate-limit detection, tool audit and provenance live in
+# astra_common.py -- re-exported under their original names so this module's own callers/tests
+# (patch.object(gpt_astra, "_codex_version", ...), etc.) keep resolving unchanged.
 _api_error_status = astra_common.api_error_status
 _estimated_api_cost = astra_common.estimated_api_cost
 _codex_version = astra_common.codex_version
@@ -220,8 +213,7 @@ def _validate_campaign_lock():
     if (policy["approval_mode"] != APPROVAL_MODE
             or tuple(policy["disabled_features"]) != DISABLED_FEATURES
             or tuple(policy["allowed_mcp_tools"]) != allowed_mcp_tools()
-            or (config.OFFICIAL
-                and tuple(policy.get("isolation_config") or ()) != CODEX_ISOLATION_CONFIG)):
+            or tuple(policy.get("isolation_config") or ()) != CODEX_ISOLATION_CONFIG):
         raise SystemExit("Astra tool policy differs from the frozen campaign lock")
 
 
@@ -239,7 +231,7 @@ def preflight():
     )
     # A live model call: a campaign driver child skips it when the driver already ran it for
     # this driver run (common.official_probe_already_passed); every cheap check above still runs.
-    if config.OFFICIAL and not official_probe_already_passed():
+    if not official_probe_already_passed():
         official_session_preflight()
 
 
@@ -276,9 +268,9 @@ def _official_audit(events, transcript_saved, session_id):
 
 def run(task, *, env, out, refs=None, dry=False):
     if not dry:
-        # See gpt_astra_openbook.run's identical guard: without this, a stale eval.json from an
-        # earlier attempt at this run-dir survives a retry that short-circuits before scoring
-        # (e.g. into an infra error), and report.py reads it as the current verdict.
+        # Without this, a stale eval.json from an earlier attempt at this run-dir survives a
+        # retry that short-circuits before scoring (e.g. into an infra error), and report.py
+        # reads it as the current verdict.
         (Path(out) / "eval.json").unlink(missing_ok=True)
     started_at = datetime.now(timezone.utc).isoformat()
     ctrl = getattr(env, "browser", None)
@@ -294,22 +286,14 @@ def run(task, *, env, out, refs=None, dry=False):
 
     # A fresh, empty cwd per run (removed afterwards): no AGENTS.md, no repo path.
     workdir = Path(tempfile.mkdtemp(prefix="osw-astra-"))
-    if config.OFFICIAL:
-        cmd = _official_cmd(task["instruction"], workdir, controller_url, out_dir=out)
-    else:
-        cmd = build_codex_cmd(
-            _astra_prompt(task), model=config.ASTRA_MODEL, cwd=workdir,
-            controller_url=controller_url, reasoning_effort=config.ASTRA_REASONING_EFFORT or None,
-            mcp_extra_env=mcp_child_env(),
-        )
+    cmd = _official_cmd(task["instruction"], workdir, controller_url, out_dir=out)
     if dry:
         print("DRY-RUN command:\n ", preview(cmd))
         shutil.rmtree(workdir, ignore_errors=True)
         _remove_instructions_file(cmd)
         return None
 
-    if config.OFFICIAL:
-        reset_mcp_state(out)   # only this run's server may prove it started
+    reset_mcp_state(out)   # only this run's server may prove it started
     protocol_wait(config.POST_SETUP_WAIT_S)   # upstream: sleep 60 after reset, before step 1
     try:
         meta = run_codex_meta(cmd, timeout=config.TASK_TIMEOUT)
@@ -327,18 +311,14 @@ def run(task, *, env, out, refs=None, dry=False):
     events = meta.pop("events", None)
     audit = _write_tool_audit(out, events)
     text = meta.get("result", "")
-    answer = extract_answer(text)
-    clean_finish = bool(answer) and not meta.get("is_error", False)
-    official_telemetry = {}
-    if config.OFFICIAL:
-        # Upstream has no ANSWER line: DONE unless [INFEASIBLE]/a fail action; the episode ends
-        # cleanly when the CLI does (no error, no timeout).
-        answer = _official_answer(transcript, text)
-        clean_finish = not meta.get("is_error", False)
-        official_telemetry = _official_audit(events, transcript.stat().st_size > 0,
-                                             meta.get("session_id"))
-        mcp_state = read_mcp_state(out)
-        official_telemetry["agent_steps_used"] = mcp_state.get("steps_used") if mcp_state else None
+    # Upstream has no ANSWER line: DONE unless [INFEASIBLE]/a fail action; the episode ends
+    # cleanly when the CLI does (no error, no timeout).
+    answer = _official_answer(transcript, text)
+    clean_finish = not meta.get("is_error", False)
+    official_telemetry = _official_audit(events, transcript.stat().st_size > 0,
+                                         meta.get("session_id"))
+    mcp_state = read_mcp_state(out)
+    official_telemetry["agent_steps_used"] = mcp_state.get("steps_used") if mcp_state else None
     results_io.write_output(out, text)
     telemetry = _telemetry(meta, stderr)
     telemetry["agent_clean_finish"] = clean_finish
@@ -367,7 +347,7 @@ def run(task, *, env, out, refs=None, dry=False):
         results_io.write_infra_error(out, _rate_limit_rec(task, api_error))
         return ""
 
-    if config.OFFICIAL and official_telemetry["agent_non_computer_tool_calls"] is None:
+    if official_telemetry["agent_non_computer_tool_calls"] is None:
         # The agent ran but what it called can't be verified (no event log or no rollout: Code
         # Mode calls are only in the rollout). Not scored, same as a violation -- an unaudited
         # run could have used a tool other than `computer`.
@@ -385,7 +365,7 @@ def run(task, *, env, out, refs=None, dry=False):
         })
         return ""
 
-    if config.OFFICIAL and mcp_state is None:
+    if mcp_state is None:
         # The agent ran but the MCP server never reported starting: no `computer` tool at all.
         # Not scored, retried -- same rule as the Claude arm.
         results_io.write_result(out, {
@@ -402,30 +382,18 @@ def run(task, *, env, out, refs=None, dry=False):
             "instruction": task["instruction"], "answer": answer,
             "provenance": provenance, **trace, **telemetry,
         })
+        # Ruling (task 7b): a tool-surface violation is a TERMINAL failure, not an infra error --
+        # excluding or retrying it would selectively resample toward runs that happen not to
+        # violate, biasing the score upward either way. Score it 0 and label it clearly instead;
+        # never infra_error.json (that would leave is_done() False and a later --runs invocation
+        # would re-roll it).
         names = (official_telemetry.get("agent_non_computer_tool_calls")
                  or meta.get("tool_names") or [])
-        if config.OFFICIAL:
-            # Ruling (task 7b): under the official protocol a tool-surface violation is a
-            # TERMINAL failure, not an infra error -- excluding or retrying it would
-            # selectively resample toward runs that happen not to violate, biasing the score
-            # upward either way. Score it 0 and label it clearly instead; never infra_error.json
-            # (that would leave is_done() False and a later --runs invocation would re-roll it).
-            results_io.write_eval(out, {
-                "id": task["id"], "verdict": "FAILURE", "reward": 0.0, "source": "harness",
-                "reason": f"tool surface violation: {', '.join(names)}",
-                "tool_surface_violation": names,
-            })
-        else:
-            # Legacy (flag-off) path: unchanged -- an infra error, retried on resume.
-            results_io.write_infra_error(out, {
-                "id": task["id"], "outcome": "HARNESS_ERROR",
-                "error_type": "ToolSurfaceViolation",
-                "error": (f"Codex used tools other than `computer`: "
-                          f"{official_telemetry['agent_non_computer_tool_calls']}"
-                          if official_telemetry.get("agent_non_computer_tool_calls")
-                          else f"Codex used non-MCP tools: {meta.get('tool_names')}"),
-                "at": datetime.now(timezone.utc).isoformat(),
-            })
+        results_io.write_eval(out, {
+            "id": task["id"], "verdict": "FAILURE", "reward": 0.0, "source": "harness",
+            "reason": f"tool surface violation: {', '.join(names)}",
+            "tool_surface_violation": names,
+        })
         return ""
 
     protocol_wait(config.PRE_EVAL_WAIT_S)   # upstream: sleep 20 before evaluate
