@@ -579,7 +579,7 @@ def _collect_eval_artifacts(cache_dir, out, task):
     """
     manifest = []
     cache = Path(cache_dir)
-    if not cache.is_dir():
+    if out is None or not cache.is_dir():   # nowhere to keep them / nothing was downloaded
         return manifest
     gold_names = set(osworld_eval.gold_dest_filenames(task))
     dest_root = out / "eval_artifacts"

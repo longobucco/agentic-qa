@@ -257,7 +257,7 @@ def test_score_populates_eval_artifacts_manifest_on_success():
     into the cache dir it's handed must show up in _score's returned eval_artifacts."""
     from benchmarks.osworld.runners import common
 
-    def fake_evaluate_with_retry(url, task, action_history, cache_dir):
+    def fake_evaluate_with_retry(url, task, action_history, cache_dir, **kw):
         (Path(cache_dir) / "downloaded_gold.bin").write_bytes(b"gold bytes")
         return 1.0
 
@@ -281,7 +281,7 @@ def test_score_keeps_eval_artifacts_when_evaluator_raises_after_writing_a_file()
     fallback, EVAL_ERROR) must be exactly what it was before this change."""
     from benchmarks.osworld.runners import common
 
-    def fake_evaluate_with_retry(url, task, action_history, cache_dir):
+    def fake_evaluate_with_retry(url, task, action_history, cache_dir, **kw):
         (Path(cache_dir) / "partial_result.bin").write_bytes(b"partial")
         raise RuntimeError("getter blew up mid-scoring")
 
@@ -940,3 +940,9 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+def test_collect_eval_artifacts_without_a_run_dir_is_a_noop(tmp_path):
+    """Diagnostics must never break scoring: a caller without a run dir (out=None) gets []."""
+    (tmp_path / "f.bin").write_bytes(b"x")
+    assert common._collect_eval_artifacts(tmp_path, None, {"id": "t", "evaluator": {}}) == []
