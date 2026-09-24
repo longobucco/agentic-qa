@@ -15,6 +15,7 @@ from benchmarks.osworld import config, tasks
 from benchmarks.osworld.env import osworld_eval
 from benchmarks.osworld.prompts import agent_prompt
 from benchmarks.osworld.runners import astra_common
+from benchmarks.osworld.runners.common import mcp_child_env
 from benchmarks.osworld.runners.agent_computer import (
     _a11y_health, _annotate_incidental, _bounded, _capture_eval_state, _environment_error_rec,
     _provenance, _score,
@@ -125,7 +126,7 @@ def run(task, *, env, out, refs=None, dry=False):
     cmd = build_codex_cmd(
         _astra_prompt(task), model=config.ASTRA_MODEL, cwd=workdir,
         controller_url=controller_url, reasoning_effort=config.ASTRA_REASONING_EFFORT or None,
-        zoom_batch=config.ZOOM_BATCH,
+        mcp_extra_env=mcp_child_env(),
     )
     if dry:
         print("DRY-RUN command:\n ", preview(cmd))
