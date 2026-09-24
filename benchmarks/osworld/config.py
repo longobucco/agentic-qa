@@ -71,6 +71,9 @@ KVM_QCOW2 = os.environ.get("OSW_KVM_QCOW2", "/opt/osworld/Ubuntu.qcow2").strip()
 KVM_QCOW2_SHA256 = os.environ.get("OSW_KVM_QCOW2_SHA256", "").strip()
 KVM_IMAGE = os.environ.get("OSW_KVM_IMAGE", "happysixd/osworld-docker").strip()
 KVM_CLIENT_PASSWORD = os.environ.get("OSW_KVM_CLIENT_PASSWORD", "password")
+# The Claude Code CLI the official protocol was verified on (CLAUDE_BUILTIN_TOOLS, isolation
+# flags, transcript layout): the official preflight refuses any other `claude --version`.
+CLAUDE_CODE_VERSION = os.environ.get("OSW_CLAUDE_CODE_VERSION", "").strip() or "2.1.280"
 
 # "agent_computer" (unpinned, mixed-model, historical) vs "agent_computer_sonnet5" (pinned).
 SYSTEM_NAME = f"agent_computer_{model_slug()}" if MODEL else "agent_computer"
@@ -159,7 +162,8 @@ def system_from_argv(argv=None):
     return None
 
 MAX_TURNS = int(os.environ.get("OSW_MAX_TURNS", "150"))   # desktop GUI turns run >4x web-nav ones
-MAX_STEPS = int(os.environ.get("OSW_MAX_STEPS", "30"))
+# Upstream's step budget (run_multienv_claude.py --max_steps 100) under the official protocol.
+MAX_STEPS = int(os.environ.get("OSW_MAX_STEPS", "100" if OFFICIAL else "30"))
 # Guest screen size. Must match docker/start.sh's Xvfb line and is passed explicitly to
 # SetupController, whose own default (1920x1080) drives {SCREEN_WIDTH}/{SCREEN_WIDTH_HALF}
 # substitution in task configs -- the two used to disagree (Xvfb ran 1280x1024).

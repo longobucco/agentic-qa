@@ -64,6 +64,7 @@ _HARNESS_ENV_KEYS = (
     # Official-fidelity knobs (docs/superpowers/plans/2026-09-24-osworld-official-fidelity.md).
     "OSW_PROTOCOL", "OSW_BACKEND", "OSW_KVM_IMAGE", "OSW_KVM_QCOW2_SHA256",
     "OSW_SLEEP_AFTER_EXECUTION", "OSW_POST_SETUP_WAIT_S", "OSW_PRE_EVAL_WAIT_S",
+    "OSW_KVM_CLIENT_PASSWORD", "OSW_CLAUDE_CODE_VERSION",
 )
 
 

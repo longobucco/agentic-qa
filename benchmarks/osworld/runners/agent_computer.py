@@ -25,9 +25,10 @@ from benchmarks.osworld.runners.common import (
     _capture_eval_state, _clean_finish, _environment_error_rec, _evaluate_with_retry,
     _evaluator_provenance, _mcp_config, _model_mismatch, _POST_RUN_TIMEOUT_S, _provenance,
     _rate_limit_infra_rec, _rate_limit_result_rec, _save_conversation_transcript, _score,
-    _served_by, _a11y_health, claude_env, claude_session_file, claude_transcript_actions,
-    claude_transcript_context_leaks, claude_transcript_offered_tools, claude_transcript_tool_names,
-    protocol_wait,
+    _served_by, _a11y_health, claude_cli_version, claude_env, claude_session_file,
+    claude_transcript_actions, claude_transcript_context_leaks, claude_transcript_offered_tools,
+    claude_transcript_tool_names, claude_workdir_session_file, mcp_unavailable_infra_rec,
+    official_probe_already_passed, protocol_wait, read_mcp_state, reset_mcp_state,
 )
 from core.agent_loop import _run_raw, build_claude_cmd, extract_answer, preview, run_claude_meta
 from core import procgroups
@@ -88,17 +89,20 @@ def official_tool_preflight():
     """Probe the installed CLI once, isolated exactly like an official run (same deny list,
     isolation flags, system prompt and empty cwd; no MCP server), and refuse the campaign when:
     - its `init` event offers a non-MCP tool CLAUDE_BUILTIN_TOOLS doesn't name (it would stay
-      available to the agent). The init event is searched for, not assumed first -- hooks can
-      emit events before it;
+      available to the agent), or any MCP tool other than OFFICIAL_TOOL (a user/plugin MCP
+      server leaking in). The init event is searched for, not assumed first -- hooks can emit
+      events before it;
     - its session transcript is missing, shows host context reaching the model beyond
       OFFICIAL_TOLERATED_LEAKS (see common.claude_transcript_context_leaks), or shows the
-      model offered any non-MCP tool (the init event does not list every such tool)."""
+      model offered any tool other than OFFICIAL_TOOL (the init event does not list every
+      such tool).
+    Runs with the same child env as a real run (claude_env(): auto-updater off)."""
     kw = _official_cmd_kwargs({"instruction": "reply ok"})
     cmd = (["claude", "-p", kw["prompt"], "--output-format", "stream-json", "--verbose",
             "--max-turns", "1", *kw["extra"], "--system-prompt", kw["system_prompt"]]
            + (["--model", config.MODEL] if config.MODEL else []))
     with _isolated_workdir() as workdir:
-        stream = _run_raw(cmd, timeout=300, cwd=workdir)
+        stream = _run_raw(cmd, timeout=300, cwd=workdir, env=claude_env())
     init = None
     for line in (stream or "").splitlines():
         try:
@@ -117,6 +121,11 @@ def official_tool_preflight():
         raise SystemExit(f"official protocol: the installed claude CLI offers built-in tools "
                          f"not in CLAUDE_BUILTIN_TOOLS (they would not be denied): "
                          f"{', '.join(unknown)} -- add them to agent_computer.CLAUDE_BUILTIN_TOOLS")
+    foreign_mcp = [t for t in init["tools"] if t.startswith("mcp__") and t != OFFICIAL_TOOL]
+    if foreign_mcp:
+        raise SystemExit(f"official protocol: the installed claude CLI offers MCP tools other "
+                         f"than {OFFICIAL_TOOL} despite --strict-mcp-config: "
+                         f"{', '.join(foreign_mcp)}")
     session = claude_session_file(init.get("session_id"))
     if session is None:
         raise SystemExit("official protocol: no session transcript for the isolation probe "
@@ -126,10 +135,11 @@ def official_tool_preflight():
     if offered is None:
         raise SystemExit(f"official protocol: the isolation probe recorded no offered-tool "
                          f"snapshot; cannot verify the deny list (probe transcript {session})")
-    still = [t for t in offered if not t.startswith("mcp__")]
+    still = [t for t in offered if t != OFFICIAL_TOOL]
     if still:
-        raise SystemExit(f"official protocol: built-in tools still offered to the model despite "
-                         f"--disallowedTools: {', '.join(still)} -- add them to "
+        raise SystemExit(f"official protocol: tools other than {OFFICIAL_TOOL} still offered to "
+                         f"the model despite --disallowedTools/--strict-mcp-config: "
+                         f"{', '.join(still)} -- a built-in belongs in "
                          f"agent_computer.CLAUDE_BUILTIN_TOOLS (probe transcript {session})")
     leaks = [k for k in claude_transcript_context_leaks(session)
              if k not in OFFICIAL_TOLERATED_LEAKS]
@@ -147,13 +157,26 @@ def _refuse_official_inloop_verify():
                          "(INLOOP_VERIFY): unset one of them")
 
 
+def claude_version_preflight():
+    """The official protocol was verified on one Claude Code CLI (config.CLAUDE_CODE_VERSION):
+    refuse any other, or an unreadable `claude --version` (run with the real runs' env)."""
+    found = claude_cli_version(cached=False)
+    if found != config.CLAUDE_CODE_VERSION:
+        raise SystemExit(f"official protocol: claude CLI version mismatch: campaign pins "
+                         f"{config.CLAUDE_CODE_VERSION} (OSW_CLAUDE_CODE_VERSION), found {found}")
+
+
 def preflight():
     """Sonnet runner preflight: today's pinned-code check; under the official protocol also the
-    in-loop-verify refusal and the built-in tool drift guard."""
+    in-loop-verify refusal, the pinned CLI version and the built-in tool drift guard. The last
+    one is a live model call: a campaign driver child skips it when the driver already ran it
+    for this driver run (common.official_probe_already_passed) -- every cheap check still runs."""
     osworld_eval.pinned_code_preflight()
     if config.OFFICIAL:
         _refuse_official_inloop_verify()
-        official_tool_preflight()
+        claude_version_preflight()
+        if not official_probe_already_passed():
+            official_tool_preflight()
 
 
 def _effort_kwargs():
@@ -243,6 +266,9 @@ def _run_provenance(task, ctrl, started_at):
     prov = _provenance(task, ctrl, started_at)
     if config.OFFICIAL:
         prov["max_turns"] = _official_max_turns()
+        # Same fields as the Codex arm (astra_common.provenance_astra).
+        prov["agent_runtime"] = "claude_code"
+        prov["agent_runtime_version"] = claude_cli_version()
     return prov
 
 
@@ -255,20 +281,42 @@ def _official_clean_finish(meta):
 
 def _official_audit(out, transcript):
     """Per-run audit from this run's transcript: tool calls other than `computer`, host
-    context kinds that reached the agent, and the tools the model was offered. All None if it
-    wasn't saved, so an unverifiable run isn't recorded as clean."""
+    context kinds that reached the agent, the tools the model was offered and those among them
+    other than `computer`. All None if it wasn't saved, so an unverifiable run isn't recorded
+    as clean."""
     path = out / "conversation.jsonl"
     unknown = {"agent_non_computer_tool_calls": None, "agent_context_leaks": None,
-               "agent_offered_tools": None}
+               "agent_offered_tools": None, "agent_unexpected_offered_tools": None}
     if not transcript.get("transcript_saved"):
         return unknown
     try:
+        offered = claude_transcript_offered_tools(path)
         return {"agent_non_computer_tool_calls":
                     [n for n in claude_transcript_tool_names(path) if n != OFFICIAL_TOOL],
                 "agent_context_leaks": claude_transcript_context_leaks(path),
-                "agent_offered_tools": claude_transcript_offered_tools(path)}
+                "agent_offered_tools": offered,
+                "agent_unexpected_offered_tools":
+                    None if offered is None else [t for t in offered if t != OFFICIAL_TOOL]}
     except OSError:
         return unknown
+
+
+def _recover_transcript(workdir, out, transcript):
+    """When the CLI envelope carried no session_id (e.g. killed at TASK_TIMEOUT: no envelope at
+    all), find the session by the run's own fresh cwd instead (common.claude_workdir_session_file)
+    and save it as conversation.jsonl, so the answer and the audits still come from it."""
+    session = claude_workdir_session_file(workdir)
+    if session is None:
+        return transcript
+    dest = out / "conversation.jsonl"
+    try:
+        shutil.copyfile(session, dest)
+    except OSError as e:
+        print(f"[osworld] WARNING transcript recovery from {session} failed: {e}")
+        return transcript
+    return {"transcript_saved": True, "transcript_bytes": dest.stat().st_size,
+            "transcript_recovered_from_workdir": True,
+            "transcript_recovered_session_id": session.stem}
 
 
 def _official_system_prompt():
@@ -460,7 +508,9 @@ def run(task, *, env, out, refs=None, dry=False):
         results_io.write_eval(out, rec["eval"])
         return ""
 
-    mcp_config_path = _mcp_config(controller_url)
+    # official: the MCP server also writes its liveness/step state into this run's dir. The
+    # legacy call keeps its exact shape (test_runner.py's characterization tests pin it).
+    mcp_config_path = _mcp_config(controller_url, **({"out_dir": out} if config.OFFICIAL else {}))
     if config.OFFICIAL:
         official = _official_cmd_kwargs(task)
         cmd = build_claude_cmd(
@@ -485,9 +535,15 @@ def run(task, *, env, out, refs=None, dry=False):
         os.unlink(mcp_config_path)
         return None
 
+    if config.OFFICIAL:
+        reset_mcp_state(out)   # only this run's server may prove it started
+        # As gpt_astra.run does: a stale eval.json from an earlier attempt at this run dir must
+        # not survive a retry that now ends in an infra error (unaudited / no MCP server).
+        (out / "eval.json").unlink(missing_ok=True)
     protocol_wait(config.POST_SETUP_WAIT_S)   # upstream: sleep 60 after reset, before step 1
 
     inloop_telemetry = {}
+    workdir = None
     try:
         # official: an empty temp cwd isolates the session from repo/project context; the
         # legacy call is unchanged (no cwd kwarg). In-loop verify is refused under the
@@ -542,12 +598,43 @@ def run(task, *, env, out, refs=None, dry=False):
     transcript = _save_conversation_transcript(meta, out, task["id"])
     official_telemetry = {}
     if config.OFFICIAL:
+        if not transcript.get("transcript_saved") and not meta.get("session_id"):
+            transcript = _recover_transcript(workdir, out, transcript)
         answer = _official_answer(out, text, transcript)
         clean_finish = _official_clean_finish(meta)
         official_telemetry = _official_audit(out, transcript)
+        mcp_state = read_mcp_state(out)
+        official_telemetry["agent_steps_used"] = mcp_state.get("steps_used") if mcp_state else None
 
     telemetry = _agent_telemetry(meta)
     telemetry["agent_clean_finish"] = clean_finish
+
+    if config.OFFICIAL and (official_telemetry["agent_non_computer_tool_calls"] is None
+                            or mcp_state is None):
+        # Unscored, retried (infra_error.json, never eval.json), same rule as the Codex arm:
+        # either what the agent called can't be verified (no transcript, even recovered), or
+        # the MCP server never started, so the agent had no `computer` tool at all.
+        results_io.write_result(out, {
+            "id": task["id"],
+            "bucket": tasks.bucket_of(task),
+            "instruction": task["instruction"],
+            "answer": answer,
+            "provenance": _run_provenance(task, ctrl, started_at),
+            **transcript,
+            **_model_mismatch(meta),
+            **telemetry,
+            **official_telemetry,
+        })
+        if official_telemetry["agent_non_computer_tool_calls"] is None:
+            infra = {"id": task["id"], "outcome": "HARNESS_ERROR",
+                     "error_type": "ToolAuditUnavailable",
+                     "error": (f"tool use unverifiable: no transcript "
+                               f"({transcript.get('transcript_error')})"),
+                     "at": datetime.now(timezone.utc).isoformat()}
+        else:
+            infra = mcp_unavailable_infra_rec(task)
+        results_io.write_infra_error(out, infra)
+        return ""
 
     non_computer = official_telemetry.get("agent_non_computer_tool_calls")
     if config.OFFICIAL and non_computer:

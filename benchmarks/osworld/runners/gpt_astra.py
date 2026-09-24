@@ -15,7 +15,10 @@ from benchmarks.osworld import config, official_protocol, tasks
 from benchmarks.osworld.env import osworld_eval
 from benchmarks.osworld.prompts import agent_prompt
 from benchmarks.osworld.runners import astra_common
-from benchmarks.osworld.runners.common import mcp_child_env, protocol_wait
+from benchmarks.osworld.runners.common import (
+    mcp_child_env, mcp_unavailable_infra_rec, official_probe_already_passed, protocol_wait,
+    read_mcp_state, reset_mcp_state,
+)
 from benchmarks.osworld.runners.agent_computer import (
     _a11y_health, _annotate_incidental, _bounded, _capture_eval_state, _environment_error_rec,
     _official_system_prompt, _provenance, _score,
@@ -122,12 +125,14 @@ def _remove_instructions_file(cmd):
         Path(path).unlink(missing_ok=True)
 
 
-def _official_cmd(prompt, workdir, controller_url):
+def _official_cmd(prompt, workdir, controller_url, out_dir=None):
     """The official-protocol `codex exec`: upstream's system prompt as the base instructions, the
-    prompt as the only user turn, host context removed (CODEX_ISOLATION_CONFIG)."""
+    prompt as the only user turn, host context removed (CODEX_ISOLATION_CONFIG). `out_dir` (a
+    real run's output dir) is where the MCP server writes its liveness/step state."""
     return build_codex_cmd(
         prompt, model=config.ASTRA_MODEL, cwd=workdir, controller_url=controller_url,
-        reasoning_effort=config.ASTRA_REASONING_EFFORT or None, mcp_extra_env=mcp_child_env(),
+        reasoning_effort=config.ASTRA_REASONING_EFFORT or None,
+        mcp_extra_env=mcp_child_env(out_dir),
         base_instructions=_official_system_prompt(), extra_config=CODEX_ISOLATION_CONFIG,
     )
 
@@ -233,7 +238,9 @@ def preflight():
         model=config.ASTRA_MODEL, reasoning_effort=config.ASTRA_REASONING_EFFORT,
         codex_cli_version=config.ASTRA_CODEX_VERSION,
     )
-    if config.OFFICIAL:
+    # A live model call: a campaign driver child skips it when the driver already ran it for
+    # this driver run (common.official_probe_already_passed); every cheap check above still runs.
+    if config.OFFICIAL and not official_probe_already_passed():
         official_session_preflight()
 
 
@@ -289,7 +296,7 @@ def run(task, *, env, out, refs=None, dry=False):
     # A fresh, empty cwd per run (removed afterwards): no AGENTS.md, no repo path.
     workdir = Path(tempfile.mkdtemp(prefix="osw-astra-"))
     if config.OFFICIAL:
-        cmd = _official_cmd(task["instruction"], workdir, controller_url)
+        cmd = _official_cmd(task["instruction"], workdir, controller_url, out_dir=out)
     else:
         cmd = build_codex_cmd(
             _astra_prompt(task), model=config.ASTRA_MODEL, cwd=workdir,
@@ -302,6 +309,8 @@ def run(task, *, env, out, refs=None, dry=False):
         _remove_instructions_file(cmd)
         return None
 
+    if config.OFFICIAL:
+        reset_mcp_state(out)   # only this run's server may prove it started
     protocol_wait(config.POST_SETUP_WAIT_S)   # upstream: sleep 60 after reset, before step 1
     try:
         meta = run_codex_meta(cmd, timeout=config.TASK_TIMEOUT)
@@ -329,6 +338,8 @@ def run(task, *, env, out, refs=None, dry=False):
         clean_finish = not meta.get("is_error", False)
         official_telemetry = _official_audit(events, transcript.stat().st_size > 0,
                                              meta.get("session_id"))
+        mcp_state = read_mcp_state(out)
+        official_telemetry["agent_steps_used"] = mcp_state.get("steps_used") if mcp_state else None
     results_io.write_output(out, text)
     telemetry = _telemetry(meta, stderr)
     telemetry["agent_clean_finish"] = clean_finish
@@ -373,6 +384,17 @@ def run(task, *, env, out, refs=None, dry=False):
                       f"rollout={_rollout_path(meta.get('session_id'))}"),
             "at": datetime.now(timezone.utc).isoformat(),
         })
+        return ""
+
+    if config.OFFICIAL and mcp_state is None:
+        # The agent ran but the MCP server never reported starting: no `computer` tool at all.
+        # Not scored, retried -- same rule as the Claude arm.
+        results_io.write_result(out, {
+            "id": task["id"], "bucket": tasks.bucket_of(task),
+            "instruction": task["instruction"], "answer": answer,
+            "provenance": provenance, **trace, **telemetry,
+        })
+        results_io.write_infra_error(out, mcp_unavailable_infra_rec(task))
         return ""
 
     if meta.get("non_mcp_tool_calls") or official_telemetry.get("agent_non_computer_tool_calls"):
