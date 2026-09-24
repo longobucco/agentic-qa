@@ -224,17 +224,38 @@ def codex_rollout_context_leaks(path):
 # yielded exec cell. Anything else the model calls is a tool other than `computer`.
 CODEX_OFFICIAL_NESTED_TOOL = "mcp__osworld__computer"
 CODEX_EXEC_PLUMBING = frozenset({"exec", "wait"})
-_EXEC_TOOL_REF_RE = re.compile(
-    r"(?<![\w$.])tools\s*(?:\.\s*([A-Za-z_$][\w$]*)|\[\s*(?:(['\"`])([^'\"`]*)\2\s*\]|[^\]]*\]))")
+# Every mention of the `tools` object in an exec script, and the only accepted way to use it: a
+# direct member access (`.`, `?.`, or `[...]`/`?.[...]` with a string literal) naming the tool.
+_EXEC_TOOLS_RE = re.compile(r"(?<![\w$])tools(?![\w$])")
+_EXEC_TOOL_ACCESS_RE = re.compile(
+    r"\s*(?:\?\.\s*([A-Za-z_$][\w$]*)(?![\w$])|\.\s*([A-Za-z_$][\w$]*)(?![\w$])"
+    r"|(?:\?\.)?\s*\[\s*(['\"`])([^'\"`\\]*)\3\s*\])")
+
+
+def _exec_tool_refs(code):
+    """Tool names an exec script reaches through `tools`, other than the computer tool. Fails
+    closed: any mention of `tools` that is not a direct access with a literal name (destructuring,
+    aliasing, a computed key, a bare reference...) is `<dynamic>`, since its target can't be
+    known statically."""
+    refs = []
+    for match in _EXEC_TOOLS_RE.finditer(code):
+        access = _EXEC_TOOL_ACCESS_RE.match(code, match.end())
+        name = next((g for g in (access.group(1), access.group(2), access.group(4))
+                     if g is not None), None) if access else None
+        if name != CODEX_OFFICIAL_NESTED_TOOL:
+            refs.append(name if name is not None else "<dynamic>")
+    return refs
 
 
 def codex_rollout_tool_calls(path):
     """Tools other than `computer` the model called in a session, in order, from Codex's rollout.
     Needed because Code Mode calls never reach the `exec --json` stream (verified live on
     0.153.4: an exec call emits no item at all; only the MCP calls it makes do): every function
-    call other than CODEX_EXEC_PLUMBING, and every `tools.<name>` an exec script references other
-    than the computer tool, as `exec.<name>` -- `exec.<dynamic>` when the name is computed, so it
-    can't hide behind an expression."""
+    call other than CODEX_EXEC_PLUMBING, and every use of `tools` in an exec script other than a
+    direct access to the computer tool, as `exec.<name>` -- `exec.<dynamic>` when the target can't
+    be read statically (_exec_tool_refs), so it can't hide behind destructuring or an alias.
+    Conservative on purpose: a script merely mentioning `tools` (a comment, a string) is flagged
+    too, invalidating that run rather than letting an unverified call be scored."""
     names = []
     for line in Path(path).read_text(errors="replace").splitlines():
         try:
@@ -248,10 +269,7 @@ def codex_rollout_tool_calls(path):
         if kind not in ("function_call", "custom_tool_call"):
             continue
         if name == "exec" and kind == "custom_tool_call":
-            for dotted, _, quoted in _EXEC_TOOL_REF_RE.findall(str(payload.get("input") or "")):
-                ref = dotted or quoted or "<dynamic>"
-                if ref != CODEX_OFFICIAL_NESTED_TOOL:
-                    names.append(f"exec.{ref}")
+            names += [f"exec.{ref}" for ref in _exec_tool_refs(str(payload.get("input") or ""))]
         elif name not in CODEX_EXEC_PLUMBING:
             names.append(name)
     return names

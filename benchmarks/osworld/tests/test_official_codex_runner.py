@@ -171,8 +171,11 @@ def test_legacy_lock_refused_under_official(monkeypatch):
 
 # --- the official run ---
 
-def _official_run(monkeypatch, tmp_path, events, *, raw=None, errors=None, rollout=None):
+def _official_run(monkeypatch, tmp_path, events, *, raw=None, errors=None, rollout="clean"):
     _official(monkeypatch)
+    if rollout == "clean":
+        rollout = tmp_path / "clean_rollout.jsonl"
+        rollout.write_text(_rollout_lines(leaky=False))
     order, scored = [], {}
     raw = "\n".join(json.dumps(e) for e in events) + "\n" if raw is None else raw
     meta = {"result": "", "session_id": "s1", "usage": {}, "errors": errors,
@@ -216,9 +219,12 @@ def test_official_run_done_without_an_answer_line(monkeypatch, tmp_path):
 
 
 def test_official_run_missing_transcript_falls_back_to_final_text(monkeypatch, tmp_path):
-    answer, _, _, result, _, _ = _official_run(monkeypatch, tmp_path, [], raw="")
-    assert answer == "DONE"
+    _, order, _, result, verdict, infra = _official_run(monkeypatch, tmp_path, [], raw="")
+    assert result["answer"] == "DONE"
+    # no event log: tool use is unverifiable, so the run is not scored
     assert result["agent_non_computer_tool_calls"] is None
+    assert verdict is None and infra[-1]["error_type"] == "ToolAuditUnavailable"
+    assert "score" not in order
 
 
 def test_official_rate_limited_run_skips_the_pre_eval_wait(monkeypatch, tmp_path):
@@ -252,11 +258,17 @@ def test_official_run_records_the_audit(monkeypatch, tmp_path):
     assert result["agent_offered_tools"] is None   # not recorded per run by Codex (see runner)
 
 
-def test_official_run_leaks_none_without_a_rollout(monkeypatch, tmp_path):
-    _, _, _, result, _, _ = _official_run(monkeypatch, tmp_path, [_msg(0, "x")], rollout=None)
+def test_official_run_without_a_rollout_is_not_scored(monkeypatch, tmp_path):
+    _, order, _, result, verdict, infra = _official_run(
+        monkeypatch, tmp_path, [_computer(1, {"action": "screenshot"}), _msg(2, "x")],
+        rollout=None)
     assert result["agent_context_leaks"] is None
     # exec calls are only in the rollout: without it tool use is unverifiable, not clean
     assert result["agent_non_computer_tool_calls"] is None
+    assert verdict is None
+    assert infra[-1]["outcome"] == "HARNESS_ERROR"
+    assert infra[-1]["error_type"] == "ToolAuditUnavailable"
+    assert order == [("wait", config.POST_SETUP_WAIT_S), "codex"]
 
 
 def _exec(code):
@@ -279,10 +291,26 @@ def test_rollout_tool_calls_see_inside_the_code_mode_host(tmp_path):
         _exec("const f = ALL_TOOLS[0].name; await tools[f]({})"),
         _function_call("spawn_agent"),
         {"type": "response_item", "payload": {"type": "custom_tool_call", "name": "other"}},
+        # the computer call in every accepted spelling is never flagged
+        _exec("await tools?.mcp__osworld__computer({}); await tools[\"mcp__osworld__computer\"]"
+              "({}); await tools?.['mcp__osworld__computer']({})"),
     ]))
     assert astra_common.codex_rollout_tool_calls(p) == [
         "exec.clock__curr_time", "exec.read_mcp_resource", "exec.<dynamic>", "spawn_agent",
         "other"]
+
+
+@pytest.mark.parametrize("code", [
+    'const { apply_patch } = tools; await apply_patch("x")',
+    "await globalThis.tools.apply_patch(1)",
+    "await tools?.apply_patch(1)",
+    "const t = tools; t.clock__curr_time()",
+    "const { mcp__osworld__computer: c, ...rest } = tools; await rest.apply_patch(1)",
+])
+def test_rollout_tool_calls_fail_closed_on_any_other_use_of_tools(tmp_path, code):
+    p = tmp_path / "r.jsonl"
+    p.write_text(_rollout_lines(leaky=False, extra=[_exec(code)]))
+    assert astra_common.codex_rollout_tool_calls(p) != []
 
 
 # --- host-context leaks, from Codex's own rollout ---

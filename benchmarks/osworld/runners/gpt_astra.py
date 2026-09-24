@@ -357,6 +357,24 @@ def run(task, *, env, out, refs=None, dry=False):
         results_io.write_infra_error(out, _rate_limit_rec(task, api_error))
         return ""
 
+    if config.OFFICIAL and official_telemetry["agent_non_computer_tool_calls"] is None:
+        # The agent ran but what it called can't be verified (no event log or no rollout: Code
+        # Mode calls are only in the rollout). Not scored, same as a violation -- an unaudited
+        # run could have used a tool other than `computer`.
+        results_io.write_result(out, {
+            "id": task["id"], "bucket": tasks.bucket_of(task),
+            "instruction": task["instruction"], "answer": answer,
+            "provenance": provenance, **trace, **telemetry,
+        })
+        results_io.write_infra_error(out, {
+            "id": task["id"], "outcome": "HARNESS_ERROR",
+            "error_type": "ToolAuditUnavailable",
+            "error": (f"tool use unverifiable: transcript_saved={trace['transcript_saved']}, "
+                      f"rollout={_rollout_path(meta.get('session_id'))}"),
+            "at": datetime.now(timezone.utc).isoformat(),
+        })
+        return ""
+
     if meta.get("non_mcp_tool_calls") or official_telemetry.get("agent_non_computer_tool_calls"):
         results_io.write_result(out, {
             "id": task["id"], "bucket": tasks.bucket_of(task),
