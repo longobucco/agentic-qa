@@ -219,8 +219,7 @@ def _validate_campaign_lock():
     policy = lock["tool_policy"]
     if (policy["approval_mode"] != APPROVAL_MODE
             or tuple(policy["disabled_features"]) != DISABLED_FEATURES
-            or tuple(policy["allowed_mcp_tools"]) != allowed_mcp_tools(
-                config.ZOOM_BATCH, official=config.OFFICIAL)
+            or tuple(policy["allowed_mcp_tools"]) != allowed_mcp_tools()
             or (config.OFFICIAL
                 and tuple(policy.get("isolation_config") or ()) != CODEX_ISOLATION_CONFIG)):
         raise SystemExit("Astra tool policy differs from the frozen campaign lock")

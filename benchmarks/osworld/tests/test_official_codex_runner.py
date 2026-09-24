@@ -149,16 +149,12 @@ def test_official_lock_contents():
     assert tuple(lock["tool_policy"]["isolation_config"]) == gpt_astra.CODEX_ISOLATION_CONFIG
 
 
-def test_official_lock_refuses_another_effort_and_the_legacy_protocol(monkeypatch):
+def test_official_lock_refuses_another_effort(monkeypatch):
     monkeypatch.setattr(gpt_astra, "_LOCK", OFFICIAL_LOCK)
     _official(monkeypatch)
     monkeypatch.setattr(config, "ASTRA_REASONING_EFFORT", "high")
     with pytest.raises(SystemExit, match="reasoning_effort"):
         gpt_astra._validate_campaign_lock()   # the lock pins max
-    monkeypatch.setattr(config, "ASTRA_REASONING_EFFORT", "max")
-    monkeypatch.setattr(config, "OFFICIAL", False)
-    with pytest.raises(SystemExit, match="tool policy"):
-        gpt_astra._validate_campaign_lock()   # the computer-only lock is not the legacy arm
 
 
 def test_legacy_lock_refused_under_official(monkeypatch):

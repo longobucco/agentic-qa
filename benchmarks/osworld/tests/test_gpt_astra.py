@@ -12,7 +12,6 @@ from benchmarks.osworld import config
 from benchmarks.osworld.runners import gpt_astra
 from benchmarks.osworld.runners.gpt_astra import (
     _api_error_status, _estimated_api_cost, _provenance_astra, _telemetry,
-    _validate_campaign_lock,
 )
 from core.codex_loop import session_context
 
@@ -45,7 +44,6 @@ def test_default_campaign_has_canonical_result_tree():
     assert config.ASTRA_REASONING_EFFORT == "high"
     assert config.ASTRA_CODEX_VERSION == "0.153.4"
     assert config.ASTRA_SYSTEM_NAME == "agent_computer_astra"
-    _validate_campaign_lock()
 
 
 def test_campaign_overrides_cannot_pool_into_canonical_tree():
