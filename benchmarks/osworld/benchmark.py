@@ -3,6 +3,7 @@ self_eval (it scores with OSWorld's official evaluators while the desktop is liv
 eval.json), so core.run uses that verdict. Serial (provisioning is heavy).
 """
 from benchmarks.osworld import config, evaluate, tasks
+from benchmarks.osworld.env import osworld_eval
 from benchmarks.osworld.env.sandbox import osworld_environment, osworld_openbook_environment
 from benchmarks.osworld.runners import agent_computer, gpt_astra, gpt_astra_openbook, verify_replan
 from core.run import Benchmark, Runner
@@ -20,6 +21,7 @@ def build():
             environment=osworld_environment,
             needs_browser=False,
             concurrency_safe=False,
+            preflight=osworld_eval.pinned_code_preflight,
             self_eval=True,          # scores with OSWorld's own evaluators; writes eval.json
         ),
         # Independent model replication: GPT Astra via Codex CLI, with the same OSWorld MCP,

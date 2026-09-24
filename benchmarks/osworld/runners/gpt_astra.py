@@ -12,6 +12,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from benchmarks.osworld import config, tasks
+from benchmarks.osworld.env import osworld_eval
 from benchmarks.osworld.prompts import agent_prompt
 from benchmarks.osworld.runners import astra_common
 from benchmarks.osworld.runners.agent_computer import (
@@ -21,9 +22,15 @@ from benchmarks.osworld.runners.agent_computer import (
 from core import results as results_io
 from core.agent_loop import extract_answer, preview
 from core.codex_loop import (
-    ALLOWED_MCP_TOOLS, APPROVAL_MODE, DISABLED_FEATURES, allowed_mcp_tools, build_codex_cmd,
-    run_codex_meta,
+    APPROVAL_MODE, DISABLED_FEATURES, allowed_mcp_tools, build_codex_cmd, run_codex_meta,
 )
+
+
+def _astra_prompt(task):
+    """Codex never has run_python (core/codex_loop.py forces OSW_RESTRICT_RUN_PYTHON=1 in the MCP
+    child), so the prompt must never advertise it, whatever the runner process's env says."""
+    return agent_prompt(task, offer_run_python=False)
+
 
 _LOCK = config.ASTRA_CAMPAIGN_LOCK
 # Codex/Astra-specific telemetry, rate-limit detection, tool audit and provenance now live in
@@ -83,6 +90,7 @@ def _validate_campaign_lock():
 
 
 def preflight():
+    osworld_eval.pinned_code_preflight()
     _validate_campaign_lock()
     # core.run writes harness.json after preflight; materialize defaults so a direct invocation
     # records the same campaign identity as the shell driver.
@@ -115,7 +123,7 @@ def run(task, *, env, out, refs=None, dry=False):
 
     workdir = Path(tempfile.mkdtemp(prefix="osw-astra-"))
     cmd = build_codex_cmd(
-        agent_prompt(task), model=config.ASTRA_MODEL, cwd=workdir,
+        _astra_prompt(task), model=config.ASTRA_MODEL, cwd=workdir,
         controller_url=controller_url, reasoning_effort=config.ASTRA_REASONING_EFFORT or None,
         zoom_batch=config.ZOOM_BATCH,
     )

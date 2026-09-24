@@ -14,6 +14,7 @@ import tempfile
 from urllib.parse import urlparse
 
 from benchmarks.osworld import config
+from benchmarks.osworld.data.download_data import UPSTREAM_COMMIT
 from benchmarks.osworld.env.cdp_forwarder import CdpForwarder, CdpForwarderError
 from benchmarks.osworld.env.http_forwarder import (LoopbackForwarder,
                                                    split_for_getters)
@@ -210,6 +211,28 @@ def evaluator_provenance():
             "evaluator_package": installed,
             "evaluator_source": "pinned" if in_effect else "installed",
             "setup_controller_commit": setup_commit if setup_in_effect else None}
+
+
+def pinned_code_problems():
+    """Why scoring/setup would NOT run on the code of the task-data commit, or [] if it would.
+    A campaign must refuse to start on a checkout missing data/evaluators or data/controllers
+    (python -m benchmarks.osworld.data.download_evaluators): the fallback to the installed
+    desktop_env 1.0.2 is silent and loses tasks (see data/download_evaluators.py)."""
+    if not config.PINNED_EVALUATORS:
+        return ["OSW_PINNED_EVALUATORS=0: scoring on the installed desktop_env"]
+    prov = evaluator_provenance()
+    problems = []
+    for key in ("evaluator_commit", "setup_controller_commit"):
+        if prov.get(key) != UPSTREAM_COMMIT:
+            problems.append(f"{key}={prov.get(key)!r}, expected {UPSTREAM_COMMIT} -- run "
+                            f"python -m benchmarks.osworld.data.download_evaluators")
+    return problems
+
+
+def pinned_code_preflight():
+    problems = pinned_code_problems()
+    if problems:
+        raise SystemExit("pinned OSWorld code not in effect: " + "; ".join(problems))
 
 
 def make_setup_controller(controller_url, *, cache_dir=None):
