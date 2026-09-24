@@ -317,11 +317,14 @@ def _main(benchmark, argv=None):
         except Exception as e:
             # never reached a verdict (provisioning/controller/harness) -- persist it so infra
             # flakiness is measurable instead of scrolling past in stdout
+            # An exception may name its own infra outcome (e.g. the kvm backend's
+            # KvmSetupError: "ENV_SETUP_FAILED"); otherwise harness bug vs. flake, as before.
             results_io.write_infra_error(out, {
                 "id": task["id"], "run": k,
-                "outcome": "HARNESS_ERROR" if isinstance(e, (TypeError, AttributeError, KeyError,
-                                                            ImportError, NameError))
-                            else "INFRA_FLAKE",
+                "outcome": getattr(e, "infra_outcome", None) or (
+                    "HARNESS_ERROR" if isinstance(e, (TypeError, AttributeError, KeyError,
+                                                      ImportError, NameError))
+                    else "INFRA_FLAKE"),
                 "error_type": type(e).__name__, "error": str(e),
                 "elapsed_s": round(time.time() - t0, 1),
                 "at": time.strftime("%Y-%m-%dT%H:%M:%S%z"),

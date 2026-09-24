@@ -297,8 +297,9 @@ import scripts.g_official361_driver as d
 tmp, mode = Path(sys.argv[1]), sys.argv[3]
 fb = types.ModuleType("benchmarks.osworld.benchmark")
 class _Runners(dict):
-    def __missing__(self, k):
-        return types.SimpleNamespace(preflight=lambda: None)
+    def __missing__(self, k):   # records the probe marker the in-process preflight saw
+        return types.SimpleNamespace(preflight=lambda: (tmp / "preflight_ok.txt").write_text(
+            os.environ.get("OSW_OFFICIAL_PREFLIGHT_OK", "")))
 fb.build = lambda: types.SimpleNamespace(runners=_Runners())
 sys.modules["benchmarks.osworld.benchmark"] = fb
 d._ROOT = tmp
@@ -334,6 +335,8 @@ def fake_popen(cmd, **kw):   # a fake run.py child: sleeps; the second one ignor
     code = ("import os, signal, sys, time\\n"
             + ("signal.signal(signal.SIGTERM, signal.SIG_IGN)\\n" if n[0] == 2 else "")
             + "open(sys.argv[1] + '.run', 'w').write(os.environ.get('OSW_KVM_DRIVER_RUN', ''))\\n"
+            + "open(sys.argv[1] + '.ok', 'w').write("
+            + "os.environ.get('OSW_OFFICIAL_PREFLIGHT_OK', ''))\\n"
             # what run.py's core.run.main does first: load the repo .env with setdefault
             + "sys.path.insert(0, sys.argv[2]); from core.dotenv import load_dotenv\\n"
             + "load_dotenv(sys.argv[3])\\n"
@@ -352,7 +355,9 @@ def _start_driver(tmp_path, mode):
     helper = tmp_path / "helper.py"
     helper.write_text(_DRIVER_UNDER_TEST)
     env = {k: v for k, v in os.environ.items() if not k.startswith("OSW_")}
-    env.update({"ARM": "sonnet", "PARALLEL": "2", "OSW_KVM_IMAGE": _IMAGE})
+    # a stale probe marker from the caller's shell must never reach the preflight (V2)
+    env.update({"ARM": "sonnet", "PARALLEL": "2", "OSW_KVM_IMAGE": _IMAGE,
+                "OSW_OFFICIAL_PREFLIGHT_OK": "stale"})
     return subprocess.Popen([sys.executable, str(helper), str(tmp_path), str(_ROOT), mode],
                             env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
 
