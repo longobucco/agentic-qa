@@ -8,21 +8,24 @@ runners/verify_replan.py (docs/verify-replan-minimal-integration-plan.md). Re-im
 name so every existing external reference to e.g. `agent_computer._mcp_config` keeps resolving
 -- see benchmarks/osworld/tests/test_runner.py's characterization tests for the frozen contract.
 """
+import json
 import os
 import re
 
 from datetime import datetime, timezone
 
 from benchmarks.osworld import config, official_protocol, tasks
+from benchmarks.osworld.env import osworld_eval
 from benchmarks.osworld.prompts import agent_prompt
 from benchmarks.osworld.runners.common import (
     OSWORLD_TOOLS, _action_history, _agent_telemetry, _annotate_incidental, _bounded,
     _capture_eval_state, _clean_finish, _environment_error_rec, _evaluate_with_retry,
     _evaluator_provenance, _mcp_config, _model_mismatch, _POST_RUN_TIMEOUT_S, _provenance,
     _rate_limit_infra_rec, _rate_limit_result_rec, _save_conversation_transcript, _score,
-    _served_by, _a11y_health, claude_env, claude_transcript_actions, protocol_wait,
+    _served_by, _a11y_health, claude_env, claude_transcript_actions, claude_transcript_tool_names,
+    protocol_wait,
 )
-from core.agent_loop import build_claude_cmd, extract_answer, preview, run_claude_meta
+from core.agent_loop import _run_raw, build_claude_cmd, extract_answer, preview, run_claude_meta
 from core import results as results_io
 
 
@@ -47,6 +50,55 @@ CLAUDE_BUILTIN_TOOLS = [
     "ScheduleWakeup", "SendMessage", "Skill", "TaskStop", "ToolSearch", "WebFetch", "WebSearch",
     "Write",
 ]
+OFFICIAL_TOOL = "mcp__osworld__computer"
+
+
+def official_tool_preflight(*, stream=None):
+    """Guard against CLAUDE_BUILTIN_TOOLS drifting from the CLI actually installed: one tiny
+    session, and refuse the campaign if its `init` event offers a non-MCP tool the deny list
+    doesn't name (it would stay available to the agent). The init event is searched for, not
+    assumed first -- SessionStart hooks emit their own events before it. `stream` (the CLI's
+    stream-json stdout) is for tests; None runs the real CLI."""
+    if stream is None:
+        cmd = ["claude", "-p", "reply ok", "--output-format", "stream-json", "--verbose",
+               "--max-turns", "1"] + (["--model", config.MODEL] if config.MODEL else [])
+        stream = _run_raw(cmd, timeout=300)
+    init = None
+    for line in (stream or "").splitlines():
+        try:
+            ev = json.loads(line)
+        except ValueError:
+            continue
+        if isinstance(ev, dict) and ev.get("type") == "system" and ev.get("subtype") == "init":
+            init = ev
+            break
+    if init is None or not isinstance(init.get("tools"), list):
+        raise SystemExit("official protocol: no init event with a tool list from `claude -p "
+                         "--output-format stream-json`; cannot verify the built-in deny list")
+    unknown = [t for t in init["tools"]
+               if not t.startswith("mcp__") and t not in CLAUDE_BUILTIN_TOOLS]
+    if unknown:
+        raise SystemExit(f"official protocol: the installed claude CLI offers built-in tools "
+                         f"not in CLAUDE_BUILTIN_TOOLS (they would not be denied): "
+                         f"{', '.join(unknown)} -- add them to agent_computer.CLAUDE_BUILTIN_TOOLS")
+    return None
+
+
+def _refuse_official_inloop_verify():
+    """The in-loop verifier's --resume retry is a harness intervention upstream has no
+    counterpart for (and it would run with the legacy toolset) -- refuse the combination."""
+    if config.OFFICIAL and config.INLOOP_VERIFY:
+        raise SystemExit("OSW_PROTOCOL=official is incompatible with OSW_INLOOP_VERIFY "
+                         "(INLOOP_VERIFY): unset one of them")
+
+
+def preflight():
+    """Sonnet runner preflight: today's pinned-code check; under the official protocol also the
+    in-loop-verify refusal and the built-in tool drift guard."""
+    osworld_eval.pinned_code_preflight()
+    if config.OFFICIAL:
+        _refuse_official_inloop_verify()
+        official_tool_preflight()
 
 
 def _effort_kwargs():
@@ -126,6 +178,38 @@ def _extra_flags():
     return ["--disallowedTools", *disallowed, "--strict-mcp-config"]
 
 
+def _official_max_turns():
+    """A safety net only: the MCP server's step budget binds first."""
+    return 2 * config.MAX_STEPS + 20
+
+
+def _run_provenance(task, ctrl, started_at):
+    """_provenance, with max_turns set to the limit actually passed to the CLI."""
+    prov = _provenance(task, ctrl, started_at)
+    if config.OFFICIAL:
+        prov["max_turns"] = _official_max_turns()
+    return prov
+
+
+def _official_clean_finish(meta):
+    """Upstream has no ANSWER line: an episode ends when the model stops calling tools (or the
+    budget runs out). Clean = the CLI reported a normal end -- not error_max_turns, not an
+    error, and not a timeout (which leaves no parseable envelope, so meta is {})."""
+    return meta.get("subtype") == "success" and not meta.get("is_error", False)
+
+
+def _official_audit(out, transcript):
+    """Tool calls other than `computer` seen in this run's transcript (None if it wasn't
+    saved, so an unverifiable run isn't recorded as clean)."""
+    if not transcript.get("transcript_saved"):
+        return None
+    try:
+        names = claude_transcript_tool_names(out / "conversation.jsonl")
+    except OSError:
+        return None
+    return [n for n in names if n != OFFICIAL_TOOL]
+
+
 def _official_cmd_kwargs(task):
     """build_claude_cmd kwargs under the official protocol: the bare instruction as the user
     turn, upstream's system prompt, only the `computer` tool. The deny list is built alone (not
@@ -136,9 +220,8 @@ def _official_cmd_kwargs(task):
         "system_prompt": official_protocol.system_prompt(
             max_steps=config.MAX_STEPS,
             client_password=config.KVM_CLIENT_PASSWORD if config.BACKEND == "kvm" else ""),
-        "allowed_tools": ["mcp__osworld__computer"],
-        # A safety net only: the MCP server's step budget binds first.
-        "max_turns": 2 * config.MAX_STEPS + 20,
+        "allowed_tools": [OFFICIAL_TOOL],
+        "max_turns": _official_max_turns(),
         "extra": ["--disallowedTools", *CLAUDE_BUILTIN_TOOLS, "--strict-mcp-config"],
     }
 
@@ -283,6 +366,7 @@ def _inloop_verify(ctrl, task, answer, meta, mcp_config_path, out):
 
 
 def run(task, *, env, out, refs=None, dry=False):
+    _refuse_official_inloop_verify()   # core.run skips preflight on --dry-run
     started_at = datetime.now(timezone.utc).isoformat()
     ctrl = getattr(env, "browser", None)
     controller_url = ctrl.base_url if ctrl else config.CONTROLLER_URL
@@ -290,7 +374,7 @@ def run(task, *, env, out, refs=None, dry=False):
     setup_error = getattr(env, "setup_error", None)
     if setup_error and not dry:
         rec = _environment_error_rec(task, setup_error)
-        rec["result"]["provenance"] = _provenance(task, ctrl, started_at)
+        rec["result"]["provenance"] = _run_provenance(task, ctrl, started_at)
         results_io.write_result(out, rec["result"])
         results_io.write_eval(out, rec["eval"])
         return ""
@@ -300,7 +384,7 @@ def run(task, *, env, out, refs=None, dry=False):
     grounding_block = _grounding_precheck(ctrl) if not dry else None
     if grounding_block:
         rec = _environment_error_rec(task, grounding_block)
-        rec["result"]["provenance"] = _provenance(task, ctrl, started_at)
+        rec["result"]["provenance"] = _run_provenance(task, ctrl, started_at)
         results_io.write_result(out, rec["result"])
         results_io.write_eval(out, rec["eval"])
         return ""
@@ -365,7 +449,7 @@ def run(task, *, env, out, refs=None, dry=False):
         # batch, all within the same ~8-minute window).
         results_io.write_output(out, meta.get("result", ""))
         result_rec = _rate_limit_result_rec(task, meta)
-        result_rec["provenance"] = _provenance(task, ctrl, started_at)
+        result_rec["provenance"] = _run_provenance(task, ctrl, started_at)
         # capture BEFORE write_result so the transcript status rides in the record rather
         # than being lost -- a rate-limited run legitimately has no tool calls, so its
         # transcript is a stub, and only this flag distinguishes "stub because throttled"
@@ -380,8 +464,11 @@ def run(task, *, env, out, refs=None, dry=False):
     clean_finish = _clean_finish(meta, answer)
     results_io.write_output(out, text)
     transcript = _save_conversation_transcript(meta, out, task["id"])
+    official_telemetry = {}
     if config.OFFICIAL:
         answer = _official_answer(out, text, transcript)
+        clean_finish = _official_clean_finish(meta)
+        official_telemetry["agent_non_computer_tool_calls"] = _official_audit(out, transcript)
 
     protocol_wait(config.PRE_EVAL_WAIT_S)   # upstream: sleep 20 before evaluate
     eval_state = _bounded("eval-state capture", _capture_eval_state, ctrl, task, out) if ctrl else None
@@ -393,11 +480,12 @@ def run(task, *, env, out, refs=None, dry=False):
         "instruction": task["instruction"],
         "answer": answer,
         "eval_state": eval_state,
-        "provenance": _provenance(task, ctrl, started_at),
+        "provenance": _run_provenance(task, ctrl, started_at),
         **transcript,
         **_model_mismatch(meta),
         **telemetry,
         **inloop_telemetry,
+        **official_telemetry,
         **_grounding_telemetry(),
         **_a11y_health(ctrl),
     })

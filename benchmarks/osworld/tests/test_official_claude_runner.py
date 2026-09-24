@@ -115,12 +115,14 @@ def _official_run(monkeypatch, tmp_path, transcript_lines):
     """Non-dry official run with the CLI, transcript copy and scoring faked out."""
     monkeypatch.setattr(config, "OFFICIAL", True)
     monkeypatch.setattr(config, "PROTOCOL", "official")
+    monkeypatch.setattr(config, "INLOOP_VERIFY", False)
     events = []
     scored = {}
 
     def fake_meta(cmd, **kw):
         events.append("claude")
-        return {"result": "all good", "session_id": "s1"}
+        return {"result": "all good", "session_id": "s1", "subtype": "success",
+                "is_error": False}
 
     def fake_save(meta, out, task_id=None):
         if transcript_lines is None:
@@ -162,3 +164,142 @@ def test_official_run_missing_transcript_falls_back_to_final_text(monkeypatch, t
         {"type": "assistant", "message": {"content": "[INFEASIBLE]"}}))
     answer, _, _ = _official_run(monkeypatch, tmp_path, None)
     assert answer == "DONE"
+    # unverifiable, not clean: no transcript means no audit
+    result = json.loads((tmp_path / "result.json").read_text())
+    assert result["agent_non_computer_tool_calls"] is None
+
+
+# --- pre-review fixes: tool drift guards, in-loop verify refusal, clean finish, provenance ---
+
+import pytest  # noqa: E402
+
+
+def _stream(tools):
+    return "\n".join(json.dumps(e) for e in [
+        {"type": "system", "subtype": "hook_started", "hook_id": "h"},
+        {"type": "system", "subtype": "init", "tools": tools},
+        {"type": "result", "subtype": "success"},
+    ]) + "\n"
+
+
+def test_tool_preflight_passes_when_every_builtin_is_known():
+    tools = [*agent_computer.CLAUDE_BUILTIN_TOOLS, "mcp__playwright__browser_click"]
+    assert agent_computer.official_tool_preflight(stream=_stream(tools)) is None
+
+
+def test_tool_preflight_finds_init_after_hook_events_and_names_unknown_tools():
+    tools = [*agent_computer.CLAUDE_BUILTIN_TOOLS, "Glob", "mcp__x__y", "NewTool"]
+    with pytest.raises(SystemExit) as e:
+        agent_computer.official_tool_preflight(stream=_stream(tools))
+    assert "Glob" in str(e.value) and "NewTool" in str(e.value)
+    assert "mcp__x__y" not in str(e.value)
+
+
+def test_tool_preflight_refuses_without_an_init_event():
+    with pytest.raises(SystemExit):
+        agent_computer.official_tool_preflight(stream='{"type": "system", "subtype": "x"}\nnoise')
+
+
+def test_tool_preflight_runs_the_cli_with_the_configured_model(monkeypatch):
+    seen = {}
+
+    def fake_raw(cmd, *, timeout, env=None):
+        seen["cmd"] = cmd
+        return _stream(agent_computer.CLAUDE_BUILTIN_TOOLS)
+    monkeypatch.setattr(config, "MODEL", "claude-sonnet-5")
+    monkeypatch.setattr(agent_computer, "_run_raw", fake_raw)
+    agent_computer.official_tool_preflight()
+    cmd = seen["cmd"]
+    assert cmd[:3] == ["claude", "-p", "reply ok"]
+    assert cmd[cmd.index("--output-format") + 1] == "stream-json"
+    assert "--verbose" in cmd and cmd[cmd.index("--max-turns") + 1] == "1"
+    assert cmd[cmd.index("--model") + 1] == "claude-sonnet-5"
+
+
+def test_runner_preflight_only_adds_protocol_checks_under_official(monkeypatch):
+    calls = []
+    monkeypatch.setattr(agent_computer.osworld_eval, "pinned_code_preflight",
+                        lambda: calls.append("pinned"))
+    monkeypatch.setattr(agent_computer, "official_tool_preflight",
+                        lambda: calls.append("tools"))
+    monkeypatch.setattr(config, "INLOOP_VERIFY", False)
+    monkeypatch.setattr(config, "OFFICIAL", False)
+    agent_computer.preflight()
+    assert calls == ["pinned"]
+    monkeypatch.setattr(config, "OFFICIAL", True)
+    agent_computer.preflight()
+    assert calls == ["pinned", "pinned", "tools"]
+
+
+def test_official_refuses_inloop_verify_at_preflight_and_run(monkeypatch, tmp_path):
+    monkeypatch.setattr(agent_computer.osworld_eval, "pinned_code_preflight", lambda: None)
+    monkeypatch.setattr(agent_computer, "official_tool_preflight", lambda: None)
+    monkeypatch.setattr(config, "OFFICIAL", True)
+    monkeypatch.setattr(config, "INLOOP_VERIFY", True)
+    with pytest.raises(SystemExit, match="INLOOP_VERIFY"):
+        agent_computer.preflight()
+    with pytest.raises(SystemExit, match="INLOOP_VERIFY"):
+        agent_computer.run({"id": "t", "instruction": "Do X", "evaluator": {}},
+                           env=_FakeEnv(), out=tmp_path, dry=True)
+
+
+def test_transcript_tool_names(tmp_path):
+    p = tmp_path / "c.jsonl"
+    p.write_text("\n".join(json.dumps(l) for l in [
+        {"type": "assistant", "message": {"content": [
+            {"type": "tool_use", "name": "mcp__osworld__computer", "input": {}},
+            {"type": "tool_use", "name": "Bash", "input": {"command": "ls"}}]}},
+        {"type": "assistant", "message": {"content": "text only"}},
+    ]))
+    assert common.claude_transcript_tool_names(p) == ["mcp__osworld__computer", "Bash"]
+
+
+def test_official_run_audits_non_computer_tool_calls(monkeypatch, tmp_path):
+    lines = [{"type": "assistant", "message": {"content": [
+        {"type": "tool_use", "name": "mcp__osworld__computer", "input": {"action": "x"}},
+        {"type": "tool_use", "name": "Read", "input": {}}]}}]
+    _official_run(monkeypatch, tmp_path, lines)
+    result = json.loads((tmp_path / "result.json").read_text())
+    assert result["agent_non_computer_tool_calls"] == ["Read"]
+
+
+def test_official_run_clean_audit_is_empty(monkeypatch, tmp_path):
+    lines = [{"type": "assistant", "message": {"content": [
+        {"type": "tool_use", "name": "mcp__osworld__computer", "input": {"action": "x"}}]}}]
+    _official_run(monkeypatch, tmp_path, lines)
+    result = json.loads((tmp_path / "result.json").read_text())
+    assert result["agent_non_computer_tool_calls"] == []
+
+
+@pytest.mark.parametrize("meta,expected", [
+    ({"subtype": "success", "is_error": False, "result": "no answer line"}, True),
+    ({"subtype": "error_max_turns", "is_error": False, "result": "ANSWER: DONE"}, False),
+    ({"subtype": "success", "is_error": True, "result": "ANSWER: DONE"}, False),
+    ({}, False),   # timeout/unparseable envelope
+])
+def test_official_clean_finish_from_cli_metadata(meta, expected):
+    assert agent_computer._official_clean_finish(meta) is expected
+
+
+def test_official_run_records_clean_finish_without_answer_line(monkeypatch, tmp_path):
+    _official_run(monkeypatch, tmp_path, [])
+    result = json.loads((tmp_path / "result.json").read_text())
+    assert result["agent_clean_finish"] is True
+
+
+def test_legacy_clean_finish_unchanged():
+    assert common._clean_finish({"subtype": "success"}, "") is False
+    assert common._clean_finish({"is_error": False}, "DONE") is True
+
+
+def test_official_provenance_records_the_cli_turn_limit(monkeypatch, tmp_path):
+    _official_run(monkeypatch, tmp_path, [])
+    result = json.loads((tmp_path / "result.json").read_text())
+    assert result["provenance"]["max_turns"] == 2 * config.MAX_STEPS + 20
+
+
+def test_legacy_provenance_turn_limit_unchanged(monkeypatch):
+    monkeypatch.setattr(config, "OFFICIAL", False)
+    monkeypatch.setattr(config, "MAX_TURNS", 150)
+    prov = agent_computer._run_provenance({"id": "t"}, None, "now")
+    assert prov["max_turns"] == 150
