@@ -25,8 +25,8 @@ children ever touch the same run dir. No --force: resume is free, a restarted dr
 the pending set from disk. After every round, `decide` looks at what the children just wrote:
   - "stop" (exit 3): a child exited non-zero without writing any infra_error.json (its own
     preflight refused, or it crashed before any unit), or some unit has accumulated >= 3
-    infra_error records that are not RATE_LIMITED (a non-quota failure that would otherwise be
-    retried forever, since it never produces an eval.json);
+    infra_error records that are neither RATE_LIMITED nor INTERRUPTED (a unit failure that
+    would otherwise be retried forever, since it never produces an eval.json);
   - "backoff": >= 50% of the units just attempted ended RATE_LIMITED -- sleep 1800 s (same poll
     as the open-book driver: quota resets are hours apart) and try again;
   - "continue" otherwise.
@@ -52,10 +52,11 @@ OSW_PROVISION_TIMEOUT (Daytona only), OSW_OPENBOOK_* (open-book runner), OSW_VR_
 (verify-replan runner), OSW_RAW_BASE/OSW_INDEX (data download), OSW_PROBE_*.
 
 Stuck units: before each round, a pending unit whose infra_error.json already holds >= 3
-non-RATE_LIMITED records (e.g. from an earlier session) stops the driver (exit 3) instead of
-costing another VM. A unit attempted in a round that ends with neither eval.json nor a new infra
-record (unparsable infra_error.json included) is logged as "no outcome written" and counts as one
-non-RATE_LIMITED failure toward the same rule (counted in memory, for this driver process).
+records that are neither RATE_LIMITED nor INTERRUPTED (an operator/driver stop is not a unit
+failure) -- e.g. from an earlier session -- stops the driver (exit 3) instead of costing another
+VM. A unit attempted in a round that ends with neither eval.json nor a new infra record
+(unparsable infra_error.json included) is logged as "no outcome written" and counts as one
+failure toward the same rule (counted in memory, for this driver process).
 
 Signals: SIGTERM/SIGINT make the driver SIGTERM its running run.py children, wait up to
 CHILD_GRACE_S, SIGKILL whatever is left, log it and exit 128 + signum -- no orphaned children.
@@ -88,7 +89,13 @@ BATCH_TASKS = 5
 BACKOFF_S = 1800
 RATE_LIMIT_THRESHOLD = 0.5
 MAX_NON_QUOTA_INFRA_ERRORS = 3
-CHILD_GRACE_S = 60
+# A SIGTERMed run.py child (core.run, task 10b) kills its agent CLI groups, then waits for the
+# in-flight unit's environment teardown -- kvm_environment's container.stop() (docker's default
+# 10 s stop timeout; upstream's provider also sleeps ~3 s after stop) and remove(v=True) -- and
+# possibly an already-finished agent's scoring (runners/common's post-run bound). 180 s covers
+# the teardown with a wide margin; past it the child is SIGKILLed, logged, and the container
+# label sweep below is the backstop.
+CHILD_GRACE_S = 180
 
 # Every OSW_* knob a run.py child of these arms reads that changes the harness (tools, prompts,
 # budgets, timings, scoring, which tasks, which VM), with the value that means "unset". Empty
@@ -177,9 +184,10 @@ def child_env(arm, environ):
     return {**_HARNESS_KNOB_DEFAULTS, **protocol_env(arm, environ)}
 
 
-def terminate_children(procs, grace_s, log):
-    """SIGTERM every still-running child, wait up to `grace_s` in total, SIGKILL the rest.
-    Returns (signalled, killed)."""
+def terminate_children(procs, log, grace_s=None):
+    """SIGTERM every still-running child, wait up to `grace_s` (default CHILD_GRACE_S) in total,
+    SIGKILL the rest. Returns (signalled, killed)."""
+    grace_s = CHILD_GRACE_S if grace_s is None else grace_s
     running = [p for p in procs if p.poll() is None]
     for p in running:
         p.terminate()
@@ -189,6 +197,9 @@ def terminate_children(procs, grace_s, log):
         try:
             p.wait(timeout=max(0.0, deadline - time.time()))
         except subprocess.TimeoutExpired:
+            log(f"run.py child {p.pid} still running after {grace_s}s grace: SIGKILL (its "
+                f"container teardown may not have run; the container label sweep is the "
+                f"backstop)")
             p.kill()
             p.wait()
             killed += 1
@@ -275,12 +286,18 @@ def _infra_history(system, task_id, run_idx):
         return []
 
 
+# Infra outcomes that are not failures of the unit itself: a quota window, and an operator/driver
+# stop (core.run records INTERRUPTED for in-flight and skipped units on SIGTERM/SIGINT).
+_NOT_UNIT_FAILURES = {"RATE_LIMITED", "INTERRUPTED"}
+
+
 def _non_quota_failures(history, no_outcomes=0):
-    return sum(o != "RATE_LIMITED" for o in history) + no_outcomes
+    return sum(o not in _NOT_UNIT_FAILURES for o in history) + no_outcomes
 
 
 def stuck_units(batch_results):
-    """Units with >= MAX_NON_QUOTA_INFRA_ERRORS non-RATE_LIMITED failures: infra records, plus
+    """Units with >= MAX_NON_QUOTA_INFRA_ERRORS unit failures: infra records other than
+    _NOT_UNIT_FAILURES, plus
     the rounds of this driver process that ended with no outcome written at all."""
     return [(u["task_id"], u["run_idx"]) for b in batch_results for u in b["units"]
             if _non_quota_failures(u["infra_history"], u.get("no_outcomes", 0))
@@ -405,13 +422,13 @@ def main(argv=None):
             signal.signal(signum, signal.SIG_IGN)
         name = signal.Signals(e.signum).name
         log(f"=== {name} received: stopping the running run.py children ===")
-        terminate_children(list(_children), CHILD_GRACE_S, log)
+        terminate_children(list(_children), log)
         return 128 + e.signum
     finally:
         for signum in (signal.SIGTERM, signal.SIGINT):
             signal.signal(signum, signal.SIG_IGN)
         if _children:   # an unexpected exception mid-round: never sweep under live children
-            terminate_children(list(_children), CHILD_GRACE_S, log)
+            terminate_children(list(_children), log)
         sweep_containers(run_id, log)
 
 
@@ -438,7 +455,7 @@ def _campaign(system, parallel, max_hours, log, log_file):
             return 0
         stuck = stuck_pending(system, pending)
         if stuck:
-            log(f"STOP: >= {MAX_NON_QUOTA_INFRA_ERRORS} non-RATE_LIMITED infra errors already on "
+            log(f"STOP: >= {MAX_NON_QUOTA_INFRA_ERRORS} unit-failure infra records already on "
                 "disk (not spending another VM) on " + " ".join(f"{tid}#{k}" for tid, k in stuck))
             return 3
         rnd += 1
@@ -463,7 +480,7 @@ def _campaign(system, parallel, max_hours, log, log_file):
                     f"(tasks {' '.join(ids)})")
             stuck = stuck_units(results)
             if stuck:
-                log(f"STOP: >= {MAX_NON_QUOTA_INFRA_ERRORS} non-RATE_LIMITED failures (infra "
+                log(f"STOP: >= {MAX_NON_QUOTA_INFRA_ERRORS} unit failures (infra "
                     f"errors or no outcome written) on "
                     + " ".join(f"{tid}#{k}" for tid, k in stuck))
             return 3
