@@ -12,6 +12,8 @@ import sys
 import tempfile
 from pathlib import Path
 
+from core import procgroups
+
 DISABLED_FEATURES = (
     "shell_tool", "browser_use", "computer_use", "browser_use_external",
     "browser_use_full_cdp_access", "apps", "plugins", "skill_search", "multi_agent",
@@ -274,21 +276,51 @@ def session_context(session_id, root=None):
 
 
 def run_codex_meta(cmd, *, timeout, env=None):
-    """Run Codex in its own process group and retain partial JSONL on timeout."""
+    """Run Codex in its own process group and retain partial JSONL on timeout.
+
+    Registers the group with `core.procgroups` for the duration of the call (unregistered in a
+    `finally`) so an interrupted `core.run.main()` can reap it even if this call never reaches
+    its own timeout path -- see core/procgroups.py for why. If the harness is already
+    interrupted when called, raises `procgroups.Interrupted` without starting Codex at all; if
+    the harness is interrupted WHILE this call is in flight (its group killed by the signal
+    handler, not by this function's own timeout), raises `procgroups.Interrupted` instead of
+    returning the partial JSONL as a normal result -- callers must never let a killed-by-
+    interrupt run get parsed and scored like a real (or even a timed-out) one."""
+    if procgroups.is_interrupted():
+        raise procgroups.Interrupted("harness interrupted before Codex could start")
     proc = subprocess.Popen(
         cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
         stdin=subprocess.DEVNULL, env=env, start_new_session=True,
     )
-    timed_out = False
-    try:
-        stdout, stderr = proc.communicate(timeout=timeout)
-    except subprocess.TimeoutExpired:
-        timed_out = True
+    pgid = proc.pid   # == the new process group's id under start_new_session=True (setsid);
+                        # os.getpgid(proc.pid) can raise ProcessLookupError for a child that
+                        # already exited by the time we ask, which proc.pid never can.
+    procgroups.register(pgid)
+    if procgroups.is_interrupted():
+        # Check->register race: see the identical comment in core.agent_loop._run_raw -- the
+        # harness could have been interrupted (and kill_all() could have already run) in the
+        # window between the pre-spawn check above and this registration. Finish the job
+        # ourselves; the post-reap check below still turns this into procgroups.Interrupted.
         try:
-            os.killpg(os.getpgid(proc.pid), signal.SIGKILL)
+            os.killpg(pgid, signal.SIGKILL)
         except ProcessLookupError:
             pass
-        stdout, stderr = proc.communicate()
+    timed_out = False
+    try:
+        try:
+            stdout, stderr = proc.communicate(timeout=timeout)
+        except subprocess.TimeoutExpired:
+            timed_out = True
+            try:
+                os.killpg(pgid, signal.SIGKILL)
+            except ProcessLookupError:
+                pass
+            stdout, stderr = proc.communicate()
+        if procgroups.is_interrupted():
+            raise procgroups.Interrupted(
+                "Codex process group was reaped by a harness interrupt, not its own timeout")
+    finally:
+        procgroups.unregister(pgid)
     meta = parse_codex_output(stdout, returncode=proc.returncode or 0, timed_out=timed_out)
     meta["stderr"] = stderr or ""
     return meta
