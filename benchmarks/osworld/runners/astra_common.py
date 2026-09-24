@@ -9,11 +9,14 @@ lookup, `modelUsage` parsing), none of which applies to Codex's JSONL stream or
 one yet) -- both runners import the same names, no runner-specific branching lives in this file.
 """
 import json
+import re
 import subprocess
 from datetime import datetime, timezone
+from pathlib import Path
 
 from benchmarks.osworld import config
 from benchmarks.osworld.runners.agent_computer import _provenance
+from benchmarks.osworld.runners.common import _host_path_markers
 from core.codex_loop import session_context
 
 _SUSPICIOUS = ("evaluator", "gold", "results", "task_spec")
@@ -172,6 +175,86 @@ def provenance_astra(task, ctrl, started_at, codex_ver, *, model, reasoning_effo
         **(extra or {}),
     })
     return rec
+
+
+# Content kinds Codex's own harness injects into every session regardless of host, which no
+# supported 0.153.4 knob removes: the multi-agent role/mode text comes from the model catalog's
+# model_messages for gpt-6-astra (multi_agent_version v2), not from this machine. Plus the task.
+CODEX_HARNESS_KINDS = frozenset({
+    "user.text", "multi_agent.role_instructions", "multi_agent.mode_instructions",
+})
+
+
+def codex_rollout_context_leaks(path):
+    """Host/harness context Codex put in front of the model in a session (sorted, [] when clean),
+    read from its rollout (the `exec --json` stream never shows it). Every input message carries
+    Codex's own content_item_kinds label (environments.environment_context, host_skills.
+    instructions, permissions.instructions, AGENTS.md project docs, hook context, ...); any kind
+    outside CODEX_HARNESS_KINDS is reported by that label -- unknown kinds count, so a new CLI
+    can't add context silently. Also `base_instructions:<provenance>` unless the base
+    instructions are ours (provenance "custom"), and repo_path when the checkout or the
+    harness cwd appears anywhere in the session. Upstream's agent sees only its system prompt
+    and the task."""
+    raw = Path(path).read_text(errors="replace")
+    leaks = set()
+    for line in raw.splitlines():
+        try:
+            rec = json.loads(line)
+        except ValueError:
+            continue
+        payload = rec.get("payload") if isinstance(rec, dict) else None
+        if not isinstance(payload, dict):
+            continue
+        if rec.get("type") == "session_meta":
+            provenance = ((payload.get("base_instructions") or {}).get("provenance") or {})
+            if provenance.get("type") != "custom":
+                leaks.add(f"base_instructions:{provenance.get('type')}")
+        elif (rec.get("type") == "response_item" and payload.get("type") == "message"
+              and payload.get("role") in ("developer", "user", "system")):
+            meta = payload.get("internal_chat_message_metadata_passthrough") or {}
+            leaks.update(k for k in meta.get("content_item_kinds") or ["unlabelled"]
+                         if k not in CODEX_HARNESS_KINDS)
+    if any(m in raw for m in _host_path_markers()):
+        leaks.add("repo_path")
+    return sorted(leaks)
+
+
+# How the model reaches the desktop through Codex's Code Mode host: `exec` runs its JavaScript,
+# which calls the deferred MCP tool as tools.mcp__osworld__computer(...); `wait` resumes a
+# yielded exec cell. Anything else the model calls is a tool other than `computer`.
+CODEX_OFFICIAL_NESTED_TOOL = "mcp__osworld__computer"
+CODEX_EXEC_PLUMBING = frozenset({"exec", "wait"})
+_EXEC_TOOL_REF_RE = re.compile(
+    r"(?<![\w$.])tools\s*(?:\.\s*([A-Za-z_$][\w$]*)|\[\s*(?:(['\"`])([^'\"`]*)\2\s*\]|[^\]]*\]))")
+
+
+def codex_rollout_tool_calls(path):
+    """Tools other than `computer` the model called in a session, in order, from Codex's rollout.
+    Needed because Code Mode calls never reach the `exec --json` stream (verified live on
+    0.153.4: an exec call emits no item at all; only the MCP calls it makes do): every function
+    call other than CODEX_EXEC_PLUMBING, and every `tools.<name>` an exec script references other
+    than the computer tool, as `exec.<name>` -- `exec.<dynamic>` when the name is computed, so it
+    can't hide behind an expression."""
+    names = []
+    for line in Path(path).read_text(errors="replace").splitlines():
+        try:
+            rec = json.loads(line)
+        except ValueError:
+            continue
+        payload = rec.get("payload") if isinstance(rec, dict) else None
+        if not isinstance(payload, dict) or rec.get("type") != "response_item":
+            continue
+        kind, name = payload.get("type"), payload.get("name")
+        if kind not in ("function_call", "custom_tool_call"):
+            continue
+        if name == "exec" and kind == "custom_tool_call":
+            for dotted, _, quoted in _EXEC_TOOL_REF_RE.findall(str(payload.get("input") or "")):
+                ref = dotted or quoted or "<dynamic>"
+                if ref != CODEX_OFFICIAL_NESTED_TOOL:
+                    names.append(f"exec.{ref}")
+        elif name not in CODEX_EXEC_PLUMBING:
+            names.append(name)
+    return names
 
 
 def rate_limit_rec(task, status):
