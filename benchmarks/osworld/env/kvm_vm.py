@@ -18,12 +18,22 @@ import requests
 
 from benchmarks.osworld import config
 from benchmarks.osworld.env.controller import Controller
+from benchmarks.osworld.env.kvm_addr import loopback_conflict   # noqa: F401 (re-export)
 from core.environment import Env
 
 _GUEST_PORTS = (5000, 9222, 8080, 8006)
 _READY_TIMEOUT_S = 300
 _SETUP_ATTEMPTS = 5   # desktop_env.py MAX_RETRIES
 DRIVER_RUN_LABEL = "osworld.driver_run"
+
+
+class KvmSetupError(RuntimeError):
+    """The official VM never became ready, or its task setup failed: an infrastructure failure,
+    not a task outcome. Raised out of kvm_environment (never yielded as setup_error, which the
+    runners score as a terminal ENVIRONMENT_ERROR), so core.run's work() records it in
+    infra_error.json under `infra_outcome` and a resumed campaign retries the run; the campaign
+    driver's stuck/systemic rules count it."""
+    infra_outcome = "ENV_SETUP_FAILED"
 
 
 def _qcow2_mount(target):
@@ -92,7 +102,9 @@ def kvm_environment(task, *, port=None, client=None):
         ctrl.client_password = config.KVM_CLIENT_PASSWORD
         ctrl.container_id = container.id
         err = _wait_ready(ctrl.base_url) or _configure(ctrl, task)
-        yield Env(port=None, browser=ctrl, setup_error=err)
+        if err:
+            raise KvmSetupError(err)
+        yield Env(port=None, browser=ctrl, setup_error=None)
     finally:
         try:
             container.stop()
@@ -102,11 +114,18 @@ def kvm_environment(task, *, port=None, client=None):
 
 def preflight(client=None):
     """Refuse a campaign whose host can't run the official VM, with one SystemExit naming the
-    specific problem. Cheap checks first (sha256 set, daemon reachable, image present), then two
-    throwaway probe containers on the image itself, so /dev/kvm and qcow2 failures stay apart."""
+    specific problem. Cheap checks first (sha256 set, a routable address, daemon reachable, image
+    present), then throwaway probe containers on the image itself, so /dev/kvm and qcow2 failures
+    stay apart, and last the qcow2's content hash against OSW_KVM_QCOW2_SHA256 -- minutes on a
+    ~25 GB image, so a campaign driver child skips only that one when the driver already ran it
+    for this driver run (common.official_probe_already_passed)."""
     from docker.errors import APIError, ContainerError, DockerException, ImageNotFound
+    from benchmarks.osworld.runners.common import official_probe_already_passed
     if not config.KVM_QCOW2_SHA256:
         raise SystemExit("OSW_KVM_QCOW2_SHA256 not set (scripts/kvm_host_setup.sh prints it)")
+    conflict = loopback_conflict(config.KVM_ADDR, config.KVM_DOCKER_HOST)
+    if conflict:
+        raise SystemExit(f"kvm preflight: {conflict}")
     try:
         client = client or _docker_client()
         client.ping()
@@ -134,3 +153,14 @@ def preflight(client=None):
         raise SystemExit(f"kvm preflight: qcow2 at {qcow2} is not a regular non-empty file")
     except APIError as e:
         raise SystemExit(f"kvm preflight: qcow2 missing on the docker host at {qcow2} ({e})")
+    if official_probe_already_passed():
+        return
+    try:
+        out = probe("sha256sum /q", mounts=[_qcow2_mount("/q")])
+    except (APIError, ContainerError) as e:
+        raise SystemExit(f"kvm preflight: could not sha256 the qcow2 at {qcow2} ({e})")
+    text = out.decode(errors="replace") if isinstance(out, bytes) else str(out or "")
+    found = text.split()[0].lower() if text.split() else ""
+    if found != config.KVM_QCOW2_SHA256.lower():
+        raise SystemExit(f"kvm preflight: qcow2 at {qcow2} has sha256 {found or '(none)'}, but "
+                         f"OSW_KVM_QCOW2_SHA256 pins {config.KVM_QCOW2_SHA256}")

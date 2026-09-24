@@ -15,7 +15,12 @@ and the campaign lock is astra_official361_lock.json. The OSW_KVM_* host setting
 caller's environment; the runner preflight validates them.
 
 Preflight first: the arm's Runner preflight (benchmark.build(): the kvm host check, then the
-runner's own) runs once in-process, and any failure exits before a single VM is started.
+runner's own) runs once in-process, and any failure exits before a single VM is started. Once it
+passes, the driver exports OSW_OFFICIAL_PREFLIGHT_OK=<its driver run id> (next to
+OSW_KVM_DRIVER_RUN) so its children skip only the expensive checks it just ran -- the live-model
+isolation probe and the qcow2 content hash -- and keep every cheap one. A marker inherited from
+the caller's shell is dropped before the in-process preflight. The caller's OSW_KVM_ADDR must be
+routable to OSW_KVM_DOCKER_HOST: a loopback address with a remote docker host is refused (exit 2).
 
 Rounds. Each round takes the pending (task, run) units -- no eval.json yet, via core.results.
 is_done, exactly the check run.py itself uses to resume -- groups their tasks into batches of 5,
@@ -26,7 +31,11 @@ the pending set from disk. After every round, `decide` looks at what the childre
   - "stop" (exit 3): a child exited non-zero without writing any infra_error.json (its own
     preflight refused, or it crashed before any unit), or some unit has accumulated >= 3
     infra_error records that are neither RATE_LIMITED nor INTERRUPTED (a unit failure that
-    would otherwise be retried forever, since it never produces an eval.json);
+    would otherwise be retried forever, since it never produces an eval.json), or any unit of
+    the round ended AUTH_ERROR (the CLI's login is gone: every later unit would fail the same
+    way), or >= 80% of the units attempted in the round ended with an infra error that is
+    neither RATE_LIMITED nor INTERRUPTED (systemic failure, e.g. every VM failing setup
+    (ENV_SETUP_FAILED) -- burning through the population would only pile up infra records);
   - "backoff": >= 50% of the units just attempted ended RATE_LIMITED -- sleep 1800 s (same poll
     as the open-book driver: quota resets are hours apart) and try again;
   - "continue" otherwise.
@@ -126,7 +135,13 @@ _HARNESS_KNOB_DEFAULTS = {
     "OSW_CONTROLLER_PORT": "5000",
     "OSW_SANDBOX_ID": "",
     "OSW_ASTRA_CODEX_VERSION": "0.153.4",
+    "OSW_CLAUDE_CODE_VERSION": "2.1.280",
+    # The guest account password upstream's system prompt tells the agent (and setup uses).
+    "OSW_KVM_CLIENT_PASSWORD": "password",
 }
+# config.py's defaults for the host settings, needed before config may be imported.
+_KVM_ADDR_DEFAULT = "127.0.0.1"
+_KVM_DOCKER_HOST_DEFAULT = "unix:///var/run/docker.sock"
 
 # The official VM image, pinned by digest (scripts/kvm_host_setup.sh prints the reference).
 _KVM_IMAGE_RE = re.compile(r"happysixd/osworld-docker@sha256:[0-9a-f]{64}")
@@ -175,7 +190,14 @@ def env_conflicts(arm, environ):
         out.append(f"OSW_KVM_IMAGE={image!r} (the protocol requires a pinned digest "
                    f"happysixd/osworld-docker@sha256:<64 hex>; scripts/kvm_host_setup.sh "
                    f"prints it)")
+    from benchmarks.osworld.env.kvm_addr import loopback_conflict   # imports no config
+    loopback = loopback_conflict(
+        (environ.get("OSW_KVM_ADDR") or "").strip() or _KVM_ADDR_DEFAULT,
+        (environ.get("OSW_KVM_DOCKER_HOST") or "").strip() or _KVM_DOCKER_HOST_DEFAULT)
+    if loopback:
+        out.append(loopback)
     return out
+
 
 
 def child_env(arm, environ):
@@ -316,9 +338,28 @@ def _silent_failures(batch_results):
             if b["returncode"] != 0 and not any(u["fresh_outcome"] for u in b["units"])]
 
 
+SYSTEMIC_FAILURE_THRESHOLD = 0.8
+
+
+def auth_errors(batch_results):
+    """Units of this round that ended AUTH_ERROR (the agent CLI's login was revoked)."""
+    return [(u["task_id"], u["run_idx"]) for b in batch_results for u in b["units"]
+            if u["fresh_outcome"] == "AUTH_ERROR"]
+
+
+def systemic_failure(batch_results):
+    """True when >= SYSTEMIC_FAILURE_THRESHOLD of the units attempted this round ended with a
+    unit-failure infra outcome (anything but _NOT_UNIT_FAILURES)."""
+    attempted = [u for b in batch_results for u in b["units"]]
+    failed = sum(bool(u["fresh_outcome"]) and u["fresh_outcome"] not in _NOT_UNIT_FAILURES
+                 for u in attempted)
+    return bool(attempted) and failed / len(attempted) >= SYSTEMIC_FAILURE_THRESHOLD
+
+
 def decide(batch_results):
     """"stop" | "backoff" | "continue" after one round (see the module docstring)."""
-    if _silent_failures(batch_results) or stuck_units(batch_results):
+    if (_silent_failures(batch_results) or stuck_units(batch_results)
+            or auth_errors(batch_results) or systemic_failure(batch_results)):
         return "stop"
     attempted = [u for b in batch_results for u in b["units"]]
     limited = sum(u["fresh_outcome"] == "RATE_LIMITED" for u in attempted)
@@ -435,11 +476,16 @@ def main(argv=None):
 def _campaign(system, parallel, max_hours, log, log_file):
     """Preflight, then rounds until nothing is pending, MAX_HOURS, or a stop decision."""
     from benchmarks.osworld.benchmark import build
+    # Only this driver run's own in-process preflight may vouch for the children.
+    os.environ.pop("OSW_OFFICIAL_PREFLIGHT_OK", None)
     try:
         build().runners[system].preflight()
     except SystemExit as e:
         log(f"preflight failed: {e}")
         return 2
+    # Children skip only the live-model probe and the qcow2 hash this preflight just ran
+    # (common.official_probe_already_passed: must equal their OSW_KVM_DRIVER_RUN).
+    os.environ["OSW_OFFICIAL_PREFLIGHT_OK"] = os.environ["OSW_KVM_DRIVER_RUN"]
     log("preflight ok")
 
     deadline = time.time() + max_hours * 3600
@@ -483,6 +529,14 @@ def _campaign(system, parallel, max_hours, log, log_file):
                 log(f"STOP: >= {MAX_NON_QUOTA_INFRA_ERRORS} unit failures (infra "
                     f"errors or no outcome written) on "
                     + " ".join(f"{tid}#{k}" for tid, k in stuck))
+            auth = auth_errors(results)
+            if auth:
+                log("STOP: AUTH_ERROR (the agent CLI is no longer logged in; log in again, "
+                    "then restart) on " + " ".join(f"{tid}#{k}" for tid, k in auth))
+            if systemic_failure(results):
+                log(f"STOP: >= {SYSTEMIC_FAILURE_THRESHOLD:.0%} of the units attempted this "
+                    f"round ended with a non-quota infra error (systemic failure; see the fresh "
+                    f"infra outcomes above)")
             return 3
         if decision == "backoff":
             log(f"[round {rnd}] >= {RATE_LIMIT_THRESHOLD:.0%} of attempted units RATE_LIMITED -- "

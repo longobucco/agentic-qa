@@ -97,11 +97,14 @@ def test_container_is_removed_when_setup_raises():
     container.remove.assert_called_once_with(v=True)
 
 
-def test_vm_never_ready_is_a_setup_error_not_a_crash():
+def test_vm_never_ready_is_a_retryable_setup_error_not_a_scored_one():
+    # final fix wave V1: raised (-> infra_error.json, retried), never yielded as setup_error
+    # (-> a terminal ENVIRONMENT_ERROR eval.json); see test_final_fix_vm.py
     client, container = _client()
     with patch.object(kvm_vm, "_wait_ready", return_value="VM not ready after 300s"):
-        with kvm_vm.kvm_environment({"id": "t", "config": []}, client=client) as env:
-            assert "not ready" in env.setup_error
+        with pytest.raises(kvm_vm.KvmSetupError, match="not ready"):
+            with kvm_vm.kvm_environment({"id": "t", "config": []}, client=client):
+                pass
     container.remove.assert_called_once_with(v=True)
 
 
@@ -287,14 +290,17 @@ def _pf_client():
 def sha_set(monkeypatch):
     monkeypatch.setattr(config, "KVM_QCOW2_SHA256", "ab" * 32)
     monkeypatch.setattr(config, "KVM_QCOW2", "rel/Ubuntu.qcow2")
+    monkeypatch.delenv("OSW_OFFICIAL_PREFLIGHT_OK", raising=False)
 
 
 def test_preflight_happy_path(sha_set):
     c = _pf_client()
+    # the third probe hashes the qcow2 (final fix wave V4, test_final_fix_vm.py)
+    c.containers.run.side_effect = [b"", b"", ("ab" * 32 + "  /q\n").encode()]
     kvm_vm.preflight(client=c)
     c.ping.assert_called_once()
     c.images.get.assert_called_once_with(config.KVM_IMAGE)
-    kvm_call, q_call = c.containers.run.call_args_list
+    kvm_call, q_call, _sha_call = c.containers.run.call_args_list
     assert kvm_call.kwargs["devices"] == ["/dev/kvm"]
     assert "test -e /dev/kvm" in " ".join(kvm_call.kwargs["entrypoint"])
     assert q_call.kwargs["mounts"] == [Mount(target="/q", source=os.path.abspath(
