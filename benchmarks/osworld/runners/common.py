@@ -1,7 +1,7 @@
-"""Shared, policy-free primitives extracted from runners/agent_computer.py so a second runner
-(runners/verify_replan.py, docs/verify-replan-minimal-integration-plan.md) can reuse the exact
-same MCP config shape, telemetry, provenance, post-run watchdog, transcript capture, and
-scoring logic without importing agent_computer's own orchestration or G5-arm policy knobs.
+"""Shared, policy-free primitives extracted from runners/agent_computer.py so another runner
+can reuse the exact same MCP config shape, telemetry, provenance, post-run watchdog, transcript
+capture, and scoring logic without importing agent_computer's own orchestration or G5-arm policy
+knobs.
 
 Extraction discipline (see the plan's own instruction, Section 6): only primitives whose
 behavior is already pinned by benchmarks/osworld/tests/test_runner.py's characterization tests

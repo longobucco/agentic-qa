@@ -3,10 +3,9 @@ official evaluators while the desktop is still live (self_eval) and write eval.j
 to the offline checker in evaluate.py when desktop_env isn't importable.
 
 Shared, policy-free primitives (MCP config, telemetry, provenance, the post-run watchdog,
-transcript capture, scoring) live in runners/common.py, reused unchanged by
-runners/verify_replan.py (docs/verify-replan-minimal-integration-plan.md). Re-imported here by
-name so every existing external reference to e.g. `agent_computer._mcp_config` keeps resolving
--- see benchmarks/osworld/tests/test_runner.py's characterization tests for the frozen contract.
+transcript capture, scoring) live in runners/common.py. Re-imported here by name so every
+existing external reference to e.g. `agent_computer._mcp_config` keeps resolving -- see
+benchmarks/osworld/tests/test_runner.py's characterization tests for the frozen contract.
 """
 import contextlib
 import json
@@ -38,8 +37,7 @@ from core import results as results_io
 # Grounding harness (config.GROUNDING, docs/grounding-harness-plan.md). Names must match what
 # mcp/grounding_tools.register() attaches to the `osworld` FastMCP instance, prefix included --
 # a wrong prefix here is silent under --dangerously-skip-permissions (which makes --allowedTools
-# pre-approval rather than a gate), which is exactly how the same mistake went unnoticed in
-# runners/verify_replan.py's READONLY_TOOLS for several commits.
+# pre-approval rather than a gate), so a mismatch can go unnoticed for several commits.
 GROUNDING_TOOLS = [
     "mcp__osworld__find_element", "mcp__osworld__click_element", "mcp__osworld__list_elements",
 ]
