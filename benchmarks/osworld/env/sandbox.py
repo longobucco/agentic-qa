@@ -92,31 +92,33 @@ def _ensure_controller_up(sb):
     raise RuntimeError(f"OSWorld controller never became ready on sandbox {sb.id}")
 
 
-# What this check can and can't discriminate (corrected 2026-09-22, see below): an X server with
-# no window manager, or an X server with a window manager but zero windows open, both look
-# near-monochrome -- one flat background color plus the mouse cursor's few antialiased edge
-# pixels, ~10-11 distinct colors on a 200x200 thumbnail. Confirmed live: openbox itself never
-# paints a root-window background (no wallpaper tool -- xsetroot/feh/nitrogen -- is installed),
-# so a genuinely healthy, fully-booted desktop with no app open is visually indistinguishable
-# from a dead one by color count alone. Opening any window changes this immediately and
-# drastically (confirmed live: launching bare xterm on an idle 11-color desktop jumped it to
-# 222; a real app in active use, e.g. Chrome, showed 800-1000+).
-#
-# So this gate cannot verify "the task's target app has rendered" -- that was this threshold's
-# purpose before 2026-09-22, and it was wrong: a version raised to 50 (to actually require
-# app-level content) made EVERY task without its own app-launching config step -- this check
-# runs before `task.get("config")` even executes -- time out and misreport ENVIRONMENT_ERROR on
-# a perfectly healthy, merely-still-empty desktop. Confirmed live: a fresh, verified-healthy
-# sandbox (Xvfb and openbox both genuinely running, confirmed via `ps`) sits at 11 colors until
-# something opens a window, indefinitely -- there is no "settling" to wait out.
-#
-# What the threshold CAN still do, and is scoped back to doing: catch a screenshot pipeline that
+# What this check can and can't discriminate: this gate cannot verify "the task's target app has
+# rendered" -- a version that tried to require app-level content (2026-09-22) made every task
+# without its own app-launching config step time out and misreport ENVIRONMENT_ERROR on a
+# perfectly healthy, merely-still-empty desktop (openbox paints no wallpaper of its own, so an
+# idle desktop stays near-monochrome -- background plus the mouse cursor -- indefinitely; opening
+# any window changes this drastically, e.g. bare xterm jumped an idle desktop's color count from
+# ~11 to 222). What it CAN still do, and is scoped to doing: catch a screenshot pipeline that
 # isn't even producing the baseline cursor-on-background image at all (Xvfb never came up, or a
-# genuinely corrupt/flat capture with no cursor rendered) -- that failure mode reads as 0-1
-# colors, comfortably below 8. A legitimately empty-but-healthy desktop, at ~10-11, comfortably
-# clears it. Left at its original value; the increase to 50 tried in the same session and found
-# to regress task coverage was reverted.
-_DESKTOP_READY_COLOR_THRESHOLD = 8
+# genuinely corrupt/flat capture) -- that reads as exactly 1 color, comfortably below any
+# legitimately empty-but-healthy desktop.
+#
+# Criterion (rewritten 2026-09-24, resolution-independent): count distinct colors on the FULL
+# screenshot, no downsampling -- >=2 distinct colors means rendered. A blank/uninitialized Xvfb
+# framebuffer is exactly 1 flat color; an empty-but-healthy desktop already clears 2 colors via
+# the background plus the cursor, at any resolution, and any real app or wallpaper clears it by a
+# huge margin. Also doubles as PIL's getcolors(maxcolors=...) argument: kept at 2 so getcolors()
+# bails out (returns None) the instant an image has more colors than that, without ever having to
+# enumerate colors on a busy, real screen -- None is treated the same as reaching the threshold.
+#
+# Why not the previous approach (thumbnail to 200x200, require >8 colors there, calibrated live
+# at 1280x1024 where an empty desktop's cursor produced ~10-11 thumbnail colors purely from
+# downsampling antialiasing): confirmed live on the 1920x1080 image, the identical empty desktop
+# downsamples to only 7 thumbnail colors -- below that threshold -- so the gate failed every run
+# on that resolution and every task reported ENVIRONMENT_ERROR. The thumbnail count was an
+# artifact of downsampling interacting with a specific screen size, not a property of "rendered
+# vs. not"; counting on the full-resolution image removes that dependency entirely.
+_DESKTOP_READY_MIN_COLORS = 2
 _DESKTOP_READY_TIMEOUT_S = 30
 _DESKTOP_READY_POLL_S = 2
 # Sustained-check shape (2 consecutive rendered reads, 3s apart) kept even though the
@@ -136,13 +138,13 @@ def _desktop_rendered(ctrl):
     try:
         raw = ctrl.screenshot()
         img = Image.open(io.BytesIO(raw)).convert("RGB")
-        img.thumbnail((200, 200))  # downsampling preserves color diversity, not detail; keeps
-                                    # this cheap to run on every retry
-        colors = img.getcolors(maxcolors=100000)
-        # getcolors() returns None if the image has MORE than maxcolors distinct colors -- given
-        # a 200x200 thumbnail (40000px) and maxcolors=100000, None can only mean "so much color
-        # variety it didn't even need to give up counting", i.e. unambiguously rendered.
-        return colors is None or len(colors) > _DESKTOP_READY_COLOR_THRESHOLD
+        # Full resolution, no downsampling -- see _DESKTOP_READY_MIN_COLORS above for why a
+        # thumbnail made this resolution-dependent. maxcolors kept tiny (only needs to
+        # distinguish "1 color" from "2+ colors") so getcolors() can bail out (return None)
+        # the instant a busy, real screen has more colors than that, without ever enumerating
+        # them -- None unambiguously means rendered, same as reaching the threshold explicitly.
+        colors = img.getcolors(maxcolors=_DESKTOP_READY_MIN_COLORS)
+        return colors is None or len(colors) >= _DESKTOP_READY_MIN_COLORS
     except Exception:
         return False
 
