@@ -235,15 +235,23 @@ def pinned_code_preflight():
         raise SystemExit("pinned OSWorld code not in effect: " + "; ".join(problems))
 
 
-def make_setup_controller(controller_url, *, cache_dir=None):
+def make_setup_controller(controller_url, *, cache_dir=None, chromium_port=None, vlc_port=None,
+                          client_password=""):
     """A real SetupController pointed at our controller_url (config/postconfig dispatch is real
-    host-side logic per step type, not a 1:1 REST route name — don't hand-roll it)."""
+    host-side logic per step type, not a 1:1 REST route name — don't hand-roll it).
+
+    `chromium_port`/`vlc_port`/`client_password`: the kvm backend's published host ports (the
+    official VM's 9222/8080 land on random ones) and the guest's sudo password; None/"" keep
+    SetupController's own defaults, as every Daytona caller always had."""
     use_pinned_setup_controller()
     from desktop_env.controllers.setup import SetupController
     u = urlparse(controller_url)
+    ports = {k: v for k, v in (("chromium_port", chromium_port), ("vlc_port", vlc_port))
+             if v is not None}
     sc = SetupController(vm_ip=u.hostname or "localhost",
                          server_port=u.port or (443 if u.scheme == "https" else 5000),
                          cache_dir=cache_dir or tempfile.mkdtemp(prefix="osw_setup_cache_"),
+                         client_password=client_password, **ports,
                          screen_width=config.SCREEN_WIDTH, screen_height=config.SCREEN_HEIGHT)
     sc.http_server = controller_url.rstrip("/")
     sc.http_server_setup_root = controller_url.rstrip("/") + "/setup"
@@ -280,7 +288,8 @@ class _EnvAdapter:
     """Minimal DesktopEnv stand-in that OSWorld's getters read from."""
 
     def __init__(self, controller, controller_url, action_history, cache_dir=None,
-                 getter_address=None, use_proxy=False, chromium_port=None):
+                 getter_address=None, use_proxy=False, chromium_port=None, vlc_port=None,
+                 client_password=""):
         # What the twelve URL-building getters will interpolate into "http://{ip}:{port}".
         # Splitting the https:// controller URL here is what made them talk plain HTTP to port
         # 443 (env/http_forwarder.py); the loopback forwarder is passed in instead.
@@ -303,8 +312,10 @@ class _EnvAdapter:
         # `chromium_port`: 9222 unless a CdpForwarder is up (open-book only, use_proxy=True) --
         # see env/cdp_forwarder.py for why the literal guest port is otherwise unreachable from
         # the harness host (oracle_unroutable) and what makes it reachable after all.
+        # On the kvm backend both are the container's published host ports (env/kvm_vm.py).
         self.chromium_port = chromium_port or 9222
-        self.vlc_port = 8080
+        self.vlc_port = vlc_port or 8080
+        self.client_password = client_password
         self._vm_machine = None
         # False for every existing (closed-book) caller. The open-book runner passes True here so
         # a getter that has to relaunch Chrome mid-evaluation (its CDP connection dropped) reads
@@ -336,13 +347,15 @@ class _EnvAdapter:
         palette; without this attribute every such task ended as EVAL_ERROR (AttributeError) and
         was silently dropped from the scored population (53ad5833, 4 runs, found 2026-09-24)."""
         if self._setup_controller is None:
-            self._setup_controller = make_setup_controller(self._controller_url,
-                                                           cache_dir=self.cache_dir)
+            self._setup_controller = make_setup_controller(
+                self._controller_url, cache_dir=self.cache_dir, chromium_port=self.chromium_port,
+                vlc_port=self.vlc_port, client_password=self.client_password)
         return self._setup_controller
 
 
 def evaluate_official(controller_url, task, action_history, cache_dir=None, use_proxy=False,
-                       enable_cdp_forwarder=True):
+                       enable_cdp_forwarder=True, chromium_port=None, vlc_port=None,
+                       client_password=""):
     """Return OSWorld's reward for this task (0..1), or None if desktop_env isn't importable.
 
     `cache_dir`: where the official getters land any gold reference they download. Pass one to
@@ -363,7 +376,13 @@ def evaluate_official(controller_url, task, action_history, cache_dir=None, use_
     own HTTP port (oracle_unroutable, see g9_replication_validity.py). Defaults True: every
     caller wants CDP routing to work, so the CdpForwarder.start() probe (which raises and is
     caught harmlessly when nothing is listening on Chrome's CDP port yet) is unconditional
-    unless a caller explicitly opts out."""
+    unless a caller explicitly opts out.
+
+    `chromium_port`/`vlc_port`/`client_password`: set by the kvm backend only (published host
+    ports of the official VM, plus its sudo password). The getters build
+    "http://{env.vm_ip}:{env.chromium_port}" (and the same for VLC), so with mapped ports the
+    getters address the VM host directly -- the controller URL is plain http there, and the
+    loopback front door would put 127.0.0.1 in front of a CDP port that lives on KVM_ADDR."""
     use_pinned_evaluators()     # must precede the import below: it decides what gets imported
     try:
         from desktop_env.controllers.python import PythonController
@@ -377,7 +396,7 @@ def evaluate_official(controller_url, task, action_history, cache_dir=None, use_
     # address the guest identically, and the getters that build "http://{ip}:{port}" inline
     # end up with a URL that is actually true (env/http_forwarder.py).
     with LoopbackForwarder(controller_url) as fwd:
-        address = split_for_getters(controller_url, fwd)
+        address = split_for_getters(controller_url, None if chromium_port else fwd)
         controller = PythonController(vm_ip=address[0], server_port=address[1])
         cdp_fwd = None
         if use_proxy or enable_cdp_forwarder:
@@ -390,16 +409,18 @@ def evaluate_official(controller_url, task, action_history, cache_dir=None, use_
         try:
             env = _EnvAdapter(controller, controller_url, action_history, cache_dir=cache_dir,
                               getter_address=address, use_proxy=use_proxy,
-                              chromium_port=cdp_fwd.port if cdp_fwd else None)
+                              chromium_port=cdp_fwd.port if cdp_fwd else chromium_port,
+                              vlc_port=vlc_port, client_password=client_password)
             return _score(env, ev, func, controller_url, cache_dir, getters, metrics,
-                         use_proxy=use_proxy, cdp_forwarder=cdp_fwd)
+                         use_proxy=use_proxy, cdp_forwarder=cdp_fwd, chromium_port=chromium_port,
+                         vlc_port=vlc_port, client_password=client_password)
         finally:
             if cdp_fwd is not None:
                 cdp_fwd.stop()
 
 
 def _score(env, ev, func, controller_url, cache_dir, getters, metrics, use_proxy=False,
-          cdp_forwarder=None):
+          cdp_forwarder=None, chromium_port=None, vlc_port=None, client_password=""):
     """The scoring pass itself, with the forwarder already up and `env` already addressed."""
 
     postconfig = ev.get("postconfig", [])
@@ -412,7 +433,9 @@ def _score(env, ev, func, controller_url, cache_dir, getters, metrics, use_proxy
         # uncleaned mkdtemp per scored run is exactly the kind of per-run temp-dir leak that
         # let 5400 stray dirs/files (3.6GB) accumulate over ~1000 run attempts (found live
         # 2026-08-16).
-        postconfig_ctrl = make_setup_controller(controller_url, cache_dir=cache_dir)
+        postconfig_ctrl = make_setup_controller(controller_url, cache_dir=cache_dir,
+                                                chromium_port=chromium_port, vlc_port=vlc_port,
+                                                client_password=client_password)
         if cdp_forwarder is not None:
             postconfig_ctrl.vm_ip, postconfig_ctrl.chromium_port = \
                 cdp_forwarder.host, cdp_forwarder.port

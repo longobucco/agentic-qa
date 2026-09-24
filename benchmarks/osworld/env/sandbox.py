@@ -295,7 +295,8 @@ def _screen_size_mismatch(ctrl):
     return None
 
 
-def _run_config(ctrl, task, *, use_proxy=False, enable_cdp_forwarder=False, sandbox=None):
+def _run_config(ctrl, task, *, use_proxy=False, enable_cdp_forwarder=False, sandbox=None,
+                setup_attempts=1, verify_launches=True):
     """Run the task's config via OSWorld's own SetupController, then independently verify any
     "launch" step actually started (see _verify_launches). Returns None on success, an error
     string on failure -- never silently swallowed. No fallback to a naive per-step POST: config
@@ -334,6 +335,12 @@ def _run_config(ctrl, task, *, use_proxy=False, enable_cdp_forwarder=False, sand
     Also gates on _wait_for_desktop_ready before anything else, unconditionally (even for a task
     with no config steps at all) -- see that function's own docstring for why Controller.ready()
     alone isn't a sufficient readiness signal.
+
+    `setup_attempts` / `verify_launches`: the kvm backend (env/kvm_vm.py) follows upstream
+    DesktopEnv.reset -- up to 5 setup attempts while SetupController.setup returns False, 5s
+    apart, and no extra launch verification of our own. Defaults (1, True) are today's behavior.
+    Mapped ports and the sudo password ride on the controller when the backend set them (kvm);
+    a Daytona controller has none, so SetupController keeps upstream's defaults.
     """
     not_ready = _wait_for_desktop_ready(ctrl)
     if not_ready:
@@ -355,7 +362,10 @@ def _run_config(ctrl, task, *, use_proxy=False, enable_cdp_forwarder=False, sand
     cache_dir = tempfile.mkdtemp(prefix="osw_setup_cache_")
     cdp_fwd = None
     try:
-        setup_ctrl = make_setup_controller(ctrl.base_url, cache_dir=cache_dir)
+        setup_ctrl = make_setup_controller(
+            ctrl.base_url, cache_dir=cache_dir, chromium_port=getattr(ctrl, "chromium_port", None),
+            vlc_port=getattr(ctrl, "vlc_port", None),
+            client_password=getattr(ctrl, "client_password", ""))
         if use_proxy or enable_cdp_forwarder:
             from benchmarks.osworld.env.cdp_forwarder import (
                 CdpForwarder, CdpForwarderError, inject_remote_allow_origins)
@@ -369,14 +379,23 @@ def _run_config(ctrl, task, *, use_proxy=False, enable_cdp_forwarder=False, sand
                 print(f"[osworld] WARNING: CdpForwarder unavailable ({e}); any "
                      f"chrome_open_tabs/chrome_close_tabs step in this task's config will fail "
                      f"exactly as it did before this fix")
-        setup_ctrl.setup(steps, use_proxy=use_proxy)
+        for attempt in range(setup_attempts):
+            if attempt:
+                time.sleep(5)
+            if setup_ctrl.setup(steps, use_proxy=use_proxy) is not False:
+                break
+        else:
+            # A single attempt (the default) ignores a False return exactly as before; only a
+            # caller that asked for upstream's retries treats exhausting them as a setup error.
+            if setup_attempts > 1:
+                return "config setup failed: SetupController.setup returned False"
     except Exception as e:
         return f"config setup failed: {e}"
     finally:
         if cdp_fwd is not None:
             cdp_fwd.stop()
         shutil.rmtree(cache_dir, ignore_errors=True)
-    return _verify_launches(ctrl, steps)
+    return _verify_launches(ctrl, steps) if verify_launches else None
 
 
 _warned_reuse = False

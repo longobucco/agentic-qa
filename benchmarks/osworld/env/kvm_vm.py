@@ -1,0 +1,96 @@
+"""kvm backend (config.BACKEND == "kvm"): the official OSWorld VM, started the way upstream's
+Docker provider does it (desktop_env/providers/docker/provider.py @091f5ef): the
+happysixd/osworld-docker container runs the official Ubuntu.qcow2 (read-only bind; the
+container's overlay is thrown away with it, which is upstream's snapshot revert) with 4 CPU,
+4 GB RAM, /dev/kvm, NET_ADMIN and ports 5000/9222/8080/8006 published. Host ports are left to
+Docker (random), because upstream's local psutil port scan is wrong for a remote DOCKER_HOST.
+Flow per upstream DesktopEnv.reset: wait for /screenshot, setup (up to 5 attempts on a False
+return), then the runner waits POST_SETUP_WAIT_S.
+
+Every consumer reaches the guest at KVM_ADDR + the mapped port: the controller (5000), the
+SetupController and the evaluator adapter (9222 for CDP, 8080 for VLC). No CdpForwarder here:
+unlike Daytona, the published CDP port is directly routable."""
+from contextlib import contextmanager
+import time
+
+import requests
+
+from benchmarks.osworld import config
+from benchmarks.osworld.env.controller import Controller
+from core.environment import Env
+
+_GUEST_PORTS = (5000, 9222, 8080, 8006)
+_READY_TIMEOUT_S = 300
+_SETUP_ATTEMPTS = 5   # desktop_env.py MAX_RETRIES
+
+
+def _docker_client():
+    import docker
+    return docker.DockerClient(base_url=config.KVM_DOCKER_HOST)
+
+
+def published_ports(container):
+    """{guest port: host port} for the container's published ports."""
+    container.reload()
+    out = {}
+    for key, binds in (container.attrs["NetworkSettings"]["Ports"] or {}).items():
+        if binds:
+            out[int(key.split("/")[0])] = int(binds[0]["HostPort"])
+    return out
+
+
+def _wait_ready(base_url, timeout=_READY_TIMEOUT_S):
+    start = time.time()
+    while time.time() - start < timeout:
+        try:
+            if requests.get(f"{base_url}/screenshot", timeout=(10, 10)).status_code == 200:
+                return None
+        except requests.RequestException:
+            pass
+        time.sleep(1)
+    return f"official VM not ready after {timeout}s ({base_url}/screenshot)"
+
+
+def _configure(ctrl, task):
+    from benchmarks.osworld.env.sandbox import _run_config
+    return _run_config(ctrl, task, enable_cdp_forwarder=False, setup_attempts=_SETUP_ATTEMPTS,
+                       verify_launches=False)
+
+
+@contextmanager
+def kvm_environment(task, *, port=None, client=None):
+    """One fresh official VM per run. Whatever raises (setup, agent, scoring, Ctrl-C), the
+    container is stopped and removed -- remove runs even when stop itself raises."""
+    client = client or _docker_client()
+    container = client.containers.run(
+        config.KVM_IMAGE,
+        environment={"DISK_SIZE": "32G", "RAM_SIZE": "4G", "CPU_CORES": "4"},
+        cap_add=["NET_ADMIN"], devices=["/dev/kvm"],
+        volumes={config.KVM_QCOW2: {"bind": "/System.qcow2", "mode": "ro"}},
+        ports={p: None for p in _GUEST_PORTS}, detach=True)
+    try:
+        ports = published_ports(container)
+        ctrl = Controller(f"http://{config.KVM_ADDR}:{ports[5000]}")
+        ctrl.chromium_port, ctrl.vlc_port = ports[9222], ports[8080]
+        ctrl.client_password = config.KVM_CLIENT_PASSWORD
+        ctrl.container_id = container.id
+        err = _wait_ready(ctrl.base_url) or _configure(ctrl, task)
+        yield Env(port=None, browser=ctrl, setup_error=err)
+    finally:
+        try:
+            container.stop()
+        finally:
+            container.remove(v=True)
+
+
+def preflight(client=None):
+    """Refuse a campaign whose host can't run the official VM."""
+    client = client or _docker_client()
+    client.ping()
+    client.images.get(config.KVM_IMAGE)
+    probe = client.containers.run("alpine", ["sh", "-c", "test -e /dev/kvm && test -s /q"],
+                                  volumes={config.KVM_QCOW2: {"bind": "/q", "mode": "ro"}},
+                                  devices=["/dev/kvm"], remove=True)
+    if not config.KVM_QCOW2_SHA256:
+        raise SystemExit("OSW_KVM_QCOW2_SHA256 not set (scripts/kvm_host_setup.sh prints it)")
+    return probe
