@@ -207,11 +207,9 @@ def protocol_wait(seconds, *, sleep=time.sleep):
         sleep(seconds)
 
 
-def claude_transcript_actions(path):
-    """(assistant text blocks, `computer` tool_use inputs) from a Claude Code session JSONL, in
-    order -- what official_protocol.final_action needs to apply upstream's termination rule.
-    Unparseable lines are skipped; a string `content` counts as one text block."""
-    texts, calls = [], []
+def _claude_assistant_blocks(path):
+    """Content blocks of every assistant message in a Claude Code session JSONL, in order.
+    Unparseable lines are skipped; a string `content` is yielded as one text block."""
     for line in Path(path).read_text(errors="replace").splitlines():
         try:
             ev = json.loads(line)
@@ -221,17 +219,29 @@ def claude_transcript_actions(path):
             continue
         content = (ev.get("message") or {}).get("content")
         if isinstance(content, str):
-            texts.append(content)
+            yield {"type": "text", "text": content}
             continue
         for block in content or []:
-            if not isinstance(block, dict):
-                continue
-            if block.get("type") == "text":
-                texts.append(block.get("text") or "")
-            elif (block.get("type") == "tool_use"
-                  and block.get("name") == "mcp__osworld__computer"):
-                calls.append(block.get("input") or {})
+            if isinstance(block, dict):
+                yield block
+
+
+def claude_transcript_actions(path):
+    """(assistant text blocks, `computer` tool_use inputs) from a Claude Code session JSONL, in
+    order -- what official_protocol.final_action needs to apply upstream's termination rule."""
+    texts, calls = [], []
+    for block in _claude_assistant_blocks(path):
+        if block.get("type") == "text":
+            texts.append(block.get("text") or "")
+        elif block.get("type") == "tool_use" and block.get("name") == "mcp__osworld__computer":
+            calls.append(block.get("input") or {})
     return texts, calls
+
+
+def claude_transcript_tool_names(path):
+    """Name of every tool_use in a Claude Code session JSONL, in order (the per-run audit that
+    the official protocol's computer-only tool set actually held)."""
+    return [b.get("name") for b in _claude_assistant_blocks(path) if b.get("type") == "tool_use"]
 
 
 def _a11y_health(ctrl):

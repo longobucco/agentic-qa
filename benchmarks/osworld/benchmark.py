@@ -21,7 +21,7 @@ def build():
             environment=osworld_environment,
             needs_browser=False,
             concurrency_safe=False,
-            preflight=osworld_eval.pinned_code_preflight,
+            preflight=agent_computer.preflight,
             self_eval=True,          # scores with OSWorld's own evaluators; writes eval.json
         ),
         # Independent model replication: GPT Astra via Codex CLI, with the same OSWorld MCP,
