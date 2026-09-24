@@ -27,7 +27,7 @@ from benchmarks.osworld.runners.common import (
     mcp_unavailable_infra_rec, official_max_turns, official_probe_already_passed, protocol_wait,
     read_mcp_state, reset_mcp_state,
 )
-from core.agent_loop import _run_raw, build_claude_cmd, extract_answer, preview, run_claude_meta
+from core.agent_loop import _run_raw, build_claude_cmd, preview, run_claude_meta
 from core import results as results_io
 
 
@@ -161,13 +161,12 @@ def preflight():
 def _effort_kwargs():
     """Protocol knobs (OSW_EFFORT / OSW_MAX_OUTPUT_TOKENS) as call kwargs, present only when set:
     with neither set, the baseline build_claude_cmd/run_claude_meta calls stay exactly as they
-    were (test_dry_run_argv_is_a_stable_snapshot_for_a_fixed_task_and_config pins that)."""
+    were."""
     return {"effort": config.EFFORT} if config.EFFORT else {}
 
 
 def _env_kwargs():
-    env = claude_env()
-    return {"env": env} if env else {}
+    return {"env": claude_env()}
 
 
 def _run_provenance(task, ctrl, started_at):
@@ -327,7 +326,6 @@ def run(task, *, env, out, refs=None, dry=False):
         return ""
 
     text = meta.get("result", "")
-    answer = extract_answer(text)
     results_io.write_output(out, text)
     transcript = _save_conversation_transcript(meta, out, task["id"])
     if not transcript.get("transcript_saved") and not meta.get("session_id"):

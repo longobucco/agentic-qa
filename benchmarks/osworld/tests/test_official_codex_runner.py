@@ -148,11 +148,10 @@ def test_official_lock_refuses_another_effort(monkeypatch):
 ], ids=["removed", "altered"])
 def test_official_lock_refuses_a_tool_policy_missing_or_altered_isolation_config(
         monkeypatch, tmp_path, mutate):
-    """_validate_campaign_lock always compares isolation_config now (this task's own change,
-    dropping the earlier `config.OFFICIAL and` guard) -- a lock whose tool_policy doesn't carry
-    exactly gpt_astra.CODEX_ISOLATION_CONFIG must be refused, whether the key is missing entirely
-    or present with the wrong value. The population paths stay pointed at the repo's own
-    scripts/g_protocol361_ids.txt: _validate_campaign_lock resolves them from the repo root
+    """_validate_campaign_lock always compares isolation_config -- a lock whose tool_policy
+    doesn't carry exactly gpt_astra.CODEX_ISOLATION_CONFIG must be refused, whether the key is
+    missing entirely or present with the wrong value. The population paths stay pointed at the
+    repo's own scripts/g_protocol361_ids.txt: _validate_campaign_lock resolves them from the repo root
     (Path(__file__).resolve().parents[3] in gpt_astra.py), not from the lock file's own
     location, so a tmp-dir copy of the lock still validates against the real id list."""
     lock = json.loads(OFFICIAL_LOCK.read_text())

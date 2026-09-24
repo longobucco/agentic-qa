@@ -104,7 +104,8 @@ KVM_CLIENT_PASSWORD = os.environ.get("OSW_KVM_CLIENT_PASSWORD", "password")
 # flags, transcript layout): the official preflight refuses any other `claude --version`.
 CLAUDE_CODE_VERSION = os.environ.get("OSW_CLAUDE_CODE_VERSION", "").strip() or "2.1.280"
 
-# "agent_computer" (unpinned, mixed-model, historical) vs "agent_computer_sonnet5" (pinned).
+# "unpinned" only appears transiently at import time; preflight() refuses to run without
+# OSW_MODEL set, so no run ever writes to an "agent_computer_unpinned" tree.
 SYSTEM_NAME = f"agent_computer_{model_slug() or 'unpinned'}"
 # An effort override is a different protocol: never pool it into the default-effort tree.
 if EFFORT:

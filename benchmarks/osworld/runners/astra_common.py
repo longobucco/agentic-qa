@@ -102,9 +102,7 @@ def codex_version():
 
 def check_codex_cli(*, model, reasoning_effort, codex_cli_version):
     """codex binary present/logged-in, its --version matches the pin, and the requested
-    model+reasoning_effort are in its own model catalog. Shared by both Astra runners' preflight
-    -- extracted so the open-book preflight doesn't re-implement (and drift from) this check
-    against a different lock file's model/effort/version fields."""
+    model+reasoning_effort are in its own model catalog."""
     import shutil
 
     binary = shutil.which("codex")
@@ -145,8 +143,7 @@ def check_codex_cli(*, model, reasoning_effort, codex_cli_version):
 def provenance_astra(task, ctrl, started_at, codex_ver, *, model, reasoning_effort,
                      session_id=None, extra=None):
     """Per-run Codex provenance. `model`/`reasoning_effort` are passed explicitly (not read off
-    config.ASTRA_*) so the open-book runner, which may run under its own campaign lock, is not
-    silently coupled to the closed-book runner's env vars."""
+    config.ASTRA_* directly) so provenance always records the exact values a given call used."""
     rec = _provenance(task, ctrl, started_at)
     # `codex exec --json` names no model anywhere in its event stream, so the request is
     # unverified on its own. Codex's own rollout file does record what it applied -- model,
