@@ -30,6 +30,7 @@ from benchmarks.osworld.runners.common import (
     protocol_wait,
 )
 from core.agent_loop import _run_raw, build_claude_cmd, extract_answer, preview, run_claude_meta
+from core import procgroups
 from core import results as results_io
 
 
@@ -379,6 +380,9 @@ def _inloop_verify(ctrl, task, answer, meta, mcp_config_path, out):
         png_path = out / "inloop_pre_verify.png"
         png_path.write_bytes(ctrl.screenshot())
         v = _verify_with_reason(png_path.resolve(), task.get("instruction", ""))
+    except procgroups.Interrupted:
+        raise   # the harness itself is shutting down -- never swallow this into a "skipped"
+                # result; core.run's work() must see it and record an INTERRUPTED infra outcome
     except Exception as e:
         print(f"[osworld] in-loop verify skipped (capture/verify failed): {e}")
         return answer, meta, {"inloop_verify_used": False, "inloop_verify_error": str(e)}
@@ -406,6 +410,8 @@ def _inloop_verify(ctrl, task, answer, meta, mcp_config_path, out):
             **_effort_kwargs(),
         )
         meta2 = run_claude_meta(cmd2, timeout=config.TASK_TIMEOUT, **_env_kwargs())
+    except procgroups.Interrupted:
+        raise   # ditto: a harness interrupt must propagate, not be recorded as a retry failure
     except Exception as e:
         print(f"[osworld] in-loop verify retry failed: {e}")
         return answer, meta, {**base, "inloop_verify_error": f"retry call failed: {e}"}

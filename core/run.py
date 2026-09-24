@@ -22,12 +22,14 @@ import argparse
 import json
 import os
 import queue
+import signal
 import threading
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
 from typing import Callable
 
+from core import procgroups
 from core import results as results_io
 from core import reporting
 from core.agent_loop import preview
@@ -141,8 +143,70 @@ def _parser(benchmark):
     return ap
 
 
+def _install_signal_handlers():
+    """Install SIGTERM/SIGINT handlers that reap every registered agent CLI process group
+    (`core.procgroups`) before the interrupt propagates. A benchmark run's agent spawners
+    (`core.agent_loop._run_raw`, `core.codex_loop.run_codex_meta`) already killpg their own
+    child on THEIR OWN timeout; this covers the harness process itself being torn down
+    (campaign driver SIGTERM, Ctrl-C, or an unhandled exception unwinding `main`) -- without
+    it, the agent CLI (+ its MCP-server grandchild) is orphaned with no timeout, spending
+    subscription quota against a VM that's being removed underneath it.
+
+    Only installed in the main thread: `signal.signal` raises ValueError from any other thread
+    (e.g. a `--concurrency` worker), and the benchmark's own worker threads never need it --
+    they don't own the process's signal disposition. With no handler installed, nothing about
+    a run changes (no groups are ever left un-reaped that wouldn't be anyway).
+
+    Each handler calls `procgroups.mark_interrupted()` BEFORE `kill_all()` -- units run inside
+    a `ThreadPoolExecutor` (`_main`'s work()), so a worker thread whose agent-CLI group is
+    killed by this handler must be able to tell that apart from its own ordinary timeout and
+    raise `procgroups.Interrupted` (core.agent_loop._run_raw / core.codex_loop.run_codex_meta
+    both check the flag) rather than quietly returning partial output that `_main`'s
+    as_completed loop would otherwise judge and score as if the run had actually finished.
+    `_main`'s own as_completed loop is responsible for turning that into
+    `ex.shutdown(wait=True, cancel_futures=True)` -- this function only sets the flag and kills
+    the groups; it never touches the executor.
+
+    SIGTERM is converted into `SystemExit(128+signum)` rather than `os._exit`, so `_main`'s own
+    `except BaseException` around its as_completed loop can catch it and call
+    `ex.shutdown(wait=True, cancel_futures=True)`. The `finally` blocks in environment context
+    managers (e.g. stopping/removing a KVM container) do NOT run here on the main thread --
+    they run on the WORKER thread, as `procgroups.Interrupted` unwinds through `work()`'s
+    `with runner.environment(...) as env:` block; `wait=True` is what makes the main thread
+    block long enough for that teardown to actually finish before the process exits. SIGINT
+    (Ctrl-C) kills the groups first and then raises KeyboardInterrupt as usual, so existing
+    Ctrl-C behavior is unchanged apart from the reap (and the same executor-shutdown handling
+    in `_main`).
+    """
+    if threading.current_thread() is not threading.main_thread():
+        return
+
+    def _on_sigterm(signum, frame):
+        procgroups.mark_interrupted()
+        procgroups.kill_all()
+        raise SystemExit(128 + signum)
+
+    def _on_sigint(signum, frame):
+        procgroups.mark_interrupted()
+        procgroups.kill_all()
+        raise KeyboardInterrupt()
+
+    signal.signal(signal.SIGTERM, _on_sigterm)
+    signal.signal(signal.SIGINT, _on_sigint)
+
+
 def main(benchmark, argv=None):
     load_dotenv()   # repo-root .env -> every benchmark run shares DAYTONA/OPENAI/... keys
+    _install_signal_handlers()
+    try:
+        _main(benchmark, argv)
+    finally:
+        # Belt-and-braces: an unhandled exception unwinding this frame must not leave an agent
+        # CLI's process group running past the VM/container it was driving being torn down.
+        procgroups.kill_all()
+
+
+def _main(benchmark, argv=None):
     args = _parser(benchmark).parse_args(argv)
     runner = benchmark.runners[args.system]
     judge = benchmark.judge
@@ -197,11 +261,31 @@ def main(benchmark, argv=None):
     def work(unit):
         task, k = unit
         out = results_io.run_dir(benchmark.results_dir, runner.name, task["id"], k)
+        t0 = time.time()
+        if procgroups.is_interrupted():
+            # The harness is already shutting down (SIGTERM/SIGINT) -- never start a unit once
+            # that's true: no env provisioning (e.g. no new KVM container), no agent spawn.
+            # Recorded exactly like a unit that WAS interrupted mid-flight (below) so a resumed
+            # campaign retries it rather than treating "never even started" as a silent gap.
+            results_io.write_infra_error(out, {
+                "id": task["id"], "run": k, "outcome": "INTERRUPTED",
+                "error_type": "Interrupted",
+                "error": "harness interrupted before this unit started",
+                "elapsed_s": 0.0, "at": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
+            })
+            return task["id"], k, None, "", 0.0, "interrupted"
         out.mkdir(parents=True, exist_ok=True)
         port = ports.get() if runner.needs_browser else None
-        t0 = time.time()
         try:
             with runner.environment(task, port=port) as env:
+                if procgroups.is_interrupted():
+                    # Provisioning (e.g. a KVM container) may itself have been slow enough for
+                    # the interrupt to land while it ran, uninterruptible in its own right --
+                    # catch that here, before the runner is ever called, so teardown starts at
+                    # once instead of waiting for the agent CLI to be spawned and then notice.
+                    raise procgroups.Interrupted(
+                        "harness interrupted after environment provisioning, "
+                        "before the agent call")
                 answer = runner.run(task, env=env, out=out, refs=refs)
             verdict = None
             if need_eval and runner.self_eval:
@@ -216,6 +300,19 @@ def main(benchmark, argv=None):
                 results_io.write_eval(out, {"id": task["id"], **rec})
                 verdict = rec["verdict"]
             return task["id"], k, verdict, answer, time.time() - t0, None
+        except procgroups.Interrupted as e:
+            # The agent CLI's process group was reaped because the HARNESS was interrupted, not
+            # because of a normal timeout -- never write eval.json for this: it wasn't scored,
+            # it was killed. write_infra_error keeps is_done() false so a resumed campaign
+            # retries it. The environment context manager's own `finally` (e.g. stopping a KVM
+            # container) has already run by the time this except clause is reached.
+            results_io.write_infra_error(out, {
+                "id": task["id"], "run": k, "outcome": "INTERRUPTED",
+                "error_type": type(e).__name__, "error": str(e),
+                "elapsed_s": round(time.time() - t0, 1),
+                "at": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
+            })
+            return task["id"], k, None, "", time.time() - t0, str(e)
         except Exception as e:
             # never reached a verdict (provisioning/controller/harness) -- persist it so infra
             # flakiness is measurable instead of scrolling past in stdout
@@ -235,16 +332,30 @@ def main(benchmark, argv=None):
 
     done = {"n": 0}
     with ThreadPoolExecutor(max_workers=conc) as ex:
-        for fut in as_completed([ex.submit(work, u) for u in units]):
-            tid, k, verdict, answer, dt, err = fut.result()
-            done["n"] += 1
-            tag = f"[{done['n']}/{len(units)}]"
-            run_tag = f"{tid}#{k}" if args.runs > 1 else tid
-            if err:
-                log(f"{tag} {run_tag}  ERROR: {err}")
-            else:
-                log(f"{tag} {run_tag}  {verdict or '(no eval)'}  "
-                    f"({dt:.0f}s)  {answer[:70]!r}")
+        futures = [ex.submit(work, u) for u in units]
+        try:
+            for fut in as_completed(futures):
+                tid, k, verdict, answer, dt, err = fut.result()
+                done["n"] += 1
+                tag = f"[{done['n']}/{len(units)}]"
+                run_tag = f"{tid}#{k}" if args.runs > 1 else tid
+                if err:
+                    log(f"{tag} {run_tag}  ERROR: {err}")
+                else:
+                    log(f"{tag} {run_tag}  {verdict or '(no eval)'}  "
+                        f"({dt:.0f}s)  {answer[:70]!r}")
+        except BaseException:
+            # SIGTERM/SIGINT (raised into whichever `as_completed` wait this loop was blocked
+            # in) or any other unexpected exception: stop waiting on the queue and cancel every
+            # unit that hasn't started yet (cancel_futures=True) -- otherwise this `with`
+            # block's own __exit__ would call the executor's default shutdown(wait=True),
+            # which drains the ENTIRE remaining queue instead of stopping. wait=True still
+            # blocks for any unit already in flight, whose own agent-CLI group was just killed
+            # by the signal handler (or which observes procgroups.is_interrupted() itself) --
+            # it raises procgroups.Interrupted, and its environment's `finally` (e.g. stopping a
+            # KVM container) runs as that exception unwinds, before this call returns.
+            ex.shutdown(wait=True, cancel_futures=True)
+            raise
 
     log("")
     reporting.summarize(benchmark.results_dir, runner.name, title=benchmark.name)

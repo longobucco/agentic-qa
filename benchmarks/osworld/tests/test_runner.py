@@ -8,6 +8,8 @@ import tempfile
 import time
 from pathlib import Path
 
+import pytest
+
 from benchmarks.osworld.runners import agent_computer, common
 from benchmarks.osworld.runners.agent_computer import (
     _action_history, _agent_telemetry, _annotate_incidental, _bounded, _clean_finish,
@@ -16,6 +18,7 @@ from benchmarks.osworld.runners.agent_computer import (
     _save_conversation_transcript, _score, _served_by,
 )
 from benchmarks.osworld import config
+from core import procgroups
 
 
 def test_clean_finish_true_on_normal_stop():
@@ -455,6 +458,56 @@ def test_inloop_verify_screenshot_failure_is_non_fatal():
         config.INLOOP_VERIFY = real
     assert answer == "DONE" and telemetry["inloop_verify_used"] is False
     assert "controller unreachable" in telemetry["inloop_verify_error"]
+
+
+def test_inloop_verify_interrupted_propagates_from_the_verify_call():
+    """task-10b fix round 1: _inloop_verify's `except Exception as e:` around
+    _verify_with_reason (the first LLM call) used to swallow ANY exception into a "verify
+    skipped" result -- including core.procgroups.Interrupted, which meant a run killed by a
+    harness SIGTERM/SIGINT mid-verify would still get scored as if it had finished normally.
+    Interrupted must now propagate untouched."""
+    ctrl = _FakeCtrl()
+    out = Path(tempfile.mkdtemp(prefix="osw_il_"))
+
+    def fake_verify_with_reason(png_path, instruction, timeout=120):
+        raise procgroups.Interrupted("harness interrupted")
+
+    real = config.INLOOP_VERIFY
+    config.INLOOP_VERIFY = True
+    try:
+        with pytest.raises(procgroups.Interrupted):
+            _with_patched(
+                agent_computer, "_verify_with_reason", fake_verify_with_reason, lambda:
+                _inloop_verify(ctrl, {"instruction": "x"}, "DONE", {"session_id": "s1"},
+                              "/tmp/mcp.json", out))
+    finally:
+        config.INLOOP_VERIFY = real
+
+
+def test_inloop_verify_interrupted_propagates_from_the_retry_call():
+    """Same contract for the second LLM call (the --resume retry after a verifier
+    disagreement): its `except Exception as e:` must not swallow Interrupted either."""
+    ctrl = _FakeCtrl()
+    out = Path(tempfile.mkdtemp(prefix="osw_il_"))
+
+    def fake_verify_with_reason(png_path, instruction, timeout=120):
+        return {"answer": "FAIL", "reason": "still wrong", "raw": "ANSWER: FAIL",
+                "model_served": ["claude-sonnet-5"]}
+
+    def fake_run_claude_meta(cmd, timeout=None):
+        raise procgroups.Interrupted("harness interrupted")
+
+    real = config.INLOOP_VERIFY
+    config.INLOOP_VERIFY = True
+    try:
+        with pytest.raises(procgroups.Interrupted):
+            _with_patched(
+                agent_computer, "_verify_with_reason", fake_verify_with_reason, lambda:
+                _with_patched(agent_computer, "run_claude_meta", fake_run_claude_meta, lambda:
+                    _inloop_verify(ctrl, {"instruction": "do the thing"}, "DONE",
+                                  {"session_id": "s1"}, "/tmp/mcp.json", out)))
+    finally:
+        config.INLOOP_VERIFY = real
 
 
 def test_mcp_config_writes_a_valid_stdio_spec():

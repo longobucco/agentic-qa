@@ -1,8 +1,10 @@
 """Offline tests for Codex JSONL normalization and isolated MCP configuration."""
 import json
 import sys
+import threading
 import time
 
+from core import procgroups
 from core.codex_loop import build_codex_cmd, parse_codex_output, run_codex_meta
 
 
@@ -101,6 +103,64 @@ def test_run_codex_meta_kills_the_whole_process_group_on_timeout():
     assert time.monotonic() - started < 5
     assert meta["timed_out"] is True
     assert meta["session_id"] == "partial"
+
+
+def test_run_codex_meta_registers_its_process_group_while_running_and_unregisters_after():
+    """Same registry contract as _run_raw (core.procgroups): run_codex_meta must register the
+    child's pgid while it's alive and unregister it once Popen exits, so core.run's shutdown
+    handler can reap orphaned Codex CLIs but never sees a stale entry after a normal run."""
+    seen = {}
+
+    def watch():
+        deadline = time.monotonic() + 5
+        while time.monotonic() < deadline:
+            with procgroups._lock:
+                if procgroups._pgids:
+                    seen["pgids"] = set(procgroups._pgids)
+                    return
+            time.sleep(0.02)
+
+    with procgroups._lock:
+        before = set(procgroups._pgids)
+    t = threading.Thread(target=watch)
+    t.start()
+    run_codex_meta([sys.executable, "-c", "import time; time.sleep(0.5)"], timeout=10)
+    t.join(timeout=5)
+
+    assert seen.get("pgids", set()) - before, "no new pgid was registered while codex ran"
+    with procgroups._lock:
+        after = set(procgroups._pgids)
+    assert after == before, f"pgid left registered after normal exit: {after - before}"
+
+
+def test_run_codex_meta_register_race_kills_the_child_and_raises_interrupted():
+    """task-10b fix round 2: same register-race contract as core.agent_loop._run_raw -- if the
+    harness is interrupted in the window between run_codex_meta's pre-spawn check and
+    procgroups.register(pgid), kill_all() already ran and never saw this pgid. Must re-check
+    right after registering and killpg it itself."""
+    real_register = procgroups.register
+
+    def racy_register(pgid):
+        real_register(pgid)
+        procgroups.mark_interrupted()
+
+    procgroups.register = racy_register
+    try:
+        t0 = time.monotonic()
+        raised = False
+        try:
+            run_codex_meta([sys.executable, "-c", "import time; time.sleep(60)"], timeout=10)
+        except procgroups.Interrupted:
+            raised = True
+        elapsed = time.monotonic() - t0
+        assert raised, "register-race did not raise procgroups.Interrupted"
+        assert elapsed < 5, (
+            f"run_codex_meta took {elapsed:.1f}s -- the racily-registered child was not "
+            f"actually killed, so communicate() waited instead of returning promptly"
+        )
+    finally:
+        procgroups.register = real_register
+        procgroups._reset_for_tests()
 
 
 def main():
