@@ -279,12 +279,12 @@ def test_terminate_children_sends_sigterm_then_kills_after_the_grace_period():
     assert lines
 
 
-_DRIVER_UNDER_SIGNAL = """
-import os, subprocess, sys, types
+_DRIVER_UNDER_TEST = """
+import json, os, subprocess, sys, types
 from pathlib import Path
 sys.path.insert(0, sys.argv[2])
 import scripts.g_official361_driver as d
-tmp = Path(sys.argv[1])
+tmp, mode = Path(sys.argv[1]), sys.argv[3]
 fb = types.ModuleType("benchmarks.osworld.benchmark")
 class _Runners(dict):
     def __missing__(self, k):
@@ -293,14 +293,30 @@ fb.build = lambda: types.SimpleNamespace(runners=_Runners())
 sys.modules["benchmarks.osworld.benchmark"] = fb
 d._ROOT = tmp
 (tmp / "scripts").mkdir()
-d.pending_units = lambda system, runs: [(f"t{i}", 1) for i in range(10)]
+if mode == "done":
+    d.pending_units = lambda system, runs: []
+else:
+    d.pending_units = lambda system, runs: [(f"t{i}", 1) for i in range(10)]
 d.CHILD_GRACE_S = 2
+
+class _Containers:   # fake docker: records every list filter and removal
+    def list(self, all=False, filters=None):
+        if mode == "docker_error":
+            raise RuntimeError("docker daemon unreachable")
+        (tmp / "sweep.json").write_text(json.dumps(filters))
+        run = os.environ["OSW_KVM_DRIVER_RUN"]
+        return [types.SimpleNamespace(labels={"osworld.driver_run": run}, id="mine",
+                                      remove=lambda **kw: (tmp / "removed.json").write_text(
+                                          json.dumps(kw)))]
+d._docker_client = lambda: types.SimpleNamespace(containers=_Containers())
+
 _real = subprocess.Popen
 n = [0]
 def fake_popen(cmd, **kw):   # a fake run.py child: sleeps; the second one ignores SIGTERM
     n[0] += 1
     code = ("import os, signal, sys, time\\n"
             + ("signal.signal(signal.SIGTERM, signal.SIG_IGN)\\n" if n[0] == 2 else "")
+            + "open(sys.argv[1] + '.run', 'w').write(os.environ.get('OSW_KVM_DRIVER_RUN', ''))\\n"
             + "open(sys.argv[1], 'w').write(str(os.getpid()))\\ntime.sleep(120)\\n")
     return _real([sys.executable, "-c", code, str(tmp / f"child{n[0]}.pid")])
 d.subprocess.Popen = fake_popen
@@ -308,15 +324,18 @@ sys.exit(d.main([]))
 """
 
 
-def test_sigterm_to_the_driver_terminates_its_children_and_exits_nonzero(tmp_path):
-    import signal
-    import time
+def _start_driver(tmp_path, mode):
     helper = tmp_path / "helper.py"
-    helper.write_text(_DRIVER_UNDER_SIGNAL)
+    helper.write_text(_DRIVER_UNDER_TEST)
     env = {k: v for k, v in os.environ.items() if not k.startswith("OSW_")}
     env.update({"ARM": "sonnet", "PARALLEL": "2"})
-    proc = subprocess.Popen([sys.executable, str(helper), str(tmp_path), str(_ROOT)], env=env,
-                            stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+    return subprocess.Popen([sys.executable, str(helper), str(tmp_path), str(_ROOT), mode],
+                            env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+
+
+def _signal_driver_once_children_run(tmp_path, proc):
+    import signal
+    import time
     pid_files = [tmp_path / "child1.pid", tmp_path / "child2.pid"]
     deadline = time.time() + 30
     while not all(p.exists() and p.read_text() for p in pid_files):
@@ -325,9 +344,103 @@ def test_sigterm_to_the_driver_terminates_its_children_and_exits_nonzero(tmp_pat
     time.sleep(0.5)   # let the stubborn child install its SIG_IGN handler
     proc.send_signal(signal.SIGTERM)
     out, _ = proc.communicate(timeout=30)
+    return pid_files, out
+
+
+def test_sigterm_terminates_the_children_sweeps_this_runs_containers_and_exits_nonzero(tmp_path):
+    import signal
+    proc = _start_driver(tmp_path, "signal")
+    pid_files, out = _signal_driver_once_children_run(tmp_path, proc)
     assert proc.returncode == 128 + signal.SIGTERM, out
     for p in pid_files:
         with pytest.raises(ProcessLookupError):
             os.kill(int(p.read_text()), 0)
+    # every child got the same per-driver-run id, and the sweep looked for exactly that label
+    run_ids = {(tmp_path / f"child{i}.pid.run").read_text() for i in (1, 2)}
+    assert len(run_ids) == 1 and len(run_ids.pop()) == 32
+    run_id = (tmp_path / "child1.pid.run").read_text()
+    assert json.loads((tmp_path / "sweep.json").read_text()) == {
+        "label": f"osworld.driver_run={run_id}"}
+    assert json.loads((tmp_path / "removed.json").read_text()) == {"force": True, "v": True}
     log = (tmp_path / "scripts" / "g_official361_sonnet.log").read_text()
-    assert "SIGTERM" in log and "1 killed" in log
+    assert "SIGTERM" in log and "1 killed" in log and "removed 1 container" in log
+
+
+def test_a_docker_error_during_the_sweep_is_logged_not_raised_over_the_signal_exit(tmp_path):
+    import signal
+    proc = _start_driver(tmp_path, "docker_error")
+    _, out = _signal_driver_once_children_run(tmp_path, proc)
+    assert proc.returncode == 128 + signal.SIGTERM, out
+    assert "Traceback" not in out
+    log = (tmp_path / "scripts" / "g_official361_sonnet.log").read_text()
+    assert "container sweep failed" in log and "docker daemon unreachable" in log
+
+
+def test_the_sweep_also_runs_on_normal_exit(tmp_path):
+    proc = _start_driver(tmp_path, "done")
+    out, _ = proc.communicate(timeout=30)
+    assert proc.returncode == 0, out
+    assert json.loads((tmp_path / "sweep.json").read_text())["label"].startswith(
+        "osworld.driver_run=")
+    assert "removed 1 container" in (tmp_path / "scripts" / "g_official361_sonnet.log").read_text()
+
+
+# ---- the container sweep (fix round 0b) ----------------------------------------------------
+
+class _FakeContainer:
+    def __init__(self, labels):
+        self.labels, self.id, self.removed = labels, str(labels), None
+
+    def remove(self, **kw):
+        self.removed = kw
+
+
+def test_sweep_removes_only_containers_labelled_with_this_driver_run():
+    from types import SimpleNamespace as NS
+    mine = [_FakeContainer({"osworld.driver_run": "r1", "osworld.task": "t"}),
+            _FakeContainer({"osworld.driver_run": "r1"})]
+    others = [_FakeContainer({"osworld.driver_run": "r2"}), _FakeContainer({}),
+              _FakeContainer({"osworld.driver_run": ""}), _FakeContainer(None)]
+    seen = {}
+
+    def list_(all=False, filters=None):   # a sloppy daemon/filter: returns everything
+        seen.update(all=all, filters=filters)
+        return mine + others
+    lines = []
+    removed = driver.sweep_containers("r1", lines.append,
+                                      client=NS(containers=NS(list=list_)))
+    assert removed == 2
+    assert seen == {"all": True, "filters": {"label": "osworld.driver_run=r1"}}
+    assert all(c.removed == {"force": True, "v": True} for c in mine)
+    assert all(c.removed is None for c in others)
+    assert lines == ["container sweep: removed 2 container(s) labelled osworld.driver_run=r1"]
+
+
+def test_sweep_logs_docker_errors_instead_of_raising():
+    from types import SimpleNamespace as NS
+
+    class Broken(_FakeContainer):
+        def remove(self, **kw):
+            raise RuntimeError("conflict")
+    ok, broken = _FakeContainer({"osworld.driver_run": "r1"}), Broken({"osworld.driver_run": "r1"})
+    lines = []
+    assert driver.sweep_containers(
+        "r1", lines.append, client=NS(containers=NS(list=lambda **kw: [broken, ok]))) == 1
+    assert ok.removed and any("conflict" in l for l in lines)
+
+    def down(**kw):
+        raise RuntimeError("daemon down")
+    lines = []
+    assert driver.sweep_containers("r1", lines.append,
+                                   client=NS(containers=NS(list=down))) == 0
+    assert any("container sweep failed" in l and "daemon down" in l for l in lines)
+
+
+def test_sweep_refuses_an_empty_run_id():
+    # an empty id would match every container started outside a driver (label value "")
+    with pytest.raises(ValueError):
+        driver.sweep_containers("", print, client=None)
+
+
+def test_driver_run_id_is_not_on_the_refuse_list():
+    assert driver.env_conflicts("sonnet", {"OSW_KVM_DRIVER_RUN": "abc"}) == []
