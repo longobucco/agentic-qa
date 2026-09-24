@@ -132,7 +132,7 @@ def test_legacy_dry_run_command_has_no_protocol_parts(monkeypatch, tmp_path):
 def test_official_lock_validates_once_effort_matches(monkeypatch):
     _official(monkeypatch)
     monkeypatch.setattr(gpt_astra, "_LOCK", OFFICIAL_LOCK)
-    monkeypatch.setattr(config, "ASTRA_REASONING_EFFORT", "REQUIRES_USER_DECISION")
+    monkeypatch.setattr(config, "ASTRA_REASONING_EFFORT", "max")
     monkeypatch.setattr(config, "ZOOM_BATCH", False)
     gpt_astra._validate_campaign_lock()
 
@@ -141,7 +141,7 @@ def test_official_lock_contents():
     lock = json.loads(OFFICIAL_LOCK.read_text())
     base = json.loads((ROOT / "benchmarks/osworld/astra_protocol361_lock.json").read_text())
     assert lock["tool_policy"]["allowed_mcp_tools"] == ["computer"]
-    assert lock["reasoning_effort"] == "REQUIRES_USER_DECISION"
+    assert lock["reasoning_effort"] == "max"   # user decision 2026-09-24: Codex's highest level
     assert lock["population"] == base["population"]
     assert lock["protocol"] == {
         "plan": "docs/superpowers/plans/2026-09-24-osworld-official-fidelity.md",
@@ -150,12 +150,13 @@ def test_official_lock_contents():
     assert tuple(lock["tool_policy"]["isolation_config"]) == gpt_astra.CODEX_ISOLATION_CONFIG
 
 
-def test_official_lock_refuses_undecided_effort_and_the_legacy_protocol(monkeypatch):
+def test_official_lock_refuses_another_effort_and_the_legacy_protocol(monkeypatch):
     monkeypatch.setattr(gpt_astra, "_LOCK", OFFICIAL_LOCK)
     _official(monkeypatch)
+    monkeypatch.setattr(config, "ASTRA_REASONING_EFFORT", "high")
     with pytest.raises(SystemExit, match="reasoning_effort"):
-        gpt_astra._validate_campaign_lock()   # effort not decided yet
-    monkeypatch.setattr(config, "ASTRA_REASONING_EFFORT", "REQUIRES_USER_DECISION")
+        gpt_astra._validate_campaign_lock()   # the lock pins max
+    monkeypatch.setattr(config, "ASTRA_REASONING_EFFORT", "max")
     monkeypatch.setattr(config, "OFFICIAL", False)
     with pytest.raises(SystemExit, match="tool policy"):
         gpt_astra._validate_campaign_lock()   # the computer-only lock is not the legacy arm
