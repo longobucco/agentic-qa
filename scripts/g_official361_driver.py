@@ -35,12 +35,27 @@ never retried. MAX_HOURS is checked between rounds. Everything (the driver's own
 children's output) goes to scripts/g_official361_<arm>.log.
 
 No protocol drift from the caller's shell (or the repo .env, which every child loads): before
-exporting anything, the driver refuses (exit 2, naming each variable) when the caller has set a harness-altering knob (_HARNESS_KNOB_DEFAULTS
-below) to anything but its default, or one of the variables it exports to a different value.
-Deliberately not checked: OSW_KVM_* (host settings, validated by the kvm preflight),
-OSW_ASTRA_REASONING_EFFORT (the caller's campaign decision), and knobs no code path of these two
-kvm arms reads -- OSW_IMAGE, OSW_PROVISION_TIMEOUT (Daytona only), OSW_OPENBOOK_* (open-book
-runner), OSW_VR_* (verify-replan runner), OSW_RAW_BASE/OSW_INDEX (data download), OSW_PROBE_*.
+exporting anything, the driver refuses (exit 2, naming each variable) when the caller has set a
+harness-altering knob (_HARNESS_KNOB_DEFAULTS below) to anything but its default, or one of the
+variables it exports to a different value.
+The VM image is part of the protocol: OSW_KVM_IMAGE must be a digest reference of the official
+image, happysixd/osworld-docker@sha256:<64 hex> (as scripts/kvm_host_setup.sh prints it), or the
+driver refuses -- the kvm preflight only checks that the image EXISTS on the docker host, not
+which one it is, and the system name (..._official_kvm) would not show a swap. Every knob of
+_HARNESS_KNOB_DEFAULTS is then exported at its default (even "") into the children's
+environment, so a mid-campaign .env edit cannot inject one through core.run's load_dotenv
+(setdefault never overrides a variable that is present). Deliberately not checked: the other
+OSW_KVM_* (host settings: address, docker host, qcow2 path/sha256 -- the kvm preflight checks
+they are set/present, not their identity), OSW_ASTRA_REASONING_EFFORT (the caller's campaign
+decision), and knobs no code path of these two kvm arms reads -- OSW_IMAGE,
+OSW_PROVISION_TIMEOUT (Daytona only), OSW_OPENBOOK_* (open-book runner), OSW_VR_*
+(verify-replan runner), OSW_RAW_BASE/OSW_INDEX (data download), OSW_PROBE_*.
+
+Stuck units: before each round, a pending unit whose infra_error.json already holds >= 3
+non-RATE_LIMITED records (e.g. from an earlier session) stops the driver (exit 3) instead of
+costing another VM. A unit attempted in a round that ends with neither eval.json nor a new infra
+record (unparsable infra_error.json included) is logged as "no outcome written" and counts as one
+non-RATE_LIMITED failure toward the same rule (counted in memory, for this driver process).
 
 Signals: SIGTERM/SIGINT make the driver SIGTERM its running run.py children, wait up to
 CHILD_GRACE_S, SIGKILL whatever is left, log it and exit 128 + signum -- no orphaned children.
@@ -58,6 +73,7 @@ import os
 import signal
 import subprocess
 import sys
+import re
 import time
 import uuid
 from collections import Counter
@@ -105,6 +121,9 @@ _HARNESS_KNOB_DEFAULTS = {
     "OSW_ASTRA_CODEX_VERSION": "0.153.4",
 }
 
+# The official VM image, pinned by digest (scripts/kvm_host_setup.sh prints the reference).
+_KVM_IMAGE_RE = re.compile(r"happysixd/osworld-docker@sha256:[0-9a-f]{64}")
+
 _COMMON_ENV = {
     "OSW_PROTOCOL": "official",
     "OSW_BACKEND": "kvm",
@@ -144,7 +163,18 @@ def env_conflicts(arm, environ):
         value = environ.get(name)
         if value is not None and value.strip() != required:
             out.append(f"{name}={value!r} (the protocol requires {required!r})")
+    image = environ.get("OSW_KVM_IMAGE")
+    if not _KVM_IMAGE_RE.fullmatch((image or "").strip()):
+        out.append(f"OSW_KVM_IMAGE={image!r} (the protocol requires a pinned digest "
+                   f"happysixd/osworld-docker@sha256:<64 hex>; scripts/kvm_host_setup.sh "
+                   f"prints it)")
     return out
+
+
+def child_env(arm, environ):
+    """What the driver exports for itself and its children: every harness knob pinned at its
+    default, plus the protocol environment."""
+    return {**_HARNESS_KNOB_DEFAULTS, **protocol_env(arm, environ)}
 
 
 def terminate_children(procs, grace_s, log):
@@ -245,10 +275,22 @@ def _infra_history(system, task_id, run_idx):
         return []
 
 
+def _non_quota_failures(history, no_outcomes=0):
+    return sum(o != "RATE_LIMITED" for o in history) + no_outcomes
+
+
 def stuck_units(batch_results):
-    """Units with >= MAX_NON_QUOTA_INFRA_ERRORS infra records that are not RATE_LIMITED."""
+    """Units with >= MAX_NON_QUOTA_INFRA_ERRORS non-RATE_LIMITED failures: infra records, plus
+    the rounds of this driver process that ended with no outcome written at all."""
     return [(u["task_id"], u["run_idx"]) for b in batch_results for u in b["units"]
-            if sum(o != "RATE_LIMITED" for o in u["infra_history"]) >= MAX_NON_QUOTA_INFRA_ERRORS]
+            if _non_quota_failures(u["infra_history"], u.get("no_outcomes", 0))
+            >= MAX_NON_QUOTA_INFRA_ERRORS]
+
+
+def stuck_pending(system, pending):
+    """Pending units already stuck on disk (e.g. from an earlier session), before any VM."""
+    return [(tid, k) for tid, k in pending
+            if _non_quota_failures(_infra_history(system, tid, k)) >= MAX_NON_QUOTA_INFRA_ERRORS]
 
 
 def _silent_failures(batch_results):
@@ -268,9 +310,14 @@ def decide(batch_results):
     return "continue"
 
 
-def run_round(system, round_batches, pending, runs, log_file):
+def run_round(system, round_batches, pending, runs, log_file, no_outcomes=None):
     """Start one run.py child per batch (all at once), wait for all, and report per batch its
-    exit code and, per pending unit, the infra outcome written during this round (if any)."""
+    exit code and, per pending unit, the infra outcome written during this round (if any), or
+    that it ended with no outcome at all -- counted in `no_outcomes` ({unit: n}, updated), which
+    the caller keeps across rounds."""
+    from benchmarks.osworld import config
+    from core import results
+    no_outcomes = {} if no_outcomes is None else no_outcomes
     units_of = {tuple(b): [(tid, k) for tid, k in pending if tid in b] for b in round_batches}
     before = {u: len(_infra_history(system, *u)) for us in units_of.values() for u in us}
     procs = []
@@ -289,8 +336,13 @@ def run_round(system, round_batches, pending, runs, log_file):
         for tid, k in units_of[tuple(b)]:
             hist = _infra_history(system, tid, k)
             fresh = hist[-1] if len(hist) > before[(tid, k)] else None
+            none = fresh is None and not results.is_done(
+                results.run_dir(config.RESULTS_DIR, system, tid, k))
+            if none:
+                no_outcomes[(tid, k)] = no_outcomes.get((tid, k), 0) + 1
             units.append({"task_id": tid, "run_idx": k, "fresh_outcome": fresh,
-                          "infra_history": hist})
+                          "infra_history": hist, "no_outcome": none,
+                          "no_outcomes": no_outcomes.get((tid, k), 0)})
         out.append({"returncode": rc, "units": units})
     return out
 
@@ -315,7 +367,7 @@ def main(argv=None):
     if "benchmarks.osworld.config" in sys.modules:
         raise SystemExit("benchmarks.osworld.config was imported before the protocol "
                          "environment was exported; it would ignore it")
-    os.environ.update(protocol_env(arm, os.environ))
+    os.environ.update(child_env(arm, os.environ))
     parallel = int(os.environ.get("PARALLEL", "1"))
     max_hours = float(os.environ.get("MAX_HOURS", "48"))
     if parallel < 1:
@@ -375,6 +427,7 @@ def _campaign(system, parallel, max_hours, log, log_file):
 
     deadline = time.time() + max_hours * 3600
     rnd = 0
+    no_outcomes = {}   # unit -> rounds of this process that ended with no outcome written
     while True:
         pending = pending_units(system, RUNS)
         if not pending:
@@ -383,12 +436,22 @@ def _campaign(system, parallel, max_hours, log, log_file):
         if time.time() >= deadline:
             log(f"=== MAX_HOURS={max_hours} reached: {len(pending)} unit(s) still pending ===")
             return 0
+        stuck = stuck_pending(system, pending)
+        if stuck:
+            log(f"STOP: >= {MAX_NON_QUOTA_INFRA_ERRORS} non-RATE_LIMITED infra errors already on "
+                "disk (not spending another VM) on " + " ".join(f"{tid}#{k}" for tid, k in stuck))
+            return 3
         rnd += 1
         plan = batches(_task_ids(pending), BATCH_TASKS)[:parallel]
         log(f"[round {rnd}] {len(pending)} pending unit(s); starting {len(plan)} batch(es): "
             + " | ".join(" ".join(b) for b in plan))
-        results = run_round(system, plan, pending, RUNS, log_file)
+        results = run_round(system, plan, pending, RUNS, log_file, no_outcomes)
         decision = decide(results)
+        silent = [f"{u['task_id']}#{u['run_idx']}" for b in results for u in b["units"]
+                  if u["no_outcome"]]
+        if silent:
+            log(f"[round {rnd}] no outcome written (neither eval.json nor infra_error.json) for "
+                + " ".join(silent))
         fresh = Counter(u["fresh_outcome"] for b in results for u in b["units"]
                         if u["fresh_outcome"])
         log(f"[round {rnd}] exit codes {[b['returncode'] for b in results]}; fresh infra "
@@ -400,7 +463,8 @@ def _campaign(system, parallel, max_hours, log, log_file):
                     f"(tasks {' '.join(ids)})")
             stuck = stuck_units(results)
             if stuck:
-                log(f"STOP: >= {MAX_NON_QUOTA_INFRA_ERRORS} non-RATE_LIMITED infra errors on "
+                log(f"STOP: >= {MAX_NON_QUOTA_INFRA_ERRORS} non-RATE_LIMITED failures (infra "
+                    f"errors or no outcome written) on "
                     + " ".join(f"{tid}#{k}" for tid, k in stuck))
             return 3
         if decision == "backoff":
