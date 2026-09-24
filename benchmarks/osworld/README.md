@@ -179,6 +179,43 @@ Practical consequence beyond this arm: **always pass `--system` or `OSW_MODEL` e
 analysis CLIs.** Without it they read `agent_computer`, the mixed tree — where the pass rate is
 50.8% and the buckets are 104/46/102, against 56.8% and 137/36/104 on pinned Sonnet 5.
 
+## Official-fidelity mode (`OSW_PROTOCOL=official`, `OSW_BACKEND=kvm`)
+
+Alignment of the harness with the official OSWorld harness (xlang-ai/OSWorld @ `091f5ef`) and with
+the protocol published in the Claude Sonnet 5 System Card (361 tasks, 1080p, 100 steps, max
+effort, pass@1 over 5 runs). Rationale, results and residual differences:
+`docs/osworld-rapporto-tecnico-tesi.md`. Plans: `docs/superpowers/plans/2026-09-24-*`.
+
+- **`OSW_PROTOCOL=official`** (both agent CLIs, identical):
+  - the MCP server exposes one `computer` tool that translates actions with upstream's own
+    `parse_actions_from_tool_call` (vendored in `mcp/_upstream_actions.py`, do not edit), executes
+    them with upstream's `PYAUTOGUI_PKGS_PREFIX`, pauses 0.5 s, returns an automatic screenshot and
+    `[Current step: N/M]`, enforces the step budget, and follows upstream's batch/zoom semantics;
+  - the upstream Claude system prompt is vendored verbatim in `official_protocol.py` (Claude Code:
+    `--system-prompt`; Codex: `model_instructions_file`); termination follows the upstream rule
+    (`[INFEASIBLE]` / fail action -> FAIL, else DONE); upstream timings (60 s after setup, 20 s
+    before evaluation);
+  - CLI sessions are isolated (empty temp cwd; no user settings, hooks, plugins or memory; built-in
+    tools denied; pinned CLI versions); per-run audits record offered/used tools, context leaks and
+    steps used. Use of any tool other than `computer` is a terminal FAILURE (never re-run);
+    unverifiable runs and missing MCP servers are retryable infra errors, never scored.
+- **`OSW_BACKEND=kvm`** (branch `osworld-vm-base` and its children): each run starts upstream's
+  `happysixd/osworld-docker` container with the official `Ubuntu.qcow2` (read-only bind, `/dev/kvm`,
+  4 CPU / 4 GB), with published ports threaded through controller, SetupController, getters, CDP and
+  VLC; the container is removed at the end of the run. Prepare the host with
+  `scripts/kvm_host_setup.sh` and set the `OSW_KVM_*` values it prints. Published ports are random,
+  so run the harness on the KVM host itself or on a network that routes to it.
+- **Campaign driver:** `ARM=sonnet|astra PARALLEL=K MAX_HOURS=H .venv/bin/python
+  scripts/g_official361_driver.py` (vm branches). It exports the protocol environment, refuses
+  harness-altering `OSW_*` knobs, requires a pinned `OSW_KVM_IMAGE` digest, runs the preflights once,
+  runs K VMs in parallel, backs off on quota, stops on systemic failures, and removes only its own
+  labelled containers on exit or signal. Astra needs `OSW_ASTRA_REASONING_EFFORT` and the
+  `astra_official361_lock.json` effort to be set.
+- Pinned code: scoring **and** config setup run on code of the task-data commit
+  (`python -m benchmarks.osworld.data.download_evaluators` fetches both evaluators and
+  `controllers/setup.py`); campaigns refuse to start otherwise.
+- Reports print OSWorld's own score (mean reward, partial credit) next to binary success.
+
 ## Analysis
 
 `analysis/` holds the thesis's validity-audit and results-analysis scripts (`gap-research-plan.md`
@@ -270,7 +307,7 @@ recomputes purely from `results/` with no new runs.
 - Task set (`data/download_data.py::UPSTREAM_COMMIT`) and guest server image
   (`docker/Dockerfile.osworld`'s `OSW_UPSTREAM_COMMIT`) are pinned to the same upstream commit, not
   `main` HEAD. Bump both together.
-- `OSW_MAX_TURNS=150` / `OSW_MAX_STEPS=30` / `OSW_TASK_TIMEOUT=3600`, pinned independently of the
+- `OSW_MAX_TURNS=150` / `OSW_MAX_STEPS=30` / `OSW_TASK_TIMEOUT=3600` (under `OSW_PROTOCOL=official`: 100 steps, 14400 s), pinned independently of the
   browser benchmarks' budget (desktop GUI turns run more per action).
 - `result.json` records `agent_clean_finish` (did the agent print `ANSWER:` without erroring) and
   the raw `claude -p` envelope fields. A SUCCESS with `agent_clean_finish=False` gets a `note` on
