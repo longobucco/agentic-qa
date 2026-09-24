@@ -10,8 +10,7 @@ not: they interpolate the scheme inline, e.g.
 Split an https:// URL into host + port and that becomes `http://<host>:443`, which the proxy's
 load balancer answers with `400 Bad Request` and a `text/html` body -- so the getter's
 `response.json()` raises `JSONDecodeError` before it ever looks at the status code. Measured
-live 2026-09-08 against a real sandbox URL; see docs/finding-sonnet5-oracle-http-scheme.md for
-the 20 tasks it cost.
+live 2026-09-08 against a real sandbox URL; it cost 20 tasks before this fix.
 
 The fix has to make `http://{host}:{port}` *true*, not merely patch the callers we can reach.
 This binds a plain-HTTP listener on 127.0.0.1 and forwards every request verbatim to the real
