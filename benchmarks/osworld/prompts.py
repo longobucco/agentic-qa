@@ -83,11 +83,15 @@ incorrect DONE.
 """
 
 
-def agent_prompt(task):
+def agent_prompt(task, *, offer_run_python=None):
+    # offer_run_python lets a caller whose process env doesn't reflect its own tool surface
+    # (e.g. the Astra runner: RESTRICT_RUN_PYTHON only ever gets forced in the MCP child, not
+    # the Codex runner process -- core/codex_loop.py) override RESTRICT_RUN_PYTHON's default.
+    offer = (not RESTRICT_RUN_PYTHON) if offer_run_python is None else offer_run_python
     return AGENT_PROMPT.format(
         max_steps=MAX_STEPS, observation=OBSERVATION, instruction=task["instruction"],
         self_verify=SELF_VERIFY_BLOCK if SELF_VERIFY else "",
-        run_python_line="" if RESTRICT_RUN_PYTHON else RUN_PYTHON_LINE,
+        run_python_line=RUN_PYTHON_LINE if offer else "",
         grounding_lines=GROUNDING_LINES if GROUNDING else "",
         zoom_batch_lines=ZOOM_BATCH_LINES if ZOOM_BATCH else "",
         grounding=GROUNDING_BLOCK if GROUNDING else "",
