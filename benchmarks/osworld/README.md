@@ -59,7 +59,7 @@ if you rebuild the image yourself.
 and the guest image; scoring uses it in preference to the installed `desktop_env` release and
 records which one produced each verdict (`provenance.evaluator_commit`). Skip it and scoring
 falls back to the installed release, which cannot score six of the verified tasks at all.
-`OSW_PINNED_EVALUATORS=0` forces the installed release back.
+The pinned evaluators are mandatory: config refuses to start with `OSW_PINNED_EVALUATORS=0`.
 
 ## Running the official protocol
 
