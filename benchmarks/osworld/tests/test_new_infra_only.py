@@ -15,7 +15,6 @@ _BANNED = re.compile(r"config\.OFFICIAL|OSW_ZOOM_BATCH|OSW_GROUNDING|OSW_INLOOP_
 # Files allowed to name the legacy knobs: the refusal list itself, this test, and the campaign
 # core's env-conflict table (and its tests).
 _ALLOWED = {"benchmarks/osworld/config.py", "benchmarks/osworld/tests/test_new_infra_only.py",
-            "scripts/g_official361_driver.py", "scripts/tests/test_official361_driver.py",
             "benchmarks/osworld/tests/test_official361_driver.py",
             "benchmarks/osworld/campaign.py", "benchmarks/osworld/tests/test_campaign.py"}
 
