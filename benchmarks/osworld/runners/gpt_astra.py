@@ -65,6 +65,22 @@ CODEX_TOLERATED_TOOLS = frozenset({
     "collaboration.send_message", "collaboration.spawn_agent", "collaboration.wait_agent",
 })
 OFFICIAL_CODEX_TOOL = "computer"
+# Codex's own MCP-resource functions: read-only listing/reading of an MCP server's resources.
+# The OSWorld MCP server exposes none, so these can only return an empty list/error -- they
+# cannot reach the guest desktop, and upstream (the OSWorld protocol the human baseline follows)
+# has no counterpart to call. Live canary evidence 2026-09-24 (agent_computer_gpt6astra_max_
+# codex01534_canary20260924_official/0d8b7de3.../run_1): Astra's first two calls were exactly
+# `list_mcp_resources`/`list_mcp_resource_templates`, scored a terminal tool-surface FAILURE for
+# calls that could not have touched the environment. User decision 2026-09-25: exempt these from
+# the tool-surface rule (the run is scored normally) and record them per run instead
+# (agent_exempt_tool_calls) so the thesis can still report every call the agent made. The
+# `exec.*` spellings are the same functions reached through Codex's Code Mode host (only visible
+# in its rollout -- see astra_common.codex_rollout_tool_calls). Every other non-`computer` call
+# stays a terminal FAILURE exactly as before.
+CODEX_EXEMPT_TOOLS = frozenset({
+    "list_mcp_resources", "list_mcp_resource_templates", "read_mcp_resource",
+    "exec.list_mcp_resources", "exec.list_mcp_resource_templates", "exec.read_mcp_resource",
+})
 # Makes Codex log the server's `response.created` events (which echo the offered tools) to stderr.
 # Used by the session preflight only: a run's stderr is scanned for rate-limit text.
 _TOOL_TRACE_LOG = "error,tungstenite::protocol=trace"
@@ -105,6 +121,15 @@ def _non_computer_tool_calls(events):
         names[item.get("id") or f"#{n}"] = (item.get("tool") or item.get("name")
                                             or item.get("type"))
     return list(names.values())
+
+
+def _partition_exempt(names):
+    """`names` (call order, duplicates kept) split into (non_exempt, exempt) against
+    CODEX_EXEMPT_TOOLS. The non-exempt list is what the tool-surface rule still applies to; the
+    exempt list is recorded (agent_exempt_tool_calls) but never scored as a violation."""
+    non_exempt = [n for n in names if n not in CODEX_EXEMPT_TOOLS]
+    exempt = [n for n in names if n in CODEX_EXEMPT_TOOLS]
+    return non_exempt, exempt
 
 
 def _rollout_path(session_id):
@@ -207,7 +232,8 @@ def _validate_campaign_lock():
     if (policy["approval_mode"] != APPROVAL_MODE
             or tuple(policy["disabled_features"]) != DISABLED_FEATURES
             or tuple(policy["allowed_mcp_tools"]) != allowed_mcp_tools()
-            or tuple(policy.get("isolation_config") or ()) != CODEX_ISOLATION_CONFIG):
+            or tuple(policy.get("isolation_config") or ()) != CODEX_ISOLATION_CONFIG
+            or list(policy.get("exempt_tools") or []) != sorted(CODEX_EXEMPT_TOOLS)):
         raise SystemExit("Astra tool policy differs from the frozen campaign lock")
 
 
@@ -247,18 +273,26 @@ def _official_audit(events, transcript_saved, session_id):
     context kinds that reached the agent (from the rollout), and the offered tools. None when a
     source is missing, so an unverifiable run isn't recorded as clean. Offered tools are always
     None here: Codex records them in neither the event log nor the rollout
-    (official_session_preflight verifies them once per campaign instead)."""
+    (official_session_preflight verifies them once per campaign instead).
+
+    The raw call list is partitioned against CODEX_EXEMPT_TOOLS: exempt names go to
+    agent_exempt_tool_calls, everything else stays in agent_non_computer_tool_calls (still call
+    order, duplicates kept). agent_exempt_tool_calls is None exactly when
+    agent_non_computer_tool_calls is None -- an unverifiable run must never look clean just
+    because its (unknown) calls happen to partition as exempt."""
     rollout = _rollout_path(session_id)
-    calls = leaks = None
+    calls = exempt_calls = leaks = None
     try:
         if rollout:
             leaks = astra_common.codex_rollout_context_leaks(rollout)
             if transcript_saved:
-                calls = (_non_computer_tool_calls(events)
-                         + astra_common.codex_rollout_tool_calls(rollout))
+                all_calls = (_non_computer_tool_calls(events)
+                             + astra_common.codex_rollout_tool_calls(rollout))
+                calls, exempt_calls = _partition_exempt(all_calls)
     except OSError:
-        calls = leaks = None
+        calls = exempt_calls = leaks = None
     return {"agent_non_computer_tool_calls": calls,
+            "agent_exempt_tool_calls": exempt_calls,
             "agent_context_leaks": leaks,
             "agent_offered_tools": None}
 
@@ -384,8 +418,16 @@ def run(task, *, env, out, refs=None, dry=False):
         # violate, biasing the score upward either way. Score it 0 and label it clearly instead;
         # never infra_error.json (that would leave is_done() False and a later --runs invocation
         # would re-roll it).
+        # meta["tool_names"] (core.codex_loop.parse_codex_output) is provider-generic and knows
+        # nothing about CODEX_EXEMPT_TOOLS, so it is filtered here before use as the fallback --
+        # it's only reached when the audited (already-partitioned) list is empty/unavailable.
+        # meta["non_mcp_tool_calls"] itself needs no equivalent filtering: it counts event items
+        # by type (_parse_events/_is_tool_item), and every exempt tool is an MCP resource
+        # function that Codex always emits as an `mcp_tool_call` item (verified live -- see
+        # CODEX_EXEMPT_TOOLS above), the same type as `computer`; it is therefore never counted
+        # by non_mcp_tool_calls in the first place, exempt or not.
         names = (official_telemetry.get("agent_non_computer_tool_calls")
-                 or meta.get("tool_names") or [])
+                 or _partition_exempt(meta.get("tool_names") or [])[0])
         results_io.write_eval(out, {
             "id": task["id"], "verdict": "FAILURE", "reward": 0.0, "source": "harness",
             "reason": f"tool surface violation: {', '.join(names)}",
