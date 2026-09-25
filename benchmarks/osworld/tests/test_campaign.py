@@ -7,6 +7,8 @@ kvm image check, a docker error during the sweep, and the kvm-teardown grace-per
 in the kvm backend's own tests."""
 import json
 import os
+import re
+import signal
 import subprocess
 import sys
 from pathlib import Path
@@ -283,6 +285,8 @@ def test_env_conflicts_accepts_defaults_protocol_values_and_host_settings():
     environ = {"OSW_ZOOM_BATCH": "0", "OSW_PINNED_EVALUATORS": "1", "OSW_MAX_TURNS": "150",
                "OSW_TASK_TIMEOUT": "", "OSW_OBSERVATION": "screenshot+a11y",
                "OSW_PROTOCOL": "official", "OSW_BACKEND": "daytona", "OSW_MAX_STEPS": "100",
+               # backend-owned host settings the core doesn't know about and must not refuse
+               "OSW_KVM_ADDR": "10.0.0.2", "OSW_KVM_QCOW2": "/data/Ubuntu.qcow2",
                "OSW_ASTRA_REASONING_EFFORT": "xhigh"}
     assert campaign.env_conflicts("sonnet", environ, FakeBackend()) == []
     assert campaign.env_conflicts("astra", environ, FakeBackend()) == []
@@ -369,6 +373,18 @@ if mode == "prestuck":   # t0#1 already failed 3x (non-quota) in an earlier sess
     d._infra_history = lambda s, t, k: ["HARNESS_ERROR"] * 3 if (t, k) == ("t0", 1) else []
 if mode == "done":
     d.pending_units = lambda system, runs: []
+elif mode == "sweep_sigterm":   # exactly one round, then done: exercises the PER-ROUND sweep
+    _remaining = [1]
+    def _pending_once(system, runs):
+        if _remaining[0]:
+            _remaining[0] = 0
+            return [("t0", 1)]
+        return []
+    d.pending_units = _pending_once
+    d.run_round = lambda system, batches, pending, runs, log_file, no_outcomes=None: [
+        {"returncode": 0, "units": [{"task_id": "t0", "run_idx": 1, "fresh_outcome": None,
+                                     "infra_history": [], "no_outcome": False,
+                                     "no_outcomes": 0}]}]
 else:
     d.pending_units = lambda system, runs: [(f"t{i}", 1) for i in range(10)]
 d.CHILD_GRACE_S = 2
@@ -390,6 +406,16 @@ class _Backend:   # fake backend: records the run id it was asked to sweep
     def sweep(self, run_id, log):
         (tmp / "sweep.json").write_text(json.dumps({"run_id": run_id}))
         log(f"backend sweep: removed 1 sandbox(es) for driver_run={run_id}")
+        if mode == "sweep_sigterm":
+            # A backend honoring "sweep never raises" with a bare `except Exception` (the kvm
+            # sweep pattern) must not be able to swallow a SIGTERM delivered while its own
+            # sweep is running: _Interrupted is a BaseException, so it survives this.
+            import signal as _signal, time as _time
+            try:
+                os.kill(os.getpid(), _signal.SIGTERM)
+                _time.sleep(0.5)
+            except Exception:
+                pass
         return 1
 
 
@@ -477,13 +503,31 @@ def test_a_unit_already_stuck_from_an_earlier_session_stops_before_any_vm_starts
     assert "STOP" in log and "t0#1" in log
 
 
+def _driver_run_id_from_log(log_text):
+    m = re.search(r"driver_run=([0-9a-f]{32})", log_text)
+    assert m, log_text
+    return m.group(1)
+
+
+def test_sigterm_during_the_backend_sweep_still_stops_the_driver(tmp_path):
+    """A SIGTERM delivered while the per-round backend.sweep(run_id, log) is running must still
+    stop the driver (128+SIGTERM), even though the fake backend's own sweep follows the kvm
+    pattern of swallowing everything with a bare `except Exception` around the self-signal --
+    _Interrupted is a BaseException, so it is never caught by that, nor by the core's own
+    defensive `except Exception` wrapper around backend.sweep()."""
+    proc = _start_driver(tmp_path, "sweep_sigterm")
+    out, _ = proc.communicate(timeout=30)
+    assert proc.returncode == 128 + signal.SIGTERM, out
+
+
 def test_the_sweep_also_runs_on_normal_exit(tmp_path):
     proc = _start_driver(tmp_path, "done")
     out, _ = proc.communicate(timeout=30)
     assert proc.returncode == 0, out
-    assert "run_id" in json.loads((tmp_path / "sweep.json").read_text())
-    assert "backend sweep: removed 1 sandbox" in (
-        tmp_path / "scripts" / "g_official361_sonnet_fake.log").read_text()
+    log = (tmp_path / "scripts" / "g_official361_sonnet_fake.log").read_text()
+    run_id = _driver_run_id_from_log(log)
+    assert json.loads((tmp_path / "sweep.json").read_text()) == {"run_id": run_id}
+    assert "backend sweep: removed 1 sandbox" in log
 
 
 def test_child_env_pins_every_harness_knob_at_its_default():
@@ -579,6 +623,10 @@ def test_the_backend_sweep_runs_after_every_round_and_on_exit(tmp_path, monkeypa
     monkeypatch.delitem(sys.modules, "benchmarks.osworld.config", raising=False)
 
     before_env = dict(os.environ)
+    # main() installs its own SIGTERM/SIGINT handlers and leaves them at SIG_IGN in its
+    # `finally`; save/restore so this in-process call never leaks signal state into the rest of
+    # this pytest process.
+    before_handlers = {s: signal.getsignal(s) for s in (signal.SIGTERM, signal.SIGINT)}
     b = FakeBackend()
     try:
         assert campaign.main(b, []) == 0
@@ -587,6 +635,48 @@ def test_the_backend_sweep_runs_after_every_round_and_on_exit(tmp_path, monkeypa
     finally:
         os.environ.clear()
         os.environ.update(before_env)
+        for s, handler in before_handlers.items():
+            signal.signal(s, handler)
+
+
+def test_a_broken_backend_sweep_cannot_replace_the_exit_code(tmp_path, monkeypatch):
+    """A backend that violates its own 'sweep never raises' contract must not be able to abort
+    the campaign or replace its return value: the core wraps both backend.sweep() call sites in
+    a defensive `except Exception`, logs it, and moves on."""
+    import types
+    import core.dotenv
+    from benchmarks.osworld import benchmark as benchmark_module
+
+    monkeypatch.setattr(core.dotenv, "load_dotenv", lambda: None)
+    monkeypatch.setenv("ARM", "sonnet")
+    monkeypatch.setattr(campaign, "pending_units", lambda system, runs: [])
+
+    class _Runners(dict):
+        def __missing__(self, k):
+            return types.SimpleNamespace(preflight=lambda: None)
+
+    monkeypatch.setattr(benchmark_module, "build",
+                        lambda: types.SimpleNamespace(runners=_Runners()))
+    monkeypatch.setattr(campaign, "_ROOT", tmp_path)
+    (tmp_path / "scripts").mkdir()
+    monkeypatch.delitem(sys.modules, "benchmarks.osworld.config", raising=False)
+
+    class _BrokenBackend(FakeBackend):
+        def sweep(self, run_id, log):
+            raise RuntimeError("backend blew up")
+
+    before_env = dict(os.environ)
+    before_handlers = {s: signal.getsignal(s) for s in (signal.SIGTERM, signal.SIGINT)}
+    b = _BrokenBackend()
+    try:
+        assert campaign.main(b, []) == 0
+        log_text = (tmp_path / "scripts" / f"g_official361_sonnet{b.LOG_SUFFIX}.log").read_text()
+        assert "backend sweep failed" in log_text and "backend blew up" in log_text
+    finally:
+        os.environ.clear()
+        os.environ.update(before_env)
+        for s, handler in before_handlers.items():
+            signal.signal(s, handler)
 
 
 _GRANDCHILD_RUN_PY = """
@@ -660,4 +750,5 @@ def test_sigterm_reaches_the_agent_grandchild_group_through_a_real_core_run_chil
     assert infra[-1]["outcome"] == "INTERRUPTED"
     log = (tmp_path / "scripts" / "g_official361_sonnet_fake.log").read_text()
     assert "0 killed" in log and "SIGKILL" not in log   # orderly exit within the grace period
-    assert "run_id" in json.loads((tmp_path / "sweep.json").read_text())
+    run_id = _driver_run_id_from_log(log)
+    assert json.loads((tmp_path / "sweep.json").read_text()) == {"run_id": run_id}

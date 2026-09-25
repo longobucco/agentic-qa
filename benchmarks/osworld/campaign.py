@@ -70,9 +70,8 @@ runs none, and the sandbox lives in a worker thread a KeyboardInterrupt never re
 driver process exports a unique OSW_DRIVER_RUN, the backend's environment tags every sandbox it
 starts with it, and after terminating the children -- and after every round, since no child is
 alive then, and on every exit, as a safety sweep -- the driver calls the backend's sweep for its
-own run id. Another driver's (or another arm's campaign's) sandboxes on the same host are never
-touched: the backend sweep is the backstop, not the only check -- OSW_DRIVER_RUN is internal:
-always overwritten, never on the refuse list.
+own run id: the backend sweep re-checks the label and never touches another run's resources.
+OSW_DRIVER_RUN is internal: always overwritten, never on the refuse list.
 """
 import argparse
 import json
@@ -206,7 +205,12 @@ def terminate_children(procs, log, grace_s=None):
     return len(running), killed
 
 
-class _Interrupted(Exception):
+class _Interrupted(BaseException):
+    # BaseException, not Exception: the per-round backend.sweep() runs while SIGTERM/SIGINT are
+    # wired to _raise_interrupted, and a backend that (like the kvm sweep) never raises via a
+    # bare `except Exception` must not be able to swallow a signal delivered mid-sweep -- that
+    # would silently drop the interrupt and let the campaign start another round. `main`'s own
+    # `except _Interrupted` still catches it explicitly by name.
     def __init__(self, signum):
         super().__init__(signum)
         self.signum = signum
@@ -410,7 +414,12 @@ def main(backend, argv=None):
             signal.signal(signum, signal.SIG_IGN)
         if _children:   # an unexpected exception mid-round: never sweep under live children
             terminate_children(list(_children), log)
-        backend.sweep(run_id, log)
+        # A backend that violates its "never raises" contract must not be able to replace the
+        # 128+signum/exit-code this function is about to return.
+        try:
+            backend.sweep(run_id, log)
+        except Exception as e:
+            log(f"backend sweep failed: {e!r}")
 
 
 def _campaign(system, parallel, max_hours, log, log_file, backend, run_id):
@@ -450,8 +459,11 @@ def _campaign(system, parallel, max_hours, log, log_file, backend, run_id):
             + " | ".join(" ".join(b) for b in plan))
         results = run_round(system, plan, pending, RUNS, log_file, no_outcomes)
         # No child is alive here: safe to sweep this run's orphans after every round, not only
-        # on exit.
-        backend.sweep(run_id, log)
+        # on exit. A backend violating its "never raises" contract must not abort the campaign.
+        try:
+            backend.sweep(run_id, log)
+        except Exception as e:
+            log(f"backend sweep failed: {e!r}")
         decision = decide(results)
         silent = [f"{u['task_id']}#{u['run_idx']}" for b in results for u in b["units"]
                   if u["no_outcome"]]
