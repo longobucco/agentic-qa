@@ -33,6 +33,11 @@ START_CMD = "supervisord -c /etc/supervisord.conf"
 READY_POLL_TRIES = 60      # * 2s = up to 120s per attempt
 READY_ATTEMPTS = 2         # attempts at (lock cleanup + start + poll)
 
+# Every sandbox this module creates is tagged with the driver run that started it (empty outside
+# a driver), so campaign_daytona.sweep can find and delete exactly its own orphans and nobody
+# else's -- see that module's own docstring.
+DRIVER_RUN_LABEL = "osworld.driver_run"
+
 # Observed live (2026-08-12): a freshly-created sandbox auto-stopped mid-provisioning (idle gap
 # between create() returning and the first exec against it), then the deprecated daytona_sdk's
 # process.exec() blocked forever against the stopped VM -- no effective timeout, no exception,
@@ -195,6 +200,7 @@ def provision(image=None, *, disk=10, memory=8, cpu=4, auto_stop=20, on_created=
         image=image or config.IMAGE, public=True,
         resources=Resources(cpu=cpu, memory=memory, disk=min(disk, 10)),
         auto_stop_interval=auto_stop,
+        labels={DRIVER_RUN_LABEL: os.environ.get("OSW_DRIVER_RUN", "")},
     ), timeout=2400)
     if on_created:
         on_created(sb)
