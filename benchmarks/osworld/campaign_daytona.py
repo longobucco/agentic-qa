@@ -41,7 +41,8 @@ def sweep(run_id, log, client=None):
         client = client or _client()
         # Materialize the matches before deleting anything: client.list() may be a paginated
         # cursor, and deleting mid-iteration could disturb it.
-        matches = [sb for sb in client.list(ListSandboxesQuery(labels={DRIVER_RUN_LABEL: run_id}))
+        matches = [sb for sb in client.list(ListSandboxesQuery(labels={DRIVER_RUN_LABEL: run_id}),
+                                             request_timeout=60)
                    if (getattr(sb, "labels", None) or {}).get(DRIVER_RUN_LABEL) == run_id]
         for sb in matches:
             try:
