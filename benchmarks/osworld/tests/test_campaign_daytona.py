@@ -1,8 +1,8 @@
-import json
 import os
 import signal
 import subprocess
 import sys
+import time
 from pathlib import Path
 from types import SimpleNamespace
 
@@ -125,6 +125,25 @@ def test_provision_labels_the_sandbox_with_the_driver_run(monkeypatch):
     assert seen["labels"] == {"osworld.driver_run": "run-xyz"}
 
 
+def test_provision_sends_no_driver_run_label_outside_a_driver(monkeypatch):
+    """A manual/canary run (no OSW_DRIVER_RUN) must not send an empty label value -- whether the
+    Daytona API accepts labels={"osworld.driver_run": ""} is unverified, and a rejection would
+    break every non-driver run."""
+    from benchmarks.osworld.env import sandbox
+    seen = {}
+
+    class FakeClient:
+        def create(self, params, timeout):
+            seen["labels"] = params.labels
+            return SimpleNamespace(id="sb")
+
+    monkeypatch.delenv("OSW_DRIVER_RUN", raising=False)
+    monkeypatch.setattr(sandbox, "_client", lambda: FakeClient())
+    monkeypatch.setattr(sandbox, "_ensure_controller_up", lambda sb: "ctrl")
+    assert sandbox.provision() == (SimpleNamespace(id="sb"), "ctrl")
+    assert seen["labels"] == {}
+
+
 def test_an_image_set_only_in_the_repo_dotenv_is_refused(monkeypatch, capsys):
     # core.run.main loads the repo-root .env in every child, so a knob set only there would
     # otherwise reach the children unchecked (same technique as
@@ -196,7 +215,6 @@ def _start_daytona_sweep_error_driver(tmp_path):
 def test_the_sweep_error_does_not_change_the_signal_exit_code(tmp_path):
     proc = _start_daytona_sweep_error_driver(tmp_path)
     pid_files = [tmp_path / "child1.pid", tmp_path / "child2.pid"]
-    import time
     deadline = time.time() + 30
     while not all(p.exists() and p.read_text() for p in pid_files):
         assert time.time() < deadline and proc.poll() is None, proc.communicate()[0]
