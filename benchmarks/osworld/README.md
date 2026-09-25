@@ -105,7 +105,11 @@ into or overwrites another one's results. Codex's JSONL trajectory is saved dire
 auxiliary tool surfaces and injects only the OSWorld MCP; the sandboxed Code Mode host remains
 enabled because Astra uses it to invoke MCP tools. Approval prompts are bypassed because this is
 an unattended benchmark; this does not widen the tool surface, and the disposable Daytona
-desktop is the external sandbox.
+desktop is the external sandbox. Codex's own read-only MCP-resource functions
+(`list_mcp_resources`/`list_mcp_resource_templates`/`read_mcp_resource`, plain or through Code
+Mode's `exec.*`) cannot be removed and cannot reach the guest, so they are exempt from the
+tool-surface rule (user decision 2026-09-25) and recorded per run in `result.json` as
+`agent_exempt_tool_calls` instead of failing the run.
 
 Resume a sandbox Daytona auto-stopped:
 ```
