@@ -119,21 +119,23 @@ OSW_CONTROLLER_URL=http://<url>:5000 python -m benchmarks.osworld.run --ids <tas
 ## Campaigns
 
 `scripts/g_official361_driver.py` runs the full official-protocol campaign (361 tasks x 5 runs)
-against the Daytona backend end to end -- parallel shards, quota-safe, preflight first. The
+end to end on the Daytona or the KVM backend -- parallel shards, quota-safe, preflight first. The
 rules (rounds, resume, backoff, stop, signals) live in `benchmarks/osworld/campaign.py`; the
-backend module (`benchmarks/osworld/campaign_daytona.py`) supplies its own protocol variables,
-extra refusals and the sweep of its own orphaned sandboxes.
+backend module (`benchmarks/osworld/campaign_daytona.py` or `benchmarks/osworld/campaign_kvm.py`)
+supplies its own protocol variables, extra refusals and the sweep of its own orphans.
 
 ```
-BACKEND=daytona ARM=sonnet|astra PARALLEL=K MAX_HOURS=H \
+BACKEND=daytona|kvm ARM=sonnet|astra PARALLEL=K MAX_HOURS=H \
   .venv/bin/python scripts/g_official361_driver.py
 ... --dry-run    # print the planned batches, run nothing
 ```
 
-`BACKEND=daytona` is the only backend wired up on this branch. For `ARM=astra`,
+`BACKEND` is required and read from the shell only; anything but `daytona` or `kvm` is refused
+(exit 2) before anything else happens. For `ARM=astra`,
 `OSW_ASTRA_REASONING_EFFORT` must be set explicitly by the caller -- it is a campaign decision,
 never a default. The results tree is named `agent_computer_sonnet5_effortmax_protocol361_official`
-for Sonnet, or `agent_computer_gpt6astra_<effort>_codex01534_protocol361_official` for Astra.
+for Sonnet, or `agent_computer_gpt6astra_<effort>_codex01534_protocol361_official` for Astra,
+with a `_kvm` suffix on the KVM backend.
 
 The driver resumes from disk: a restarted process re-derives its pending `(task, run)` units from
 what's already on disk (`core.results.is_done`), so no `--force` flag or manual bookkeeping is
@@ -151,6 +153,33 @@ sandboxes carrying its own run id -- another driver's (or a manually started) sa
 touched, even if the server-side label filter were ever to leak one.
 
 Everything the driver and its children print goes to `scripts/g_official361_<arm>_daytona.log`.
+
+### KVM backend
+
+```
+BACKEND=kvm ARM=sonnet|astra PARALLEL=K MAX_HOURS=H \
+  OSW_KVM_IMAGE=happysixd/osworld-docker@sha256:<64 hex> \
+  OSW_KVM_DOCKER_HOST=... OSW_KVM_ADDR=... OSW_KVM_QCOW2=... OSW_KVM_QCOW2_SHA256=... \
+  .venv/bin/python scripts/g_official361_driver.py
+```
+
+`scripts/kvm_host_setup.sh` prepares the KVM host (the official VM image and the qcow2) and
+prints the `OSW_KVM_*` exports to use. `OSW_KVM_IMAGE` must be that digest reference of the
+official image, `happysixd/osworld-docker@sha256:<64 hex>`; a tag or any other image is refused
+(exit 2), since the kvm preflight only checks that the image exists on the docker host. The
+other `OSW_KVM_*` host settings (`OSW_KVM_DOCKER_HOST`, `OSW_KVM_ADDR`, `OSW_KVM_QCOW2`,
+`OSW_KVM_QCOW2_SHA256`) come from the caller's environment and are validated by the kvm
+preflight; a loopback `OSW_KVM_ADDR` with a remote `OSW_KVM_DOCKER_HOST` is refused (exit 2),
+because the VM's ports are published on the docker host. `OSW_KVM_CLIENT_PASSWORD` is pinned at
+its default like every other harness knob.
+
+Every VM container a driver child starts is labelled with that driver run's id
+(`env/kvm_vm.DRIVER_RUN_LABEL`), and after every round, after terminating its children on
+SIGTERM/SIGINT, and on exit the driver force-removes (with volumes) only the containers on
+`OSW_KVM_DOCKER_HOST` carrying its own run id -- the other arm's campaign on the same host, or a
+manually started VM, is never touched.
+
+Everything the driver and its children print goes to `scripts/g_official361_<arm>.log`.
 
 ## Reporting
 

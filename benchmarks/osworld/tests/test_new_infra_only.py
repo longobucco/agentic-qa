@@ -16,8 +16,8 @@ _BANNED = re.compile(r"config\.OFFICIAL|OSW_ZOOM_BATCH|OSW_GROUNDING|OSW_INLOOP_
 # core's env-conflict table (and its tests).
 _ALLOWED = {"benchmarks/osworld/config.py", "benchmarks/osworld/tests/test_new_infra_only.py",
             "scripts/g_official361_driver.py", "scripts/tests/test_official361_driver.py",
-            "benchmarks/osworld/tests/test_official361_driver.py",
-            "benchmarks/osworld/campaign.py", "benchmarks/osworld/tests/test_campaign.py"}
+            "benchmarks/osworld/campaign.py", "benchmarks/osworld/tests/test_campaign.py",
+            "benchmarks/osworld/tests/test_campaign_kvm.py"}
 
 
 def test_no_source_file_mentions_the_legacy_harness():

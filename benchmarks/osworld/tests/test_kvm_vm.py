@@ -50,12 +50,12 @@ def test_container_matches_upstream_docker_provider(monkeypatch):
 
 
 def test_container_is_labelled_with_the_driver_run_and_task(monkeypatch):
-    # scripts/g_official361_driver.py sweeps exactly its own labelled containers on exit/signal
+    # benchmarks/osworld/campaign_kvm.sweep removes exactly its own labelled containers
     for env, expected in ((None, ""), ("abc123", "abc123")):
         if env is None:
-            monkeypatch.delenv("OSW_KVM_DRIVER_RUN", raising=False)
+            monkeypatch.delenv("OSW_DRIVER_RUN", raising=False)
         else:
-            monkeypatch.setenv("OSW_KVM_DRIVER_RUN", env)
+            monkeypatch.setenv("OSW_DRIVER_RUN", env)
         client, _ = _client()
         with patch.object(kvm_vm, "_wait_ready", return_value=None), \
              patch.object(kvm_vm, "_configure", return_value=None):

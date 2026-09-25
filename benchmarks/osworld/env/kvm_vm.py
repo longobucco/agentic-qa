@@ -84,8 +84,9 @@ def kvm_environment(task, *, port=None, client=None):
     """One fresh official VM per run. Whatever raises (setup, agent, scoring, Ctrl-C), the
     container is stopped and removed -- remove runs even when stop itself raises. A process
     killed outright never reaches that finally, so the container is also labelled with the
-    campaign driver's run id (OSW_KVM_DRIVER_RUN, "" outside a driver): the driver removes its
-    own labelled containers after terminating its children (scripts/g_official361_driver.py)."""
+    campaign driver's run id (OSW_DRIVER_RUN, "" outside a driver): the driver removes its own
+    labelled containers after every round and after terminating its children
+    (benchmarks/osworld/campaign_kvm.sweep)."""
     client = client or _docker_client()
     container = client.containers.run(
         config.KVM_IMAGE,
@@ -93,7 +94,7 @@ def kvm_environment(task, *, port=None, client=None):
         cap_add=["NET_ADMIN"], devices=["/dev/kvm"],
         mounts=[_qcow2_mount("/System.qcow2")],
         ports={p: None for p in _GUEST_PORTS}, detach=True,
-        labels={DRIVER_RUN_LABEL: os.environ.get("OSW_KVM_DRIVER_RUN", ""),
+        labels={DRIVER_RUN_LABEL: os.environ.get("OSW_DRIVER_RUN", ""),
                 "osworld.task": task["id"]})
     try:
         ports = published_ports(container)
