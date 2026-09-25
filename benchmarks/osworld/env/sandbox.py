@@ -196,11 +196,16 @@ def provision(image=None, *, disk=10, memory=8, cpu=4, auto_stop=20, on_created=
     teardown even if the next step never comes back (see _PROVISION_TIMEOUT_S above)."""
     from daytona_sdk import CreateSandboxFromImageParams, Resources
     d = _client()
+    # Only a driver run tags its sandboxes -- an empty label value is unverified against the
+    # live Daytona API, so a manual/canary run (no OSW_DRIVER_RUN) sends no label at all rather
+    # than risk the create() call being rejected outright.
+    run_id = os.environ.get("OSW_DRIVER_RUN", "").strip()
+    labels = {DRIVER_RUN_LABEL: run_id} if run_id else {}
     sb = d.create(CreateSandboxFromImageParams(
         image=image or config.IMAGE, public=True,
         resources=Resources(cpu=cpu, memory=memory, disk=min(disk, 10)),
         auto_stop_interval=auto_stop,
-        labels={DRIVER_RUN_LABEL: os.environ.get("OSW_DRIVER_RUN", "")},
+        labels=labels,
     ), timeout=2400)
     if on_created:
         on_created(sb)

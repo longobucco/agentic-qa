@@ -39,9 +39,11 @@ def sweep(run_id, log, client=None):
     try:
         from daytona_sdk import ListSandboxesQuery
         client = client or _client()
-        for sb in client.list(ListSandboxesQuery(labels={DRIVER_RUN_LABEL: run_id})):
-            if (getattr(sb, "labels", None) or {}).get(DRIVER_RUN_LABEL) != run_id:
-                continue
+        # Materialize the matches before deleting anything: client.list() may be a paginated
+        # cursor, and deleting mid-iteration could disturb it.
+        matches = [sb for sb in client.list(ListSandboxesQuery(labels={DRIVER_RUN_LABEL: run_id}))
+                   if (getattr(sb, "labels", None) or {}).get(DRIVER_RUN_LABEL) == run_id]
+        for sb in matches:
             try:
                 client.delete(sb)
                 removed += 1

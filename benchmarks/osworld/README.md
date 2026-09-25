@@ -139,8 +139,9 @@ The driver resumes from disk: a restarted process re-derives its pending `(task,
 what's already on disk (`core.results.is_done`), so no `--force` flag or manual bookkeeping is
 needed. If >= 50% of the units attempted in a round were rate-limited, it backs off 30 minutes
 (quota windows reset on the order of hours) before trying again. It stops (exit 3) on a systemic
-or repeated non-quota failure, an `AUTH_ERROR`, or a unit already stuck from an earlier session --
-see the module docstring in `campaign.py` for the exact rules.
+or repeated non-quota failure, a child that exited non-zero without writing any
+`infra_error.json`, an `AUTH_ERROR`, or a unit already stuck from an earlier session -- see the
+module docstring in `campaign.py` for the exact rules.
 
 `OSW_IMAGE` must be left unset: the driver's harness-knob table pins it at `""`, which means
 `config.IMAGE`'s pinned digest; any other value is refused before a single sandbox starts. Every
