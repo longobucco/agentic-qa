@@ -1,7 +1,7 @@
 """A local WebSocket-aware relay that makes Chrome's raw CDP port (9222) reachable the same
-way env/http_forwarder.py already makes the controller's HTTP port reachable -- fixing, for
-open-book only (use_proxy=True), the setup-time half of what G9's replication-validity analysis
-already tracks as `oracle_unroutable` for the evaluation-time getters (get_open_tabs_info,
+way env/http_forwarder.py already makes the controller's HTTP port reachable -- fixing the
+setup-time half of what G9's replication-validity analysis already tracks as
+`oracle_unroutable` for the evaluation-time getters (get_open_tabs_info,
 get_active_tab_info, get_active_tab_html_parse -- see g9_replication_validity.py's own
 docstring, "the getter reaches for a guest port the sandbox doesn't publish").
 
@@ -15,8 +15,8 @@ blocking every CDP connection attempt from the host, both fixed here:
      localhost/127.0.0.1 ("Rejected an incoming WebSocket connection from the
      https://... origin. Use ... --remote-allow-origins=... to allow connections from this
      origin"), by design (anti DNS-rebinding). Fixed by `inject_remote_allow_origins()`, called
-     wherever an open-book config/postconfig step launches Chrome with
-     --remote-debugging-port -- adds --remote-allow-origins=* if not already present.
+     wherever a config/postconfig step launches Chrome with --remote-debugging-port -- adds
+     --remote-allow-origins=* if not already present.
   2. Even past that, Chrome's own `/json/version` response hardcodes
      "webSocketDebuggerUrl": "ws://localhost:9222/devtools/browser/<id>" -- ITS OWN view of
      itself, not a routable address from the harness host. playwright.chromium.connect_over_cdp
@@ -30,11 +30,11 @@ blocking every CDP connection attempt from the host, both fixed here:
      naive `f"http://{vm_ip}:{port}"` + auto-discovery correct by construction, exactly the same
      trick LoopbackForwarder already uses for the controller's own HTTP port.
 
-Scoped to open-book only (gated on use_proxy=True at both call sites, env/sandbox.py and
-env/osworld_eval.py) -- closed-book's existing oracle_unroutable behavior is left exactly as
-documented and unchanged; whether to also fix it there is a separate decision (same pattern as
-the CDP-debug-port XDG_CONFIG_HOME fix earlier this campaign, applied to the open-book image
-only pending a closed-book decision).
+Gated on `enable_cdp_forwarder` at both call sites (env/sandbox.py's `_run_config` and
+env/osworld_eval.py's `evaluate_official`), both on the closed-book path (the only path this
+branch runs): true for every caller of each, so CdpForwarder.start() probes Chrome's CDP port
+unconditionally and raises CdpForwarderError (caught, logged, harmless) if nothing is listening
+yet -- costing nothing on a task that never launches Chrome.
 
 No new dependency: built on stdlib socket/ssl only. Message-level WS libraries were available
 (websocket-client, a client only) but a byte-for-byte relay after each side completes its OWN

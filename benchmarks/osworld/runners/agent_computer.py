@@ -148,7 +148,12 @@ def preflight():
     """Sonnet runner preflight: refuse an unpinned model, then today's pinned-code check, the
     pinned CLI version and the built-in tool drift guard. The last one is a live model call: a
     campaign driver child skips it when the driver already ran it for this driver run
-    (common.official_probe_already_passed) -- every cheap check still runs."""
+    (common.official_probe_already_passed) -- every cheap check still runs.
+
+    Re-checks legacy knobs directly: config refuses them at import, but core.run loads .env
+    (which can carry a stale legacy knob) after benchmark.build() has already imported config,
+    so the import-time check alone would miss one."""
+    config._refuse_legacy_knobs()
     if not config.MODEL:
         raise SystemExit("OSW_MODEL is required: the official Claude runner never runs the "
                          "CLI's default model")

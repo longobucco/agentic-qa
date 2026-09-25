@@ -54,6 +54,30 @@ def test_claude_preflight_refuses_an_unpinned_model(monkeypatch):
         agent_computer.preflight()
 
 
+def test_claude_preflight_refuses_a_legacy_knob_set_after_import(monkeypatch):
+    """core.run loads .env after benchmark.build() imports config, so a legacy knob set late
+    (e.g. by a stale .env) must still be caught -- the preflight re-checks it directly rather
+    than relying only on the import-time refusal."""
+    from benchmarks.osworld import config
+    from benchmarks.osworld.runners import agent_computer
+    monkeypatch.setattr(config, "MODEL", "claude-sonnet-5")
+    monkeypatch.setenv("OSW_VR_MAX_RECOVERIES", "1")
+    with pytest.raises(SystemExit, match="phase1-daytona-frozen"):
+        agent_computer.preflight()
+
+
+def test_codex_preflight_refuses_a_legacy_knob_set_after_import(monkeypatch):
+    from benchmarks.osworld import config
+    from benchmarks.osworld.runners import gpt_astra
+    monkeypatch.setenv("OSW_VR_MAX_RECOVERIES", "1")
+    # stub every step after the refusal so a regression that removes the early check doesn't
+    # fail here for the wrong reason (a missing lock file, network call, etc).
+    monkeypatch.setattr("benchmarks.osworld.env.osworld_eval.pinned_code_preflight",
+                        lambda: (_ for _ in ()).throw(AssertionError("should not run")))
+    with pytest.raises(SystemExit, match="phase1-daytona-frozen"):
+        gpt_astra.preflight()
+
+
 def test_provenance_records_the_official_observation_and_action_space():
     from benchmarks.osworld.runners import common
     prov = common._provenance({"id": "t1", "related_apps": []}, None, "2026-09-24T00:00:00Z")
