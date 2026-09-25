@@ -62,7 +62,8 @@ def test_importing_the_daytona_backend_and_cli_does_not_import_config():
     assert subprocess.run([sys.executable, "-c", code], cwd=_ROOT).returncode == 0
 
 
-@pytest.mark.parametrize("value", ["", "kvm", "aws"])
+# "kvm" is unknown only where the kvm backend isn't wired up (the Daytona branch).
+@pytest.mark.parametrize("value", ["", "aws"] + ([] if "kvm" in cli.BACKENDS else ["kvm"]))
 def test_cli_refuses_a_missing_or_unknown_backend(monkeypatch, capsys, value):
     monkeypatch.setenv("BACKEND", value)
     called = []
