@@ -10,8 +10,8 @@ from core.run import Benchmark, Runner
 
 
 def _env_for_backend():
-    """config.BACKEND == "kvm": the official VM on a user-provided Linux/KVM host (Task 8,
-    env/kvm_vm.py). Otherwise unchanged: the existing per-task Daytona desktop."""
+    """config.BACKEND == "kvm": the official VM on a user-provided Linux/KVM host
+    (env/kvm_vm.py). Otherwise unchanged: the existing per-task Daytona desktop."""
     return kvm_vm.kvm_environment if config.BACKEND == "kvm" else osworld_environment
 
 

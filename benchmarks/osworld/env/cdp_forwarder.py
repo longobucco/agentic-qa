@@ -32,9 +32,12 @@ blocking every CDP connection attempt from the host, both fixed here:
 
 Gated on `enable_cdp_forwarder` at both call sites (env/sandbox.py's `_run_config` and
 env/osworld_eval.py's `evaluate_official`), both on the closed-book path (the only path this
-branch runs): true for every caller of each, so CdpForwarder.start() probes Chrome's CDP port
-unconditionally and raises CdpForwarderError (caught, logged, harmless) if nothing is listening
-yet -- costing nothing on a task that never launches Chrome.
+branch runs). On Daytona, true for every caller of each, so CdpForwarder.start() probes
+Chrome's CDP port unconditionally and raises CdpForwarderError (caught, logged, harmless) if
+nothing is listening yet -- costing nothing on a task that never launches Chrome. On kvm it is
+always False (env/kvm_vm.py's setup call, and runners/common.py's scoring call via
+`config.BACKEND != "kvm"`): the official VM there publishes Chrome's CDP port on a routable
+host port directly, so no forwarder is needed and every consumer uses the mapped port.
 
 No new dependency: built on stdlib socket/ssl only. Message-level WS libraries were available
 (websocket-client, a client only) but a byte-for-byte relay after each side completes its OWN

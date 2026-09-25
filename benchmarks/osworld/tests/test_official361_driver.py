@@ -269,6 +269,11 @@ def test_driver_knob_table_agrees_with_config_legacy_neutral_values():
     for name, neutral in driver._HARNESS_KNOB_DEFAULTS.items():
         if name in config._LEGACY_KNOB_NEUTRAL:
             assert config._LEGACY_KNOB_NEUTRAL[name] == neutral, name
+    # Pin the one legacy knob the driver's own table doesn't carry (it never sets it, so it has
+    # nothing to agree on): without this, the loop above silently checks nothing if the two
+    # tables ever stopped overlapping at all.
+    assert set(config._LEGACY_KNOB_NEUTRAL) - set(driver._HARNESS_KNOB_DEFAULTS) == \
+        {"OSW_OPENBOOK_IMAGE"}
 
 
 # ---- signal handling (pre-review fix 3) ----------------------------------------------------
