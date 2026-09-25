@@ -51,6 +51,14 @@
       "web_search=\"disabled\"",
       "tools.experimental_request_user_input.enabled=false",
       "agents.max_threads=1"
+    ],
+    "exempt_tools": [
+      "exec.list_mcp_resource_templates",
+      "exec.list_mcp_resources",
+      "exec.read_mcp_resource",
+      "list_mcp_resource_templates",
+      "list_mcp_resources",
+      "read_mcp_resource"
     ]
   },
   "protocol": {
@@ -61,5 +69,6 @@
     "max_steps": 100,
     "system_prompt_channel": "model_instructions_file"
   },
-  "reasoning_effort_note": "user decision 2026-09-24: highest level Codex 0.153.4 accepts for gpt-6-astra; supported values reported by the API: none, minimal, low, medium, high, xhigh, max"
+  "reasoning_effort_note": "user decision 2026-09-24: highest level Codex 0.153.4 accepts for gpt-6-astra; supported values reported by the API: none, minimal, low, medium, high, xhigh, max",
+  "exempt_tools_note": "user decision 2026-09-25: Codex read-only MCP-resource functions are not tool-surface violations; recorded per run as agent_exempt_tool_calls"
 }

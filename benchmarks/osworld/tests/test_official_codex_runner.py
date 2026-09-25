@@ -133,6 +133,7 @@ def test_official_lock_contents():
         "protocol": "official", "backend": "kvm", "screen": "1920x1080", "max_steps": 100,
         "system_prompt_channel": "model_instructions_file"}
     assert tuple(lock["tool_policy"]["isolation_config"]) == gpt_astra.CODEX_ISOLATION_CONFIG
+    assert lock["tool_policy"]["exempt_tools"] == sorted(gpt_astra.CODEX_EXEMPT_TOOLS)
 
 
 def test_official_lock_refuses_another_effort(monkeypatch):
@@ -278,8 +279,92 @@ def test_official_run_records_the_audit(monkeypatch, tmp_path):
     _, _, _, result, _, _ = _official_run(
         monkeypatch, tmp_path, [_computer(1, {"action": "screenshot"})], rollout=rollout)
     assert result["agent_non_computer_tool_calls"] == []
+    assert result["agent_exempt_tool_calls"] == []
     assert result["agent_context_leaks"] == []
     assert result["agent_offered_tools"] is None   # not recorded per run by Codex (see runner)
+
+
+# --- exempt Codex read-only MCP-resource functions (user decision 2026-09-25) ---
+
+def test_official_run_with_only_exempt_calls_is_scored_normally(monkeypatch, tmp_path):
+    """`list_mcp_resources`/`list_mcp_resource_templates` (event stream) and
+    `exec.list_mcp_resources` (Code Mode, rollout) are read-only listings of the OSWorld MCP
+    server's own resources (it has none); they cannot reach the guest and have no upstream
+    counterpart. User decision 2026-09-25: exempt them from the tool-surface rule and record
+    them, rather than fail the run."""
+    events = [_computer(1, {"action": "screenshot"}),
+              _computer(2, {}, tool="list_mcp_resources"),
+              _computer(3, {}, tool="list_mcp_resource_templates")]
+    rollout = tmp_path / "rollout.jsonl"
+    rollout.write_text(_rollout_lines(leaky=False, extra=[
+        _exec("await tools.mcp__osworld__computer({action: 'screenshot'})"),
+        _exec("await tools.list_mcp_resources({})")]))
+    _, order, _, result, verdict, infra = _official_run(monkeypatch, tmp_path, events,
+                                                        rollout=rollout)
+    assert result["agent_non_computer_tool_calls"] == []
+    assert result["agent_exempt_tool_calls"] == [
+        "list_mcp_resources", "list_mcp_resource_templates", "exec.list_mcp_resources"]
+    assert infra is None
+    assert verdict is not None and verdict.get("source") != "harness"
+    assert "tool_surface_violation" not in verdict
+    assert "score" in order   # scored through _score, not a harness tool-surface FAILURE
+
+
+def test_official_run_exempt_plus_non_exempt_is_still_a_violation(monkeypatch, tmp_path):
+    """An exempt call alongside a genuine violation (e.g. exec.apply_patch) is still a terminal
+    FAILURE -- but the reported tool_surface_violation names only the non-exempt call, and the
+    exempt one is still recorded."""
+    events = [_computer(1, {"action": "screenshot"}),
+              _computer(2, {}, tool="list_mcp_resources")]
+    rollout = tmp_path / "rollout.jsonl"
+    rollout.write_text(_rollout_lines(leaky=False, extra=[
+        _exec("await tools.mcp__osworld__computer({action: 'screenshot'})"),
+        _exec("await tools.apply_patch('*** Begin Patch')")]))
+    _, order, _, result, verdict, infra = _official_run(monkeypatch, tmp_path, events,
+                                                        rollout=rollout)
+    assert result["agent_non_computer_tool_calls"] == ["exec.apply_patch"]
+    assert result["agent_exempt_tool_calls"] == ["list_mcp_resources"]
+    assert verdict == {
+        "id": "t", "verdict": "FAILURE", "reward": 0.0, "source": "harness",
+        "reason": "tool surface violation: exec.apply_patch",
+        "tool_surface_violation": ["exec.apply_patch"],
+    }
+    assert infra is None
+    assert "score" not in order
+
+
+def test_official_run_without_a_rollout_leaves_exempt_calls_unverifiable_too(monkeypatch, tmp_path):
+    """Unverifiable audit (no rollout) means both partitioned fields stay None -- an unaudited
+    run is never recorded as clean, exempt calls included."""
+    _, _, _, result, verdict, infra = _official_run(
+        monkeypatch, tmp_path, [_computer(1, {"action": "screenshot"}), _msg(2, "x")],
+        rollout=None)
+    assert result["agent_non_computer_tool_calls"] is None
+    assert result["agent_exempt_tool_calls"] is None
+    assert verdict is None
+    assert infra[-1]["error_type"] == "ToolAuditUnavailable"
+
+
+def test_exempt_tools_lock_matches_the_frozeset():
+    lock = json.loads(OFFICIAL_LOCK.read_text())
+    assert lock["tool_policy"]["exempt_tools"] == sorted(gpt_astra.CODEX_EXEMPT_TOOLS)
+    assert lock["exempt_tools_note"].startswith("user decision 2026-09-25")
+
+
+@pytest.mark.parametrize("mutate", [
+    lambda lock: lock["tool_policy"].pop("exempt_tools"),
+    lambda lock: lock["tool_policy"].__setitem__("exempt_tools", ["read_mcp_resource"]),
+], ids=["missing", "altered"])
+def test_official_lock_refuses_a_tool_policy_missing_or_altered_exempt_tools(
+        monkeypatch, tmp_path, mutate):
+    lock = json.loads(OFFICIAL_LOCK.read_text())
+    mutate(lock)
+    tmp_lock = tmp_path / "mutated_lock.json"
+    tmp_lock.write_text(json.dumps(lock))
+    monkeypatch.setattr(gpt_astra, "_LOCK", tmp_lock)
+    monkeypatch.setattr(config, "ASTRA_REASONING_EFFORT", "max")
+    with pytest.raises(SystemExit, match="tool policy"):
+        gpt_astra._validate_campaign_lock()
 
 
 def test_official_run_without_a_rollout_is_not_scored(monkeypatch, tmp_path):
