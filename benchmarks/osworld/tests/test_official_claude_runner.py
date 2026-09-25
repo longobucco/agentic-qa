@@ -106,6 +106,10 @@ def test_official_argv(monkeypatch, tmp_path):
     assert kw["max_turns"] == 2 * config.MAX_STEPS + 20
     disallowed = kw["extra"][kw["extra"].index("--disallowedTools") + 1:]
     assert "Read" in disallowed and "Bash" in disallowed
+    extra = kw["extra"]
+    assert extra.count("--strict-mcp-config") == 1
+    assert extra == ["--disallowedTools", *agent_computer.CLAUDE_BUILTIN_TOOLS,
+                     "--strict-mcp-config", *agent_computer.CLAUDE_ISOLATION_FLAGS]
 
 
 def test_official_password_only_on_kvm(monkeypatch, tmp_path):
