@@ -193,7 +193,7 @@ IMAGE = os.environ.get(   # pinned by digest -- Daytona caches images by tag, no
     # --- previous pin, kept for history ---
     # 2026-09-23 (later same day): rebuilt on top of the digest below, adding
     # ENV XDG_CONFIG_HOME=/opt/osw_xdg_unused -- extends the SAME Chrome anti-hijacking fix
-    # open-book already had (docker/Dockerfile.osworld-openbook, 2026-09-12) to closed-book.
+    # open-book's own image already had (2026-09-12) to closed-book.
     # Found live re-validating the CDP-routing fix just below: even with routing fixed, Chrome
     # itself never bound --remote-debugging-port at all ("DevTools remote debugging requires a
     # non-default data directory" in its own log) -- nothing downstream (socat, CdpForwarder)
@@ -322,8 +322,3 @@ POPULATION = "verified361"
 _osw_population = os.environ.get("OSW_POPULATION", "").strip()
 if _osw_population not in ("", "verified361"):
     raise SystemExit(f"OSW_POPULATION={_osw_population!r}: expected '' or 'verified361'")
-# "os": a generic desktop/OS-level capability tag (terminal use, file manager, ...) that shows
-# up alongside a task's real app tag(s), e.g. ['vlc', 'os'] or ['vscode', 'os'] -- not an
-# installable app, same category as "terminal". Found live 2026-08-19: treating it as an
-# unsupported app was excluding 85 otherwise-runnable tasks from the population for no reason.
-ALWAYS_PRESENT_CAPABILITIES = {"terminal", "os"}   # not apps -- always in the image
