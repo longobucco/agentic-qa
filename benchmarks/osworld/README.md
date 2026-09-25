@@ -164,14 +164,15 @@ BACKEND=kvm ARM=sonnet|astra PARALLEL=K MAX_HOURS=H \
 ```
 
 `scripts/kvm_host_setup.sh` prepares the KVM host (the official VM image and the qcow2) and
-prints the `OSW_KVM_*` exports to use. `OSW_KVM_IMAGE` must be that digest reference of the
-official image, `happysixd/osworld-docker@sha256:<64 hex>`; a tag or any other image is refused
-(exit 2), since the kvm preflight only checks that the image exists on the docker host. The
-other `OSW_KVM_*` host settings (`OSW_KVM_DOCKER_HOST`, `OSW_KVM_ADDR`, `OSW_KVM_QCOW2`,
-`OSW_KVM_QCOW2_SHA256`) come from the caller's environment and are validated by the kvm
-preflight; a loopback `OSW_KVM_ADDR` with a remote `OSW_KVM_DOCKER_HOST` is refused (exit 2),
-because the VM's ports are published on the docker host. `OSW_KVM_CLIENT_PASSWORD` is pinned at
-its default like every other harness knob.
+prints the `OSW_KVM_QCOW2`, `OSW_KVM_QCOW2_SHA256` and `OSW_KVM_IMAGE` exports to use.
+`OSW_KVM_IMAGE` must be that digest reference of the official image,
+`happysixd/osworld-docker@sha256:<64 hex>`; a tag or any other image is refused (exit 2), since
+the kvm preflight only checks that the image exists on the docker host. `OSW_KVM_DOCKER_HOST` and
+`OSW_KVM_ADDR` are the operator's own choice, not printed by the setup script; the kvm preflight
+checks that the docker host is reachable and enforces the loopback rule -- a loopback
+`OSW_KVM_ADDR` with a remote `OSW_KVM_DOCKER_HOST` is refused (exit 2), because the VM's ports are
+published on the docker host. `OSW_KVM_CLIENT_PASSWORD` is pinned at its default like every other
+harness knob.
 
 Every VM container a driver child starts is labelled with that driver run's id
 (`env/kvm_vm.DRIVER_RUN_LABEL`), and after every round, after terminating its children on
