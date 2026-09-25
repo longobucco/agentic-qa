@@ -10,6 +10,7 @@ import random
 import statistics
 import sys
 import tempfile
+from datetime import datetime, timezone
 from pathlib import Path
 
 from benchmarks.osworld import config
@@ -64,6 +65,25 @@ def _run_codex(x, y, out):
     subprocess.run(cmd, capture_output=True, timeout=600)
 
 
+def _utc_stamp():
+    return datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+
+
+def write_record(rec, cli):
+    """Write a probe record to a fresh, timestamped path under `_probes_official`.
+
+    Never overwrites an existing record: `_probes` (used by Phase 1 and frozen)
+    is never written here.
+    """
+    dest_dir = config.RESULTS_DIR / "_probes_official"
+    dest_dir.mkdir(parents=True, exist_ok=True)
+    dest = dest_dir / f"screenshot_delivery_{cli}_{_utc_stamp()}.json"
+    if dest.exists():
+        raise FileExistsError(f"refusing to overwrite existing probe record: {dest}")
+    dest.write_text(json.dumps(rec, indent=2))
+    return dest
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--cli", choices=["claude", "codex"], required=True)
@@ -84,9 +104,7 @@ def main():
         raise SystemExit("no trial produced an answer -- probe inconclusive")
     rec = {"cli": args.cli, "trials": args.trials, "answered": len(points),
            "points": points, **verdict(points)}
-    dest = config.RESULTS_DIR / "_probes" / f"screenshot_delivery_{args.cli}.json"
-    dest.parent.mkdir(parents=True, exist_ok=True)
-    dest.write_text(json.dumps(rec, indent=2))
+    write_record(rec, args.cli)
     print(json.dumps(rec, indent=2))
 
 
