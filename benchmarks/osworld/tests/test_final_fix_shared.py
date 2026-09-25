@@ -387,7 +387,7 @@ def _preflight_calls(monkeypatch):
 def test_claude_preflight_skips_only_the_probe_for_the_driver_run(monkeypatch, ok, run_id, probed):
     calls = _preflight_calls(monkeypatch)
     monkeypatch.setenv("OSW_OFFICIAL_PREFLIGHT_OK", ok)
-    monkeypatch.setenv("OSW_KVM_DRIVER_RUN", run_id)
+    monkeypatch.setenv("OSW_DRIVER_RUN", run_id)
     agent_computer.preflight()
     assert calls == ["pinned", "version"] + (["tools"] if probed else [])
 
@@ -399,10 +399,10 @@ def test_codex_preflight_skips_only_the_session_probe_for_the_driver_run(monkeyp
     monkeypatch.setattr(gpt_astra.astra_common, "check_codex_cli", lambda **kw: calls.append("cli"))
     monkeypatch.setattr(gpt_astra, "official_session_preflight", lambda: calls.append("probe"))
     monkeypatch.setenv("OSW_OFFICIAL_PREFLIGHT_OK", "drv-1")
-    monkeypatch.setenv("OSW_KVM_DRIVER_RUN", "drv-1")
+    monkeypatch.setenv("OSW_DRIVER_RUN", "drv-1")
     gpt_astra.preflight()
     assert calls == ["pinned", "lock", "cli"]
-    monkeypatch.setenv("OSW_KVM_DRIVER_RUN", "other")
+    monkeypatch.setenv("OSW_DRIVER_RUN", "other")
     gpt_astra.preflight()
     assert calls[-1] == "probe"
 
@@ -438,3 +438,12 @@ def test_provenance_image_is_the_kvm_image_on_kvm(monkeypatch):
 
 def test_client_password_is_a_recorded_harness_knob():
     assert "OSW_KVM_CLIENT_PASSWORD" in core_run._HARNESS_ENV_KEYS
+
+
+def test_the_old_kvm_marker_no_longer_vouches_for_children(monkeypatch):
+    monkeypatch.setenv("OSW_OFFICIAL_PREFLIGHT_OK", "drv-1")
+    monkeypatch.setenv("OSW_KVM_DRIVER_RUN", "drv-1")
+    monkeypatch.delenv("OSW_DRIVER_RUN", raising=False)
+    assert common.official_probe_already_passed() is False
+    monkeypatch.setenv("OSW_DRIVER_RUN", "drv-1")
+    assert common.official_probe_already_passed() is True

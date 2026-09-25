@@ -116,6 +116,42 @@ Spike without provisioning (drive a desktop you already have up):
 OSW_CONTROLLER_URL=http://<url>:5000 python -m benchmarks.osworld.run --ids <task-id>
 ```
 
+## Campaigns
+
+`scripts/g_official361_driver.py` runs the full official-protocol campaign (361 tasks x 5 runs)
+against the Daytona backend end to end -- parallel shards, quota-safe, preflight first. The
+rules (rounds, resume, backoff, stop, signals) live in `benchmarks/osworld/campaign.py`; the
+backend module (`benchmarks/osworld/campaign_daytona.py`) supplies its own protocol variables,
+extra refusals and the sweep of its own orphaned sandboxes.
+
+```
+BACKEND=daytona ARM=sonnet|astra PARALLEL=K MAX_HOURS=H \
+  .venv/bin/python scripts/g_official361_driver.py
+... --dry-run    # print the planned batches, run nothing
+```
+
+`BACKEND=daytona` is the only backend wired up on this branch. For `ARM=astra`,
+`OSW_ASTRA_REASONING_EFFORT` must be set explicitly by the caller -- it is a campaign decision,
+never a default. The results tree is named `agent_computer_sonnet5_effortmax_protocol361_official`
+for Sonnet, or `agent_computer_gpt6astra_<effort>_codex01534_protocol361_official` for Astra.
+
+The driver resumes from disk: a restarted process re-derives its pending `(task, run)` units from
+what's already on disk (`core.results.is_done`), so no `--force` flag or manual bookkeeping is
+needed. If >= 50% of the units attempted in a round were rate-limited, it backs off 30 minutes
+(quota windows reset on the order of hours) before trying again. It stops (exit 3) on a systemic
+or repeated non-quota failure, a child that exited non-zero without writing any
+`infra_error.json`, an `AUTH_ERROR`, or a unit already stuck from an earlier session -- see the
+module docstring in `campaign.py` for the exact rules.
+
+`OSW_IMAGE` must be left unset: the driver's harness-knob table pins it at `""`, which means
+`config.IMAGE`'s pinned digest; any other value is refused before a single sandbox starts. Every
+sandbox a driver child provisions is labelled with that driver run's id
+(`env/sandbox.DRIVER_RUN_LABEL`), and after every round and on exit the driver deletes only the
+sandboxes carrying its own run id -- another driver's (or a manually started) sandbox is never
+touched, even if the server-side label filter were ever to leak one.
+
+Everything the driver and its children print goes to `scripts/g_official361_<arm>_daytona.log`.
+
 ## Reporting
 
 `python -m benchmarks.osworld.report [<system>]` (defaults to the current pinned system) prints:

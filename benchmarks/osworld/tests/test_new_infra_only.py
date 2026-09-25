@@ -13,10 +13,11 @@ _BANNED = re.compile(r"config\.OFFICIAL|OSW_ZOOM_BATCH|OSW_GROUNDING|OSW_INLOOP_
                      r"OSW_SELF_VERIFY|OSW_ENFORCE_SANDBOX|OSW_RESTRICT_RUN_PYTHON|OSW_VR_|"
                      r"verify_replan|openbook|open_book|agent_prompt")
 # Files allowed to name the legacy knobs: the refusal list itself, this test, and the campaign
-# driver's env-conflict table (vm branch).
+# core's env-conflict table (and its tests).
 _ALLOWED = {"benchmarks/osworld/config.py", "benchmarks/osworld/tests/test_new_infra_only.py",
             "scripts/g_official361_driver.py", "scripts/tests/test_official361_driver.py",
-            "benchmarks/osworld/tests/test_official361_driver.py"}
+            "benchmarks/osworld/tests/test_official361_driver.py",
+            "benchmarks/osworld/campaign.py", "benchmarks/osworld/tests/test_campaign.py"}
 
 
 def test_no_source_file_mentions_the_legacy_harness():
