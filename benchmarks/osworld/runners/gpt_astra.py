@@ -212,6 +212,9 @@ def _validate_campaign_lock():
 
 
 def preflight():
+    # Re-checked directly: config refuses legacy knobs at import, but core.run loads .env
+    # (which can carry a stale legacy knob) after benchmark.build() has already imported config.
+    config._refuse_legacy_knobs()
     osworld_eval.pinned_code_preflight()
     _validate_campaign_lock()
     # core.run writes harness.json after preflight; materialize defaults so a direct invocation
