@@ -257,10 +257,10 @@ def claude_cli_version(*, cached=True):
 
 def official_probe_already_passed():
     """True when the campaign driver already ran the live-model isolation probe for THIS driver
-    run (it exports OSW_OFFICIAL_PREFLIGHT_OK=<its run id> next to OSW_KVM_DRIVER_RUN): children
+    run (it exports OSW_OFFICIAL_PREFLIGHT_OK=<its run id> next to OSW_DRIVER_RUN): children
     then skip only that probe, never the cheap checks."""
     ok = os.environ.get("OSW_OFFICIAL_PREFLIGHT_OK", "").strip()
-    return bool(ok) and ok == os.environ.get("OSW_KVM_DRIVER_RUN", "").strip()
+    return bool(ok) and ok == os.environ.get("OSW_DRIVER_RUN", "").strip()
 
 
 def protocol_wait(seconds, *, sleep=None):

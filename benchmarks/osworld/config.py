@@ -180,8 +180,12 @@ SYSTEM_NAME = f"{SYSTEM_NAME}_official"
 if BACKEND == "kvm":
     SYSTEM_NAME = f"{SYSTEM_NAME}_kvm"
 
-IMAGE = os.environ.get(   # pinned by digest -- Daytona caches images by tag, not :latest
-    "OSW_IMAGE",
+IMAGE = os.environ.get("OSW_IMAGE", "").strip() or (
+    # pinned by digest -- Daytona caches images by tag, not :latest. An empty OSW_IMAGE (unset,
+    # or explicitly "") means this pinned digest; the campaign driver's harness-knob table relies
+    # on that (see campaign_daytona.harness_knob_defaults) to make "" the only value a caller may
+    # pass without changing the guest image.
+    #
     # 2026-09-24: rebuilt on top of the digest below with the guest screen at 1920x1080 (Xvfb
     # and the VLC prewarm display; the published OSWorld-Verified setting, matching the
     # SetupController's placeholder substitution) and four packages 11 of the 361 published
@@ -189,7 +193,7 @@ IMAGE = os.environ.get(   # pinned by digest -- Daytona caches images by tag, no
     # the previous image runs Xvfb at 1280x1024 and every run on it now ends as
     # ENVIRONMENT_ERROR by design.
     "ghcr.io/longobucco/osworld-ab@sha256:"
-    "759b54f8b15fbb03544f8ac193ce86115d935a3dd8554a1c44b30f904ed07ea2",
+    "759b54f8b15fbb03544f8ac193ce86115d935a3dd8554a1c44b30f904ed07ea2"
     # --- previous pin, kept for history ---
     # 2026-09-23 (later same day): rebuilt on top of the digest below, adding
     # ENV XDG_CONFIG_HOME=/opt/osw_xdg_unused -- extends the SAME Chrome anti-hijacking fix
