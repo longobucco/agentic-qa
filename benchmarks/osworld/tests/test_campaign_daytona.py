@@ -17,10 +17,11 @@ _ROOT = Path(__file__).resolve().parents[3]
 class FakeDaytona:
     def __init__(self, sandboxes, fail_list=False, fail_delete=()):
         self.sandboxes, self.fail_list, self.fail_delete = sandboxes, fail_list, set(fail_delete)
-        self.deleted, self.queries = [], []
+        self.deleted, self.queries, self.request_timeouts = [], [], []
 
-    def list(self, query):
+    def list(self, query, request_timeout=None):
         self.queries.append(query)
+        self.request_timeouts.append(request_timeout)
         if self.fail_list:
             raise RuntimeError("daytona API down")
         return iter(self.sandboxes)
@@ -41,6 +42,12 @@ def test_sweep_deletes_only_this_runs_sandboxes_even_if_the_filter_leaks():
     assert dt.sweep("run1", logs.append, client=fake) == 1
     assert fake.deleted == ["mine"]
     assert fake.queries[0].labels == {"osworld.driver_run": "run1"}
+
+
+def test_sweep_passes_a_request_timeout_so_a_hung_api_call_cannot_stall_the_driver_forever():
+    fake = FakeDaytona([_sb("mine", "run1")])
+    dt.sweep("run1", print, client=fake)
+    assert fake.request_timeouts == [60]
 
 
 def test_sweep_logs_api_errors_instead_of_raising():
@@ -181,7 +188,7 @@ d.CHILD_GRACE_S = 2
 
 
 class _FakeDaytonaClient:
-    def list(self, query):
+    def list(self, query, request_timeout=None):
         raise RuntimeError("daytona API down")
 
 
