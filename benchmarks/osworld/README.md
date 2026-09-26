@@ -136,8 +136,13 @@ BACKEND=daytona ARM=sonnet|astra PARALLEL=K MAX_HOURS=H \
 
 `BACKEND=daytona` is the only backend wired up on this branch. For `ARM=astra`,
 `OSW_ASTRA_REASONING_EFFORT` must be set explicitly by the caller -- it is a campaign decision,
-never a default. The results tree is named `agent_computer_sonnet5_effortmax_protocol361_official`
-for Sonnet, or `agent_computer_gpt6astra_<effort>_codex01534_protocol361_official` for Astra.
+never a default. The results tree is named
+`agent_computer_sonnet5_effortmax_protocol361img2_official` for Sonnet, or
+`agent_computer_gpt6astra_<effort>_codex01534_protocol361img2_official` for Astra. The Daytona
+guest image was re-pinned on 26/09/2026 (the pkgfix layer adding unzip/zip/jq/psmisc/xsel/
+gnome-terminal, six commands 23 of the 361 tasks needed); earlier Daytona trees
+(`...protocol361_official`, the canaries) were produced on the previous digest and must not be
+pooled with runs on the new one.
 
 The driver resumes from disk: a restarted process re-derives its pending `(task, run)` units from
 what's already on disk (`core.results.is_done`), so no `--force` flag or manual bookkeeping is

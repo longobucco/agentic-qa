@@ -193,7 +193,20 @@ IMAGE = os.environ.get("OSW_IMAGE", "").strip() or (
     # the previous image runs Xvfb at 1280x1024 and every run on it now ends as
     # ENVIRONMENT_ERROR by design.
     "ghcr.io/longobucco/osworld-ab@sha256:"
-    "759b54f8b15fbb03544f8ac193ce86115d935a3dd8554a1c44b30f904ed07ea2"
+    "fff0c8be3f9a2f928d29c5ce7130c1cba280783e90b441299dd13a07eb8801d6"
+    # --- previous pin, kept for history ---
+    # 26/09/2026: a thin layer (docker/Dockerfile.osworld-pkgfix) on top of the digest below,
+    # adding exactly six packages: unzip, zip, jq, psmisc (killall), xsel, gnome-terminal.
+    # Found by a live audit of the base digest against the full 361-task set: 23 of the 361
+    # published tasks call one of these six commands in their own setup or postconfig, and the
+    # base image lacked all of them, so those tasks failed silently for every model (e.g.
+    # 82e3c869: postconfig runs `unzip`, the evaluator receives None, the task scores 0).
+    # unzip: 14 tasks, gnome-terminal: 6, killall/psmisc: 4, jq: 3, zip: 2, xsel: 1. Verified live:
+    # desktop readiness gate ok at 1080p, all 6 commands present, gnome-terminal opens a real
+    # window under openbox. docker/Dockerfile.osworld also lists the same six packages so a future
+    # full rebuild includes them without depending on this thin layer.
+    #     "ghcr.io/longobucco/osworld-ab@sha256:"
+    #     "759b54f8b15fbb03544f8ac193ce86115d935a3dd8554a1c44b30f904ed07ea2"
     # --- previous pin, kept for history ---
     # 2026-09-23 (later same day): rebuilt on top of the digest below, adding
     # ENV XDG_CONFIG_HOME=/opt/osw_xdg_unused -- extends the SAME Chrome anti-hijacking fix

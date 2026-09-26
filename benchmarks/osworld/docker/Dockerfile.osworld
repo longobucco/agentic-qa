@@ -89,6 +89,9 @@ ENV XDG_CONFIG_HOME=/opt/osw_xdg_unused
 # multi-app scenario; without the binary installed, that launch step silently no-ops (same
 # SetupController blind spot as the missing-sudo case above) and _verify_launches correctly
 # reports "launched app(s) never started/rendered: nautilus" (confirmed live 2026-09-22).
+# unzip/zip/jq/psmisc(killall)/xsel/gnome-terminal -- called by 23 of the 361 published tasks in
+# setup or postconfig (audit 26/09/2026; see Dockerfile.osworld-pkgfix, the layer that added them
+# to the pinned digest without a full rebuild).
 # evince/eog/totem/picard -- default Ubuntu PDF viewer, image viewer, media player, and
 # MusicBrainz Picard: 11 of the 361 published tasks need them (tags pdf/image/
 # ubuntu_media_player/picard).
@@ -107,6 +110,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         nautilus \
         evince eog totem picard \
         git \
+        unzip zip jq psmisc xsel gnome-terminal \
     && rm -rf /var/lib/apt/lists/*
 
 # Batch 3: chrome (task launch command is literally "google-chrome") and vscode ("code") aren't

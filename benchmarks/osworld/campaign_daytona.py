@@ -10,6 +10,10 @@ touched. The guest image is the digest pinned in config.IMAGE; a caller's OSW_IM
 NAME = "daytona"
 LOG_SUFFIX = "_daytona"
 DRIVER_RUN_LABEL = "osworld.driver_run"   # == env/sandbox.DRIVER_RUN_LABEL (not imported: config)
+# Guest image pkgfix of 26/09/2026 (six missing commands added, see config.IMAGE's history
+# comment): a distinct results tree so these runs never pool with the 11 runs already made on the
+# previous digest under the plain `protocol361` suffix.
+SYSTEM_SUFFIX = "protocol361img2"
 
 
 def protocol_env():
