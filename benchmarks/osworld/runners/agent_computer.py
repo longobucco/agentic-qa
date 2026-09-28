@@ -34,7 +34,8 @@ from core import results as results_io
 # Every non-MCP tool Claude Code offers, all denied so the agent acts only through the
 # `computer` tool, as upstream's agent does. Read from the `init` event's `tools` of
 # `claude -p --output-format stream-json --verbose` on CLI 2.1.280, 2026-09-24 -- a newer CLI
-# may add tools, so re-read it when the pinned CLI changes.
+# may add tools, so re-read it when the pinned CLI changes. Re-verified by the live preflight
+# probe on 2.1.282 (25/09/2026).
 CLAUDE_BUILTIN_TOOLS = [
     "Task", "Artifact", "ArtifactComments", "ArtifactData", "Bash", "CronCreate", "CronDelete",
     "CronList", "DesignSync", "Edit", "EnterWorktree", "ExitWorktree", "ListAgents", "Monitor",
@@ -43,11 +44,13 @@ CLAUDE_BUILTIN_TOOLS = [
     "Write",
     # Not in the init event's `tools`, yet offered to the model: seen in the session's
     # system-prompt snapshot (CLI 2.1.280, 2026-09-24, task-6-report.md fix round 1).
+    # Re-verified by the live preflight probe on 2.1.282 (25/09/2026).
     "Glob", "Grep", "ListMcpResourcesTool", "ReadMcpResourceTool", "ReadMcpResourceDirTool",
 ]
 OFFICIAL_TOOL = "mcp__osworld__computer"
 # Official-run isolation from host context (hooks, plugins, user/project settings), verified
-# live on CLI 2.1.280 (task-6-report.md, fix round 1): no setting sources means no user
+# live on CLI 2.1.280 (task-6-report.md, fix round 1), re-verified by the live preflight probe
+# on 2.1.282 (25/09/2026): no setting sources means no user
 # settings, so no plugins or their SessionStart hooks; disableAllHooks drops any hook left.
 # Together with the empty cwd (_isolated_workdir) this also removes project memory/CLAUDE.md,
 # git status and the repo path. `--bare` would go further but requires API-key auth.
@@ -63,7 +66,8 @@ OFFICIAL_TOLERATED_LEAKS = ("user_email",)
 def _isolated_workdir():
     """A fresh, empty cwd for the official CLI session (removed afterwards): no repo CLAUDE.md,
     no project auto-memory keyed by the repo path, no git status, no repo path in the
-    environment block. Verified live on CLI 2.1.280 (task-6-report.md, fix round 1)."""
+    environment block. Verified live on CLI 2.1.280 (task-6-report.md, fix round 1);
+    re-verified by the live preflight probe on 2.1.282 (25/09/2026)."""
     d = tempfile.mkdtemp(prefix="osw_claude_")
     try:
         yield d

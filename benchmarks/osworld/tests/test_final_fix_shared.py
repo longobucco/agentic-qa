@@ -302,7 +302,7 @@ def test_run_records_unexpected_offered_tools(monkeypatch, tmp_path):
 def test_claude_code_version_default_and_override():
     with patch.dict(os.environ, {"OSW_CLAUDE_CODE_VERSION": ""}):
         os.environ.pop("OSW_CLAUDE_CODE_VERSION")
-        assert importlib.reload(config).CLAUDE_CODE_VERSION == "2.1.280"
+        assert importlib.reload(config).CLAUDE_CODE_VERSION == "2.1.282"
     with patch.dict(os.environ, {"OSW_CLAUDE_CODE_VERSION": "9.9.9"}):
         assert importlib.reload(config).CLAUDE_CODE_VERSION == "9.9.9"
     importlib.reload(config)
