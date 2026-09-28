@@ -331,7 +331,8 @@ def run(task, *, env, out, refs=None, dry=False):
         # from "transcript failed to copy".
         result_rec.update(_save_conversation_transcript(meta, out, task["id"]))
         results_io.write_result(out, result_rec)
-        results_io.write_infra_error(out, _rate_limit_infra_rec(task, api_error_status))
+        results_io.write_infra_error(out, _rate_limit_infra_rec(task, api_error_status,
+                                                                meta.get("result", "")))
         return ""
 
     text = meta.get("result", "")

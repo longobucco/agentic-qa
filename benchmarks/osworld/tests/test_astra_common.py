@@ -39,6 +39,12 @@ def test_rate_limit_rec_uses_the_rate_limited_outcome_for_429():
     assert rec["outcome"] == "RATE_LIMITED"
 
 
+def test_rate_limit_rec_marks_codexs_usage_limit_as_quota_exhausted():
+    text = "You've hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro)"
+    assert astra_common.rate_limit_rec({"id": "t1"}, 429, text)["quota_exhausted"] is True
+    assert astra_common.rate_limit_rec({"id": "t1"}, 429, "HTTP 429")["quota_exhausted"] is False
+
+
 def test_rate_limit_rec_uses_a_distinct_outcome_for_auth_revoked():
     rec = astra_common.rate_limit_rec({"id": "t1"}, "AUTH_REVOKED")
     assert rec["outcome"] == "AUTH_ERROR"

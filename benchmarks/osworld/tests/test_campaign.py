@@ -85,6 +85,25 @@ def test_decide_backs_off_when_half_or_more_of_attempted_units_were_rate_limited
     assert campaign.decide(results) == "backoff"
 
 
+def test_decide_retries_soon_when_no_rate_limited_unit_reported_an_exhausted_quota():
+    transient = lambda tid: {**_unit(tid, 1, fresh="RATE_LIMITED", history=["RATE_LIMITED"]),
+                             "fresh_quota": False}
+    assert campaign.decide([_batch(0, [transient("a"), transient("b")])]) == "retry"
+    quota = {**transient("c"), "fresh_quota": True}
+    assert campaign.decide([_batch(0, [transient("a"), quota])]) == "backoff"
+
+
+def test_a_rate_limit_record_without_the_quota_flag_counts_as_an_exhausted_quota():
+    # records written before the flag existed keep today's long backoff
+    assert campaign.decide([_batch(0, [_unit("a", 1, fresh="RATE_LIMITED",
+                                             history=["RATE_LIMITED"])])]) == "backoff"
+
+
+def test_backoff_seconds_is_long_for_a_quota_and_doubles_from_short_for_transient_429s():
+    assert campaign.backoff_seconds("backoff", 0) == campaign.BACKOFF_S == 1800
+    assert [campaign.backoff_seconds("retry", n) for n in range(5)] == [300, 600, 1200, 1800, 1800]
+
+
 def test_decide_continues_below_the_rate_limit_threshold():
     results = [_batch(0, [_unit("a", 1, fresh="RATE_LIMITED", history=["RATE_LIMITED"]),
                           _unit("a", 2), _unit("a", 3)])]
@@ -207,7 +226,8 @@ class _FakePopen:
                 path.write_text("{not json")
                 continue
             hist = json.loads(path.read_text()) if path.exists() else []
-            path.write_text(json.dumps(hist + [{"outcome": outcome}]))
+            rec = outcome if isinstance(outcome, dict) else {"outcome": outcome}
+            path.write_text(json.dumps(hist + [rec]))
 
     def wait(self):
         return self.returncode
@@ -220,7 +240,8 @@ def test_run_round_launches_one_child_per_batch_and_reports_fresh_outcomes(tmp_p
     stale = tmp_path / "sys" / "b" / "run_1"   # an older attempt: history, but not fresh
     stale.mkdir(parents=True)
     (stale / "infra_error.json").write_text(json.dumps([{"outcome": "INFRA_FLAKE"}]))
-    _FakePopen.script = {"a": (0, {("a", 1): "RATE_LIMITED"}), "b": (2, {})}
+    _FakePopen.script = {"a": (0, {("a", 1): {"outcome": "RATE_LIMITED",
+                                              "quota_exhausted": False}}), "b": (2, {})}
     pending = [("a", 1), ("a", 2), ("b", 1)]
     results = campaign.run_round("sys", [["a"], ["b"]], pending, runs=5, log_file=None)
     assert [c[c.index("--ids") + 1:] for c in _FakePopen.launched] == [["a"], ["b"]]
@@ -229,10 +250,10 @@ def test_run_round_launches_one_child_per_batch_and_reports_fresh_outcomes(tmp_p
         assert cmd[cmd.index("--runs") + 1] == "5"
         assert cmd[cmd.index("--concurrency") + 1] == "1"
         assert "--force" not in cmd
-    no_outcome = lambda u, n: {**u, "no_outcome": True, "no_outcomes": n}
-    outcome = lambda u: {**u, "no_outcome": False, "no_outcomes": 0}
+    no_outcome = lambda u, n: {**u, "fresh_quota": None, "no_outcome": True, "no_outcomes": n}
+    outcome = lambda u, q: {**u, "fresh_quota": q, "no_outcome": False, "no_outcomes": 0}
     assert results == [
-        _batch(0, [outcome(_unit("a", 1, "RATE_LIMITED", ["RATE_LIMITED"])),
+        _batch(0, [outcome(_unit("a", 1, "RATE_LIMITED", ["RATE_LIMITED"]), False),
                    no_outcome(_unit("a", 2), 1)]),
         _batch(2, [no_outcome(_unit("b", 1, None, ["INFRA_FLAKE"]), 1)]),
     ]

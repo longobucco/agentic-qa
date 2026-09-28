@@ -778,11 +778,24 @@ def _save_conversation_transcript(meta, out, task_id=None):
         return {"transcript_saved": False, "transcript_error": f"copy failed: {e}"}
 
 
-def _rate_limit_infra_rec(task, api_error_status):
+# The agent CLIs' own message for an exhausted subscription window: Claude Code "You've hit your
+# session limit · resets 9:10pm", Codex "You've hit your usage limit. Upgrade to Pro ...". A 429
+# without it is a short throttle (seen live 2026-09-28: 14 runs refused within 6 minutes, clean
+# runs right after).
+_QUOTA_MESSAGE = re.compile(r"hit your \w+ limit", re.IGNORECASE)
+
+
+def quota_exhausted(text):
+    return bool(_QUOTA_MESSAGE.search(text or ""))
+
+
+def _rate_limit_infra_rec(task, api_error_status, text=""):
     """Deliberately NOT eval.json (see write_infra_error): a subscription session limit is
     transient on a fixed reset clock, not evidence of agent success or failure. Written so
     is_done() still sees this run as undone -- a later `--runs` invocation retries it
-    automatically once the limit clears, no --force needed."""
+    automatically once the limit clears, no --force needed. `quota_exhausted` tells the
+    campaign driver whether to wait out a quota window or retry soon (`text`: the CLI's output)."""
     return {"id": task["id"], "outcome": "RATE_LIMITED",
             "error_type": "APIError", "error": f"api_error_status={api_error_status}",
+            "quota_exhausted": quota_exhausted(text),
             "at": time.strftime("%Y-%m-%dT%H:%M:%S%z")}

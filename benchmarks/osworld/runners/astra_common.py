@@ -15,7 +15,7 @@ from pathlib import Path
 
 from benchmarks.osworld import config
 from benchmarks.osworld.runners.agent_computer import _provenance
-from benchmarks.osworld.runners.common import _host_path_markers
+from benchmarks.osworld.runners.common import _host_path_markers, quota_exhausted
 from core.codex_loop import session_context
 
 _SUSPICIOUS = ("evaluator", "gold", "results", "task_spec")
@@ -271,7 +271,7 @@ def codex_rollout_tool_calls(path):
     return names
 
 
-def rate_limit_rec(task, status):
+def rate_limit_rec(task, status, text=""):
     """`status` is either the int 429 (a real, self-clearing rate limit -- the driver's backoff
     is the right response) or the string "AUTH_REVOKED" (the Codex CLI session itself is dead --
     no amount of waiting fixes this, a human has to re-authenticate). Distinct outcomes so a
@@ -279,7 +279,7 @@ def rate_limit_rec(task, status):
     outcome = "AUTH_ERROR" if status == "AUTH_REVOKED" else "RATE_LIMITED"
     return {
         "id": task["id"], "outcome": outcome, "error_type": "APIError",
-        "error": f"api_error_status={status}",
+        "error": f"api_error_status={status}", "quota_exhausted": quota_exhausted(text),
         "at": datetime.now(timezone.utc).isoformat(),
     }
 

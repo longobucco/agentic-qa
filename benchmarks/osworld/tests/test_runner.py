@@ -304,6 +304,16 @@ def test_rate_limit_infra_rec_carries_the_status_code():
     assert "429" in rec["error"]
 
 
+def test_rate_limit_infra_rec_marks_a_subscription_limit_as_quota_exhausted():
+    """The CLI's own limit message means a window that lasts hours; a bare 429 with no such
+    message (seen live 2026-09-28: 14 runs in 6 minutes, then clean runs again) does not. The
+    campaign driver backs off differently on the two."""
+    limit = "You've hit your session limit · resets 9:10pm (Europe/Rome)"
+    assert _rate_limit_infra_rec(_RATE_LIMITED_TASK, 429, limit)["quota_exhausted"] is True
+    assert _rate_limit_infra_rec(_RATE_LIMITED_TASK, 429, "")["quota_exhausted"] is False
+    assert _rate_limit_infra_rec(_RATE_LIMITED_TASK, 429)["quota_exhausted"] is False
+
+
 def test_transcript_status_reports_missing_session_id():
     """No session_id -> report it instead of returning silently. Was a bare `return`."""
     st = _save_conversation_transcript({}, Path(tempfile.mkdtemp(prefix="osw_t_")), "task-x")

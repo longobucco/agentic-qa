@@ -149,7 +149,10 @@ were produced on previous digests and must not be pooled with runs on the new on
 The driver resumes from disk: a restarted process re-derives its pending `(task, run)` units from
 what's already on disk (`core.results.is_done`), so no `--force` flag or manual bookkeeping is
 needed. If >= 50% of the units attempted in a round were rate-limited, it backs off 30 minutes
-(quota windows reset on the order of hours) before trying again. It stops (exit 3) on a systemic
+when any of them reports an exhausted subscription quota (the CLI's "You've hit your ... limit"
+message, recorded as `quota_exhausted` in `infra_error.json`; quota windows reset on the order of
+hours), and otherwise, for a short 429 throttle, waits 5 minutes, doubling on each consecutive
+throttled round up to 30. It stops (exit 3) on a systemic
 or repeated non-quota failure, a child that exited non-zero without writing any
 `infra_error.json`, an `AUTH_ERROR`, or a unit already stuck from an earlier session -- see the
 module docstring in `campaign.py` for the exact rules.
