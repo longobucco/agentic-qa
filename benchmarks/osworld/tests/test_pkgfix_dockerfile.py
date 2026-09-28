@@ -25,3 +25,26 @@ def test_pkgfix_dockerfile_installs_exactly_the_six_missing_packages():
 def test_full_rebuild_dockerfile_carries_the_same_six_packages():
     text = (_DOCKER / "Dockerfile.osworld").read_text()
     assert "unzip zip jq psmisc xsel gnome-terminal" in text
+
+
+# --- pkgfix2 (guest D-Bus session bus re-pin, 28/09/2026) -------------------------------------
+_PKGFIX_DIGEST = ("ghcr.io/longobucco/osworld-ab@sha256:"
+                   "fff0c8be3f9a2f928d29c5ce7130c1cba280783e90b441299dd13a07eb8801d6")
+
+
+def test_pkgfix2_dockerfile_is_from_the_pkgfix_digest():
+    text = (_DOCKER / "Dockerfile.osworld-pkgfix2").read_text()
+    from_lines = [l.strip() for l in text.splitlines() if l.strip().startswith("FROM ")]
+    assert from_lines == [f"FROM {_PKGFIX_DIGEST}"]
+
+
+def test_pkgfix2_dockerfile_copies_start_sh():
+    text = (_DOCKER / "Dockerfile.osworld-pkgfix2").read_text()
+    assert "COPY benchmarks/osworld/docker/start.sh /start.sh" in text
+
+
+def test_start_sh_starts_the_session_bus_at_the_official_address():
+    text = (_DOCKER / "start.sh").read_text()
+    assert "unix:path=$XDG_RUNTIME_DIR/bus" in text
+    assert 'XDG_RUNTIME_DIR=/run/user/1000' in text
+    assert "export DBUS_SESSION_BUS_ADDRESS" in text

@@ -43,16 +43,16 @@ def test_provenance_records_protocol_and_backend(monkeypatch):
     assert "kvm_qcow2_sha256" in rec and "kvm_image" in rec
 
 
-_PKGFIX_DIGEST = ("ghcr.io/longobucco/osworld-ab@sha256:"
-                   "fff0c8be3f9a2f928d29c5ce7130c1cba280783e90b441299dd13a07eb8801d6")
+_PKGFIX2_DIGEST = ("ghcr.io/longobucco/osworld-ab@sha256:"
+                    "d44d8858ae60adcc81db7d4c2241f0c8b2c910ee1a25479856b092169967c33b")
 
 
-def test_an_empty_osw_image_pins_the_pkgfix_digest(monkeypatch):
+def test_an_empty_osw_image_pins_the_pkgfix2_digest(monkeypatch):
     monkeypatch.delenv("OSW_IMAGE", raising=False)
-    assert importlib.reload(config).IMAGE == _PKGFIX_DIGEST
+    assert importlib.reload(config).IMAGE == _PKGFIX2_DIGEST
     monkeypatch.setenv("OSW_IMAGE", "")
     try:
-        assert importlib.reload(config).IMAGE == _PKGFIX_DIGEST
+        assert importlib.reload(config).IMAGE == _PKGFIX2_DIGEST
     finally:
         monkeypatch.delenv("OSW_IMAGE", raising=False)
         importlib.reload(config)

@@ -104,11 +104,11 @@ def test_child_env_pins_the_image_empty_and_the_backend(monkeypatch):
 
 
 def test_daytona_system_suffix_is_image_versioned():
-    assert dt.SYSTEM_SUFFIX == "protocol361img2"
-    assert campaign.protocol_env("sonnet", {}, dt)["OSW_SYSTEM_SUFFIX"] == "protocol361img2"
+    assert dt.SYSTEM_SUFFIX == "protocol361img3"
+    assert campaign.protocol_env("sonnet", {}, dt)["OSW_SYSTEM_SUFFIX"] == "protocol361img3"
     assert campaign.protocol_env(
         "astra", {"OSW_ASTRA_REASONING_EFFORT": "xhigh"}, dt
-    )["OSW_ASTRA_SYSTEM_SUFFIX"] == "protocol361img2"
+    )["OSW_ASTRA_SYSTEM_SUFFIX"] == "protocol361img3"
 
 
 def test_an_empty_osw_image_means_the_pinned_digest(monkeypatch):

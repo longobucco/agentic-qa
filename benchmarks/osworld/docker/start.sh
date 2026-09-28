@@ -44,9 +44,19 @@ sleep 2
 # Started before openbox and the apps so every later process inherits the address: a toolkit
 # bridge only registers at widget-construction time, so an app launched before the bus exists
 # stays invisible to AT-SPI for its whole lifetime even after the bus comes up.
+#
+# The bus listens at the fixed address of the official VM's user session (uid 1000),
+# unix:path=/run/user/1000/bus, not at a random dbus-launch address: 8 of the 361 published
+# tasks hardcode DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/1000/bus' in their setup or
+# evaluator (e.g. 510f64c8 launches `gnome-terminal` with it; with no bus there the terminal never
+# opens, ~/.bash_history is never written and the task fails for any agent -- found live
+# 28/09/2026). One bus for everything: the controller, the apps and the tasks' own commands.
 if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
-    eval "$(dbus-launch --sh-syntax)"
-    export DBUS_SESSION_BUS_ADDRESS DBUS_SESSION_BUS_PID
+    export XDG_RUNTIME_DIR=/run/user/1000
+    mkdir -p "$XDG_RUNTIME_DIR" && chmod 700 "$XDG_RUNTIME_DIR"
+    DBUS_SESSION_BUS_PID=$(dbus-daemon --session --fork --print-pid \
+        --address="unix:path=$XDG_RUNTIME_DIR/bus")
+    export DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus" DBUS_SESSION_BUS_PID
 fi
 
 # The toolkit side of the same story. GTK3 loads its ATK bridge only when accessibility is
