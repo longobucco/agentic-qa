@@ -2,9 +2,9 @@
 pure helpers (batching, the per-round decision, resume), the protocol environment it exports
 together with a backend, and --dry-run. No run.py, claude, codex, docker or any real backend is
 ever invoked -- the round runner is exercised with a fake Popen, and every backend-shaped
-argument is a FakeBackend below. KVM-specific behavior (the container sweep itself, the pinned
-kvm image check, a docker error during the sweep, and the kvm-teardown grace-period test) stays
-in the kvm backend's own tests."""
+argument is the FakeBackend of fake_backend.py. KVM-specific behavior (the container sweep
+itself, the pinned kvm image check, a docker error during the sweep, and the kvm-teardown
+grace-period test) stays in the kvm backend's own tests."""
 import importlib
 import json
 import os
@@ -19,6 +19,7 @@ import pytest
 
 from benchmarks.osworld import config, tasks
 from benchmarks.osworld import campaign
+from benchmarks.osworld.tests.fake_backend import FakeBackend
 
 _ROOT = Path(__file__).resolve().parents[3]
 
@@ -30,29 +31,6 @@ def _unit(task_id, run_idx, fresh=None, history=()):
 
 def _batch(returncode, units):
     return {"returncode": returncode, "units": units}
-
-
-class FakeBackend:
-    NAME = "fake"
-    LOG_SUFFIX = "_fake"
-
-    def __init__(self):
-        self.swept = []
-
-    def protocol_env(self):
-        return {"OSW_BACKEND": "daytona"}
-
-    def harness_knob_defaults(self):
-        return {"OSW_FAKE_KNOB": "0"}
-
-    def env_conflicts(self, environ):
-        return ["OSW_FAKE_BAD='1' (fake refusal)"] if environ.get("OSW_FAKE_BAD") else []
-
-    def sweep(self, run_id, log):
-        if not run_id:
-            raise ValueError("empty driver run id")
-        self.swept.append(run_id)
-        return 0
 
 
 # ---- batches ------------------------------------------------------------------------------
@@ -262,21 +240,6 @@ def test_run_round_launches_one_child_per_batch_and_reports_fresh_outcomes(tmp_p
 
 # ---- --dry-run ----------------------------------------------------------------------------
 
-_FAKE_BACKEND_SCRIPT = """
-class B:
-    NAME = 'fake'
-    LOG_SUFFIX = '_fake'
-    def protocol_env(self):
-        return {'OSW_BACKEND': 'daytona'}
-    def harness_knob_defaults(self):
-        return {}
-    def env_conflicts(self, environ):
-        return []
-    def sweep(self, run_id, log):
-        return 0
-"""
-
-
 def test_dry_run_prints_the_plan_and_runs_nothing(tmp_path):
     fake_bin = tmp_path / "bin"
     fake_bin.mkdir()
@@ -287,9 +250,10 @@ def test_dry_run_prints_the_plan_and_runs_nothing(tmp_path):
         exe = fake_bin / name
         exe.write_text(f"#!/bin/sh\ntouch {tmp_path}/{name}_ran\n")
         exe.chmod(0o755)
-    code = (_FAKE_BACKEND_SCRIPT + "\nimport sys\n"
+    code = ("import sys\n"
             "from benchmarks.osworld import campaign\n"
-            "sys.exit(campaign.main(B(), ['--dry-run']))\n")
+            "from benchmarks.osworld.tests.fake_backend import FakeBackend\n"
+            "sys.exit(campaign.main(FakeBackend(), ['--dry-run']))\n")
     out = subprocess.run([sys.executable, "-c", code], cwd=_ROOT, capture_output=True,
                          text=True, env=env, timeout=120)
     assert out.returncode == 0, out.stderr
@@ -442,22 +406,12 @@ else:
 d.CHILD_GRACE_S = 2
 
 
-class _Backend:   # fake backend: records the run id it was asked to sweep
-    NAME = "fake"
-    LOG_SUFFIX = "_fake"
+from benchmarks.osworld.tests.fake_backend import FakeBackend
 
-    def protocol_env(self):
-        return {"OSW_BACKEND": "daytona"}
 
-    def harness_knob_defaults(self):
-        return {}
-
-    def env_conflicts(self, environ):
-        return []
-
+class _Backend(FakeBackend):
     def sweep(self, run_id, log):
-        (tmp / "sweep.json").write_text(json.dumps({"run_id": run_id}))
-        log(f"backend sweep: removed 1 sandbox(es) for driver_run={run_id}")
+        removed = super().sweep(run_id, log)
         if mode == "sweep_sigterm":
             # A backend honoring "sweep never raises" with a bare `except Exception` (the kvm
             # sweep pattern) must not be able to swallow a SIGTERM delivered while its own
@@ -468,10 +422,10 @@ class _Backend:   # fake backend: records the run id it was asked to sweep
                 _time.sleep(0.5)
             except Exception:
                 pass
-        return 1
+        return removed
 
 
-backend = _Backend()
+backend = _Backend(sweep_file=tmp / "sweep.json")
 
 _real = subprocess.Popen
 n = [0]
