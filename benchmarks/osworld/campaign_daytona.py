@@ -42,7 +42,8 @@ def sweep(run_id, log, client=None):
         raise ValueError("empty driver run id: would match every sandbox started outside a driver")
     removed = 0
     try:
-        from daytona_sdk import ListSandboxesQuery
+        from benchmarks.osworld.env import sandbox
+        ListSandboxesQuery = sandbox.daytona_sdk().ListSandboxesQuery
         client = client or _client()
         # Materialize the matches before deleting anything: client.list() may be a paginated
         # cursor, and deleting mid-iteration could disturb it.

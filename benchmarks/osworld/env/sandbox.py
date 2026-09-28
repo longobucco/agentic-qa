@@ -19,6 +19,7 @@ import shutil
 import sys
 import tempfile
 import time
+import warnings
 from concurrent.futures import ThreadPoolExecutor, TimeoutError as FutureTimeoutError
 from contextlib import contextmanager
 
@@ -52,10 +53,20 @@ DRIVER_RUN_LABEL = "osworld.driver_run"
 _PROVISION_TIMEOUT_S = int(os.environ.get("OSW_PROVISION_TIMEOUT", "600"))
 
 
+def daytona_sdk():
+    """The pinned daytona_sdk, imported without the DeprecationWarning it raises on import:
+    the driver and every run.py child import it, and the warning would repeat in every log."""
+    with warnings.catch_warnings():
+        warnings.filterwarnings("ignore", message="The 'daytona_sdk' package is deprecated",
+                                category=DeprecationWarning)
+        import daytona_sdk
+    return daytona_sdk
+
+
 def _client():
     load_dotenv()
-    from daytona_sdk import Daytona, DaytonaConfig
-    return Daytona(DaytonaConfig(api_key=os.environ["DAYTONA_API_KEY"]))
+    sdk = daytona_sdk()
+    return sdk.Daytona(sdk.DaytonaConfig(api_key=os.environ["DAYTONA_API_KEY"]))
 
 
 def _q(s):
@@ -194,7 +205,8 @@ def provision(image=None, *, disk=10, memory=8, cpu=4, auto_stop=20, on_created=
     """`on_created(sb)`, if given, fires right after create() returns and before the
     (potentially hanging) controller-ready wait -- lets a caller capture the sandbox for
     teardown even if the next step never comes back (see _PROVISION_TIMEOUT_S above)."""
-    from daytona_sdk import CreateSandboxFromImageParams, Resources
+    sdk = daytona_sdk()
+    CreateSandboxFromImageParams, Resources = sdk.CreateSandboxFromImageParams, sdk.Resources
     d = _client()
     # Only a driver run tags its sandboxes -- an empty label value is unverified against the
     # live Daytona API, so a manual/canary run (no OSW_DRIVER_RUN) sends no label at all rather
