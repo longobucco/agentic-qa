@@ -162,6 +162,10 @@ NEW_INFRA_SYSTEM_RE = re.compile(r"agent_computer_[a-z0-9]+(?:_[a-z0-9]+)*_offic
 
 
 def assert_new_infra_system(name):
+    if name and name != name.lower() and NEW_INFRA_SYSTEM_RE.fullmatch(name.lower()):
+        raise SystemExit(f"results tree {name!r} has uppercase letters: tree names are "
+                         "lowercase, so set OSW_EFFORT, OSW_SYSTEM_SUFFIX and OSW_ASTRA_* in "
+                         "lowercase")
     if not NEW_INFRA_SYSTEM_RE.fullmatch(name or ""):
         raise SystemExit(f"results tree {name!r} is not a new-infrastructure tree "
                          "(agent_computer_…_official[_kvm]); Phase 1 trees are frozen under the "
