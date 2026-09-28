@@ -189,14 +189,20 @@ IMAGE = os.environ.get("OSW_IMAGE", "").strip() or (
     # on that (see campaign_daytona.harness_knob_defaults) to make "" the only value a caller may
     # pass without changing the guest image.
     #
-    # 2026-09-24: rebuilt on top of the digest below with the guest screen at 1920x1080 (Xvfb
-    # and the VLC prewarm display; the published OSWorld-Verified setting, matching the
-    # SetupController's placeholder substitution) and four packages 11 of the 361 published
-    # tasks need: evince, eog, totem, picard. Required by env/sandbox.py's screen-size gate:
-    # the previous image runs Xvfb at 1280x1024 and every run on it now ends as
-    # ENVIRONMENT_ERROR by design.
+    # 28/09/2026: a thin layer (docker/Dockerfile.osworld-pkgfix2) on top of the digest below,
+    # changing only docker/start.sh: the guest's D-Bus session bus now listens at the official
+    # VM's fixed user-session address, unix:path=/run/user/1000/bus (XDG_RUNTIME_DIR=/run/user/1000),
+    # instead of a random dbus-launch address. Found by a live audit: 8 of the 361 published tasks
+    # hardcode that fixed address in their own setup or evaluator -- setup: 2b9493d7, 2c9fc0de,
+    # 3680a5ee, 510f64c8, ee9a3c83, f7dfbef3, 4127319a; evaluator: ec4e3f68. With nothing listening
+    # there, 510f64c8's setup `gnome-terminal` never opened, ~/.bash_history was never written,
+    # and the task failed for both agents. Verified live end to end on 510f64c8 against this
+    # digest: the controller env has the fixed bus, the setup's gnome-terminal opens, `code
+    # ~/Desktop/project` typed into it opens VS Code, the postconfig `killall
+    # gnome-terminal-server` writes /home/user/.bash_history, and the evaluator's check returns
+    # true. docker/Dockerfile.osworld also copies the same start.sh, so a full rebuild includes it.
     "ghcr.io/longobucco/osworld-ab@sha256:"
-    "fff0c8be3f9a2f928d29c5ce7130c1cba280783e90b441299dd13a07eb8801d6"
+    "d44d8858ae60adcc81db7d4c2241f0c8b2c910ee1a25479856b092169967c33b"
     # --- previous pin, kept for history ---
     # 26/09/2026: a thin layer (docker/Dockerfile.osworld-pkgfix) on top of the digest below,
     # adding exactly six packages: unzip, zip, jq, psmisc (killall), xsel, gnome-terminal.
@@ -208,6 +214,15 @@ IMAGE = os.environ.get("OSW_IMAGE", "").strip() or (
     # desktop readiness gate ok at 1080p, all 6 commands present, gnome-terminal opens a real
     # window under openbox. docker/Dockerfile.osworld also lists the same six packages so a future
     # full rebuild includes them without depending on this thin layer.
+    #     "ghcr.io/longobucco/osworld-ab@sha256:"
+    #     "fff0c8be3f9a2f928d29c5ce7130c1cba280783e90b441299dd13a07eb8801d6"
+    # --- previous pin, kept for history ---
+    # 2026-09-24: rebuilt on top of the digest below with the guest screen at 1920x1080 (Xvfb
+    # and the VLC prewarm display; the published OSWorld-Verified setting, matching the
+    # SetupController's placeholder substitution) and four packages 11 of the 361 published
+    # tasks need: evince, eog, totem, picard. Required by env/sandbox.py's screen-size gate:
+    # the previous image runs Xvfb at 1280x1024 and every run on it now ends as
+    # ENVIRONMENT_ERROR by design.
     #     "ghcr.io/longobucco/osworld-ab@sha256:"
     #     "759b54f8b15fbb03544f8ac193ce86115d935a3dd8554a1c44b30f904ed07ea2"
     # --- previous pin, kept for history ---

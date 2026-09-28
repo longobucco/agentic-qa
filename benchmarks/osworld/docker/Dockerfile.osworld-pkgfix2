@@ -1,0 +1,14 @@
+# Thin layer on top of the pkgfix digest: the only change is /start.sh, which now starts the
+# guest's D-Bus session bus at the official VM's fixed user-session address
+# (unix:path=/run/user/1000/bus, XDG_RUNTIME_DIR=/run/user/1000) instead of a random dbus-launch
+# address. 8 of the 361 published tasks hardcode that address in setup or evaluator (e.g.
+# 510f64c8: the setup's gnome-terminal never opened, so ~/.bash_history was never written and the
+# task failed for any agent; found live 28/09/2026). Everything else stays byte-identical to the
+# base digest; docker/Dockerfile.osworld copies the same start.sh, so a full rebuild includes it.
+#
+#   docker buildx build --platform linux/amd64 -f benchmarks/osworld/docker/Dockerfile.osworld-pkgfix2 \
+#     -t ghcr.io/longobucco/osworld-ab:pkgfix2-20260928 --push .
+FROM ghcr.io/longobucco/osworld-ab@sha256:fff0c8be3f9a2f928d29c5ce7130c1cba280783e90b441299dd13a07eb8801d6
+
+COPY benchmarks/osworld/docker/start.sh /start.sh
+RUN chmod +x /start.sh
