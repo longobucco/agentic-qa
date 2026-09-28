@@ -137,9 +137,14 @@ BACKEND=daytona|kvm ARM=sonnet|astra PARALLEL=K MAX_HOURS=H \
 `BACKEND` is required and read from the shell only; anything but `daytona` or `kvm` is refused
 (exit 2) before anything else happens. For `ARM=astra`,
 `OSW_ASTRA_REASONING_EFFORT` must be set explicitly by the caller -- it is a campaign decision,
-never a default. The results tree is named `agent_computer_sonnet5_effortmax_protocol361_official`
-for Sonnet, or `agent_computer_gpt6astra_<effort>_codex01534_protocol361_official` for Astra,
-with a `_kvm` suffix on the KVM backend.
+never a default. On Daytona the results tree is named
+`agent_computer_sonnet5_effortmax_protocol361img2_official` for Sonnet, or
+`agent_computer_gpt6astra_<effort>_codex01534_protocol361img2_official` for Astra; on KVM it is
+`agent_computer_sonnet5_effortmax_protocol361_official_kvm` /
+`agent_computer_gpt6astra_<effort>_codex01534_protocol361_official_kvm`. The Daytona guest image
+was re-pinned on 26/09/2026 (the pkgfix layer adding unzip/zip/jq/psmisc/xsel/gnome-terminal, six
+commands 23 of the 361 tasks needed); earlier Daytona trees (`...protocol361_official`, the
+canaries) were produced on the previous digest and must not be pooled with runs on the new one.
 
 The driver resumes from disk: a restarted process re-derives its pending `(task, run)` units from
 what's already on disk (`core.results.is_done`), so no `--force` flag or manual bookkeeping is

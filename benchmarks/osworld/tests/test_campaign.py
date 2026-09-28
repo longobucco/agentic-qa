@@ -145,6 +145,25 @@ def test_protocol_env_rejects_an_unknown_arm():
         campaign.protocol_env("gpt", {}, FakeBackend())
 
 
+class _SuffixedBackend(FakeBackend):
+    SYSTEM_SUFFIX = "protocol361img2"
+
+
+def test_protocol_env_uses_the_backends_system_suffix_when_it_has_one():
+    assert campaign.protocol_env("sonnet", {}, _SuffixedBackend())["OSW_SYSTEM_SUFFIX"] == \
+        "protocol361img2"
+    assert campaign.protocol_env(
+        "astra", {"OSW_ASTRA_REASONING_EFFORT": "xhigh"},
+        _SuffixedBackend())["OSW_ASTRA_SYSTEM_SUFFIX"] == "protocol361img2"
+
+
+def test_protocol_env_defaults_the_system_suffix_when_the_backend_lacks_one():
+    assert campaign.protocol_env("sonnet", {}, FakeBackend())["OSW_SYSTEM_SUFFIX"] == "protocol361"
+    assert campaign.protocol_env(
+        "astra", {"OSW_ASTRA_REASONING_EFFORT": "xhigh"},
+        FakeBackend())["OSW_ASTRA_SYSTEM_SUFFIX"] == "protocol361"
+
+
 def test_importing_the_core_does_not_import_config():
     code = ("import sys; import benchmarks.osworld.campaign; "
             "sys.exit(1 if 'benchmarks.osworld.config' in sys.modules else 0)")

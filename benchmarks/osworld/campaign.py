@@ -8,8 +8,10 @@ module knows nothing about any one backend's infrastructure.
 
 Environment. The driver exports the protocol environment itself (OSW_PROTOCOL=official,
 OSW_POPULATION=verified361, OSW_MAX_STEPS=100, 1920x1080, and per arm the pinned model, effort
-and the `protocol361` suffix, plus whatever the backend's own protocol_env() adds -- including
-OSW_BACKEND) BEFORE anything imports benchmarks.osworld.config -- config reads the environment at
+and a system-name suffix -- `protocol361` by default, or the backend's own `SYSTEM_SUFFIX` when it
+has one (e.g. campaign_daytona's `protocol361img2`, tracking a guest-image re-pin) -- plus
+whatever the backend's own protocol_env() adds -- including OSW_BACKEND) BEFORE anything imports
+benchmarks.osworld.config -- config reads the environment at
 import time, and an earlier driver in this project set it afterwards and silently ran the wrong
 configuration. For ARM=astra, OSW_ASTRA_REASONING_EFFORT must be set by the caller (it is a
 campaign decision, not a default) and the campaign lock is astra_official361_lock.json.
@@ -142,9 +144,10 @@ def protocol_env(arm, environ, backend):
     """The environment the campaign runs under, for `arm`, given the caller's `environ` and the
     `backend` module (its protocol_env() supplies OSW_BACKEND and any backend-specific vars)."""
     base = {**_COMMON_ENV, **backend.protocol_env()}
+    suffix = getattr(backend, "SYSTEM_SUFFIX", "protocol361")
     if arm == "sonnet":
         return {**base, "OSW_MODEL": "claude-sonnet-5", "OSW_EFFORT": "max",
-                "OSW_MAX_OUTPUT_TOKENS": "128000", "OSW_SYSTEM_SUFFIX": "protocol361"}
+                "OSW_MAX_OUTPUT_TOKENS": "128000", "OSW_SYSTEM_SUFFIX": suffix}
     if arm == "astra":
         effort = (environ.get("OSW_ASTRA_REASONING_EFFORT") or "").strip()
         if not effort:
@@ -153,7 +156,7 @@ def protocol_env(arm, environ, backend):
         return {**base, "OSW_ASTRA_MODEL": "gpt-6-astra",
                 "OSW_ASTRA_REASONING_EFFORT": effort,
                 "OSW_ASTRA_CAMPAIGN_LOCK": "astra_official361_lock.json",
-                "OSW_ASTRA_SYSTEM_SUFFIX": "protocol361"}
+                "OSW_ASTRA_SYSTEM_SUFFIX": suffix}
     raise SystemExit(f"ARM={arm!r}: expected 'sonnet' or 'astra'")
 
 
