@@ -5,6 +5,7 @@ ever invoked -- the round runner is exercised with a fake Popen, and every backe
 argument is a FakeBackend below. KVM-specific behavior (the container sweep itself, the pinned
 kvm image check, a docker error during the sweep, and the kvm-teardown grace-period test) stays
 in the kvm backend's own tests."""
+import importlib
 import json
 import os
 import re
@@ -12,6 +13,7 @@ import signal
 import subprocess
 import sys
 from pathlib import Path
+from unittest.mock import patch
 
 import pytest
 
@@ -347,6 +349,16 @@ def test_driver_knob_table_agrees_with_config_legacy_neutral_values():
     # tables ever stopped overlapping at all.
     assert set(config._LEGACY_KNOB_NEUTRAL) - set(campaign._HARNESS_KNOB_DEFAULTS) == \
         {"OSW_OPENBOOK_IMAGE"}
+
+
+def test_driver_claude_code_version_pin_agrees_with_config_default():
+    # The driver's default for the version knob and the official protocol's unpinned default
+    # (config.CLAUDE_CODE_VERSION with OSW_CLAUDE_CODE_VERSION unset) must be the same pin.
+    with patch.dict(os.environ, {"OSW_CLAUDE_CODE_VERSION": ""}):
+        os.environ.pop("OSW_CLAUDE_CODE_VERSION")
+        assert campaign._HARNESS_KNOB_DEFAULTS["OSW_CLAUDE_CODE_VERSION"] == \
+            importlib.reload(config).CLAUDE_CODE_VERSION
+    importlib.reload(config)
 
 
 # ---- signal handling (pre-review fix 3) ----------------------------------------------------

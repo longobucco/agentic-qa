@@ -101,7 +101,10 @@ KVM_IMAGE = os.environ.get("OSW_KVM_IMAGE", "happysixd/osworld-docker").strip()
 KVM_CLIENT_PASSWORD = os.environ.get("OSW_KVM_CLIENT_PASSWORD", "password")
 # The Claude Code CLI the official protocol was verified on (CLAUDE_BUILTIN_TOOLS, isolation
 # flags, transcript layout): the official preflight refuses any other `claude --version`.
-CLAUDE_CODE_VERSION = os.environ.get("OSW_CLAUDE_CODE_VERSION", "").strip() or "2.1.280"
+# Pinned 2.1.282 on 28/09/2026 by user decision (Sonnet campaign runs on 2.1.282 only, as a
+# separate campaign from any 2.1.280 runs). The built-in tool deny list and isolation flags
+# were verified on 2.1.280 and re-verified live by the official preflight probe on 2.1.282.
+CLAUDE_CODE_VERSION = os.environ.get("OSW_CLAUDE_CODE_VERSION", "").strip() or "2.1.282"
 
 # "unpinned" only appears transiently at import time; preflight() refuses to run without
 # OSW_MODEL set, so no run ever writes to an "agent_computer_unpinned" tree.
