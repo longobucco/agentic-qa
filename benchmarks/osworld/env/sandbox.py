@@ -27,6 +27,7 @@ from PIL import Image
 
 from benchmarks.osworld import config
 from benchmarks.osworld.env.controller import Controller
+from benchmarks.osworld.env.http_forwarder import LoopbackForwarder, split_for_getters
 from core.dotenv import load_dotenv
 from core.environment import Env
 
@@ -361,8 +362,16 @@ def _run_config(ctrl, task, *, enable_cdp_forwarder=False, sandbox=None):
     # agent_computer._score / osworld_eval.evaluate_official).
     cache_dir = tempfile.mkdtemp(prefix="osw_setup_cache_")
     cdp_fwd = None
+    # A step that builds its own PythonController(vm_ip, server_port) needs
+    # http://{vm_ip}:{server_port} to reach the controller: the loopback forwarder makes that true
+    # on a Daytona https URL (see osworld_eval.make_setup_controller). It shares 127.0.0.1 with
+    # the CDP forwarder below, so rebinding vm_ip there keeps it valid.
+    loopback = LoopbackForwarder(ctrl.base_url)
     try:
-        setup_ctrl = make_setup_controller(ctrl.base_url, cache_dir=cache_dir)
+        loopback.start()
+        setup_ctrl = make_setup_controller(ctrl.base_url, cache_dir=cache_dir,
+                                           server_address=split_for_getters(ctrl.base_url,
+                                                                            loopback))
         if enable_cdp_forwarder:
             from benchmarks.osworld.env.cdp_forwarder import (
                 CdpForwarder, CdpForwarderError, inject_remote_allow_origins)
@@ -382,6 +391,7 @@ def _run_config(ctrl, task, *, enable_cdp_forwarder=False, sandbox=None):
     finally:
         if cdp_fwd is not None:
             cdp_fwd.stop()
+        loopback.stop()
         shutil.rmtree(cache_dir, ignore_errors=True)
     return _verify_launches(ctrl, steps)
 

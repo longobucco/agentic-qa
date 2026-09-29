@@ -233,14 +233,18 @@ def pinned_code_preflight():
         raise SystemExit("pinned OSWorld code not in effect: " + "; ".join(problems))
 
 
-def make_setup_controller(controller_url, *, cache_dir=None):
+def make_setup_controller(controller_url, *, cache_dir=None, server_address=None):
     """A real SetupController pointed at our controller_url (config/postconfig dispatch is real
-    host-side logic per step type, not a 1:1 REST route name — don't hand-roll it)."""
+    host-side logic per step type, not a 1:1 REST route name — don't hand-roll it).
+
+    `server_address`: the (host, port) that `http://{vm_ip}:{server_port}` must mean -- the
+    loopback forwarder's (env/http_forwarder.py). A step that builds its own
+    PythonController(vm_ip, server_port) (`_update_browse_history_setup`) otherwise talks plain
+    HTTP to the proxy's port 443 and gets None back (44ee5668, found live 2026-09-29)."""
     use_pinned_setup_controller()
     from desktop_env.controllers.setup import SetupController
-    u = urlparse(controller_url)
-    sc = SetupController(vm_ip=u.hostname or "localhost",
-                         server_port=u.port or (443 if u.scheme == "https" else 5000),
+    host, port = server_address or split_for_getters(controller_url, None)
+    sc = SetupController(vm_ip=host, server_port=port,
                          cache_dir=cache_dir or tempfile.mkdtemp(prefix="osw_setup_cache_"),
                          screen_width=config.SCREEN_WIDTH, screen_height=config.SCREEN_HEIGHT)
     sc.http_server = controller_url.rstrip("/")
@@ -332,8 +336,9 @@ class _EnvAdapter:
         palette; without this attribute every such task ended as EVAL_ERROR (AttributeError) and
         was silently dropped from the scored population (53ad5833, 4 runs, found 2026-09-24)."""
         if self._setup_controller is None:
-            self._setup_controller = make_setup_controller(self._controller_url,
-                                                           cache_dir=self.cache_dir)
+            self._setup_controller = make_setup_controller(
+                self._controller_url, cache_dir=self.cache_dir,
+                server_address=(self.vm_ip, self.server_port))
         return self._setup_controller
 
 
@@ -380,14 +385,16 @@ def evaluate_official(controller_url, task, action_history, cache_dir=None,
                               getter_address=address,
                               chromium_port=cdp_fwd.port if cdp_fwd else None)
             return _score(env, ev, func, controller_url, cache_dir, getters, metrics,
-                         cdp_forwarder=cdp_fwd)
+                         cdp_forwarder=cdp_fwd, server_address=address)
         finally:
             if cdp_fwd is not None:
                 cdp_fwd.stop()
 
 
-def _score(env, ev, func, controller_url, cache_dir, getters, metrics, cdp_forwarder=None):
-    """The scoring pass itself, with the forwarder already up and `env` already addressed."""
+def _score(env, ev, func, controller_url, cache_dir, getters, metrics, cdp_forwarder=None,
+           server_address=None):
+    """The scoring pass itself, with the forwarder already up and `env` already addressed
+    (`server_address`: the loopback forwarder's, for the postconfig SetupController)."""
 
     postconfig = ev.get("postconfig", [])
     if postconfig:
@@ -399,7 +406,8 @@ def _score(env, ev, func, controller_url, cache_dir, getters, metrics, cdp_forwa
         # uncleaned mkdtemp per scored run is exactly the kind of per-run temp-dir leak that
         # let 5400 stray dirs/files (3.6GB) accumulate over ~1000 run attempts (found live
         # 2026-08-16).
-        postconfig_ctrl = make_setup_controller(controller_url, cache_dir=cache_dir)
+        postconfig_ctrl = make_setup_controller(controller_url, cache_dir=cache_dir,
+                                                server_address=server_address)
         if cdp_forwarder is not None:
             postconfig_ctrl.vm_ip, postconfig_ctrl.chromium_port = \
                 cdp_forwarder.host, cdp_forwarder.port
