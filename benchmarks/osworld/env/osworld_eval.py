@@ -135,13 +135,18 @@ def use_pinned_setup_controller():
     path = str(PINNED_CONTROLLERS)
     if path not in controllers.__path__:
         controllers.__path__.insert(0, path)
-    mod = sys.modules.get("desktop_env.controllers.setup")
-    if mod is not None and not str(getattr(mod, "__file__", "")).startswith(path):
-        # Already imported from the installed release (desktop_env/__init__ pulls it in):
-        # evict it, and the parent's attribute, so the next import resolves to the pinned file.
-        del sys.modules["desktop_env.controllers.setup"]
-        if getattr(controllers, "setup", None) is mod:
-            delattr(controllers, "setup")
+    # python.py before setup.py: the pinned setup imports PythonController at module load.
+    for name in ("python", "setup"):
+        if not (PINNED_CONTROLLERS / f"{name}.py").is_file():
+            continue
+        mod = sys.modules.get(f"desktop_env.controllers.{name}")
+        if mod is not None and not str(getattr(mod, "__file__", "")).startswith(path):
+            # Already imported from the installed release (desktop_env/__init__ pulls it in):
+            # evict it, and the parent's attribute, so the next import resolves to the pinned
+            # file.
+            del sys.modules[f"desktop_env.controllers.{name}"]
+            if getattr(controllers, name, None) is mod:
+                delattr(controllers, name)
     return stamp.read_text().strip()
 
 
