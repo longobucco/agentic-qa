@@ -205,3 +205,28 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+def test_a_relayed_websocket_survives_silence_longer_than_the_connect_timeout(monkeypatch):
+    """The connect timeout bounds the handshake only. It used to stay on the spliced socket, so
+    ten seconds without a CDP message (a getter waiting for networkidle on a quiet page) closed
+    the whole connection: b4f95342's Recreation.gov getter ended "Target page, context or browser
+    has been closed" on every attempt (reproduced live 2026-09-29)."""
+    from benchmarks.osworld.env import cdp_forwarder
+    monkeypatch.setattr(cdp_forwarder, "_CONNECT_TIMEOUT_S", 0.5)
+    mock = _MockChromeServer()
+    try:
+        with CdpForwarder("https://5000-fake.example", sandbox=_FakeSandbox(mock.base_url),
+                          remote_scheme="http", remote_port=mock.port) as fwd:
+            import time
+            import websocket
+            ws = websocket.create_connection(
+                f"ws://{fwd.host}:{fwd.port}/devtools/browser/mockid", timeout=5)
+            try:
+                time.sleep(1.5)   # quiet for three times the connect timeout
+                ws.send("still-there")
+                assert ws.recv() == "still-there"
+            finally:
+                ws.close()
+    finally:
+        mock.stop()

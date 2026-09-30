@@ -55,6 +55,8 @@ from urllib.parse import urlparse
 
 _WS_GUID = "258EAFA5-E914-47DA-95CA-C5AB0DC85B11"
 _CHROME_LAUNCH_NAMES = ("google-chrome", "chromium", "chromium-browser")
+# Bounds the connect and the WS handshake to the guest's CDP port -- only those.
+_CONNECT_TIMEOUT_S = 10
 
 
 class CdpForwarderError(RuntimeError):
@@ -282,7 +284,8 @@ class CdpForwarder:
         key = headers_lower.get("sec-websocket-key", "")
         accept = base64.b64encode(hashlib.sha1((key + _WS_GUID).encode()).digest()).decode()
         try:
-            raw = socket.create_connection((self._remote_host, self.remote_port), timeout=10)
+            raw = socket.create_connection((self._remote_host, self.remote_port),
+                                           timeout=_CONNECT_TIMEOUT_S)
             remote = (ssl.create_default_context().wrap_socket(
                           raw, server_hostname=self._remote_host)
                      if self.remote_scheme == "https" else raw)
@@ -298,6 +301,10 @@ class CdpForwarder:
             status_line, _ = _read_http_head(remote)
             if " 101 " not in f" {status_line} ":
                 raise CdpForwarderError(f"upstream refused WS upgrade: {status_line!r}")
+            # Blocking from here on: a CDP session can be silent for longer than the connect
+            # timeout (a getter waiting for networkidle), and a recv timeout inside _splice
+            # closed both sides -- "Target page, context or browser has been closed" (b4f95342).
+            remote.settimeout(None)
         except Exception as e:
             _write_http_response(conn, 502, str(e).encode())
             conn.close()
