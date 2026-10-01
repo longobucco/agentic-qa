@@ -375,7 +375,8 @@ def run(task, *, env, out, refs=None, dry=False):
             "instruction": task["instruction"], "answer": answer,
             "provenance": provenance, **trace, **telemetry,
         })
-        results_io.write_infra_error(out, _rate_limit_rec(task, api_error))
+        results_io.write_infra_error(out, _rate_limit_rec(
+            task, api_error, json.dumps(meta.get("errors") or "") + " " + stderr))
         return ""
 
     if official_telemetry["agent_non_computer_tool_calls"] is None:

@@ -67,3 +67,31 @@ def test_the_check_catches_the_installed_release_gaps():
     spec.loader.exec_module(mod)
     kinds = {(step, what) for _, step, what in _unsupported_steps(mod.SetupController)}
     assert ("chrome_inject_js", "missing step type") in kinds
+
+
+def _controller_methods_called_by(module_source):
+    """Every `controller.<name>(` the SetupController source calls on a PythonController."""
+    import re
+    return set(re.findall(r"\bcontroller\.(\w+)\(", module_source))
+
+
+@pinned
+def test_python_controller_in_use_is_the_pinned_one():
+    """The pinned setup.py builds its own PythonController (`_update_browse_history_setup`) and
+    calls `get_vm_machine()` on it, which the installed 1.0.2 lacks: 44ee5668's setup died with
+    AttributeError on every run (found live 2026-09-29)."""
+    osworld_eval.use_pinned_setup_controller()
+    from desktop_env.controllers.python import PythonController
+    assert inspect.getsourcefile(PythonController).startswith(str(osworld_eval.PINNED_CONTROLLERS))
+    import desktop_env.controllers.setup as setup_mod
+    assert setup_mod.PythonController is PythonController
+
+
+@pinned
+def test_every_controller_method_the_pinned_setup_calls_exists():
+    osworld_eval.use_pinned_setup_controller()
+    import desktop_env.controllers.setup as setup_mod
+    from desktop_env.controllers.python import PythonController
+    called = _controller_methods_called_by(inspect.getsource(setup_mod))
+    assert called, "the scan found no controller calls: the check would pass vacuously"
+    assert sorted(m for m in called if not hasattr(PythonController, m)) == []

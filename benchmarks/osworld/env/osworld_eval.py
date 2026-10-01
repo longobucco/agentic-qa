@@ -135,13 +135,18 @@ def use_pinned_setup_controller():
     path = str(PINNED_CONTROLLERS)
     if path not in controllers.__path__:
         controllers.__path__.insert(0, path)
-    mod = sys.modules.get("desktop_env.controllers.setup")
-    if mod is not None and not str(getattr(mod, "__file__", "")).startswith(path):
-        # Already imported from the installed release (desktop_env/__init__ pulls it in):
-        # evict it, and the parent's attribute, so the next import resolves to the pinned file.
-        del sys.modules["desktop_env.controllers.setup"]
-        if getattr(controllers, "setup", None) is mod:
-            delattr(controllers, "setup")
+    # python.py before setup.py: the pinned setup imports PythonController at module load.
+    for name in ("python", "setup"):
+        if not (PINNED_CONTROLLERS / f"{name}.py").is_file():
+            continue
+        mod = sys.modules.get(f"desktop_env.controllers.{name}")
+        if mod is not None and not str(getattr(mod, "__file__", "")).startswith(path):
+            # Already imported from the installed release (desktop_env/__init__ pulls it in):
+            # evict it, and the parent's attribute, so the next import resolves to the pinned
+            # file.
+            del sys.modules[f"desktop_env.controllers.{name}"]
+            if getattr(controllers, name, None) is mod:
+                delattr(controllers, name)
     return stamp.read_text().strip()
 
 
@@ -234,20 +239,24 @@ def pinned_code_preflight():
 
 
 def make_setup_controller(controller_url, *, cache_dir=None, chromium_port=None, vlc_port=None,
-                          client_password=""):
+                          client_password="", server_address=None):
     """A real SetupController pointed at our controller_url (config/postconfig dispatch is real
     host-side logic per step type, not a 1:1 REST route name — don't hand-roll it).
 
     `chromium_port`/`vlc_port`/`client_password`: the kvm backend's published host ports (the
     official VM's 9222/8080 land on random ones) and the guest's sudo password; None/"" keep
-    SetupController's own defaults, as every Daytona caller always had."""
+    SetupController's own defaults, as every Daytona caller always had.
+
+    `server_address`: the (host, port) that `http://{vm_ip}:{server_port}` must mean -- the
+    loopback forwarder's (env/http_forwarder.py). A step that builds its own
+    PythonController(vm_ip, server_port) (`_update_browse_history_setup`) otherwise talks plain
+    HTTP to the proxy's port 443 and gets None back (44ee5668, found live 2026-09-29)."""
     use_pinned_setup_controller()
     from desktop_env.controllers.setup import SetupController
-    u = urlparse(controller_url)
+    host, port = server_address or split_for_getters(controller_url, None)
     ports = {k: v for k, v in (("chromium_port", chromium_port), ("vlc_port", vlc_port))
              if v is not None}
-    sc = SetupController(vm_ip=u.hostname or "localhost",
-                         server_port=u.port or (443 if u.scheme == "https" else 5000),
+    sc = SetupController(vm_ip=host, server_port=port,
                          cache_dir=cache_dir or tempfile.mkdtemp(prefix="osw_setup_cache_"),
                          client_password=client_password, **ports,
                          screen_width=config.SCREEN_WIDTH, screen_height=config.SCREEN_HEIGHT)
@@ -344,7 +353,8 @@ class _EnvAdapter:
         if self._setup_controller is None:
             self._setup_controller = make_setup_controller(
                 self._controller_url, cache_dir=self.cache_dir, chromium_port=self.chromium_port,
-                vlc_port=self.vlc_port, client_password=self.client_password)
+                vlc_port=self.vlc_port, client_password=self.client_password,
+                server_address=(self.vm_ip, self.server_port))
         return self._setup_controller
 
 
@@ -400,15 +410,17 @@ def evaluate_official(controller_url, task, action_history, cache_dir=None,
                               vlc_port=vlc_port, client_password=client_password)
             return _score(env, ev, func, controller_url, cache_dir, getters, metrics,
                          cdp_forwarder=cdp_fwd, chromium_port=chromium_port,
-                         vlc_port=vlc_port, client_password=client_password)
+                         vlc_port=vlc_port, client_password=client_password,
+                         server_address=address)
         finally:
             if cdp_fwd is not None:
                 cdp_fwd.stop()
 
 
 def _score(env, ev, func, controller_url, cache_dir, getters, metrics, cdp_forwarder=None,
-          chromium_port=None, vlc_port=None, client_password=""):
-    """The scoring pass itself, with the forwarder already up and `env` already addressed."""
+          chromium_port=None, vlc_port=None, client_password="", server_address=None):
+    """The scoring pass itself, with the forwarder already up and `env` already addressed
+    (`server_address`: the loopback forwarder's, for the postconfig SetupController)."""
 
     postconfig = ev.get("postconfig", [])
     if postconfig:
@@ -422,7 +434,8 @@ def _score(env, ev, func, controller_url, cache_dir, getters, metrics, cdp_forwa
         # 2026-08-16).
         postconfig_ctrl = make_setup_controller(controller_url, cache_dir=cache_dir,
                                                 chromium_port=chromium_port, vlc_port=vlc_port,
-                                                client_password=client_password)
+                                                client_password=client_password,
+                                                server_address=server_address)
         if cdp_forwarder is not None:
             postconfig_ctrl.vm_ip, postconfig_ctrl.chromium_port = \
                 cdp_forwarder.host, cdp_forwarder.port

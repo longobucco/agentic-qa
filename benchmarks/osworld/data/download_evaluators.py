@@ -40,8 +40,10 @@ STAMP = OUT / "PINNED_COMMIT"       # what env/osworld_eval.py checks before tru
 # installed 1.0.2 is behind the task data too: 2 tasks use a postconfig step type it lacks
 # (chrome_inject_js) and 1 passes a launch parameter it rejects (wait_for_cdp), so their
 # setup/postconfig died whatever the agent did.
-# Overlaid by env/osworld_eval.py::use_pinned_setup_controller; its imports all exist in 1.0.2.
-CONTROLLER_FILES = ("desktop_env/controllers/setup.py",)
+# Overlaid by env/osworld_eval.py::use_pinned_setup_controller. python.py comes with it: the
+# pinned setup.py builds its own PythonController and calls get_vm_machine(), which 1.0.2's lacks
+# (44ee5668's setup died on it, found live 2026-09-29).
+CONTROLLER_FILES = ("desktop_env/controllers/setup.py", "desktop_env/controllers/python.py")
 CONTROLLERS_OUT = pathlib.Path(__file__).resolve().parent / "controllers"
 
 

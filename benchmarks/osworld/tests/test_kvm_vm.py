@@ -204,7 +204,8 @@ def test_env_adapter_setup_controller_forwards_the_mapped_ports():
     assert (env.chromium_port, env.vlc_port) == (32802, 32803)
     msc.assert_called_once_with("http://10.0.0.5:32801", cache_dir="/tmp/x",
                                 chromium_port=32802, vlc_port=32803,
-                                client_password="password")
+                                client_password="password",
+                                server_address=("10.0.0.5", 32801))
 
 
 def test_evaluate_official_with_mapped_ports_addresses_the_vm_directly():
@@ -229,7 +230,7 @@ def test_evaluate_official_with_mapped_ports_addresses_the_vm_directly():
     assert (seen["vm_ip"], seen["server_port"]) == ("10.0.0.5", 32801)
     assert (seen["chromium"], seen["vlc"], seen["pw"]) == (32802, 32803, "password")
     assert seen["kw"] == {"chromium_port": 32802, "vlc_port": 32803,
-                          "client_password": "password"}
+                          "client_password": "password", "server_address": ("10.0.0.5", 32801)}
 
 
 def test_score_postconfig_uses_the_mapped_ports():
@@ -238,10 +239,12 @@ def test_score_postconfig_uses_the_mapped_ports():
         osworld_eval._score(MagicMock(action_history=[]),
                             {"func": "infeasible", "postconfig": [{"type": "sleep"}]},
                             "infeasible", "http://10.0.0.5:32801", "/tmp/x", None, None,
-                            chromium_port=32802, vlc_port=32803, client_password="password")
+                            chromium_port=32802, vlc_port=32803, client_password="password",
+                            server_address=("10.0.0.5", 32801))
     msc.assert_called_once_with("http://10.0.0.5:32801", cache_dir="/tmp/x",
                                 chromium_port=32802, vlc_port=32803,
-                                client_password="password")
+                                client_password="password",
+                                server_address=("10.0.0.5", 32801))
 
 
 @pytest.mark.parametrize("backend,cdp", [("daytona", True), ("kvm", False)])

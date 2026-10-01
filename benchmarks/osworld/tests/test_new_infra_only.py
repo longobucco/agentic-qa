@@ -217,6 +217,15 @@ def test_new_infra_trees_are_accepted(name):
     assert config.assert_new_infra_system(name) == name
 
 
+def test_an_uppercase_suffix_is_refused_as_uppercase_not_as_a_phase1_tree():
+    # OSW_SYSTEM_SUFFIX=Canary used to be refused as a frozen Phase 1 tree, which pointed at
+    # the wrong cause. Still refused (never silently lowercased onto another tree's name).
+    from benchmarks.osworld import config
+    with pytest.raises(SystemExit, match="lowercase") as exc:
+        config.assert_new_infra_system("agent_computer_sonnet5_effortmax_Canary_official")
+    assert "phase1" not in str(exc.value)
+
+
 def test_sonnet_canary_tree_name_is_stable(monkeypatch):
     config = _reload_config(monkeypatch, OSW_MODEL="claude-sonnet-5", OSW_EFFORT="max",
                             OSW_SYSTEM_SUFFIX="canary20260924")

@@ -2,9 +2,9 @@
 pure helpers (batching, the per-round decision, resume), the protocol environment it exports
 together with a backend, and --dry-run. No run.py, claude, codex, docker or any real backend is
 ever invoked -- the round runner is exercised with a fake Popen, and every backend-shaped
-argument is a FakeBackend below. KVM-specific behavior (the container sweep itself, the pinned
-kvm image check, a docker error during the sweep, and the kvm-teardown grace-period test) stays
-in the kvm backend's own tests."""
+argument is the FakeBackend of fake_backend.py. KVM-specific behavior (the container sweep
+itself, the pinned kvm image check, a docker error during the sweep, and the kvm-teardown
+grace-period test) stays in the kvm backend's own tests."""
 import importlib
 import json
 import os
@@ -19,6 +19,7 @@ import pytest
 
 from benchmarks.osworld import config, tasks
 from benchmarks.osworld import campaign
+from benchmarks.osworld.tests.fake_backend import FakeBackend
 
 _ROOT = Path(__file__).resolve().parents[3]
 
@@ -30,29 +31,6 @@ def _unit(task_id, run_idx, fresh=None, history=()):
 
 def _batch(returncode, units):
     return {"returncode": returncode, "units": units}
-
-
-class FakeBackend:
-    NAME = "fake"
-    LOG_SUFFIX = "_fake"
-
-    def __init__(self):
-        self.swept = []
-
-    def protocol_env(self):
-        return {"OSW_BACKEND": "daytona"}
-
-    def harness_knob_defaults(self):
-        return {"OSW_FAKE_KNOB": "0"}
-
-    def env_conflicts(self, environ):
-        return ["OSW_FAKE_BAD='1' (fake refusal)"] if environ.get("OSW_FAKE_BAD") else []
-
-    def sweep(self, run_id, log):
-        if not run_id:
-            raise ValueError("empty driver run id")
-        self.swept.append(run_id)
-        return 0
 
 
 # ---- batches ------------------------------------------------------------------------------
@@ -83,6 +61,25 @@ def test_decide_backs_off_when_half_or_more_of_attempted_units_were_rate_limited
                _batch(0, [_unit("b", 1, fresh="RATE_LIMITED", history=["RATE_LIMITED"]),
                           _unit("b", 2)])]
     assert campaign.decide(results) == "backoff"
+
+
+def test_decide_retries_soon_when_no_rate_limited_unit_reported_an_exhausted_quota():
+    transient = lambda tid: {**_unit(tid, 1, fresh="RATE_LIMITED", history=["RATE_LIMITED"]),
+                             "fresh_quota": False}
+    assert campaign.decide([_batch(0, [transient("a"), transient("b")])]) == "retry"
+    quota = {**transient("c"), "fresh_quota": True}
+    assert campaign.decide([_batch(0, [transient("a"), quota])]) == "backoff"
+
+
+def test_a_rate_limit_record_without_the_quota_flag_counts_as_an_exhausted_quota():
+    # records written before the flag existed keep today's long backoff
+    assert campaign.decide([_batch(0, [_unit("a", 1, fresh="RATE_LIMITED",
+                                             history=["RATE_LIMITED"])])]) == "backoff"
+
+
+def test_backoff_seconds_is_long_for_a_quota_and_doubles_from_short_for_transient_429s():
+    assert campaign.backoff_seconds("backoff", 0) == campaign.BACKOFF_S == 1800
+    assert [campaign.backoff_seconds("retry", n) for n in range(5)] == [300, 600, 1200, 1800, 1800]
 
 
 def test_decide_continues_below_the_rate_limit_threshold():
@@ -207,7 +204,8 @@ class _FakePopen:
                 path.write_text("{not json")
                 continue
             hist = json.loads(path.read_text()) if path.exists() else []
-            path.write_text(json.dumps(hist + [{"outcome": outcome}]))
+            rec = outcome if isinstance(outcome, dict) else {"outcome": outcome}
+            path.write_text(json.dumps(hist + [rec]))
 
     def wait(self):
         return self.returncode
@@ -220,7 +218,8 @@ def test_run_round_launches_one_child_per_batch_and_reports_fresh_outcomes(tmp_p
     stale = tmp_path / "sys" / "b" / "run_1"   # an older attempt: history, but not fresh
     stale.mkdir(parents=True)
     (stale / "infra_error.json").write_text(json.dumps([{"outcome": "INFRA_FLAKE"}]))
-    _FakePopen.script = {"a": (0, {("a", 1): "RATE_LIMITED"}), "b": (2, {})}
+    _FakePopen.script = {"a": (0, {("a", 1): {"outcome": "RATE_LIMITED",
+                                              "quota_exhausted": False}}), "b": (2, {})}
     pending = [("a", 1), ("a", 2), ("b", 1)]
     results = campaign.run_round("sys", [["a"], ["b"]], pending, runs=5, log_file=None)
     assert [c[c.index("--ids") + 1:] for c in _FakePopen.launched] == [["a"], ["b"]]
@@ -229,10 +228,10 @@ def test_run_round_launches_one_child_per_batch_and_reports_fresh_outcomes(tmp_p
         assert cmd[cmd.index("--runs") + 1] == "5"
         assert cmd[cmd.index("--concurrency") + 1] == "1"
         assert "--force" not in cmd
-    no_outcome = lambda u, n: {**u, "no_outcome": True, "no_outcomes": n}
-    outcome = lambda u: {**u, "no_outcome": False, "no_outcomes": 0}
+    no_outcome = lambda u, n: {**u, "fresh_quota": None, "no_outcome": True, "no_outcomes": n}
+    outcome = lambda u, q: {**u, "fresh_quota": q, "no_outcome": False, "no_outcomes": 0}
     assert results == [
-        _batch(0, [outcome(_unit("a", 1, "RATE_LIMITED", ["RATE_LIMITED"])),
+        _batch(0, [outcome(_unit("a", 1, "RATE_LIMITED", ["RATE_LIMITED"]), False),
                    no_outcome(_unit("a", 2), 1)]),
         _batch(2, [no_outcome(_unit("b", 1, None, ["INFRA_FLAKE"]), 1)]),
     ]
@@ -240,21 +239,6 @@ def test_run_round_launches_one_child_per_batch_and_reports_fresh_outcomes(tmp_p
 
 
 # ---- --dry-run ----------------------------------------------------------------------------
-
-_FAKE_BACKEND_SCRIPT = """
-class B:
-    NAME = 'fake'
-    LOG_SUFFIX = '_fake'
-    def protocol_env(self):
-        return {'OSW_BACKEND': 'daytona'}
-    def harness_knob_defaults(self):
-        return {}
-    def env_conflicts(self, environ):
-        return []
-    def sweep(self, run_id, log):
-        return 0
-"""
-
 
 def test_dry_run_prints_the_plan_and_runs_nothing(tmp_path):
     fake_bin = tmp_path / "bin"
@@ -266,9 +250,10 @@ def test_dry_run_prints_the_plan_and_runs_nothing(tmp_path):
         exe = fake_bin / name
         exe.write_text(f"#!/bin/sh\ntouch {tmp_path}/{name}_ran\n")
         exe.chmod(0o755)
-    code = (_FAKE_BACKEND_SCRIPT + "\nimport sys\n"
+    code = ("import sys\n"
             "from benchmarks.osworld import campaign\n"
-            "sys.exit(campaign.main(B(), ['--dry-run']))\n")
+            "from benchmarks.osworld.tests.fake_backend import FakeBackend\n"
+            "sys.exit(campaign.main(FakeBackend(), ['--dry-run']))\n")
     out = subprocess.run([sys.executable, "-c", code], cwd=_ROOT, capture_output=True,
                          text=True, env=env, timeout=120)
     assert out.returncode == 0, out.stderr
@@ -421,22 +406,12 @@ else:
 d.CHILD_GRACE_S = 2
 
 
-class _Backend:   # fake backend: records the run id it was asked to sweep
-    NAME = "fake"
-    LOG_SUFFIX = "_fake"
+from benchmarks.osworld.tests.fake_backend import FakeBackend
 
-    def protocol_env(self):
-        return {"OSW_BACKEND": "daytona"}
 
-    def harness_knob_defaults(self):
-        return {}
-
-    def env_conflicts(self, environ):
-        return []
-
+class _Backend(FakeBackend):
     def sweep(self, run_id, log):
-        (tmp / "sweep.json").write_text(json.dumps({"run_id": run_id}))
-        log(f"backend sweep: removed 1 sandbox(es) for driver_run={run_id}")
+        removed = super().sweep(run_id, log)
         if mode == "sweep_sigterm":
             # A backend honoring "sweep never raises" with a bare `except Exception` (the kvm
             # sweep pattern) must not be able to swallow a SIGTERM delivered while its own
@@ -447,10 +422,10 @@ class _Backend:   # fake backend: records the run id it was asked to sweep
                 _time.sleep(0.5)
             except Exception:
                 pass
-        return 1
+        return removed
 
 
-backend = _Backend()
+backend = _Backend(sweep_file=tmp / "sweep.json")
 
 _real = subprocess.Popen
 n = [0]

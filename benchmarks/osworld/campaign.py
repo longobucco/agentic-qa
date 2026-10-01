@@ -37,8 +37,11 @@ the pending set from disk. After every round, `decide` looks at what the childre
     way), or >= 80% of the units attempted in the round ended with an infra error that is
     neither RATE_LIMITED nor INTERRUPTED (systemic failure, e.g. every sandbox failing setup
     (ENV_SETUP_FAILED) -- burning through the population would only pile up infra records);
-  - "backoff": >= 50% of the units just attempted ended RATE_LIMITED -- sleep 1800 s (quota
-    resets are hours apart) and try again;
+  - "backoff": >= 50% of the units just attempted ended RATE_LIMITED and at least one of them
+    reports an exhausted subscription quota (the record's quota_exhausted, missing counts as
+    true) -- sleep 1800 s (quota resets are hours apart) and try again;
+  - "retry": >= 50% ended RATE_LIMITED but none reports an exhausted quota (a short 429
+    throttle) -- sleep 300 s, doubled on each consecutive "retry" up to 1800 s;
   - "continue" otherwise.
 Tool-surface violations are not infra errors: they write a terminal FAILURE eval.json and are
 never retried. MAX_HOURS is checked between rounds. Everything (the driver's own lines and the
@@ -91,6 +94,7 @@ _ROOT = Path(__file__).resolve().parents[2]
 RUNS = 5
 BATCH_TASKS = 5
 BACKOFF_S = 1800
+RETRY_S = 300
 RATE_LIMIT_THRESHOLD = 0.5
 MAX_NON_QUOTA_INFRA_ERRORS = 3
 # A SIGTERMed run.py child (core.run, task 10b) kills its agent CLI groups, then waits for the
@@ -242,17 +246,22 @@ def _task_ids(units):
     return list(dict.fromkeys(tid for tid, _ in units))
 
 
-def _infra_history(system, task_id, run_idx):
-    """Outcomes of every infra_error.json record of one run dir, oldest first."""
+def _infra_records(system, task_id, run_idx):
+    """Every infra_error.json record of one run dir, oldest first."""
     from benchmarks.osworld import config
     from core import results
     path = results.run_dir(config.RESULTS_DIR, system, task_id, run_idx) / "infra_error.json"
     if not path.exists():
         return []
     try:
-        return [r.get("outcome") for r in json.loads(path.read_text())]
+        return list(json.loads(path.read_text()))
     except Exception:
         return []
+
+
+def _infra_history(system, task_id, run_idx):
+    """Outcomes of every infra_error.json record of one run dir, oldest first."""
+    return [r.get("outcome") for r in _infra_records(system, task_id, run_idx)]
 
 
 # Infra outcomes that are not failures of the unit itself: a quota window, and an operator/driver
@@ -309,10 +318,18 @@ def decide(batch_results):
             or auth_errors(batch_results) or systemic_failure(batch_results)):
         return "stop"
     attempted = [u for b in batch_results for u in b["units"]]
-    limited = sum(u["fresh_outcome"] == "RATE_LIMITED" for u in attempted)
-    if attempted and limited / len(attempted) >= RATE_LIMIT_THRESHOLD:
-        return "backoff"
+    limited = [u for u in attempted if u["fresh_outcome"] == "RATE_LIMITED"]
+    if attempted and len(limited) / len(attempted) >= RATE_LIMIT_THRESHOLD:
+        return "backoff" if any(u.get("fresh_quota", True) is not False for u in limited) \
+            else "retry"
     return "continue"
+
+
+def backoff_seconds(decision, retry_streak):
+    """Sleep after a "backoff" or the (retry_streak+1)-th consecutive "retry"."""
+    if decision == "backoff":
+        return BACKOFF_S
+    return min(RETRY_S * 2 ** retry_streak, BACKOFF_S)
 
 
 def run_round(system, round_batches, pending, runs, log_file, no_outcomes=None):
@@ -339,14 +356,17 @@ def run_round(system, round_batches, pending, runs, log_file, no_outcomes=None):
         _children.remove(proc)
         units = []
         for tid, k in units_of[tuple(b)]:
-            hist = _infra_history(system, tid, k)
-            fresh = hist[-1] if len(hist) > before[(tid, k)] else None
+            recs = _infra_records(system, tid, k)
+            hist = [r.get("outcome") for r in recs]
+            fresh_rec = recs[-1] if len(hist) > before[(tid, k)] else None
+            fresh = fresh_rec.get("outcome") if fresh_rec else None
+            quota = fresh_rec.get("quota_exhausted", True) if fresh == "RATE_LIMITED" else None
             none = fresh is None and not results.is_done(
                 results.run_dir(config.RESULTS_DIR, system, tid, k))
             if none:
                 no_outcomes[(tid, k)] = no_outcomes.get((tid, k), 0) + 1
             units.append({"task_id": tid, "run_idx": k, "fresh_outcome": fresh,
-                          "infra_history": hist, "no_outcome": none,
+                          "infra_history": hist, "fresh_quota": quota, "no_outcome": none,
                           "no_outcomes": no_outcomes.get((tid, k), 0)})
         out.append({"returncode": rc, "units": units})
     return out
@@ -443,6 +463,7 @@ def _campaign(system, parallel, max_hours, log, log_file, backend, run_id):
     deadline = time.time() + max_hours * 3600
     rnd = 0
     no_outcomes = {}   # unit -> rounds of this process that ended with no outcome written
+    retry_streak = 0   # consecutive "retry" rounds (short 429 throttles)
     while True:
         pending = pending_units(system, RUNS)
         if not pending:
@@ -496,7 +517,12 @@ def _campaign(system, parallel, max_hours, log, log_file, backend, run_id):
                     f"round ended with a non-quota infra error (systemic failure; see the fresh "
                     f"infra outcomes above)")
             return 3
-        if decision == "backoff":
-            log(f"[round {rnd}] >= {RATE_LIMIT_THRESHOLD:.0%} of attempted units RATE_LIMITED -- "
-                f"backing off {BACKOFF_S}s")
-            time.sleep(BACKOFF_S)
+        if decision in ("backoff", "retry"):
+            wait = backoff_seconds(decision, retry_streak)
+            cause = "quota exhausted" if decision == "backoff" else "short 429 throttle"
+            log(f"[round {rnd}] >= {RATE_LIMIT_THRESHOLD:.0%} of attempted units RATE_LIMITED "
+                f"({cause}) -- backing off {wait}s")
+            retry_streak = retry_streak + 1 if decision == "retry" else 0
+            time.sleep(wait)
+        else:
+            retry_streak = 0

@@ -20,8 +20,9 @@ from benchmarks.osworld.env import osworld_eval
 from benchmarks.osworld.runners.common import (
     _a11y_health, _action_history, _agent_telemetry, _annotate_incidental, _bounded,
     _capture_eval_state, _environment_error_rec, _evaluate_with_retry, _evaluator_provenance,
-    _mcp_config, _model_mismatch, _POST_RUN_TIMEOUT_S, _provenance, _rate_limit_infra_rec,
-    _rate_limit_result_rec, _save_conversation_transcript, _score, _served_by, claude_cli_version,
+    _cli_network_error, _mcp_config, _model_mismatch, _POST_RUN_TIMEOUT_S, _provenance,
+    _rate_limit_infra_rec, _rate_limit_result_rec, _save_conversation_transcript, _score,
+    _served_by, claude_cli_version,
     claude_env, claude_session_file, claude_transcript_actions, claude_transcript_context_leaks,
     claude_transcript_offered_tools, claude_transcript_tool_names, claude_workdir_session_file,
     mcp_unavailable_infra_rec, official_max_turns, official_probe_already_passed, protocol_wait,
@@ -315,7 +316,7 @@ def run(task, *, env, out, refs=None, dry=False):
             os.unlink(mcp_config_path)
         except OSError:
             pass
-    api_error_status = meta.get("api_error_status")
+    api_error_status = meta.get("api_error_status") or _cli_network_error(meta)
     if api_error_status:
         # The CLI itself hit an API-level error (observed live: 429 subscription session
         # limit, "You've hit your session limit") before the agent acted at all -- num_turns=1,
@@ -331,7 +332,8 @@ def run(task, *, env, out, refs=None, dry=False):
         # from "transcript failed to copy".
         result_rec.update(_save_conversation_transcript(meta, out, task["id"]))
         results_io.write_result(out, result_rec)
-        results_io.write_infra_error(out, _rate_limit_infra_rec(task, api_error_status))
+        results_io.write_infra_error(out, _rate_limit_infra_rec(task, api_error_status,
+                                                                meta.get("result", "")))
         return ""
 
     text = meta.get("result", "")

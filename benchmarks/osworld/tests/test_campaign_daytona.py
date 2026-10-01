@@ -241,3 +241,21 @@ def test_the_sweep_error_does_not_change_the_signal_exit_code(tmp_path):
     assert proc.returncode == 128 + signal.SIGTERM, out
     log = (tmp_path / "scripts" / "g_official361_sonnet_daytona.log").read_text()
     assert "sandbox sweep failed" in log
+
+
+def test_the_deprecated_sdk_import_adds_no_warning_to_the_campaign_logs():
+    # daytona_sdk warns at import that it is deprecated; the driver and every run.py child
+    # import it, so the warning would land in every campaign log without saying anything new.
+    code = ("import warnings; warnings.simplefilter('error', DeprecationWarning)\n"
+            "from benchmarks.osworld.env import sandbox\n"
+            "assert sandbox.daytona_sdk().Daytona\n"
+            "from benchmarks.osworld import campaign_daytona\n"
+            "class C:\n"
+            "    def list(self, query, request_timeout=None): return []\n"
+            "logs = []\n"
+            "assert campaign_daytona.sweep('r', logs.append, client=C()) == 0, logs\n"
+            "assert not any('failed' in m for m in logs), logs\n")
+    proc = subprocess.run([sys.executable, "-c", code], cwd=_ROOT, capture_output=True,
+                          text=True, env={**os.environ, "PYTHONPATH": str(_ROOT)})
+    assert proc.returncode == 0, proc.stderr
+    assert "deprecated" not in proc.stderr

@@ -19,13 +19,16 @@ import shutil
 import sys
 import tempfile
 import time
+import warnings
 from concurrent.futures import ThreadPoolExecutor, TimeoutError as FutureTimeoutError
 from contextlib import contextmanager
+from urllib.parse import urlparse
 
 from PIL import Image
 
 from benchmarks.osworld import config
 from benchmarks.osworld.env.controller import Controller
+from benchmarks.osworld.env.http_forwarder import LoopbackForwarder, split_for_getters
 from core.dotenv import load_dotenv
 from core.environment import Env
 
@@ -52,10 +55,20 @@ DRIVER_RUN_LABEL = "osworld.driver_run"
 _PROVISION_TIMEOUT_S = int(os.environ.get("OSW_PROVISION_TIMEOUT", "600"))
 
 
+def daytona_sdk():
+    """The pinned daytona_sdk, imported without the DeprecationWarning it raises on import:
+    the driver and every run.py child import it, and the warning would repeat in every log."""
+    with warnings.catch_warnings():
+        warnings.filterwarnings("ignore", message="The 'daytona_sdk' package is deprecated",
+                                category=DeprecationWarning)
+        import daytona_sdk
+    return daytona_sdk
+
+
 def _client():
     load_dotenv()
-    from daytona_sdk import Daytona, DaytonaConfig
-    return Daytona(DaytonaConfig(api_key=os.environ["DAYTONA_API_KEY"]))
+    sdk = daytona_sdk()
+    return sdk.Daytona(sdk.DaytonaConfig(api_key=os.environ["DAYTONA_API_KEY"]))
 
 
 def _q(s):
@@ -194,7 +207,8 @@ def provision(image=None, *, disk=10, memory=8, cpu=4, auto_stop=20, on_created=
     """`on_created(sb)`, if given, fires right after create() returns and before the
     (potentially hanging) controller-ready wait -- lets a caller capture the sandbox for
     teardown even if the next step never comes back (see _PROVISION_TIMEOUT_S above)."""
-    from daytona_sdk import CreateSandboxFromImageParams, Resources
+    sdk = daytona_sdk()
+    CreateSandboxFromImageParams, Resources = sdk.CreateSandboxFromImageParams, sdk.Resources
     d = _client()
     # Only a driver run tags its sandboxes -- an empty label value is unverified against the
     # live Daytona API, so a manual/canary run (no OSW_DRIVER_RUN) sends no label at all rather
@@ -356,11 +370,21 @@ def _run_config(ctrl, task, *, enable_cdp_forwarder=False, sandbox=None, setup_a
     # agent_computer._score / osworld_eval.evaluate_official).
     cache_dir = tempfile.mkdtemp(prefix="osw_setup_cache_")
     cdp_fwd = None
+    # A step that builds its own PythonController(vm_ip, server_port) needs
+    # http://{vm_ip}:{server_port} to reach the controller: the loopback forwarder makes that true
+    # on a Daytona https URL (see osworld_eval.make_setup_controller). It shares 127.0.0.1 with
+    # the CDP forwarder below, so rebinding vm_ip there keeps it valid. A plain-http controller
+    # (kvm) is already addressable as is, and its vm_ip also carries the mapped Chrome/VLC ports.
+    loopback = (LoopbackForwarder(ctrl.base_url)
+                if urlparse(ctrl.base_url).scheme != "http" else None)
     try:
+        if loopback is not None:
+            loopback.start()
         setup_ctrl = make_setup_controller(
             ctrl.base_url, cache_dir=cache_dir, chromium_port=getattr(ctrl, "chromium_port", None),
             vlc_port=getattr(ctrl, "vlc_port", None),
-            client_password=getattr(ctrl, "client_password", ""))
+            client_password=getattr(ctrl, "client_password", ""),
+            server_address=split_for_getters(ctrl.base_url, loopback))
         if enable_cdp_forwarder:
             from benchmarks.osworld.env.cdp_forwarder import (
                 CdpForwarder, CdpForwarderError, inject_remote_allow_origins)
@@ -389,6 +413,8 @@ def _run_config(ctrl, task, *, enable_cdp_forwarder=False, sandbox=None, setup_a
     finally:
         if cdp_fwd is not None:
             cdp_fwd.stop()
+        if loopback is not None:
+            loopback.stop()
         shutil.rmtree(cache_dir, ignore_errors=True)
     return _verify_launches(ctrl, steps) if verify_launches else None
 
