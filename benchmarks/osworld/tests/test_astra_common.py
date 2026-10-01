@@ -30,6 +30,43 @@ def test_a_401_unauthorized_on_stderr_is_auth_revoked():
     assert astra_common.api_error_status({}, stderr=stderr) == "AUTH_REVOKED"
 
 
+# The errors Codex 0.153.4 reported on 3ce045a0 run_2 (2026-09-30), when the harness host lost
+# DNS mid-run: the turn ended in error after one turn and was scored FAILURE.
+_NETWORK_ERRORS = [
+    "Reconnecting... 2/5 (request timed out)",
+    "Reconnecting... 3/5 (stream disconnected before completion: failed to lookup address "
+    "information: nodename nor servname provided, or not known)",
+    "Reconnecting... waiting for network (Connection failed: error sending request)",
+]
+
+
+def test_a_turn_that_died_on_the_network_is_a_network_error_not_a_verdict():
+    meta = {"is_error": True, "errors": _NETWORK_ERRORS}
+    assert astra_common.api_error_status(meta) == "NETWORK_ERROR"
+
+
+def test_an_idle_websocket_timeout_that_ended_the_turn_is_a_network_error():
+    meta = {"is_error": True, "errors": [
+        "Reconnecting... 2/5 (stream disconnected before completion: idle timeout waiting for "
+        "websocket)"]}
+    assert astra_common.api_error_status(meta) == "NETWORK_ERROR"
+
+
+def test_reconnects_in_a_turn_that_went_on_to_finish_are_not_an_error():
+    assert astra_common.api_error_status({"is_error": False, "errors": _NETWORK_ERRORS}) is None
+
+
+def test_a_rate_limit_wins_over_network_noise():
+    meta = {"is_error": True, "errors": _NETWORK_ERRORS + ["429 Too Many Requests"]}
+    assert astra_common.api_error_status(meta) == 429
+
+
+def test_rate_limit_rec_files_a_network_error_as_an_infra_flake():
+    rec = astra_common.rate_limit_rec({"id": "t1"}, "NETWORK_ERROR")
+    assert rec["outcome"] == "INFRA_FLAKE"
+    assert rec["quota_exhausted"] is False
+
+
 def test_a_clean_run_has_no_api_error_status():
     assert astra_common.api_error_status({"errors": None}) is None
 

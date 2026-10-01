@@ -41,7 +41,16 @@ def api_error_status(meta, stderr=""):
         return "AUTH_REVOKED"
     if "429" in text or "rate limit" in text or "usage limit" in text or "quota" in text:
         return 429
+    if meta.get("is_error") and any(m in text for m in _NETWORK_MARKERS):
+        return "NETWORK_ERROR"
     return None
+
+
+# Codex's own transport messages. They mean the agent never got its turn when the turn then
+# ended in error: 3ce045a0 runs 2 and 3 (2026-09-30) died on a lost DNS after one turn and were
+# scored FAILURE. Reconnects in a turn that finished are harmless and stay out of this.
+_NETWORK_MARKERS = ("failed to lookup address", "stream disconnected", "error sending request",
+                    "waiting for network", "request timed out", "transport error")
 
 
 def estimated_api_cost(input_tokens, cached_tokens, output_tokens):
@@ -274,9 +283,12 @@ def codex_rollout_tool_calls(path):
 def rate_limit_rec(task, status, text=""):
     """`status` is either the int 429 (a real, self-clearing rate limit -- the driver's backoff
     is the right response) or the string "AUTH_REVOKED" (the Codex CLI session itself is dead --
-    no amount of waiting fixes this, a human has to re-authenticate). Distinct outcomes so a
-    campaign driver can tell them apart and stop instead of backing off pointlessly."""
-    outcome = "AUTH_ERROR" if status == "AUTH_REVOKED" else "RATE_LIMITED"
+    no amount of waiting fixes this, a human has to re-authenticate), or "NETWORK_ERROR" (the
+    turn died on the harness host's network: an INFRA_FLAKE, retried, never scored). Distinct
+    outcomes so a campaign driver can tell them apart and stop instead of backing off
+    pointlessly."""
+    outcome = {"AUTH_REVOKED": "AUTH_ERROR", "NETWORK_ERROR": "INFRA_FLAKE"}.get(
+        status, "RATE_LIMITED")
     return {
         "id": task["id"], "outcome": outcome, "error_type": "APIError",
         "error": f"api_error_status={status}", "quota_exhausted": quota_exhausted(text),
