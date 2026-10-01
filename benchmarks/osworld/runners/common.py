@@ -789,13 +789,25 @@ def quota_exhausted(text):
     return bool(_QUOTA_MESSAGE.search(text or ""))
 
 
+def _cli_network_error(meta):
+    """"NETWORK_ERROR" when Claude Code ended the run on an API error that carries no status
+    code -- its form for a lost network ("API Error: Can't reach the API server -- check your
+    internet or DNS (ENOTFOUND)", "API Error: The socket connection was closed unexpectedly").
+    2e6f678f run_5 (2026-09-30) died that way 20 turns in and was scored FAILURE."""
+    if meta.get("is_error") and not meta.get("api_error_status") \
+            and str(meta.get("result") or "").lstrip().startswith("API Error"):
+        return "NETWORK_ERROR"
+    return None
+
+
 def _rate_limit_infra_rec(task, api_error_status, text=""):
     """Deliberately NOT eval.json (see write_infra_error): a subscription session limit is
     transient on a fixed reset clock, not evidence of agent success or failure. Written so
     is_done() still sees this run as undone -- a later `--runs` invocation retries it
     automatically once the limit clears, no --force needed. `quota_exhausted` tells the
     campaign driver whether to wait out a quota window or retry soon (`text`: the CLI's output)."""
-    return {"id": task["id"], "outcome": "RATE_LIMITED",
+    outcome = "INFRA_FLAKE" if api_error_status == "NETWORK_ERROR" else "RATE_LIMITED"
+    return {"id": task["id"], "outcome": outcome,
             "error_type": "APIError", "error": f"api_error_status={api_error_status}",
             "quota_exhausted": quota_exhausted(text),
             "at": time.strftime("%Y-%m-%dT%H:%M:%S%z")}

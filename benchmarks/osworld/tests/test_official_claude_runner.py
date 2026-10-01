@@ -126,7 +126,7 @@ def test_builtin_tools_cover_every_non_mcp_tool():
         assert t in agent_computer.CLAUDE_BUILTIN_TOOLS
 
 
-def _official_run(monkeypatch, tmp_path, transcript_lines, spy=None):
+def _official_run(monkeypatch, tmp_path, transcript_lines, spy=None, meta=None):
     """Non-dry official run with the CLI, transcript copy and scoring faked out."""
     monkeypatch.setattr(config, "PROTOCOL", "official")
     events = []
@@ -138,8 +138,8 @@ def _official_run(monkeypatch, tmp_path, transcript_lines, spy=None):
             spy(cmd, **kw)
         # the official MCP server's liveness/step state (final fix wave S2)
         (tmp_path / "mcp_state.json").write_text('{"started": true, "steps_used": 2}')
-        return {"result": "all good", "session_id": "s1", "subtype": "success",
-                "is_error": False}
+        return meta or {"result": "all good", "session_id": "s1", "subtype": "success",
+                        "is_error": False}
 
     def fake_save(meta, out, task_id=None):
         if transcript_lines is None:
@@ -163,6 +163,22 @@ def _official_run(monkeypatch, tmp_path, transcript_lines, spy=None):
     answer = agent_computer.run({"id": "t", "instruction": "Do X", "evaluator": {}},
                                 env=_FakeEnv(), out=tmp_path)
     return answer, events, scored
+
+
+def test_a_run_the_cli_ended_on_a_network_error_is_an_infra_flake_not_a_verdict(
+        monkeypatch, tmp_path):
+    """Claude Code reports a lost network as `is_error` with an "API Error: ..." result and no
+    status code. 2e6f678f run_5 (2026-09-30, the harness host lost DNS) got 20 turns in, then
+    "API Error: Can't reach the API server -- check your internet or DNS (ENOTFOUND)", and was
+    scored FAILURE: a verdict on a truncated agent measures the network, not the model."""
+    meta = {"result": "API Error: Can't reach the API server \u2014 check your internet or DNS "
+                      "(ENOTFOUND)", "session_id": "s1", "subtype": "success", "is_error": True,
+            "num_turns": 20}
+    answer, events, scored = _official_run(monkeypatch, tmp_path, [], meta=meta)
+    assert "score" not in events and not scored
+    assert not (tmp_path / "eval.json").exists()
+    recs = json.loads((tmp_path / "infra_error.json").read_text())
+    assert recs[-1]["outcome"] == "INFRA_FLAKE"
 
 
 def test_official_run_answer_from_transcript_and_timings(monkeypatch, tmp_path):
