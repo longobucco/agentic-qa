@@ -22,6 +22,7 @@ import time
 import warnings
 from concurrent.futures import ThreadPoolExecutor, TimeoutError as FutureTimeoutError
 from contextlib import contextmanager
+from urllib.parse import urlparse
 
 from PIL import Image
 
@@ -365,10 +366,13 @@ def _run_config(ctrl, task, *, enable_cdp_forwarder=False, sandbox=None):
     # A step that builds its own PythonController(vm_ip, server_port) needs
     # http://{vm_ip}:{server_port} to reach the controller: the loopback forwarder makes that true
     # on a Daytona https URL (see osworld_eval.make_setup_controller). It shares 127.0.0.1 with
-    # the CDP forwarder below, so rebinding vm_ip there keeps it valid.
-    loopback = LoopbackForwarder(ctrl.base_url)
+    # the CDP forwarder below, so rebinding vm_ip there keeps it valid. A plain-http controller
+    # (kvm) is already addressable as is, and its vm_ip also carries the mapped Chrome/VLC ports.
+    loopback = (LoopbackForwarder(ctrl.base_url)
+                if urlparse(ctrl.base_url).scheme != "http" else None)
     try:
-        loopback.start()
+        if loopback is not None:
+            loopback.start()
         setup_ctrl = make_setup_controller(ctrl.base_url, cache_dir=cache_dir,
                                            server_address=split_for_getters(ctrl.base_url,
                                                                             loopback))
@@ -391,7 +395,8 @@ def _run_config(ctrl, task, *, enable_cdp_forwarder=False, sandbox=None):
     finally:
         if cdp_fwd is not None:
             cdp_fwd.stop()
-        loopback.stop()
+        if loopback is not None:
+            loopback.stop()
         shutil.rmtree(cache_dir, ignore_errors=True)
     return _verify_launches(ctrl, steps)
 

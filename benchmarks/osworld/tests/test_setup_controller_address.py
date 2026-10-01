@@ -86,3 +86,27 @@ def test_getters_setup_controller_gets_the_getter_address():
                                        getter_address=("127.0.0.1", 4242))
     sc = adapter.setup_controller
     assert (sc.vm_ip, sc.server_port) == ("127.0.0.1", 4242)
+
+
+def test_a_plain_http_controller_is_addressed_directly_without_a_forwarder():
+    """A controller already reachable over plain HTTP (the kvm backend's mapped host port) keeps
+    its own host: the SetupController's vm_ip also carries the mapped Chrome/VLC ports there, so
+    the loopback host would break CDP and VLC."""
+    _FakeLoopback.instances = []
+    seen = {}
+
+    def fake_setup(self, steps, use_proxy=False):
+        seen["address"] = (self.vm_ip, self.server_port)
+        return True
+
+    ctrl = MagicMock(base_url="http://10.0.0.5:32801")
+    task = {"id": "t", "config": [{"type": "sleep", "parameters": {"seconds": 0}}]}
+    with patch.object(sandbox, "_wait_for_desktop_ready", return_value=None), \
+         patch.object(sandbox, "_screen_size_mismatch", return_value=None), \
+         patch.object(sandbox, "_verify_launches", return_value=None), \
+         patch.object(sandbox, "LoopbackForwarder", _FakeLoopback), \
+         patch("desktop_env.controllers.setup.SetupController.setup", fake_setup):
+        assert sandbox._run_config(ctrl, task, enable_cdp_forwarder=False) is None
+
+    assert seen["address"] == ("10.0.0.5", 32801)
+    assert _FakeLoopback.instances == []
