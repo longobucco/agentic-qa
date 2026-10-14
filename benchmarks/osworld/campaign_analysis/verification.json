@@ -1,0 +1,315 @@
+{
+ "_about": "Manual verification of automatic labels: a deterministic random sample per (arm, cause) was read (final message, last actions, errors, screenshots/diffs). 'ok' = label correct, 'partial' = mode right but environment factor missed/misplaced, 'wrong' = label incorrect. Round 1 = rules before the fixes listed in METHODOLOGY.md.",
+ "round1": [
+  {
+   "arm": "astra-old",
+   "cause": "declared-fail+black-desktop",
+   "n": 4,
+   "ok": 4,
+   "partial": 0,
+   "wrong": 0,
+   "note": "final messages state a black desktop with empty accessibility tree"
+  },
+  {
+   "arm": "astra-old",
+   "cause": "claimed-done-wrong",
+   "n": 4,
+   "ok": 4,
+   "partial": 0,
+   "wrong": 0,
+   "note": "VS Code settings tasks: GUI search+click, ANSWER DONE, check_json_settings 0"
+  },
+  {
+   "arm": "astra-old",
+   "cause": "declared-fail",
+   "n": 3,
+   "ok": 1,
+   "partial": 2,
+   "wrong": 0,
+   "note": "2 of 3: 'Git is not installed' (missing dependency not captured as factor)"
+  },
+  {
+   "arm": "astra-old",
+   "cause": "capped",
+   "n": 2,
+   "ok": 0,
+   "partial": 0,
+   "wrong": 2,
+   "note": "agent finished with ANSWER: DONE at 37-38 steps; the old 30-step cap is advisory, not a cap hit"
+  },
+  {
+   "arm": "astra-old",
+   "cause": "infra:api-error-429",
+   "n": 2,
+   "ok": 2,
+   "partial": 0,
+   "wrong": 0,
+   "note": "Codex 'You've hit your usage limit'"
+  },
+  {
+   "arm": "astra-old-openbook",
+   "cause": "contaminated",
+   "n": 2,
+   "ok": 2,
+   "partial": 0,
+   "wrong": 0,
+   "note": "harness contamination flag; observed cause is a missing input file (xlsx not found), flag semantics not verified"
+  },
+  {
+   "arm": "astra-old-openbook",
+   "cause": "capped",
+   "n": 3,
+   "ok": 0,
+   "partial": 0,
+   "wrong": 3,
+   "note": "2 finished with DONE/FAIL over the advisory cap, 1 had tool HTTP 400 errors"
+  },
+  {
+   "arm": "astra-old-openbook",
+   "cause": "claimed-done-wrong",
+   "n": 3,
+   "ok": 3,
+   "partial": 0,
+   "wrong": 0,
+   "note": ""
+  },
+  {
+   "arm": "astra-old-openbook",
+   "cause": "declared-fail+tool-http-error",
+   "n": 2,
+   "ok": 2,
+   "partial": 0,
+   "wrong": 0,
+   "note": "repeated 'HTTP Error 400: Bad Request' from the desktop tools"
+  },
+  {
+   "arm": "astra-old-openbook",
+   "cause": "infra:api-error-error",
+   "n": 2,
+   "ok": 2,
+   "partial": 0,
+   "wrong": 0,
+   "note": "'Selected model is at capacity'"
+  },
+  {
+   "arm": "sonnet5-old",
+   "cause": "claimed-done-wrong+tool-http-error",
+   "n": 3,
+   "ok": 3,
+   "partial": 0,
+   "wrong": 0,
+   "note": "HTTP 500 from run_python (not from the screenshot tool); causal weight unclear"
+  },
+  {
+   "arm": "sonnet5-old",
+   "cause": "declared-fail+black-desktop",
+   "n": 3,
+   "ok": 3,
+   "partial": 0,
+   "wrong": 0,
+   "note": "agent reports black screen and empty accessibility tree after waiting"
+  },
+  {
+   "arm": "sonnet5-old",
+   "cause": "declared-fail",
+   "n": 3,
+   "ok": 0,
+   "partial": 3,
+   "wrong": 0,
+   "note": "all 3: Thunderbird has no email account configured (missing precondition, factor not captured)"
+  },
+  {
+   "arm": "sonnet5-old",
+   "cause": "action-loop",
+   "n": 2,
+   "ok": 0,
+   "partial": 0,
+   "wrong": 2,
+   "note": "repeated run_python calls with different code (signature was truncated); not a loop"
+  },
+  {
+   "arm": "sonnet5-old",
+   "cause": "answered-in-text-no-action",
+   "n": 2,
+   "ok": 0,
+   "partial": 2,
+   "wrong": 0,
+   "note": "deliberate refusals / confirmation requests (copyright, push to upstream remote)"
+  },
+  {
+   "arm": "sonnet46-old",
+   "cause": "capped",
+   "n": 3,
+   "ok": 3,
+   "partial": 0,
+   "wrong": 0,
+   "note": "stop max_turns (150), no final answer"
+  },
+  {
+   "arm": "sonnet46-old",
+   "cause": "declared-fail",
+   "n": 2,
+   "ok": 2,
+   "partial": 0,
+   "wrong": 0,
+   "note": "agent judged feature absent (Chrome setting, Impress Summary Slide)"
+  },
+  {
+   "arm": "sonnet46-old",
+   "cause": "claimed-done-wrong",
+   "n": 4,
+   "ok": 4,
+   "partial": 0,
+   "wrong": 0,
+   "note": ""
+  },
+  {
+   "arm": "sonnet46-old",
+   "cause": "transcript-lost",
+   "n": 2,
+   "ok": 2,
+   "partial": 0,
+   "wrong": 0,
+   "note": "transcript is only 'You've hit your session limit'; eval.json predates it"
+  },
+  {
+   "arm": "sonnet46-old",
+   "cause": "no-verdict:INFRA_FLAKE",
+   "n": 2,
+   "ok": 2,
+   "partial": 0,
+   "wrong": 0,
+   "note": "no result files (e.g. FileNotFoundError: 'claude')"
+  },
+  {
+   "arm": "sonnet46-old",
+   "cause": "eval-error:offline_fallback",
+   "n": 2,
+   "ok": 2,
+   "partial": 0,
+   "wrong": 0,
+   "note": "official evaluator errored (JSONDecodeError / missing vlc_port)"
+  },
+  {
+   "arm": "sonnet5-new",
+   "cause": "capped",
+   "n": 4,
+   "ok": 4,
+   "partial": 0,
+   "wrong": 0,
+   "note": "100/100 steps, final message says it ran out of steps"
+  },
+  {
+   "arm": "sonnet5-new",
+   "cause": "action-loop",
+   "n": 3,
+   "ok": 0,
+   "partial": 2,
+   "wrong": 1,
+   "note": "2 are 60 s wait loops on a black desktop (environment); 1 is a normal claimed-done run"
+  },
+  {
+   "arm": "sonnet5-new",
+   "cause": "answered-in-text-no-action",
+   "n": 3,
+   "ok": 3,
+   "partial": 0,
+   "wrong": 0,
+   "note": "question-type task answered in text"
+  },
+  {
+   "arm": "sonnet5-new",
+   "cause": "declared-fail",
+   "n": 2,
+   "ok": 0,
+   "partial": 2,
+   "wrong": 0,
+   "note": "missing input files; 26 consecutive HTTP 400 from the desktop tool (factors not captured)"
+  },
+  {
+   "arm": "sonnet5-new",
+   "cause": "claimed-done-wrong",
+   "n": 6,
+   "ok": 6,
+   "partial": 0,
+   "wrong": 0,
+   "note": "mode correct; true reasons are diverse (zoom level, wrong site, GIMP persistence, wrong formatting)"
+  },
+  {
+   "arm": "astra-new",
+   "cause": "claimed-done-wrong",
+   "n": 4,
+   "ok": 4,
+   "partial": 0,
+   "wrong": 0,
+   "note": ""
+  }
+ ],
+ "fixes_applied_after_round1": [
+  "cap: a run is 'capped' only if the CLI stopped on max_turns/timeout, or it has no final answer, or its own final message says it ran out of steps (old advisory 30-step cap no longer counts)",
+  "action-loop mode removed; repeated-action signature now uses the full tool arguments, kept only as a flag column",
+  "environment factors now also detected from the agent's final message for any mode: black/unrendered desktop, missing precondition (missing file/app/account), site blocked; tool-http-error needs >=3 tool errors (or >=2 within 12 steps)",
+  "new mode declined-without-acting (0 tool calls and answer FAIL)",
+  "Codex transcripts of the old harness (tool-per-action: screenshot/click/key/run_python/a11y_tree) are now parsed by tool name"
+ ],
+ "round2": [
+  {
+   "arm": "sonnet5-new",
+   "cause": "capped+black-desktop",
+   "n": 3,
+   "ok": 3,
+   "partial": 0,
+   "wrong": 0,
+   "note": "agent minimised the LibreOffice window and the bare Openbox session left a black screen (2 of 3 self-inflicted)"
+  },
+  {
+   "arm": "sonnet5-new",
+   "cause": "claimed-done-wrong+black-desktop",
+   "n": 3,
+   "ok": 0,
+   "partial": 0,
+   "wrong": 3,
+   "note": "factor spurious: agent mentions the black Openbox start screen as context and then finishes the task"
+  },
+  {
+   "arm": "sonnet5-old",
+   "cause": "claimed-done-wrong+tool-http-error",
+   "n": 3,
+   "ok": 0,
+   "partial": 0,
+   "wrong": 3,
+   "note": "HTTP 500 came from run_python (transient); agent recovered and finished; factor not causal"
+  },
+  {
+   "arm": "sonnet46-old",
+   "cause": "claimed-done-wrong+tool-http-error",
+   "n": 3,
+   "ok": 0,
+   "partial": 0,
+   "wrong": 3,
+   "note": "same: run_python HTTP 500 / schema validation errors, agent recovered"
+  },
+  {
+   "arm": "sonnet5-old",
+   "cause": "declared-fail+missing-precondition",
+   "n": 3,
+   "ok": 3,
+   "partial": 0,
+   "wrong": 0,
+   "note": "Thunderbird has no account configured"
+  },
+  {
+   "arm": "sonnet5-old",
+   "cause": "declined-without-acting+black-desktop",
+   "n": 2,
+   "ok": 0,
+   "partial": 0,
+   "wrong": 2,
+   "note": "deliberate refusals; black screen irrelevant"
+  }
+ ],
+ "fixes_applied_after_round2": [
+  "factors are attributed only to runs that gave up (declared FAIL) or hit the cap/step limit; never to runs that claimed done or refused",
+  "tool-http-error ignores errors from run_python (transient 500s the agent recovers from)"
+ ]
+}

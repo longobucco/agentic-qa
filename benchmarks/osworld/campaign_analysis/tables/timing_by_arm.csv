@@ -1,0 +1,19 @@
+arm,outcome,n,wall_mean_s,wall_median_s,wall_p90_s,agent_mean_s,agent_median_s,agent_p90_s,steps_mean,steps_median,steps_p90,total_cost_usd
+sonnet46-old,all valid,745,203,58,572,168,55,531,24,13,72,441.4
+sonnet46-old,pass,378,143,52,404,135,48,402,21,13,62,178.4
+sonnet46-old,fail,367,266,70,714,202,67,669,28,13,86,263.0
+sonnet5-old,all valid,833,88,61,186,85,57,183,19,14,39,282.9
+sonnet5-old,pass,473,82,55,178,78,52,174,18,14,37,152.6
+sonnet5-old,fail,360,97,70,199,94,65,196,19,14,43,130.3
+astra-old,all valid,132,55,49,80,,,,12,9,18,59.4
+astra-old,pass,54,49,48,94,,,,12,10,18,21.1
+astra-old,fail,78,60,51,76,,,,12,9,16,38.3
+astra-old-openbook,all valid,45,743,128,1883,,,,30,27,57,40.4
+astra-old-openbook,pass,27,299,127,944,,,,34,32,63,27.3
+astra-old-openbook,fail,18,1409,140,2739,,,,24,19,49,13.1
+sonnet5-new,all valid,1288,414,212,676,232,128,570,34,21,92,1514.3
+sonnet5-new,pass,918,266,194,489,176,110,405,28,19,67,791.8
+sonnet5-new,fail,370,783,350,990,370,248,852,49,38,100,722.5
+astra-new,all valid,749,238,132,257,,,,8,7,16,377.6
+astra-new,pass,535,152,129,216,,,,8,7,15,249.9
+astra-new,fail,214,455,142,399,,,,9,7,20,127.7

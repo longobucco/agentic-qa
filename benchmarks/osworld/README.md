@@ -120,6 +120,45 @@ Spike without provisioning (drive a desktop you already have up):
 OSW_CONTROLLER_URL=http://<url>:5000 python -m benchmarks.osworld.run --ids <task-id>
 ```
 
+## Status: campaigns interrupted (2026-10-14)
+
+The official-protocol campaigns (Claude Sonnet 5 and GPT Astra, Daytona backend) were stopped
+before completing the 361 tasks x 5 runs. The code is frozen at the tags
+`phase2-official361-daytona-frozen` (this branch's infrastructure) and
+`phase2-official361-kvm-frozen` (KVM backend). Raw results and full transcripts
+(`conversation.jsonl`) are not in git; they were archived outside the repo on 2026-10-14
+(byte-for-byte verified), together with a cross-arm analysis of all campaigns (`campaign_analysis/`).
+
+Counts below are for result trees named `*_official`, `run_<k>` directories only (archived
+`run_*_legacy` directories excluded). "Valid verdict" = `eval.json` with `SUCCESS` or `FAILURE`;
+the other runs ended as `ENVIRONMENT_ERROR`/`EVAL_ERROR` or never produced a verdict.
+
+| campaign tree (`..._official`) | tasks tried | tasks with a verdict | run dirs | valid verdict | SUCCESS | FAILURE | env/eval error | no verdict |
+|---|---|---|---|---|---|---|---|---|
+| `agent_computer_sonnet5_effortmax_protocol361img3` (main) | 274 | 264 | 1,370 | 1,307 | 918 | 389 | 21 | 42 |
+| `agent_computer_gpt6astra_max_codex01534_protocol361img3` (main) | 169 | 156 | 845 | 755 | 540 | 215 | 3 | 87 |
+| `agent_computer_sonnet5_effortmax_cc21282` | 26 | 26 | 26 | 26 | 17 | 9 | 0 | 0 |
+| `agent_computer_sonnet5_effortmax_canary20260924` | 15 | 5 | 15 | 5 | 5 | 0 | 0 | 10 |
+| `agent_computer_gpt6astra_max_codex01534_canary20260924` | 15 | 14 | 15 | 14 | 9 | 5 | 1 | 0 |
+| `agent_computer_gpt6astra_max_codex01534_protocol361` | 11 | 9 | 13 | 10 | 7 | 3 | 0 | 3 |
+| `..._protocol361img2` (Sonnet 5 / Astra) | 4 / 4 | 4 / 4 | 4 / 4 | 4 / 4 | 3 / 3 | 1 / 1 | 0 / 0 | 0 / 0 |
+| `..._smoke20260924` (Sonnet 5 / Astra) | 1 / 1 | 1 / 1 | 1 / 1 | 1 / 1 | 1 / 1 | 0 / 0 | 0 / 0 | 0 / 0 |
+
+Main campaigns, over valid-verdict runs: Sonnet 5 918/1,307 = 70.2 %, Astra 540/755 = 71.5 %.
+These are **not** the protocol's pass@1 over 361 tasks x 5 runs: the Sonnet 5 campaign has a
+verdict for 264 of 361 tasks (73 %), Astra for 156 (43 %), with up to 5 runs each. Tried tasks
+without a verdict stopped on quota (`RATE_LIMITED`); the main trees recorded 3,679 (Sonnet 5) and
+6,998 (Astra) `RATE_LIMITED` retry entries in `infra_error.json`, plus 100 / 75 `INFRA_FLAKE`.
+
+Detailed cross-arm analysis (old and new infrastructure, Claude and Astra; failure causes verified
+on transcripts, timing, tokens, cost, task-level flips): `campaign_analysis/` (start from
+`campaign_analysis/FINDINGS.md`). Main points: the guest desktop is a bare Openbox session; some
+Phase-1 results are not agent verdicts (overwritten transcripts, aborted CLIs, evaluator errors,
+VS Code/Thunderbird profile paths); a few tasks the same GUI sequence passes in Phase 1 fail in the new
+infrastructure (GIMP settings, Writer save); 20 Astra runs were scored `FAILURE` only for calling the
+clock tool. Read the pass rates above as a partial result under a degraded environment, not as a
+replication of the published numbers.
+
 ## Campaigns
 
 `scripts/g_official361_driver.py` runs the full official-protocol campaign (361 tasks x 5 runs)
