@@ -29,6 +29,8 @@ own deterministic evaluator.
 - `evaluate.py`: fallback when the official evaluator is unreachable; always `EVAL_ERROR`, never
   a guessed verdict
 - `benchmark.py`: wires both runners onto `core.run.Benchmark`
+- `campaign.py`: campaign rules (rounds, resume, backoff, stop, signals) for the 361 × 5 driver
+  `scripts/g_official361_driver.py`; `campaign_daytona.py`: the Daytona backend it plugs in
 - `config.py`: env-derived configuration; refuses Phase 1 knobs and non-official
   protocol/population values at import time; the result-tree naming and the new-infra guard
 - `tasks.py`: loads task specs, excludes login tasks, buckets by app
@@ -39,12 +41,17 @@ own deterministic evaluator.
   screenshot to the model (local only, no sandbox)
 - `data/download_data.py`, `data/download_evaluators.py`: fetch the pinned task set and
   evaluators
-- `docker/Dockerfile.osworld`: the desktop image (base for the sandbox)
+- `docker/Dockerfile.osworld`: the desktop image (base for the sandbox); `Dockerfile.osworld-pkgfix`
+  and `-pkgfix2`: the thin layers of the pinned digest (missing CLI tools; D-Bus session bus);
+  `start.sh`, `supervisord.conf`, `openbox-rc.xml` and the `timedatectl`/`vlc` shims used by the image
+- `campaign_analysis/`: offline cross-arm analysis of the archived campaigns, with a summary of
+  the two official-protocol campaigns in its README
+- `tests/`: unit tests (no sandbox, no model); `requirements.txt`: dependencies
 - `notebooks/dataset_exploration.ipynb`: exploratory notes on the task set
 
 ## Setup
 ```
-pip install mcp daytona_sdk
+pip install -r benchmarks/osworld/requirements.txt
 docker build --platform linux/amd64 -f benchmarks/osworld/docker/Dockerfile.osworld -t <registry>/osworld-ab:latest .
 docker push <registry>/osworld-ab:latest
 docker inspect <registry>/osworld-ab:latest --format '{{index .RepoDigests 0}}'   # -> pin THIS
@@ -60,6 +67,8 @@ and the guest image; scoring uses it in preference to the installed `desktop_env
 records which one produced each verdict (`provenance.evaluator_commit`). Skip it and scoring
 falls back to the installed release, which cannot score six of the verified tasks at all.
 The pinned evaluators are mandatory: config refuses to start with `OSW_PINNED_EVALUATORS=0`.
+
+Tests (after the two downloads, which some tests read): `python -m pytest benchmarks/osworld/tests core/tests`.
 
 ## Running the official protocol
 
@@ -152,7 +161,7 @@ without a verdict stopped on quota (`RATE_LIMITED`); the main trees recorded 3,6
 
 Detailed cross-arm analysis (old and new infrastructure, Claude and Astra; failure causes verified
 on transcripts, timing, tokens, cost, task-level flips): `campaign_analysis/` (start from
-`campaign_analysis/FINDINGS.md`). Main points: the guest desktop is a bare Openbox session; some
+`campaign_analysis/README.md`, which summarises both official campaigns; the detailed documents are local). Main points: the guest desktop is a bare Openbox session; some
 Phase-1 results are not agent verdicts (overwritten transcripts, aborted CLIs, evaluator errors,
 VS Code/Thunderbird profile paths); a few tasks the same GUI sequence passes in Phase 1 fail in the new
 infrastructure (GIMP settings, Writer save); 20 Astra runs were scored `FAILURE` only for calling the
