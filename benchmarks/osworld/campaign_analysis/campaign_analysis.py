@@ -23,7 +23,6 @@ C = ARCH / "osworld-closed-book-infra-fixes/benchmarks/osworld/results"
 
 # (tree, root, arm, variant, is_main)   arm = headline group; main = counts in the arm headline numbers
 CAMPAIGNS = [
-    ("agent_computer", A, "sonnet46-old", "main", True),
     ("agent_computer_sonnet5", A, "sonnet5-old", "main", True),
     ("verify_replan_sonnet5", A, "sonnet5-old", "verify-replan", False),
     ("agent_computer_sonnet5_infrafix", C, "sonnet5-old", "infrafix", False),
@@ -49,9 +48,8 @@ CAMPAIGNS = [
     ("agent_computer_gpt6astra_max_codex01534_protocol361img2_official", B, "astra-new", "img2", False),
     ("agent_computer_gpt6astra_max_codex01534_smoke20260924_official", B, "astra-new", "smoke", False),
 ]
-ARMS = ["sonnet46-old", "sonnet5-old", "astra-old", "astra-old-openbook", "sonnet5-new", "astra-new"]
+ARMS = ["sonnet5-old", "astra-old", "astra-old-openbook", "sonnet5-new", "astra-new"]
 ARM_DESC = {
-    "sonnet46-old": "Claude Sonnet 4.6 (+haiku helper), Phase-1 Daytona harness, 150 turns, 2700 s, early campaign (offline evaluator fallback common)",
     "sonnet5-old": "Claude Sonnet 5, Phase-1 Daytona harness, 150 turns, 2700 s, model pinned",
     "astra-old": "gpt-6-astra via Codex, Phase-1 Daytona harness, closed-book",
     "astra-old-openbook": "gpt-6-astra via Codex, Phase-1 harness, open-book arm (different protocol; reported separately)",
@@ -681,8 +679,7 @@ def main():
     S += ["\n## Fair comparison on the tasks both arms have a verdict for\n",
           "Per-task score = mean over that arm's valid runs; arm score = mean of task scores over the common tasks. Differences in run counts per task do not bias it.\n",
           "| pair | common tasks | score A | score B | A−B (pp) | tasks only A solves | tasks only B solves |", "|---|---|---|---|---|---|---|"]
-    pairs = [("sonnet5-old", "sonnet5-new"), ("astra-old", "astra-new"), ("sonnet5-new", "astra-new"), ("sonnet5-old", "astra-old"),
-             ("sonnet46-old", "sonnet5-old"), ("sonnet46-old", "sonnet5-new")]
+    pairs = [("sonnet5-old", "sonnet5-new"), ("astra-old", "astra-new"), ("sonnet5-new", "astra-new"), ("sonnet5-old", "astra-old")]
     for x, y in pairs:
         common = [t for t in tasks if task_score(x, t) is not None and task_score(y, t) is not None]
         if not common:
@@ -842,14 +839,14 @@ def main():
         S.append(f"| {a} | {len(rs)} | {sum(r['has_conv'] for r in rs)} | {sum(r['transcript_lost'] for r in rs)} | {sum(1 for r in rs if r['transcript_after_eval'] and not r['transcript_lost'])} | {sum(1 for r in rs if r['has_conv'] and not r['transcript_after_eval'])} | {sum(1 for r in rs if not r['has_conv'])} |")
 
     # model-family comparison on tasks
-    claude = ["sonnet46-old", "sonnet5-old", "sonnet5-new"]
+    claude = ["sonnet5-old", "sonnet5-new"]
     codex = ["astra-old", "astra-old-openbook", "astra-new"]
     def fam(tid, arms_):
         v = sum(cell.get((tid, a), [0, 0])[0] for a in arms_)
         p = sum(cell.get((tid, a), [0, 0])[1] for a in arms_)
         return None if not v else p > 0
     S += ["\n## Claude vs Codex family, per task (informative runs, any run passes)\n", "| scope | tasks with data in both families | solved by both | only Claude | only Codex | neither |", "|---|---|---|---|---|---|"]
-    for label, ca_, co_ in (("all arms", claude, codex), ("new infrastructure only", ["sonnet5-new"], ["astra-new"]), ("old infrastructure only", ["sonnet46-old", "sonnet5-old"], ["astra-old", "astra-old-openbook"])):
+    for label, ca_, co_ in (("all arms", claude, codex), ("new infrastructure only", ["sonnet5-new"], ["astra-new"]), ("old infrastructure only", ["sonnet5-old"], ["astra-old", "astra-old-openbook"])):
         both = only_c = only_x = neither = n = 0
         for tid in tasks:
             fc, fx = fam(tid, ca_), fam(tid, co_)
@@ -867,7 +864,7 @@ def main():
         v = sum(cell.get((tid, a), [0, 0])[0] for a in arms_)
         pz = sum(cell.get((tid, a), [0, 0])[1] for a in arms_)
         return pz, v
-    old_arms, new_arms = ["sonnet46-old", "sonnet5-old", "astra-old"], ["sonnet5-new", "astra-new"]
+    old_arms, new_arms = ["sonnet5-old", "astra-old"], ["sonnet5-new", "astra-new"]
     reg, gain = [], []
     for tid, t in tasks.items():
         op, ov = agg(tid, old_arms)

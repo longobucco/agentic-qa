@@ -137,60 +137,6 @@
    "note": "deliberate refusals / confirmation requests (copyright, push to upstream remote)"
   },
   {
-   "arm": "sonnet46-old",
-   "cause": "capped",
-   "n": 3,
-   "ok": 3,
-   "partial": 0,
-   "wrong": 0,
-   "note": "stop max_turns (150), no final answer"
-  },
-  {
-   "arm": "sonnet46-old",
-   "cause": "declared-fail",
-   "n": 2,
-   "ok": 2,
-   "partial": 0,
-   "wrong": 0,
-   "note": "agent judged feature absent (Chrome setting, Impress Summary Slide)"
-  },
-  {
-   "arm": "sonnet46-old",
-   "cause": "claimed-done-wrong",
-   "n": 4,
-   "ok": 4,
-   "partial": 0,
-   "wrong": 0,
-   "note": ""
-  },
-  {
-   "arm": "sonnet46-old",
-   "cause": "transcript-lost",
-   "n": 2,
-   "ok": 2,
-   "partial": 0,
-   "wrong": 0,
-   "note": "transcript is only 'You've hit your session limit'; eval.json predates it"
-  },
-  {
-   "arm": "sonnet46-old",
-   "cause": "no-verdict:INFRA_FLAKE",
-   "n": 2,
-   "ok": 2,
-   "partial": 0,
-   "wrong": 0,
-   "note": "no result files (e.g. FileNotFoundError: 'claude')"
-  },
-  {
-   "arm": "sonnet46-old",
-   "cause": "eval-error:offline_fallback",
-   "n": 2,
-   "ok": 2,
-   "partial": 0,
-   "wrong": 0,
-   "note": "official evaluator errored (JSONDecodeError / missing vlc_port)"
-  },
-  {
    "arm": "sonnet5-new",
    "cause": "capped",
    "n": 4,
@@ -279,15 +225,6 @@
    "partial": 0,
    "wrong": 3,
    "note": "HTTP 500 came from run_python (transient); agent recovered and finished; factor not causal"
-  },
-  {
-   "arm": "sonnet46-old",
-   "cause": "claimed-done-wrong+tool-http-error",
-   "n": 3,
-   "ok": 0,
-   "partial": 0,
-   "wrong": 3,
-   "note": "same: run_python HTTP 500 / schema validation errors, agent recovered"
   },
   {
    "arm": "sonnet5-old",

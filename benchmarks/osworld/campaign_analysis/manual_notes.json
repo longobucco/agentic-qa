@@ -67,12 +67,12 @@
  "7767eef2": {
   "cat": "INFRA-REGRESSION (new infra) — GIMP config persistence",
   "conf": "high that it is infrastructure; mechanism suspected",
-  "note": "NEW-INFRASTRUCTURE REGRESSION. The same GUI procedure passes in Phase 1 and fails in the official-protocol infrastructure for both models. Evidence (verified): sonnet5-old, task 7767eef2: Edit > Preferences > Theme > Light > OK (7 actions) -> 3/3 SUCCESS; sonnet5-new and astra-new perform the identical sequence and score 0/10; 7b7617bd: Preferences > System Resources > undo levels 100 > OK -> old 9/9, new 0/10. Hence the agents are not at fault. Mechanism: suspected, not verified in the VM. Candidates: the official postconfig (`ctrl+q` through pyautogui in the guest, so GIMP flushes gimprc/sessionrc/action-history) does not take effect in this guest; or the config is written under a different path than the one the checker reads. Note: the guest image sets DISPLAY=:99 while the vendored official prompt tells agents to use DISPLAY=:0 (apps launched that way fail with 'cannot open display')."
+  "note": "NEW-INFRASTRUCTURE REGRESSION. The same GUI procedure passes in Phase 1 and fails in the official-protocol infrastructure for both models. Evidence (verified): sonnet5-old, task 7767eef2: Edit > Preferences > Theme > Light > OK (7 actions) -> 3/3 SUCCESS; sonnet5-new and astra-new perform the identical sequence and score 0/10; 7b7617bd: Preferences > System Resources > undo levels 100 > OK -> old 6/6, new 0/10. Hence the agents are not at fault. Mechanism: suspected, not verified in the VM. Candidates: the official postconfig (`ctrl+q` through pyautogui in the guest, so GIMP flushes gimprc/sessionrc/action-history) does not take effect in this guest; or the config is written under a different path than the one the checker reads. Note: the guest image sets DISPLAY=:99 while the vendored official prompt tells agents to use DISPLAY=:0 (apps launched that way fail with 'cannot open display')."
  },
  "7b7617bd": {
   "cat": "INFRA-REGRESSION (new infra) — GIMP config persistence",
   "conf": "high that it is infrastructure; mechanism suspected",
-  "note": "NEW-INFRASTRUCTURE REGRESSION. The same GUI procedure passes in Phase 1 and fails in the official-protocol infrastructure for both models. Evidence (verified): sonnet5-old, task 7767eef2: Edit > Preferences > Theme > Light > OK (7 actions) -> 3/3 SUCCESS; sonnet5-new and astra-new perform the identical sequence and score 0/10; 7b7617bd: Preferences > System Resources > undo levels 100 > OK -> old 9/9, new 0/10. Hence the agents are not at fault. Mechanism: suspected, not verified in the VM. Candidates: the official postconfig (`ctrl+q` through pyautogui in the guest, so GIMP flushes gimprc/sessionrc/action-history) does not take effect in this guest; or the config is written under a different path than the one the checker reads. Note: the guest image sets DISPLAY=:99 while the vendored official prompt tells agents to use DISPLAY=:0 (apps launched that way fail with 'cannot open display')."
+  "note": "NEW-INFRASTRUCTURE REGRESSION. The same GUI procedure passes in Phase 1 and fails in the official-protocol infrastructure for both models. Evidence (verified): sonnet5-old, task 7767eef2: Edit > Preferences > Theme > Light > OK (7 actions) -> 3/3 SUCCESS; sonnet5-new and astra-new perform the identical sequence and score 0/10; 7b7617bd: Preferences > System Resources > undo levels 100 > OK -> old 6/6, new 0/10. Hence the agents are not at fault. Mechanism: suspected, not verified in the VM. Candidates: the official postconfig (`ctrl+q` through pyautogui in the guest, so GIMP flushes gimprc/sessionrc/action-history) does not take effect in this guest; or the config is written under a different path than the one the checker reads. Note: the guest image sets DISPLAY=:99 while the vendored official prompt tells agents to use DISPLAY=:0 (apps launched that way fail with 'cannot open display')."
  },
  "94d95f96": {
   "cat": "AGENT-method/ENV",
@@ -82,7 +82,7 @@
  "9f3f70fc": {
   "cat": "ENV-site-blocked",
   "conf": "confirmed",
-  "note": "NBA Store returns 'Access Denied' (agent reports it in 5/5 runs)."
+  "note": "NBA Store returns 'Access Denied' (agent reports it in 5/5 runs). Correction from the Astra review: Sonnet 5 new passes 4/5 here, so the block is intermittent; Astra was blocked in 4/5 runs."
  },
  "9f935cce": {
   "cat": "AGENT-error",
@@ -95,9 +95,9 @@
   "note": "Needs `gsettings get org.gnome.desktop.screensaver lock-enabled` == true; GNOME settings are unavailable in the bare-X guest, the agent reports so. NOTE (cross-arm correction): in Phase 1 sonnet5-old solved some of these (a4d98375, f9be0997, 94d95f96: 3/3, 28cc3b7e 2/3) with the `run_python` tool (`gsettings set ...`), i.e. from the command line while the desktop stayed black. The official protocol has no such tool, so a GUI-only agent must open a terminal; Astra opened one and typed `gnome-control-center`, then declared [INFEASIBLE]; none of the 30 Astra-new runs on these six tasks (a4d98375, f9be0997, 28cc3b7e, bedcedc4, ec4e3f68, 94d95f96) ever invoked `gsettings` (grep over the transcripts). The bare Openbox session is real, but it is a handicap, not an impossibility."
  },
  "a746add2": {
-  "cat": "INFRA-REGRESSION (new infra) — GIMP state persistence (suspected)",
+  "cat": "SUSPECTED-persistence (unsolved in Phase 1 too: not a regression)",
   "conf": "medium",
-  "note": "Vignette dialog: checker reads ~/.config/GIMP/2.10/action-history after a quit postconfig and needs 'filters-vignette'. The agent opens the filter window (claims so) but the action-history entry is not present. Related regression: same checker family as 7767eef2/7b7617bd/b148e375, which pass 3/3 in Phase 1 with the identical GUI sequence (see those notes)."
+  "note": "Vignette dialog: checker reads ~/.config/GIMP/2.10/action-history after a quit postconfig and needs 'filters-vignette'. The agent opens the filter window (claims so) but the action-history entry is not present. Related family (not a regression: Phase 1 also 0/3): same checker family as 7767eef2/7b7617bd/b148e375, which pass 3/3 in Phase 1 with the identical GUI sequence (see those notes)."
  },
  "acb0f96b": {
   "cat": "AGENT-spec-ambiguity",
@@ -117,7 +117,7 @@
  "b148e375": {
   "cat": "INFRA-REGRESSION (new infra) — GIMP config persistence",
   "conf": "high that it is infrastructure; mechanism suspected",
-  "note": "NEW-INFRASTRUCTURE REGRESSION. The same GUI procedure passes in Phase 1 and fails in the official-protocol infrastructure for both models. Evidence (verified): sonnet5-old, task 7767eef2: Edit > Preferences > Theme > Light > OK (7 actions) -> 3/3 SUCCESS; sonnet5-new and astra-new perform the identical sequence and score 0/10; 7b7617bd: Preferences > System Resources > undo levels 100 > OK -> old 9/9, new 0/10. Hence the agents are not at fault. Mechanism: suspected, not verified in the VM. Candidates: the official postconfig (`ctrl+q` through pyautogui in the guest, so GIMP flushes gimprc/sessionrc/action-history) does not take effect in this guest; or the config is written under a different path than the one the checker reads. Note: the guest image sets DISPLAY=:99 while the vendored official prompt tells agents to use DISPLAY=:0 (apps launched that way fail with 'cannot open display')."
+  "note": "NEW-INFRASTRUCTURE REGRESSION. The same GUI procedure passes in Phase 1 and fails in the official-protocol infrastructure for both models. Evidence (verified): sonnet5-old, task 7767eef2: Edit > Preferences > Theme > Light > OK (7 actions) -> 3/3 SUCCESS; sonnet5-new and astra-new perform the identical sequence and score 0/10; 7b7617bd: Preferences > System Resources > undo levels 100 > OK -> old 6/6, new 0/10. Hence the agents are not at fault. Mechanism: suspected, not verified in the VM. Candidates: the official postconfig (`ctrl+q` through pyautogui in the guest, so GIMP flushes gimprc/sessionrc/action-history) does not take effect in this guest; or the config is written under a different path than the one the checker reads. Note: the guest image sets DISPLAY=:99 while the vendored official prompt tells agents to use DISPLAY=:0 (apps launched that way fail with 'cannot open display')."
  },
  "b7895e80": {
   "cat": "CHECKER-brittle-live-site / HARNESS-rule",
@@ -135,9 +135,9 @@
   "note": "Kohl's 'Access Denied' (5/5 runs)."
  },
  "d52d6308": {
-  "cat": "INFRA-REGRESSION (new infra) — GIMP state persistence (suspected)",
+  "cat": "SUSPECTED-persistence (unsolved in Phase 1 too: not a regression)",
   "conf": "medium",
-  "note": "Hide left dock: checker reads sessionrc 'hide-docks' after ctrl+q postconfig; agent removed the dock (5-10 steps) and states the right dock remains. sessionrc is written on exit. Sonnet 5 new fails it as well (29 steps, claims the dock is hidden). Related regression: same checker family as 7767eef2/7b7617bd/b148e375, which pass 3/3 in Phase 1 with the identical GUI sequence (see those notes)."
+  "note": "Hide left dock: checker reads sessionrc 'hide-docks' after ctrl+q postconfig; agent removed the dock (5-10 steps) and states the right dock remains. sessionrc is written on exit. Sonnet 5 new fails it as well (29 steps, claims the dock is hidden). Related family (not a regression: Phase 1 also 0/3): same checker family as 7767eef2/7b7617bd/b148e375, which pass 3/3 in Phase 1 with the identical GUI sequence (see those notes)."
  },
  "dbbf4b99": {
   "cat": "ENV-missing-dependency",
@@ -277,17 +277,12 @@
  "3c8f201a": {
   "cat": "UNVERIFIED-output-path/format",
   "conf": "low",
-  "note": "Both old Claude arms (6/6) report a compressed.jpeg of ~221 KB created with GIMP batch mode in the Phase-1 harness, yet check_image_file_size fails; likely the file landed in a different home/path (see 5c1075ca) or the name differs. Not recoverable from the transcript."
+  "note": "The Sonnet 5 Phase-1 runs (3/3) report a compressed.jpeg of about 221 KB created with GIMP batch mode in the Phase-1 harness, yet check_image_file_size fails; likely the file landed in a different home/path (see 5c1075ca) or the name differs. Not recoverable from the transcript."
  },
  "74d5859f": {
   "cat": "UNVERIFIED-agent-claimed-done",
   "conf": "low",
   "note": "Sonnet 5 new used webext.eu and claims done in 50 steps; the checker compares five generated project files (check_json + 4 diff_text_file). Content differences not inspected (no kept artifacts)."
- },
- "7ff48d5b": {
-  "cat": "AGENT-claimed-done / no new-infra data",
-  "conf": "low",
-  "note": "Chinese-language task answered with 5 addresses in a docx (sonnet46-old, 3/3 fail on fuzzy_place_math); the Sonnet 5 new runs all aborted with 'Not logged in' (no data)."
  },
  "e1fc0df3": {
   "cat": "AGENT-limit",
@@ -387,12 +382,12 @@
  "3ef2b351": {
   "cat": "INFRA-REGRESSION (new infra) — Writer save by postconfig",
   "conf": "medium (action counts verified; mechanism suspected)",
-  "note": "Centre-align the heading in Writer. Phase 1: sonnet5-old 3/3 (7 actions incl. 3 key presses, i.e. it saves), sonnet46-old 2/3, astra-old 1/1. New: sonnet5-new 0/5 with 3 actions and no save: it relies on the official postconfig (`activate_window` + pyautogui `ctrl+s`, 0.5 s) to save, and the checker reads the saved .docx. In this guest the postconfig save does not produce the file (suspected: the 'Keep current format' prompt after ctrl+s is never confirmed, or the hotkey does not reach the X server). Not verified in the VM."
+  "note": "Centre-align the heading in Writer. Phase 1: sonnet5-old 3/3 (7 actions incl. 3 key presses, i.e. it saves), astra-old 1/1. New: sonnet5-new 0/5 with 3 actions and no save: it relies on the official postconfig (`activate_window` + pyautogui `ctrl+s`, 0.5 s) to save, and the checker reads the saved .docx. In this guest the postconfig save does not produce the file (suspected: the 'Keep current format' prompt after ctrl+s is never confirmed, or the hotkey does not reach the X server). Not verified in the VM."
  },
  "b21acd93": {
   "cat": "INFRA-REGRESSION (new infra) — Writer save by postconfig (suspected)",
   "conf": "low-medium",
-  "note": "Line spacing in Writer: old arms 6/6 (+1 open-book), new 0/4 (docx 7,446 B vs gold 7,452 B). Same postconfig (activate window + ctrl+s) as 3ef2b351; the agents' own save behaviour was not compared run by run."
+  "note": "Line spacing in Writer: old arms 6/6, new arms 0/10 (docx 7,446 B vs gold 7,452 B). Same postconfig (activate window + ctrl+s) as 3ef2b351; the agents' own save behaviour was not compared run by run."
  },
  "69acbb55": {
   "cat": "UNVERIFIED regression",
@@ -442,12 +437,12 @@
  "7aeae0e2": {
   "cat": "ENV-old-infra / AGENT-limit",
   "conf": "low",
-  "note": "sonnet5-old reports VS Code in Restricted Mode with zero extensions and declares FAIL; sonnet46-old uses all 150 turns (stop max_turns) trying an Interactive Window/ipykernel route. Unsolved in Phase 1; not run in the new infrastructure."
+  "note": "sonnet5-old reports VS Code in Restricted Mode with zero extensions and declares FAIL. Unsolved in Phase 1; not run in the new infrastructure."
  },
  "53ad5833": {
   "cat": "ORACLE-ERROR (old infra)",
   "conf": "medium",
-  "note": "sonnet5-old: 3/3 EVAL_ERROR (official evaluator errored); sonnet46-old: transcripts lost. No verdict from the agent's work."
+  "note": "sonnet5-old: 3/3 EVAL_ERROR (official evaluator errored). No verdict from the agent's work."
  },
  "bba3381f": {
   "cat": "UNVERIFIED",
@@ -472,6 +467,61 @@
  "8f080098": {
   "cat": "AGENT-refusal",
   "conf": "high",
-  "note": "sonnet5-old (2/3) and sonnet46-old (2/3) refuse to convert a copyrighted music video to MP3 ('circumventing copyright') and answer FAIL without acting; the checker expects the MP3. Model policy behaviour, not an environment problem."
+  "note": "sonnet5-old (2/3) refuses to convert a copyrighted music video to MP3 ('circumventing copyright') and answers FAIL without acting; the checker expects the MP3. Model policy behaviour, not an environment problem."
+ },
+ "02ce9a50": {
+  "cat": "UNVERIFIED-checker-terminal-output",
+  "conf": "low",
+  "note": "Writer task: screenshot of an xterm running `ls` saved to Desktop/ls.png, compared by three compare_image_text checks. Every arm that ran it claimed DONE and failed (sonnet5-old 0/3, astra-old-openbook 0/3, sonnet5-new 0/5); in sonnet5-new 3/5 runs ended with declared FAIL after repeated computer-tool HTTP errors. The checker compares OCR-like text of the image with a gold screenshot; the exact terminal geometry/font was not compared run by run, so the cause (crop, window content, fonts) is not established."
+ },
+ "f178a4a9": {
+  "cat": "UNVERIFIED-agent-claimed-done",
+  "conf": "low",
+  "note": "Make Times New Roman the default font in Writer. All 8 runs (sonnet5-old 3, sonnet5-new 5) claim to have changed Tools > Options > Basic Fonts or the style, then fail find_default_font. Both arms follow the same GUI path, so a checker/persistence mismatch (setting changed in the Options dialog is not what the checker reads, e.g. the default paragraph style in a saved document) is plausible but was not verified."
+ },
+ "5203d847": {
+  "cat": "ENV-old-infra-thunderbird-profile",
+  "conf": "high (transcripts: no account in profile)",
+  "note": "Thunderbird task needing an Inbox and a Local Folders account. In the Phase 1 container Thunderbird had no account configured, so all 3 runs declared FAIL citing a missing precondition. The failure is an environment defect of the Phase 1 image (profile not seeded), not an agent error."
+ },
+ "9b7bc335": {
+  "cat": "ENV-old-infra-thunderbird-profile",
+  "conf": "high (transcripts + prefs.js read)",
+  "note": "Forwarding filter in Thunderbird. The Phase 1 profile contains no mail.account/mail.server entries (the agent read prefs.js and saw Thunderbird's 'No Email Account Configured' dialog); 1/3 declared FAIL on the missing precondition, 2/3 created something anyway and claimed DONE. The environment, not the agent, is the primary cause."
+ },
+ "215dfd39": {
+  "cat": "ENV-old-infra-black-desktop",
+  "conf": "high (all runs of both arms)",
+  "note": "VLC splash-cone task. In every Phase 1 run of both models (sonnet5-old 0/3, astra-old 0/3) the desktop was black with an empty accessibility tree, and the agents correctly declared FAIL. The VLC window was never available; the task was not attempted on this infrastructure. Not run in the new arms."
+ },
+ "a5bbbcd5": {
+  "cat": "ENV-old-infra-black-desktop",
+  "conf": "high (all runs of both arms)",
+  "note": "VLC minimal view. Black desktop in all Phase 1 runs (sonnet5-old, astra-old) with an empty accessibility tree: agents declared FAIL; two sonnet5-old runs were additionally evaluator errors (offline fallback). Not solved in the new arms (astra-new rate-limited). Environment failure."
+ },
+ "aa4b5023": {
+  "cat": "ENV-old-infra-black-desktop",
+  "conf": "high (transcripts)",
+  "note": "VLC video rotate-and-save. Phase 1 desktops were black (2/3 sonnet5-old declared FAIL on it; 1/3 claimed DONE without evidence); the astra-old-openbook run ended on tool HTTP errors after a blank desktop. The video was never reachable, so the task is untested rather than failed by the agent."
+ },
+ "f3977615": {
+  "cat": "ENV-old-infra-black-desktop",
+  "conf": "high (astra-old transcripts)",
+  "note": "VLC single-instance setting. astra-old: black desktop in 3/3 runs, FAIL declared. sonnet5-old: the 3 runs hit evaluator errors (offline fallback) and have no verdict. No run in which the VLC GUI was available exists for this task."
+ },
+ "98e8e339": {
+  "cat": "AGENT-error",
+  "conf": "low",
+  "note": "VS Code project: concatenate five .txt files into concat.docx via Writer with font size 10. 3/3 sonnet5-old runs claim DONE with one paragraph per file; compare_docx_files fails. Typical causes (paragraph/line-break structure, font size applied to the style rather than runs) were not checked against the produced docx."
+ },
+ "ea98c5d7": {
+  "cat": "ENV-old-infra-vscode-settings-path",
+  "conf": "medium",
+  "note": "VS Code keybinding removal. sonnet5-old (3 runs, ~54 steps) edited keybindings.json via the GUI, saw the unsaved dot disappear and claimed DONE; check_json_keybindings fails. The same VS Code user-data-path mismatch of the Phase 1 image affects other vscode tasks (file written where the checker does not read), so this is likely environmental. astra-old runs were aborted by API 429 and carry no verdict."
+ },
+ "6f81754e": {
+  "cat": "AGENT-limit",
+  "conf": "low",
+  "note": "Writer task (deduplicate HK train records in a docx). Phase 1 sonnet5-old 3/3; sonnet5-new 0/5, all claim DONE. The agent computed the unique list in a Calc scratch sheet and rewrote the docx (8,642 B vs gold 7,439 B). The difference may come from the new tool surface (no run_python) forcing a GUI-only route; not verified run by run."
  }
 }

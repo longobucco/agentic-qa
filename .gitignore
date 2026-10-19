@@ -204,3 +204,7 @@ benchmarks/osworld/data/controllers/
 
 # Project documentation (thesis material) stays local: never committed or pushed.
 docs/
+
+# Campaign-analysis documentation (thesis material) stays local; only the README is tracked.
+benchmarks/osworld/campaign_analysis/*.md
+!benchmarks/osworld/campaign_analysis/README.md

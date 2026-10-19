@@ -1,7 +1,4 @@
 arm,outcome,n,wall_mean_s,wall_median_s,wall_p90_s,agent_mean_s,agent_median_s,agent_p90_s,steps_mean,steps_median,steps_p90,total_cost_usd
-sonnet46-old,all valid,745,203,58,572,168,55,531,24,13,72,441.4
-sonnet46-old,pass,378,143,52,404,135,48,402,21,13,62,178.4
-sonnet46-old,fail,367,266,70,714,202,67,669,28,13,86,263.0
 sonnet5-old,all valid,833,88,61,186,85,57,183,19,14,39,282.9
 sonnet5-old,pass,473,82,55,178,78,52,174,18,14,37,152.6
 sonnet5-old,fail,360,97,70,199,94,65,196,19,14,43,130.3

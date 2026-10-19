@@ -1,0 +1,794 @@
+{
+ "0d8b7de3": {
+  "bucket": "chrome",
+  "results": "astra-new 2/5 (Sonnet 5 0/5)",
+  "behaviour": "3 fails: opens the site, reads 'Access Denied for this region or network', searches the page, declares [INFEASIBLE].",
+  "reason": "Live site refuses access from the sandbox; access is intermittent (2 runs got through and passed). Checker needs the browser on the site.",
+  "certainty": "certain (agent report + same on Sonnet; screenshot not re-viewed)",
+  "kind": "ENV-site-blocked"
+ },
+ "121ba48f": {
+  "bucket": "chrome",
+  "results": "astra-new 5/5",
+  "behaviour": "All Astra runs pass.",
+  "reason": "No Astra failure: the only recorded FAILURE is an open-book run killed by API 429.",
+  "certainty": "certain",
+  "kind": "NOT-A-FAILURE"
+ },
+ "1704f00f": {
+  "bucket": "chrome",
+  "results": "astra-new 4/5",
+  "behaviour": "The failing run completes the car search (Zurich, sorted by price) and answers DONE.",
+  "reason": "Run scored FAILURE only because it called Codex's clock tool (exec.clock__curr_time) to resolve 'next Monday'; the tool-surface rule voids it. End state not scored.",
+  "certainty": "certain (verdict reason in eval.json)",
+  "kind": "HARNESS-rule"
+ },
+ "2888b4e6": {
+  "bucket": "chrome",
+  "results": "astra-new 0/5 (Sonnet 0/5)",
+  "behaviour": "Opens Macy's, reload, tries search; declares [INFEASIBLE] because Macy's blocks access.",
+  "reason": "Macy's blocks the datacenter address; unsolvable in this environment by either model.",
+  "certainty": "certain (all runs show the block)",
+  "kind": "ENV-site-blocked"
+ },
+ "368d9ba4": {
+  "bucket": "chrome",
+  "results": "astra-new 1/5 (Sonnet 5/5)",
+  "behaviour": "4 fails: finds the Manchester October forecast page on AccuWeather and answers DONE with the link and temperatures.",
+  "reason": "All 4 failures are the tool-surface rule (clock tool called to learn the current month); the page found is the right one. Pass rate is an artefact of the rule.",
+  "certainty": "certain (verdict reason in eval.json for the 4 runs)",
+  "kind": "HARNESS-rule"
+ },
+ "44ee5668": {
+  "bucket": "chrome",
+  "results": "astra-new 2/5 (Sonnet 5/5)",
+  "behaviour": "3 fails: takes 2 screenshots, presses ctrl+h, then declares [INFEASIBLE] saying the computer controls are failing; no history touched.",
+  "reason": "The desktop `computer` tool returned errors in those runs (counted HTTP errors), so the agent never reached Chrome. Infrastructure/tool failure, not task difficulty (2 other runs pass).",
+  "certainty": "certain (tool errors in transcript + agent statement)",
+  "kind": "INFRA-tool-error"
+ },
+ "47543840": {
+  "bucket": "chrome",
+  "results": "astra-new 3/4 valid (Sonnet 0/5)",
+  "behaviour": "The failing run completes the Boston Logan car search sorted by seats (largest: 12-passenger van) and answers DONE.",
+  "reason": "Run voided by the tool-surface rule (clock tool called for 'next month'); one more run is an environment error without verdict. Astra otherwise solves it where Sonnet 5 never does.",
+  "certainty": "certain (verdict reason)",
+  "kind": "HARNESS-rule"
+ },
+ "59155008": {
+  "bucket": "chrome",
+  "results": "astra-new 0/5 (Sonnet 0/5)",
+  "behaviour": "Zero actions in all 5 runs: lists similar names (Karl, Carlo, Cole, ...) from memory and answers DONE without opening the browser.",
+  "reason": "The checker is state-based (active tab must be a baby-names page) while the instruction reads as a question; the agent answers it as a question. Agent misses the implicit 'look it up in the browser' requirement; both models do the same.",
+  "certainty": "certain (0 actions, checker config)",
+  "kind": "AGENT-spec-ambiguity"
+ },
+ "6c4c23a1": {
+  "bucket": "chrome",
+  "results": "astra-new 0/5 (Sonnet 0/5)",
+  "behaviour": "Searches Delta for Seattle-NYC on the 5th of next month with miles; Delta returns 'Access Denied'; declares [INFEASIBLE]. Other runs: browser tools unavailable (tool errors).",
+  "reason": "Mix: live airline site blocks the sandbox (2 runs), tool errors (1), and tool-surface rule voids 2 runs that used the clock tool for the relative date. No run could complete.",
+  "certainty": "certain for the block and the rule; the 5th run not examined",
+  "kind": "ENV-site-blocked + HARNESS-rule"
+ },
+ "7b6c7e24": {
+  "bucket": "chrome",
+  "results": "astra-new 4/5 (Sonnet 4/5)",
+  "behaviour": "Failing run (run_3): opens chrome://settings/content/all, searches 'amazon', removes Amazon and Amazon Ads site data, then also switches Chrome to 'Block third-party cookies' (final screenshot: chrome://settings/cookies); answers DONE.",
+  "reason": "The saved Chrome Cookies database of the failing run still contains two Amazon cookies (.amazon.com 'cmc' and www.amazon.com 'csm-hit'); in the four passing runs the database has no Amazon row (35, 2, 2 and 35 cookies in total). 'csm-hit' is a page-beacon cookie, so an Amazon page was most likely still loaded and re-created it after the deletion. The run did not re-check the cookie list after its last page action.",
+  "certainty": "certain for the leftover cookies (database read); re-creation mechanism inferred",
+  "kind": "AGENT-error (cookies re-created / not fully removed)"
+ },
+ "82bc8d6a": {
+  "bucket": "chrome",
+  "results": "astra-new 3/5 (Sonnet 5/5)",
+  "behaviour": "2 fails: finds a Mumbai-Stockholm Qatar Airways one-way for the right Monday and answers DONE.",
+  "reason": "Both fails voided by the tool-surface rule (clock tool for 'next Monday'). End state not scored.",
+  "certainty": "certain (verdict reason)",
+  "kind": "HARNESS-rule"
+ },
+ "99146c54": {
+  "bucket": "chrome",
+  "results": "astra-new 2/5 (Sonnet 5/5)",
+  "behaviour": "3 fails: declares [INFEASIBLE] (0-1 steps) because Chrome cannot delete ALL browsing data on exit, only cookies and site data.",
+  "reason": "Agent judgement: it reads the request literally and refuses; the passing runs (and Sonnet 5) apply the cookies/site-data-on-exit setting, which is what the checker expects. Instruction under-specified, Astra too strict.",
+  "certainty": "certain (final messages; passing runs use the setting)",
+  "kind": "AGENT-judgement/give-up"
+ },
+ "9f3f70fc": {
+  "bucket": "chrome",
+  "results": "astra-new 0/5 (Sonnet 4/5)",
+  "behaviour": "Opens store.nba.com, gets 'Access Denied' and declares [INFEASIBLE] (4 runs; 1 more declared fail without the block factor).",
+  "reason": "Live NBA Store blocks the sandbox for Astra in every run; Sonnet 5 got through in 4/5 runs, so the block is intermittent. Astra never reached the product list.",
+  "certainty": "certain for the block (agent report in each run); intermittency inferred from Sonnet results",
+  "kind": "ENV-site-blocked (intermittent)"
+ },
+ "9f935cce": {
+  "bucket": "chrome",
+  "results": "astra-new 0/5 (Sonnet 5/5)",
+  "behaviour": "Opens a Civil Division forms list (11 results) through a filter route and answers DONE.",
+  "reason": "Checker needs the browser on the URL matching 'civil/documents-and-forms'; the agent ends on another page showing a forms list. Wrong landing page, not environment (Sonnet passes 5/5). Why this route was chosen was not examined.",
+  "certainty": "certain for URL mismatch; route not examined",
+  "kind": "AGENT-error"
+ },
+ "a728a36e": {
+  "bucket": "chrome",
+  "results": "astra-new 5/5",
+  "behaviour": "All Astra runs pass.",
+  "reason": "No Astra failure (open-book run killed by API 429).",
+  "certainty": "certain",
+  "kind": "NOT-A-FAILURE"
+ },
+ "a96b564e": {
+  "bucket": "chrome",
+  "results": "astra-new 5/5",
+  "behaviour": "All Astra runs pass.",
+  "reason": "No Astra failure (open-book run killed by API 429).",
+  "certainty": "certain",
+  "kind": "NOT-A-FAILURE"
+ },
+ "b070486d": {
+  "bucket": "chrome",
+  "results": "astra-new 0/5 (Sonnet 0/5)",
+  "behaviour": "Searches Tamiflu / opens drugs.com side-effects URL directly; the site blocks access; declares [INFEASIBLE] in 5/5 runs.",
+  "reason": "Drugs.com blocks the sandbox network; unsolvable here by either model.",
+  "certainty": "certain (all runs)",
+  "kind": "ENV-site-blocked"
+ },
+ "b7895e80": {
+  "bucket": "chrome",
+  "results": "astra-new 0/5 (Sonnet 0/5)",
+  "behaviour": "3 runs: Tripadvisor hotels for New York City, dates Fri Oct 9 - Sun Oct 11, 1 room 2 guests, 'Sort by price (low to high)', stay on the results page and report the cheapest (e.g. $185). 2 runs voided by the clock rule.",
+  "reason": "Final screenshot confirms the requested state. The list shows a sponsored $551 listing above the first organic result ($185), so a scrape of the first card differs from what the agent reports; checker is an XPath/JSON scrape of live markup and relative dates. Sonnet 5 also fails 5/5. Mechanism inferred, not read from the checker.",
+  "certainty": "state verified by screenshot; mechanism inferred",
+  "kind": "CHECKER-brittle-live-site + HARNESS-rule"
+ },
+ "bb5e4c0d": {
+  "bucket": "chrome",
+  "results": "astra-new 4/5 (Sonnet 5/5)",
+  "behaviour": "1 fail: two screenshots, then [INFEASIBLE] saying it cannot access the browser.",
+  "reason": "Desktop tool errors in that run (no browser interaction at all); the other 4 runs pass.",
+  "certainty": "certain (transcript, 1 step)",
+  "kind": "INFRA-tool-error"
+ },
+ "c1fa57f3": {
+  "bucket": "chrome",
+  "results": "astra-new 5/5",
+  "behaviour": "All Astra runs pass.",
+  "reason": "No Astra failure (open-book run killed by API 429).",
+  "certainty": "certain",
+  "kind": "NOT-A-FAILURE"
+ },
+ "cabb3bae": {
+  "bucket": "chrome",
+  "results": "astra-new 0/5 (Sonnet 0/5)",
+  "behaviour": "Opens kohls.com, 'Access Denied', declares [INFEASIBLE] (4 runs with the block, 1 other declared fail).",
+  "reason": "Kohl's blocks the sandbox for both models; unsolvable here.",
+  "certainty": "certain",
+  "kind": "ENV-site-blocked"
+ },
+ "da46d875": {
+  "bucket": "chrome",
+  "results": "astra-new 1/5 (Sonnet 0/5)",
+  "behaviour": "Run 1/3: selects Transportation Access Pass at the CharlieCard store, picks Monday 7 June 2027 (the first Monday eight months ahead), time 9:35 AM, fills James Smith / james.smith@gmail.com, leaves 'Book' unclicked (screenshot confirms every field). The passing run does the same with 10:30 AM at 80% zoom. Run 2 is voided by the clock rule, run 5 by tool errors.",
+  "reason": "The page state is correct in the failing runs, so this is not an agent mistake that can be seen. Only one of five runs passes; Sonnet 5 fails 5/5 including a 10:05 AM slot, so the time of day alone does not explain it. The checker scrapes the live Microsoft Bookings page (JSON-object checks), which depends on the layout/zoom and on the slot list.",
+  "certainty": "narrowed: UI state verified by screenshot; the failing condition itself not identified",
+  "kind": "UNEXPLAINED (state correct) + HARNESS-rule"
+ },
+ "da922383": {
+  "bucket": "chrome",
+  "results": "astra-new: no failing run",
+  "behaviour": "Only an open-book run killed by API 429 is recorded as failure.",
+  "reason": "No Astra failure; (Sonnet 5 saves PDFs but exact_match fails 0/5, unexplained).",
+  "certainty": "certain",
+  "kind": "NOT-A-FAILURE"
+ },
+ "e1e75309": {
+  "bucket": "chrome",
+  "results": "astra-new 0/5 (Sonnet 0/5)",
+  "behaviour": "Ctrl+P, destination Save as PDF, margins None, saves with the default filename on Desktop, answers DONE.",
+  "reason": "compare_pdfs scores 0.93 (similarity), below the pass threshold, for a PDF of 6,285,079 B vs gold 6,285,092 B. The procedure matches the request, so the difference is in rendering/metadata; no run of either model ever reaches 1.0. Checker strictness suspected, not proven.",
+  "certainty": "partial: score 0.93 read from eval.json; cause suspected",
+  "kind": "CHECKER-strict (suspected)"
+ },
+ "e2392362": {
+  "bucket": "chrome",
+  "results": "astra-new: no failing run",
+  "behaviour": "Only an open-book run killed by API 429.",
+  "reason": "No Astra failure.",
+  "certainty": "certain",
+  "kind": "NOT-A-FAILURE"
+ },
+ "f0b971a1": {
+  "bucket": "chrome",
+  "results": "astra-new 4/5 (Sonnet 5/5)",
+  "behaviour": "Failing run: finds the NFL game page 'nfl.com/games/49ers-at-chiefs-2019-post-4?tab=recap' (screenshot shows the correct 31-20 final) and answers DONE with that link. The passing run ends on 'nfl.com/schedules/2019/by-week/super-bowl-sunday'.",
+  "reason": "The visible answer is right in both; the final browser state differs: the checker (URL and page-content include) accepts the schedule page and rejects the game-recap URL. Inferred from the contrast between the final URLs of passing and failing runs; the checker's exact patterns were not read.",
+  "certainty": "certain for the URL difference; checker pattern inferred",
+  "kind": "CHECKER-strict (URL pattern, inferred)"
+ },
+ "f3b19d1e": {
+  "bucket": "chrome",
+  "results": "astra-new 5/5",
+  "behaviour": "All Astra runs pass.",
+  "reason": "No Astra failure.",
+  "certainty": "certain",
+  "kind": "NOT-A-FAILURE"
+ },
+ "f5d96daf": {
+  "bucket": "chrome",
+  "results": "astra-new 3/5 (Sonnet 0/5)",
+  "behaviour": "2 fails: zero actions, writes a long comparison table of the three iPhones from memory and answers DONE.",
+  "reason": "Checker reads the final browser state; the instruction reads like a question so the agent answers in text without browsing. The 3 passing runs browse. Agent does not infer that the state is graded.",
+  "certainty": "certain (0 steps)",
+  "kind": "AGENT-spec-ambiguity"
+ },
+ "f79439ad": {
+  "bucket": "chrome",
+  "results": "astra-new 1/5 (Sonnet 5/5)",
+  "behaviour": "4 fails: finds a Ryanair Dublin-Vienna one-way for 2 adults on the 10th of next month (FR7008, EUR 131.98) and answers DONE.",
+  "reason": "All 4 fails are the tool-surface rule (clock tool for 'next month'). End state not scored.",
+  "certainty": "certain (verdict reason)",
+  "kind": "HARNESS-rule"
+ },
+ "fc6d8143": {
+  "bucket": "chrome",
+  "results": "astra-new 0/5 (Sonnet 0/5)",
+  "behaviour": "3 runs search JFK->ORD for 'tomorrow' (Delta blocked, falls back to Google Flights) and list flights; voided by clock-tool rule. 2 runs finish with a result page and DONE.",
+  "reason": "The 2 scored runs fail because check_direct_json_object scrapes site-specific CSS classes of one flight site; results from Google Flights cannot match. Brittle live-site checker plus the clock rule.",
+  "certainty": "certain for rule; checker mechanism from task config (not re-read)",
+  "kind": "CHECKER-brittle-live-site + HARNESS-rule"
+ },
+ "5ca86c6f": {
+  "bucket": "gimp",
+  "results": "astra-new 4/5 (Sonnet 2/5); astra-old 3/3",
+  "behaviour": "Task is infeasible by design (checker 'infeasible'). The failing run tries Open Location in GIMP, finds web locations unsupported, installs the network dependency itself, downloads and exports a PNG, answers DONE.",
+  "reason": "Should have declared the task infeasible; the agent worked around the missing capability (installing a package, launching GIMP from a terminal) and claimed success. 4 other runs correctly decline.",
+  "certainty": "certain (final message + checker type)",
+  "kind": "AGENT-error (infeasible task done)"
+ },
+ "72f83cdc": {
+  "bucket": "gimp",
+  "results": "astra-new 4/5 (Sonnet 5/5)",
+  "behaviour": "1 fail: 3 screenshots, then [INFEASIBLE] 'could not access the desktop'.",
+  "reason": "Desktop tool errors in that run; no interaction with GIMP.",
+  "certainty": "certain (2 steps, tool errors)",
+  "kind": "INFRA-tool-error"
+ },
+ "7767eef2": {
+  "bucket": "gimp",
+  "results": "astra-new 0/5 (Sonnet new 0/5, Sonnet old 3/3)",
+  "behaviour": "Edit > Preferences > Theme > Light > OK (6 actions), reports the theme is now Light.",
+  "reason": "New-infrastructure regression: the identical sequence passes 3/3 in Phase 1 (Sonnet) and fails 10/10 in the official arms. check_config_status reads the saved config; the preference is not persisted/read in the official guest. Mechanism unverified.",
+  "certainty": "certain that agent behaviour is correct and identical; mechanism suspected",
+  "kind": "INFRA-REGRESSION (suspected persistence)"
+ },
+ "7b7617bd": {
+  "bucket": "gimp",
+  "results": "astra-new 0/5 (Sonnet new 0/5; astra-old 3/3, Sonnet old 3/3)",
+  "behaviour": "Preferences > System Resources > min undo levels 100 > OK, reopens to confirm, answers DONE.",
+  "reason": "Same as 7767eef2: both Phase 1 arms (including Astra) pass with the same procedure, the official infrastructure fails every run. Config not persisted/read.",
+  "certainty": "certain for behaviour and regression; mechanism suspected",
+  "kind": "INFRA-REGRESSION (suspected persistence)"
+ },
+ "a746add2": {
+  "bucket": "gimp",
+  "results": "astra-new 0/5 (Sonnet new 0/5, Sonnet old 0/3)",
+  "behaviour": "Searches 'Vignette' via the '/' search, opens the Vignette filter window, answers DONE (4 runs); 1 run declares FAIL on a black desktop.",
+  "reason": "Unsolved in every arm including Phase 1, so not a regression. The checker needs 'filters-vignette' in GIMP's action-history; the entry is absent although the window is open (how it is flushed was not verified).",
+  "certainty": "behaviour certain; cause suspected (action-history not written)",
+  "kind": "INFRA/checker-persistence (suspected)"
+ },
+ "b148e375": {
+  "bucket": "gimp",
+  "results": "astra-new 0/5 (Sonnet new 0/5, Sonnet old 3/3)",
+  "behaviour": "Ctrl+Shift+N, types 'Square', confirms: a new layer named Square is created (2-3 actions).",
+  "reason": "New-infrastructure regression: Phase 1 Sonnet passes 3/3 with the same actions; official arms 0/10. check_config_status result not obtained in the official guest; persistence mechanism unverified.",
+  "certainty": "behaviour certain; mechanism suspected",
+  "kind": "INFRA-REGRESSION (suspected persistence)"
+ },
+ "d52d6308": {
+  "bucket": "gimp",
+  "results": "astra-new 0/5, astra-old 0/3 (Sonnet 0/8)",
+  "behaviour": "Closes the left dock via the Windows menu / by dragging, confirms the right dock remains, answers DONE (9-16 steps).",
+  "reason": "Unsolved in every arm including Phase 1, so not a regression. The checker reads sessionrc 'hide-docks' written on GIMP exit; the agent's visible state is correct. Persistence suspected.",
+  "certainty": "behaviour certain; cause suspected",
+  "kind": "INFRA/checker-persistence (suspected)"
+ },
+ "dbbf4b99": {
+  "bucket": "gimp",
+  "results": "astra-new 0/5 (Sonnet new 3/5)",
+  "behaviour": "Opens the screen, reads GIMP's message that no RAW loader is installed, declares [INFEASIBLE] after 1 step because 'GIMP only' forbids darktable/RawTherapee.",
+  "reason": "The guest GIMP has no RAW loader; Astra refuses to break the 'GIMP only' constraint. Sonnet 5 passes 3/5 so a route exists (how was not examined). Environment limitation + strict reading.",
+  "certainty": "certain for Astra's reason; Sonnet's route not examined",
+  "kind": "ENV-missing-dependency + AGENT-give-up"
+ },
+ "f723c744": {
+  "bucket": "gimp",
+  "results": "astra-new 2/5 (Sonnet 5/5)",
+  "behaviour": "2 fails: screenshot errors, waits, [INFEASIBLE] 'desktop tool is failing'. A 3rd run was killed by an API error.",
+  "reason": "Desktop tool HTTP errors (screenshot 400); agent never reached GIMP. Not a task failure.",
+  "certainty": "certain",
+  "kind": "INFRA-tool-error"
+ },
+ "01b269ae": {
+  "bucket": "libreoffice_calc",
+  "results": "astra-new 5/5; open-book arm failures only",
+  "behaviour": "Open-book Astra fills the blank cells, then the desktop tools stop responding and it declares FAIL.",
+  "reason": "Failure appears only in the open-book Phase 1 arm and is caused by desktop-tool HTTP/connection errors before saving; astra-new passes 5/5.",
+  "certainty": "certain (final messages, tool errors)",
+  "kind": "INFRA-tool-error (open-book arm only)"
+ },
+ "035f41ba": {
+  "bucket": "libreoffice_calc",
+  "results": "astra-new 5/5; open-book arm failures only",
+  "behaviour": "Open-book Astra computes gross profit and builds Sheet2 (33 steps), then the desktop tools stop responding and it declares FAIL.",
+  "reason": "Failure appears only in the open-book Phase 1 arm and is caused by desktop-tool HTTP/connection errors before saving; astra-new passes 5/5.",
+  "certainty": "certain (final messages, tool errors)",
+  "kind": "INFRA-tool-error (open-book arm only)"
+ },
+ "0bf05a7d": {
+  "bucket": "libreoffice_calc",
+  "results": "astra-new 5/5; open-book arm failures only",
+  "behaviour": "Open-book Astra pads the old IDs with TEXT(...;\"0000000\"), then the desktop tools stop responding and it declares FAIL.",
+  "reason": "Failure appears only in the open-book Phase 1 arm and is caused by desktop-tool HTTP/connection errors before saving; astra-new passes 5/5.",
+  "certainty": "certain (final messages, tool errors)",
+  "kind": "INFRA-tool-error (open-book arm only)"
+ },
+ "1334ca3e": {
+  "bucket": "libreoffice_calc",
+  "results": "astra-new 0/5 (all arms 0)",
+  "behaviour": "Zooms the sheet out from 260% to 160% or 200% (2 steps), answers DONE.",
+  "reason": "Saved cells identical to the gold (0 differing cells); compare_table fails on the view/zoom setting only because the expected zoom differs from what the agent picked. Instruction 'a little bit' is under-specified; no arm passes.",
+  "certainty": "certain (diff: 0 differing cells)",
+  "kind": "SPEC-ambiguity / CHECKER-strict"
+ },
+ "1954cced": {
+  "bucket": "libreoffice_calc",
+  "results": "astra-new 5/5; astra-old 3/3",
+  "behaviour": "Open-book runs killed by API errors only.",
+  "reason": "No Astra failure.",
+  "certainty": "certain",
+  "kind": "NOT-A-FAILURE"
+ },
+ "1de60575": {
+  "bucket": "libreoffice_calc",
+  "results": "astra-new 4/5 (Sonnet 4/5)",
+  "behaviour": "1 fail: builds a pivot table of revenue per promotion in Sheet2, saves, answers DONE.",
+  "reason": "Output differs from the gold in 2,012 cells and in sheet order (agent Sheet1,Sheet2; gold Sheet2,Sheet1); the pivot layout/fields differ. Four runs of the same route pass, so run-level slip (pivot field/layout) rather than systematic.",
+  "certainty": "certain for the diff; exact slip not isolated",
+  "kind": "AGENT-error"
+ },
+ "30e3e107": {
+  "bucket": "libreoffice_calc",
+  "results": "astra-new 0/5 (all arms 0)",
+  "behaviour": "Adds Sheet2, merges A1:C1 with the blue/bold-white title, builds three percentage pivot tables, saves, answers DONE (27-34 steps).",
+  "reason": "34-54 differing cells vs gold: pivot tables are laid out one row lower (agent A2 empty, Sex in A3; gold A2='Sex'). Real error of pivot placement, repeated in every arm.",
+  "certainty": "certain (cell diff)",
+  "kind": "AGENT-error"
+ },
+ "347ef137": {
+  "bucket": "libreoffice_calc",
+  "results": "astra-new 1/5 (Sonnet 0/5, Sonnet old 0/3)",
+  "behaviour": "Adds a 'Total cost' helper column and two column charts (one per year), sometimes on a new sheet; saves and answers DONE.",
+  "reason": "Diff vs gold: 2 helper cells ('Total costs' in I2/I19) or an extra sheet 'Monthly Cost Charts' that the gold does not have; the checker compares the whole table, so extra cells/sheet fail it. The charts themselves are present. One run passes by using no extra cell content.",
+  "certainty": "certain for the diffs",
+  "kind": "AGENT-error (extra helper cells/sheet)"
+ },
+ "3a7c8185": {
+  "bucket": "libreoffice_calc",
+  "results": "astra-new 4/5 (Sonnet 5/5)",
+  "behaviour": "1 fail (30 steps): sorts A1:F36, inserts a line chart, saves, answers DONE.",
+  "reason": "Saved xlsx has the right cells (0 differences) but 0 charts, gold has 1: the chart claimed is absent from the saved file (inserted after the last save or lost in the save). Run-level slip; 4 runs pass.",
+  "certainty": "certain (chart count in saved file); why lost not isolated",
+  "kind": "AGENT-error (chart not in saved file)"
+ },
+ "4e6fcf72": {
+  "bucket": "libreoffice_calc",
+  "results": "astra-new 0/5 (all arms 0)",
+  "behaviour": "Fills D2:D29 with =DATEDIF(C2;TODAY();\"Y\"), saves, answers DONE.",
+  "reason": "All 28 differing cells differ only by letter case of the unit ('Y' vs gold 'y'); equivalent in LibreOffice, rejected by compare_table. False negative of the checker; also TODAY()-dependent.",
+  "certainty": "certain (case-only diff)",
+  "kind": "CHECKER-strict"
+ },
+ "6054afcb": {
+  "bucket": "libreoffice_calc",
+  "results": "astra-new 0/5 (Sonnet 1/5, Sonnet old 3/3)",
+  "behaviour": "Hides #N/A with conditional formatting (white text) instead of hiding rows, saves, answers DONE.",
+  "reason": "Gold has the N/A rows hidden; agent has no hidden rows. Wrong interpretation of 'hide', repeated in 5/5 runs.",
+  "certainty": "certain (hidden-row diff)",
+  "kind": "AGENT-error"
+ },
+ "0a211154": {
+  "bucket": "libreoffice_impress",
+  "results": "astra-new: not run; open-book 0/3",
+  "behaviour": "Open-book: updates slide 2 title and sets yellow backgrounds on slides 3-4, answers DONE (49-59 steps).",
+  "reason": "Saved decks of all three open-book runs have the same backgrounds as the gold (slides 3 and 4 yellow FFFF00, slides 1, 2, 6 5F77BB, slide 5 E6D7F4). The only visible difference is the slide-2 title: the agent saved a straight apostrophe ('Let's start') while the gold has a typographic one ('Let’s start'). The text-exact compare_pptx_files rejects it. (The gold's slide-4 text also differs from the agent's: gold has empty title text there.)",
+  "certainty": "certain for backgrounds and the apostrophe (pptx read); the gold's slide 4 text not explained",
+  "kind": "CHECKER-strict (apostrophe) / gold quirk"
+ },
+ "0f84bef9": {
+  "bucket": "libreoffice_impress",
+  "results": "astra-new 0/5 (all arms 0)",
+  "behaviour": "Opens Tools > Options (Alt+F12) > Impress > General, unchecks 'Enable Presenter Console', OK, answers DONE with instructions (4 runs); 1 run answers in text only.",
+  "reason": "Checker reads registrymodifications.xcu; the toggle looks applied in the GUI but the file never satisfies the rule in any arm. Persistence/flush on exit suspected; not verified.",
+  "certainty": "behaviour certain; cause suspected",
+  "kind": "INFRA/checker-persistence (suspected)"
+ },
+ "15aece23": {
+  "bucket": "libreoffice_impress",
+  "results": "astra-new 5/5",
+  "behaviour": "Open-book runs killed by API errors only.",
+  "reason": "No Astra failure.",
+  "certainty": "certain",
+  "kind": "NOT-A-FAILURE"
+ },
+ "358aa0a7": {
+  "bucket": "libreoffice_impress",
+  "results": "astra-new 1/3 valid (Sonnet 3/5)",
+  "behaviour": "2 fails: zero actions; explains in text how to use styles (F11, Drawing Styles) to set Liberation Sans Narrow, answers DONE.",
+  "reason": "The task wording is a how-to question ('do you have suggestions...') but the checker compares the resulting pptx; the agent never opens the presentation. The passing run acts. 2 runs have no verdict (rate limit).",
+  "certainty": "certain (0 steps)",
+  "kind": "AGENT-spec-ambiguity"
+ },
+ "3b27600c": {
+  "bucket": "libreoffice_impress",
+  "results": "astra-new 2/3 valid (Sonnet 1/5, Sonnet old 3/3)",
+  "behaviour": "Failing run: Slide > Slide Properties > Background > Color, applies a blue to all 19 slides (21 steps), saves, answers DONE.",
+  "reason": "The saved masters have background 2A6099 (LibreOffice's palette 'Blue', a steel blue); the two passing runs have 0000FF (pure blue). The checker measures the colour distance to the expected blue and returns 0.67, i.e. a partial match. Wrong shade, not wrong scope.",
+  "certainty": "certain (colour values read from the saved pptx)",
+  "kind": "AGENT-error (wrong shade of blue)"
+ },
+ "455d3c66": {
+  "bucket": "libreoffice_impress",
+  "results": "astra-new 0/4 valid (all arms 0)",
+  "behaviour": "File > Export > PNG named res.png on Desktop with default options, answers DONE.",
+  "reason": "compare_images scores 0.90 because the exported PNG is 1792x1008 while the gold is 3136x1764 (1.75x): default export size depends on the display DPI/resolution of the machine that made the gold. Agent procedure correct; environment-dependent checker (cause suspected for the resolution mechanism).",
+  "certainty": "certain for size mismatch; DPI mechanism suspected",
+  "kind": "ENV-fidelity (suspected) / CHECKER-strict"
+ },
+ "550ce7e7": {
+  "bucket": "libreoffice_impress",
+  "results": "astra-new 5/5; astra-old 0/3",
+  "behaviour": "Phase 1 Astra: searches the open deck, finds training material but no soccer to-do list, declares FAIL (3 runs).",
+  "reason": "Phase 1 environment did not present the expected file (agents see a different deck); the same task passes 5/5 on the official infrastructure.",
+  "certainty": "agent statements; Phase 1 image defect inferred from the 5/5 pass",
+  "kind": "ENV-old-infra"
+ },
+ "986fc832": {
+  "bucket": "libreoffice_impress",
+  "results": "astra-new 3/4 valid (Sonnet 2/5)",
+  "behaviour": "1 fail: underlines only the body, sets Dark Red 2 on title/body/table, saves, answers DONE.",
+  "reason": "Content, underline, font colour (C9211E) and size of every run match the gold. The only structural difference is that the body paragraph is split into two runs ('...released' + ' in 2020 that uses deep learning...') while the gold has one run; compare_pptx_files compares paragraph runs one by one, so equal-looking text fails. The split comes from the agent's partial-selection formatting steps.",
+  "certainty": "certain (pptx run structure read from agent and gold files)",
+  "kind": "CHECKER-strict (run structure)"
+ },
+ "9cf05d24": {
+  "bucket": "libreoffice_impress",
+  "results": "astra-new 3/5 (Sonnet 3/5)",
+  "behaviour": "2 fails: sidebar Slide Properties, picks Color/green for slide 1 (5 steps), answers DONE.",
+  "reason": "Saved slide 1 has background fill type BACKGROUND, gold has SOLID: the colour was set through a path that does not store a solid slide fill (e.g. applied to the background object/master style instead of the slide). 3 runs with a variant of the clicks pass.",
+  "certainty": "certain (fill type in the pptx diff)",
+  "kind": "AGENT-error (wrong fill mechanism)"
+ },
+ "9ec204e4": {
+  "bucket": "libreoffice_impress",
+  "results": "astra-new 4/5 (Sonnet 3/5)",
+  "behaviour": "1 fail: copies the last two slides, pastes, undoes, reselects, answers DONE (9 steps).",
+  "reason": "Resulting deck differs from gold (26 slides each but different order/content, 561,542 vs 541,898 B): the copies were not inserted in the A,B,A,B order. Fumbled paste/undo sequence.",
+  "certainty": "certain that output differs; exact order not extracted",
+  "kind": "AGENT-error"
+ },
+ "ac9bb6cb": {
+  "bucket": "libreoffice_impress",
+  "results": "astra-new 4/5 (Sonnet 3/5)",
+  "behaviour": "1 fail (45 steps): edits slide-number colour to FF0000 on the master/each slide, saves, answers DONE.",
+  "reason": "In the failing run all 15 slides carry red (FF0000) slide-number fields, but none of the 4 slide masters does. In the passing runs the first master has the red field (all four masters in runs 1-2). The checker therefore appears to read the master's slide-number field; the agent coloured the numbers slide by slide and not on the master. Inferred from the pass/fail contrast of the saved files.",
+  "certainty": "certain for the file contrast; checker reading the master inferred",
+  "kind": "AGENT-error (changed slides, not the master)"
+ },
+ "af23762e": {
+  "bucket": "libreoffice_impress",
+  "results": "astra-new 0/5 (Sonnet 4/5)",
+  "behaviour": "Runs Impress's Summary Slide feature, sees it picked up only one titled slide, then overwrites the generated outline with its own typed headings, saves as slide 13, answers DONE.",
+  "reason": "Slide-13 text differs from the gold (gold keeps the feature's auto-generated entries); text-exact compare_pptx_files fails. The agent edited the generated content instead of keeping it.",
+  "certainty": "certain (slide-13 text diff in 5/5 runs)",
+  "kind": "AGENT-error"
+ },
+ "00fa164e": {
+  "bucket": "libreoffice_writer",
+  "results": "astra-new: not run; open-book 0/3",
+  "behaviour": "Open-book: desktop tools return HTTP 400 (1 run) or run ends FAIL flagged 'contaminated' (2).",
+  "reason": "Only open-book Phase 1 runs; tool errors/contamination flag. No official-infrastructure Astra result.",
+  "certainty": "certain for the tool error; contamination flag semantics not verified",
+  "kind": "INFRA (open-book only)"
+ },
+ "02ce9a50": {
+  "bucket": "libreoffice_writer",
+  "results": "astra-new: not run; open-book 0/3 (all arms 0)",
+  "behaviour": "Open-book run: opens an xterm, runs ls in /home/user (output 'Desktop'), then runs further commands (a PIL check of the PNG) and a background job `sleep 3; ImageGrab.grab().crop(...).save('/home/user/Desktop/ls.png')`; answers DONE. Final screenshot shows the terminal with the root@<uuid> prompt and the extra commands.",
+  "reason": "The saved image is a crop of a terminal whose prompt is root@<container-id>:/home/user# and which contains the agent's extra PIL commands after ls, while compare_image_text compares the text of the image with a gold screenshot (a user prompt and ls output only). Environment prompt plus extra content explain a text mismatch; ls.png itself was not retained.",
+  "certainty": "partial: final screen read; the saved ls.png and the gold text not compared",
+  "kind": "ENV-fidelity (terminal prompt) + AGENT-extra-content"
+ },
+ "13584542": {
+  "bucket": "os",
+  "results": "astra-new 0/5 (Sonnet old 0/3); astra-old 0/3",
+  "behaviour": "Opens gnome-terminal, sets Edit > Preferences > profile > Text > Initial terminal size to 132x43, reopens to verify, answers DONE. Astra old: black desktop, declares FAIL.",
+  "reason": "Unsolved in every arm. Checker opens a terminal via post-config hotkey and reads stty size; the profile setting is applied in the GUI, so either persistence/hotkey fails in the guest or the setting is stored elsewhere. Suspected, not verified.",
+  "certainty": "behaviour certain; cause suspected",
+  "kind": "INFRA/checker-persistence (suspected)"
+ },
+ "2373b66a": {
+  "bucket": "os",
+  "results": "astra-new 5/5; astra-old 0/3",
+  "behaviour": "Phase 1 Astra: black desktop, tries ctrl+alt+t, declares FAIL (3 runs).",
+  "reason": "Phase 1 black-desktop handicap; same task passes 5/5 on the official infrastructure.",
+  "certainty": "certain",
+  "kind": "ENV-old-infra (black desktop)"
+ },
+ "28cc3b7e": {
+  "bucket": "os",
+  "results": "astra-new 0/5; astra-old 0/3 (Sonnet old 2/3)",
+  "behaviour": "Official: tries Super key, alt+F2, a terminal with pavucontrol and device checks; concludes there is no accessible audio device and declares [INFEASIBLE]. Phase 1: black desktop, FAIL.",
+  "reason": "Guest has a bare Openbox session with no PulseAudio/PipeWire daemon, so volume cannot be set from the GUI. Sonnet old passed 2/3 by another route (run_python / gsettings-style command) that Astra did not find. Environment handicap + give-up.",
+  "certainty": "certain for the environment; Sonnet's route from earlier analysis",
+  "kind": "ENV-handicap + AGENT-gave-up"
+ },
+ "3ce045a0": {
+  "bucket": "os",
+  "results": "astra-new 0/5; astra-old 0/2 (Sonnet old 0/3)",
+  "behaviour": "Tries gnome-control-center universal-access in a terminal; 3 runs declare [INFEASIBLE] (no accessibility settings); 2 runs claim to have enlarged text/menus/title bars (24 steps) and answer DONE.",
+  "reason": "Checker needs both text scaling >= 1.2 and the magnifier enabled; the claiming runs do not enable the magnifier (and the desktop lacks the settings app). Bare desktop plus partial solution.",
+  "certainty": "certain for the two-condition checker (note) and the agent claims",
+  "kind": "ENV-handicap + AGENT-partial"
+ },
+ "5812b315": {
+  "bucket": "os",
+  "results": "astra-new 0/5; astra-old 0/3 (Sonnet old 0/3)",
+  "behaviour": "Official: installs/starts sshd, creates user charles with --no-create-home --home /home/test1, builds an SFTP chroot (root-owned jail, writable uploads/ or files/ subfolder, shell disabled), verifies login, answers DONE.",
+  "reason": "Checker needs the user's home to be /home/test1 and owner-writable; a chroot requires the jail root to be root-owned, so the agent's secure design contradicts the literal checker. Over-engineered against the checker; behaviour otherwise valid.",
+  "certainty": "certain (checker conditions from task config, agent design in transcript)",
+  "kind": "AGENT-error / CHECKER-literal"
+ },
+ "5ced85fc": {
+  "bucket": "os",
+  "results": "astra-new 4/4 valid; astra-old 0/3",
+  "behaviour": "Phase 1 runs killed by API 429; official runs pass.",
+  "reason": "No Astra failure.",
+  "certainty": "certain",
+  "kind": "NOT-A-FAILURE"
+ },
+ "94d95f96": {
+  "bucket": "os",
+  "results": "astra-new 0/5; astra-old 0/3 (Sonnet old 3/3)",
+  "behaviour": "Official: downloads the Spotify Debian package, finds it needs a newer system library than Ubuntu 22.04 has, tries Flatpak, finds the sandbox cannot start, removes everything and declares [INFEASIBLE] (3 with the block factor, 1 plain, 1 clock-rule void). Phase 1: black desktop.",
+  "reason": "Checker is `which spotify` (native binary). Flatpak install is not accepted and the native package does not install on the guest OS. Sonnet old passed 3/3 with its Phase 1 tools; Astra cleaned up and gave up. Environment limitation + give-up.",
+  "certainty": "certain (final messages); Sonnet old route not re-checked",
+  "kind": "ENV-limitation + AGENT-gave-up"
+ },
+ "a4d98375": {
+  "bucket": "os",
+  "results": "astra-new 0/5; astra-old 0/3 (Sonnet old 3/3)",
+  "behaviour": "Tries gnome-control-center / xscreensaver in a terminal, concludes the session has no screen-lock service, declares [INFEASIBLE] (4 runs; 1 run clock-rule void).",
+  "reason": "Needs `gsettings ... lock-enabled == true`. GNOME settings services are absent in the bare-Openbox guest, but Sonnet 5 old solved it from the command line (gsettings set) in 3/3. Astra never tried gsettings. Environment handicap + give-up; regression of the GUI-only protocol.",
+  "certainty": "certain (final messages; Sonnet old pass)",
+  "kind": "ENV-handicap + AGENT-gave-up"
+ },
+ "aad10cd7": {
+  "bucket": "os",
+  "results": "astra-new: not run; open-book 0/1 (all arms 0)",
+  "behaviour": "Open-book: opens the Apple HIG page, gets an error page, declares FAIL.",
+  "reason": "The open-book arm serves recorded pages; the final screenshot shows the browser on developer.apple.com with the body {\"osw_openbook\": \"fixture_miss\", \"method\": \"GET\", \"url\": \"https://developer.apple.com/design/human-interface-guidelines/searching\"}: the page was not in the offline fixtures, so the task could not be done in that arm. Official Astra was never run.",
+  "certainty": "certain (screenshot)",
+  "kind": "ENV-open-book fixture miss"
+ },
+ "acb0f96b": {
+  "bucket": "os",
+  "results": "astra-new 0/5; astra-old 0/3 (Sonnet 0/8)",
+  "behaviour": "Official: opens a terminal and runs git clone into /home/user, which creates /home/user/instructor-embedding; reports success. Phase 1: git not installed -> FAIL.",
+  "reason": "Gold log lists the repository contents directly under /home/user (158 diff lines: the agent's extra 'instructor-embedding/' level). Instruction 'clone to /home/user' is ambiguous; nobody passes.",
+  "certainty": "certain (log diff)",
+  "kind": "SPEC-ambiguity"
+ },
+ "b6781586": {
+  "bucket": "os",
+  "results": "astra-new 5/5; astra-old 0/3",
+  "behaviour": "Phase 1: black desktop, declares FAIL; official runs pass.",
+  "reason": "Phase 1 black-desktop handicap only.",
+  "certainty": "certain",
+  "kind": "ENV-old-infra (black desktop)"
+ },
+ "bedcedc4": {
+  "bucket": "os",
+  "results": "astra-new 0/5; astra-old 0/3 (Sonnet old 0/3)",
+  "behaviour": "Official: Super key, alt+F2, terminal with `DISPLAY=:0 gnome-control-center power`, apt-cache policy; settings app unavailable -> [INFEASIBLE]. Phase 1: black desktop.",
+  "reason": "gnome-control-center is not installed in the guest (apt-cache shows none); GNOME settings task cannot be done by GUI. A gsettings route from the terminal was not tried. Environment handicap + give-up.",
+  "certainty": "certain (agent output); gsettings route inferred from sibling tasks",
+  "kind": "ENV-handicap + AGENT-gave-up"
+ },
+ "e0df059f": {
+  "bucket": "os",
+  "results": "astra-new 4/5; astra-old 0/3 (Sonnet old 0/3)",
+  "behaviour": "1 official fail: super+e, alt+F2, sees a black desktop, declares [INFEASIBLE] without opening a terminal (6 steps). Phase 1: black desktop, 20 steps, FAIL.",
+  "reason": "Trivial task (rename a directory) that passes in 4 other runs through a terminal; the failing run gave up on the black desktop without trying ctrl+alt+t. Agent give-up amplified by the bare desktop.",
+  "certainty": "certain (transcript)",
+  "kind": "AGENT-gave-up (black desktop)"
+ },
+ "ec4e3f68": {
+  "bucket": "os",
+  "results": "astra-new 0/5; astra-old 0/3 (Sonnet old 0/3)",
+  "behaviour": "Super key, alt+F2, terminal; sees a black desktop with no favorites dock; declares [INFEASIBLE].",
+  "reason": "check_gnome_favorite_apps reads the GNOME favorites setting; no GNOME shell/dock exists in the guest. A gsettings edit from a terminal was not attempted by Astra. Handicap + give-up.",
+  "certainty": "certain (agent output)",
+  "kind": "ENV-handicap + AGENT-gave-up"
+ },
+ "f9be0997": {
+  "bucket": "os",
+  "results": "astra-new 0/5; astra-old 0/3 (Sonnet old 3/3)",
+  "behaviour": "Tries gnome-control-center notifications and keyboard shortcuts; declares [INFEASIBLE] (no notification settings).",
+  "reason": "Do-not-disturb is a gsettings value; Sonnet old set it from the command line (3/3). Astra never ran gsettings (none of its runs on these os tasks did, per earlier grep). Handicap + give-up; regression of the GUI-only protocol.",
+  "certainty": "certain (agent output, Sonnet old pass)",
+  "kind": "ENV-handicap + AGENT-gave-up"
+ },
+ "415ef462": {
+  "bucket": "thunderbird",
+  "results": "astra-new: not run; open-book 0/1",
+  "behaviour": "Open-book: Thunderbird shows no configured mail folders/messages, the Bills email is missing; declares FAIL.",
+  "reason": "Phase 1 Thunderbird profile has no account (known defect of the Phase 1 image).",
+  "certainty": "certain (agent statement; known image defect)",
+  "kind": "ENV-old-infra (Thunderbird profile)"
+ },
+ "58565672": {
+  "bucket": "unknown",
+  "results": "astra-new: not run",
+  "behaviour": "Only an open-book run killed by API 429; task has no instruction in the table.",
+  "reason": "No Astra failure.",
+  "certainty": "certain",
+  "kind": "NOT-A-FAILURE"
+ },
+ "215dfd39": {
+  "bucket": "vlc",
+  "results": "astra-old 0/3; astra-new not run",
+  "behaviour": "Phase 1: black desktop with an empty accessibility tree, declares FAIL (3 runs).",
+  "reason": "VLC window never available on Phase 1; not run on the official infrastructure, so the task has no meaningful Astra result.",
+  "certainty": "certain",
+  "kind": "ENV-old-infra (black desktop)"
+ },
+ "2fe4b718": {
+  "bucket": "vlc",
+  "results": "astra-new: not run; open-book 0/1 (all arms 0)",
+  "behaviour": "Open-book: sees src.mp4 on the Desktop, tries VLC from the Applications menu, VLC does not launch, declares FAIL (36 steps).",
+  "reason": "Unsolved by every arm (Sonnet new exhausts 100 steps after fixing the DISPLAY=:0 vs :99 mismatch). Open-book failure: VLC did not launch in Phase 1.",
+  "certainty": "partial (agent statement; Sonnet cases from notes)",
+  "kind": "ENV-old-infra + AGENT-limit"
+ },
+ "5ac2891a": {
+  "bucket": "vlc",
+  "results": "astra-new 0 verdicts (5 rate-limited/flake); astra-old 0/3",
+  "behaviour": "Phase 1: black desktop -> FAIL; 2 runs API 429. Official runs never produced a verdict.",
+  "reason": "No usable Astra result: Phase 1 environment handicap and official runs lost to quota.",
+  "certainty": "certain",
+  "kind": "INFRA (no verdict) + ENV-old-infra"
+ },
+ "8ba5ae7a": {
+  "bucket": "vlc",
+  "results": "astra-new 5/5; astra-old 0/3 (Sonnet old 0/3)",
+  "behaviour": "Phase 1: black desktop, declares FAIL; official runs pass.",
+  "reason": "Phase 1 black-desktop handicap only; official infrastructure solves it 5/5.",
+  "certainty": "certain",
+  "kind": "ENV-old-infra (black desktop)"
+ },
+ "9195653c": {
+  "bucket": "vlc",
+  "results": "astra-new 3/3 valid; astra-old 0/3",
+  "behaviour": "Phase 1 runs killed by API 429; official runs pass.",
+  "reason": "No Astra failure.",
+  "certainty": "certain",
+  "kind": "NOT-A-FAILURE"
+ },
+ "937087b6": {
+  "bucket": "vlc",
+  "results": "astra-new 4/5 (Sonnet new 0/5, Sonnet old 2/3)",
+  "behaviour": "1 official fail: Super/alt+F2, `DISPLAY=:0 gnome-control-center default-apps`, finds Settings unavailable, declares [INFEASIBLE] (16 steps). Phase 1: black desktop.",
+  "reason": "Default-app change needs the GNOME settings (or xdg-mime); 4 other runs succeed, so a route exists; the failing run gave up when Settings would not open. Give-up amplified by the bare desktop.",
+  "certainty": "certain (transcript)",
+  "kind": "AGENT-gave-up + ENV-handicap"
+ },
+ "a5bbbcd5": {
+  "bucket": "vlc",
+  "results": "astra-new 0 verdicts; astra-old 0/3",
+  "behaviour": "Phase 1: black desktop with empty accessibility tree -> FAIL (3 runs). Official runs rate-limited.",
+  "reason": "Phase 1 environment failure; official runs never completed.",
+  "certainty": "certain",
+  "kind": "ENV-old-infra (black desktop) + INFRA (no verdict)"
+ },
+ "aa4b5023": {
+  "bucket": "vlc",
+  "results": "astra-new: not run; open-book 0/1",
+  "behaviour": "Open-book: blank desktop, then the control tools fail; declares FAIL.",
+  "reason": "Phase 1 environment/tool failure; task untested for Astra.",
+  "certainty": "certain",
+  "kind": "ENV-old-infra / INFRA-tool-error"
+ },
+ "d06f0d4d": {
+  "bucket": "vlc",
+  "results": "astra-new 0 verdicts; astra-old 0/3 (Sonnet old 3/3)",
+  "behaviour": "Phase 1: black desktop, declares FAIL (3 runs). Official runs rate-limited.",
+  "reason": "Phase 1 black-desktop handicap; Sonnet old passes 3/3 with its Phase 1 tools. No official Astra verdict.",
+  "certainty": "certain",
+  "kind": "ENV-old-infra (black desktop) + INFRA (no verdict)"
+ },
+ "f3977615": {
+  "bucket": "vlc",
+  "results": "astra-old 0/3; astra-new not run",
+  "behaviour": "Phase 1: black desktop with no accessible controls, declares FAIL (3 runs).",
+  "reason": "Phase 1 environment failure; VLC GUI never available; no official Astra result.",
+  "certainty": "certain",
+  "kind": "ENV-old-infra (black desktop)"
+ },
+ "276cc624": {
+  "bucket": "vscode",
+  "results": "astra-old 0/3 (Sonnet old 0/3); astra-new not run",
+  "behaviour": "Opens settings (ctrl+,), searches editor.wordWrapColumn, sets 50, answers DONE (3 runs).",
+  "reason": "Phase 1 VS Code runs with --user-data-dir=/tmp/code-profile (verified in Sonnet 5 old transcripts) while the checker reads /home/user/.config/Code/User/settings.json; GUI edits are saved elsewhere. Same behaviour in Astra's runs, consistent with the defect but not separately confirmed from Astra's files.",
+  "certainty": "high (defect verified on Sonnet transcripts; Astra not file-checked)",
+  "kind": "ENV-old-infra (VS Code profile path)"
+ },
+ "6ed0a554": {
+  "bucket": "vscode",
+  "results": "astra-new: not run; open-book 0/1 (Sonnet old 2/3)",
+  "behaviour": "Open-book: adds the two folders to the workspace through the GUI (21 steps), answers DONE.",
+  "reason": "The saved project.code-workspace lists the folders as project, data2, data1; the passing Sonnet 5 runs have project, data1, data2 (the order of the instruction). Sonnet 5's failing run (run_3) has the same wrong order as Astra. The checker compares the folder list in order; the VS Code Explorer screenshot shows both folders added.",
+  "certainty": "certain (workspace file read for 4 runs)",
+  "kind": "AGENT-error (folder order)"
+ },
+ "930fdb3b": {
+  "bucket": "vscode",
+  "results": "astra-old 0/3 (Sonnet old 0/3); astra-new not run",
+  "behaviour": "Opens Keyboard Shortcuts (JSON), writes the ctrl+j binding with a terminal-focus condition, saves, answers DONE (37-38 steps).",
+  "reason": "Phase 1 VS Code runs with --user-data-dir=/tmp/code-profile (verified in Sonnet 5 old transcripts) while the checker reads /home/user/.config/Code/User/settings.json; GUI edits are saved elsewhere. Same behaviour in Astra's runs, consistent with the defect but not separately confirmed from Astra's files.",
+  "certainty": "high (defect verified on Sonnet transcripts; Astra not file-checked)",
+  "kind": "ENV-old-infra (VS Code profile path)"
+ },
+ "9439a27b": {
+  "bucket": "vscode",
+  "results": "astra-old 0/3 (Sonnet old 0/3); astra-new not run",
+  "behaviour": "Settings search 'debug focus editor on break', turns it off, answers DONE (3 runs).",
+  "reason": "Phase 1 VS Code runs with --user-data-dir=/tmp/code-profile (verified in Sonnet 5 old transcripts) while the checker reads /home/user/.config/Code/User/settings.json; GUI edits are saved elsewhere. Same behaviour in Astra's runs, consistent with the defect but not separately confirmed from Astra's files.",
+  "certainty": "high (defect verified on Sonnet transcripts; Astra not file-checked)",
+  "kind": "ENV-old-infra (VS Code profile path)"
+ },
+ "982d12a5": {
+  "bucket": "vscode",
+  "results": "astra-old 0/3 (Sonnet old 0/3); astra-new not run",
+  "behaviour": "Command palette 'Preferences: Color Theme', picks Visual Studio Dark, answers DONE (3 runs).",
+  "reason": "Phase 1 VS Code runs with --user-data-dir=/tmp/code-profile (verified in Sonnet 5 old transcripts) while the checker reads /home/user/.config/Code/User/settings.json; GUI edits are saved elsewhere. Same behaviour in Astra's runs, consistent with the defect but not separately confirmed from Astra's files.",
+  "certainty": "high (defect verified on Sonnet transcripts; Astra not file-checked)",
+  "kind": "ENV-old-infra (VS Code profile path)"
+ },
+ "9d425400": {
+  "bucket": "vscode",
+  "results": "astra-old 0/3 (Sonnet old 0/3); astra-new not run",
+  "behaviour": "Settings search 'wrap tabs', enables it, answers DONE (3 runs).",
+  "reason": "Phase 1 VS Code runs with --user-data-dir=/tmp/code-profile (verified in Sonnet 5 old transcripts) while the checker reads /home/user/.config/Code/User/settings.json; GUI edits are saved elsewhere. Same behaviour in Astra's runs, consistent with the defect but not separately confirmed from Astra's files.",
+  "certainty": "high (defect verified on Sonnet transcripts; Astra not file-checked)",
+  "kind": "ENV-old-infra (VS Code profile path)"
+ },
+ "e2b5e914": {
+  "bucket": "vscode",
+  "results": "astra-old 0/3 (Sonnet old 0/3); astra-new not run",
+  "behaviour": "Opens User Settings (JSON), types the python.analysis.diagnosticSeverityOverrides block, fixes auto-inserted characters, saves, answers DONE (23-24 steps).",
+  "reason": "Phase 1 VS Code runs with --user-data-dir=/tmp/code-profile (verified in Sonnet 5 old transcripts) while the checker reads /home/user/.config/Code/User/settings.json; GUI edits are saved elsewhere. Same behaviour in Astra's runs, consistent with the defect but not separately confirmed from Astra's files.",
+  "certainty": "high (defect verified on Sonnet transcripts; Astra not file-checked)",
+  "kind": "ENV-old-infra (VS Code profile path)"
+ },
+ "ea98c5d7": {
+  "bucket": "vscode",
+  "results": "astra-old 0/3 (API 429, no run completed); Sonnet old 0/3",
+  "behaviour": "Astra Phase 1 runs killed by API 429; no behaviour.",
+  "reason": "No Astra verdict. Sonnet old fails it with the same VS Code profile-path defect.",
+  "certainty": "certain for Astra (no run); defect from Sonnet",
+  "kind": "INFRA (no verdict) + ENV-old-infra"
+ }
+}

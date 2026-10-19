@@ -1,13 +1,4 @@
 arm,bucket,valid_runs,pass,pass_pct,median_wall_s,median_agent_s,median_steps,median_cost_usd,total_cost_usd
-sonnet46-old,chrome,48,11,22.9,46,44,10,0.192,15.66
-sonnet46-old,gimp,84,51,60.7,47,44,7,0.145,39.25
-sonnet46-old,libreoffice_calc,170,109,64.1,95,92,20,0.326,152.51
-sonnet46-old,libreoffice_impress,132,69,52.3,60,58,17,0.271,79.13
-sonnet46-old,libreoffice_writer,89,56,62.9,56,54,13,0.218,33.18
-sonnet46-old,os,54,19,35.2,33,31,4,0.077,21.62
-sonnet46-old,thunderbird,58,11,19.0,66,63,16,0.306,39.85
-sonnet46-old,vlc,41,23,56.1,2,0,0,0,15.39
-sonnet46-old,vscode,69,29,42.0,28,24,5,0.126,44.84
 sonnet5-old,chrome,3,2,66.7,225,223,36,0.706,2.37
 sonnet5-old,gimp,96,63,65.6,48,46,12,0.205,27.94
 sonnet5-old,libreoffice_calc,180,133,73.9,63,60,15,0.242,59.55
