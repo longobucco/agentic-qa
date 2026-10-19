@@ -13,6 +13,12 @@ import tempfile
 import time
 from pathlib import Path
 
+# A script run by path gets its own directory on sys.path, not the cwd: give the spawned drivers
+# the repo root so `import core` works however pytest was launched.
+_REPO_ROOT = str(Path(__file__).resolve().parents[2])
+_SCRIPT_ENV = {**os.environ,
+               "PYTHONPATH": os.pathsep.join(filter(None, [_REPO_ROOT, os.environ.get("PYTHONPATH")]))}
+
 _SCRIPT = """
 import os, signal, subprocess, sys, time
 from core import procgroups, run
@@ -131,7 +137,8 @@ def _run_driver(task_ids, concurrency, wait_for_started):
               .replace("__CONCURRENCY__", repr(concurrency)))
     script_path = Path(tempfile.mkdtemp(prefix="osw10b_script_")) / "driver.py"
     script_path.write_text(script)
-    proc = subprocess.Popen([sys.executable, str(script_path)], cwd=os.getcwd())
+    proc = subprocess.Popen([sys.executable, str(script_path)], cwd=os.getcwd(),
+                            env=_SCRIPT_ENV)
     try:
         deadline = time.monotonic() + 10
         while time.monotonic() < deadline:
@@ -275,7 +282,8 @@ def _run_protocol_wait_driver(task_ids):
               .replace("__TASK_IDS__", repr(task_ids)))
     script_path = Path(tempfile.mkdtemp(prefix="osw10b_pw_script_")) / "driver.py"
     script_path.write_text(script)
-    proc = subprocess.Popen([sys.executable, str(script_path)], cwd=os.getcwd())
+    proc = subprocess.Popen([sys.executable, str(script_path)], cwd=os.getcwd(),
+                            env=_SCRIPT_ENV)
     try:
         deadline = time.monotonic() + 10
         while time.monotonic() < deadline:

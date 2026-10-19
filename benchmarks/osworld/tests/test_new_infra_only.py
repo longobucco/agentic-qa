@@ -13,7 +13,8 @@ _BANNED = re.compile(r"config\.OFFICIAL|OSW_ZOOM_BATCH|OSW_GROUNDING|OSW_INLOOP_
                      r"OSW_SELF_VERIFY|OSW_ENFORCE_SANDBOX|OSW_RESTRICT_RUN_PYTHON|OSW_VR_|"
                      r"verify_replan|openbook|open_book|agent_prompt")
 # Files allowed to name the legacy knobs: the refusal list itself, this test, and the campaign
-# core's env-conflict table (and its tests).
+# core's env-conflict table (and its tests). The offline campaign analysis is skipped as a whole:
+# it reads the frozen Phase 1 result trees, so it must name them; it runs nothing.
 _ALLOWED = {"benchmarks/osworld/config.py", "benchmarks/osworld/tests/test_new_infra_only.py",
             "benchmarks/osworld/tests/test_official361_driver.py",
             "benchmarks/osworld/campaign.py", "benchmarks/osworld/tests/test_campaign.py"}
@@ -24,7 +25,8 @@ def test_no_source_file_mentions_the_legacy_harness():
     for base in ("benchmarks/osworld", "core", "scripts"):
         for p in (_ROOT / base).rglob("*.py"):
             rel = p.relative_to(_ROOT).as_posix()
-            if rel in _ALLOWED or "/data/" in rel or "/results/" in rel:
+            if (rel in _ALLOWED or "/data/" in rel or "/results/" in rel
+                    or "/campaign_analysis/" in rel):
                 continue
             for n, line in enumerate(p.read_text(errors="replace").splitlines(), 1):
                 if _BANNED.search(line):
