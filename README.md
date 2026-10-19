@@ -15,7 +15,12 @@ core/                  reusable harness: browser, agent loop, judge seam, enviro
 benchmarks/<name>/     one dir per benchmark = its tasks + prompts + judge + runners,
                        built on core/. "Which agent" is a runner (--system), not a dir.
   webvoyager/          live-site tasks, LLM screenshot judge; runners: agent_browser, alumnium
+  browsecomp/          live-web research questions, answer-vs-reference judge
+  webarena/            self-hosted site stack, deterministic checker
+  osworld/             OSWorld-Verified desktop tasks (Daytona sandboxes), official protocol,
+                       OSWorld's own evaluators; runners: Claude Code, GPT Astra via Codex
+scripts/               campaign drivers (OSWorld 361 x 5 driver)
 ```
 Run a benchmark from the repo root, e.g. `python -m benchmarks.webvoyager.run --ids ArXiv--0`.
-See `benchmarks/webvoyager/README.md`. Roadmap for adding BrowseComp + WebArena:
-`tickets/0001-restructure-benchmarks-by-benchmark-and-extract-core.md`.
+Each benchmark's README documents its setup, runners and results; OSWorld results and their
+analysis: `benchmarks/osworld/README.md` and `benchmarks/osworld/campaign_analysis/README.md`.

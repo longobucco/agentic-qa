@@ -1,18 +1,84 @@
 # OSWorld campaign analysis
 
-Cross-arm analysis of every OSWorld campaign (old Phase-1 and new official-protocol infrastructure; Claude Sonnet 5 and gpt-6-astra), produced 2026-10-14 after the campaigns were interrupted.
+Cross-arm analysis of every OSWorld campaign (old Phase-1 and new official-protocol infrastructure; Claude Sonnet 5 and gpt-6-astra), produced 2026-10-14 after the campaigns were interrupted. The summary below covers the two latest campaigns, the official-protocol ones; everything else is in the local documentation listed at the end.
 
-- `FINDINGS.md` — results, why runs fail (verified vs suspected), infrastructure defects, old→new flips, time and cost. Start here.
-- `ASTRA_ANALYSIS.md` — task-by-task failure analysis of gpt-6-astra (99 tasks: behaviour, cause, certainty); data in `astra_ledger.json`.
-- `ASTRA_IMPROVEMENT_RESEARCH.md` — how to improve Astra: failure pools, literature, candidate interventions; section 6 records the experiment decision (what is explored, what is set aside and why).
-- `RESEARCH_BRIEF_FOR_LLM.md` and `RESEARCH_REPORT_FROM_LLM.md` — the brief given to an external research LLM and its report, kept verbatim (corrections and verdicts in `ASTRA_IMPROVEMENT_RESEARCH.md` 6.10).
-- `SUMMARY.md` — every aggregate table.
-- `METHODOLOGY.md` — data, definitions, failure taxonomy, how the labels were verified, limits.
+## Summary: the two official-protocol campaigns
+
+Protocol: OSWorld-Verified (361 tasks = 369 minus 8 login tasks), one `computer` tool, 1080p, 100 steps, official evaluators at upstream commit `091f5ef`, 5 runs per task, Daytona guest image pkgfix2. Main campaign trees: `agent_computer_sonnet5_effortmax_protocol361img3_official` (Claude Sonnet 5, effort max, Claude Code) and `agent_computer_gpt6astra_max_codex01534_protocol361img3_official` (gpt-6-astra, reasoning max, Codex CLI 0.153.4). Both were stopped by subscription quota before covering the population.
+
+An *informative* run is a SUCCESS/FAILURE verdict produced by the agent: runs without a verdict (stopped on quota), runs killed by the agent CLI (not logged in, session limit) or the API, evaluator/environment errors and no-op passes (the checker accepts the initial state) are excluded.
+
+### How much was replicated
+
+| | Sonnet 5 | gpt-6-astra |
+|---|---|---|
+| tasks tried / of 361 | 274 (76%) | 169 (47%) |
+| tasks with at least one informative verdict | 261 (72%) | 155 (43%) |
+| run directories | 1,370 | 845 |
+| informative runs | 1,288 | 749 |
+| excluded runs | 82: 42 no verdict (quota), 26 CLI-killed, 9 evaluator errors, 5 environment errors | 96: 87 no verdict (quota), 5 no-op passes, 3 environment/evaluator errors, 1 API-killed |
+| **pass rate over informative runs** | **71.3%** (918/1,288) | **71.4%** (535/749) |
+| tasks all-pass / mixed / all-fail | 149 / 57 / 55 | 95 / 27 / 33 |
+
+The two pass rates are not the protocol's pass@1 over 361 × 5 runs (coverage 72% and 43% of the tasks) and are not a replication of the published numbers; on the tasks both models completed they are equal within noise.
+
+### Where the failures are (by application)
+
+| application | Sonnet 5: tasks · pass rate · failed runs · tasks with a failure (all-fail) | gpt-6-astra: tasks · pass rate · failed runs · tasks with a failure (all-fail) |
+|---|---|---|
+| LibreOffice Calc | 63 · 79.4% · 65 · 19 (8) | 46 · 88.7% · 26 · 7 (4) |
+| Chrome | 55 · 68.0% · 87 · 21 (16) | 45 · 64.3% · 80 · 23 (10) |
+| LibreOffice Impress | 49 · 78.7% · 52 · 21 (4) | 21 · 74.1% · 22 · 9 (3) |
+| LibreOffice Writer | 34 · 56.7% · 71 · 19 (11) | not run |
+| GIMP | 27 · 67.9% · 43 · 13 (7) | 26 · 73.4% · 34 · 9 (6) |
+| OS (terminal, settings) | 19 · 70.2% · 28 · 11 (4) | 14 · 26.1% · 51 · 11 (10) |
+| Thunderbird | 6 · 76.9% · 6 · 2 (2) | not run |
+| VS Code | 5 · 87.5% · 3 · 3 (0) | not run |
+| VLC | 2 · 0.0% · 10 · 2 (2) | 3 · 92.3% · 1 · 1 (0) |
+| other | 1 · 0.0% · 5 · 1 (1) | — |
+| **total** | **261 · 71.3% · 370 · 112 (55)** | **155 · 71.4% · 214 · 60 (33)** |
+
+### Why runs fail (failed informative runs)
+
+| how the run failed | Sonnet 5 | gpt-6-astra |
+|---|---|---|
+| claimed done, the checker scored 0 | 293 (79%) | 101 (47%) |
+| declared FAIL / [INFEASIBLE] on a feasible task | 20 (5%), of which 19 with an environment factor | 73 (34%), of which 61 with an environment factor (black desktop 29, site blocked 23, desktop-tool error 9) |
+| hit the 100-step cap | 49 (13%), 6 of them on a black desktop | 0 |
+| scored FAILURE by the tool-surface rule (Codex clock tool on relative-date tasks) | — | 22 (10%) |
+| answered in text without acting, or declined | 5 (1%) | 13 (6%) |
+| checker rejects an output equivalent up to letter case | 3 (1%) | 5 (2%) |
+
+The dominant mode for both models is "claimed done, checker 0"; Astra gives up more on feasible tasks (and is almost always right on the infeasible-by-design ones: 63 of 64), Sonnet 5 runs out of steps more.
+
+### Root causes of Astra's failures (task-by-task analysis)
+
+Every Astra task with a failure was read by hand (transcript, final screenshot, saved output against the gold). Failed informative runs of the main campaign by dominant cause:
+
+| cause | tasks | failed runs | share of informative runs |
+|---|---|---|---|
+| F — bare desktop (no GNOME Shell/Settings), missing dependency, or a reading of the task that led the agent to give up | 11 | 45 | 6.0 pp |
+| G — checker strictness, brittle checker, or ambiguous task | 11 | 41 | 5.5 pp |
+| I — genuine agent error (environment and checker working) | 14 | 38 | 5.1 pp |
+| H — setting applied in the GUI but not registered where the checker reads it (persistence) | 7 | 35 | 4.7 pp |
+| D — live site blocking the sandbox's datacenter address | 6 | 28 | 3.7 pp |
+| E — tool-surface rule (clock tool) | 5 | 12 | 1.6 pp |
+| J — unexplained or mixed | 2 | 8 | 1.1 pp |
+| C — infrastructure (desktop-tool errors) | 4 | 7 | 0.9 pp |
+| **total** | **60** | **214** | **28.6 pp** |
+
+Only about 5 of the 28.6 failure points are genuine agent errors; the rest is shared between the environment (F, H, D, C), the protocol rule (E) and the benchmark's checkers (G). Typical agent errors: a pivot table placed one row too low, "hide" done with conditional formatting, a chart missing from the saved file, slide numbers coloured on the slides but not on the master, two cookies left after a deletion.
+
+Infrastructure defects found on the official-protocol guest (details in the local documentation): bare Openbox desktop; `DISPLAY=:99` in the guest against `:0` in the vendored official prompt; GIMP configuration and Writer save tasks that pass in Phase 1 and fail here for both models; live sites refusing the datacenter IP.
+
+## Files
+
+- `campaign_analysis.py` — generator: reads the archived result trees and writes the per-run table, the per-task pages, `SUMMARY.md` and `tables/`; inputs `manual_notes.json` (hand-written task notes) and `verification.json` (hand verification of labels).
+- `make_figures.py` and `figures/` (PDF and PNG) — ten figures from the per-run table (pass rate by arm, run composition, categories, failure modes, environment factors, infrastructure flips, time and cost, consistency, checkers, quota friction).
 - `tables/` — task × arm pass matrix with hand notes, timing, per-bucket metrics, failures by checker.
-- `figures/` (PDF and PNG) and `make_figures.py` — ten figures drawn from the per-run table (pass rate by arm, run composition, categories, failure modes, environment factors, infrastructure flips, time and cost, consistency, checkers, quota friction).
-- `campaign_analysis.py`, `manual_notes.json`, `verification.json` — generator and its hand-written inputs.
+- `astra_ledger.json` — per-task data of the Astra failure analysis (behaviour, reason, certainty, label).
 
-The documentation files listed above (every `.md` here except this README) are thesis material and stay local: they are ignored by git.
+Local documentation (thesis material; every `.md` here except this README is ignored by git): `FINDINGS.md` (results and verified causes, start here), `ASTRA_ANALYSIS.md` (99 Astra tasks, classes A–J), `ASTRA_IMPROVEMENT_RESEARCH.md` (interventions and the Phase 3 experiment decision), `SUMMARY.md` (every aggregate table), `METHODOLOGY.md` (definitions, taxonomy, label verification, limits), `RESEARCH_BRIEF_FOR_LLM.md` and `RESEARCH_REPORT_FROM_LLM.md` (external research, verbatim).
 
 What is **not** in git (size): the raw results and full transcripts, the per-run table (3,770 rows) and one cross-arm page per task (373 pages, with per-run evidence). They live in the external archive `agentic-qa-archive-20261014/` (`analysis_campaigns/` next to the raw trees). Regenerate with
-`python campaign_analysis.py <archive_root> <out_dir> manual_notes.json verification.json` (needs Pillow, openpyxl, python-pptx).
+`python campaign_analysis.py <archive_root> <out_dir> manual_notes.json verification.json` (dependencies in `../requirements.txt`).
