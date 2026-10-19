@@ -80,5 +80,5 @@ Infrastructure defects found on the official-protocol guest (details in the loca
 
 Local documentation (thesis material; every `.md` here except this README is ignored by git): `FINDINGS.md` (results and verified causes, start here), `ASTRA_ANALYSIS.md` (99 Astra tasks, classes A–J), `ASTRA_IMPROVEMENT_RESEARCH.md` (interventions and the Phase 3 experiment decision), `SUMMARY.md` (every aggregate table), `METHODOLOGY.md` (definitions, taxonomy, label verification, limits), `RESEARCH_BRIEF_FOR_LLM.md` and `RESEARCH_REPORT_FROM_LLM.md` (external research, verbatim).
 
-What is **not** in git (size): the raw results and full transcripts, the per-run table (3,770 rows) and one cross-arm page per task (373 pages, with per-run evidence). They live in the external archive `agentic-qa-archive-20261014/` (`analysis_campaigns/` next to the raw trees). Regenerate with
+What is **not** in git (size): the raw results and full transcripts, the per-run table (3,770 rows) and one cross-arm page per task (373 pages, with per-run evidence). They live in the external archive `agentic-qa-archive-20261014/` (`analysis_campaigns/` next to the raw trees); the pkgfix3 re-run tree is in its `osworld-experiments/` folder. Regenerate with
 `python campaign_analysis.py <archive_root> <out_dir> manual_notes.json verification.json` (dependencies in `../requirements.txt`).
