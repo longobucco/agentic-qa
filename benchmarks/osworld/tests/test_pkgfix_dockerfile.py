@@ -48,3 +48,32 @@ def test_start_sh_starts_the_session_bus_at_the_official_address():
     assert "unix:path=$XDG_RUNTIME_DIR/bus" in text
     assert 'XDG_RUNTIME_DIR=/run/user/1000' in text
     assert "export DBUS_SESSION_BUS_ADDRESS" in text
+
+
+# --- pkgfix3 (guest fidelity corrections, 19/10/2026) ------------------------------------------
+_PKGFIX2_DIGEST = ("ghcr.io/longobucco/osworld-ab@sha256:"
+                   "d44d8858ae60adcc81db7d4c2241f0c8b2c910ee1a25479856b092169967c33b")
+
+
+def _pkgfix3():
+    return (_DOCKER / "Dockerfile.osworld-pkgfix3").read_text()
+
+
+def test_pkgfix3_dockerfile_is_from_the_pkgfix2_digest():
+    from_lines = [l.strip() for l in _pkgfix3().splitlines() if l.strip().startswith("FROM ")]
+    assert from_lines == [f"FROM {_PKGFIX2_DIGEST}"]
+
+
+def test_pkgfix3_resets_xdg_config_home_and_scopes_the_override_to_chrome():
+    text = _pkgfix3()
+    assert "ENV XDG_CONFIG_HOME=/home/user/.config" in text
+    assert "export XDG_CONFIG_HOME=/opt/osw_xdg_unused' /usr/bin/google-chrome" in text
+
+
+def test_pkgfix3_installs_bc_and_seeds_the_libreoffice_profile():
+    text = _pkgfix3()
+    assert "install -y --no-install-recommends bc" in text
+    assert "/home/user/.config/libreoffice/4/user/registrymodifications.xcu" in text
+    xcu = (_DOCKER / "libreoffice-registrymodifications.xcu").read_text()
+    assert '<prop oor:name="WarnAlienFormat" oor:op="fuse"><value>false</value></prop>' in xcu
+    assert '<prop oor:name="ShowTipOfTheDay" oor:op="fuse"><value>false</value></prop>' in xcu
