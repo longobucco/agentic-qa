@@ -12,7 +12,7 @@ import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 
-from benchmarks.osworld import config, official_protocol, tasks
+from benchmarks.osworld import arms, config, official_protocol, tasks
 from benchmarks.osworld.env import osworld_eval
 from benchmarks.osworld.runners import astra_common
 from benchmarks.osworld.runners.common import (
@@ -152,7 +152,8 @@ def _official_cmd(prompt, workdir, controller_url, out_dir=None):
         prompt, model=config.ASTRA_MODEL, cwd=workdir, controller_url=controller_url,
         reasoning_effort=config.ASTRA_REASONING_EFFORT or None,
         mcp_extra_env=mcp_child_env(out_dir),
-        base_instructions=_official_system_prompt(), extra_config=CODEX_ISOLATION_CONFIG,
+        base_instructions=arms.system_prompt(_official_system_prompt(), config.ASTRA_ARM),
+        extra_config=CODEX_ISOLATION_CONFIG,
     )
 
 
@@ -203,7 +204,8 @@ def _telemetry(meta, stderr=""):
 def _provenance_astra(task, ctrl, started_at, codex_version, session_id=None):
     return astra_common.provenance_astra(
         task, ctrl, started_at, codex_version, model=config.ASTRA_MODEL,
-        reasoning_effort=config.ASTRA_REASONING_EFFORT, session_id=session_id)
+        reasoning_effort=config.ASTRA_REASONING_EFFORT, session_id=session_id,
+        extra=arms.provenance(config.ASTRA_ARM))
 
 
 def _validate_campaign_lock():
@@ -241,6 +243,7 @@ def preflight():
     # Re-checked directly: config refuses legacy knobs at import, but core.run loads .env
     # (which can carry a stale legacy knob) after benchmark.build() has already imported config.
     config._refuse_legacy_knobs()
+    arms.addendum(config.ASTRA_ARM)   # refuses an unknown arm before anything runs
     osworld_eval.pinned_code_preflight()
     _validate_campaign_lock()
     # core.run writes harness.json after preflight; materialize defaults so a direct invocation

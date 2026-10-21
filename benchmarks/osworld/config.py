@@ -138,6 +138,11 @@ ASTRA_CAMPAIGN_LOCK = (Path(__file__).resolve().parent
 # caller/result tree is unaffected.
 ASTRA_SYSTEM_SUFFIX = os.environ.get("OSW_ASTRA_SYSTEM_SUFFIX", "").strip()
 
+# Declared Phase 3 intervention arm (benchmarks/osworld/arms.py); empty = the official protocol.
+# Its name always becomes part of the results tree name, so an arm can never pool into the
+# replication tree or into another arm's.
+ASTRA_ARM = os.environ.get("OSW_ASTRA_ARM", "").strip()
+
 
 def astra_system_name():
     """Never pool a campaign override into another one's results tree."""
@@ -147,6 +152,8 @@ def astra_system_name():
     if ASTRA_SYSTEM_SUFFIX:
         safe_suffix = re.sub(r"[^a-zA-Z0-9]+", "", ASTRA_SYSTEM_SUFFIX) or "suffix"
         base = f"{base}_{safe_suffix}"
+    if ASTRA_ARM:
+        base = f"{base}_{safe(ASTRA_ARM)}"
     # The only protocol this branch runs: always the official one.
     base = f"{base}_official"
     if BACKEND == "kvm":
