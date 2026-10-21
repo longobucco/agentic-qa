@@ -1,0 +1,24 @@
+# OSWorld harness, campaign analysis and tests (Python 3.11).
+# Install: pip install -r benchmarks/osworld/requirements.txt
+# Then fetch the pinned data: see README "Setup" (download_data, download_evaluators).
+
+# MCP server: the code uses the 1.x API (mcp.server.fastmcp), removed in mcp 2.
+mcp>=1.30,<2
+# Daytona sandboxes. The campaigns did not record the SDK version; this one passes the test suite
+# (fake backend). Confirm with a one-task smoke before a real campaign.
+daytona_sdk==0.196.0
+# OSWorld's evaluator getters/metrics import desktop_env and its dependencies.
+desktop_env==1.0.2
+websocket-client>=1.9
+requests>=2.34
+python-dotenv>=1.2
+Pillow>=11.0
+
+# Campaign analysis (campaign_analysis.py, make_figures.py)
+openpyxl>=3.1
+python-pptx>=1.0
+pandas>=2.2
+matplotlib>=3.7
+
+# Tests
+pytest>=9.1

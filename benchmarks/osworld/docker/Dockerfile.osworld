@@ -16,8 +16,34 @@ FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteractive DISPLAY=:99
 
+# Chromium (confirmed live, both Chrome 151.0.7922.108 and a newer 153.0.8010.36) refuses remote
+# debugging with "DevTools remote debugging requires a non-default data directory" whenever
+# --user-data-dir's VALUE equals what chrome::GetDefaultUserDataDirectory() would compute
+# anyway -- true here even though the launch wrapper (below) passes it explicitly, because the
+# wrapper's own explicit value ($HOME/.config/google-chrome) IS the platform default (an
+# anti-hijacking check added ~M92, comparing values, not "was the flag passed"). The wrapper
+# can't point elsewhere: desktop_env's evaluator getters hardcode reading Chrome's profile from
+# that exact path. Fix: point ONLY Chrome's notion of "what the default would have been"
+# somewhere else, via XDG_CONFIG_HOME (chrome::DIR_USER_DATA's own computation reads this on
+# Linux) -- the actual profile directory used is still whatever --user-data-dir says, unaffected
+# by this var (Preferences/Bookmarks/History still land in $HOME/.config/google-chrome as
+# before). Originally applied ONLY to docker/Dockerfile.osworld-openbook (2026-09-12) -- "NOT
+# yet applied to the shared closed-book image ... that decision is separate" -- extended here
+# 2026-09-23 after confirming live it's what actually blocks EVERY closed-book task launching
+# Chrome with --remote-debugging-port (chrome_open_tabs/chrome_close_tabs config steps, 51
+# tasks): even with CDP routing fixed (env/sandbox.py's enable_cdp_forwarder), Chrome itself
+# never bound the debug port at all without this, confirmed via chrome's own log
+# ("DevTools remote debugging requires a non-default data directory").
+ENV XDG_CONFIG_HOME=/opt/osw_xdg_unused
+
 # add only the apps your subset needs; python3-pyatspi is required for /accessibility (imported
-# unconditionally on Linux — without it the guest server won't even start). wmctrl is used by
+# unconditionally on Linux — without it the guest server won't even start). NOTE: having the
+# package is necessary and NOT sufficient — /accessibility returned an empty `<desktop-frame/>` on
+# all 456 captures taken across every campaign until start.sh was given a D-Bus session bus and
+# the AT-SPI bridges (docs/grounding-harness-plan.md Section 8). libreoffice-gtk3 belongs to the
+# same fix: LibreOffice exposes AT-SPI only through its gtk3 VCL backend, and with the generic
+# X11 plugin the three libreoffice_* families — the largest slice of the task set — report
+# nothing even with a working bus. wmctrl is used by
 # main.py's activate_window (part of the evaluator's postconfig on many tasks); gsettings
 # (libglib2.0-bin + schemas) and python-is-python3 (a bare `python` binary — OSWorld's own
 # config/postconfig steps invoke "python", not "python3") are needed by other task configs.
@@ -48,16 +74,43 @@ ENV DEBIAN_FRONTEND=noninteractive DISPLAY=:99
 #                         xdg-open prefers over `file` and does use the glob database. Confirmed
 #                         live: without it, xdg-open hangs on a real task .pptx; with it, soffice
 #                         opens in ~10s.
+#   git                   — several "os"/task configs shell out to `git clone` directly (e.g.
+#                           task acb0f96b-eacd-...); confirmed live it was never installed, so
+#                           every such task failed on FileNotFoundError regardless of the agent.
+# sudo -- many official task configs/postconfigs pipe {CLIENT_PASSWORD} through "sudo -S";
+# SetupController never checks the shell command's own exit code (only the HTTP status), so
+# a missing sudo silently no-ops these steps instead of failing loudly (confirmed live: e0df059f's
+# precondition mkdir, 5812b315's postconfig).
+# gnome-settings-daemon -- ships the org.gnome.settings-daemon.plugins.power gsettings schema
+# (compiled separately from gsettings-desktop-schemas above); without it any gsettings get/set
+# against that schema fails outright (confirmed: task bedcedc4).
+# nautilus -- 10 official task configs (data/osworld_verified.jsonl) have a "launch" step that
+# opens it directly (e.g. `nautilus /home/user/Documents/Finance`, task 415ef462) as part of a
+# multi-app scenario; without the binary installed, that launch step silently no-ops (same
+# SetupController blind spot as the missing-sudo case above) and _verify_launches correctly
+# reports "launched app(s) never started/rendered: nautilus" (confirmed live 2026-09-22).
+# unzip/zip/jq/psmisc(killall)/xsel/gnome-terminal -- called by 23 of the 361 published tasks in
+# setup or postconfig (audit 26/09/2026; see Dockerfile.osworld-pkgfix, the layer that added them
+# to the pinned digest without a full rebuild).
+# evince/eog/totem/picard -- default Ubuntu PDF viewer, image viewer, media player, and
+# MusicBrainz Picard: 11 of the 361 published tasks need them (tags pdf/image/
+# ubuntu_media_player/picard).
 RUN apt-get update && apt-get install -y --no-install-recommends \
         xvfb x11-utils openbox xterm scrot gnome-screenshot wmctrl \
         python3 python3-pip python3-tk python3-dev python-is-python3 \
         at-spi2-core python3-pyatspi dbus-x11 \
+        libreoffice-gtk3 \
         libglib2.0-bin gsettings-desktop-schemas \
         xdg-utils desktop-file-utils shared-mime-info file libfile-mimeinfo-perl \
-        supervisor curl \
+        supervisor curl sudo \
         libreoffice \
         gimp thunderbird vlc socat \
         gvfs pulseaudio pulseaudio-utils xdotool libnotify-bin \
+        gnome-settings-daemon \
+        nautilus \
+        evince eog totem picard \
+        git \
+        unzip zip jq psmisc xsel gnome-terminal \
     && rm -rf /var/lib/apt/lists/*
 
 # Batch 3: chrome (task launch command is literally "google-chrome") and vscode ("code") aren't
@@ -96,6 +149,26 @@ RUN apt-get update && \
 # hardcoded /root, keeps this correct regardless of what HOME actually resolves to at runtime —
 # the same env var the getter asks the guest server to resolve on its own end.
 #
+# The `code` wrapper below needs a DIFFERENT fix from google-chrome's, not the same one -- an
+# earlier version of this comment used $HOME/.config/Code here by false analogy to google-chrome
+# above, and it does not work. The distinction that matters: google-chrome's evaluator getters
+# (evaluators/getters/chrome.py) call `os.getenv('HOME')` INSIDE the guest at eval time (confirmed
+# by reading that file), so whatever $HOME actually is here (this image has no `user` account --
+# everything runs as root, confirmed live via `whoami`/`ps aux`, so $HOME=/root, and /home/user
+# does not exist) stays self-consistent between write and read. VS Code's evaluators
+# (check_json_settings, check_json_keybindings) are the OTHER kind: a `vm_file`-type check in
+# data/osworld_verified.jsonl, whose literal `path` string (e.g.
+# "/home/user/.config/Code/User/keybindings.json") is handed straight to
+# desktop_env.evaluators.getters.file.get_vm_file -> env.controller.get_file(path) with zero
+# HOME/~ expansion (confirmed by reading that getter) -- 870 of the 871 vm_file paths in the
+# whole task set hardcode /home/user/... this same way, not just VS Code's. --user-data-dir must
+# therefore be the literal string /home/user/.config/Code, not $HOME/.config/Code (which resolves
+# to /root and reproduces the exact same class of bug one directory over) -- confirmed live across
+# 4 closed-book tasks (930fdb3b, 9439a27b, 9d425400, e2b5e914) where the agent's written config
+# matched the evaluator's expected value byte-for-byte, yet every evaluation still failed because
+# the file at the expected path never existed. mkdir -p creates /home/user itself, which nothing
+# else on this image does. --extensions-dir stays under /tmp: no evaluator reads it.
+#
 # Several evaluators' postconfig kills chrome and relaunches it right before reading state (e.g.
 # this task's own postconfig: pkill chrome -> relaunch -> a fixed 3s sleep -> read Preferences).
 # Confirmed live: on this guest, a cold Chrome start takes closer to a minute (no D-Bus system bus
@@ -110,9 +183,63 @@ RUN rm -f /usr/bin/google-chrome && \
         > /usr/bin/google-chrome && \
     chmod +x /usr/bin/google-chrome && \
     rm -f /usr/bin/code && \
-    printf '#!/bin/sh\nmkdir -p /tmp/code-profile /tmp/code-extensions\nexec /usr/share/code/bin/code --no-sandbox --user-data-dir=/tmp/code-profile --extensions-dir=/tmp/code-extensions "$@"\n' \
+    printf '#!/bin/sh\nmkdir -p /home/user/.config/Code /tmp/code-extensions\nexec /usr/share/code/bin/code --no-sandbox --user-data-dir=/home/user/.config/Code --extensions-dir=/tmp/code-extensions "$@"\n' \
         > /usr/bin/code && \
     chmod +x /usr/bin/code
+
+# timedatectl shim -- see docker/timedatectl-shim.sh for why (no systemd on this image, but
+# is_utc_0 hard-parses `timedatectl status` line 3; confirmed live: task b6781586 IndexErrors on
+# the evaluator side with the real binary absent).
+COPY benchmarks/osworld/docker/timedatectl-shim.sh /usr/bin/timedatectl
+RUN chmod +x /usr/bin/timedatectl
+
+# openbox keybinding config -- see docker/openbox-rc.xml (Ctrl+Alt+T -> xterm, for evaluator
+# postconfig steps that open a fresh terminal via that shortcut).
+COPY benchmarks/osworld/docker/openbox-rc.xml /etc/xdg/openbox/rc.xml
+
+# VLC refuses to run at all as root ("VLC is not supposed to be run as root. Sorry."), confirmed
+# live 2026-09-23: this image runs everything as root (no `user` account -- see the VS Code
+# profile-path comment above for why), so every VLC task's own official launch command (plain
+# "vlc ...") died instantly, 100% of the time, for all 22 VLC tasks in the task set -- not the
+# "cold-start timing" issue previously assumed and partially worked around below. VLC's own
+# official root-bypass binary, vlc-wrapper, is already in this package but needs $SUDO_UID to
+# know which user to drop to -- only set when a real (non-root) user runs `sudo vlc-wrapper`,
+# never true for our direct-root invocation -- confirmed live: "Cannot determine unprivileged
+# user for VLC!". Simpler and more direct: create a dedicated non-root user and re-exec the real
+# binary as that user ourselves via a shim installed at VLC's own path, so every task's existing
+# "vlc ..." launch command keeps working unmodified. `-s /usr/sbin/nologin`: this user is never
+# logged into interactively, only invoked via `sudo -u vlcuser` from the shim.
+RUN useradd -m -s /usr/sbin/nologin vlcuser
+RUN mv /usr/bin/vlc /usr/bin/vlc.real
+COPY benchmarks/osworld/docker/vlc-shim.sh /usr/bin/vlc
+RUN chmod +x /usr/bin/vlc
+
+# Pre-warm VLC's plugin cache and seed a default vlcrc at build time, AS vlcuser -- through the
+# same shim VLC always runs through now, so this also functions as a build-time smoke test of
+# the shim itself. Three closed-book evaluators (9195653c, 215dfd39, a5bbbcd5) relaunch vlc
+# (pkill + relaunch) with ZERO sleep before reading vlcrc straight off disk (get_vlc_config just
+# does env.controller.get_file -- desktop_env/evaluators/getters/vlc.py) -- a cold plugin-cache
+# scan or a not-yet-created vlcrc in that split second reads as a missing/empty file (confirmed
+# live: TypeError on a None read, task 9195653c). Xvfb isn't available at build time, so run VLC
+# headless just long enough to build its cache and flush a default config, matching the Chrome
+# cold-start discipline above. `chmod -R o+rwX /home/user`: vlcuser needs write access to the
+# SAME /home/user tree every other app's config/media lives under (evaluators hardcode
+# /home/user/... paths -- see the VS Code comment above) -- confirmed live this is also where
+# get_vlc_config expects vlcrc (os.path.expanduser('~/.config/vlc/vlcrc') with HOME=/home/user).
+# "Other" permissions rather than a shared group/chown keeps this correct regardless of which
+# uid happens to own a given file when a later task's config step creates it as root.
+#
+# `-ac` on the ephemeral xvfb-run server: unlike the runtime Xvfb (`Xvfb :99 ... -nolock`, no
+# auth required at all), xvfb-run generates its OWN Xauthority cookie for whoever invokes it
+# (root, during this build) -- confirmed live 2026-09-23: without `-ac`, vlcuser's connection
+# attempt through the shim failed with "Authorization required, but no authorization protocol
+# specified" (X11 access control, not the root-refusal this whole block already works around).
+# `-ac` disables that access control on this throwaway, build-only display, matching the
+# runtime Xvfb's already-open behavior.
+RUN HOME=/home/user mkdir -p /home/user/.config/vlc && \
+    chmod -R o+rwX /home/user && \
+    HOME=/home/user xvfb-run -a --server-args="-screen 0 1920x1080x24 -ac" \
+        timeout 15 vlc --no-audio --intf dummy --play-and-exit /dev/null || true
 
 # pynput is in upstream's server/requirements.txt but unused by main.py/pyxcursor.py (its Linux
 # backend needs evdev, a C extension that's slow/flaky to build under QEMU emulation) — skipped.

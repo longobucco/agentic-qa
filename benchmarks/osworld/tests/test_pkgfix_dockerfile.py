@@ -1,0 +1,79 @@
+"""Pins the provenance of the pkgfix layer (guest image re-pin, 26/09/2026): the thin Dockerfile
+on top of the previous digest installs exactly the six commands the audit found missing, and the
+full-rebuild Dockerfile carries the same six so a future rebuild doesn't regress them."""
+from pathlib import Path
+
+_DOCKER = Path(__file__).resolve().parents[1] / "docker"
+_PREVIOUS_DIGEST = ("ghcr.io/longobucco/osworld-ab@sha256:"
+                    "759b54f8b15fbb03544f8ac193ce86115d935a3dd8554a1c44b30f904ed07ea2")
+_PACKAGES = {"unzip", "zip", "jq", "psmisc", "xsel", "gnome-terminal"}
+
+
+def test_pkgfix_dockerfile_is_from_the_previous_pinned_digest():
+    text = (_DOCKER / "Dockerfile.osworld-pkgfix").read_text()
+    from_lines = [l.strip() for l in text.splitlines() if l.strip().startswith("FROM ")]
+    assert from_lines == [f"FROM {_PREVIOUS_DIGEST}"]
+
+
+def test_pkgfix_dockerfile_installs_exactly_the_six_missing_packages():
+    text = (_DOCKER / "Dockerfile.osworld-pkgfix").read_text()
+    assert "unzip zip jq psmisc xsel gnome-terminal" in text
+    installed = set("unzip zip jq psmisc xsel gnome-terminal".split())
+    assert installed == _PACKAGES
+
+
+def test_full_rebuild_dockerfile_carries_the_same_six_packages():
+    text = (_DOCKER / "Dockerfile.osworld").read_text()
+    assert "unzip zip jq psmisc xsel gnome-terminal" in text
+
+
+# --- pkgfix2 (guest D-Bus session bus re-pin, 28/09/2026) -------------------------------------
+_PKGFIX_DIGEST = ("ghcr.io/longobucco/osworld-ab@sha256:"
+                   "fff0c8be3f9a2f928d29c5ce7130c1cba280783e90b441299dd13a07eb8801d6")
+
+
+def test_pkgfix2_dockerfile_is_from_the_pkgfix_digest():
+    text = (_DOCKER / "Dockerfile.osworld-pkgfix2").read_text()
+    from_lines = [l.strip() for l in text.splitlines() if l.strip().startswith("FROM ")]
+    assert from_lines == [f"FROM {_PKGFIX_DIGEST}"]
+
+
+def test_pkgfix2_dockerfile_copies_start_sh():
+    text = (_DOCKER / "Dockerfile.osworld-pkgfix2").read_text()
+    assert "COPY benchmarks/osworld/docker/start.sh /start.sh" in text
+
+
+def test_start_sh_starts_the_session_bus_at_the_official_address():
+    text = (_DOCKER / "start.sh").read_text()
+    assert "unix:path=$XDG_RUNTIME_DIR/bus" in text
+    assert 'XDG_RUNTIME_DIR=/run/user/1000' in text
+    assert "export DBUS_SESSION_BUS_ADDRESS" in text
+
+
+# --- pkgfix3 (guest fidelity corrections, 19/10/2026) ------------------------------------------
+_PKGFIX2_DIGEST = ("ghcr.io/longobucco/osworld-ab@sha256:"
+                   "d44d8858ae60adcc81db7d4c2241f0c8b2c910ee1a25479856b092169967c33b")
+
+
+def _pkgfix3():
+    return (_DOCKER / "Dockerfile.osworld-pkgfix3").read_text()
+
+
+def test_pkgfix3_dockerfile_is_from_the_pkgfix2_digest():
+    from_lines = [l.strip() for l in _pkgfix3().splitlines() if l.strip().startswith("FROM ")]
+    assert from_lines == [f"FROM {_PKGFIX2_DIGEST}"]
+
+
+def test_pkgfix3_resets_xdg_config_home_and_scopes_the_override_to_chrome():
+    text = _pkgfix3()
+    assert "ENV XDG_CONFIG_HOME=/home/user/.config" in text
+    assert "export XDG_CONFIG_HOME=/opt/osw_xdg_unused' /usr/bin/google-chrome" in text
+
+
+def test_pkgfix3_installs_bc_and_seeds_the_libreoffice_profile():
+    text = _pkgfix3()
+    assert "install -y --no-install-recommends bc" in text
+    assert "/home/user/.config/libreoffice/4/user/registrymodifications.xcu" in text
+    xcu = (_DOCKER / "libreoffice-registrymodifications.xcu").read_text()
+    assert '<prop oor:name="WarnAlienFormat" oor:op="fuse"><value>false</value></prop>' in xcu
+    assert '<prop oor:name="ShowTipOfTheDay" oor:op="fuse"><value>false</value></prop>' in xcu

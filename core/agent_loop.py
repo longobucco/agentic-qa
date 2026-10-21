@@ -12,6 +12,8 @@ import re
 import signal
 import subprocess
 
+from core import procgroups
+
 ANSWER_RE = re.compile(r"^ANSWER:\s*(.*)$", re.MULTILINE)
 
 
@@ -22,12 +24,21 @@ def extract_answer(text: str) -> str:
 
 
 def build_claude_cmd(prompt, *, model=None, max_turns=None, add_dir=None,
-                     mcp_config=None, allowed_tools=None, extra=None):
+                     mcp_config=None, allowed_tools=None, extra=None, resume=None,
+                     effort=None, system_prompt=None):
     """Assemble a `claude -p ... --output-format json` argv.
 
     Covers every runner/judge shape: a plain agent (add_dir), an MCP runner (mcp_config +
     allowed_tools), and the judge (add_dir + low max_turns). Falsy `model` => omit
     `--model` so the CLI uses the subscription default.
+
+    `resume` (a prior call's session_id) continues that session instead of starting a new
+    one -- verified live 2026-09-09 to preserve session_id, pinned model, and tool/MCP state
+    across the boundary, so a follow-up prompt picks up exactly where the resumed session left
+    off (same desktop state, same allowed tools) rather than re-provisioning from scratch.
+
+    `system_prompt` (OSWorld official protocol) replaces Claude Code's default system prompt;
+    None => omitted, so every other caller's argv is unchanged.
     """
     cmd = ["claude", "-p", prompt, "--output-format", "json",
            "--dangerously-skip-permissions"]
@@ -41,19 +52,37 @@ def build_claude_cmd(prompt, *, model=None, max_turns=None, add_dir=None,
         cmd += ["--allowedTools", *allowed_tools]
     if extra:
         cmd += list(extra)
+    if system_prompt:
+        cmd += ["--system-prompt", system_prompt]
+    if effort:
+        cmd += ["--effort", effort]
     if model:
         cmd += ["--model", model]
+    if resume:
+        cmd += ["--resume", resume]
     return cmd
 
 
-def _run_raw(cmd, *, timeout, env=None) -> str:
+def _run_raw(cmd, *, timeout, env=None, cwd=None) -> str:
     """`env` (optional) overrides the child environment — used by the containerized runner to
     hand the orchestrator a PATH where bare `agent-browser` is shadowed, so it can only drive
     the browser via `docker exec` (no host browser). None => inherit the parent environment.
-    On timeout, returns whatever stdout was captured rather than raising.
+    On timeout, returns whatever stdout was captured rather than raising. `cwd` (optional) is
+    the child's working directory; None => inherit (the OSWorld official protocol starts the
+    CLI in an empty temp dir so no repo/project context is attached to the session).
 
     Runs in its own process group (`start_new_session`) and kills the WHOLE group on timeout,
-    not just the direct child. Observed live: `claude -p` with an MCP server (e.g. OSWorld's
+    not just the direct child. The group is also registered with `core.procgroups` for the
+    duration of the call (unregistered in a `finally`) so an interrupted `core.run.main()` can
+    reap it even on a path that never reaches this function's own timeout handling. If the
+    harness is already interrupted (`procgroups.is_interrupted()`) when called, raises
+    `procgroups.Interrupted` without starting a process at all; if the harness is interrupted
+    WHILE this call is in flight, its group is killed by the signal handler (not by this
+    function's own timeout), and this raises `procgroups.Interrupted` instead of returning
+    the partial stdout -- a caller must never mistake a killed-by-interrupt run for a normal
+    (or even a timed-out) one, since core.run scores exactly the latter two.
+
+    Observed live: `claude -p` with an MCP server (e.g. OSWorld's
     stdio server) spawns that server as a grandchild inheriting the stdout pipe; a plain
     `subprocess.run(..., timeout=...)` only kills the direct child on TimeoutExpired, so the
     orphaned grandchild keeps the pipe open and `communicate()` blocks forever waiting for EOF
@@ -74,18 +103,45 @@ def _run_raw(cmd, *, timeout, env=None) -> str:
     prompts carry a trailing, uninstructed list of sibling task ids. Likely inert (no
     imperative attached) but real contamination; DEVNULL severs it at the source so it can't
     recur regardless of what shell pattern a future driver uses."""
+    if procgroups.is_interrupted():
+        raise procgroups.Interrupted("harness interrupted before the agent CLI could start")
     proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True,
-                             stdin=subprocess.DEVNULL, env=env, start_new_session=True)
-    try:
-        stdout, _ = proc.communicate(timeout=timeout)
-        return stdout
-    except subprocess.TimeoutExpired:
+                             stdin=subprocess.DEVNULL, env=env, cwd=cwd,
+                             start_new_session=True)
+    pgid = proc.pid   # == the new process group's id under start_new_session=True (setsid);
+                        # os.getpgid(proc.pid) can raise ProcessLookupError for a child that
+                        # already exited by the time we ask, which proc.pid never can.
+    procgroups.register(pgid)
+    if procgroups.is_interrupted():
+        # Check->register race: the harness could have been interrupted (and kill_all() could
+        # have already run) in the window between the pre-spawn check above and this
+        # registration -- kill_all() never saw this pgid because it wasn't registered yet, so
+        # it's still alive and would otherwise be orphaned. Finish the job ourselves; the
+        # post-reap check below still turns this into procgroups.Interrupted either way.
         try:
-            os.killpg(os.getpgid(proc.pid), signal.SIGKILL)
+            os.killpg(pgid, signal.SIGKILL)
         except ProcessLookupError:
             pass
-        stdout, _ = proc.communicate()   # drain whatever's buffered now that the tree is dead
-        return stdout or ""
+    try:
+        try:
+            stdout, _ = proc.communicate(timeout=timeout)
+        except subprocess.TimeoutExpired:
+            try:
+                os.killpg(pgid, signal.SIGKILL)
+            except ProcessLookupError:
+                pass
+            stdout, _ = proc.communicate()   # drain whatever's buffered now that the tree is dead
+            stdout = stdout or ""
+        if procgroups.is_interrupted():
+            # The group may have ended here because the harness's signal handler killpg'd it
+            # (not because of this call's own timeout, whether or not TimeoutExpired also
+            # fired). Never hand a caller partial output from a run that was actually killed --
+            # core.run must record this as an infra interruption, not a scored result.
+            raise procgroups.Interrupted(
+                "agent CLI process group was reaped by a harness interrupt, not its own timeout")
+        return stdout
+    finally:
+        procgroups.unregister(pgid)
 
 
 def run_claude(cmd, *, timeout, env=None) -> str:
@@ -98,13 +154,13 @@ def run_claude(cmd, *, timeout, env=None) -> str:
         return raw
 
 
-def run_claude_meta(cmd, *, timeout, env=None) -> dict:
+def run_claude_meta(cmd, *, timeout, env=None, cwd=None) -> dict:
     """Like `run_claude`, but returns the full JSON envelope instead of just the result text —
     use when a caller needs `num_turns`/`stop_reason`/`is_error` to tell a clean finish (agent
     printed its answer and stopped on its own) from a truncated one (hit --max-turns or errored)
     that happened to score SUCCESS anyway because the desktop state was already correct. `{}` if
     the output isn't the expected JSON envelope."""
-    raw = _run_raw(cmd, timeout=timeout, env=env)
+    raw = _run_raw(cmd, timeout=timeout, env=env, cwd=cwd)
     try:
         return json.loads(raw)
     except Exception:

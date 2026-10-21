@@ -1,0 +1,527 @@
+{
+ "0f84bef9": {
+  "cat": "SUSPECTED-persistence",
+  "conf": "low",
+  "note": "Impress presenter-console task. The checker reads ~/.config/libreoffice/4/user/registrymodifications.xcu; the agent claims it unchecked 'Enable Presenter Console' (4 of 5 runs acted, one run stopped at 0 steps) yet the file never satisfied the rule. LibreOffice flushes registrymodifications.xcu on exit/periodically, so either the setting was not flushed before the check or the toggle was not applied. Not verifiable from the transcript alone."
+ },
+ "1334ca3e": {
+  "cat": "AGENT-spec-ambiguity",
+  "conf": "medium",
+  "note": "'Zoom out a little bit': the agent zoomed from 260% to 160% (2 steps, 5/5 runs). The saved xlsx has 0 cell differences from the gold, so compare_table fails on the view/zoom setting only: the expected zoom is smaller than what the agent chose. Instruction is under-specified; agent was consistent but not aligned with the gold. Sonnet 5 new also zooms 260%->200% and fails; every arm that ran it scores 0."
+ },
+ "13584542": {
+  "cat": "SUSPECTED-env/GUI-dependence",
+  "conf": "low",
+  "note": "Terminal 132x43 persistence. Checker opens a terminal via pyautogui (ctrl+alt+t) in postconfig and reads `stty size` expecting '43 132'. The agent set 'Initial terminal size' in the gnome-terminal profile (5/5 runs, claims verified). The result depends on the guest's terminal emulator/profile storage and on the postconfig hotkey reaching the desktop; the guest desktop is known to be degraded in other 'os' tasks."
+ },
+ "2888b4e6": {
+  "cat": "ENV-site-blocked",
+  "conf": "confirmed",
+  "note": "Macy's returns 'You don't have access to this page' (screenshots of all 5 runs). The agent correctly reports it cannot proceed. Datacenter-IP/bot blocking of a live site; unachievable from this environment."
+ },
+ "28cc3b7e": {
+  "cat": "ENV-handicap (bare Openbox desktop) + AGENT-gave-up",
+  "conf": "confirmed",
+  "note": "Volume task. Screenshots show a bare X session (black background + xterm): no GNOME shell, no audio panel. In the terminal: pavucontrol not found, apt install pavucontrol installs but 'cannot open display', and `pactl` fails with 'Connection refused' (no PulseAudio/PipeWire daemon). The task cannot be completed by GUI; the agent explored terminal alternatives and declared [INFEASIBLE]. NOTE (cross-arm correction): in Phase 1 sonnet5-old solved some of these (a4d98375, f9be0997, 94d95f96: 3/3, 28cc3b7e 2/3) with the `run_python` tool (`gsettings set ...`), i.e. from the command line while the desktop stayed black. The official protocol has no such tool, so a GUI-only agent must open a terminal; Astra opened one and typed `gnome-control-center`, then declared [INFEASIBLE]; none of the 30 Astra-new runs on these six tasks (a4d98375, f9be0997, 28cc3b7e, bedcedc4, ec4e3f68, 94d95f96) ever invoked `gsettings` (grep over the transcripts). The bare Openbox session is real, but it is a handicap, not an impossibility."
+ },
+ "30e3e107": {
+  "cat": "AGENT-error",
+  "conf": "confirmed",
+  "note": "Pivot tables in Sheet2: 34 cell differences vs gold. Agent's pivot tables have a different layout (e.g. Sheet2 has 18 rows vs 17, header cell offsets: gold A2='Sex', B2='Count - Sex'; agent A2 empty, A3='Sex'). Real agent error in building/placing the pivot tables, repeated in 5/5 runs."
+ },
+ "3ce045a0": {
+  "cat": "AGENT-partial",
+  "conf": "medium",
+  "note": "Two-part checker: gsettings text-scaling-factor >= 1.2 AND zoom/magnifier enabled with magnification. The agent only enlarged text/menus/title bars ('enlarged the interface text...'), never enabled the magnifier. Partial satisfaction of a two-condition requirement."
+ },
+ "455d3c66": {
+  "cat": "SUSPECTED-env-fidelity",
+  "conf": "medium",
+  "note": "Export to res.png with default settings. compare_images fails: agent PNG is 1792x1008 vs gold 3136x1764 (gold is 1.75x larger). Default PNG export size follows the display DPI/resolution of the machine; the guest differs from the machine that produced the gold. Not an agent error."
+ },
+ "4e6fcf72": {
+  "cat": "CHECKER-strict",
+  "conf": "confirmed",
+  "note": "Ages from birthdays. All 28 differing cells differ only by letter case: agent `=DATEDIF(C2,TODAY(),\"Y\")` vs gold `\"y\"`. Functionally equivalent in LibreOffice; rejected by the strict compare_table. False negative of the checker (5/5 runs). Also time-dependent via TODAY()."
+ },
+ "5812b315": {
+  "cat": "AGENT-error",
+  "conf": "confirmed (checker read)",
+  "note": "Checker requires `getent passwd charles` home == /home/test1 and /home/test1 owner-writable (stat char 3 == 'w'), plus the password check. The agent built an SFTP chroot (root-owned /home/test1, writable subfolder uploads/files, shell disabled) so the home directory is not writable by the user -> check fails. Over-engineered solution against the literal requirement."
+ },
+ "59155008": {
+  "cat": "AGENT-no-action",
+  "conf": "confirmed",
+  "note": "Question-type task ('similar names to carl'). Checker expects the active browser tab at babycenter.com/baby-names/details/carl-853. The agent answered from memory in 0 steps, never opened the browser. Checker is state-based, instruction reads as a question."
+ },
+ "6054afcb": {
+  "cat": "AGENT-error",
+  "conf": "confirmed",
+  "note": "Hide N/A: gold has hidden rows [3, 6, 8, 9, 12, 14, 18, 19, 20, 24...]; agent has none hidden, it used conditional formatting to mask #N/A text instead of hiding rows/cells. Wrong interpretation of 'hide' (5/5 runs)."
+ },
+ "6c4c23a1": {
+  "cat": "HARNESS-rule + ENV",
+  "conf": "confirmed",
+  "note": "Flight search 'on 5th next month'. 2/5 runs scored FAILURE by the harness for using the built-in clock tool (tool-surface violation) to learn the date; other runs declared infeasible because the browser/computer tool failed. Relative-date task: the agent has no date source other than the clock tool."
+ },
+ "7767eef2": {
+  "cat": "INFRA-REGRESSION (new infra) — GIMP config persistence",
+  "conf": "high that it is infrastructure; mechanism suspected",
+  "note": "NEW-INFRASTRUCTURE REGRESSION. The same GUI procedure passes in Phase 1 and fails in the official-protocol infrastructure for both models. Evidence (verified): sonnet5-old, task 7767eef2: Edit > Preferences > Theme > Light > OK (7 actions) -> 3/3 SUCCESS; sonnet5-new and astra-new perform the identical sequence and score 0/10; 7b7617bd: Preferences > System Resources > undo levels 100 > OK -> old 6/6, new 0/10. Hence the agents are not at fault. Mechanism: suspected, not verified in the VM. Candidates: the official postconfig (`ctrl+q` through pyautogui in the guest, so GIMP flushes gimprc/sessionrc/action-history) does not take effect in this guest; or the config is written under a different path than the one the checker reads. Note: the guest image sets DISPLAY=:99 while the vendored official prompt tells agents to use DISPLAY=:0 (apps launched that way fail with 'cannot open display')."
+ },
+ "7b7617bd": {
+  "cat": "INFRA-REGRESSION (new infra) — GIMP config persistence",
+  "conf": "high that it is infrastructure; mechanism suspected",
+  "note": "NEW-INFRASTRUCTURE REGRESSION. The same GUI procedure passes in Phase 1 and fails in the official-protocol infrastructure for both models. Evidence (verified): sonnet5-old, task 7767eef2: Edit > Preferences > Theme > Light > OK (7 actions) -> 3/3 SUCCESS; sonnet5-new and astra-new perform the identical sequence and score 0/10; 7b7617bd: Preferences > System Resources > undo levels 100 > OK -> old 6/6, new 0/10. Hence the agents are not at fault. Mechanism: suspected, not verified in the VM. Candidates: the official postconfig (`ctrl+q` through pyautogui in the guest, so GIMP flushes gimprc/sessionrc/action-history) does not take effect in this guest; or the config is written under a different path than the one the checker reads. Note: the guest image sets DISPLAY=:99 while the vendored official prompt tells agents to use DISPLAY=:0 (apps launched that way fail with 'cannot open display')."
+ },
+ "94d95f96": {
+  "cat": "AGENT-method/ENV",
+  "conf": "medium",
+  "note": "Checker is `which spotify`. The agent installed the Flatpak (not on PATH as `spotify`) and reports the native package needs newer system libraries; Flatpak could not launch in this environment. Mismatch between install method and checker, compounded by the old guest OS. (Flatpak/PATH detail is inferred from the agent's own final message, not from a file check.)"
+ },
+ "9f3f70fc": {
+  "cat": "ENV-site-blocked",
+  "conf": "confirmed",
+  "note": "NBA Store returns 'Access Denied' (agent reports it in 5/5 runs). Correction from the Astra review: Sonnet 5 new passes 4/5 here, so the block is intermittent; Astra was blocked in 4/5 runs."
+ },
+ "9f935cce": {
+  "cat": "AGENT-error",
+  "conf": "medium",
+  "note": "Checker expects the active URL to match 'civil/documents-and-forms'. The agent opened 'a Civil Division forms list' showing 11 results but not on the expected page/URL (5/5 runs)."
+ },
+ "a4d98375": {
+  "cat": "ENV-handicap (bare Openbox desktop) + AGENT-gave-up",
+  "conf": "confirmed",
+  "note": "Needs `gsettings get org.gnome.desktop.screensaver lock-enabled` == true; GNOME settings are unavailable in the bare-X guest, the agent reports so. NOTE (cross-arm correction): in Phase 1 sonnet5-old solved some of these (a4d98375, f9be0997, 94d95f96: 3/3, 28cc3b7e 2/3) with the `run_python` tool (`gsettings set ...`), i.e. from the command line while the desktop stayed black. The official protocol has no such tool, so a GUI-only agent must open a terminal; Astra opened one and typed `gnome-control-center`, then declared [INFEASIBLE]; none of the 30 Astra-new runs on these six tasks (a4d98375, f9be0997, 28cc3b7e, bedcedc4, ec4e3f68, 94d95f96) ever invoked `gsettings` (grep over the transcripts). The bare Openbox session is real, but it is a handicap, not an impossibility."
+ },
+ "a746add2": {
+  "cat": "SUSPECTED-persistence (unsolved in Phase 1 too: not a regression)",
+  "conf": "medium",
+  "note": "Vignette dialog: checker reads ~/.config/GIMP/2.10/action-history after a quit postconfig and needs 'filters-vignette'. The agent opens the filter window (claims so) but the action-history entry is not present. Related family (not a regression: Phase 1 also 0/3): same checker family as 7767eef2/7b7617bd/b148e375, which pass 3/3 in Phase 1 with the identical GUI sequence (see those notes)."
+ },
+ "acb0f96b": {
+  "cat": "AGENT-spec-ambiguity",
+  "conf": "confirmed",
+  "note": "'Clone the repo to /home/user'. The agent cloned into /home/user/instructor-embedding; the gold listing has the repository content directly under /home/user (log diff: 158 lines, agent shows an extra 'instructor-embedding/' level)."
+ },
+ "af23762e": {
+  "cat": "AGENT-error",
+  "conf": "medium",
+  "note": "Summary Slide: agent produced slide 13 ('Forests: Summary') whose text differs from the gold's slide 13 (different title/outline entries). Feature was used, content differs; compare_pptx_files is text-exact."
+ },
+ "b070486d": {
+  "cat": "ENV-site-blocked",
+  "conf": "confirmed",
+  "note": "Drugs.com blocks access from this network (agent: 5/5)."
+ },
+ "b148e375": {
+  "cat": "INFRA-REGRESSION (new infra) — GIMP config persistence",
+  "conf": "high that it is infrastructure; mechanism suspected",
+  "note": "NEW-INFRASTRUCTURE REGRESSION. The same GUI procedure passes in Phase 1 and fails in the official-protocol infrastructure for both models. Evidence (verified): sonnet5-old, task 7767eef2: Edit > Preferences > Theme > Light > OK (7 actions) -> 3/3 SUCCESS; sonnet5-new and astra-new perform the identical sequence and score 0/10; 7b7617bd: Preferences > System Resources > undo levels 100 > OK -> old 6/6, new 0/10. Hence the agents are not at fault. Mechanism: suspected, not verified in the VM. Candidates: the official postconfig (`ctrl+q` through pyautogui in the guest, so GIMP flushes gimprc/sessionrc/action-history) does not take effect in this guest; or the config is written under a different path than the one the checker reads. Note: the guest image sets DISPLAY=:99 while the vendored official prompt tells agents to use DISPLAY=:0 (apps launched that way fail with 'cannot open display')."
+ },
+ "b7895e80": {
+  "cat": "CHECKER-brittle-live-site / HARNESS-rule",
+  "conf": "medium",
+  "note": "Hotel search: checker scrapes the live results page via XPath and relative dates ('next week Saturday/Sunday'). 2/5 runs lost to the clock-tool rule; the others finish on a plausible results page but the scraped fields do not match (site markup/dates drift)."
+ },
+ "bedcedc4": {
+  "cat": "ENV-handicap (bare Openbox desktop) + AGENT-gave-up",
+  "conf": "confirmed",
+  "note": "gnome-control-center not installed ('command not found', apt-cache shows none; run_3 installed it but it 'cannot open display'). Settings app unavailable -> the task is unachievable. NOTE (cross-arm correction): in Phase 1 sonnet5-old solved some of these (a4d98375, f9be0997, 94d95f96: 3/3, 28cc3b7e 2/3) with the `run_python` tool (`gsettings set ...`), i.e. from the command line while the desktop stayed black. The official protocol has no such tool, so a GUI-only agent must open a terminal; Astra opened one and typed `gnome-control-center`, then declared [INFEASIBLE]; none of the 30 Astra-new runs on these six tasks (a4d98375, f9be0997, 28cc3b7e, bedcedc4, ec4e3f68, 94d95f96) ever invoked `gsettings` (grep over the transcripts). The bare Openbox session is real, but it is a handicap, not an impossibility."
+ },
+ "cabb3bae": {
+  "cat": "ENV-site-blocked",
+  "conf": "confirmed",
+  "note": "Kohl's 'Access Denied' (5/5 runs)."
+ },
+ "d52d6308": {
+  "cat": "SUSPECTED-persistence (unsolved in Phase 1 too: not a regression)",
+  "conf": "medium",
+  "note": "Hide left dock: checker reads sessionrc 'hide-docks' after ctrl+q postconfig; agent removed the dock (5-10 steps) and states the right dock remains. sessionrc is written on exit. Sonnet 5 new fails it as well (29 steps, claims the dock is hidden). Related family (not a regression: Phase 1 also 0/3): same checker family as 7767eef2/7b7617bd/b148e375, which pass 3/3 in Phase 1 with the identical GUI sequence (see those notes)."
+ },
+ "dbbf4b99": {
+  "cat": "ENV-missing-dependency",
+  "conf": "medium",
+  "note": "Convert RAW to JPEG using GIMP only. In 5/5 runs GIMP reports no RAW loader installed (needs darktable/RawTherapee); the agent refuses to break the 'GIMP only' constraint. The official image presumably ships the loader; here the file cannot be opened."
+ },
+ "e1e75309": {
+  "cat": "SUSPECTED-checker-strict",
+  "conf": "low",
+  "note": "Print page to PDF with no margins. Agent PDF is 6,285,079 B vs gold 6,285,092 B (13 B difference) yet compare_pdfs returns 0 in 5/5 runs. Differences are likely metadata/headers (date/URL) or font embedding; the content is essentially identical."
+ },
+ "ec4e3f68": {
+  "cat": "ENV-handicap (bare Openbox desktop) + AGENT-gave-up",
+  "conf": "confirmed",
+  "note": "Screenshot is entirely black with only a cursor in 5/5 runs: no desktop/dock to edit favorites. Agent correctly reports it cannot access Favorites. NOTE (cross-arm correction): in Phase 1 sonnet5-old solved some of these (a4d98375, f9be0997, 94d95f96: 3/3, 28cc3b7e 2/3) with the `run_python` tool (`gsettings set ...`), i.e. from the command line while the desktop stayed black. The official protocol has no such tool, so a GUI-only agent must open a terminal; Astra opened one and typed `gnome-control-center`, then declared [INFEASIBLE]; none of the 30 Astra-new runs on these six tasks (a4d98375, f9be0997, 28cc3b7e, bedcedc4, ec4e3f68, 94d95f96) ever invoked `gsettings` (grep over the transcripts). The bare Openbox session is real, but it is a handicap, not an impossibility."
+ },
+ "f9be0997": {
+  "cat": "ENV-handicap (bare Openbox desktop) + AGENT-gave-up",
+  "conf": "confirmed",
+  "note": "Do-not-disturb needs GNOME notification settings; unavailable in the bare-X guest (agent tried gnome-control-center notifications). NOTE (cross-arm correction): in Phase 1 sonnet5-old solved some of these (a4d98375, f9be0997, 94d95f96: 3/3, 28cc3b7e 2/3) with the `run_python` tool (`gsettings set ...`), i.e. from the command line while the desktop stayed black. The official protocol has no such tool, so a GUI-only agent must open a terminal; Astra opened one and typed `gnome-control-center`, then declared [INFEASIBLE]; none of the 30 Astra-new runs on these six tasks (a4d98375, f9be0997, 28cc3b7e, bedcedc4, ec4e3f68, 94d95f96) ever invoked `gsettings` (grep over the transcripts). The bare Openbox session is real, but it is a handicap, not an impossibility."
+ },
+ "fc6d8143": {
+  "cat": "CHECKER-brittle-live-site / HARNESS-rule",
+  "conf": "medium",
+  "note": "Flights JFK->ORD 'tomorrow': 3/5 lost to the clock-tool rule; others reach a results page but check_direct_json_object scrapes site-specific CSS classes (mach-flight-context-info__*) and a computed relative date."
+ },
+ "f5d96daf": {
+  "cat": "AGENT-no-action",
+  "conf": "low",
+  "note": "Compare iPhone models: the agent returned a long text comparison; the checker looks at final browser state (direct json object)."
+ },
+ "99146c54": {
+  "cat": "AGENT-judgement",
+  "conf": "medium",
+  "note": "Chrome auto-delete data on exit: in 3/5 runs the agent declared [INFEASIBLE] ('Chrome only clears cookies/site data on exit') instead of applying the closest setting; the other runs passed with that setting."
+ },
+ "44ee5668": {
+  "cat": "ENV-computer-tool-error",
+  "conf": "confirmed",
+  "note": "Run(s) aborted because the `computer` tool returned HTTP errors from the guest controller (agent: 'desktop controls failed')."
+ },
+ "f723c744": {
+  "cat": "ENV-computer-tool-error",
+  "conf": "confirmed",
+  "note": "Failing runs: screenshot() returned 'HTTP Error 400: Bad Request' from the VM controller 3 times in a row (7 prior RATE_LIMITED infra attempts, 5,408 s wall clock). Counted as agent FAILURE by the harness."
+ },
+ "08c73485": {
+  "cat": "ENV-old-infra-thunderbird-profile",
+  "conf": "high (path mismatch read from task config + transcripts)",
+  "note": "Old-infrastructure (Phase 1) Thunderbird profile problem. The checker reads /home/user/.thunderbird/t5q2a5hp.default-release/ (profile prepared by the task setup), but in Phase-1 transcripts the running Thunderbird uses /root/.thunderbird/<other profile>/ and the agents report 'No Email Account Configured'. Account-dependent tasks are unachievable (sonnet5-old declared FAIL), prefs/state tasks write to the wrong profile (agents claim done, checker 0). Not an agent capability result. The same family of tasks passes in the new infrastructure (thunderbird bucket 64.5% for Sonnet 5 new)."
+ },
+ "10a730d5": {
+  "cat": "ENV-old-infra-thunderbird-profile",
+  "conf": "high (path mismatch read from task config + transcripts)",
+  "note": "Old-infrastructure (Phase 1) Thunderbird profile problem. The checker reads /home/user/.thunderbird/t5q2a5hp.default-release/ (profile prepared by the task setup), but in Phase-1 transcripts the running Thunderbird uses /root/.thunderbird/<other profile>/ and the agents report 'No Email Account Configured'. Account-dependent tasks are unachievable (sonnet5-old declared FAIL), prefs/state tasks write to the wrong profile (agents claim done, checker 0). Not an agent capability result. The same family of tasks passes in the new infrastructure (thunderbird bucket 64.5% for Sonnet 5 new)."
+ },
+ "15c3b339": {
+  "cat": "ENV-old-infra-thunderbird-profile",
+  "conf": "high (path mismatch read from task config + transcripts)",
+  "note": "Old-infrastructure (Phase 1) Thunderbird profile problem. The checker reads /home/user/.thunderbird/t5q2a5hp.default-release/ (profile prepared by the task setup), but in Phase-1 transcripts the running Thunderbird uses /root/.thunderbird/<other profile>/ and the agents report 'No Email Account Configured'. Account-dependent tasks are unachievable (sonnet5-old declared FAIL), prefs/state tasks write to the wrong profile (agents claim done, checker 0). Not an agent capability result. The same family of tasks passes in the new infrastructure (thunderbird bucket 64.5% for Sonnet 5 new)."
+ },
+ "3f28fe4f": {
+  "cat": "ENV-old-infra-thunderbird-profile",
+  "conf": "high (path mismatch read from task config + transcripts)",
+  "note": "Old-infrastructure (Phase 1) Thunderbird profile problem. The checker reads /home/user/.thunderbird/t5q2a5hp.default-release/ (profile prepared by the task setup), but in Phase-1 transcripts the running Thunderbird uses /root/.thunderbird/<other profile>/ and the agents report 'No Email Account Configured'. Account-dependent tasks are unachievable (sonnet5-old declared FAIL), prefs/state tasks write to the wrong profile (agents claim done, checker 0). Not an agent capability result. The same family of tasks passes in the new infrastructure (thunderbird bucket 64.5% for Sonnet 5 new)."
+ },
+ "3f49d2cc": {
+  "cat": "ENV-old-infra-thunderbird-profile",
+  "conf": "high (path mismatch read from task config + transcripts)",
+  "note": "Old-infrastructure (Phase 1) Thunderbird profile problem. The checker reads /home/user/.thunderbird/t5q2a5hp.default-release/ (profile prepared by the task setup), but in Phase-1 transcripts the running Thunderbird uses /root/.thunderbird/<other profile>/ and the agents report 'No Email Account Configured'. Account-dependent tasks are unachievable (sonnet5-old declared FAIL), prefs/state tasks write to the wrong profile (agents claim done, checker 0). Not an agent capability result. The same family of tasks passes in the new infrastructure (thunderbird bucket 64.5% for Sonnet 5 new)."
+ },
+ "7b1e1ff9": {
+  "cat": "ENV-old-infra-thunderbird-profile",
+  "conf": "high (path mismatch read from task config + transcripts)",
+  "note": "Old-infrastructure (Phase 1) Thunderbird profile problem. The checker reads /home/user/.thunderbird/t5q2a5hp.default-release/ (profile prepared by the task setup), but in Phase-1 transcripts the running Thunderbird uses /root/.thunderbird/<other profile>/ and the agents report 'No Email Account Configured'. Account-dependent tasks are unachievable (sonnet5-old declared FAIL), prefs/state tasks write to the wrong profile (agents claim done, checker 0). Not an agent capability result. The same family of tasks passes in the new infrastructure (thunderbird bucket 64.5% for Sonnet 5 new)."
+ },
+ "9bc3cc16": {
+  "cat": "ENV-old-infra-thunderbird-profile",
+  "conf": "high (path mismatch read from task config + transcripts)",
+  "note": "Old-infrastructure (Phase 1) Thunderbird profile problem. The checker reads /home/user/.thunderbird/t5q2a5hp.default-release/ (profile prepared by the task setup), but in Phase-1 transcripts the running Thunderbird uses /root/.thunderbird/<other profile>/ and the agents report 'No Email Account Configured'. Account-dependent tasks are unachievable (sonnet5-old declared FAIL), prefs/state tasks write to the wrong profile (agents claim done, checker 0). Not an agent capability result. The same family of tasks passes in the new infrastructure (thunderbird bucket 64.5% for Sonnet 5 new)."
+ },
+ "a10b69e1": {
+  "cat": "ENV-old-infra-thunderbird-profile",
+  "conf": "high (path mismatch read from task config + transcripts)",
+  "note": "Old-infrastructure (Phase 1) Thunderbird profile problem. The checker reads /home/user/.thunderbird/t5q2a5hp.default-release/ (profile prepared by the task setup), but in Phase-1 transcripts the running Thunderbird uses /root/.thunderbird/<other profile>/ and the agents report 'No Email Account Configured'. Account-dependent tasks are unachievable (sonnet5-old declared FAIL), prefs/state tasks write to the wrong profile (agents claim done, checker 0). Not an agent capability result. The same family of tasks passes in the new infrastructure (thunderbird bucket 64.5% for Sonnet 5 new)."
+ },
+ "c2751594": {
+  "cat": "ENV-old-infra-thunderbird-profile",
+  "conf": "high (path mismatch read from task config + transcripts)",
+  "note": "Old-infrastructure (Phase 1) Thunderbird profile problem. The checker reads /home/user/.thunderbird/t5q2a5hp.default-release/ (profile prepared by the task setup), but in Phase-1 transcripts the running Thunderbird uses /root/.thunderbird/<other profile>/ and the agents report 'No Email Account Configured'. Account-dependent tasks are unachievable (sonnet5-old declared FAIL), prefs/state tasks write to the wrong profile (agents claim done, checker 0). Not an agent capability result. The same family of tasks passes in the new infrastructure (thunderbird bucket 64.5% for Sonnet 5 new)."
+ },
+ "d38192b0": {
+  "cat": "ENV-old-infra-thunderbird-profile",
+  "conf": "high (path mismatch read from task config + transcripts)",
+  "note": "Old-infrastructure (Phase 1) Thunderbird profile problem. The checker reads /home/user/.thunderbird/t5q2a5hp.default-release/ (profile prepared by the task setup), but in Phase-1 transcripts the running Thunderbird uses /root/.thunderbird/<other profile>/ and the agents report 'No Email Account Configured'. Account-dependent tasks are unachievable (sonnet5-old declared FAIL), prefs/state tasks write to the wrong profile (agents claim done, checker 0). Not an agent capability result. The same family of tasks passes in the new infrastructure (thunderbird bucket 64.5% for Sonnet 5 new)."
+ },
+ "dd84e895": {
+  "cat": "ENV-old-infra-thunderbird-profile",
+  "conf": "high (path mismatch read from task config + transcripts)",
+  "note": "Old-infrastructure (Phase 1) Thunderbird profile problem. The checker reads /home/user/.thunderbird/t5q2a5hp.default-release/ (profile prepared by the task setup), but in Phase-1 transcripts the running Thunderbird uses /root/.thunderbird/<other profile>/ and the agents report 'No Email Account Configured'. Account-dependent tasks are unachievable (sonnet5-old declared FAIL), prefs/state tasks write to the wrong profile (agents claim done, checker 0). Not an agent capability result. The same family of tasks passes in the new infrastructure (thunderbird bucket 64.5% for Sonnet 5 new)."
+ },
+ "dfac9ee8": {
+  "cat": "ENV-old-infra-thunderbird-profile",
+  "conf": "high (path mismatch read from task config + transcripts)",
+  "note": "Old-infrastructure (Phase 1) Thunderbird profile problem. The checker reads /home/user/.thunderbird/t5q2a5hp.default-release/ (profile prepared by the task setup), but in Phase-1 transcripts the running Thunderbird uses /root/.thunderbird/<other profile>/ and the agents report 'No Email Account Configured'. Account-dependent tasks are unachievable (sonnet5-old declared FAIL), prefs/state tasks write to the wrong profile (agents claim done, checker 0). Not an agent capability result. The same family of tasks passes in the new infrastructure (thunderbird bucket 64.5% for Sonnet 5 new)."
+ },
+ "f201fbc3": {
+  "cat": "ENV-old-infra-thunderbird-profile",
+  "conf": "high (path mismatch read from task config + transcripts)",
+  "note": "Old-infrastructure (Phase 1) Thunderbird profile problem. The checker reads /home/user/.thunderbird/t5q2a5hp.default-release/ (profile prepared by the task setup), but in Phase-1 transcripts the running Thunderbird uses /root/.thunderbird/<other profile>/ and the agents report 'No Email Account Configured'. Account-dependent tasks are unachievable (sonnet5-old declared FAIL), prefs/state tasks write to the wrong profile (agents claim done, checker 0). Not an agent capability result. The same family of tasks passes in the new infrastructure (thunderbird bucket 64.5% for Sonnet 5 new)."
+ },
+ "5c1075ca": {
+  "cat": "ENV-old-infra-run_python-cwd",
+  "conf": "high",
+  "note": "The Phase-1 `run_python` tool executes inside the controller server (cwd printed by the agent: /app/desktop_env/server, as root), not in the user's shell/home. The agent copied files relative to that cwd and reported success; the checker (`bash eval.sh`) looks in the user's working directory. Agents cannot know the intended 'current directory'. Not solvable as stated with this tool; the official protocol (GUI terminal only) removes this tool."
+ },
+ "6f56bf42": {
+  "cat": "ENV-old-infra-run_python-cwd",
+  "conf": "medium-high",
+  "note": "Same pattern as 5c1075ca: relative-path file copy performed through run_python (cwd /app/desktop_env/server) while the checker runs `bash eval.sh` in the task directory."
+ },
+ "aad10cd7": {
+  "cat": "ENV-old-infra-home-mismatch + AGENT-limit",
+  "conf": "medium",
+  "note": "sonnet5-old saved notes.docx to /root/Desktop/ (the final message says so) while the checker reads /home/user/Desktop; in the new infrastructure Sonnet 5 hits the 100-step cap or produces a docx that differs from the gold. Unsolved by every arm."
+ },
+ "4127319a": {
+  "cat": "UNVERIFIED-checker-terminal-output",
+  "conf": "low",
+  "note": "Checker reads the terminal output (vm_terminal_output); agents ran the `find ... | xargs wc -l` style command and report the totals, yet 0/6. Whether the expected text is a specific total/format is not verifiable from the transcripts."
+ },
+ "3299584d": {
+  "cat": "CHECKER-initial-state-passes",
+  "conf": "high (5/5 runs, 0 actions)",
+  "note": "astra-new passes 5/5 with zero tool calls: the checker is satisfied by the initial state (or the task needs no action). These runs are excluded from the informative numbers."
+ },
+ "3c8f201a": {
+  "cat": "UNVERIFIED-output-path/format",
+  "conf": "low",
+  "note": "The Sonnet 5 Phase-1 runs (3/3) report a compressed.jpeg of about 221 KB created with GIMP batch mode in the Phase-1 harness, yet check_image_file_size fails; likely the file landed in a different home/path (see 5c1075ca) or the name differs. Not recoverable from the transcript."
+ },
+ "74d5859f": {
+  "cat": "UNVERIFIED-agent-claimed-done",
+  "conf": "low",
+  "note": "Sonnet 5 new used webext.eu and claims done in 50 steps; the checker compares five generated project files (check_json + 4 diff_text_file). Content differences not inspected (no kept artifacts)."
+ },
+ "e1fc0df3": {
+  "cat": "AGENT-limit",
+  "conf": "medium",
+  "note": "Installing the LanguageTool extension into LibreOffice: 2/5 runs hit the 100-step cap, 3/5 stop after partial progress; multi-step GUI install not completed."
+ },
+ "185f29bd": {
+  "cat": "AGENT-limit",
+  "conf": "medium",
+  "note": "Filling PDF form fields from a spreadsheet: 4/5 runs hit the 100-step cap."
+ },
+ "3e3fc409": {
+  "cat": "AGENT-limit",
+  "conf": "high (diff)",
+  "note": "Agent output has only the 'seen_movies' sheet; the gold also has 'unseen_movies' (0 differing cells): the agent researched but ran out of steps before creating the required sheet; one run lost steps to a self-inflicted black screen (minimised window in the bare Openbox session)."
+ },
+ "7f35355e": {
+  "cat": "UNVERIFIED-numeric-result",
+  "conf": "low",
+  "note": "sonnet5-old reports median 25.27 after filling empty values with the mean (39.20) and writing result.txt via run_python (cwd issue possible, see 5c1075ca); the expected value is in the gold file, not inspected."
+ },
+ "881deb30": {
+  "cat": "AGENT/checker-format",
+  "conf": "low",
+  "note": "72 differing cells in the new-infra output vs gold; the agent wrote formulas such as =35/77 while the gold cell holds a literal. compare_table is value-based, so whether the values (rounding) or the representation differ is not determined."
+ },
+ "47f7c0ce": {
+  "cat": "UNVERIFIED-frame-extraction",
+  "conf": "low",
+  "note": "Frame at 00:08 extracted and set as slide background; compare_images 0/6 (old arms). Frame choice/resolution differences possible; new-infra Sonnet 5 never completed this task (rate limit)."
+ },
+ "f23acfd2": {
+  "cat": "SPEC-ambiguity",
+  "conf": "medium",
+  "note": "'Add a bullet point to the content of this slide' does not specify the text; agents add generic text and the strict pptx comparison against the gold fails in every arm (0/11). The gold file is much larger than the agent's (39,707 B vs 24,477 B)."
+ },
+ "09a37c51": {
+  "cat": "AGENT-limit + ENV-fidelity",
+  "conf": "medium",
+  "note": "Background removal of a photo (Writer + GIMP): new-infra Sonnet 5 hits the 100-step cap (3/5; two runs minimised the window and lost the screen), old arms claim done with rembg-based output that compare_images rejects."
+ },
+ "4bcb1253": {
+  "cat": "SUSPECTED-env-fidelity (PDF render)",
+  "conf": "low",
+  "note": "Export to PDF keeping the name: agents report success in every arm; the produced PDF is 214,951 B vs the gold 300,158 B (compare_pdfs strict). Differences in fonts/embedding between the guest and the machine that produced the gold are plausible (same signature as e1e75309)."
+ },
+ "5bc63fb9": {
+  "cat": "AGENT/checker-strict",
+  "conf": "low",
+  "note": "gemini_results.docx 7,519 B vs gold 15,841 B: the gold is about twice as large (likely extra formatting/highlight runs); agents report highlighting Iliad in yellow. compare_docx_files_and_ignore_new_lines is strict on content/format."
+ },
+ "88fe4b2d": {
+  "cat": "AGENT/checker-strict",
+  "conf": "low",
+  "note": "First paragraph split into sentences with empty lines; 0/11 in every arm that ran it; docx differs from the gold (11,237 B vs 11,811 B). Exact paragraph/blank-line structure expected by compare_docx_files."
+ },
+ "bb83cab4": {
+  "cat": "AGENT-error",
+  "conf": "medium",
+  "note": "Impress text -> Writer document: the new-infra output is 2,928,860 B vs the gold 16,018 B (the agent pasted slides/objects rather than text only); one run lost to HTTP 400 desktop errors. Old arms report plain-text docx but fail anyway."
+ },
+ "05dd4c1d": {
+  "cat": "AGENT-error/checker-strict",
+  "conf": "low",
+  "note": "Text alignment on slides 3-5: every arm reports success; compare_pptx_files fails on all 11 runs; pptx differs from gold by 158 bytes only (slides 6=6). Probably an attribute-level difference (which textbox is 'first', or paragraph vs shape alignment)."
+ },
+ "2c1ebcd7": {
+  "cat": "AGENT-limit",
+  "conf": "medium",
+  "note": "APA references review: Sonnet 5 new hits the 100-step cap or finishes with partial score (compare_references_gain 0.11-0.26); each run researches sources online, which exhausts the budget."
+ },
+ "869de13e": {
+  "cat": "AGENT-limit/ENV",
+  "conf": "medium",
+  "note": "Desktop file organisation: 4/5 new runs claim done but exact_match fails, 1/5 cap; sonnet5-old also fails 3/3 (run_python HTTP 500s). The guest starts on a black Openbox screen; agents mention it and recover via terminal."
+ },
+ "d1acdb87": {
+  "cat": "AGENT-limit",
+  "conf": "medium",
+  "note": "Compiling restaurant details from Google Maps: 2/5 new runs hit the cap, the others differ from the gold in 14 cells (long text values); old arms fail as well."
+ },
+ "da922383": {
+  "cat": "UNVERIFIED",
+  "conf": "low",
+  "note": "Sonnet 5 new saved two blog articles as PDFs (25 steps) but exact_match on the result fails 5/5; no gold diff available."
+ },
+ "e135df7c": {
+  "cat": "UNVERIFIED",
+  "conf": "low",
+  "note": "xlsx -> html opened in Chrome; checker needs the active tab plus a compared html; 5/5 claim done, 0 pass."
+ },
+ "e2392362": {
+  "cat": "AGENT-limit",
+  "conf": "low",
+  "note": "Updating a Jekyll template repo: the target folder ~/Code/Website was empty so the agent cloned the repository first; 2/5 hit the cap, others claim done; check_json fails."
+ },
+ "3ef2b351": {
+  "cat": "INFRA-REGRESSION (new infra) — Writer save by postconfig",
+  "conf": "medium (action counts verified; mechanism suspected)",
+  "note": "Centre-align the heading in Writer. Phase 1: sonnet5-old 3/3 (7 actions incl. 3 key presses, i.e. it saves), astra-old 1/1. New: sonnet5-new 0/5 with 3 actions and no save: it relies on the official postconfig (`activate_window` + pyautogui `ctrl+s`, 0.5 s) to save, and the checker reads the saved .docx. In this guest the postconfig save does not produce the file (suspected: the 'Keep current format' prompt after ctrl+s is never confirmed, or the hotkey does not reach the X server). Not verified in the VM."
+ },
+ "b21acd93": {
+  "cat": "INFRA-REGRESSION (new infra) — Writer save by postconfig (suspected)",
+  "conf": "low-medium",
+  "note": "Line spacing in Writer: old arms 6/6, new arms 0/10 (docx 7,446 B vs gold 7,452 B). Same postconfig (activate window + ctrl+s) as 3ef2b351; the agents' own save behaviour was not compared run by run."
+ },
+ "69acbb55": {
+  "cat": "UNVERIFIED regression",
+  "conf": "low",
+  "note": "Environment setup for instructor-embedding: sonnet5-old 3/3 (run_python as root, different cwd), sonnet5-new 0/5 (90 steps, claims fully configured). Checker is an include/exclude on command output; the difference between the tool surfaces (run_python vs GUI terminal) is the likely cause, not verified."
+ },
+ "276cc624": {
+  "cat": "ENV-old-infra-vscode-settings-path",
+  "conf": "high (task config + transcripts)",
+  "note": "Old-infrastructure (Phase 1) VS Code user-data-dir mismatch. The checker reads /home/user/.config/Code/User/settings.json (task config), but in the Phase-1 guest VS Code runs with --user-data-dir=/tmp/code-profile (stated by sonnet5-old in 276cc624 and present in 26 sonnet5-old transcripts), so GUI changes land in /tmp/code-profile/User/settings.json; agents that edit ~/.config/Code/User/settings.json directly (or /root/.config/Code/User/settings.json) do not create the expected file either. Agents report success in every arm (0 passes for settings/keybinding tasks); the same bucket passes 87.5% (24 runs) for sonnet5-new, where the profile problem is gone."
+ },
+ "70745df8": {
+  "cat": "ENV-old-infra-vscode-settings-path",
+  "conf": "high (task config + transcripts)",
+  "note": "Old-infrastructure (Phase 1) VS Code user-data-dir mismatch. The checker reads /home/user/.config/Code/User/settings.json (task config), but in the Phase-1 guest VS Code runs with --user-data-dir=/tmp/code-profile (stated by sonnet5-old in 276cc624 and present in 26 sonnet5-old transcripts), so GUI changes land in /tmp/code-profile/User/settings.json; agents that edit ~/.config/Code/User/settings.json directly (or /root/.config/Code/User/settings.json) do not create the expected file either. Agents report success in every arm (0 passes for settings/keybinding tasks); the same bucket passes 87.5% (24 runs) for sonnet5-new, where the profile problem is gone."
+ },
+ "9439a27b": {
+  "cat": "ENV-old-infra-vscode-settings-path",
+  "conf": "high (task config + transcripts)",
+  "note": "Old-infrastructure (Phase 1) VS Code user-data-dir mismatch. The checker reads /home/user/.config/Code/User/settings.json (task config), but in the Phase-1 guest VS Code runs with --user-data-dir=/tmp/code-profile (stated by sonnet5-old in 276cc624 and present in 26 sonnet5-old transcripts), so GUI changes land in /tmp/code-profile/User/settings.json; agents that edit ~/.config/Code/User/settings.json directly (or /root/.config/Code/User/settings.json) do not create the expected file either. Agents report success in every arm (0 passes for settings/keybinding tasks); the same bucket passes 87.5% (24 runs) for sonnet5-new, where the profile problem is gone."
+ },
+ "982d12a5": {
+  "cat": "ENV-old-infra-vscode-settings-path",
+  "conf": "high (task config + transcripts)",
+  "note": "Old-infrastructure (Phase 1) VS Code user-data-dir mismatch. The checker reads /home/user/.config/Code/User/settings.json (task config), but in the Phase-1 guest VS Code runs with --user-data-dir=/tmp/code-profile (stated by sonnet5-old in 276cc624 and present in 26 sonnet5-old transcripts), so GUI changes land in /tmp/code-profile/User/settings.json; agents that edit ~/.config/Code/User/settings.json directly (or /root/.config/Code/User/settings.json) do not create the expected file either. Agents report success in every arm (0 passes for settings/keybinding tasks); the same bucket passes 87.5% (24 runs) for sonnet5-new, where the profile problem is gone."
+ },
+ "9d425400": {
+  "cat": "ENV-old-infra-vscode-settings-path",
+  "conf": "high (task config + transcripts)",
+  "note": "Old-infrastructure (Phase 1) VS Code user-data-dir mismatch. The checker reads /home/user/.config/Code/User/settings.json (task config), but in the Phase-1 guest VS Code runs with --user-data-dir=/tmp/code-profile (stated by sonnet5-old in 276cc624 and present in 26 sonnet5-old transcripts), so GUI changes land in /tmp/code-profile/User/settings.json; agents that edit ~/.config/Code/User/settings.json directly (or /root/.config/Code/User/settings.json) do not create the expected file either. Agents report success in every arm (0 passes for settings/keybinding tasks); the same bucket passes 87.5% (24 runs) for sonnet5-new, where the profile problem is gone."
+ },
+ "c6bf789c": {
+  "cat": "ENV-old-infra-vscode-settings-path",
+  "conf": "high (task config + transcripts)",
+  "note": "Old-infrastructure (Phase 1) VS Code user-data-dir mismatch. The checker reads /home/user/.config/Code/User/settings.json (task config), but in the Phase-1 guest VS Code runs with --user-data-dir=/tmp/code-profile (stated by sonnet5-old in 276cc624 and present in 26 sonnet5-old transcripts), so GUI changes land in /tmp/code-profile/User/settings.json; agents that edit ~/.config/Code/User/settings.json directly (or /root/.config/Code/User/settings.json) do not create the expected file either. Agents report success in every arm (0 passes for settings/keybinding tasks); the same bucket passes 87.5% (24 runs) for sonnet5-new, where the profile problem is gone."
+ },
+ "e2b5e914": {
+  "cat": "ENV-old-infra-vscode-settings-path",
+  "conf": "high (task config + transcripts)",
+  "note": "Old-infrastructure (Phase 1) VS Code user-data-dir mismatch. The checker reads /home/user/.config/Code/User/settings.json (task config), but in the Phase-1 guest VS Code runs with --user-data-dir=/tmp/code-profile (stated by sonnet5-old in 276cc624 and present in 26 sonnet5-old transcripts), so GUI changes land in /tmp/code-profile/User/settings.json; agents that edit ~/.config/Code/User/settings.json directly (or /root/.config/Code/User/settings.json) do not create the expected file either. Agents report success in every arm (0 passes for settings/keybinding tasks); the same bucket passes 87.5% (24 runs) for sonnet5-new, where the profile problem is gone."
+ },
+ "930fdb3b": {
+  "cat": "ENV-old-infra-vscode-settings-path",
+  "conf": "high (task config + transcripts)",
+  "note": "Old-infrastructure (Phase 1) VS Code user-data-dir mismatch. The checker reads /home/user/.config/Code/User/settings.json (task config), but in the Phase-1 guest VS Code runs with --user-data-dir=/tmp/code-profile (stated by sonnet5-old in 276cc624 and present in 26 sonnet5-old transcripts), so GUI changes land in /tmp/code-profile/User/settings.json; agents that edit ~/.config/Code/User/settings.json directly (or /root/.config/Code/User/settings.json) do not create the expected file either. Agents report success in every arm (0 passes for settings/keybinding tasks); the same bucket passes 87.5% (24 runs) for sonnet5-new, where the profile problem is gone."
+ },
+ "7aeae0e2": {
+  "cat": "ENV-old-infra / AGENT-limit",
+  "conf": "low",
+  "note": "sonnet5-old reports VS Code in Restricted Mode with zero extensions and declares FAIL. Unsolved in Phase 1; not run in the new infrastructure."
+ },
+ "53ad5833": {
+  "cat": "ORACLE-ERROR (old infra)",
+  "conf": "medium",
+  "note": "sonnet5-old: 3/3 EVAL_ERROR (official evaluator errored). No verdict from the agent's work."
+ },
+ "bba3381f": {
+  "cat": "UNVERIFIED",
+  "conf": "low",
+  "note": "VLC streaming an m3u8: sonnet5-old reports playback advancing (00:29) yet is_vlc_playing fails 0/3 (possible old-infra VLC/CDP state-read issue; VLC bucket 43% old vs 92% astra-new on a different subset). Not verified."
+ },
+ "efcf0d81": {
+  "cat": "UNVERIFIED",
+  "conf": "low",
+  "note": "VLC frame as desktop background; sonnet5-old claims done once and declares FAIL on a black desktop once; compare_images 0 passes."
+ },
+ "fba2c100": {
+  "cat": "UNVERIFIED / ENV-handicap",
+  "conf": "low",
+  "note": "Snap a video frame as interstellar.png: sonnet5-old claims a 1920x1090 PNG (2/3), 1/3 declared FAIL on a black desktop; compare_images 0/6. Frame timing/size differences vs gold plausible."
+ },
+ "2fe4b718": {
+  "cat": "AGENT-limit",
+  "conf": "medium",
+  "note": "VLC + GIMP animated GIF: sonnet5-new hits the 100-step cap 5/5 after fixing a DISPLAY mismatch (the vendored prompt says DISPLAY=:0, the guest X server is :99); old arms claim done and fail compare_images; astra-old-openbook: 'VLC did not launch from the Applications menu'."
+ },
+ "8f080098": {
+  "cat": "AGENT-refusal",
+  "conf": "high",
+  "note": "sonnet5-old (2/3) refuses to convert a copyrighted music video to MP3 ('circumventing copyright') and answers FAIL without acting; the checker expects the MP3. Model policy behaviour, not an environment problem."
+ },
+ "02ce9a50": {
+  "cat": "UNVERIFIED-checker-terminal-output",
+  "conf": "low",
+  "note": "Writer task: screenshot of an xterm running `ls` saved to Desktop/ls.png, compared by three compare_image_text checks. Every arm that ran it claimed DONE and failed (sonnet5-old 0/3, astra-old-openbook 0/3, sonnet5-new 0/5); in sonnet5-new 3/5 runs ended with declared FAIL after repeated computer-tool HTTP errors. The checker compares OCR-like text of the image with a gold screenshot; the exact terminal geometry/font was not compared run by run, so the cause (crop, window content, fonts) is not established."
+ },
+ "f178a4a9": {
+  "cat": "UNVERIFIED-agent-claimed-done",
+  "conf": "low",
+  "note": "Make Times New Roman the default font in Writer. All 8 runs (sonnet5-old 3, sonnet5-new 5) claim to have changed Tools > Options > Basic Fonts or the style, then fail find_default_font. Both arms follow the same GUI path, so a checker/persistence mismatch (setting changed in the Options dialog is not what the checker reads, e.g. the default paragraph style in a saved document) is plausible but was not verified."
+ },
+ "5203d847": {
+  "cat": "ENV-old-infra-thunderbird-profile",
+  "conf": "high (transcripts: no account in profile)",
+  "note": "Thunderbird task needing an Inbox and a Local Folders account. In the Phase 1 container Thunderbird had no account configured, so all 3 runs declared FAIL citing a missing precondition. The failure is an environment defect of the Phase 1 image (profile not seeded), not an agent error."
+ },
+ "9b7bc335": {
+  "cat": "ENV-old-infra-thunderbird-profile",
+  "conf": "high (transcripts + prefs.js read)",
+  "note": "Forwarding filter in Thunderbird. The Phase 1 profile contains no mail.account/mail.server entries (the agent read prefs.js and saw Thunderbird's 'No Email Account Configured' dialog); 1/3 declared FAIL on the missing precondition, 2/3 created something anyway and claimed DONE. The environment, not the agent, is the primary cause."
+ },
+ "215dfd39": {
+  "cat": "ENV-old-infra-black-desktop",
+  "conf": "high (all runs of both arms)",
+  "note": "VLC splash-cone task. In every Phase 1 run of both models (sonnet5-old 0/3, astra-old 0/3) the desktop was black with an empty accessibility tree, and the agents correctly declared FAIL. The VLC window was never available; the task was not attempted on this infrastructure. Not run in the new arms."
+ },
+ "a5bbbcd5": {
+  "cat": "ENV-old-infra-black-desktop",
+  "conf": "high (all runs of both arms)",
+  "note": "VLC minimal view. Black desktop in all Phase 1 runs (sonnet5-old, astra-old) with an empty accessibility tree: agents declared FAIL; two sonnet5-old runs were additionally evaluator errors (offline fallback). Not solved in the new arms (astra-new rate-limited). Environment failure."
+ },
+ "aa4b5023": {
+  "cat": "ENV-old-infra-black-desktop",
+  "conf": "high (transcripts)",
+  "note": "VLC video rotate-and-save. Phase 1 desktops were black (2/3 sonnet5-old declared FAIL on it; 1/3 claimed DONE without evidence); the astra-old-openbook run ended on tool HTTP errors after a blank desktop. The video was never reachable, so the task is untested rather than failed by the agent."
+ },
+ "f3977615": {
+  "cat": "ENV-old-infra-black-desktop",
+  "conf": "high (astra-old transcripts)",
+  "note": "VLC single-instance setting. astra-old: black desktop in 3/3 runs, FAIL declared. sonnet5-old: the 3 runs hit evaluator errors (offline fallback) and have no verdict. No run in which the VLC GUI was available exists for this task."
+ },
+ "98e8e339": {
+  "cat": "AGENT-error",
+  "conf": "low",
+  "note": "VS Code project: concatenate five .txt files into concat.docx via Writer with font size 10. 3/3 sonnet5-old runs claim DONE with one paragraph per file; compare_docx_files fails. Typical causes (paragraph/line-break structure, font size applied to the style rather than runs) were not checked against the produced docx."
+ },
+ "ea98c5d7": {
+  "cat": "ENV-old-infra-vscode-settings-path",
+  "conf": "medium",
+  "note": "VS Code keybinding removal. sonnet5-old (3 runs, ~54 steps) edited keybindings.json via the GUI, saw the unsaved dot disappear and claimed DONE; check_json_keybindings fails. The same VS Code user-data-path mismatch of the Phase 1 image affects other vscode tasks (file written where the checker does not read), so this is likely environmental. astra-old runs were aborted by API 429 and carry no verdict."
+ },
+ "6f81754e": {
+  "cat": "AGENT-limit",
+  "conf": "low",
+  "note": "Writer task (deduplicate HK train records in a docx). Phase 1 sonnet5-old 3/3; sonnet5-new 0/5, all claim DONE. The agent computed the unique list in a Calc scratch sheet and rewrote the docx (8,642 B vs gold 7,439 B). The difference may come from the new tool surface (no run_python) forcing a GUI-only route; not verified run by run."
+ }
+}

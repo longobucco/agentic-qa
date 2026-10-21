@@ -1,0 +1,313 @@
+arm,checker,valid_runs,failures,fail_pct
+sonnet5-old,compare_table,159,38,23.9
+sonnet5-old,check_include_exclude,51,35,68.6
+sonnet5-old,infeasible,75,24,32.0
+sonnet5-old,compare_images,20,20,100.0
+sonnet5-old,"['compare_pptx_files', 'compare_pptx_files']",33,19,57.6
+sonnet5-old,check_json_settings,21,19,90.5
+sonnet5-old,compare_pptx_files,69,17,24.6
+sonnet5-old,check_thunderbird_prefs,12,12,100.0
+sonnet5-old,compare_docx_files,27,11,40.7
+sonnet5-old,check_list,9,9,100.0
+sonnet5-old,check_accessibility_tree,9,7,77.8
+sonnet5-old,"['check_include_exclude', 'compare_csv']",6,6,100.0
+sonnet5-old,check_thunderbird_filter,6,6,100.0
+sonnet5-old,compare_audios,9,6,66.7
+sonnet5-old,check_json_keybindings,6,6,100.0
+sonnet5-old,exact_match,18,4,22.2
+sonnet5-old,"['compare_image_text', 'compare_image_text', 'compare_image_text']",3,3,100.0
+sonnet5-old,compare_text_file,15,3,20.0
+sonnet5-old,check_presenter_console_disable,3,3,100.0
+sonnet5-old,check_qt_bgcone,3,3,100.0
+sonnet5-old,compare_docx_images,6,3,50.0
+sonnet5-old,"['file_contains', 'check_line_number']",3,3,100.0
+sonnet5-old,compare_references_gain,3,3,100.0
+sonnet5-old,is_expected_url_pattern_match,3,3,100.0
+sonnet5-old,check_image_file_size,3,3,100.0
+sonnet5-old,"['check_include_exclude', 'check_include_exclude']",3,3,100.0
+sonnet5-old,check_json,3,3,100.0
+sonnet5-old,"['compare_pdfs', 'compare_pdfs', 'compare_pdfs', 'compare_pdfs']",3,3,100.0
+sonnet5-old,"['check_include_exclude', 'compare_config']",3,3,100.0
+sonnet5-old,check_saturation_increase_and_structure_sim,3,3,100.0
+sonnet5-old,compare_docx_files_and_ignore_new_lines,3,3,100.0
+sonnet5-old,is_in_vm_clickboard,3,3,100.0
+sonnet5-old,check_config_status,12,3,25.0
+sonnet5-old,compare_result_files,3,3,100.0
+sonnet5-old,"['exact_match', 'exact_match', 'exact_match']",3,3,100.0
+sonnet5-old,"['compare_docx_files', 'compare_docx_files', 'compare_docx_files', 'compare_docx_files']",3,3,100.0
+sonnet5-old,is_vlc_recordings_folder,3,3,100.0
+sonnet5-old,compare_config,3,3,100.0
+sonnet5-old,"['compare_videos', 'compare_videos']",3,3,100.0
+sonnet5-old,check_page_number_colors,3,3,100.0
+sonnet5-old,is_vlc_playing,3,3,100.0
+sonnet5-old,"['exact_match', 'exact_match']",3,3,100.0
+sonnet5-old,"['check_image_size', 'check_structure_sim_resized']",3,3,100.0
+sonnet5-old,run_sqlite3,3,3,100.0
+sonnet5-old,check_csv,3,3,100.0
+sonnet5-old,check_textbox_on_leftside,3,3,100.0
+sonnet5-old,check_gnome_favorite_apps,3,3,100.0
+sonnet5-old,check_left_panel,3,3,100.0
+sonnet5-old,find_default_font,3,3,100.0
+sonnet5-old,"['compare_pptx_files', 'compare_pptx_files', 'compare_pptx_files', 'compare_pptx_files']",3,3,100.0
+sonnet5-old,check_triangle_position,3,3,100.0
+sonnet5-old,"['check_include_exclude', 'compare_archive']",3,3,100.0
+sonnet5-old,"['compare_csv', 'compare_table']",3,2,66.7
+sonnet5-old,check_slide_orientation_Portrait,3,2,66.7
+sonnet5-old,compare_docx_tables,9,1,11.1
+sonnet5-old,check_structure_sim,9,1,11.1
+sonnet5-old,"['compare_table', 'check_list']",3,1,33.3
+sonnet5-old,check_brightness_decrease_and_structure_sim,6,1,16.7
+sonnet5-old,check_green_background,3,1,33.3
+sonnet5-old,is_vlc_fullscreen,3,1,33.3
+sonnet5-old,check_qt_minimal_view,1,1,100.0
+sonnet5-old,"['check_structure_sim_with_threshold', 'check_structure_sim_with_threshold']",3,1,33.3
+sonnet5-old,check_contrast_increase_and_structure_sim,3,1,33.3
+sonnet5-old,is_extension_installed,15,0,0.0
+sonnet5-old,check_palette_and_structure_sim,3,0,0.0
+sonnet5-old,"['compare_line_spacing', 'compare_line_spacing']",3,0,0.0
+sonnet5-old,check_tabstops,3,0,0.0
+sonnet5-old,"['compare_docx_files', 'compare_subscript_contains']",3,0,0.0
+sonnet5-old,has_page_numbers_in_footers,3,0,0.0
+sonnet5-old,compare_font_names,3,0,0.0
+sonnet5-old,check_transition,3,0,0.0
+sonnet5-old,check_moved_jpgs,1,0,0.0
+sonnet5-old,check_python_file_by_test_suite,6,0,0.0
+sonnet5-old,check_global_key_play_pause,3,0,0.0
+sonnet5-old,"['compare_table', 'compare_table', 'compare_table']",3,0,0.0
+sonnet5-old,compare_csv,3,0,0.0
+sonnet5-old,evaluate_presentation_fill_to_rgb_distance,3,0,0.0
+sonnet5-old,is_first_line_centered,3,0,0.0
+sonnet5-old,"['is_extension_installed', 'check_image_size']",3,0,0.0
+sonnet5-old,"['compare_pptx_files_robust', 'compare_pptx_files_robust']",3,0,0.0
+sonnet5-old,check_play_and_exit,3,0,0.0
+sonnet5-old,check_image_stretch_and_center,3,0,0.0
+sonnet5-old,"['compare_pdfs', 'compare_docx_files']",3,0,0.0
+sonnet5-old,check_highlighted_words,3,0,0.0
+sonnet5-old,compare_conference_city_in_order,3,0,0.0
+sonnet5-old,compare_unique_train_records,3,0,0.0
+sonnet5-old,evaluate_strike_through_last_paragraph,3,0,0.0
+sonnet5-old,check_image_mirror,3,0,0.0
+sonnet5-old,check_file_exists_and_structure_sim,3,0,0.0
+sonnet5-old,evaluate_colored_words_in_tables,3,0,0.0
+sonnet5-old,is_expected_installed_extensions,3,0,0.0
+sonnet5-old,compare_zip_files,3,0,0.0
+sonnet5-old,check_qt_max_volume,1,0,0.0
+sonnet5-old,"['compare_docx_tables', 'compare_docx_tables']",3,0,0.0
+sonnet5-old,compare_pptx_files_tolerant,3,0,0.0
+sonnet5-old,check_continuation_line_indent_no_bullet,3,0,0.0
+sonnet5-old,"['check_pdf_pages', 'compare_pdfs']",3,0,0.0
+sonnet5-old,compare_line_spacing,3,0,0.0
+sonnet5-old,check_qt_slider_colours,3,0,0.0
+sonnet5-old,check_italic_font_size_14,3,0,0.0
+sonnet5-old,contains_page_break,3,0,0.0
+astra-old,check_include_exclude,12,12,100.0
+astra-old,check_json_settings,12,12,100.0
+astra-old,exact_match,9,9,100.0
+astra-old,check_qt_bgcone,3,3,100.0
+astra-old,"['file_contains', 'check_line_number']",3,3,100.0
+astra-old,"['compare_pptx_files', 'compare_pptx_files']",3,3,100.0
+astra-old,check_config_status,6,3,50.0
+astra-old,is_vlc_recordings_folder,3,3,100.0
+astra-old,check_json_keybindings,3,3,100.0
+astra-old,compare_config,3,3,100.0
+astra-old,check_qt_minimal_view,3,3,100.0
+astra-old,compare_text_file,3,3,100.0
+astra-old,is_utc_0,3,3,100.0
+astra-old,"['exact_match', 'exact_match']",3,3,100.0
+astra-old,check_qt_slider_colours,3,3,100.0
+astra-old,check_gnome_favorite_apps,3,3,100.0
+astra-old,check_one_instance_when_started_from_file,3,3,100.0
+astra-old,"['check_include_exclude', 'check_include_exclude']",2,2,100.0
+astra-old,check_play_and_exit,1,1,100.0
+astra-old,"['compare_line_spacing', 'compare_line_spacing']",3,0,0.0
+astra-old,compare_table,3,0,0.0
+astra-old,is_first_line_centered,1,0,0.0
+astra-old,infeasible,35,0,0.0
+astra-old,is_extension_installed,6,0,0.0
+astra-old,check_brightness_decrease_and_structure_sim,3,0,0.0
+astra-old-openbook,compare_table,15,4,26.7
+astra-old-openbook,compare_docx_tables,3,3,100.0
+astra-old-openbook,"['compare_image_text', 'compare_image_text', 'compare_image_text']",3,3,100.0
+astra-old-openbook,compare_pptx_files,3,3,100.0
+astra-old-openbook,compare_images,1,1,100.0
+astra-old-openbook,"['compare_table', 'check_list']",1,1,100.0
+astra-old-openbook,check_json_settings,1,1,100.0
+astra-old-openbook,"['compare_videos', 'compare_videos']",1,1,100.0
+astra-old-openbook,compare_docx_files,1,1,100.0
+astra-old-openbook,"['compare_pptx_files', 'compare_pptx_files']",3,0,0.0
+astra-old-openbook,infeasible,2,0,0.0
+astra-old-openbook,check_palette_and_structure_sim,3,0,0.0
+astra-old-openbook,is_expected_tabs,3,0,0.0
+astra-old-openbook,check_tabstops,1,0,0.0
+astra-old-openbook,compare_text_file,1,0,0.0
+astra-old-openbook,is_expected_bookmarks,2,0,0.0
+astra-old-openbook,compare_line_spacing,1,0,0.0
+sonnet5-new,compare_table,270,54,20.0
+sonnet5-new,check_direct_json_object,45,20,44.4
+sonnet5-new,check_config_status,20,20,100.0
+sonnet5-new,infeasible,74,19,25.7
+sonnet5-new,check_include_exclude,35,17,48.6
+sonnet5-new,compare_docx_files,39,16,41.0
+sonnet5-new,compare_images,15,15,100.0
+sonnet5-new,"['compare_pptx_files', 'compare_pptx_files']",55,14,25.5
+sonnet5-new,compare_pptx_files,115,14,12.2
+sonnet5-new,exact_match,39,7,17.9
+sonnet5-new,compare_text_file,15,7,46.7
+sonnet5-new,compare_pdfs,10,6,60.0
+sonnet5-new,"['check_url_and_content_include', 'check_url_and_content_include']",15,6,40.0
+sonnet5-new,"['compare_image_text', 'compare_image_text', 'compare_image_text']",5,5,100.0
+sonnet5-new,"['is_expected_active_tab', 'is_expected_active_tab']",5,5,100.0
+sonnet5-new,check_presenter_console_disable,5,5,100.0
+sonnet5-new,compare_pdf_form_fields,5,5,100.0
+sonnet5-new,compare_references_gain,5,5,100.0
+sonnet5-new,is_first_line_centered,5,5,100.0
+sonnet5-new,"['is_expected_url_pattern_match', 'check_direct_json_object', 'check_direct_json_object']",5,5,100.0
+sonnet5-new,"['compare_pdfs', 'compare_pdfs', 'compare_pdfs', 'compare_pdfs']",5,5,100.0
+sonnet5-new,is_expected_active_tab,10,5,50.0
+sonnet5-new,compare_docx_files_and_ignore_new_lines,5,5,100.0
+sonnet5-new,compare_unique_train_records,5,5,100.0
+sonnet5-new,"['check_json', 'diff_text_file', 'diff_text_file', 'diff_text_file', 'diff_text_file']",5,5,100.0
+sonnet5-new,"['exact_match', 'exact_match', 'exact_match']",5,5,100.0
+sonnet5-new,"['compare_docx_files', 'compare_docx_files', 'compare_docx_files', 'compare_docx_files']",5,5,100.0
+sonnet5-new,"['is_expected_url_pattern_match', 'is_expected_url_pattern_match', 'is_expected_url_pattern_match']",5,5,100.0
+sonnet5-new,"['check_direct_json_object', 'check_direct_json_object', 'check_direct_json_object', 'check_direct_json_object']",5,5,100.0
+sonnet5-new,"['is_expected_url_pattern_match', 'check_direct_json_object', 'check_direct_json_object', 'check_direct_json_object']",5,5,100.0
+sonnet5-new,"['is_expected_active_tab', 'compare_htmls']",5,5,100.0
+sonnet5-new,"['check_list', 'check_list']",5,5,100.0
+sonnet5-new,check_json,5,5,100.0
+sonnet5-new,find_default_font,5,5,100.0
+sonnet5-new,"['compare_pptx_files', 'compare_pptx_files', 'compare_pptx_files', 'compare_pptx_files']",5,5,100.0
+sonnet5-new,evaluate_presentation_fill_to_rgb_distance,5,4,80.0
+sonnet5-new,evaluate_colored_words_in_tables,5,4,80.0
+sonnet5-new,compare_line_spacing,4,4,100.0
+sonnet5-new,compare_docx_tables,14,3,21.4
+sonnet5-new,compare_docx_images,10,3,30.0
+sonnet5-new,compare_epub_semantic,4,3,75.0
+sonnet5-new,"['compare_pdfs', 'compare_docx_files']",5,3,60.0
+sonnet5-new,"['compare_docx_files', 'compare_subscript_contains']",5,2,40.0
+sonnet5-new,check_continuation_line_indent_no_bullet,5,2,40.0
+sonnet5-new,check_page_number_colors,5,2,40.0
+sonnet5-new,contains_page_break,5,2,40.0
+sonnet5-new,compare_font_names,5,1,20.0
+sonnet5-new,"['check_direct_json_object', 'check_direct_json_object']",5,1,20.0
+sonnet5-new,file_contains,5,1,20.0
+sonnet5-new,check_structure_sim,5,1,20.0
+sonnet5-new,is_expected_bookmarks,15,1,6.7
+sonnet5-new,"['compare_table', 'compare_table', 'compare_table']",5,1,20.0
+sonnet5-new,"['check_mp3_meta', 'check_mp3_meta', 'check_mp3_meta', 'check_mp3_meta', 'check_mp3_meta']",5,1,20.0
+sonnet5-new,check_brightness_decrease_and_structure_sim,10,1,10.0
+sonnet5-new,"['check_include_exclude', 'compare_config']",4,1,25.0
+sonnet5-new,compare_audios,9,1,11.1
+sonnet5-new,is_cookie_deleted,5,1,20.0
+sonnet5-new,compare_image_list,5,1,20.0
+sonnet5-new,"['compare_docx_tables', 'compare_docx_tables']",5,1,20.0
+sonnet5-new,check_palette_and_structure_sim,5,0,0.0
+sonnet5-new,is_expected_tabs,10,0,0.0
+sonnet5-new,"['compare_line_spacing', 'compare_line_spacing']",5,0,0.0
+sonnet5-new,check_tabstops,5,0,0.0
+sonnet5-new,has_page_numbers_in_footers,5,0,0.0
+sonnet5-new,is_expected_active_tab_approximate,5,0,0.0
+sonnet5-new,is_added_to_steam_cart,5,0,0.0
+sonnet5-new,check_transition,5,0,0.0
+sonnet5-new,"['file_contains', 'check_line_number']",5,0,0.0
+sonnet5-new,check_python_file_by_test_suite,10,0,0.0
+sonnet5-new,is_shortcut_on_desktop,5,0,0.0
+sonnet5-new,is_expected_url_pattern_match,25,0,0.0
+sonnet5-new,"['check_include_exclude', 'compare_csv']",10,0,0.0
+sonnet5-new,"['check_direct_json_object', 'is_expected_url_pattern_match']",5,0,0.0
+sonnet5-new,compare_csv,5,0,0.0
+sonnet5-new,check_history_deleted,5,0,0.0
+sonnet5-new,"['compare_pptx_files_robust', 'compare_pptx_files_robust']",5,0,0.0
+sonnet5-new,check_saturation_increase_and_structure_sim,5,0,0.0
+sonnet5-new,literal_match,3,0,0.0
+sonnet5-new,check_image_stretch_and_center,5,0,0.0
+sonnet5-new,is_in_list,10,0,0.0
+sonnet5-new,check_highlighted_words,5,0,0.0
+sonnet5-new,compare_conference_city_in_order,5,0,0.0
+sonnet5-new,is_in_vm_clickboard,5,0,0.0
+sonnet5-new,evaluate_strike_through_last_paragraph,5,0,0.0
+sonnet5-new,check_image_mirror,5,0,0.0
+sonnet5-new,check_green_background,5,0,0.0
+sonnet5-new,check_file_exists_and_structure_sim,5,0,0.0
+sonnet5-new,"['check_direct_json_object', 'check_url_and_content_include']",5,0,0.0
+sonnet5-new,is_expected_installed_extensions,5,0,0.0
+sonnet5-new,compare_zip_files,5,0,0.0
+sonnet5-new,"['match_in_list', 'is_expected_url_pattern_match']",5,0,0.0
+sonnet5-new,compare_pptx_files_tolerant,5,0,0.0
+sonnet5-new,compare_pdf_images,5,0,0.0
+sonnet5-new,"['check_pdf_pages', 'compare_pdfs']",5,0,0.0
+sonnet5-new,check_font_size,5,0,0.0
+sonnet5-new,match_in_list,5,0,0.0
+sonnet5-new,"['compare_csv', 'compare_table']",5,0,0.0
+sonnet5-new,check_slide_orientation_Portrait,5,0,0.0
+sonnet5-new,"['check_image_size', 'check_structure_sim_resized']",5,0,0.0
+sonnet5-new,check_italic_font_size_14,3,0,0.0
+sonnet5-new,check_textbox_on_leftside,5,0,0.0
+sonnet5-new,check_left_panel,5,0,0.0
+sonnet5-new,check_triangle_position,5,0,0.0
+sonnet5-new,check_accessibility_tree,5,0,0.0
+sonnet5-new,check_contrast_increase_and_structure_sim,5,0,0.0
+sonnet5-new,"['check_include_exclude', 'compare_archive']",5,0,0.0
+sonnet5-new,is_expected_search_query,5,0,0.0
+astra-new,compare_table,215,26,12.1
+astra-new,check_include_exclude,33,25,75.8
+astra-new,(harness/other),22,22,100.0
+astra-new,check_config_status,20,20,100.0
+astra-new,exact_match,39,18,46.2
+astra-new,check_direct_json_object,29,12,41.4
+astra-new,"['check_url_and_content_include', 'check_url_and_content_include']",15,11,73.3
+astra-new,compare_pptx_files,36,10,27.8
+astra-new,check_presenter_console_disable,5,5,100.0
+astra-new,"['check_include_exclude', 'check_include_exclude']",5,5,100.0
+astra-new,is_expected_active_tab,10,5,50.0
+astra-new,is_expected_url_pattern_match,20,5,25.0
+astra-new,compare_text_file,5,5,100.0
+astra-new,"['is_expected_url_pattern_match', 'is_expected_url_pattern_match', 'is_expected_url_pattern_match']",5,5,100.0
+astra-new,"['exact_match', 'exact_match']",5,5,100.0
+astra-new,compare_pdfs,5,5,100.0
+astra-new,check_gnome_favorite_apps,5,5,100.0
+astra-new,compare_images,4,4,100.0
+astra-new,"['is_expected_active_tab', 'is_expected_active_tab']",5,3,60.0
+astra-new,check_history_deleted,5,3,60.0
+astra-new,"['check_direct_json_object', 'check_direct_json_object', 'check_direct_json_object', 'check_direct_json_object']",3,3,100.0
+astra-new,"['is_expected_url_pattern_match', 'check_direct_json_object', 'check_direct_json_object', 'check_direct_json_object']",4,3,75.0
+astra-new,check_contrast_increase_and_structure_sim,4,2,50.0
+astra-new,infeasible,64,1,1.6
+astra-new,"['compare_pptx_files', 'compare_pptx_files']",11,1,9.1
+astra-new,evaluate_presentation_fill_to_rgb_distance,3,1,33.3
+astra-new,check_image_mirror,5,1,20.0
+astra-new,is_cookie_deleted,5,1,20.0
+astra-new,check_page_number_colors,5,1,20.0
+astra-new,match_in_list,5,1,20.0
+astra-new,check_palette_and_structure_sim,5,0,0.0
+astra-new,is_expected_tabs,5,0,0.0
+astra-new,is_expected_active_tab_approximate,5,0,0.0
+astra-new,is_added_to_steam_cart,5,0,0.0
+astra-new,"['check_direct_json_object', 'check_direct_json_object']",4,0,0.0
+astra-new,check_transition,5,0,0.0
+astra-new,"['file_contains', 'check_line_number']",5,0,0.0
+astra-new,check_structure_sim,5,0,0.0
+astra-new,is_expected_bookmarks,10,0,0.0
+astra-new,is_shortcut_on_desktop,5,0,0.0
+astra-new,"['check_direct_json_object', 'is_expected_url_pattern_match']",1,0,0.0
+astra-new,compare_csv,5,0,0.0
+astra-new,"['is_expected_url_pattern_match', 'check_direct_json_object', 'check_direct_json_object']",3,0,0.0
+astra-new,check_saturation_increase_and_structure_sim,5,0,0.0
+astra-new,check_image_stretch_and_center,5,0,0.0
+astra-new,is_in_list,5,0,0.0
+astra-new,check_green_background,5,0,0.0
+astra-new,check_file_exists_and_structure_sim,5,0,0.0
+astra-new,check_brightness_decrease_and_structure_sim,5,0,0.0
+astra-new,"['check_direct_json_object', 'check_url_and_content_include']",5,0,0.0
+astra-new,is_vlc_recordings_folder,5,0,0.0
+astra-new,check_qt_max_volume,3,0,0.0
+astra-new,"['match_in_list', 'is_expected_url_pattern_match']",5,0,0.0
+astra-new,compare_pptx_files_tolerant,3,0,0.0
+astra-new,"['check_pdf_pages', 'compare_pdfs']",5,0,0.0
+astra-new,check_font_size,5,0,0.0
+astra-new,is_utc_0,5,0,0.0
+astra-new,compare_audios,3,0,0.0
+astra-new,check_slide_orientation_Portrait,5,0,0.0
+astra-new,"['check_image_size', 'check_structure_sim_resized']",5,0,0.0
+astra-new,check_textbox_on_leftside,5,0,0.0
+astra-new,check_triangle_position,5,0,0.0

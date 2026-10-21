@@ -1,94 +1,48 @@
-"""OSWorld MCP server: desktop tools proxied to the in-guest controller. The runner launches it
-per task with OSW_CONTROLLER_URL set. Needs the `mcp` package.
+"""OSWorld MCP server: the official `computer` tool, proxied to the in-guest controller. The
+runner launches it per task with OSW_CONTROLLER_URL set. Needs the `mcp` package.
 
     OSW_CONTROLLER_URL=http://host:5000 python -m benchmarks.osworld.mcp.server
 """
-import json
 import os
-import time
 
 from mcp.server.fastmcp import FastMCP, Image
 
 from benchmarks.osworld.env.controller import Controller
+from benchmarks.osworld.mcp.official_computer import ComputerSession, write_state
 
 mcp = FastMCP("osworld")
 _ctrl = Controller(os.environ.get("OSW_CONTROLLER_URL", "http://localhost:5000"))
 
-
-@mcp.tool()
-def screenshot() -> Image:
-    """PNG of the current screen."""
-    return Image(data=_ctrl.screenshot(), format="png")
-
-
-@mcp.tool()
-def a11y_tree() -> str:
-    """Accessibility tree, for grounding."""
-    return _ctrl.a11y_tree()
+_session = ComputerSession(_ctrl, max_steps=int(os.environ.get("OSW_MAX_STEPS", "100")))
+# The runner's proof that this server started, and its step count (OSW_MCP_STATE_FILE).
+_STATE_FILE = os.environ.get("OSW_MCP_STATE_FILE", "")
+write_state(_STATE_FILE, steps_used=0, max_steps=_session.max_steps)
 
 
 @mcp.tool()
-def click(x: int, y: int) -> str:
-    _ctrl.pyautogui(f"import pyautogui; pyautogui.click({x}, {y})")
-    return f"clicked ({x}, {y})"
-
-
-@mcp.tool()
-def double_click(x: int, y: int) -> str:
-    _ctrl.pyautogui(f"import pyautogui; pyautogui.doubleClick({x}, {y})")
-    return f"double-clicked ({x}, {y})"
-
-
-@mcp.tool()
-def right_click(x: int, y: int) -> str:
-    _ctrl.pyautogui(f"import pyautogui; pyautogui.rightClick({x}, {y})")
-    return f"right-clicked ({x}, {y})"
-
-
-@mcp.tool()
-def move(x: int, y: int) -> str:
-    _ctrl.pyautogui(f"import pyautogui; pyautogui.moveTo({x}, {y})")
-    return f"moved to ({x}, {y})"
-
-
-@mcp.tool()
-def scroll(dx: int, dy: int) -> str:
-    code = "import pyautogui; "
-    if dy:
-        code += f"pyautogui.scroll({dy}); "
-    if dx:
-        code += f"pyautogui.hscroll({dx})"
-    _ctrl.pyautogui(code)
-    return f"scrolled dx={dx} dy={dy}"
-
-
-@mcp.tool(name="type")
-def type_text(text: str) -> str:
-    # json.dumps produces a fully-escaped double-quoted literal (newlines, quotes,
-    # backslashes, unicode) -- a manual .replace() missed newlines, which broke any
-    # multi-line text as a syntax error in the generated source (see the guest's /run_python)
-    _ctrl.pyautogui(f"import pyautogui; pyautogui.write({json.dumps(text)}, interval=0.02)")
-    return f"typed {len(text)} chars"
-
-
-@mcp.tool()
-def key(keys: str) -> str:
-    """Press a combo, e.g. 'ctrl+s'."""
-    tokens = json.dumps([k.strip() for k in keys.split("+")])
-    _ctrl.pyautogui(f"import pyautogui; pyautogui.hotkey(*{tokens})")
-    return f"pressed {keys}"
-
-
-@mcp.tool()
-def run_python(code: str) -> str:
-    """Run arbitrary pyautogui/Python code in the guest."""
-    return _ctrl.pyautogui(code) or "ok"
-
-
-@mcp.tool()
-def wait(seconds: float) -> str:
-    time.sleep(min(seconds, 30))
-    return f"waited {seconds}s"
+def computer(action: str = "", coordinate: list[int] | None = None,
+             start_coordinate: list[int] | None = None, text: str | None = None,
+             scroll_direction: str | None = None, scroll_amount: int | None = None,
+             duration: float | None = None, repeat: int | None = None,
+             region: list[int] | None = None, actions: list[dict] | None = None) -> list:
+    """Use the mouse and keyboard to interact with the Ubuntu desktop and take screenshots
+    (1920x1080, coordinates in screenshot pixels). action is one of: screenshot, zoom
+    (region=[x0,y0,x1,y1]), left_click, right_click, middle_click, double_click,
+    triple_click (coordinate=[x,y], optional text=modifier keys), mouse_move, left_click_drag
+    (start_coordinate, coordinate), left_mouse_down, left_mouse_up, scroll (scroll_direction
+    up/down/left/right, scroll_amount, optional coordinate), type (text), key (text like
+    'ctrl+s', optional repeat), hold_key (text), wait. Pass actions=[{...}, ...] instead to
+    run several actions in one call. Every call returns a screenshot."""
+    inp = {k: v for k, v in dict(
+        action=action, coordinate=coordinate, start_coordinate=start_coordinate, text=text,
+        scroll_direction=scroll_direction, scroll_amount=scroll_amount, duration=duration,
+        repeat=repeat, region=region, actions=actions).items() if v not in (None, "")}
+    try:
+        items = _session.call(inp)
+    finally:
+        write_state(_STATE_FILE, steps_used=_session.steps_used,
+                    max_steps=_session.max_steps)
+    return [Image(data=v, format="png") if k == "image" else v for k, v in items]
 
 
 if __name__ == "__main__":

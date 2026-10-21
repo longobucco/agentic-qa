@@ -3,22 +3,41 @@ self_eval (it scores with OSWorld's official evaluators while the desktop is liv
 eval.json), so core.run uses that verdict. Serial (provisioning is heavy).
 """
 from benchmarks.osworld import config, evaluate, tasks
+from benchmarks.osworld.env import osworld_eval
 from benchmarks.osworld.env.sandbox import osworld_environment
-from benchmarks.osworld.runners import agent_computer
+from benchmarks.osworld.runners import agent_computer, gpt_astra
 from core.run import Benchmark, Runner
 
 
 def build():
+    # Named after the pinned model (config.SYSTEM_NAME), so each model's campaign gets its own
+    # results tree and can never overwrite another's. Unpinned keeps the historical
+    # "agent_computer" name -- that tree holds the mixed-model G3 runs, many without a saved
+    # transcript, and has to stay exactly as it is.
     runners = {
-        "agent_computer": Runner(
-            name="agent_computer",
+        config.SYSTEM_NAME: Runner(
+            name=config.SYSTEM_NAME,
             run=agent_computer.run,
             environment=osworld_environment,
             needs_browser=False,
             concurrency_safe=False,
+            preflight=agent_computer.preflight,
             self_eval=True,          # scores with OSWorld's own evaluators; writes eval.json
         ),
+        # Independent model replication: GPT Astra via Codex CLI, with the same OSWorld MCP,
+        # Daytona image and official evaluators as the Claude Code/Sonnet runner.
+        config.ASTRA_SYSTEM_NAME: Runner(
+            name=config.ASTRA_SYSTEM_NAME,
+            run=gpt_astra.run,
+            environment=osworld_environment,
+            needs_browser=False,
+            concurrency_safe=False,
+            preflight=gpt_astra.preflight,
+            self_eval=True,
+        ),
     }
+    for name in runners:
+        config.assert_new_infra_system(name)
     return Benchmark(
         name="OSWorld",
         results_dir=config.RESULTS_DIR,
@@ -27,5 +46,5 @@ def build():
         bucket_of=tasks.bucket_of,
         runners=runners,
         judge=evaluate.JUDGE,
-        default_runner="agent_computer",
+        default_runner=config.SYSTEM_NAME,
     )

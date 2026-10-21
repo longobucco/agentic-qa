@@ -1,0 +1,36 @@
+# Thin layer on top of the pkgfix2 digest: three guest-fidelity corrections found by the live check
+# of 19/10/2026 (campaign_analysis/FINDINGS.md 3.5-3.6), each of which made tasks unsolvable for any
+# agent. Everything else stays byte-identical to the base digest.
+#
+# 1. XDG_CONFIG_HOME back to the XDG default for the whole guest. The base image set it globally to
+#    /opt/osw_xdg_unused (23/09/2026) only so that Chrome would accept remote debugging on its
+#    default profile directory; as a side effect GIMP and LibreOffice wrote their configuration
+#    under /opt/osw_xdg_unused while the official getters read ~/.config/... (gimprc, sessionrc,
+#    action-history, registrymodifications.xcu: 7767eef2, 7b7617bd, b148e375, d52d6308, a746add2,
+#    0f84bef9, 2cd43775, e1fc0df3, f178a4a9 all scored 0 for every agent). The override now lives
+#    only inside the google-chrome wrapper, the one program it was introduced for.
+# 2. A seeded LibreOffice user profile: no "Confirm File Format" dialog when saving a non-ODF file,
+#    no Tip of the Day, no first-run / what's-new prompts. The official postconfig of 132 tasks only
+#    presses ctrl+s, which cannot save a .docx/.xlsx/.pptx while that dialog is enabled (verified
+#    live on 3ef2b351), so the official VM must have it off.
+# 3. bc, which the checker of 3ce045a0 calls to compare the text-scaling factor.
+#
+#   docker buildx build --platform linux/amd64 -f benchmarks/osworld/docker/Dockerfile.osworld-pkgfix3 \
+#     -t ghcr.io/longobucco/osworld-ab:pkgfix3-20261019 --push .
+# Pushed 19/10/2026 as ghcr.io/longobucco/osworld-ab@sha256:5d319f5fe0f6c8cfa9b5563a061fd373bac8280f35f11ccbbf39ac043b32533e
+# and validated live with the official setup and checkers (no model): 3ce045a0 1.0 after gsettings,
+# 3ef2b351 saved by the official ctrl+s postconfig (1.0), 7767eef2 gimprc read from ~/.config (1.0),
+# Chrome remote debugging and CDP setup steps unchanged. Not the default IMAGE: the main campaigns
+# stay on pkgfix2; runs on this digest go to a separate tree (OSW_IMAGE + OSW_ASTRA_SYSTEM_SUFFIX).
+FROM ghcr.io/longobucco/osworld-ab@sha256:d44d8858ae60adcc81db7d4c2241f0c8b2c910ee1a25479856b092169967c33b
+
+ENV XDG_CONFIG_HOME=/home/user/.config
+
+RUN apt-get update && apt-get install -y --no-install-recommends bc && \
+    rm -rf /var/lib/apt/lists/* && \
+    sed -i '2i export XDG_CONFIG_HOME=/opt/osw_xdg_unused' /usr/bin/google-chrome && \
+    grep -q '^export XDG_CONFIG_HOME=/opt/osw_xdg_unused$' /usr/bin/google-chrome && \
+    command -v bc
+
+COPY benchmarks/osworld/docker/libreoffice-registrymodifications.xcu \
+     /home/user/.config/libreoffice/4/user/registrymodifications.xcu

@@ -1,0 +1,16 @@
+# Thin layer on top of the pinned Daytona guest image: adds the six command-line tools that
+# 23 of the 361 published tasks call in their setup or postconfig and that the base image lacks
+# (audited 26/09/2026 against a live sandbox of the base digest):
+#   unzip (14 tasks), gnome-terminal (6), killall/psmisc (4), jq (3), zip (2), xsel (1).
+# Without them those tasks fail silently in setup or in the evaluator's postconfig, for any model
+# (e.g. 82e3c869: postconfig `unzip` -> evaluator receives None -> 0). Everything else --
+# Chrome/VS Code versions, apps, screen, controller -- stays byte-identical to the base digest;
+# docker/Dockerfile.osworld lists the same packages so a full rebuild includes them too.
+#
+#   docker buildx build --platform linux/amd64 -f benchmarks/osworld/docker/Dockerfile.osworld-pkgfix \
+#     -t ghcr.io/longobucco/osworld-ab:pkgfix-20260926 --push benchmarks/osworld/docker
+FROM ghcr.io/longobucco/osworld-ab@sha256:759b54f8b15fbb03544f8ac193ce86115d935a3dd8554a1c44b30f904ed07ea2
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        unzip zip jq psmisc xsel gnome-terminal \
+    && rm -rf /var/lib/apt/lists/*
