@@ -67,3 +67,32 @@ def test_the_plain_codex_command_has_exactly_the_official_prompt(monkeypatch, tm
         assert Path(path).read_text() == gpt_astra._official_system_prompt()
     finally:
         os.unlink(path)
+
+
+# --- Claude runner (OSW_ARM) ---
+
+def test_the_claude_arm_name_goes_into_the_results_tree(monkeypatch):
+    import importlib
+    monkeypatch.setenv("OSW_MODEL", "claude-sonnet-5")
+    monkeypatch.setenv("OSW_EFFORT", "max")
+    monkeypatch.setenv("OSW_SYSTEM_SUFFIX", "pkgfix3")
+    monkeypatch.setenv("OSW_ARM", "e1card")
+    try:
+        reloaded = importlib.reload(config)
+        assert reloaded.SYSTEM_NAME == "agent_computer_sonnet5_effortmax_pkgfix3_e1card_official"
+        reloaded.assert_new_infra_system(reloaded.SYSTEM_NAME)
+    finally:
+        for k in ("OSW_MODEL", "OSW_EFFORT", "OSW_SYSTEM_SUFFIX", "OSW_ARM"):
+            monkeypatch.delenv(k, raising=False)
+        importlib.reload(config)
+
+
+def test_the_claude_command_carries_the_card_in_its_system_prompt(monkeypatch):
+    from benchmarks.osworld.runners import agent_computer
+    monkeypatch.setattr(config, "ARM", "e1card")
+    kw = agent_computer._official_cmd_kwargs({"instruction": "do it"})
+    assert kw["system_prompt"].startswith(agent_computer._official_system_prompt())
+    assert kw["system_prompt"].endswith(arms.E1_CARD)
+    monkeypatch.setattr(config, "ARM", "")
+    assert agent_computer._official_cmd_kwargs({"instruction": "x"})["system_prompt"] == \
+        agent_computer._official_system_prompt()

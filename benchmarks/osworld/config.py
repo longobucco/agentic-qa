@@ -119,6 +119,12 @@ SYSTEM_SUFFIX = os.environ.get("OSW_SYSTEM_SUFFIX", "").strip()
 if SYSTEM_SUFFIX:
     SYSTEM_NAME = f"{SYSTEM_NAME}_{re.sub(r'[^a-zA-Z0-9]+', '', SYSTEM_SUFFIX) or 'suffix'}"
 
+# Declared Phase 3 intervention arm for the Claude runner (benchmarks/osworld/arms.py); empty =
+# the official protocol. Like OSW_ASTRA_ARM, its name always becomes part of the results tree.
+ARM = os.environ.get("OSW_ARM", "").strip()
+if ARM:
+    SYSTEM_NAME = f"{SYSTEM_NAME}_{re.sub(r'[^a-zA-Z0-9]+', '', ARM) or 'arm'}"
+
 # Independent GPT Astra replication. It deliberately does not reuse OSW_MODEL: setting the
 # Sonnet baseline model must never rename or redirect Astra's result tree.
 ASTRA_MODEL = os.environ.get("OSW_ASTRA_MODEL", "gpt-6-astra").strip()

@@ -15,7 +15,7 @@ import tempfile
 
 from datetime import datetime, timezone
 
-from benchmarks.osworld import config, official_protocol, tasks
+from benchmarks.osworld import arms, config, official_protocol, tasks
 from benchmarks.osworld.env import osworld_eval
 from benchmarks.osworld.runners.common import (
     _a11y_health, _action_history, _agent_telemetry, _annotate_incidental, _bounded,
@@ -162,6 +162,7 @@ def preflight():
     if not config.MODEL:
         raise SystemExit("OSW_MODEL is required: the official Claude runner never runs the "
                          "CLI's default model")
+    arms.addendum(config.ARM)   # refuses an unknown arm before anything runs
     osworld_eval.pinned_code_preflight()
     claude_version_preflight()
     if not official_probe_already_passed():
@@ -185,6 +186,7 @@ def _run_provenance(task, ctrl, started_at):
     prov = _provenance(task, ctrl, started_at)
     prov["agent_runtime"] = "claude_code"
     prov["agent_runtime_version"] = claude_cli_version()
+    prov.update(arms.provenance(config.ARM))
     return prov
 
 
@@ -247,7 +249,7 @@ def _official_cmd_kwargs(task):
     other built-in -- so --disallowedTools/--strict-mcp-config appear exactly once."""
     return {
         "prompt": task["instruction"],
-        "system_prompt": _official_system_prompt(),
+        "system_prompt": arms.system_prompt(_official_system_prompt(), config.ARM),
         "allowed_tools": [OFFICIAL_TOOL],
         "max_turns": official_max_turns(),
         "extra": ["--disallowedTools", *CLAUDE_BUILTIN_TOOLS, "--strict-mcp-config",
