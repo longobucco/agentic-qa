@@ -132,9 +132,9 @@ OSW_CONTROLLER_URL=http://<url>:5000 python -m benchmarks.osworld.run --ids <tas
 ## Status: campaigns interrupted (2026-10-14)
 
 The official-protocol campaigns (Claude Sonnet 5 and GPT Astra, Daytona backend) were stopped
-before completing the 361 tasks x 5 runs. The code is frozen at the tags
-`phase2-official361-daytona-frozen` (this branch's infrastructure) and
-`phase2-official361-kvm-frozen` (KVM backend). Raw results and full transcripts
+before completing the 361 tasks x 5 runs. The code is frozen at the tag
+`phase2-official361-daytona-frozen`. The KVM backend was abandoned (only Daytona runs are
+needed); its tag was removed on 2026-10-21 and kept as a git bundle outside the repo. Raw results and full transcripts
 (`conversation.jsonl`) are not in git; they were archived outside the repo on 2026-10-14
 (byte-for-byte verified), together with a cross-arm analysis of all campaigns (`campaign_analysis/`).
 
