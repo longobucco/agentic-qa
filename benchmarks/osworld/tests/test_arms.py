@@ -198,3 +198,10 @@ def test_the_claude_answer_after_a_bounce_ignores_the_rejected_infeasible(tmp_pa
                                     "input": {"action": "type", "text": "gsettings set a b c\n"}}]),
         _claude_line("assistant", [{"type": "text", "text": "Done."}])]) + "\n")
     assert official_protocol.final_action(*agent_computer._post_bounce_actions(t)) == "DONE"
+
+
+def test_the_e1b_card_extends_e1_with_evaluator_awareness():
+    assert arms.E1B_CARD.startswith(arms.E1_CARD)
+    assert arms.system_prompt("OFFICIAL", "e1b") == "OFFICIAL\n\n" + arms.E1B_CARD
+    assert "[INFEASIBLE]" in arms.E1B_CARD and "persisted" in arms.E1B_CARD
+    assert not arms.bounces("e1b")

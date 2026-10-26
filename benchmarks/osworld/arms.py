@@ -40,7 +40,24 @@ BOUNCE_MESSAGE = (
 _PROBE = re.compile(r"\b(gsettings|dconf|which|command -v|dpkg|apt-cache|apt list|xdg-mime|"
                     r"pactl|ls |cat |grep |find |--help|--version|systemctl|snap list|flatpak)\b")
 
-ADDENDA = {"e1card": E1_CARD, "e1bounce": E1_CARD}
+# E1b (capability + evaluator-awareness card): E1 plus generic rules about how results are
+# checked. Distilled from the knowledge banks of the leading open harnesses (Pointer's
+# knowledge.py, Intelligence-Indeed's generic skills; research report of 21-22/10), never from the
+# evaluated tasks or their checkers; the official [INFEASIBLE] rule is restated, not relaxed.
+E1B_CARD = E1_CARD + (
+    "\n\nHow results are checked: the outcome is read from the real state of the system after "
+    "you finish (files on disk, application settings and preference files, command output), not "
+    "from what the screen shows. Before you answer, make sure the result is persisted: save the "
+    "document in the requested file and format, and keep any setting live in the application it "
+    "belongs to. Use the application's real feature for what is asked (a real pivot table, a real "
+    "hidden row, a slide-master property, the application's own export), not something that only "
+    "looks the same. Do not add content the task did not ask for, and choose exactly the colour, "
+    "value or name that is requested. If you change an application's file from a terminal, close "
+    "the application first and reopen the file afterwards, so the application does not overwrite "
+    "your change. If the task is genuinely impossible, answer [INFEASIBLE] as usual."
+)
+
+ADDENDA = {"e1card": E1_CARD, "e1bounce": E1_CARD, "e1b": E1B_CARD}
 BOUNCE_ARMS = frozenset({"e1bounce"})
 
 
