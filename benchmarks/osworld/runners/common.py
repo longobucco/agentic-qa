@@ -74,11 +74,12 @@ def mcp_unavailable_infra_rec(task):
             "at": datetime.now(timezone.utc).isoformat()}
 
 
-def _mcp_config(controller_url, out_dir=None):
+def _mcp_config(controller_url, out_dir=None, extra_env=None):
     spec = {
         "type": "stdio", "command": "python",
         "args": ["-m", "benchmarks.osworld.mcp.server"],
-        "env": {"OSW_CONTROLLER_URL": controller_url or "", **mcp_child_env(out_dir)},
+        "env": {"OSW_CONTROLLER_URL": controller_url or "", **mcp_child_env(out_dir),
+                **(extra_env or {})},
     }
     # The official protocol starts the CLI (and so this child) in an empty temp dir, not
     # the repo: keep the benchmark package importable, as core/codex_loop.py does for Codex,

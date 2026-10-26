@@ -157,3 +157,44 @@ def test_the_mcp_server_starts_from_the_carried_step_count(monkeypatch, tmp_path
         assert _json.loads(state.read_text())["steps_used"] == 42
     finally:
         sys.modules.pop("benchmarks.osworld.mcp.server", None)
+
+
+# --- E1 bounce, Claude runner (OSW_ARM=e1bounce) ---
+
+def _claude_line(role, content):
+    import json as _json
+    return _json.dumps({"type": role, "message": {"role": role, "content": content}})
+
+
+def test_the_claude_bounce_is_needed_only_for_an_unsupported_infeasible(monkeypatch, tmp_path):
+    from benchmarks.osworld.runners import agent_computer
+    monkeypatch.setattr(config, "ARM", "e1bounce")
+    monkeypatch.setattr(config, "MAX_STEPS", 100)
+    gave_up = tmp_path / "a.jsonl"
+    gave_up.write_text("\n".join([
+        _claude_line("assistant", [{"type": "tool_use", "name": "mcp__osworld__computer",
+                                    "input": {"action": "screenshot"}}]),
+        _claude_line("assistant", [{"type": "text", "text": "No settings app. [INFEASIBLE]"}])]) + "\n")
+    probed = tmp_path / "b.jsonl"
+    probed.write_text("\n".join([
+        _claude_line("assistant", [{"type": "tool_use", "name": "mcp__osworld__computer",
+                                    "input": {"action": "type", "text": "which gnome-control-center\n"}}]),
+        _claude_line("assistant", [{"type": "text", "text": "[INFEASIBLE]"}])]) + "\n")
+    assert agent_computer._bounce_needed(gave_up, 4) is True
+    assert agent_computer._bounce_needed(probed, 4) is False
+    assert agent_computer._bounce_needed(gave_up, 100) is False
+    monkeypatch.setattr(config, "ARM", "e1card")
+    assert agent_computer._bounce_needed(gave_up, 4) is False
+
+
+def test_the_claude_answer_after_a_bounce_ignores_the_rejected_infeasible(tmp_path):
+    from benchmarks.osworld.runners import agent_computer
+    from benchmarks.osworld import official_protocol
+    t = tmp_path / "c.jsonl"
+    t.write_text("\n".join([
+        _claude_line("assistant", [{"type": "text", "text": "[INFEASIBLE]"}]),
+        _claude_line("user", arms.BOUNCE_MESSAGE),
+        _claude_line("assistant", [{"type": "tool_use", "name": "mcp__osworld__computer",
+                                    "input": {"action": "type", "text": "gsettings set a b c\n"}}]),
+        _claude_line("assistant", [{"type": "text", "text": "Done."}])]) + "\n")
+    assert official_protocol.final_action(*agent_computer._post_bounce_actions(t)) == "DONE"

@@ -14,6 +14,7 @@ import shutil
 import tempfile
 
 from datetime import datetime, timezone
+from pathlib import Path
 
 from benchmarks.osworld import arms, config, official_protocol, tasks
 from benchmarks.osworld.env import osworld_eval
@@ -257,6 +258,41 @@ def _official_cmd_kwargs(task):
     }
 
 
+def _typed_texts(computer_inputs):
+    """Every text the agent typed into the desktop (single and batched `type` actions)."""
+    out = []
+    for inp in computer_inputs:
+        acts = inp.get("actions") if isinstance(inp.get("actions"), list) else [inp]
+        out += [a.get("text") or "" for a in acts if isinstance(a, dict) and a.get("action") == "type"]
+    return out
+
+
+def _bounce_needed(session_path, steps_used):
+    """An arm with a bounce resumes the session once when the agent answered [INFEASIBLE] (or a
+    fail action) without having typed any capability probe, and steps remain."""
+    if (not arms.bounces(config.ARM) or session_path is None or steps_used is None
+            or steps_used >= config.MAX_STEPS):
+        return False
+    texts, inputs = claude_transcript_actions(session_path)
+    return (official_protocol.final_action(texts, inputs) == "FAIL"
+            and not arms.has_probe(_typed_texts(inputs)))
+
+
+def _post_bounce_actions(path):
+    """(texts, computer inputs) of the part of a session after the bounce message: the episode's
+    answer under a bounce arm (the rejected [INFEASIBLE] precedes it)."""
+    lines = Path(path).read_text(errors="replace").splitlines()
+    cut = next((i for i, line in enumerate(lines) if arms.BOUNCE_MESSAGE[:60] in line), None)
+    if cut is None:
+        return claude_transcript_actions(path)
+    with tempfile.NamedTemporaryFile("w", suffix=".jsonl", delete=False) as f:
+        f.write("\n".join(lines[cut + 1:]) + "\n")
+    try:
+        return claude_transcript_actions(f.name)
+    finally:
+        os.unlink(f.name)
+
+
 def _official_answer(out, text, transcript):
     """Upstream's termination rule over the whole session (official_protocol.final_action),
     read from the transcript this run just saved; without one (a leftover file from an earlier
@@ -268,6 +304,31 @@ def _official_answer(out, text, transcript):
         except OSError:
             pass
     return official_protocol.final_action([text], [])
+
+
+def _maybe_bounce(meta, workdir, controller_url, out, task):
+    """Resume the session once for a bounce arm (see arms.BOUNCE_MESSAGE); None otherwise. The
+    resumed session gets the same isolation and system prompt and a fresh MCP config whose server
+    starts from the steps already used."""
+    if (not arms.bounces(config.ARM) or meta.get("is_error") or not meta.get("session_id")
+            or meta.get("api_error_status") or _cli_network_error(meta)):
+        return None
+    state = read_mcp_state(out) or {}
+    if not _bounce_needed(claude_session_file(meta["session_id"]), state.get("steps_used")):
+        return None
+    cfg = _mcp_config(controller_url, out_dir=out,
+                      extra_env={"OSW_STEPS_USED_START": str(state.get("steps_used"))})
+    try:
+        official = _official_cmd_kwargs(task)
+        official.pop("prompt")
+        bcmd = build_claude_cmd(arms.BOUNCE_MESSAGE, model=config.MODEL or None, mcp_config=cfg,
+                                resume=meta["session_id"], **official, **_effort_kwargs())
+        return run_claude_meta(bcmd, timeout=config.TASK_TIMEOUT, cwd=workdir, **_env_kwargs())
+    finally:
+        try:
+            os.unlink(cfg)
+        except OSError:
+            pass
 
 
 def run(task, *, env, out, refs=None, dry=False):
@@ -309,6 +370,7 @@ def run(task, *, env, out, refs=None, dry=False):
         # An empty temp cwd isolates the session from repo/project context.
         with _isolated_workdir() as workdir:
             meta = run_claude_meta(cmd, timeout=config.TASK_TIMEOUT, cwd=workdir, **_env_kwargs())
+            bounce_meta = _maybe_bounce(meta, workdir, controller_url, out, task)
     finally:
         # written fresh per run (NamedTemporaryFile(delete=False)); the claude subprocess has
         # exited by now (run_claude_meta blocks until it does) so it's safe to remove. Without
@@ -318,6 +380,11 @@ def run(task, *, env, out, refs=None, dry=False):
             os.unlink(mcp_config_path)
         except OSError:
             pass
+    first_meta = meta
+    if bounce_meta is not None:
+        # One trajectory: the resumed session continues the same session file; its envelope
+        # carries the final text and error state; the answer is read from the resumed part.
+        meta = {**bounce_meta, "session_id": bounce_meta.get("session_id") or meta.get("session_id")}
     api_error_status = meta.get("api_error_status") or _cli_network_error(meta)
     if api_error_status:
         # The CLI itself hit an API-level error (observed live: 429 subscription session
@@ -343,14 +410,21 @@ def run(task, *, env, out, refs=None, dry=False):
     transcript = _save_conversation_transcript(meta, out, task["id"])
     if not transcript.get("transcript_saved") and not meta.get("session_id"):
         transcript = _recover_transcript(workdir, out, transcript)
-    answer = _official_answer(out, text, transcript)
+    if bounce_meta is not None and transcript.get("transcript_saved"):
+        answer = official_protocol.final_action(*_post_bounce_actions(out / "conversation.jsonl"))
+    else:
+        answer = _official_answer(out, text, transcript)
     clean_finish = _official_clean_finish(meta)
     official_telemetry = _official_audit(out, transcript)
     mcp_state = read_mcp_state(out)
     official_telemetry["agent_steps_used"] = mcp_state.get("steps_used") if mcp_state else None
 
-    telemetry = _agent_telemetry(meta)
+    telemetry = _agent_telemetry(first_meta)
     telemetry["agent_clean_finish"] = clean_finish
+    if arms.bounces(config.ARM):
+        telemetry["arm_bounced"] = bounce_meta is not None
+        if bounce_meta is not None:
+            telemetry["arm_bounce_telemetry"] = _agent_telemetry(bounce_meta)
 
     if (official_telemetry["agent_non_computer_tool_calls"] is None or mcp_state is None):
         # Unscored, retried (infra_error.json, never eval.json), same rule as the Codex arm:
