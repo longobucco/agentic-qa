@@ -16,7 +16,10 @@ _ctrl = Controller(os.environ.get("OSW_CONTROLLER_URL", "http://localhost:5000")
 _session = ComputerSession(_ctrl, max_steps=int(os.environ.get("OSW_MAX_STEPS", "100")))
 # The runner's proof that this server started, and its step count (OSW_MCP_STATE_FILE).
 _STATE_FILE = os.environ.get("OSW_MCP_STATE_FILE", "")
-write_state(_STATE_FILE, steps_used=0, max_steps=_session.max_steps)
+# A resumed session (an arm's bounce) continues the same step budget: start from the steps the
+# first session already used, so the 100-step limit stays one budget across both.
+_session.steps_used = int(os.environ.get("OSW_STEPS_USED_START", "0") or 0)
+write_state(_STATE_FILE, steps_used=_session.steps_used, max_steps=_session.max_steps)
 
 
 @mcp.tool()

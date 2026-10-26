@@ -7,6 +7,7 @@ run's provenance, and is never pooled with the replication numbers. Rationale an
 campaign_analysis/ASTRA_IMPROVEMENT_RESEARCH.md section 6 (local documentation).
 """
 import hashlib
+import re
 
 # E1 (capability card): generic knowledge about this guest, never keyed to particular tasks. It
 # names the fallback the agent never tried on the settings tasks (a terminal and gsettings/dconf
@@ -22,7 +23,35 @@ E1_CARD = (
     "be done. Prefer the graphical interface whenever it is available."
 )
 
-ADDENDA = {"e1card": E1_CARD}
+# E1 bounce: the same card, plus one bounce of an [INFEASIBLE] answer given without a direct probe
+# of the missing capability (the research report's "INFEASIBLE needs evidence" rule). The
+# resumed session continues the same step budget; the episode's answer is read from the part
+# after the bounce, because the rejected [INFEASIBLE] would otherwise end it under the upstream
+# rule ("[INFEASIBLE] anywhere -> FAIL").
+BOUNCE_MESSAGE = (
+    "Your [INFEASIBLE] answer is not accepted yet: the session shows no direct check that the "
+    "capability the task needs is really missing. Check it now, for example by querying the "
+    "relevant setting, file or program from a terminal. If the check shows the task can be done, "
+    "do it; if it confirms the task is impossible, answer [INFEASIBLE] again and name the "
+    "evidence."
+)
+
+# Shell commands that count as a direct probe of a capability, when typed by the agent.
+_PROBE = re.compile(r"\b(gsettings|dconf|which|command -v|dpkg|apt-cache|apt list|xdg-mime|"
+                    r"pactl|ls |cat |grep |find |--help|--version|systemctl|snap list|flatpak)\b")
+
+ADDENDA = {"e1card": E1_CARD, "e1bounce": E1_CARD}
+BOUNCE_ARMS = frozenset({"e1bounce"})
+
+
+def bounces(name):
+    """Whether arm `name` bounces an unsupported [INFEASIBLE] answer once."""
+    return name in BOUNCE_ARMS
+
+
+def has_probe(typed_texts):
+    """True when any text the agent typed into the desktop contains a capability probe."""
+    return any(_PROBE.search(t or "") for t in typed_texts)
 
 
 def addendum(name):
@@ -44,5 +73,8 @@ def system_prompt(official, name):
 def provenance(name):
     """What a run records about its arm: the name and a hash of the exact text it added."""
     extra = addendum(name)
-    return {"arm": name or None,
-            "arm_addendum_sha256": hashlib.sha256(extra.encode()).hexdigest() if extra else None}
+    rec = {"arm": name or None,
+           "arm_addendum_sha256": hashlib.sha256(extra.encode()).hexdigest() if extra else None}
+    if bounces(name):
+        rec["arm_bounce_message_sha256"] = hashlib.sha256(BOUNCE_MESSAGE.encode()).hexdigest()
+    return rec

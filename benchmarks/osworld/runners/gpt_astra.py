@@ -157,6 +157,37 @@ def _official_cmd(prompt, workdir, controller_url, out_dir=None):
     )
 
 
+def _typed_texts(computer_inputs):
+    """Every text the agent typed into the desktop (single and batched `type` actions)."""
+    out = []
+    for inp in computer_inputs:
+        acts = inp.get("actions") if isinstance(inp.get("actions"), list) else [inp]
+        out += [a.get("text") or "" for a in acts if isinstance(a, dict) and a.get("action") == "type"]
+    return out
+
+
+def _bounce_needed(events, steps_used):
+    """An arm with a bounce resumes the session once when the agent answered [INFEASIBLE] (or a
+    fail action) without having typed any capability probe, and steps remain."""
+    if not arms.bounces(config.ASTRA_ARM) or steps_used is None or steps_used >= config.MAX_STEPS:
+        return False
+    texts, inputs = codex_events_actions(events or [])
+    return (official_protocol.final_action(texts, inputs) == "FAIL"
+            and not arms.has_probe(_typed_texts(inputs)))
+
+
+def _bounce_cmd(session_id, workdir, controller_url, out_dir, steps_used):
+    """The resumed session: same isolation, same instructions, same MCP, the step budget carried
+    over (OSW_STEPS_USED_START), the bounce message as the only new user turn."""
+    return build_codex_cmd(
+        arms.BOUNCE_MESSAGE, model=config.ASTRA_MODEL, cwd=workdir, controller_url=controller_url,
+        reasoning_effort=config.ASTRA_REASONING_EFFORT or None,
+        mcp_extra_env={**mcp_child_env(out_dir), "OSW_STEPS_USED_START": str(steps_used)},
+        base_instructions=arms.system_prompt(_official_system_prompt(), config.ASTRA_ARM),
+        extra_config=CODEX_ISOLATION_CONFIG, resume_session=session_id,
+    )
+
+
 def official_session_preflight():
     """Probe the installed CLI once, isolated exactly like an official run (same command, fresh
     empty cwd, prompt "reply ok"), and refuse the campaign when the model is offered a tool
@@ -329,11 +360,33 @@ def run(task, *, env, out, refs=None, dry=False):
 
     reset_mcp_state(out)   # only this run's server may prove it started
     protocol_wait(config.POST_SETUP_WAIT_S)   # upstream: sleep 60 after reset, before step 1
+    bounce = None   # (meta, events) of the resumed session, for an arm with a bounce
     try:
         meta = run_codex_meta(cmd, timeout=config.TASK_TIMEOUT)
+        first_state = read_mcp_state(out) or {}
+        if (meta.get("session_id") and not meta.get("is_error")
+                and _bounce_needed(meta.get("events"), first_state.get("steps_used"))):
+            bcmd = _bounce_cmd(meta["session_id"], workdir, controller_url, out,
+                               first_state.get("steps_used"))
+            try:
+                bmeta = run_codex_meta(bcmd, timeout=config.TASK_TIMEOUT, cwd=str(workdir))
+            finally:
+                _remove_instructions_file(bcmd)
+            bounce = (bmeta, bmeta.get("events") or [])
     finally:
         shutil.rmtree(workdir, ignore_errors=True)
         _remove_instructions_file(cmd)
+    if bounce:
+        # One trajectory: both sessions' events and raw logs, the resumed session's final text
+        # and error state; the answer is read from the resumed part only (see arms.BOUNCE_MESSAGE).
+        bmeta, bevents = bounce
+        meta["raw"] = meta.get("raw", "") + bmeta.get("raw", "")
+        meta["stderr"] = meta.get("stderr", "") + bmeta.get("stderr", "")
+        meta["events"] = (meta.get("events") or []) + bevents
+        meta["result"] = bmeta.get("result", "")
+        meta["is_error"] = bmeta.get("is_error", False)
+        if bmeta.get("errors"):
+            meta["errors"] = (meta.get("errors") or []) + bmeta["errors"]
 
     # Preserve the complete provider trajectory; unlike Claude Code this is emitted directly by
     # the headless invocation, so no lookup in a user-global session directory is necessary.
@@ -347,7 +400,8 @@ def run(task, *, env, out, refs=None, dry=False):
     text = meta.get("result", "")
     # Upstream has no ANSWER line: DONE unless [INFEASIBLE]/a fail action; the episode ends
     # cleanly when the CLI does (no error, no timeout).
-    answer = _official_answer(transcript, text)
+    answer = (official_protocol.final_action(*codex_events_actions(bounce[1])) if bounce
+              else _official_answer(transcript, text))
     clean_finish = not meta.get("is_error", False)
     official_telemetry = _official_audit(events, transcript.stat().st_size > 0,
                                          meta.get("session_id"))
@@ -356,6 +410,10 @@ def run(task, *, env, out, refs=None, dry=False):
     results_io.write_output(out, text)
     telemetry = _telemetry(meta, stderr)
     telemetry["agent_clean_finish"] = clean_finish
+    if arms.bounces(config.ASTRA_ARM):
+        telemetry["arm_bounced"] = bool(bounce)
+        if bounce:
+            telemetry["arm_bounce_telemetry"] = _telemetry(bounce[0], bounce[0].get("stderr", ""))
     provenance = _provenance_astra(task, ctrl, started_at, _codex_version(),
                                    session_id=meta.get("session_id"))
     # Measured, not asserted: a Codex run that dies before emitting JSONL still creates the

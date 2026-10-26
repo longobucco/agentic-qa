@@ -35,13 +35,15 @@ def allowed_mcp_tools():
 
 def build_codex_cmd(prompt, *, model, cwd, controller_url, reasoning_effort=None,
                     python_bin=None, mcp_extra_env=None, base_instructions=None,
-                    extra_config=None):
+                    extra_config=None, resume_session=None):
     """Build an isolated `codex exec` invocation with only the task's OSWorld MCP configured.
 
     base_instructions replaces Codex's own base instructions: the text is written to a fresh temp
     file passed as BASE_INSTRUCTIONS_KEY (remove it after the run: base_instructions_file(cmd)).
     extra_config is a sequence of TOML `key=value` overrides, each passed as `-c`. With neither,
-    the command is exactly the historical one."""
+    the command is exactly the historical one. With resume_session, the same isolated command
+    continues that session (`codex exec resume ... <id> <prompt>`); resume takes no --cd/--color,
+    so the caller runs it with cwd set (run_codex_meta(..., cwd=...))."""
     python_bin = python_bin or sys.executable
     repo_root = str(Path(__file__).resolve().parent.parent)
     # The MCP child starts in ``cwd``; retain access to the benchmark package without relying on
@@ -53,8 +55,10 @@ def build_codex_cmd(prompt, *, model, cwd, controller_url, reasoning_effort=None
         + "".join(f", {key} = {json.dumps(value)}" for key, value in (mcp_extra_env or {}).items())
         + " }"
     )
+    head = (["codex", "exec", "resume", "--json"] if resume_session
+            else ["codex", "exec", "--json", "--color", "never"])
     cmd = [
-        "codex", "exec", "--json", "--color", "never", "--model", model,
+        *head, "--model", model,
         # Non-interactive MCP calls otherwise fail with "approval policy is never". This is safe
         # here because all host mutation tools are disabled and the only remaining action surface
         # is the benchmark's disposable remote desktop MCP.
@@ -65,8 +69,9 @@ def build_codex_cmd(prompt, *, model, cwd, controller_url, reasoning_effort=None
     # enabled, while every capability other than the injected MCP is disabled.
     for feature in DISABLED_FEATURES:
         cmd += ["--disable", feature]
+    if not resume_session:
+        cmd += ["--cd", str(cwd)]
     cmd += [
-        "--cd", str(cwd),
         "-c", f"mcp_servers.osworld.command={json.dumps(str(python_bin))}",
         "-c", "mcp_servers.osworld.args=[\"-m\",\"benchmarks.osworld.mcp.server\"]",
         "-c", f"mcp_servers.osworld.env={mcp_env}",
@@ -80,6 +85,8 @@ def build_codex_cmd(prompt, *, model, cwd, controller_url, reasoning_effort=None
         cmd += ["-c", f"{BASE_INSTRUCTIONS_KEY}={json.dumps(path)}"]
     for override in extra_config or ():
         cmd += ["-c", override]
+    if resume_session:
+        cmd.append(str(resume_session))
     cmd.append(prompt)
     return cmd
 
@@ -268,7 +275,7 @@ def session_context(session_id, root=None):
     }
 
 
-def run_codex_meta(cmd, *, timeout, env=None):
+def run_codex_meta(cmd, *, timeout, env=None, cwd=None):
     """Run Codex in its own process group and retain partial JSONL on timeout.
 
     Registers the group with `core.procgroups` for the duration of the call (unregistered in a
@@ -283,7 +290,7 @@ def run_codex_meta(cmd, *, timeout, env=None):
         raise procgroups.Interrupted("harness interrupted before Codex could start")
     proc = subprocess.Popen(
         cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
-        stdin=subprocess.DEVNULL, env=env, start_new_session=True,
+        stdin=subprocess.DEVNULL, env=env, start_new_session=True, cwd=cwd,
     )
     pgid = proc.pid   # == the new process group's id under start_new_session=True (setsid);
                         # os.getpgid(proc.pid) can raise ProcessLookupError for a child that

@@ -96,3 +96,64 @@ def test_the_claude_command_carries_the_card_in_its_system_prompt(monkeypatch):
     monkeypatch.setattr(config, "ARM", "")
     assert agent_computer._official_cmd_kwargs({"instruction": "x"})["system_prompt"] == \
         agent_computer._official_system_prompt()
+
+
+# --- E1 bounce (OSW_ASTRA_ARM=e1bounce) ---
+
+def _ev_msg(i, text):
+    return {"type": "item.completed", "item": {"id": f"m{i}", "type": "agent_message", "text": text}}
+
+
+def _ev_call(i, args):
+    return {"type": "item.completed",
+            "item": {"id": f"c{i}", "type": "mcp_tool_call", "tool": "computer", "arguments": args}}
+
+
+def test_the_resume_command_continues_the_session_without_cd(tmp_path):
+    from core.codex_loop import build_codex_cmd
+    cmd = build_codex_cmd("go on", model="m", cwd=tmp_path, controller_url="",
+                          resume_session="sess-1")
+    assert cmd[:4] == ["codex", "exec", "resume", "--json"]
+    assert "--cd" not in cmd and "--color" not in cmd
+    assert cmd[-2:] == ["sess-1", "go on"]
+    plain = build_codex_cmd("do it", model="m", cwd=tmp_path, controller_url="")
+    assert plain[:5] == ["codex", "exec", "--json", "--color", "never"] and "--cd" in plain
+
+
+def test_a_bounce_is_needed_only_for_an_unsupported_infeasible_answer(monkeypatch):
+    monkeypatch.setattr(config, "ASTRA_ARM", "e1bounce")
+    monkeypatch.setattr(config, "MAX_STEPS", 100)
+    gave_up = [_ev_call(1, {"action": "screenshot"}), _ev_msg(2, "No settings app. [INFEASIBLE]")]
+    probed = [_ev_call(1, {"actions": [{"action": "type", "text": "gsettings list-keys x\n"}]}),
+              _ev_msg(2, "[INFEASIBLE] the schema is absent")]
+    done = [_ev_call(1, {"action": "screenshot"}), _ev_msg(2, "Done.")]
+    assert gpt_astra._bounce_needed(gave_up, 5) is True
+    assert gpt_astra._bounce_needed(probed, 5) is False
+    assert gpt_astra._bounce_needed(done, 5) is False
+    assert gpt_astra._bounce_needed(gave_up, 100) is False   # no steps left
+    monkeypatch.setattr(config, "ASTRA_ARM", "e1card")
+    assert gpt_astra._bounce_needed(gave_up, 5) is False     # only the bounce arm bounces
+
+
+def test_the_bounce_command_carries_the_step_budget_and_the_message(monkeypatch, tmp_path):
+    monkeypatch.setattr(config, "ASTRA_ARM", "e1bounce")
+    cmd = gpt_astra._bounce_cmd("sess-9", tmp_path, "http://c", tmp_path, 37)
+    try:
+        assert cmd[-2:] == ["sess-9", arms.BOUNCE_MESSAGE]
+        assert any("OSW_STEPS_USED_START" in a and '"37"' in a for a in cmd)
+    finally:
+        os.unlink(codex_loop.base_instructions_file(cmd))
+
+
+def test_the_mcp_server_starts_from_the_carried_step_count(monkeypatch, tmp_path):
+    import importlib, json as _json, sys
+    state = tmp_path / "state.json"
+    monkeypatch.setenv("OSW_MCP_STATE_FILE", str(state))
+    monkeypatch.setenv("OSW_STEPS_USED_START", "42")
+    sys.modules.pop("benchmarks.osworld.mcp.server", None)
+    server = importlib.import_module("benchmarks.osworld.mcp.server")
+    try:
+        assert server._session.steps_used == 42
+        assert _json.loads(state.read_text())["steps_used"] == 42
+    finally:
+        sys.modules.pop("benchmarks.osworld.mcp.server", None)
