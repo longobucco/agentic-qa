@@ -178,3 +178,16 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+def test_sessions_root_follows_codex_home(tmp_path):
+    import importlib
+    import os
+    from unittest.mock import patch
+    from pathlib import Path
+    import core.codex_loop as cl
+    with patch.dict(os.environ, {"CODEX_HOME": str(tmp_path)}):
+        assert importlib.reload(cl).SESSIONS_ROOT == tmp_path / "sessions"
+    with patch.dict(os.environ, {}, clear=False):
+        os.environ.pop("CODEX_HOME", None)
+        assert importlib.reload(cl).SESSIONS_ROOT == Path.home() / ".codex" / "sessions"

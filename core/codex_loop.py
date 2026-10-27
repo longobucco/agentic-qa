@@ -213,7 +213,8 @@ def parse_codex_output(raw, *, returncode=0, timed_out=False):
     }
 
 
-SESSIONS_ROOT = Path.home() / ".codex" / "sessions"
+# Codex writes rollouts under $CODEX_HOME (default ~/.codex); multi-account wrappers point it elsewhere.
+SESSIONS_ROOT = Path(os.environ.get("CODEX_HOME") or Path.home() / ".codex") / "sessions"
 
 
 def session_context(session_id, root=None):
