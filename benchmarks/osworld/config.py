@@ -174,6 +174,12 @@ ASTRA_SYSTEM_NAME = astra_system_name()
 NEW_INFRA_SYSTEM_RE = re.compile(r"agent_computer_[a-z0-9]+(?:_[a-z0-9]+)*_official(?:_kvm)?")
 
 
+# Null-agent control (runners/null_agent.py): same image suffix as the Sonnet tree, no model.
+NULL_SYSTEM_NAME = (f"agent_computer_nullagent"
+                    f"{'_' + (re.sub(r'[^a-zA-Z0-9]+', '', SYSTEM_SUFFIX) or 'suffix') if SYSTEM_SUFFIX else ''}"
+                    f"_official{'_kvm' if BACKEND == 'kvm' else ''}")
+
+
 def assert_new_infra_system(name):
     if name and name != name.lower() and NEW_INFRA_SYSTEM_RE.fullmatch(name.lower()):
         raise SystemExit(f"results tree {name!r} has uppercase letters: tree names are "

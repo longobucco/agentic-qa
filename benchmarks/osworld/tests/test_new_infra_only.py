@@ -107,9 +107,11 @@ def test_legacy_module_is_gone(name):
         importlib.import_module(name)
 
 
-def test_only_the_two_official_runners_are_registered():
+def test_only_the_two_official_runners_and_the_null_control_are_registered():
     from benchmarks.osworld import config
-    assert set(benchmark.build().runners) == {config.SYSTEM_NAME, config.ASTRA_SYSTEM_NAME}
+    assert set(benchmark.build().runners) == {config.SYSTEM_NAME, config.ASTRA_SYSTEM_NAME,
+                                              config.NULL_SYSTEM_NAME}
+    assert config.NULL_SYSTEM_NAME.startswith("agent_computer_nullagent")
 
 
 def test_mcp_server_offers_only_computer_without_any_protocol_env(monkeypatch, tmp_path):

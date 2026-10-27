@@ -5,7 +5,7 @@ eval.json), so core.run uses that verdict. Serial (provisioning is heavy).
 from benchmarks.osworld import config, evaluate, tasks
 from benchmarks.osworld.env import osworld_eval
 from benchmarks.osworld.env.sandbox import osworld_environment
-from benchmarks.osworld.runners import agent_computer, gpt_astra
+from benchmarks.osworld.runners import agent_computer, gpt_astra, null_agent
 from core.run import Benchmark, Runner
 
 
@@ -33,6 +33,16 @@ def build():
             needs_browser=False,
             concurrency_safe=False,
             preflight=gpt_astra.preflight,
+            self_eval=True,
+        ),
+        # Control: setup + official scoring with no agent at all (should score ~0).
+        config.NULL_SYSTEM_NAME: Runner(
+            name=config.NULL_SYSTEM_NAME,
+            run=null_agent.run,
+            environment=osworld_environment,
+            needs_browser=False,
+            concurrency_safe=False,
+            preflight=None,
             self_eval=True,
         ),
     }
