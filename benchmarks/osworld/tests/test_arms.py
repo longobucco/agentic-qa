@@ -205,3 +205,30 @@ def test_the_e1b_card_extends_e1_with_evaluator_awareness():
     assert arms.system_prompt("OFFICIAL", "e1b") == "OFFICIAL\n\n" + arms.E1B_CARD
     assert "[INFEASIBLE]" in arms.E1B_CARD and "persisted" in arms.E1B_CARD
     assert not arms.bounces("e1b")
+
+
+def test_clock_is_a_violation_unless_the_h1_exemption_is_on(monkeypatch):
+    from benchmarks.osworld import config
+    from benchmarks.osworld.runners import gpt_astra
+    names = ["computer", "exec.clock__curr_time", "exec.list_mcp_resources"]
+    monkeypatch.setattr(config, "ASTRA_EXEMPT_CLOCK", False)
+    assert gpt_astra._partition_exempt(names)[0] == ["computer", "exec.clock__curr_time"]
+    monkeypatch.setattr(config, "ASTRA_EXEMPT_CLOCK", True)
+    non_exempt, exempt = gpt_astra._partition_exempt(names)
+    assert non_exempt == ["computer"]
+    assert exempt == ["exec.clock__curr_time", "exec.list_mcp_resources"]
+    # the frozen campaign lock still sees the original exempt set
+    assert "exec.clock__curr_time" not in gpt_astra.CODEX_EXEMPT_TOOLS
+
+
+def test_clock_exemption_gets_its_own_tree(monkeypatch):
+    import importlib
+    from benchmarks.osworld import config
+    monkeypatch.setenv("OSW_ASTRA_EXEMPT_CLOCK", "1")
+    monkeypatch.setenv("OSW_ASTRA_SYSTEM_SUFFIX", "protocol361img3")
+    try:
+        assert importlib.reload(config).ASTRA_SYSTEM_NAME.endswith("_protocol361img3_clockexempt_official")
+    finally:
+        monkeypatch.delenv("OSW_ASTRA_EXEMPT_CLOCK")
+        monkeypatch.delenv("OSW_ASTRA_SYSTEM_SUFFIX")
+        importlib.reload(config)

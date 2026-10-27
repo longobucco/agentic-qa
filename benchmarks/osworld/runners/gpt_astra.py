@@ -123,12 +123,22 @@ def _non_computer_tool_calls(events):
     return list(names.values())
 
 
+# Codex's clock (host date/time, already stated by the official prompt; cannot reach the guest).
+# Exempt only under config.ASTRA_EXEMPT_CLOCK (H1); the frozen lock keeps CODEX_EXEMPT_TOOLS.
+CODEX_CLOCK_TOOLS = frozenset({"exec.clock__curr_time", "clock__curr_time", "clock.curr_time"})
+
+
+def exempt_tools():
+    return CODEX_EXEMPT_TOOLS | CODEX_CLOCK_TOOLS if config.ASTRA_EXEMPT_CLOCK else CODEX_EXEMPT_TOOLS
+
+
 def _partition_exempt(names):
     """`names` (call order, duplicates kept) split into (non_exempt, exempt) against
     CODEX_EXEMPT_TOOLS. The non-exempt list is what the tool-surface rule still applies to; the
     exempt list is recorded (agent_exempt_tool_calls) but never scored as a violation."""
-    non_exempt = [n for n in names if n not in CODEX_EXEMPT_TOOLS]
-    exempt = [n for n in names if n in CODEX_EXEMPT_TOOLS]
+    exempt_set = exempt_tools()
+    non_exempt = [n for n in names if n not in exempt_set]
+    exempt = [n for n in names if n in exempt_set]
     return non_exempt, exempt
 
 
@@ -236,7 +246,7 @@ def _provenance_astra(task, ctrl, started_at, codex_version, session_id=None):
     return astra_common.provenance_astra(
         task, ctrl, started_at, codex_version, model=config.ASTRA_MODEL,
         reasoning_effort=config.ASTRA_REASONING_EFFORT, session_id=session_id,
-        extra=arms.provenance(config.ASTRA_ARM))
+        extra={**arms.provenance(config.ASTRA_ARM), "clock_exempt": config.ASTRA_EXEMPT_CLOCK})
 
 
 def _validate_campaign_lock():

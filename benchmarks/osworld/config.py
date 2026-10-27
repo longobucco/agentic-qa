@@ -148,6 +148,9 @@ ASTRA_SYSTEM_SUFFIX = os.environ.get("OSW_ASTRA_SYSTEM_SUFFIX", "").strip()
 # Its name always becomes part of the results tree name, so an arm can never pool into the
 # replication tree or into another arm's.
 ASTRA_ARM = os.environ.get("OSW_ASTRA_ARM", "").strip()
+# Fidelity correction H1 (user decision 2026-10-27): Codex 0.153.4 offers a clock tool no config
+# key removes; with this set, a clock call is recorded but no longer voids the run. Own tree.
+ASTRA_EXEMPT_CLOCK = os.environ.get("OSW_ASTRA_EXEMPT_CLOCK", "").strip().lower() in ("1", "true", "yes")
 
 
 def astra_system_name():
@@ -160,6 +163,8 @@ def astra_system_name():
         base = f"{base}_{safe_suffix}"
     if ASTRA_ARM:
         base = f"{base}_{safe(ASTRA_ARM)}"
+    if ASTRA_EXEMPT_CLOCK:
+        base = f"{base}_clockexempt"
     # The only protocol this branch runs: always the official one.
     base = f"{base}_official"
     if BACKEND == "kvm":
