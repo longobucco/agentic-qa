@@ -1,0 +1,100 @@
+task,bucket,kind,label,why
+00fa164e,libreoffice_writer,INFRA (open-book only),uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+01b269ae,libreoffice_calc,INFRA-tool-error (open-book arm only),uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+02ce9a50,libreoffice_writer,ENV-fidelity (terminal prompt) + AGENT-extra-content,mixed,agent and non-agent factors together
+035f41ba,libreoffice_calc,INFRA-tool-error (open-book arm only),uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+0a211154,libreoffice_impress,CHECKER-strict (apostrophe) / gold quirk,uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+0bf05a7d,libreoffice_calc,INFRA-tool-error (open-book arm only),uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+0d8b7de3,chrome,ENV-site-blocked,uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+0f84bef9,libreoffice_impress,INFRA/checker-persistence (suspected),uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+121ba48f,chrome,NOT-A-FAILURE,excluded,no failure on the official infrastructure
+1334ca3e,libreoffice_calc,SPEC-ambiguity / CHECKER-strict,uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+13584542,os,INFRA/checker-persistence (suspected),uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+15aece23,libreoffice_impress,NOT-A-FAILURE,excluded,no failure on the official infrastructure
+1704f00f,chrome,HARNESS-rule,uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+1954cced,libreoffice_calc,NOT-A-FAILURE,excluded,no failure on the official infrastructure
+1de60575,libreoffice_calc,AGENT-error,controllable,agent error with environment and checker working
+215dfd39,vlc,ENV-old-infra (black desktop),uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+2373b66a,os,ENV-old-infra (black desktop),uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+276cc624,vscode,ENV-old-infra (VS Code profile path),uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+2888b4e6,chrome,ENV-site-blocked,uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+28cc3b7e,os,ENV-handicap + AGENT-gave-up,mixed,agent and non-agent factors together
+2fe4b718,vlc,ENV-old-infra + AGENT-limit,mixed,agent and non-agent factors together
+30e3e107,libreoffice_calc,AGENT-error,controllable,agent error with environment and checker working
+347ef137,libreoffice_calc,AGENT-error (extra helper cells/sheet),controllable,agent error with environment and checker working
+358aa0a7,libreoffice_impress,AGENT-spec-ambiguity,controllable,agent error with environment and checker working
+368d9ba4,chrome,HARNESS-rule,uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+3a7c8185,libreoffice_calc,AGENT-error (chart not in saved file),controllable,agent error with environment and checker working
+3b27600c,libreoffice_impress,AGENT-error (wrong shade of blue),controllable,agent error with environment and checker working
+3ce045a0,os,ENV-handicap + AGENT-partial,controllable,route available on the corrected image (A1)
+415ef462,thunderbird,ENV-old-infra (Thunderbird profile),uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+44ee5668,chrome,INFRA-tool-error,uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+455d3c66,libreoffice_impress,ENV-fidelity (suspected) / CHECKER-strict,uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+47543840,chrome,HARNESS-rule,uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+4e6fcf72,libreoffice_calc,CHECKER-strict,uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+550ce7e7,libreoffice_impress,ENV-old-infra,uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+5812b315,os,AGENT-error / CHECKER-literal,mixed,agent and non-agent factors together
+58565672,unknown,NOT-A-FAILURE,excluded,no failure on the official infrastructure
+59155008,chrome,AGENT-spec-ambiguity,controllable,agent error with environment and checker working
+5ac2891a,vlc,INFRA (no verdict) + ENV-old-infra,uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+5ca86c6f,gimp,AGENT-error (infeasible task done),controllable,agent error with environment and checker working
+5ced85fc,os,NOT-A-FAILURE,excluded,no failure on the official infrastructure
+6054afcb,libreoffice_calc,AGENT-error,controllable,agent error with environment and checker working
+6c4c23a1,chrome,ENV-site-blocked + HARNESS-rule,uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+6ed0a554,vscode,AGENT-error (folder order),controllable,agent error with environment and checker working
+72f83cdc,gimp,INFRA-tool-error,uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+7767eef2,gimp,INFRA-REGRESSION (suspected persistence),uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+7b6c7e24,chrome,AGENT-error (cookies re-created / not fully removed),controllable,agent error with environment and checker working
+7b7617bd,gimp,INFRA-REGRESSION (suspected persistence),uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+82bc8d6a,chrome,HARNESS-rule,uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+8ba5ae7a,vlc,ENV-old-infra (black desktop),uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+9195653c,vlc,NOT-A-FAILURE,excluded,no failure on the official infrastructure
+930fdb3b,vscode,ENV-old-infra (VS Code profile path),uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+937087b6,vlc,AGENT-gave-up + ENV-handicap,mixed,agent and non-agent factors together
+9439a27b,vscode,ENV-old-infra (VS Code profile path),uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+94d95f96,os,ENV-limitation + AGENT-gave-up,uncontrollable,verified unsolvable on this image
+982d12a5,vscode,ENV-old-infra (VS Code profile path),uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+986fc832,libreoffice_impress,CHECKER-strict (run structure),uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+99146c54,chrome,AGENT-judgement/give-up,controllable,agent error with environment and checker working
+9cf05d24,libreoffice_impress,AGENT-error (wrong fill mechanism),controllable,agent error with environment and checker working
+9d425400,vscode,ENV-old-infra (VS Code profile path),uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+9ec204e4,libreoffice_impress,AGENT-error,controllable,agent error with environment and checker working
+9f3f70fc,chrome,ENV-site-blocked (intermittent),uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+9f935cce,chrome,AGENT-error,controllable,agent error with environment and checker working
+a4d98375,os,ENV-handicap + AGENT-gave-up,controllable,route available on the corrected image (A1)
+a5bbbcd5,vlc,ENV-old-infra (black desktop) + INFRA (no verdict),uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+a728a36e,chrome,NOT-A-FAILURE,excluded,no failure on the official infrastructure
+a746add2,gimp,INFRA/checker-persistence (suspected),uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+a96b564e,chrome,NOT-A-FAILURE,excluded,no failure on the official infrastructure
+aa4b5023,vlc,ENV-old-infra / INFRA-tool-error,uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+aad10cd7,os,ENV-open-book fixture miss,uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+ac9bb6cb,libreoffice_impress,"AGENT-error (changed slides, not the master)",controllable,agent error with environment and checker working
+acb0f96b,os,SPEC-ambiguity,uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+af23762e,libreoffice_impress,AGENT-error,controllable,agent error with environment and checker working
+b070486d,chrome,ENV-site-blocked,uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+b148e375,gimp,INFRA-REGRESSION (suspected persistence),uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+b6781586,os,ENV-old-infra (black desktop),uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+b7895e80,chrome,CHECKER-brittle-live-site + HARNESS-rule,uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+bb5e4c0d,chrome,INFRA-tool-error,uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+bedcedc4,os,ENV-handicap + AGENT-gave-up,controllable,route available on the corrected image (A1)
+c1fa57f3,chrome,NOT-A-FAILURE,excluded,no failure on the official infrastructure
+cabb3bae,chrome,ENV-site-blocked,uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+d06f0d4d,vlc,ENV-old-infra (black desktop) + INFRA (no verdict),uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+d52d6308,gimp,INFRA/checker-persistence (suspected),uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+da46d875,chrome,UNEXPLAINED (state correct) + HARNESS-rule,uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+da922383,chrome,NOT-A-FAILURE,excluded,no failure on the official infrastructure
+dbbf4b99,gimp,ENV-missing-dependency + AGENT-give-up,uncontrollable,verified unsolvable on this image
+e0df059f,os,AGENT-gave-up (black desktop),controllable,agent error with environment and checker working
+e1e75309,chrome,CHECKER-strict (suspected),uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+e2392362,chrome,NOT-A-FAILURE,excluded,no failure on the official infrastructure
+e2b5e914,vscode,ENV-old-infra (VS Code profile path),uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+ea98c5d7,vscode,INFRA (no verdict) + ENV-old-infra,uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+ec4e3f68,os,ENV-handicap + AGENT-gave-up,uncontrollable,verified unsolvable on this image
+f0b971a1,chrome,"CHECKER-strict (URL pattern, inferred)",uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+f3977615,vlc,ENV-old-infra (black desktop),uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+f3b19d1e,chrome,NOT-A-FAILURE,excluded,no failure on the official infrastructure
+f5d96daf,chrome,AGENT-spec-ambiguity,controllable,agent error with environment and checker working
+f723c744,gimp,INFRA-tool-error,uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+f79439ad,chrome,HARNESS-rule,uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
+f9be0997,os,ENV-handicap + AGENT-gave-up,controllable,route available on the corrected image (A1)
+fc6d8143,chrome,CHECKER-brittle-live-site + HARNESS-rule,uncontrollable,"environment, infrastructure, checker, wording or protocol rule"
