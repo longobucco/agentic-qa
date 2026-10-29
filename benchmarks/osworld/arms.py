@@ -57,7 +57,16 @@ E1B_CARD = E1_CARD + (
     "your change. If the task is genuinely impossible, answer [INFEASIBLE] as usual."
 )
 
-ADDENDA = {"e1card": E1_CARD, "e1bounce": E1_CARD, "e1b": E1B_CARD}
+# E1 card v2: E1 found the card turns correct refusals into false DONEs on infeasible tasks (both
+# models, X5): the agent works around a confirmed gap. Same card, the infeasibility rule closed.
+E1C2_CARD = E1_CARD.replace(
+    "and answer [INFEASIBLE] only if that check shows the task cannot be done.",
+    "and answer [INFEASIBLE] only if that check shows the task cannot be done. If it confirms the "
+    "capability is missing, answer [INFEASIBLE]: do not work around it by installing or "
+    "downloading software, or by building a substitute for what the task asks.")
+assert E1C2_CARD != E1_CARD
+
+ADDENDA = {"e1card": E1_CARD, "e1bounce": E1_CARD, "e1b": E1B_CARD, "e1card2": E1C2_CARD}
 BOUNCE_ARMS = frozenset({"e1bounce"})
 
 

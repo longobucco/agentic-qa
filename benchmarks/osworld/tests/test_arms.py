@@ -232,3 +232,12 @@ def test_clock_exemption_gets_its_own_tree(monkeypatch):
         monkeypatch.delenv("OSW_ASTRA_EXEMPT_CLOCK")
         monkeypatch.delenv("OSW_ASTRA_SYSTEM_SUFFIX")
         importlib.reload(config)
+
+
+def test_e1card2_closes_the_infeasibility_rule():
+    from benchmarks.osworld import arms
+    text = arms.addendum("e1card2")
+    assert text.startswith(arms.E1_CARD.split("Before concluding")[0])
+    assert "do not work around it by installing or downloading software" in text
+    assert "[INFEASIBLE]" in text and text != arms.E1_CARD
+    assert not arms.bounces("e1card2")
