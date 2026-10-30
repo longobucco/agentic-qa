@@ -1,0 +1,102 @@
+{
+  "about": "Task sets of the Phase 3 intervention experiments (OSWorld-Verified ids, all on the pkgfix3 guest image). Fixed before the runs that use them; a change after the first run of an experiment is a deviation and must be reported as such.",
+  "sets": {
+    "classF": {
+      "fixed_on": "2026-10-21",
+      "rule": "Class F of the Astra failure analysis: tasks the agent failed for a capability it never tried (settings reachable only from a terminal, gsettings/dconf or configuration files), plus 3ce045a0, added once the pkgfix3 image made it feasible. ec4e3f68 stays unsolvable on pkgfix3 (no GNOME Shell schema) and is kept to observe false DONE answers.",
+      "note": "The Astra A0 baseline tree has the first 10 tasks; the Astra A0 runs of 3ce045a0 (0/5) belong to the archived pkgfix3 re-run, so the paired Astra comparison uses the 10 shared tasks.",
+      "runs_per_task": 5,
+      "tasks": [
+        "99146c54-4f37-4ab8-9327-5f3291665e1e",
+        "dbbf4b99-2253-4b10-9274-45f246af2466",
+        "28cc3b7e-b194-4bc9-8353-d04c0f4d56d2",
+        "94d95f96-9699-4208-98ba-3c3119edf9c2",
+        "a4d98375-215b-4a4d-aee9-3d4370fccc41",
+        "bedcedc4-4d72-425e-ad62-21960b11fe0d",
+        "e0df059f-28a6-4169-924f-b9623e7184cc",
+        "ec4e3f68-9ea4-4c18-a5c9-69f89d1178b3",
+        "f9be0997-4b7c-45c5-b05c-4612b44a6118",
+        "937087b6-f668-4ba6-9110-60682ee33441",
+        "3ce045a0-877b-42aa-8d2c-b4a863336ab8"
+      ]
+    },
+    "infeasible": {
+      "fixed_on": "2026-10-21",
+      "rule": "10 of the 13 infeasible-by-design tasks Astra ran on the original image (63/64 correct refusals there), round-robin by application. The correct outcome is an [INFEASIBLE] answer.",
+      "runs_per_task": 3,
+      "tasks": [
+        "3720f614-37fd-4d04-8a6b-76f54f8c222d",
+        "045bf3ff-9077-4b86-b483-a1040a949cff",
+        "2bd59342-0664-4ccb-ba87-79379096cc08",
+        "480bcfea-d68f-4aaa-a0a9-2589ef319381",
+        "2e6f678f-472d-4c55-99cc-8e7c5c402a71",
+        "ae78f875-5b98-4907-bbb5-9c737fc68c03",
+        "38f48d40-764e-4e77-a7cf-51dfce880291",
+        "58d3eeeb-e9d0-499f-962e-fd0db2a744d8",
+        "5ca86c6f-f317-49d8-b6a7-b527541caae8",
+        "62f7fd55-0687-4a43-b6e1-3eda16fc6252"
+      ]
+    },
+    "controls": {
+      "fixed_on": "2026-10-21",
+      "rule": "20 of the 75 feasible tasks Astra passed 5/5 on the original image, round-robin by application over ids sorted ascending. No-harm set: an arm must not make them fail.",
+      "runs_per_task": 3,
+      "tasks": [
+        "030eeff7-b492-4218-b312-701ec99ee0cc",
+        "06ca5602-62ca-47f6-ad4f-da151cde54cc",
+        "01b269ae-2111-4a07-81fd-3fcd711993b0",
+        "15aece23-a215-4579-91b4-69eec72e18da",
+        "2373b66a-092d-44cb-bfd7-82e86e7a3b4d",
+        "8ba5ae7a-5ae5-4eab-9fcc-5dd4fe3abf89",
+        "06fe7178-4491-4589-810f-2e2bc9502122",
+        "2a729ded-3296-423d-aec4-7dd55ed5fbb3",
+        "0326d92d-d218-48a8-9ca1-981cd6d064c7",
+        "21760ecb-8f62-40d2-8d85-0cee5725cb72",
+        "b6781586-6346-41cd-935a-a6b1487918fc",
+        "12086550-11c0-466b-b367-1d9e75b3910e",
+        "554785e9-4523-4e7a-b8e1-8016f565f56a",
+        "035f41ba-6653-43ab-aa63-c86d449d62e5",
+        "550ce7e7-747b-495f-b122-acdc4d0b8e54",
+        "121ba48f-9e17-48ce-9bc6-a4fb17a7ebba",
+        "734d6579-c07d-47a8-9ae2-13339795476b",
+        "04d9aeaf-7bed-4024-bedb-e10e6f00eb7f",
+        "5d901039-a89c-4bfb-967b-bf66f4df075e",
+        "2ad9387a-65d8-4e33-ad5b-7580065a27ca"
+      ]
+    },
+    "classP": {
+      "fixed_on": "2026-10-27",
+      "rule": "In-sample set of E1b: the P1/P2 tasks of the Astra failure analysis with official runs (6ed0a554 left out: never run on the official infrastructure). The E1b text was written from these failures, so here it tests the mechanism, not generalisation.",
+      "runs_per_task": 3,
+      "tasks": [
+        "30e3e107-1cfb-46ee-a755-2cd080d7ba6a",
+        "6054afcb-5bab-4702-90a0-b259b5d3217c",
+        "347ef137-7eeb-4c80-a3bb-0951f26a8aff",
+        "3a7c8185-25c1-4941-bd7b-96e823c9f21f",
+        "1de60575-bb6e-4c3d-9e6a-2fa699f9f197",
+        "af23762e-2bfd-4a1d-aada-20fa8de9ce07",
+        "9cf05d24-6bd9-4dae-8967-f67d88f5d38a",
+        "ac9bb6cb-1888-43ab-81e4-a98a547918cd",
+        "3b27600c-3668-4abd-8f84-7bcdebbccbdb",
+        "7b6c7e24-c58a-49fc-a5bb-d57b80e5b4c3"
+      ]
+    },
+    "heldoutH": {
+      "fixed_on": "2026-10-27",
+      "rule": "Held-out set of E1b, rule applied once to campaign_analysis/tables/task_matrix.csv: applications Calc, Impress, Writer, Chrome, GIMP, VS Code, Thunderbird, multi-apps; Sonnet 5 on the original image with at least 3 valid runs and a mixed outcome (0 < passes < valid runs); excluded the P set, every task cited in the bug register, the failure analysis or the experiment log, every task of the other Phase 3 sets and every task already in a pkgfix3 tree; round-robin by application over task ids in order. Never used to write any arm.",
+      "runs_per_task": 3,
+      "tasks": [
+        "42d25c08-fb87-4927-8b65-93631280a26f",
+        "4c26e3f3-3a14-4d86-b44a-d3cedebbb487",
+        "4188d3a4-077d-46b7-9c86-23e1a036f6c1",
+        "04578141-1d42-4146-b9cf-6fab4ce5fd74",
+        "8472fece-c7dd-4241-8d65-9b3cd1a0b568",
+        "a82b78bb-7fde-4cb3-94a4-035baf10bcf0",
+        "fbb548ca-c2a6-4601-9204-e39a2efc507b",
+        "68a25bd4-59c7-4f4d-975e-da0c8509c848",
+        "70bca0cc-c117-427e-b0be-4df7299ebeb6",
+        "6d72aad6-187a-4392-a4c4-ed87269c51cf"
+      ]
+    }
+  }
+}
