@@ -211,7 +211,7 @@ SYSTEM_NAME = f"{SYSTEM_NAME}_official"
 if BACKEND == "kvm":
     SYSTEM_NAME = f"{SYSTEM_NAME}_kvm"
 
-IMAGE = os.environ.get("OSW_IMAGE", "").strip() or (
+_DEFAULT_IMAGE = (
     # pinned by digest -- Daytona caches images by tag, not :latest. An empty OSW_IMAGE (unset,
     # or explicitly "") means this pinned digest; the campaign driver's harness-knob table relies
     # on that (see campaign_daytona.harness_knob_defaults) to make "" the only value a caller may
@@ -373,6 +373,38 @@ IMAGE = os.environ.get("OSW_IMAGE", "").strip() or (
     #     "ghcr.io/longobucco/osworld-ab@sha256:"
     #     "2d3d9665f43b0726eafda32d493bd527ea7437781e09d9c85209063487750640"
 )
+
+# Corrected guest images that run in their own trees, keyed by the tree suffix
+# (OSW_SYSTEM_SUFFIX / OSW_ASTRA_SYSTEM_SUFFIX). The suffix selects the image, so a Phase 3 run can
+# never fall back to the Phase 2 default above, and the image is never run under another suffix.
+# pkgfix3: docker/Dockerfile.osworld-pkgfix3, pushed 19/10/2026.
+SUFFIX_IMAGES = {
+    "pkgfix3": "ghcr.io/longobucco/osworld-ab@sha256:"
+               "5d319f5fe0f6c8cfa9b5563a061fd373bac8280f35f11ccbbf39ac043b32533e",
+}
+
+
+def resolve_image(env_image, suffixes):
+    """The guest image for a process whose results trees carry `suffixes`."""
+    keys = {re.sub(r"[^a-zA-Z0-9]+", "", s) for s in suffixes if s}
+    pinned = {SUFFIX_IMAGES[k] for k in keys if k in SUFFIX_IMAGES}
+    if len(pinned) > 1:
+        raise SystemExit(f"tree suffixes {sorted(keys)} select different guest images")
+    if pinned:
+        image = pinned.pop()
+        if env_image and env_image != image:
+            raise SystemExit(f"OSW_IMAGE={env_image!r} differs from the image its tree suffix "
+                             f"runs on ({image}); leave OSW_IMAGE unset")
+        return image
+    for key, image in SUFFIX_IMAGES.items():
+        if env_image == image:
+            raise SystemExit(f"OSW_IMAGE is the {key} image: set the tree suffix to {key!r} so "
+                             "its runs never pool with another image's")
+    return env_image or _DEFAULT_IMAGE
+
+
+IMAGE = resolve_image(os.environ.get("OSW_IMAGE", "").strip(),
+                      (SYSTEM_SUFFIX, ASTRA_SYSTEM_SUFFIX))
 
 CONTROLLER_PORT = int(os.environ.get("OSW_CONTROLLER_PORT", "5000"))
 
