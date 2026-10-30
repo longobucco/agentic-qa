@@ -1,10 +1,10 @@
-"""Declared Phase 3 intervention arms for the GPT Astra runner.
+"""Declared Phase 3 intervention arms, for both runners (OSW_ARM: Claude, OSW_ASTRA_ARM: Astra).
 
 An arm only ADDS to the official protocol: the upstream system prompt, the single `computer` tool,
 the step budget and the evaluators stay exactly as in the replication. It always runs in its own
-results tree (config.astra_system_name appends the arm name), records what it added in every
-run's provenance, and is never pooled with the replication numbers. Rationale and design:
-campaign_analysis/ASTRA_IMPROVEMENT_RESEARCH.md section 6 (local documentation).
+results tree (config appends the arm name to the tree name), records what it added in every
+run's provenance, and is never pooled with the replication numbers. The groups each arm runs
+on are declared in phase3.py.
 """
 import hashlib
 import re
@@ -86,7 +86,7 @@ def addendum(name):
     if not name:
         return ""
     if name not in ADDENDA:
-        raise SystemExit(f"OSW_ASTRA_ARM={name!r}: unknown arm (known: {', '.join(sorted(ADDENDA))})")
+        raise SystemExit(f"arm {name!r}: unknown arm (known: {', '.join(sorted(ADDENDA))})")
     return ADDENDA[name]
 
 
