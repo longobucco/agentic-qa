@@ -17,8 +17,10 @@ An *informative* run is a SUCCESS/FAILURE verdict produced by the agent: runs wi
 | run directories | 1,370 | 845 |
 | informative runs | 1,288 | 749 |
 | excluded runs | 82: 42 no verdict (quota), 26 CLI-killed, 9 evaluator errors, 5 environment errors | 96: 87 no verdict (quota), 5 no-op passes, 3 environment/evaluator errors, 1 API-killed |
-| **pass rate over informative runs** | **71.3%** (918/1,288) | **71.4%** (535/749) |
+| **pass rate over informative runs** | **71.3%** (918/1,288) | **72.8%** (545/749); 71.4% (535/749) before the clock correction |
 | tasks all-pass / mixed / all-fail | 149 / 57 / 55 | 95 / 27 / 33 |
+
+Clock correction (H1, 27/10): Codex exposes a clock tool that cannot be disabled, and the official tool-surface rule scored 22 Astra runs FAILURE for calling it, without evaluating them; the clock is now exempt (calls recorded) and the 20 clock-voided runs were re-run in their own tree (10 pass), the other 2 voids stay. The tables below keep the original counts.
 
 The two pass rates are not the protocol's pass@1 over 361 × 5 runs (coverage 72% and 43% of the tasks) and are not a replication of the published numbers; on the tasks both models completed they are equal within noise.
 
