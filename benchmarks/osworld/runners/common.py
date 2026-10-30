@@ -211,7 +211,7 @@ def _provenance(task, ctrl, started_at):
     return {
         "task_sha256": hashlib.sha256(
             json.dumps(task, sort_keys=True).encode()).hexdigest(),
-        "image": config.KVM_IMAGE if config.BACKEND == "kvm" else config.IMAGE,
+        "image": config.IMAGE,
         # The model we ASKED for. Empty means no --model was passed and the CLI picked its own
         # default -- the gap that let the G3 campaign run across three different models without
         # anything on disk recording it (see config.MODEL). What actually served the request is
@@ -236,8 +236,6 @@ def _provenance(task, ctrl, started_at):
         "screen_size": f"{config.SCREEN_WIDTH}x{config.SCREEN_HEIGHT}",
         "protocol": "official",
         "backend": config.BACKEND,
-        "kvm_image": config.KVM_IMAGE if config.BACKEND == "kvm" else None,
-        "kvm_qcow2_sha256": config.KVM_QCOW2_SHA256 or None,
         "started_at": started_at,
         "finished_at": datetime.now(timezone.utc).isoformat(),
     }

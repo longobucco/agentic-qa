@@ -112,14 +112,6 @@ def test_official_argv(monkeypatch, tmp_path):
                      "--strict-mcp-config", *agent_computer.CLAUDE_ISOLATION_FLAGS]
 
 
-def test_official_password_only_on_kvm(monkeypatch, tmp_path):
-    monkeypatch.setattr(config, "KVM_CLIENT_PASSWORD", "sekret-pw")
-    monkeypatch.setattr(config, "BACKEND", "daytona")
-    assert "sekret-pw" not in _official_argv(monkeypatch, tmp_path)["system_prompt"]
-    monkeypatch.setattr(config, "BACKEND", "kvm")
-    assert "sekret-pw" in _official_argv(monkeypatch, tmp_path)["system_prompt"]
-
-
 def test_builtin_tools_cover_every_non_mcp_tool():
     assert all(not t.startswith("mcp__") for t in agent_computer.CLAUDE_BUILTIN_TOOLS)
     for t in ("Read", "Write", "Edit", "Bash", "WebFetch", "WebSearch", "Task", "Skill"):

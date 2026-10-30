@@ -82,23 +82,19 @@ PROTOCOL = "official"
 _osw_protocol = os.environ.get("OSW_PROTOCOL", "").strip()
 if _osw_protocol not in ("", "official"):
     raise SystemExit(f"OSW_PROTOCOL={_osw_protocol!r}: expected '' or 'official'")
+# Daytona is the only backend: the KVM backend was abandoned (its tag removed on 2026-10-21), so
+# its knobs are refused rather than recorded for runs that would still execute on Daytona.
 BACKEND = os.environ.get("OSW_BACKEND", "").strip() or "daytona"
-if BACKEND not in ("daytona", "kvm"):
-    raise SystemExit(f"OSW_BACKEND={BACKEND!r}: expected 'daytona' or 'kvm'")
+if BACKEND != "daytona":
+    raise SystemExit(f"OSW_BACKEND={BACKEND!r}: expected 'daytona' (unset also works)")
+_kvm_knobs = sorted(k for k, v in os.environ.items() if k.startswith("OSW_KVM_") and v.strip())
+if _kvm_knobs:
+    raise SystemExit(f"KVM backend knobs are not supported (abandoned backend): {', '.join(_kvm_knobs)}")
 # Upstream timings: lib_run_single.run_single_example (sleep 60 after reset, sleep 20 before
 # evaluate) and run_multienv_claude.py --sleep_after_execution 0.5.
 SLEEP_AFTER_EXECUTION = float(os.environ.get("OSW_SLEEP_AFTER_EXECUTION", "0.5"))
 POST_SETUP_WAIT_S = int(os.environ.get("OSW_POST_SETUP_WAIT_S", "60"))
 PRE_EVAL_WAIT_S = int(os.environ.get("OSW_PRE_EVAL_WAIT_S", "20"))
-# kvm backend: upstream's Docker provider (desktop_env/providers/docker/provider.py) on a
-# user-provided Linux host with /dev/kvm. DOCKER_HOST may be local or ssh://user@host;
-# KVM_ADDR is the address the harness uses to reach the container's published ports.
-KVM_DOCKER_HOST = os.environ.get("OSW_KVM_DOCKER_HOST", "unix:///var/run/docker.sock").strip()
-KVM_ADDR = os.environ.get("OSW_KVM_ADDR", "127.0.0.1").strip()
-KVM_QCOW2 = os.environ.get("OSW_KVM_QCOW2", "/opt/osworld/Ubuntu.qcow2").strip()
-KVM_QCOW2_SHA256 = os.environ.get("OSW_KVM_QCOW2_SHA256", "").strip()
-KVM_IMAGE = os.environ.get("OSW_KVM_IMAGE", "happysixd/osworld-docker").strip()
-KVM_CLIENT_PASSWORD = os.environ.get("OSW_KVM_CLIENT_PASSWORD", "password")
 # The Claude Code CLI the official protocol was verified on (CLAUDE_BUILTIN_TOOLS, isolation
 # flags, transcript layout): the official preflight refuses any other `claude --version`.
 # Pinned 2.1.282 on 28/09/2026 by user decision (Sonnet campaign runs on 2.1.282 only, as a
@@ -166,23 +162,20 @@ def astra_system_name():
     if ASTRA_EXEMPT_CLOCK:
         base = f"{base}_clockexempt"
     # The only protocol this branch runs: always the official one.
-    base = f"{base}_official"
-    if BACKEND == "kvm":
-        base = f"{base}_kvm"
-    return base
+    return f"{base}_official"
 
 
 ASTRA_SYSTEM_NAME = astra_system_name()
 
-# The only results trees the new infrastructure may write or report: <runner>_official[_kvm].
+# The only results trees the new infrastructure may write or report: <runner>_official.
 # No Phase 1 tree carries this suffix, so a run here can never write into one.
-NEW_INFRA_SYSTEM_RE = re.compile(r"agent_computer_[a-z0-9]+(?:_[a-z0-9]+)*_official(?:_kvm)?")
+NEW_INFRA_SYSTEM_RE = re.compile(r"agent_computer_[a-z0-9]+(?:_[a-z0-9]+)*_official")
 
 
 # Null-agent control (runners/null_agent.py): same image suffix as the Sonnet tree, no model.
 NULL_SYSTEM_NAME = (f"agent_computer_nullagent"
                     f"{'_' + (re.sub(r'[^a-zA-Z0-9]+', '', SYSTEM_SUFFIX) or 'suffix') if SYSTEM_SUFFIX else ''}"
-                    f"_official{'_kvm' if BACKEND == 'kvm' else ''}")
+                    "_official")
 
 
 def assert_new_infra_system(name):
@@ -192,7 +185,7 @@ def assert_new_infra_system(name):
                          "lowercase")
     if not NEW_INFRA_SYSTEM_RE.fullmatch(name or ""):
         raise SystemExit(f"results tree {name!r} is not a new-infrastructure tree "
-                         "(agent_computer_…_official[_kvm]); Phase 1 trees are frozen under the "
+                         "(agent_computer_…_official); Phase 1 trees are frozen under the "
                          "tag phase1-daytona-frozen")
     return name
 
@@ -208,8 +201,6 @@ TASK_TIMEOUT = int(os.environ.get("OSW_TASK_TIMEOUT") or "14400")
 
 # The only protocol this branch runs: always the official one.
 SYSTEM_NAME = f"{SYSTEM_NAME}_official"
-if BACKEND == "kvm":
-    SYSTEM_NAME = f"{SYSTEM_NAME}_kvm"
 
 _DEFAULT_IMAGE = (
     # pinned by digest -- Daytona caches images by tag, not :latest. An empty OSW_IMAGE (unset,

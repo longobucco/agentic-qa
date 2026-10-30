@@ -367,7 +367,7 @@ def _run_config(ctrl, task, *, enable_cdp_forwarder=False, sandbox=None):
     # http://{vm_ip}:{server_port} to reach the controller: the loopback forwarder makes that true
     # on a Daytona https URL (see osworld_eval.make_setup_controller). It shares 127.0.0.1 with
     # the CDP forwarder below, so rebinding vm_ip there keeps it valid. A plain-http controller
-    # (kvm) is already addressable as is, and its vm_ip also carries the mapped Chrome/VLC ports.
+    # (OSW_CONTROLLER_URL=http://...) is already addressable as is.
     loopback = (LoopbackForwarder(ctrl.base_url)
                 if urlparse(ctrl.base_url).scheme != "http" else None)
     try:

@@ -241,7 +241,7 @@ def _recover_transcript(workdir, out, transcript):
 def _official_system_prompt():
     return official_protocol.system_prompt(
         max_steps=config.MAX_STEPS,
-        client_password=config.KVM_CLIENT_PASSWORD if config.BACKEND == "kvm" else "")
+        client_password="")
 
 
 def _official_cmd_kwargs(task):

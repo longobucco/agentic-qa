@@ -17,13 +17,13 @@ def _reload(**env):
     return vals
 
 
-def test_official_kvm_names_and_timeout():
+def test_official_names_and_timeout():
     name, astra, protocol, backend, timeout = _reload(
-        OSW_PROTOCOL="official", OSW_BACKEND="kvm", OSW_EFFORT="max",
+        OSW_PROTOCOL="official", OSW_EFFORT="max",
         OSW_SYSTEM_SUFFIX="protocol361", OSW_ASTRA_SYSTEM_SUFFIX="protocol361")
-    assert name == "agent_computer_sonnet5_effortmax_protocol361_official_kvm"
-    assert astra == "agent_computer_gpt6astra_max_codex01534_protocol361_official_kvm"
-    assert protocol == "official" and backend == "kvm" and timeout == 14400
+    assert name == "agent_computer_sonnet5_effortmax_protocol361_official"
+    assert astra == "agent_computer_gpt6astra_max_codex01534_protocol361_official"
+    assert protocol == "official" and backend == "daytona" and timeout == 14400
 
 
 def test_unknown_values_are_refused():
@@ -32,15 +32,17 @@ def test_unknown_values_are_refused():
         _reload(OSW_PROTOCOL="oficial")
     with pytest.raises(SystemExit):
         _reload(OSW_BACKEND="aws")
+    with pytest.raises(SystemExit):
+        _reload(OSW_BACKEND="kvm")
+    with pytest.raises(SystemExit):
+        _reload(OSW_KVM_IMAGE="happysixd/osworld-docker")
 
 
 def test_provenance_records_protocol_and_backend(monkeypatch):
     from benchmarks.osworld.runners import common
     monkeypatch.setattr(config, "PROTOCOL", "official")
-    monkeypatch.setattr(config, "BACKEND", "kvm")
     rec = common._provenance({"id": "t"}, ctrl=None, started_at="x")
-    assert rec["protocol"] == "official" and rec["backend"] == "kvm"
-    assert "kvm_qcow2_sha256" in rec and "kvm_image" in rec
+    assert rec["protocol"] == "official" and rec["backend"] == "daytona"
 
 
 _PKGFIX2_DIGEST = ("ghcr.io/longobucco/osworld-ab@sha256:"

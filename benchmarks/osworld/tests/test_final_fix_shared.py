@@ -15,7 +15,6 @@ import pytest
 
 from benchmarks.osworld import config
 from benchmarks.osworld.runners import agent_computer, common, gpt_astra
-from core import run as core_run
 
 
 class _FakeEnv:
@@ -428,16 +427,9 @@ def test_max_steps_defaults_to_100():
     assert _reload_max_steps(OSW_MAX_STEPS="42") == 42
 
 
-def test_provenance_image_is_the_kvm_image_on_kvm(monkeypatch):
-    monkeypatch.setattr(config, "KVM_IMAGE", "happysixd/osworld-docker@sha256:abc")
-    monkeypatch.setattr(config, "BACKEND", "kvm")
-    assert common._provenance({"id": "t"}, None, "x")["image"] == config.KVM_IMAGE
-    monkeypatch.setattr(config, "BACKEND", "daytona")
-    assert common._provenance({"id": "t"}, None, "x")["image"] == config.IMAGE
-
-
-def test_client_password_is_a_recorded_harness_knob():
-    assert "OSW_KVM_CLIENT_PASSWORD" in core_run._HARNESS_ENV_KEYS
+def test_provenance_image_is_the_configured_image():
+    rec = common._provenance({"id": "t"}, None, "x")
+    assert rec["image"] == config.IMAGE and "kvm_image" not in rec
 
 
 def test_the_old_kvm_marker_no_longer_vouches_for_children(monkeypatch):

@@ -1,5 +1,5 @@
 """Backend-neutral campaign core for the official-protocol OSWorld-Verified campaigns (361 tasks
-x 5 runs): parallel shards, quota-safe, preflight first. A backend module (daytona, kvm, ...)
+x 5 runs): parallel shards, quota-safe, preflight first. A backend module (Daytona is the only one)
 supplies its own protocol variables, harness knobs, extra refusals and its orphan sweep; this
 module knows nothing about any one backend's infrastructure.
 
@@ -214,7 +214,7 @@ def terminate_children(procs, log, grace_s=None):
 
 class _Interrupted(BaseException):
     # BaseException, not Exception: the per-round backend.sweep() runs while SIGTERM/SIGINT are
-    # wired to _raise_interrupted, and a backend that (like the kvm sweep) never raises via a
+    # wired to _raise_interrupted, and a backend whose sweep never raises via a
     # bare `except Exception` must not be able to swallow a signal delivered mid-sweep -- that
     # would silently drop the interrupt and let the campaign start another round. `main`'s own
     # `except _Interrupted` still catches it explicitly by name.

@@ -2,9 +2,7 @@
 pure helpers (batching, the per-round decision, resume), the protocol environment it exports
 together with a backend, and --dry-run. No run.py, claude, codex, docker or any real backend is
 ever invoked -- the round runner is exercised with a fake Popen, and every backend-shaped
-argument is the FakeBackend of fake_backend.py. KVM-specific behavior (the container sweep
-itself, the pinned kvm image check, a docker error during the sweep, and the kvm-teardown
-grace-period test) stays in the kvm backend's own tests."""
+argument is the FakeBackend of fake_backend.py."""
 import importlib
 import json
 import os

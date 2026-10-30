@@ -214,7 +214,6 @@ def test_every_phase1_tree_is_refused(name):
 @pytest.mark.parametrize("name", [
     "agent_computer_sonnet5_effortmax_canary20260924_official",
     "agent_computer_gpt6astra_max_codex01534_canary20260924_official",
-    "agent_computer_sonnet5_effortmax_protocol361_official_kvm",
 ])
 def test_new_infra_trees_are_accepted(name):
     from benchmarks.osworld import config
