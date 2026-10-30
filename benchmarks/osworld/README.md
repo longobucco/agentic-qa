@@ -1,276 +1,150 @@
-# OSWorld
+# OSWorld-Verified: replication and harness interventions
 
-OSWorld (real Ubuntu desktop tasks) on the shared `core/`, running only the official protocol:
-alignment of the harness with the official OSWorld harness (xlang-ai/OSWorld @ `091f5ef`) and
-with the protocol published in the Claude Sonnet 5 System Card (361 tasks, 1080p, 100 steps, max
-effort, pass@1 over 5 runs). The baseline brain is `claude -p`; an independent replication uses
-GPT Astra through `codex exec`. The hands are the same MCP server exposing a single `computer`
-tool wrapping OSWorld's in-guest controller (screenshot + pyautogui), and the judge is OSWorld's
-own deterministic evaluator.
+Computer-use agents on OSWorld-Verified (369 tasks on a real Ubuntu desktop; xlang-ai/OSWorld at
+commit `091f5ef`), run through commercial agent CLIs on a cloud sandbox. Two models: Claude
+Sonnet 5 (Claude Code, `claude -p`) and GPT-6-Astra (Codex CLI 0.153.4, `codex exec`).
+
+**Research questions.** (1) Can the published OSWorld-Verified results be reproduced on a cloud
+sandbox with the official protocol? (2) What do the failures actually depend on: the agent, the
+environment, or the benchmark? (3) Which changes to the agent's harness, at a fixed model, improve
+the outcome without harming tasks the agent already solves or must refuse?
+
+## Protocol
+
+| element | setting |
+|---|---|
+| population | OSWorld-Verified minus the 8 tasks that need a personal login: 361 tasks |
+| observation / action | 1920×1080 screenshots; one MCP tool, `computer`, translated with upstream's own action parser |
+| budget | 100 steps, 4 h per task; 5 runs per task (Phase 2), 3 or 5 (Phase 3, per task set) |
+| instructions | upstream Claude system prompt, vendored verbatim (`official_protocol.py`) |
+| termination | upstream rule: `[INFEASIBLE]` or a fail action → FAIL, otherwise DONE |
+| scoring | official evaluators at `091f5ef`; the task set, the evaluators and the guest controller are pinned to that commit |
+| isolation | empty working directory; no user settings, hooks, plugins or memory; built-in CLI tools denied; pinned CLI versions; any tool other than `computer` ends the run as FAILURE |
+
+### Deviations from the official setup
+
+| deviation | reason | effect |
+|---|---|---|
+| Daytona container (`docker/Dockerfile.osworld`) instead of the official QEMU VM | no KVM host available | guest differences, corrected in layers below; residual ones are flagged per task |
+| image layers `pkgfix` (26/09), `pkgfix2` (28/09) | packages and the D-Bus session address that tasks call in their own setup | Phase 2 runs on `pkgfix2` |
+| image layer `pkgfix3` (19/10) | configuration redirected away from `~/.config`, LibreOffice save dialog, missing `bc`: tasks unsolvable for any agent | Phase 3 runs on `pkgfix3` only, in separate trees |
+| Codex read-only MCP-resource functions exempt from the tool-surface rule | cannot be disabled and cannot reach the guest | recorded per run as `agent_exempt_tool_calls` |
+| Codex clock tool exempt (H1, correction of 27/10) | cannot be disabled; the rule voided 22 runs without scoring them | the 20 clock-voided runs re-run in their own tree (`..._clockexempt_official`) |
+| live websites | some refuse the sandbox's datacenter address | not corrected (part of the benchmark); counted as environment-caused failures |
+
+## Definitions
+
+- **Verdict.** `eval.json` holds SUCCESS or FAILURE from the official evaluator. Other outcomes are
+  `ENVIRONMENT_ERROR` (task setup failed), `EVAL_ERROR` (scoring failed; `evaluate.py` never guesses
+  a verdict) and, in `infra_error.json`, `RATE_LIMITED` / `INFRA_FLAKE` / `HARNESS_ERROR`, which
+  are retried and never scored.
+- **Informative run.** A verdict produced by the agent. Excluded: runs without a verdict, runs
+  killed by the CLI or the API, evaluator and environment errors, and no-op passes (the checker
+  accepts the untouched initial state). All pass rates below are over informative runs.
+- **Incidental SUCCESS.** A SUCCESS whose agent did not finish cleanly (`agent_clean_finish=False`):
+  reported separately by `report.py`.
+
+## Results
+
+**Phase 2: replication with the official protocol** (28/09–14/10/2026, guest `pkgfix2`, main trees
+`..._protocol361img3_official`). Both campaigns were stopped by subscription quota before covering
+the population, so these are not pass@1 over 361 × 5 runs.
+
+| | Claude Sonnet 5 | GPT-6-Astra |
+|---|---|---|
+| tasks with an informative verdict | 261 / 361 | 155 / 361 |
+| informative runs | 1,288 | 749 |
+| pass rate | 71.3% (918) | 72.8% (545) |
+
+The Astra figure includes the clock correction; with the original rule it is 71.4% (535/749).
+On the corrected guest, the tasks hit by the image defects go from 0/35 to 25/35 passes (Astra)
+and from 58/168 to 130/170 (Sonnet 5); a null agent that only answers DONE passes 7 of 350 tasks,
+which are flagged in every analysis. Failure analysis, figures and tables: `campaign_analysis/`.
+
+**Phase 3: harness interventions** (from 21/10/2026, guest `pkgfix3`). Each arm only adds text or
+one rule to the official protocol, runs in its own results tree, records the hash of what it added
+in every run, and is compared task by task with A0 on the same sets. Task sets, with their
+selection rules, are in `data/phase3_sets.json`; criteria are fixed before the runs.
+
+| arm | adds to the official protocol | task sets |
+|---|---|---|
+| `a0` | nothing (baseline on `pkgfix3`) | classF, infeasible, controls, classP, heldoutH |
+| `e1card` | capability card: the desktop is minimal, settings are reachable from a terminal, probe before `[INFEASIBLE]` | classF, infeasible, controls |
+| `e1bounce` | the card, plus one bounce of an `[INFEASIBLE]` given without a probe | classF, infeasible, controls |
+| `e1card2` | the card with the infeasibility rule closed (no workarounds after a confirmed gap) | classF, infeasible, controls |
+| `e1b` | the card plus rules on how results are checked | classP, heldoutH (held out), controls, infeasible |
+
+Results of Phase 3 are reported once each experiment is complete.
 
 ## Layout
-- `runners/agent_computer.py`: `claude -p` + MCP; scores with OSWorld's evaluators while live
-- `runners/common.py`: policy-free primitives (MCP config, telemetry, provenance, the post-run
-  watchdog, transcript capture, scoring) shared by both runners
-- `runners/gpt_astra.py`: `codex exec` + the same MCP/evaluator; separate Astra result tree
-- `runners/astra_common.py`: Codex-specific primitives (CLI/model preflight, provenance, rollout
-  parsing) shared by `gpt_astra.py`
-- `official_protocol.py`: vendored upstream Claude system prompt and DONE/[INFEASIBLE]
-  termination rule
-- `env/osworld_eval.py`: delegates scoring to OSWorld's official evaluators (desktop_env)
-- `env/sandbox.py`: one Daytona desktop per task (+ `up`/`down`/`list`/`resume` CLI)
-- `env/controller.py`: HTTP client to the in-guest controller
-- `env/http_forwarder.py`, `env/cdp_forwarder.py`: loopback relays so evaluator getters that
-  build their own `http://`/CDP URL can reach the guest through the Daytona proxy
-- `mcp/server.py`, `mcp/official_computer.py`: the MCP server; serves exactly one tool,
-  `computer`, translating actions with upstream's own `parse_actions_from_tool_call`
-- `mcp/_upstream_actions.py`: vendored upstream action parsing (generated, do not edit)
-- `mcp/probe_server.py`: stub MCP server for `analysis/screenshot_delivery_probe.py`
-- `evaluate.py`: fallback when the official evaluator is unreachable; always `EVAL_ERROR`, never
-  a guessed verdict
-- `benchmark.py`: wires both runners onto `core.run.Benchmark`
-- `campaign.py`: campaign rules (rounds, resume, backoff, stop, signals) for the 361 × 5 driver
-  `scripts/g_official361_driver.py`; `campaign_daytona.py`: the Daytona backend it plugs in
-- `config.py`: env-derived configuration; refuses Phase 1 knobs and non-official
-  protocol/population values at import time; the result-tree naming and the new-infra guard
-- `tasks.py`: loads task specs, excludes login tasks, buckets by app
-- `report.py`: prints pass rate, mean reward and tool-surface violations for a results tree
-- `astra_official361_lock.json`: the frozen Astra campaign lock (model, effort, Codex version,
-  population hash, tool policy)
-- `analysis/screenshot_delivery_probe.py`: does each agent CLI deliver a full-resolution
-  screenshot to the model (local only, no sandbox)
-- `data/download_data.py`, `data/download_evaluators.py`: fetch the pinned task set and
-  evaluators
-- `docker/Dockerfile.osworld`: the desktop image (base for the sandbox); `Dockerfile.osworld-pkgfix`
-  and `-pkgfix2`: the thin layers of the pinned digest (missing CLI tools; D-Bus session bus);
-  `start.sh`, `supervisord.conf`, `openbox-rc.xml` and the `timedatectl`/`vlc` shims used by the image
-- `campaign_analysis/`: offline cross-arm analysis of the archived campaigns, with a summary of
-  the two official-protocol campaigns in its README
-- `tests/`: unit tests (no sandbox, no model); `requirements.txt`: dependencies
-- `notebooks/dataset_exploration.ipynb`: exploratory notes on the task set
 
-## Setup
+| path | role |
+|---|---|
+| `runners/agent_computer.py`, `runners/gpt_astra.py` | Claude Code and Codex runners; `common.py` and `astra_common.py` hold shared primitives (MCP config, telemetry, provenance, scoring) |
+| `runners/null_agent.py` | null-agent control: setup and scoring with no action |
+| `official_protocol.py` | vendored upstream system prompt and termination rule |
+| `arms.py`, `phase3.py` | Phase 3 arm texts; experiment table and launcher |
+| `mcp/` | MCP server exposing the single `computer` tool (`_upstream_actions.py` is vendored) |
+| `env/` | Daytona sandbox, controller client, official evaluator bridge, loopback/CDP relays |
+| `config.py` | env-derived configuration; refuses non-official values; results-tree naming; image pins |
+| `campaign.py`, `campaign_daytona.py` | Phase 2 campaign driver core and its Daytona backend (`scripts/g_official361_driver.py`) |
+| `report.py`, `evaluate.py`, `tasks.py`, `benchmark.py`, `run.py` | report, scoring fallback, task loading, runner wiring, entry point |
+| `data/` | download scripts for the pinned tasks and evaluators; `phase3_sets.json` |
+| `docker/` | guest image and its layers (`pkgfix`, `pkgfix2`, `pkgfix3`) |
+| `campaign_analysis/` | offline analysis of the archived campaigns (generator, figures, tables) |
+| `analysis/` | screenshot-delivery probe (do the CLIs pass the full 1080p frame?) |
+| `tests/` | offline unit tests (no sandbox, no model) |
+| `astra_official361_lock.json` | frozen Astra campaign lock, checked by the preflight |
+
+## Reproduction
+
 ```
 pip install -r benchmarks/osworld/requirements.txt
-docker build --platform linux/amd64 -f benchmarks/osworld/docker/Dockerfile.osworld -t <registry>/osworld-ab:latest .
-docker push <registry>/osworld-ab:latest
-docker inspect <registry>/osworld-ab:latest --format '{{index .RepoDigests 0}}'   # -> pin THIS
-export OSW_IMAGE=<registry>/osworld-ab@sha256:...      # DAYTONA_API_KEY goes in the repo .env
 python -m benchmarks.osworld.data.download_data
-python -m benchmarks.osworld.data.download_evaluators
-```
-`config.py`'s default `IMAGE` is already pinned to a known-good digest; only override `OSW_IMAGE`
-if you rebuild the image yourself.
-
-`download_evaluators` fetches `desktop_env/evaluators/` at the same upstream commit as the tasks
-and the guest image; scoring uses it in preference to the installed `desktop_env` release and
-records which one produced each verdict (`provenance.evaluator_commit`). Skip it and scoring
-falls back to the installed release, which cannot score six of the verified tasks at all.
-The pinned evaluators are mandatory: config refuses to start with `OSW_PINNED_EVALUATORS=0`.
-
-Tests (after the two downloads, which some tests read): `python -m pytest benchmarks/osworld/tests core/tests`.
-
-## Running the official protocol
-
-Both CLIs run the same protocol: the MCP server exposes one `computer` tool, the upstream
-Claude system prompt is vendored verbatim in `official_protocol.py`, termination follows the
-upstream rule (`[INFEASIBLE]` / fail action -> FAIL, else DONE), and CLI sessions are isolated
-(empty temp cwd; no user settings, hooks, plugins or memory; built-in tools denied; pinned CLI
-versions). Use of any tool other than `computer` is a terminal FAILURE, never re-run;
-unverifiable runs and missing MCP servers are retryable infra errors, never scored.
-
-The population is always the published OSWorld-Verified set minus the 8 login tasks (361 of
-369) -- `OSW_POPULATION` may only assert `verified361` (or be unset).
-
-### Claude Code (`agent_computer`)
-
-```
-export OSW_MODEL=claude-sonnet-5      # required: preflight refuses to run unpinned
-python -m benchmarks.osworld.env.sandbox up               # provision a desktop
-python -m benchmarks.osworld.run --per-bucket 1 --limit 6
-python -m benchmarks.osworld.report
+python -m benchmarks.osworld.data.download_evaluators      # mandatory: pinned evaluators
+python -m pytest benchmarks/osworld/tests core/tests
 ```
 
-Results land under `results/agent_computer_sonnet5_official/` -- the results tree is named
-`agent_computer_<model-slug>[_effort<x>][_<suffix>]_official[_kvm]`. `config.assert_new_infra_system`
-guards every tree `benchmark.build()` and `report.py` write or read: only a name matching that
-pattern is accepted; any Phase 1 tree name (e.g. `agent_computer`, `agent_computer_astra`,
-`verify_replan_sonnet5`) is refused with a pointer to the tag `phase1-daytona-frozen`.
-
-### GPT Astra (`agent_computer_gpt6astra_..._official`, requires a logged-in `codex` CLI)
+`DAYTONA_API_KEY` goes in the repository `.env`; Codex must be logged in for Astra. The guest image
+is pinned by digest in `config.py`; `OSW_IMAGE` is needed only for a rebuilt image (a tree suffix
+with its own image, such as `pkgfix3`, selects it and refuses any other).
 
 ```
-python -m benchmarks.osworld.run --system agent_computer_gpt6astra_max_codex01534_official \
-  --per-bucket 1 --limit 6
-python -m benchmarks.osworld.report agent_computer_gpt6astra_max_codex01534_official
+# one task, Claude Sonnet 5, official protocol
+OSW_MODEL=claude-sonnet-5 python -m benchmarks.osworld.run --ids <task-id>
+# Phase 2 campaign (361 × 5, resumable, quota-aware; Astra also needs OSW_ASTRA_REASONING_EFFORT)
+BACKEND=daytona ARM=sonnet|astra PARALLEL=K MAX_HOURS=H python scripts/g_official361_driver.py
+# Phase 3: list the declared groups, run one (resumes from disk)
+python -m benchmarks.osworld.phase3 list
+python -m benchmarks.osworld.phase3 run astra e1card2 classF
+# null agent on the pkgfix3 guest
+OSW_SYSTEM_SUFFIX=pkgfix3 python -m benchmarks.osworld.run --system agent_computer_nullagent_pkgfix3_official
+# report (pass rate, official mean reward, incidental successes, tool-surface violations)
+python -m benchmarks.osworld.report <tree>
+python -m benchmarks.osworld.report --compare <tree-a> <tree-b>
 ```
 
-The model, effort and Codex CLI default to `gpt-6-astra`, `max` and `0.153.4`; the preflight
-validates all three (plus the tool policy and population hash) against
-`astra_official361_lock.json` and refuses to start on any mismatch. Non-default model/effort
-combinations get a different result-tree name automatically, so a campaign override never pools
-into or overwrites another one's results. Codex's JSONL trajectory is saved directly as
-`conversation.jsonl`. The runner disables Codex's built-in shell/browser/computer/app and
-auxiliary tool surfaces and injects only the OSWorld MCP; the sandboxed Code Mode host remains
-enabled because Astra uses it to invoke MCP tools. Approval prompts are bypassed because this is
-an unattended benchmark; this does not widen the tool surface, and the disposable Daytona
-desktop is the external sandbox. Codex's own read-only MCP-resource functions
-(`list_mcp_resources`/`list_mcp_resource_templates`/`read_mcp_resource`, plain or through Code
-Mode's `exec.*`) cannot be removed and cannot reach the guest, so they are exempt from the
-tool-surface rule (user decision 2026-09-25) and recorded per run in `result.json` as
-`agent_exempt_tool_calls` instead of failing the run.
+Results land in `results/<tree>/<task>/run_<k>/`: `result.json` (with `provenance`: image digest,
+evaluator commit, model, effort, arm and its text hash, harness commit), `eval.json`,
+`agent_output.txt`, `final.png`; transcripts and raw artefacts stay local.
 
-Resume a sandbox Daytona auto-stopped:
-```
-python -m benchmarks.osworld.env.sandbox resume <sandbox-id>
-```
-Spike without provisioning (drive a desktop you already have up):
-```
-OSW_CONTROLLER_URL=http://<url>:5000 python -m benchmarks.osworld.run --ids <task-id>
-```
+## Data and code availability
 
-## Status: campaigns interrupted (2026-10-14)
-
-The official-protocol campaigns (Claude Sonnet 5 and GPT Astra, Daytona backend) were stopped
-before completing the 361 tasks x 5 runs. The code is frozen at the tag
-`phase2-official361-daytona-frozen`. The KVM backend was abandoned (only Daytona runs are
-needed); its tag was removed on 2026-10-21 and kept as a git bundle outside the repo. Raw results and full transcripts
-(`conversation.jsonl`) are not in git; they were archived outside the repo on 2026-10-14
-(byte-for-byte verified), together with a cross-arm analysis of all campaigns (`campaign_analysis/`).
-
-Counts below are for result trees named `*_official`, `run_<k>` directories only (archived
-`run_*_legacy` directories excluded). "Valid verdict" = `eval.json` with `SUCCESS` or `FAILURE`;
-the other runs ended as `ENVIRONMENT_ERROR`/`EVAL_ERROR` or never produced a verdict.
-
-| campaign tree (`..._official`) | tasks tried | tasks with a verdict | run dirs | valid verdict | SUCCESS | FAILURE | env/eval error | no verdict |
-|---|---|---|---|---|---|---|---|---|
-| `agent_computer_sonnet5_effortmax_protocol361img3` (main) | 274 | 264 | 1,370 | 1,307 | 918 | 389 | 21 | 42 |
-| `agent_computer_gpt6astra_max_codex01534_protocol361img3` (main) | 169 | 156 | 845 | 755 | 540 | 215 | 3 | 87 |
-| `agent_computer_sonnet5_effortmax_cc21282` | 26 | 26 | 26 | 26 | 17 | 9 | 0 | 0 |
-| `agent_computer_sonnet5_effortmax_canary20260924` | 15 | 5 | 15 | 5 | 5 | 0 | 0 | 10 |
-| `agent_computer_gpt6astra_max_codex01534_canary20260924` | 15 | 14 | 15 | 14 | 9 | 5 | 1 | 0 |
-| `agent_computer_gpt6astra_max_codex01534_protocol361` | 11 | 9 | 13 | 10 | 7 | 3 | 0 | 3 |
-| `..._protocol361img2` (Sonnet 5 / Astra) | 4 / 4 | 4 / 4 | 4 / 4 | 4 / 4 | 3 / 3 | 1 / 1 | 0 / 0 | 0 / 0 |
-| `..._smoke20260924` (Sonnet 5 / Astra) | 1 / 1 | 1 / 1 | 1 / 1 | 1 / 1 | 1 / 1 | 0 / 0 | 0 / 0 | 0 / 0 |
-
-Main campaigns, over valid-verdict runs: Sonnet 5 918/1,307 = 70.2 %, Astra 540/755 = 71.5 %.
-These are **not** the protocol's pass@1 over 361 tasks x 5 runs: the Sonnet 5 campaign has a
-verdict for 264 of 361 tasks (73 %), Astra for 156 (43 %), with up to 5 runs each. Tried tasks
-without a verdict stopped on quota (`RATE_LIMITED`); the main trees recorded 3,679 (Sonnet 5) and
-6,998 (Astra) `RATE_LIMITED` retry entries in `infra_error.json`, plus 100 / 75 `INFRA_FLAKE`.
-
-Detailed cross-arm analysis (old and new infrastructure, Claude and Astra; failure causes verified
-on transcripts, timing, tokens, cost, task-level flips): `campaign_analysis/` (start from
-`campaign_analysis/README.md`, which summarises both official campaigns; the detailed documents are local). Main points: the guest desktop is a bare Openbox session; some
-Phase-1 results are not agent verdicts (overwritten transcripts, aborted CLIs, evaluator errors,
-VS Code/Thunderbird profile paths); a few tasks the same GUI sequence passes in Phase 1 fail in the new
-infrastructure (GIMP settings, Writer save); 20 Astra runs were scored `FAILURE` only for calling the
-clock tool. Read the pass rates above as a partial result under a degraded environment, not as a
-replication of the published numbers.
-
-## Campaigns
-
-`scripts/g_official361_driver.py` runs the full official-protocol campaign (361 tasks x 5 runs)
-against the Daytona backend end to end -- parallel shards, quota-safe, preflight first. The
-rules (rounds, resume, backoff, stop, signals) live in `benchmarks/osworld/campaign.py`; the
-backend module (`benchmarks/osworld/campaign_daytona.py`) supplies its own protocol variables,
-extra refusals and the sweep of its own orphaned sandboxes.
-
-```
-BACKEND=daytona ARM=sonnet|astra PARALLEL=K MAX_HOURS=H \
-  .venv/bin/python scripts/g_official361_driver.py
-... --dry-run    # print the planned batches, run nothing
-```
-
-`BACKEND=daytona` is the only backend wired up on this branch. For `ARM=astra`,
-`OSW_ASTRA_REASONING_EFFORT` must be set explicitly by the caller -- it is a campaign decision,
-never a default. The results tree is named
-`agent_computer_sonnet5_effortmax_protocol361img3_official` for Sonnet, or
-`agent_computer_gpt6astra_<effort>_codex01534_protocol361img3_official` for Astra. The Daytona
-guest image was re-pinned on 26/09/2026 (the pkgfix layer adding unzip/zip/jq/psmisc/xsel/
-gnome-terminal, six commands 23 of the 361 tasks needed) and again on 28/09/2026 (the pkgfix2
-layer fixing the guest's D-Bus session bus to the official VM's address,
-unix:path=/run/user/1000/bus, which 8 of the 361 tasks hardcode in their own setup or evaluator).
-Earlier Daytona trees (`...protocol361_official`, `...protocol361img2_official`, the canaries)
-were produced on previous digests and must not be pooled with runs on the new one.
-
-The driver resumes from disk: a restarted process re-derives its pending `(task, run)` units from
-what's already on disk (`core.results.is_done`), so no `--force` flag or manual bookkeeping is
-needed. If >= 50% of the units attempted in a round were rate-limited, it backs off 30 minutes
-when any of them reports an exhausted subscription quota (the CLI's "You've hit your ... limit"
-message, recorded as `quota_exhausted` in `infra_error.json`; quota windows reset on the order of
-hours), and otherwise, for a short 429 throttle, waits 5 minutes, doubling on each consecutive
-throttled round up to 30. It stops (exit 3) on a systemic
-or repeated non-quota failure, a child that exited non-zero without writing any
-`infra_error.json`, an `AUTH_ERROR`, or a unit already stuck from an earlier session -- see the
-module docstring in `campaign.py` for the exact rules.
-
-`OSW_IMAGE` must be left unset: the driver's harness-knob table pins it at `""`, which means
-`config.IMAGE`'s pinned digest; any other value is refused before a single sandbox starts. Every
-sandbox a driver child provisions is labelled with that driver run's id
-(`env/sandbox.DRIVER_RUN_LABEL`), and after every round and on exit the driver deletes only the
-sandboxes carrying its own run id -- another driver's (or a manually started) sandbox is never
-touched, even if the server-side label filter were ever to leak one.
-
-Everything the driver and its children print goes to `scripts/g_official361_<arm>_daytona.log`.
-
-## Reporting
-
-`python -m benchmarks.osworld.report [<system>]` (defaults to the current pinned system) prints:
-- the pass rate and per-bucket breakdown (`core.reporting.summarize`);
-- OSWorld's own score, mean reward with partial credit, next to the binary success rate
-  (`official_mean_reward`/`_mean_reward_line`) -- the number comparable with published OSWorld
-  scores;
-- the clean-vs-incidental breakdown (a SUCCESS whose agent didn't cleanly finish);
-- tool-surface violations: runs the official protocol scored a terminal FAILURE because the
-  agent used a tool other than `computer` (`tool_surface_violation_count`), reported separately
-  so it stays distinguishable from an ordinary agent FAILURE.
-
-`report.py --compare <system-a> <system-b>` runs an A/B comparison across two result trees.
-
-## Phase 1
-
-The earlier Daytona harness -- its arms (verify-replan, grounding, open-book), drivers and tests
--- is frozen under the git tag `phase1-daytona-frozen`. Its results are not in git. This branch
-carries only the official-fidelity infrastructure described above.
+- Git tracks the code, the task sets and the analysis outputs; Phase 1 code is frozen under the tag
+  `phase1-daytona-frozen`, the Phase 2 harness under `phase2-official361-daytona-frozen`.
+- Raw results, full transcripts and the per-run analysis tables are archived outside the repository
+  (byte-for-byte verified); the Phase 3 trees are mirrored there continuously.
+- Every run records its harness commit from 30/10/2026; earlier runs are matched to the code by
+  their timestamps against the git history.
 
 ## Notes
-- `OSW_RELEASE=verified` only (369 tasks, xlang-ai/OSWorld). `v2` isn't wired up (different
-  schema, own `desktop_env`, see `data/download_data.py`) and fails loudly rather than silently
-  downloading the wrong data.
-- Serial: one Daytona sandbox per task, `concurrency_safe=False`. Disk caps at 10GB.
-- Three things are pinned to one upstream commit, and they have to be bumped together: the task
-  set (`data/download_data.py::UPSTREAM_COMMIT`), the guest server image
-  (`docker/Dockerfile.osworld`) and the evaluators themselves (`data/download_evaluators.py`).
-- Upstream getters that build their own `http://{ip}:{port}` URL reach the guest through a
-  loopback forwarder (`env/http_forwarder.py`); a Chrome CDP getter needing `ws://`/`http://`
-  discovery of its own is served the same way through `env/cdp_forwarder.py`.
-- Scoring requires `desktop_env` importable. `evaluate.py` is the fallback and only ever reports
-  `EVAL_ERROR`: no reimplemented metric is verified to agree with the real one, so it never
-  produces a SUCCESS/FAILURE that could pass as an official verdict.
-- Daytona can auto-stop a sandbox well before `auto_stop_interval`, and never auto-restarts the
-  controller (its own init owns PID 1, not this image's CMD); `env/sandbox.py` handles both on
-  every path (`provision()`, `OSW_SANDBOX_ID` reuse, `resume` CLI).
-- `config.IMAGE` is pinned by digest, not `:latest`: Daytona caches by tag, so a mutable tag can
-  silently serve a stale build. Update the digest on every rebuild+push.
-- `OSW_MAX_STEPS=100` / `OSW_TASK_TIMEOUT=14400` (upstream's official-protocol step budget and
-  task timeout), pinned independently of the browser benchmarks' budget.
-- `result.json` records `agent_clean_finish` (did the agent print `ANSWER:` without erroring).
-  A SUCCESS with `agent_clean_finish=False` gets a `note` on `eval.json` ("incidental": the
-  desktop state happened to already satisfy the evaluator). `report.py` prints the
-  clean-vs-incidental breakdown separately from the pooled rate.
-- Three outcomes besides SUCCESS/FAILURE, all excluded from pass-rate/variance/per-bucket stats:
-  `ENVIRONMENT_ERROR` (task config setup failed; the agent was never meaningfully run),
-  `EVAL_ERROR` (agent ran, scoring itself failed or was never verified trustworthy),
-  `INFRA_FLAKE`/`HARNESS_ERROR` (recorded in `infra_error.json`, not `eval.json`, so resume
-  retries them). See `core/reporting.py::summarize`.
-- Chrome/vscode run through a wrapper (`/usr/bin/google-chrome`, `/usr/bin/code`) that injects
-  `--no-sandbox --user-data-dir=...`, since neither binary starts as launched by the task's own
-  command when run as root.
-- `report.py` prints who scored each run (`official` vs `offline_fallback`); any
-  `offline_fallback` run is `EVAL_ERROR`, never blended into the pass-rate.
-- Reusing a desktop across tasks (`OSW_CONTROLLER_URL` / `OSW_SANDBOX_ID`) doesn't reset state
-  between tasks and warns once per process; don't treat results collected this way as a valid
-  pass-rate.
-- Cost/time: no fixed budget here; pull current numbers from `report.py` against your own
-  `results/` before sizing a `--runs N` campaign.
+
+- The task set, the guest controller and the evaluators are bumped together (`data/download_data.py`,
+  `docker/Dockerfile.osworld`, `data/download_evaluators.py`).
+- Images are pinned by digest: Daytona caches by tag, so a mutable tag can serve a stale build.
+- Reusing a desktop across tasks (`OSW_CONTROLLER_URL`, `OSW_SANDBOX_ID`) does not reset state;
+  such runs are for debugging, not for pass rates.
+- Chrome and VS Code run through wrappers (`--no-sandbox`, explicit user-data directory), as both
+  refuse to start as root.
+- Daytona may stop a sandbox early and never restarts its controller; `env/sandbox.py` handles both
+  (`python -m benchmarks.osworld.env.sandbox resume <id>`).
