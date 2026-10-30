@@ -27,6 +27,21 @@ from core import procgroups
 CHECKOUT_ROOT = Path(__file__).resolve().parents[3]
 
 
+def _harness_revision(root=CHECKOUT_ROOT):
+    """The commit of the checkout and whether tracked files differ from it; never fails a run."""
+    try:
+        git = lambda *a: subprocess.run(["git", "-C", str(root), *a], capture_output=True,
+                                        text=True, timeout=10, check=True).stdout.strip()
+        return {"harness_commit": git("rev-parse", "HEAD"),
+                "harness_dirty": bool(git("status", "--porcelain", "--untracked-files=no"))}
+    except Exception:
+        return {"harness_commit": None, "harness_dirty": None}
+
+
+# Read once at import: the code a runner process loaded, even if the checkout changes later.
+HARNESS_REVISION = _harness_revision()
+
+
 # Written by the official MCP server into the run's out dir (OSW_MCP_STATE_FILE): proof it
 # started, plus the steps it counted (mcp/official_computer.write_state).
 MCP_STATE_FILE = "mcp_state.json"
@@ -204,6 +219,7 @@ def _provenance(task, ctrl, started_at):
         "model_requested": config.MODEL or None,
         "controller_url": getattr(ctrl, "base_url", None) or config.CONTROLLER_URL or None,
         "release": config.RELEASE,
+        **HARNESS_REVISION,
         # Who computed the verdict. The task set and the guest image were pinned long before
         # the evaluator library was (see data/download_evaluators.py), so a pass rate is only
         # comparable against another one carrying the same value here.
