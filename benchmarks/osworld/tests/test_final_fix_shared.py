@@ -187,7 +187,7 @@ def test_claude_run_records_steps_and_passes_the_state_file(monkeypatch, tmp_pat
     captured = {}
     real = common._mcp_config
 
-    def spy(url, out_dir=None):
+    def spy(url, out_dir=None, extra_env=None):
         captured["out_dir"] = out_dir
         return real(url, out_dir)
     monkeypatch.setattr(agent_computer, "_mcp_config", spy)

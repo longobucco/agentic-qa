@@ -99,6 +99,27 @@ class Controller:
         except Exception:
             return out
 
+    def run(self, command, *, timeout=120):
+        """POST /execute and return the guest's whole record ({status, output, error, returncode}
+        or {status: error, message}). Only a connection that never reached the guest is resent:
+        an HTTP error (the guest answers 500 when its own 120 s limit kills the command) comes back
+        as a record, and a read timeout is raised, since either may follow side effects."""
+        def call():
+            req = urllib.request.Request(
+                f"{self.base_url}/execute",
+                data=json.dumps({"command": command, "shell": False}).encode(),
+                headers={"Content-Type": "application/json"})
+            try:
+                with urllib.request.urlopen(req, timeout=timeout) as r:
+                    return json.loads(r.read().decode())
+            except urllib.error.HTTPError as e:
+                body = e.read().decode(errors="replace")
+                try:
+                    return json.loads(body)
+                except ValueError:
+                    return {"status": "error", "message": f"HTTP {e.code}: {body[:500]}"}
+        return _with_retry(call, _RETRYABLE_NO_TIMEOUT)
+
     def read_file(self, path):
         return self._post_form("/file", {"file_path": path})   # returns raw bytes
 

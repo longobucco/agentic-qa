@@ -19,7 +19,7 @@ from pathlib import Path
 from benchmarks.osworld import arms, config, official_protocol, tasks
 from benchmarks.osworld.env import osworld_eval
 from benchmarks.osworld.runners.common import (
-    _a11y_health, _action_history, _agent_telemetry, _annotate_incidental, _bounded,
+    _a11y_health, _action_history, _agent_telemetry, _annotate_incidental, _bounded, arm_tool_env,
     _capture_eval_state, _environment_error_rec, _evaluate_with_retry, _evaluator_provenance,
     _cli_network_error, _mcp_config, _model_mismatch, _POST_RUN_TIMEOUT_S, _provenance,
     _rate_limit_infra_rec, _rate_limit_result_rec, _save_conversation_transcript, _score,
@@ -50,6 +50,11 @@ CLAUDE_BUILTIN_TOOLS = [
     "Glob", "Grep", "ListMcpResourcesTool", "ReadMcpResourceTool", "ReadMcpResourceDirTool",
 ]
 OFFICIAL_TOOL = "mcp__osworld__computer"
+
+
+def allowed_tools():
+    """`computer`, plus the MCP tools the declared arm adds (arms.ARM_TOOLS)."""
+    return [OFFICIAL_TOOL, *(f"mcp__osworld__{t}" for t in arms.tools(config.ARM))]
 # Official-run isolation from host context (hooks, plugins, user/project settings), verified
 # live on CLI 2.1.280 (task-6-report.md, fix round 1), re-verified by the live preflight probe
 # on 2.1.282 (25/09/2026): no setting sources means no user
@@ -210,12 +215,13 @@ def _official_audit(out, transcript):
         return unknown
     try:
         offered = claude_transcript_offered_tools(path)
+        allowed = allowed_tools()
         return {"agent_non_computer_tool_calls":
-                    [n for n in claude_transcript_tool_names(path) if n != OFFICIAL_TOOL],
+                    [n for n in claude_transcript_tool_names(path) if n not in allowed],
                 "agent_context_leaks": claude_transcript_context_leaks(path),
                 "agent_offered_tools": offered,
                 "agent_unexpected_offered_tools":
-                    None if offered is None else [t for t in offered if t != OFFICIAL_TOOL]}
+                    None if offered is None else [t for t in offered if t not in allowed]}
     except OSError:
         return unknown
 
@@ -251,7 +257,7 @@ def _official_cmd_kwargs(task):
     return {
         "prompt": task["instruction"],
         "system_prompt": arms.system_prompt(_official_system_prompt(), config.ARM),
-        "allowed_tools": [OFFICIAL_TOOL],
+        "allowed_tools": allowed_tools(),
         "max_turns": official_max_turns(),
         "extra": ["--disallowedTools", *CLAUDE_BUILTIN_TOOLS, "--strict-mcp-config",
                   *CLAUDE_ISOLATION_FLAGS],
@@ -317,7 +323,8 @@ def _maybe_bounce(meta, workdir, controller_url, out, task):
     if not _bounce_needed(claude_session_file(meta["session_id"]), state.get("steps_used")):
         return None
     cfg = _mcp_config(controller_url, out_dir=out,
-                      extra_env={"OSW_STEPS_USED_START": str(state.get("steps_used"))})
+                      extra_env={**arm_tool_env(config.ARM),
+                                 "OSW_STEPS_USED_START": str(state.get("steps_used"))})
     try:
         official = _official_cmd_kwargs(task)
         official.pop("prompt")
@@ -345,7 +352,7 @@ def run(task, *, env, out, refs=None, dry=False):
         return ""
 
     # The MCP server also writes its liveness/step state into this run's dir.
-    mcp_config_path = _mcp_config(controller_url, out_dir=out)
+    mcp_config_path = _mcp_config(controller_url, out_dir=out, extra_env=arm_tool_env(config.ARM))
     official = _official_cmd_kwargs(task)
     cmd = build_claude_cmd(
         official.pop("prompt"),

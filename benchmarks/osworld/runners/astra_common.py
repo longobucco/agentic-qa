@@ -237,7 +237,7 @@ _EXEC_TOOL_ACCESS_RE = re.compile(
     r"|(?:\?\.)?\s*\[\s*(['\"`])([^'\"`\\]*)\3\s*\])")
 
 
-def _exec_tool_refs(code):
+def _exec_tool_refs(code, allowed=()):
     """Tool names an exec script reaches through `tools`, other than the computer tool. Fails
     closed: any mention of `tools` that is not a direct access with a literal name (destructuring,
     aliasing, a computed key, a bare reference...) is `<dynamic>`, since its target can't be
@@ -247,18 +247,19 @@ def _exec_tool_refs(code):
         access = _EXEC_TOOL_ACCESS_RE.match(code, match.end())
         name = next((g for g in (access.group(1), access.group(2), access.group(4))
                      if g is not None), None) if access else None
-        if name != CODEX_OFFICIAL_NESTED_TOOL:
+        if name != CODEX_OFFICIAL_NESTED_TOOL and name not in {f"mcp__osworld__{t}" for t in allowed}:
             refs.append(name if name is not None else "<dynamic>")
     return refs
 
 
-def codex_rollout_tool_calls(path):
+def codex_rollout_tool_calls(path, allowed=()):
     """Tools other than `computer` the model called in a session, in order, from Codex's rollout.
     Needed because Code Mode calls never reach the `exec --json` stream (verified live on
     0.153.4: an exec call emits no item at all; only the MCP calls it makes do): every function
     call other than CODEX_EXEC_PLUMBING, and every use of `tools` in an exec script other than a
     direct access to the computer tool, as `exec.<name>` -- `exec.<dynamic>` when the target can't
     be read statically (_exec_tool_refs), so it can't hide behind destructuring or an alias.
+    `allowed` names the MCP tools a declared arm adds (e.g. run_command), which are not reported.
     Conservative on purpose: a script merely mentioning `tools` (a comment, a string) is flagged
     too, invalidating that run rather than letting an unverified call be scored."""
     names = []
@@ -274,7 +275,8 @@ def codex_rollout_tool_calls(path):
         if kind not in ("function_call", "custom_tool_call"):
             continue
         if name == "exec" and kind == "custom_tool_call":
-            names += [f"exec.{ref}" for ref in _exec_tool_refs(str(payload.get("input") or ""))]
+            names += [f"exec.{ref}" for ref in _exec_tool_refs(str(payload.get("input") or ""),
+                                                                allowed)]
         elif name not in CODEX_EXEC_PLUMBING:
             names.append(name)
     return names

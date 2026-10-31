@@ -35,6 +35,7 @@ EXPERIMENTS = {
     "e1bounce": (("classF", "infeasible", "controls"), "X5"),
     "e1b": (("classP", "heldoutH", "controls", "infeasible"), "X8"),
     "e1card2": (("classF", "infeasible", "controls"), "X10"),
+    "code": (("classF", "controls", "infeasible"), "X12"),
 }
 
 # Astra's A0 runs of 3ce045a0 belong to the archived pkgfix3 re-run (same tree and configuration),

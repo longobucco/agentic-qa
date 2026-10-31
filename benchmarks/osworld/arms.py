@@ -66,8 +66,24 @@ E1C2_CARD = E1_CARD.replace(
     "downloading software, or by building a substitute for what the task asks.")
 assert E1C2_CARD != E1_CARD
 
-ADDENDA = {"e1card": E1_CARD, "e1bounce": E1_CARD, "e1b": E1B_CARD, "e1card2": E1C2_CARD}
+# Declared code arm: the E1 card v2 plus a second tool, run_command, served by the same MCP server
+# and executed inside the guest (never on the harness host). Each call is one step of the budget.
+CODE_CARD = E1C2_CARD + (
+    "\n\nYou also have a second tool, run_command, which runs one bash command inside this Ubuntu "
+    "desktop and returns its exit code, standard output and standard error. Use it where a "
+    "terminal is the better route: reading or changing settings (gsettings, dconf, configuration "
+    "files), and inspecting or editing files. Each call counts as one step of your budget, like a "
+    "computer action. A command runs for at most `timeout` seconds (default 60, at most 110). If "
+    "you change an application's file with a command, close the application first and reopen "
+    "the file afterwards, so the application does not overwrite your change. After changing "
+    "something, check the result before you answer."
+)
+
+ADDENDA = {"e1card": E1_CARD, "e1bounce": E1_CARD, "e1b": E1B_CARD, "e1card2": E1C2_CARD,
+           "code": CODE_CARD}
 BOUNCE_ARMS = frozenset({"e1bounce"})
+# MCP tools an arm adds next to `computer` (mcp/server.py registers them only for that arm).
+ARM_TOOLS = {"code": ("run_command",)}
 
 
 def bounces(name):
@@ -90,6 +106,12 @@ def addendum(name):
     return ADDENDA[name]
 
 
+def tools(name):
+    """The MCP tools arm `name` adds next to `computer` (() for the official protocol)."""
+    addendum(name)
+    return ARM_TOOLS.get(name, ())
+
+
 def system_prompt(official, name):
     """The base instructions for a run: the official prompt, plus the arm's addendum if any."""
     extra = addendum(name)
@@ -101,6 +123,8 @@ def provenance(name):
     extra = addendum(name)
     rec = {"arm": name or None,
            "arm_addendum_sha256": hashlib.sha256(extra.encode()).hexdigest() if extra else None}
+    if tools(name):
+        rec["arm_tools"] = list(tools(name))
     if bounces(name):
         rec["arm_bounce_message_sha256"] = hashlib.sha256(BOUNCE_MESSAGE.encode()).hexdigest()
     return rec

@@ -19,7 +19,7 @@ from pathlib import Path
 
 import requests
 
-from benchmarks.osworld import config, evaluate, tasks
+from benchmarks.osworld import arms, config, evaluate, tasks
 from benchmarks.osworld.env import osworld_eval
 from core import procgroups
 
@@ -45,6 +45,8 @@ HARNESS_REVISION = _harness_revision()
 # Written by the official MCP server into the run's out dir (OSW_MCP_STATE_FILE): proof it
 # started, plus the steps it counted (mcp/official_computer.write_state).
 MCP_STATE_FILE = "mcp_state.json"
+# Written by the code arm's run_command (mcp/command_tool.py): one line per command.
+COMMAND_LOG_FILE = "commands.jsonl"
 
 
 def official_max_turns():
@@ -62,7 +64,14 @@ def mcp_child_env(out_dir=None):
            "OSW_SCREEN_HEIGHT": str(config.SCREEN_HEIGHT)}
     if out_dir is not None:
         env["OSW_MCP_STATE_FILE"] = str(Path(out_dir) / MCP_STATE_FILE)
+        env["OSW_COMMAND_LOG"] = str(Path(out_dir) / COMMAND_LOG_FILE)
     return env
+
+
+def arm_tool_env(arm):
+    """The MCP server env that enables the tools arm `arm` adds next to `computer` ({} if none)."""
+    added = arms.tools(arm)
+    return {"OSW_ARM_TOOLS": ",".join(added)} if added else {}
 
 
 def reset_mcp_state(out_dir):

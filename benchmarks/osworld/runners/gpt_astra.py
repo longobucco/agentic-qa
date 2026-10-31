@@ -16,7 +16,7 @@ from benchmarks.osworld import arms, config, official_protocol, tasks
 from benchmarks.osworld.env import osworld_eval
 from benchmarks.osworld.runners import astra_common
 from benchmarks.osworld.runners.common import (
-    mcp_child_env, mcp_unavailable_infra_rec, official_probe_already_passed, protocol_wait,
+    arm_tool_env, mcp_child_env, mcp_unavailable_infra_rec, official_probe_already_passed, protocol_wait,
     read_mcp_state, reset_mcp_state,
 )
 from benchmarks.osworld.runners.agent_computer import (
@@ -65,6 +65,11 @@ CODEX_TOLERATED_TOOLS = frozenset({
     "collaboration.send_message", "collaboration.spawn_agent", "collaboration.wait_agent",
 })
 OFFICIAL_CODEX_TOOL = "computer"
+
+
+def arm_mcp_tools():
+    """MCP tools the declared arm adds next to `computer` (arms.ARM_TOOLS): allowed, not violations."""
+    return frozenset(arms.tools(config.ASTRA_ARM))
 # Codex's own MCP-resource functions: read-only listing/reading of an MCP server's resources.
 # The OSWorld MCP server exposes none, so these can only return an empty list/error -- they
 # cannot reach the guest desktop, and upstream (the OSWorld protocol the human baseline follows)
@@ -116,7 +121,8 @@ def _non_computer_tool_calls(events):
         item = event.get("item") if isinstance(event, dict) else None
         if not isinstance(item, dict) or not _is_tool_item(item):
             continue
-        if item.get("type") == "mcp_tool_call" and item.get("tool") == OFFICIAL_CODEX_TOOL:
+        if item.get("type") == "mcp_tool_call" and (item.get("tool") == OFFICIAL_CODEX_TOOL
+                                                     or item.get("tool") in arm_mcp_tools()):
             continue
         names[item.get("id") or f"#{n}"] = (item.get("tool") or item.get("name")
                                             or item.get("type"))
@@ -161,7 +167,7 @@ def _official_cmd(prompt, workdir, controller_url, out_dir=None):
     return build_codex_cmd(
         prompt, model=config.ASTRA_MODEL, cwd=workdir, controller_url=controller_url,
         reasoning_effort=config.ASTRA_REASONING_EFFORT or None,
-        mcp_extra_env=mcp_child_env(out_dir),
+        mcp_extra_env={**mcp_child_env(out_dir), **arm_tool_env(config.ASTRA_ARM)},
         base_instructions=arms.system_prompt(_official_system_prompt(), config.ASTRA_ARM),
         extra_config=CODEX_ISOLATION_CONFIG,
     )
@@ -192,7 +198,8 @@ def _bounce_cmd(session_id, workdir, controller_url, out_dir, steps_used):
     return build_codex_cmd(
         arms.BOUNCE_MESSAGE, model=config.ASTRA_MODEL, cwd=workdir, controller_url=controller_url,
         reasoning_effort=config.ASTRA_REASONING_EFFORT or None,
-        mcp_extra_env={**mcp_child_env(out_dir), "OSW_STEPS_USED_START": str(steps_used)},
+        mcp_extra_env={**mcp_child_env(out_dir), **arm_tool_env(config.ASTRA_ARM),
+                       "OSW_STEPS_USED_START": str(steps_used)},
         base_instructions=arms.system_prompt(_official_system_prompt(), config.ASTRA_ARM),
         extra_config=CODEX_ISOLATION_CONFIG, resume_session=session_id,
     )
@@ -331,7 +338,8 @@ def _official_audit(events, transcript_saved, session_id):
             leaks = astra_common.codex_rollout_context_leaks(rollout)
             if transcript_saved:
                 all_calls = (_non_computer_tool_calls(events)
-                             + astra_common.codex_rollout_tool_calls(rollout))
+                             + astra_common.codex_rollout_tool_calls(
+                                 rollout, allowed=arm_mcp_tools()))
                 calls, exempt_calls = _partition_exempt(all_calls)
     except OSError:
         calls = exempt_calls = leaks = None

@@ -1,5 +1,6 @@
-"""OSWorld MCP server: the official `computer` tool, proxied to the in-guest controller. The
-runner launches it per task with OSW_CONTROLLER_URL set. Needs the `mcp` package.
+"""OSWorld MCP server: the official `computer` tool, proxied to the in-guest controller, plus the
+tools a declared arm adds (OSW_ARM_TOOLS). The runner launches it per task with OSW_CONTROLLER_URL
+set. Needs the `mcp` package.
 
     OSW_CONTROLLER_URL=http://host:5000 python -m benchmarks.osworld.mcp.server
 """
@@ -8,6 +9,7 @@ import os
 from mcp.server.fastmcp import FastMCP, Image
 
 from benchmarks.osworld.env.controller import Controller
+from benchmarks.osworld.mcp import command_tool
 from benchmarks.osworld.mcp.official_computer import ComputerSession, write_state
 
 mcp = FastMCP("osworld")
@@ -46,6 +48,23 @@ def computer(action: str = "", coordinate: list[int] | None = None,
         write_state(_STATE_FILE, steps_used=_session.steps_used,
                     max_steps=_session.max_steps)
     return [Image(data=v, format="png") if k == "image" else v for k, v in items]
+
+
+_COMMAND_LOG = os.environ.get("OSW_COMMAND_LOG", "")
+
+# Only under an arm that declares it (OSW_ARM_TOOLS, set by the runner from arms.tools).
+if "run_command" in os.environ.get("OSW_ARM_TOOLS", "").split(","):
+    @mcp.tool()
+    def run_command(command: str, timeout: int = command_tool.DEFAULT_TIMEOUT_S) -> str:
+        """Run one bash command inside the Ubuntu desktop and return its exit code, stdout and
+        stderr. timeout: seconds before the command is killed (default 60, at most 110). Each
+        call counts as one step, like a computer action."""
+        try:
+            return command_tool.run_command(_session, _ctrl, command, timeout,
+                                            log_path=_COMMAND_LOG)
+        finally:
+            write_state(_STATE_FILE, steps_used=_session.steps_used,
+                        max_steps=_session.max_steps)
 
 
 if __name__ == "__main__":
