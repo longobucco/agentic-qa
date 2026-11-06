@@ -11,6 +11,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import shlex
 import time
 import xml.etree.ElementTree as ET
 from concurrent.futures import ThreadPoolExecutor, TimeoutError as FutureTimeoutError
@@ -171,7 +172,56 @@ def _capture_eval_state(ctrl, task, out):
         (out / "final.png").write_bytes(ctrl.screenshot())
     except Exception:
         pass
+    _capture_final_state(ctrl, out)
     return captured
+
+
+# V1 (EXPERIMENTS.md X15): structured final state saved for the offline verifier and the checker
+# audit, following OpenComputer's lesson that LLM judges fail where the state is not on screen.
+# Read-only commands only (dconf dump, cat, ls, ps), run after the agent has finished and before
+# the official evaluation, so neither the agent nor the checker can be affected. Each item is
+# capped; a failure is recorded, never raised.
+FINAL_STATE_MAX_BYTES = 2_000_000
+FINAL_STATE_FILES = (
+    "~/.config/dconf/user", "~/.config/mimeapps.list", "~/.local/share/applications/mimeapps.list",
+    "~/.config/libreoffice/4/user/registrymodifications.xcu",
+    "~/.config/google-chrome/Default/Preferences", "~/.config/google-chrome/Local State",
+    "~/.config/vlc/vlcrc", "~/.config/gtk-3.0/settings.ini", "~/.config/Code/User/settings.json",
+    "~/.config/GIMP/2.10/gimprc", "~/.config/user-dirs.dirs", "~/.bashrc", "~/.profile",
+)
+FINAL_STATE_COMMANDS = {
+    "dconf_dump.ini": "dconf dump / 2>&1",
+    "gsettings_recursive.txt": "gsettings list-recursively 2>&1",
+    "home_listing.txt": "ls -la --time-style=full-iso ~ ~/Desktop ~/Documents ~/Downloads ~/Pictures ~/Videos ~/Music 2>&1",
+    "processes.txt": "ps -eo pid,comm,args --no-headers 2>&1",
+    "thunderbird_prefs.txt": "for f in ~/.thunderbird/*/prefs.js; do echo \"== $f\"; cat \"$f\"; done 2>&1",
+}
+
+
+def _capture_final_state(ctrl, out):
+    dest = out / "final_state"
+    manifest = []
+    try:
+        dest.mkdir(exist_ok=True)
+        items = dict(FINAL_STATE_COMMANDS)
+        for f in FINAL_STATE_FILES:
+            path = '"$HOME/' + f[2:] + '"'   # every entry starts with ~/
+            items["file__" + f[2:].replace("/", "__").replace(" ", "_")] = f"cat {path} 2>&1"
+        for name, cmd in items.items():
+            entry = {"name": name, "command": cmd}
+            try:
+                text = ctrl.execute(f"bash -lc {shlex.quote(cmd + ' | head -c ' + str(FINAL_STATE_MAX_BYTES))}",
+                                    shell=True, timeout=30)
+                data = (text if isinstance(text, str) else json.dumps(text)).encode()
+                (dest / name).write_bytes(data)
+                entry.update(size=len(data), sha256=hashlib.sha256(data).hexdigest())
+            except Exception as e:
+                entry["error"] = f"{type(e).__name__}: {e}"
+            manifest.append(entry)
+        (dest / "manifest.json").write_text(json.dumps(
+            {"captured_at": time.strftime("%Y-%m-%dT%H:%M:%S%z"), "items": manifest}, indent=1))
+    except Exception as e:
+        print(f"[osworld] final-state capture failed: {e}")
 
 
 def _agent_telemetry(meta):
