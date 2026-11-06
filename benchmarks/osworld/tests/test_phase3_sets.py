@@ -14,7 +14,7 @@ def test_sets_are_known_tasks_without_overlap():
 
 def test_every_set_states_its_rule_date_and_runs():
     for name, s in SETS.items():
-        assert s["rule"] and s["fixed_on"] and s["runs_per_task"] in (3, 5), name
+        assert s["rule"] and s["fixed_on"] and s["runs_per_task"] in (1, 3, 5), name   # 1: X16 no-harm sample
 
 
 def test_class_f_carries_the_eleventh_task():

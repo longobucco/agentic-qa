@@ -241,3 +241,12 @@ def test_e1card2_closes_the_infeasibility_rule():
     assert "do not work around it by installing or downloading software" in text
     assert "[INFEASIBLE]" in text and text != arms.E1_CARD
     assert not arms.bounces("e1card2")
+
+
+def test_the_e1b2_card_is_e1card2_plus_the_unchanged_evaluator_paragraph():
+    paragraph = arms.E1B_CARD[len(arms.E1_CARD):]
+    assert arms.E1B2_CARD == arms.E1C2_CARD + paragraph
+    assert paragraph.startswith("\n\nHow results are checked")
+    assert arms.system_prompt("OFFICIAL", "e1b2") == "OFFICIAL\n\n" + arms.E1B2_CARD
+    assert arms.tools("e1b2") == ()
+

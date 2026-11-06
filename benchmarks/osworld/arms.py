@@ -79,8 +79,14 @@ CODE_CARD = E1C2_CARD + (
     "something, check the result before you answer."
 )
 
+# E1b v2 (X16): X10's decision rule makes e1card2 the base card of E1b, so the evaluator-awareness
+# paragraph of E1B_CARD is appended to E1C2_CARD unchanged. `e1b` (on the old card) never ran and is
+# kept only for traceability.
+E1B2_CARD = E1C2_CARD + E1B_CARD[len(E1_CARD):]
+assert E1B_CARD.startswith(E1_CARD) and E1B2_CARD != E1B_CARD
+
 ADDENDA = {"e1card": E1_CARD, "e1bounce": E1_CARD, "e1b": E1B_CARD, "e1card2": E1C2_CARD,
-           "code": CODE_CARD}
+           "code": CODE_CARD, "e1b2": E1B2_CARD}
 BOUNCE_ARMS = frozenset({"e1bounce"})
 # MCP tools an arm adds next to `computer` (mcp/server.py registers them only for that arm).
 ARM_TOOLS = {"code": ("run_command",)}

@@ -30,12 +30,14 @@ MODELS = {
 # Arm ("a0" = official protocol, no arm) -> the sets it runs on, with the pre-registration entry
 # of the experiment log that defines it. The same table applies to both models.
 EXPERIMENTS = {
-    "a0": (("classF", "infeasible", "controls", "classP", "heldoutH"), "X4, X5, X8"),
+    "a0": (("classF", "infeasible", "controls", "classP", "heldoutH", "heldoutP", "heldoutPsat"),
+           "X4, X5, X8, X16"),
     "e1card": (("classF", "infeasible", "controls"), "X5"),
     "e1bounce": (("classF", "infeasible", "controls"), "X5"),
     "e1b": (("classP", "heldoutH", "controls", "infeasible"), "X8"),
     "e1card2": (("classF", "infeasible", "controls"), "X10"),
     "code": (("classF", "controls", "infeasible"), "X12"),
+    "e1b2": (("heldoutP", "classP", "heldoutPsat", "controls", "infeasible"), "X16"),
 }
 
 # Astra's A0 runs of 3ce045a0 belong to the archived pkgfix3 re-run (same tree and configuration),

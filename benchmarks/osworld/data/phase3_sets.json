@@ -97,6 +97,55 @@
         "70bca0cc-c117-427e-b0be-4df7299ebeb6",
         "6d72aad6-187a-4392-a4c4-ed87269c51cf"
       ]
+    },
+    "heldoutP": {
+      "fixed_on": "2026-11-04",
+      "rule": "Pool, rule applied once on 2026-11-04: OSWorld-Verified tasks whose snapshot is a LibreOffice application and whose checker reads a saved file (result type vm_file), not infeasible by design, in no other Phase 3 set and never cited in BUG_REGISTER.md, ASTRA_ANALYSIS.md, EXPERIMENTS.md, FINDINGS.md or astra_ledger.json: 85 tasks. Never used to write any arm. heldoutP = the pool tasks where Sonnet 5 on the original image had at least 3 valid runs and did not pass all of them (tables/task_matrix.csv): 14 tasks. Primary set of X16.",
+      "runs_per_task": 5,
+      "tasks": [
+        "09a37c51-e625-49f4-a514-20a773797a8a",
+        "185f29bd-5da0-40a6-b69c-ba7f4e0324ef",
+        "1f18aa87-af6f-41ef-9853-cdb8f32ebdea",
+        "337d318b-aa07-4f4f-b763-89d9a2dd013f",
+        "3a93cae4-ad3e-403e-8c12-65303b271818",
+        "7e287123-70ca-47b9-8521-47db09b69b14",
+        "881deb30-9549-4583-a841-8270c65f2a17",
+        "88fe4b2d-3040-4c70-9a70-546a47764b48",
+        "8e116af7-7db7-4e35-a68b-b0939c066c78",
+        "bb83cab4-e5c7-42c7-a67b-e46068032b86",
+        "d1acdb87-bb67-4f30-84aa-990e56a09c92",
+        "e135df7c-7687-4ac0-a5f0-76b74438b53e",
+        "eb303e01-261e-4972-8c07-c9b4e7a4922a",
+        "f23acfd2-c485-4b7c-a1e7-d4303ddfe864"
+      ]
+    },
+    "heldoutPsat": {
+      "fixed_on": "2026-11-04",
+      "rule": "Pool, rule applied once on 2026-11-04: OSWorld-Verified tasks whose snapshot is a LibreOffice application and whose checker reads a saved file (result type vm_file), not infeasible by design, in no other Phase 3 set and never cited in BUG_REGISTER.md, ASTRA_ANALYSIS.md, EXPERIMENTS.md, FINDINGS.md or astra_ledger.json: 85 tasks. Never used to write any arm. heldoutPsat = no-harm sample from the 67 pool tasks Sonnet 5 passed in every valid run on the original image: the first 7 by task id of each of Calc, Impress, Writer, taken round-robin: 21 tasks.",
+      "runs_per_task": 1,
+      "tasks": [
+        "0a2e43bf-b26c-4631-a966-af9dfa12c9e5",
+        "08aced46-45a2-48d7-993b-ed3fb5b32302",
+        "0810415c-bde4-4443-9047-d5f70165a697",
+        "0cecd4f3-74de-457b-ba94-29ad6b5dafb6",
+        "2b94c692-6abb-48ae-ab0b-b3e8a19cb340",
+        "0a0faba3-5580-44df-965d-f562a99b291c",
+        "12382c62-0cd1-4bf2-bdc8-1d20bf9b2371",
+        "3161d64e-3120-47b4-aaad-6a764a92493b",
+        "0e47de2a-32e0-456c-a366-8c607ef7a9d2",
+        "1e8df695-bd1b-45b3-b557-e7d599cf7597",
+        "4ed5abd0-8b5d-47bd-839f-cacfa15ca37a",
+        "6a33f9b9-0a56-4844-9c3f-96ec3ffb3ba2",
+        "21ab7b40-77c2-4ae6-8321-e00d3a086c73",
+        "51f5801c-18b3-4f25-b0c3-02f85507a078",
+        "72b810ef-4156-4d09-8f08-a0cf57e7cefe",
+        "21df9241-f8d7-4509-b7f1-37e501a823f7",
+        "5cfb9197-e72b-454b-900e-c06b0c802b40",
+        "8df7e444-8e06-4f93-8a1a-c5c974269d82",
+        "26a8440e-c166-4c50-aef4-bfb77314b46b",
+        "73c99fb9-f828-43ce-b87a-01dc07faa224",
+        "adf5e2c3-64c7-4644-b7b6-d2f0167927e7"
+      ]
     }
   }
 }
