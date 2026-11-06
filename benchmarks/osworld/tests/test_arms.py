@@ -250,3 +250,12 @@ def test_the_e1b2_card_is_e1card2_plus_the_unchanged_evaluator_paragraph():
     assert arms.system_prompt("OFFICIAL", "e1b2") == "OFFICIAL\n\n" + arms.E1B2_CARD
     assert arms.tools("e1b2") == ()
 
+
+def test_code2_keeps_the_code_arm_and_adds_only_the_contract_sentence():
+    assert arms.CODE2_CARD == arms.CODE_CARD + arms.CODE2_CONTRACT
+    assert arms.CODE2_CARD.startswith(arms.CODE_CARD) and arms.CODE_CARD in arms.ADDENDA.values()
+    assert arms.tools("code2") == arms.tools("code") == ("run_command",)
+    assert arms.CODE2_CONTRACT == (
+        "\n\nUse only computer, run_command, and the permitted MCP resource functions. Run every "
+        "command through run_command and perform desktop interactions through computer. Do not "
+        "call any other shell, exec, or code-execution tool.")

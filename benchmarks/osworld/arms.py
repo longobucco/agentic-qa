@@ -85,11 +85,21 @@ CODE_CARD = E1C2_CARD + (
 E1B2_CARD = E1C2_CARD + E1B_CARD[len(E1_CARD):]
 assert E1B_CARD.startswith(E1_CARD) and E1B2_CARD != E1B_CARD
 
+# Code arm, contract v2 (X20 amendment 1, F1 sheet C): Codex sometimes called its own built-in exec
+# tool instead of run_command (tool-surface violations in 7 of 98 code-arm runs, X12), which the
+# harness scores as a failure. The text of `code` is kept unchanged; v2 appends an explicit
+# prohibition (three sentences). Tool, permissions and step budget are identical to `code`.
+CODE2_CONTRACT = (
+    "\n\nUse only computer, run_command, and the permitted MCP resource functions. Run every "
+    "command through run_command and perform desktop interactions through computer. Do not call "
+    "any other shell, exec, or code-execution tool.")
+CODE2_CARD = CODE_CARD + CODE2_CONTRACT
+
 ADDENDA = {"e1card": E1_CARD, "e1bounce": E1_CARD, "e1b": E1B_CARD, "e1card2": E1C2_CARD,
-           "code": CODE_CARD, "e1b2": E1B2_CARD}
+           "code": CODE_CARD, "e1b2": E1B2_CARD, "code2": CODE2_CARD}
 BOUNCE_ARMS = frozenset({"e1bounce"})
 # MCP tools an arm adds next to `computer` (mcp/server.py registers them only for that arm).
-ARM_TOOLS = {"code": ("run_command",)}
+ARM_TOOLS = {"code": ("run_command",), "code2": ("run_command",)}
 
 
 def bounces(name):

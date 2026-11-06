@@ -36,7 +36,8 @@ EXPERIMENTS = {
     "e1bounce": (("classF", "infeasible", "controls"), "X5"),
     "e1b": (("classP", "heldoutH", "controls", "infeasible"), "X8"),
     "e1card2": (("classF", "infeasible", "controls"), "X10"),
-    "code": (("classF", "controls", "infeasible"), "X12"),
+    "code": (("classF", "controls", "infeasible", "heldoutP", "classP"), "X12, X20"),
+    "code2": (("heldoutP", "classP"), "X20 amendment 1"),
     "e1b2": (("heldoutP", "classP", "heldoutPsat", "controls", "infeasible"), "X16"),
 }
 
