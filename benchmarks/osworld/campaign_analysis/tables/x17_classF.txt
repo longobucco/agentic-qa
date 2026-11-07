@@ -1,0 +1,8 @@
+astra  a0      tasks 10 runs  50 | random pass@1 28.0% | selected 28.0% | oracle 30.0% | selected-random +0.0% (95% CI +0.0% to +0.0%) | tasks with no done 8 | runs not judged 0
+astra  code    tasks 11 runs  55 | random pass@1 47.3% | selected 47.3% | oracle 63.6% | selected-random +0.0% (95% CI +0.0% to +0.0%) | tasks with no done 10 | runs not judged 0
+astra  e1card  tasks 11 runs  55 | random pass@1 52.7% | selected 52.7% | oracle 54.5% | selected-random +0.0% (95% CI +0.0% to +0.0%) | tasks with no done 8 | runs not judged 0
+astra  e1card2 tasks 11 runs  55 | random pass@1 49.1% | selected 49.1% | oracle 54.5% | selected-random +0.0% (95% CI +0.0% to +0.0%) | tasks with no done 9 | runs not judged 0
+sonnet a0      tasks 11 runs  55 | random pass@1 40.0% | selected 38.2% | oracle 81.8% | selected-random -1.8% (95% CI -25.5% to +21.8%) | tasks with no done 2 | runs not judged 0
+sonnet code    tasks  4 runs  16 | random pass@1 100.0% | selected 100.0% | oracle 100.0% | selected-random +0.0% (95% CI +0.0% to +0.0%) | tasks with no done 4 | runs not judged 0
+sonnet e1card  tasks 11 runs  55 | random pass@1 80.0% | selected 81.8% | oracle 90.9% | selected-random +1.8% (95% CI -3.6% to +7.3%) | tasks with no done 5 | runs not judged 0
+sonnet e1card2 tasks 11 runs  55 | random pass@1 81.8% | selected 83.6% | oracle 90.9% | selected-random +1.8% (95% CI +0.0% to +5.5%) | tasks with no done 6 | runs not judged 0

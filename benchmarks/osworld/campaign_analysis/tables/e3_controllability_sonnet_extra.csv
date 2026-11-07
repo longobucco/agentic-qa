@@ -1,0 +1,61 @@
+task,app,label,basis,sonnet_original,false_done_runs
+0326d92d,libreoffice_calc,controllable,passed by at least one arm on the same image (environment and checker work),4/5,1
+04578141,libreoffice_impress,controllable,passed by at least one arm on the same image (environment and checker work),3/5,2
+05dd4c1d,libreoffice_impress,controllable,passes on pkgfix3 (1/5),0/5,5
+09a37c51,libreoffice_writer,unverified,never passed; agent ran out of steps on a multi-step image edit; no environment or checker defect seen,0/4,5
+0b17a146,libreoffice_writer,controllable,passed by at least one arm on the same image (environment and checker work),3/5,2
+0e763496,libreoffice_writer,controllable,passed by at least one arm on the same image (environment and checker work),4/5,1
+185f29bd,libreoffice_calc,controllable,checker scores partial credit (0.24): fields are read; agent ran out of steps,0/5,5
+1d17d234,libreoffice_calc,controllable,passed by at least one arm on the same image (environment and checker work),4/5,1
+20236825,vscode,controllable,passed by at least one arm on the same image (environment and checker work),4/5,1
+26660ad1,multiapps,mixed,live network speed test; passed by some arm,4/5,1
+2a729ded,gimp,controllable,passed by at least one arm on the same image (environment and checker work),4/5,1
+2c1ebcd7,libreoffice_calc,controllable,checker scores partial gain (0.11); agent stopped at a critical issue,0/5,4
+39be0d19,libreoffice_impress,controllable,passed by at least one arm on the same image (environment and checker work),4/5,1
+3a93cae4,libreoffice_calc,controllable,passed by at least one arm on the same image (environment and checker work),4/5,1
+3e3fc409,chrome,mixed,live IMDB list; agent ran out of steps,0/5,4
+3ef2b351,libreoffice_writer,controllable,passed by at least one arm on the same image (environment and checker work),0/5,5
+3f05f3b9,os,controllable,passed by at least one arm on the same image (environment and checker work),4/5,1
+4188d3a4,libreoffice_calc,controllable,passed by at least one arm on the same image (environment and checker work),3/5,2
+42d25c08,chrome,controllable,passed by at least one arm on the same image (environment and checker work),1/4,2
+48d05431,os,mixed,package install from the network; passed by some arm,3/5,2
+4bcb1253,libreoffice_writer,controllable,"reward 0.998 in every run (fractional, below the binary threshold): output nearly right; see F3 note on fractional rewards",0/5,5
+4c26e3f3,libreoffice_impress,controllable,passed by at least one arm on the same image (environment and checker work),4/5,1
+57667013,libreoffice_impress,controllable,passed by at least one arm on the same image (environment and checker work),3/5,2
+5990457f,chrome,mixed,live Google Scholar; passed by some arm,3/3,2
+5bc63fb9,multiapps,unverified,never passed; agent claims done; checker compares a docx; to adjudicate in F1,0/5,5
+5c1a6c3d,libreoffice_impress,controllable,passed by at least one arm on the same image (environment and checker work),3/5,2
+66399b0d,libreoffice_writer,controllable,passed by at least one arm on the same image (environment and checker work),1/4,3
+68a25bd4,libreoffice_calc,mixed,downloads from live links; passed by some arm,2/5,3
+69acbb55,os,mixed,package install from the network; passed by some arm,0/5,5
+6ada715d,libreoffice_writer,controllable,passed by at least one arm on the same image (environment and checker work),2/5,3
+6f81754e,libreoffice_writer,controllable,passed by at least one arm on the same image (environment and checker work),0/5,5
+70bca0cc,libreoffice_impress,controllable,passed by at least one arm on the same image (environment and checker work),2/5,3
+74d5859f,chrome,mixed,live web tool (webext.eu),0/5,5
+778efd0a,vlc,controllable,passed by at least one arm on the same image (environment and checker work),3/4,1
+7e287123,libreoffice_calc,controllable,passed by at least one arm on the same image (environment and checker work),1/5,2
+7ff48d5b,multiapps,uncontrollable,"CLI not logged in, 0 steps (infrastructure; FINDINGS 2, already excluded)",,5
+8472fece,libreoffice_writer,controllable,passed by at least one arm on the same image (environment and checker work),1/5,4
+869de13e,libreoffice_calc,controllable,agent ran out of steps before moving the files,0/5,5
+881deb30,libreoffice_calc,unverified,never passed; agent claims done; to adjudicate in F1,0/5,5
+88fe4b2d,libreoffice_writer,suspect-checker,"0/20 on pkgfix3 under both models and arms, agent reports done; strict whitespace docx comparison: F1 priority",0/5,5
+8e116af7,libreoffice_calc,controllable,passed by at least one arm on the same image (environment and checker work),4/5,1
+936321ce,libreoffice_writer,controllable,passed by at least one arm on the same image (environment and checker work),4/5,1
+9f3bb592,multiapps,controllable,passed by at least one arm on the same image (environment and checker work),4/4,1
+a669ef01,libreoffice_impress,controllable,passed by at least one arm on the same image (environment and checker work),3/5,2
+a82b78bb,libreoffice_calc,mixed,live personal webpages; passed by some arm,4/5,1
+b21acd93,libreoffice_writer,controllable,passed by at least one arm on the same image (environment and checker work),0/4,4
+bb83cab4,libreoffice_impress,unverified,never passed; agent claims done; to adjudicate in F1,0/5,4
+c82632a4,libreoffice_impress,controllable,passed by at least one arm on the same image (environment and checker work),4/5,1
+d1acdb87,libreoffice_calc,mixed,live Google Maps; agent ran out of steps,0/5,5
+da52d699,libreoffice_calc,controllable,passed by at least one arm on the same image (environment and checker work),2/5,3
+dd60633f,multiapps,uncontrollable,"CLI not logged in, 0 steps (infrastructure; FINDINGS 2, already excluded)",,5
+deec51c9,libreoffice_calc,mixed,live paper search; passed by some arm,0/5,4
+e135df7c,libreoffice_calc,suspect-checker,0/20 on pkgfix3; agent opens exactly the expected file URL; checker reads the active Chrome tab: F1 priority (X16 addendum 1),0/5,5
+e1fc0df3,libreoffice_writer,uncontrollable (original image) / controllable (pkgfix3),"5/5 on pkgfix3, never on the original image: environment fixed by pkgfix3",0/5,5
+e528b65e,libreoffice_writer,controllable,passed by at least one arm on the same image (environment and checker work),2/4,2
+eb303e01,libreoffice_impress,controllable,passed by at least one arm on the same image (environment and checker work),4/5,1
+ecc2413d,libreoffice_writer,controllable,passed by at least one arm on the same image (environment and checker work),3/5,2
+f178a4a9,libreoffice_writer,uncontrollable (original image) / controllable (pkgfix3),"5/5 on pkgfix3, never on the original image: environment fixed by pkgfix3",0/5,5
+f23acfd2,libreoffice_impress,controllable,Astra passes 10/20 on pkgfix3,0/5,5
+f918266a,vscode,controllable,passed by at least one arm on the same image (environment and checker work),4/5,1

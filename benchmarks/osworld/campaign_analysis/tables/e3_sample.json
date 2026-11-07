@@ -1,0 +1,1124 @@
+[
+ {
+  "model": "astra",
+  "task": "01b269ae-2111-4a07-81fd-3fcd711993b0",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/01b269ae-2111-4a07-81fd-3fcd711993b0/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "030eeff7-b492-4218-b312-701ec99ee0cc",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/030eeff7-b492-4218-b312-701ec99ee0cc/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "0326d92d-d218-48a8-9ca1-981cd6d064c7",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/0326d92d-d218-48a8-9ca1-981cd6d064c7/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "035f41ba-6653-43ab-aa63-c86d449d62e5",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/035f41ba-6653-43ab-aa63-c86d449d62e5/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "04578141-1d42-4146-b9cf-6fab4ce5fd74",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_official/04578141-1d42-4146-b9cf-6fab4ce5fd74/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "045bf3ff-9077-4b86-b483-a1040a949cff",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/045bf3ff-9077-4b86-b483-a1040a949cff/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "04d9aeaf-7bed-4024-bedb-e10e6f00eb7f",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/04d9aeaf-7bed-4024-bedb-e10e6f00eb7f/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "06ca5602-62ca-47f6-ad4f-da151cde54cc",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/06ca5602-62ca-47f6-ad4f-da151cde54cc/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "06fe7178-4491-4589-810f-2e2bc9502122",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/06fe7178-4491-4589-810f-2e2bc9502122/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "12086550-11c0-466b-b367-1d9e75b3910e",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/12086550-11c0-466b-b367-1d9e75b3910e/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "121ba48f-9e17-48ce-9bc6-a4fb17a7ebba",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/121ba48f-9e17-48ce-9bc6-a4fb17a7ebba/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "15aece23-a215-4579-91b4-69eec72e18da",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/15aece23-a215-4579-91b4-69eec72e18da/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "1de60575-bb6e-4c3d-9e6a-2fa699f9f197",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_official/1de60575-bb6e-4c3d-9e6a-2fa699f9f197/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "21760ecb-8f62-40d2-8d85-0cee5725cb72",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/21760ecb-8f62-40d2-8d85-0cee5725cb72/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "2373b66a-092d-44cb-bfd7-82e86e7a3b4d",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/2373b66a-092d-44cb-bfd7-82e86e7a3b4d/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "28cc3b7e-b194-4bc9-8353-d04c0f4d56d2",
+  "verdict": "FAILURE",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1bounce_official/28cc3b7e-b194-4bc9-8353-d04c0f4d56d2/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "2a729ded-3296-423d-aec4-7dd55ed5fbb3",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/2a729ded-3296-423d-aec4-7dd55ed5fbb3/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "2ad9387a-65d8-4e33-ad5b-7580065a27ca",
+  "verdict": "FAILURE",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/2ad9387a-65d8-4e33-ad5b-7580065a27ca/run_3"
+ },
+ {
+  "model": "astra",
+  "task": "2ad9387a-65d8-4e33-ad5b-7580065a27ca",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/2ad9387a-65d8-4e33-ad5b-7580065a27ca/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "2bd59342-0664-4ccb-ba87-79379096cc08",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/2bd59342-0664-4ccb-ba87-79379096cc08/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "2e6f678f-472d-4c55-99cc-8e7c5c402a71",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/2e6f678f-472d-4c55-99cc-8e7c5c402a71/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "30e3e107-1cfb-46ee-a755-2cd080d7ba6a",
+  "verdict": "FAILURE",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_official/30e3e107-1cfb-46ee-a755-2cd080d7ba6a/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "347ef137-7eeb-4c80-a3bb-0951f26a8aff",
+  "verdict": "FAILURE",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_official/347ef137-7eeb-4c80-a3bb-0951f26a8aff/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "3720f614-37fd-4d04-8a6b-76f54f8c222d",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/3720f614-37fd-4d04-8a6b-76f54f8c222d/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "38f48d40-764e-4e77-a7cf-51dfce880291",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/38f48d40-764e-4e77-a7cf-51dfce880291/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "3a7c8185-25c1-4941-bd7b-96e823c9f21f",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_official/3a7c8185-25c1-4941-bd7b-96e823c9f21f/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "3b27600c-3668-4abd-8f84-7bcdebbccbdb",
+  "verdict": "FAILURE",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_official/3b27600c-3668-4abd-8f84-7bcdebbccbdb/run_2"
+ },
+ {
+  "model": "astra",
+  "task": "3b27600c-3668-4abd-8f84-7bcdebbccbdb",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_official/3b27600c-3668-4abd-8f84-7bcdebbccbdb/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "3ce045a0-877b-42aa-8d2c-b4a863336ab8",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/3ce045a0-877b-42aa-8d2c-b4a863336ab8/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "4188d3a4-077d-46b7-9c86-23e1a036f6c1",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_official/4188d3a4-077d-46b7-9c86-23e1a036f6c1/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "42d25c08-fb87-4927-8b65-93631280a26f",
+  "verdict": "FAILURE",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_official/42d25c08-fb87-4927-8b65-93631280a26f/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "42d25c08-fb87-4927-8b65-93631280a26f",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_official/42d25c08-fb87-4927-8b65-93631280a26f/run_3"
+ },
+ {
+  "model": "astra",
+  "task": "480bcfea-d68f-4aaa-a0a9-2589ef319381",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/480bcfea-d68f-4aaa-a0a9-2589ef319381/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "4c26e3f3-3a14-4d86-b44a-d3cedebbb487",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_official/4c26e3f3-3a14-4d86-b44a-d3cedebbb487/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "550ce7e7-747b-495f-b122-acdc4d0b8e54",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/550ce7e7-747b-495f-b122-acdc4d0b8e54/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "554785e9-4523-4e7a-b8e1-8016f565f56a",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/554785e9-4523-4e7a-b8e1-8016f565f56a/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "58d3eeeb-e9d0-499f-962e-fd0db2a744d8",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/58d3eeeb-e9d0-499f-962e-fd0db2a744d8/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "5ca86c6f-f317-49d8-b6a7-b527541caae8",
+  "verdict": "FAILURE",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card_official/5ca86c6f-f317-49d8-b6a7-b527541caae8/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "5ca86c6f-f317-49d8-b6a7-b527541caae8",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/5ca86c6f-f317-49d8-b6a7-b527541caae8/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "5d901039-a89c-4bfb-967b-bf66f4df075e",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/5d901039-a89c-4bfb-967b-bf66f4df075e/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "6054afcb-5bab-4702-90a0-b259b5d3217c",
+  "verdict": "FAILURE",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_official/6054afcb-5bab-4702-90a0-b259b5d3217c/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "62f7fd55-0687-4a43-b6e1-3eda16fc6252",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/62f7fd55-0687-4a43-b6e1-3eda16fc6252/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "68a25bd4-59c7-4f4d-975e-da0c8509c848",
+  "verdict": "FAILURE",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_official/68a25bd4-59c7-4f4d-975e-da0c8509c848/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "6d72aad6-187a-4392-a4c4-ed87269c51cf",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_official/6d72aad6-187a-4392-a4c4-ed87269c51cf/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "70bca0cc-c117-427e-b0be-4df7299ebeb6",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_official/70bca0cc-c117-427e-b0be-4df7299ebeb6/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "734d6579-c07d-47a8-9ae2-13339795476b",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/734d6579-c07d-47a8-9ae2-13339795476b/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "7b6c7e24-c58a-49fc-a5bb-d57b80e5b4c3",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_official/7b6c7e24-c58a-49fc-a5bb-d57b80e5b4c3/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "8472fece-c7dd-4241-8d65-9b3cd1a0b568",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_official/8472fece-c7dd-4241-8d65-9b3cd1a0b568/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "8ba5ae7a-5ae5-4eab-9fcc-5dd4fe3abf89",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/8ba5ae7a-5ae5-4eab-9fcc-5dd4fe3abf89/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "937087b6-f668-4ba6-9110-60682ee33441",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/937087b6-f668-4ba6-9110-60682ee33441/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "94d95f96-9699-4208-98ba-3c3119edf9c2",
+  "verdict": "FAILURE",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/94d95f96-9699-4208-98ba-3c3119edf9c2/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "99146c54-4f37-4ab8-9327-5f3291665e1e",
+  "verdict": "FAILURE",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/99146c54-4f37-4ab8-9327-5f3291665e1e/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "99146c54-4f37-4ab8-9327-5f3291665e1e",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/99146c54-4f37-4ab8-9327-5f3291665e1e/run_2"
+ },
+ {
+  "model": "astra",
+  "task": "9cf05d24-6bd9-4dae-8967-f67d88f5d38a",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_official/9cf05d24-6bd9-4dae-8967-f67d88f5d38a/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "a4d98375-215b-4a4d-aee9-3d4370fccc41",
+  "verdict": "FAILURE",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/a4d98375-215b-4a4d-aee9-3d4370fccc41/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "a82b78bb-7fde-4cb3-94a4-035baf10bcf0",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_official/a82b78bb-7fde-4cb3-94a4-035baf10bcf0/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "ac9bb6cb-1888-43ab-81e4-a98a547918cd",
+  "verdict": "FAILURE",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_official/ac9bb6cb-1888-43ab-81e4-a98a547918cd/run_3"
+ },
+ {
+  "model": "astra",
+  "task": "ac9bb6cb-1888-43ab-81e4-a98a547918cd",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_official/ac9bb6cb-1888-43ab-81e4-a98a547918cd/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "ae78f875-5b98-4907-bbb5-9c737fc68c03",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/ae78f875-5b98-4907-bbb5-9c737fc68c03/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "af23762e-2bfd-4a1d-aada-20fa8de9ce07",
+  "verdict": "FAILURE",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_official/af23762e-2bfd-4a1d-aada-20fa8de9ce07/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "b6781586-6346-41cd-935a-a6b1487918fc",
+  "verdict": "FAILURE",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_official/b6781586-6346-41cd-935a-a6b1487918fc/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "b6781586-6346-41cd-935a-a6b1487918fc",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/b6781586-6346-41cd-935a-a6b1487918fc/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "bedcedc4-4d72-425e-ad62-21960b11fe0d",
+  "verdict": "FAILURE",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_official/bedcedc4-4d72-425e-ad62-21960b11fe0d/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "bedcedc4-4d72-425e-ad62-21960b11fe0d",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/bedcedc4-4d72-425e-ad62-21960b11fe0d/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "dbbf4b99-2253-4b10-9274-45f246af2466",
+  "verdict": "FAILURE",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/dbbf4b99-2253-4b10-9274-45f246af2466/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "e0df059f-28a6-4169-924f-b9623e7184cc",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/e0df059f-28a6-4169-924f-b9623e7184cc/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "ec4e3f68-9ea4-4c18-a5c9-69f89d1178b3",
+  "verdict": "FAILURE",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/ec4e3f68-9ea4-4c18-a5c9-69f89d1178b3/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "f9be0997-4b7c-45c5-b05c-4612b44a6118",
+  "verdict": "FAILURE",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_official/f9be0997-4b7c-45c5-b05c-4612b44a6118/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "f9be0997-4b7c-45c5-b05c-4612b44a6118",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/f9be0997-4b7c-45c5-b05c-4612b44a6118/run_1"
+ },
+ {
+  "model": "astra",
+  "task": "fbb548ca-c2a6-4601-9204-e39a2efc507b",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_gpt6astra_max_codex01534_pkgfix3_official/fbb548ca-c2a6-4601-9204-e39a2efc507b/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "01b269ae-2111-4a07-81fd-3fcd711993b0",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/01b269ae-2111-4a07-81fd-3fcd711993b0/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "030eeff7-b492-4218-b312-701ec99ee0cc",
+  "verdict": "FAILURE",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/030eeff7-b492-4218-b312-701ec99ee0cc/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "030eeff7-b492-4218-b312-701ec99ee0cc",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/030eeff7-b492-4218-b312-701ec99ee0cc/run_2"
+ },
+ {
+  "model": "sonnet",
+  "task": "0326d92d-d218-48a8-9ca1-981cd6d064c7",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/0326d92d-d218-48a8-9ca1-981cd6d064c7/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "035f41ba-6653-43ab-aa63-c86d449d62e5",
+  "verdict": "FAILURE",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/035f41ba-6653-43ab-aa63-c86d449d62e5/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "035f41ba-6653-43ab-aa63-c86d449d62e5",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/035f41ba-6653-43ab-aa63-c86d449d62e5/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "045bf3ff-9077-4b86-b483-a1040a949cff",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/045bf3ff-9077-4b86-b483-a1040a949cff/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "04d9aeaf-7bed-4024-bedb-e10e6f00eb7f",
+  "verdict": "FAILURE",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/04d9aeaf-7bed-4024-bedb-e10e6f00eb7f/run_3"
+ },
+ {
+  "model": "sonnet",
+  "task": "04d9aeaf-7bed-4024-bedb-e10e6f00eb7f",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/04d9aeaf-7bed-4024-bedb-e10e6f00eb7f/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "05dd4c1d-c489-4c85-8389-a7836c4f0567",
+  "verdict": "FAILURE",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/05dd4c1d-c489-4c85-8389-a7836c4f0567/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "05dd4c1d-c489-4c85-8389-a7836c4f0567",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/05dd4c1d-c489-4c85-8389-a7836c4f0567/run_3"
+ },
+ {
+  "model": "sonnet",
+  "task": "06ca5602-62ca-47f6-ad4f-da151cde54cc",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/06ca5602-62ca-47f6-ad4f-da151cde54cc/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "06fe7178-4491-4589-810f-2e2bc9502122",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/06fe7178-4491-4589-810f-2e2bc9502122/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "0b17a146-2934-46c7-8727-73ff6b6483e8",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/0b17a146-2934-46c7-8727-73ff6b6483e8/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "0e763496-b6bb-4508-a427-fad0b6c3e195",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/0e763496-b6bb-4508-a427-fad0b6c3e195/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "0f84bef9-9790-432e-92b7-eece357603fb",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/0f84bef9-9790-432e-92b7-eece357603fb/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "12086550-11c0-466b-b367-1d9e75b3910e",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/12086550-11c0-466b-b367-1d9e75b3910e/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "121ba48f-9e17-48ce-9bc6-a4fb17a7ebba",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/121ba48f-9e17-48ce-9bc6-a4fb17a7ebba/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "1334ca3e-f9e3-4db8-9ca7-b4c653be7d17",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/1334ca3e-f9e3-4db8-9ca7-b4c653be7d17/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "15aece23-a215-4579-91b4-69eec72e18da",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/15aece23-a215-4579-91b4-69eec72e18da/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "1d17d234-e39d-4ed7-b46f-4417922a4e7c",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/1d17d234-e39d-4ed7-b46f-4417922a4e7c/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "1de60575-bb6e-4c3d-9e6a-2fa699f9f197",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/1de60575-bb6e-4c3d-9e6a-2fa699f9f197/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "21760ecb-8f62-40d2-8d85-0cee5725cb72",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/21760ecb-8f62-40d2-8d85-0cee5725cb72/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "2373b66a-092d-44cb-bfd7-82e86e7a3b4d",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/2373b66a-092d-44cb-bfd7-82e86e7a3b4d/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "28cc3b7e-b194-4bc9-8353-d04c0f4d56d2",
+  "verdict": "FAILURE",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/28cc3b7e-b194-4bc9-8353-d04c0f4d56d2/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "28cc3b7e-b194-4bc9-8353-d04c0f4d56d2",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/28cc3b7e-b194-4bc9-8353-d04c0f4d56d2/run_2"
+ },
+ {
+  "model": "sonnet",
+  "task": "2a729ded-3296-423d-aec4-7dd55ed5fbb3",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/2a729ded-3296-423d-aec4-7dd55ed5fbb3/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "2ad9387a-65d8-4e33-ad5b-7580065a27ca",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/2ad9387a-65d8-4e33-ad5b-7580065a27ca/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "2bd59342-0664-4ccb-ba87-79379096cc08",
+  "verdict": "FAILURE",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/2bd59342-0664-4ccb-ba87-79379096cc08/run_2"
+ },
+ {
+  "model": "sonnet",
+  "task": "2bd59342-0664-4ccb-ba87-79379096cc08",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/2bd59342-0664-4ccb-ba87-79379096cc08/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "2c1ebcd7-9c6d-4c9a-afad-900e381ecd5e",
+  "verdict": "FAILURE",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/2c1ebcd7-9c6d-4c9a-afad-900e381ecd5e/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "2e6f678f-472d-4c55-99cc-8e7c5c402a71",
+  "verdict": "FAILURE",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card_official/2e6f678f-472d-4c55-99cc-8e7c5c402a71/run_2"
+ },
+ {
+  "model": "sonnet",
+  "task": "2e6f678f-472d-4c55-99cc-8e7c5c402a71",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/2e6f678f-472d-4c55-99cc-8e7c5c402a71/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "30e3e107-1cfb-46ee-a755-2cd080d7ba6a",
+  "verdict": "FAILURE",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/30e3e107-1cfb-46ee-a755-2cd080d7ba6a/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "347ef137-7eeb-4c80-a3bb-0951f26a8aff",
+  "verdict": "FAILURE",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/347ef137-7eeb-4c80-a3bb-0951f26a8aff/run_2"
+ },
+ {
+  "model": "sonnet",
+  "task": "347ef137-7eeb-4c80-a3bb-0951f26a8aff",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/347ef137-7eeb-4c80-a3bb-0951f26a8aff/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "358aa0a7-6677-453f-ae35-e440f004c31e",
+  "verdict": "FAILURE",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/358aa0a7-6677-453f-ae35-e440f004c31e/run_2"
+ },
+ {
+  "model": "sonnet",
+  "task": "358aa0a7-6677-453f-ae35-e440f004c31e",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/358aa0a7-6677-453f-ae35-e440f004c31e/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "3720f614-37fd-4d04-8a6b-76f54f8c222d",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/3720f614-37fd-4d04-8a6b-76f54f8c222d/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "38f48d40-764e-4e77-a7cf-51dfce880291",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/38f48d40-764e-4e77-a7cf-51dfce880291/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "39be0d19-634d-4475-8768-09c130f5425d",
+  "verdict": "FAILURE",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/39be0d19-634d-4475-8768-09c130f5425d/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "39be0d19-634d-4475-8768-09c130f5425d",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/39be0d19-634d-4475-8768-09c130f5425d/run_2"
+ },
+ {
+  "model": "sonnet",
+  "task": "3a7c8185-25c1-4941-bd7b-96e823c9f21f",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/3a7c8185-25c1-4941-bd7b-96e823c9f21f/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "3b27600c-3668-4abd-8f84-7bcdebbccbdb",
+  "verdict": "FAILURE",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/3b27600c-3668-4abd-8f84-7bcdebbccbdb/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "3b27600c-3668-4abd-8f84-7bcdebbccbdb",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/3b27600c-3668-4abd-8f84-7bcdebbccbdb/run_4"
+ },
+ {
+  "model": "sonnet",
+  "task": "3ce045a0-877b-42aa-8d2c-b4a863336ab8",
+  "verdict": "FAILURE",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/3ce045a0-877b-42aa-8d2c-b4a863336ab8/run_2"
+ },
+ {
+  "model": "sonnet",
+  "task": "3ce045a0-877b-42aa-8d2c-b4a863336ab8",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/3ce045a0-877b-42aa-8d2c-b4a863336ab8/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "3ef2b351-8a84-4ff2-8724-d86eae9b842e",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/3ef2b351-8a84-4ff2-8724-d86eae9b842e/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "4188d3a4-077d-46b7-9c86-23e1a036f6c1",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/4188d3a4-077d-46b7-9c86-23e1a036f6c1/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "480bcfea-d68f-4aaa-a0a9-2589ef319381",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/480bcfea-d68f-4aaa-a0a9-2589ef319381/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "4c26e3f3-3a14-4d86-b44a-d3cedebbb487",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/4c26e3f3-3a14-4d86-b44a-d3cedebbb487/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "550ce7e7-747b-495f-b122-acdc4d0b8e54",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/550ce7e7-747b-495f-b122-acdc4d0b8e54/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "554785e9-4523-4e7a-b8e1-8016f565f56a",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/554785e9-4523-4e7a-b8e1-8016f565f56a/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "57667013-ea97-417c-9dce-2713091e6e2a",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/57667013-ea97-417c-9dce-2713091e6e2a/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "58d3eeeb-e9d0-499f-962e-fd0db2a744d8",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/58d3eeeb-e9d0-499f-962e-fd0db2a744d8/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "5c1a6c3d-c1b3-47cb-9b01-8d1b7544ffa1",
+  "verdict": "FAILURE",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/5c1a6c3d-c1b3-47cb-9b01-8d1b7544ffa1/run_4"
+ },
+ {
+  "model": "sonnet",
+  "task": "5c1a6c3d-c1b3-47cb-9b01-8d1b7544ffa1",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/5c1a6c3d-c1b3-47cb-9b01-8d1b7544ffa1/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "5ca86c6f-f317-49d8-b6a7-b527541caae8",
+  "verdict": "FAILURE",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/5ca86c6f-f317-49d8-b6a7-b527541caae8/run_2"
+ },
+ {
+  "model": "sonnet",
+  "task": "5ca86c6f-f317-49d8-b6a7-b527541caae8",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/5ca86c6f-f317-49d8-b6a7-b527541caae8/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "5d901039-a89c-4bfb-967b-bf66f4df075e",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/5d901039-a89c-4bfb-967b-bf66f4df075e/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "6054afcb-5bab-4702-90a0-b259b5d3217c",
+  "verdict": "FAILURE",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/6054afcb-5bab-4702-90a0-b259b5d3217c/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "6054afcb-5bab-4702-90a0-b259b5d3217c",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/6054afcb-5bab-4702-90a0-b259b5d3217c/run_3"
+ },
+ {
+  "model": "sonnet",
+  "task": "62f7fd55-0687-4a43-b6e1-3eda16fc6252",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/62f7fd55-0687-4a43-b6e1-3eda16fc6252/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "66399b0d-8fda-4618-95c4-bfc6191617e9",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/66399b0d-8fda-4618-95c4-bfc6191617e9/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "6ada715d-3aae-4a32-a6a7-429b2e43fb93",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/6ada715d-3aae-4a32-a6a7-429b2e43fb93/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "6f81754e-285d-4ce0-b59e-af7edb02d108",
+  "verdict": "FAILURE",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/6f81754e-285d-4ce0-b59e-af7edb02d108/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "6f81754e-285d-4ce0-b59e-af7edb02d108",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/6f81754e-285d-4ce0-b59e-af7edb02d108/run_3"
+ },
+ {
+  "model": "sonnet",
+  "task": "70bca0cc-c117-427e-b0be-4df7299ebeb6",
+  "verdict": "FAILURE",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/70bca0cc-c117-427e-b0be-4df7299ebeb6/run_2"
+ },
+ {
+  "model": "sonnet",
+  "task": "70bca0cc-c117-427e-b0be-4df7299ebeb6",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/70bca0cc-c117-427e-b0be-4df7299ebeb6/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "734d6579-c07d-47a8-9ae2-13339795476b",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/734d6579-c07d-47a8-9ae2-13339795476b/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "7767eef2-56a3-4cea-8c9f-48c070c7d65b",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/7767eef2-56a3-4cea-8c9f-48c070c7d65b/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "7b6c7e24-c58a-49fc-a5bb-d57b80e5b4c3",
+  "verdict": "FAILURE",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/7b6c7e24-c58a-49fc-a5bb-d57b80e5b4c3/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "7b6c7e24-c58a-49fc-a5bb-d57b80e5b4c3",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/7b6c7e24-c58a-49fc-a5bb-d57b80e5b4c3/run_2"
+ },
+ {
+  "model": "sonnet",
+  "task": "7b7617bd-57cc-468e-9c91-40c4ec2bcb3d",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/7b7617bd-57cc-468e-9c91-40c4ec2bcb3d/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "8472fece-c7dd-4241-8d65-9b3cd1a0b568",
+  "verdict": "FAILURE",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/8472fece-c7dd-4241-8d65-9b3cd1a0b568/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "8ba5ae7a-5ae5-4eab-9fcc-5dd4fe3abf89",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/8ba5ae7a-5ae5-4eab-9fcc-5dd4fe3abf89/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "936321ce-5236-426a-9a20-e0e3c5dc536f",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/936321ce-5236-426a-9a20-e0e3c5dc536f/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "937087b6-f668-4ba6-9110-60682ee33441",
+  "verdict": "FAILURE",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/937087b6-f668-4ba6-9110-60682ee33441/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "937087b6-f668-4ba6-9110-60682ee33441",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/937087b6-f668-4ba6-9110-60682ee33441/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "94d95f96-9699-4208-98ba-3c3119edf9c2",
+  "verdict": "FAILURE",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/94d95f96-9699-4208-98ba-3c3119edf9c2/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "94d95f96-9699-4208-98ba-3c3119edf9c2",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/94d95f96-9699-4208-98ba-3c3119edf9c2/run_2"
+ },
+ {
+  "model": "sonnet",
+  "task": "986fc832-6af2-417c-8845-9272b3a1528b",
+  "verdict": "FAILURE",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/986fc832-6af2-417c-8845-9272b3a1528b/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "986fc832-6af2-417c-8845-9272b3a1528b",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/986fc832-6af2-417c-8845-9272b3a1528b/run_2"
+ },
+ {
+  "model": "sonnet",
+  "task": "99146c54-4f37-4ab8-9327-5f3291665e1e",
+  "verdict": "FAILURE",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/99146c54-4f37-4ab8-9327-5f3291665e1e/run_5"
+ },
+ {
+  "model": "sonnet",
+  "task": "99146c54-4f37-4ab8-9327-5f3291665e1e",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/99146c54-4f37-4ab8-9327-5f3291665e1e/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "9cf05d24-6bd9-4dae-8967-f67d88f5d38a",
+  "verdict": "FAILURE",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/9cf05d24-6bd9-4dae-8967-f67d88f5d38a/run_2"
+ },
+ {
+  "model": "sonnet",
+  "task": "9cf05d24-6bd9-4dae-8967-f67d88f5d38a",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/9cf05d24-6bd9-4dae-8967-f67d88f5d38a/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "a4d98375-215b-4a4d-aee9-3d4370fccc41",
+  "verdict": "FAILURE",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card_official/a4d98375-215b-4a4d-aee9-3d4370fccc41/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "a4d98375-215b-4a4d-aee9-3d4370fccc41",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/a4d98375-215b-4a4d-aee9-3d4370fccc41/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "a669ef01-ded5-4099-9ea9-25e99b569840",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/a669ef01-ded5-4099-9ea9-25e99b569840/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "a746add2-cab0-4740-ac36-c3769d9bfb46",
+  "verdict": "FAILURE",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/a746add2-cab0-4740-ac36-c3769d9bfb46/run_3"
+ },
+ {
+  "model": "sonnet",
+  "task": "a746add2-cab0-4740-ac36-c3769d9bfb46",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/a746add2-cab0-4740-ac36-c3769d9bfb46/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "a82b78bb-7fde-4cb3-94a4-035baf10bcf0",
+  "verdict": "FAILURE",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/a82b78bb-7fde-4cb3-94a4-035baf10bcf0/run_2"
+ },
+ {
+  "model": "sonnet",
+  "task": "a82b78bb-7fde-4cb3-94a4-035baf10bcf0",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/a82b78bb-7fde-4cb3-94a4-035baf10bcf0/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "ac9bb6cb-1888-43ab-81e4-a98a547918cd",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/ac9bb6cb-1888-43ab-81e4-a98a547918cd/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "ae78f875-5b98-4907-bbb5-9c737fc68c03",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/ae78f875-5b98-4907-bbb5-9c737fc68c03/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "af23762e-2bfd-4a1d-aada-20fa8de9ce07",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/af23762e-2bfd-4a1d-aada-20fa8de9ce07/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "b148e375-fe0b-4bec-90e7-38632b0d73c2",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/b148e375-fe0b-4bec-90e7-38632b0d73c2/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "b6781586-6346-41cd-935a-a6b1487918fc",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/b6781586-6346-41cd-935a-a6b1487918fc/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "bedcedc4-4d72-425e-ad62-21960b11fe0d",
+  "verdict": "FAILURE",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/bedcedc4-4d72-425e-ad62-21960b11fe0d/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "bedcedc4-4d72-425e-ad62-21960b11fe0d",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/bedcedc4-4d72-425e-ad62-21960b11fe0d/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "c82632a4-56b6-4db4-9dd1-3820ee3388e4",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/c82632a4-56b6-4db4-9dd1-3820ee3388e4/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "d52d6308-ec58-42b7-a2c9-de80e4837b2b",
+  "verdict": "FAILURE",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/d52d6308-ec58-42b7-a2c9-de80e4837b2b/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "da52d699-e8d2-4dc5-9191-a2199e0b6a9b",
+  "verdict": "FAILURE",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/da52d699-e8d2-4dc5-9191-a2199e0b6a9b/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "da52d699-e8d2-4dc5-9191-a2199e0b6a9b",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/da52d699-e8d2-4dc5-9191-a2199e0b6a9b/run_2"
+ },
+ {
+  "model": "sonnet",
+  "task": "dbbf4b99-2253-4b10-9274-45f246af2466",
+  "verdict": "FAILURE",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1bounce_official/dbbf4b99-2253-4b10-9274-45f246af2466/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "dbbf4b99-2253-4b10-9274-45f246af2466",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/dbbf4b99-2253-4b10-9274-45f246af2466/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "deec51c9-3b1e-4b9e-993c-4776f20e8bb2",
+  "verdict": "FAILURE",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/deec51c9-3b1e-4b9e-993c-4776f20e8bb2/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "e0df059f-28a6-4169-924f-b9623e7184cc",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/e0df059f-28a6-4169-924f-b9623e7184cc/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "e1fc0df3-c8b9-4ee7-864c-d0b590d3aa56",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/e1fc0df3-c8b9-4ee7-864c-d0b590d3aa56/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "e528b65e-1107-4b8c-8988-490e4fece599",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/e528b65e-1107-4b8c-8988-490e4fece599/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "ec4e3f68-9ea4-4c18-a5c9-69f89d1178b3",
+  "verdict": "FAILURE",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/ec4e3f68-9ea4-4c18-a5c9-69f89d1178b3/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "ecc2413d-8a48-416e-a3a2-d30106ca36cb",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/ecc2413d-8a48-416e-a3a2-d30106ca36cb/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "f178a4a9-d090-4b56-bc4c-4b72a61a035d",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/f178a4a9-d090-4b56-bc4c-4b72a61a035d/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "f9be0997-4b7c-45c5-b05c-4612b44a6118",
+  "verdict": "FAILURE",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/f9be0997-4b7c-45c5-b05c-4612b44a6118/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "f9be0997-4b7c-45c5-b05c-4612b44a6118",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/f9be0997-4b7c-45c5-b05c-4612b44a6118/run_1"
+ },
+ {
+  "model": "sonnet",
+  "task": "fbb548ca-c2a6-4601-9204-e39a2efc507b",
+  "verdict": "SUCCESS",
+  "run": "agent_computer_sonnet5_effortmax_pkgfix3_official/fbb548ca-c2a6-4601-9204-e39a2efc507b/run_1"
+ }
+]
