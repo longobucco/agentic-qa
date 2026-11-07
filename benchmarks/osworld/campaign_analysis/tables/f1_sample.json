@@ -1,0 +1,1926 @@
+{
+ "seed": 20261105,
+ "per_model_per_verdict": 60,
+ "runs": [
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "e1fc0df3-c8b9-4ee7-864c-d0b590d3aa56",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/e1fc0df3-c8b9-4ee7-864c-d0b590d3aa56/run_4"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "74d5859f-ed66-4d3e-aa0e-93d7a592ce41",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/74d5859f-ed66-4d3e-aa0e-93d7a592ce41/run_1"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "5990457f-2adb-467b-a4af-5c857c92d762",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/5990457f-2adb-467b-a4af-5c857c92d762/run_5"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "f5d96daf-83a8-4c86-9686-bada31fc66ab",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/f5d96daf-83a8-4c86-9686-bada31fc66ab/run_5"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "da46d875-6b82-4681-9284-653b0c7ae241",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/da46d875-6b82-4681-9284-653b0c7ae241/run_2"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "0d8b7de3-e8de-4d86-b9fd-dd2dce58a217",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/0d8b7de3-e8de-4d86-b9fd-dd2dce58a217/run_4"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "1704f00f-79e6-43a7-961b-cedd3724d5fd",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/1704f00f-79e6-43a7-961b-cedd3724d5fd/run_3"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "b7895e80-f4d1-4648-bee0-4eb45a6f1fa8",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/b7895e80-f4d1-4648-bee0-4eb45a6f1fa8/run_5"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "da922383-bfa4-4cd3-bbad-6bebab3d7742",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/da922383-bfa4-4cd3-bbad-6bebab3d7742/run_4"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "cabb3bae-cccb-41bd-9f5d-0f3a9fecd825",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/cabb3bae-cccb-41bd-9f5d-0f3a9fecd825/run_1"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "6c4c23a1-42a4-43cc-9db1-2f86ff3738cc",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/6c4c23a1-42a4-43cc-9db1-2f86ff3738cc/run_4"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "gimp",
+   "task": "4c26e3f3-3a14-4d86-b44a-d3cedebbb487",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/4c26e3f3-3a14-4d86-b44a-d3cedebbb487/run_1"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "gimp",
+   "task": "d52d6308-ec58-42b7-a2c9-de80e4837b2b",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/d52d6308-ec58-42b7-a2c9-de80e4837b2b/run_4"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "gimp",
+   "task": "7767eef2-56a3-4cea-8c9f-48c070c7d65b",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/7767eef2-56a3-4cea-8c9f-48c070c7d65b/run_4"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice calc",
+   "task": "4e6fcf72-daf3-439f-a232-c434ce416af6",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/4e6fcf72-daf3-439f-a232-c434ce416af6/run_5"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_calc",
+   "task": "881deb30-9549-4583-a841-8270c65f2a17",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/881deb30-9549-4583-a841-8270c65f2a17/run_4"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_calc",
+   "task": "deec51c9-3b1e-4b9e-993c-4776f20e8bb2",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/deec51c9-3b1e-4b9e-993c-4776f20e8bb2/run_1"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_calc",
+   "task": "1de60575-bb6e-4c3d-9e6a-2fa699f9f197",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/1de60575-bb6e-4c3d-9e6a-2fa699f9f197/run_3"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_calc",
+   "task": "3e3fc409-bff3-4905-bf16-c968eee3f807",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/3e3fc409-bff3-4905-bf16-c968eee3f807/run_4"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_calc",
+   "task": "8e116af7-7db7-4e35-a68b-b0939c066c78",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/8e116af7-7db7-4e35-a68b-b0939c066c78/run_2"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_calc",
+   "task": "347ef137-7eeb-4c80-a3bb-0951f26a8aff",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/347ef137-7eeb-4c80-a3bb-0951f26a8aff/run_5"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_impress",
+   "task": "9ec204e4-f0a3-42f8-8458-b772a6797cab",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/9ec204e4-f0a3-42f8-8458-b772a6797cab/run_5"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_impress",
+   "task": "39be0d19-634d-4475-8768-09c130f5425d",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/39be0d19-634d-4475-8768-09c130f5425d/run_1"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_impress",
+   "task": "a669ef01-ded5-4099-9ea9-25e99b569840",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/a669ef01-ded5-4099-9ea9-25e99b569840/run_3"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_impress",
+   "task": "550ce7e7-747b-495f-b122-acdc4d0b8e54",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/550ce7e7-747b-495f-b122-acdc4d0b8e54/run_3"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_impress",
+   "task": "3b27600c-3668-4abd-8f84-7bcdebbccbdb",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/3b27600c-3668-4abd-8f84-7bcdebbccbdb/run_4"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_impress",
+   "task": "ac9bb6cb-1888-43ab-81e4-a98a547918cd",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/ac9bb6cb-1888-43ab-81e4-a98a547918cd/run_1"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_writer",
+   "task": "f178a4a9-d090-4b56-bc4c-4b72a61a035d",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/f178a4a9-d090-4b56-bc4c-4b72a61a035d/run_1"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_writer",
+   "task": "88fe4b2d-3040-4c70-9a70-546a47764b48",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/88fe4b2d-3040-4c70-9a70-546a47764b48/run_2"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_writer",
+   "task": "ecc2413d-8a48-416e-a3a2-d30106ca36cb",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/ecc2413d-8a48-416e-a3a2-d30106ca36cb/run_3"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_writer",
+   "task": "0e763496-b6bb-4508-a427-fad0b6c3e195",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/0e763496-b6bb-4508-a427-fad0b6c3e195/run_4"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_writer",
+   "task": "e528b65e-1107-4b8c-8988-490e4fece599",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/e528b65e-1107-4b8c-8988-490e4fece599/run_4"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_writer",
+   "task": "6f81754e-285d-4ce0-b59e-af7edb02d108",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/6f81754e-285d-4ce0-b59e-af7edb02d108/run_3"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_writer",
+   "task": "6ada715d-3aae-4a32-a6a7-429b2e43fb93",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/6ada715d-3aae-4a32-a6a7-429b2e43fb93/run_4"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_writer",
+   "task": "09a37c51-e625-49f4-a514-20a773797a8a",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/09a37c51-e625-49f4-a514-20a773797a8a/run_3"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "misc",
+   "task": "2c1ebcd7-9c6d-4c9a-afad-900e381ecd5e",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/2c1ebcd7-9c6d-4c9a-afad-900e381ecd5e/run_4"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "os",
+   "task": "aad10cd7-9337-4b62-b704-a857848cedf2",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/aad10cd7-9337-4b62-b704-a857848cedf2/run_1"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "os",
+   "task": "3a93cae4-ad3e-403e-8c12-65303b271818",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/3a93cae4-ad3e-403e-8c12-65303b271818/run_5"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "os",
+   "task": "1f18aa87-af6f-41ef-9853-cdb8f32ebdea",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/1f18aa87-af6f-41ef-9853-cdb8f32ebdea/run_3"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "thunderbird",
+   "task": "415ef462-bed3-493a-ac36-ca8c6d23bf1b",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/415ef462-bed3-493a-ac36-ca8c6d23bf1b/run_5"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "vlc",
+   "task": "2fe4b718-3bd7-46ec-bdce-b184f5653624",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/2fe4b718-3bd7-46ec-bdce-b184f5653624/run_5"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "chrome",
+   "task": "7b6c7e24-c58a-49fc-a5bb-d57b80e5b4c3",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_official/7b6c7e24-c58a-49fc-a5bb-d57b80e5b4c3/run_1"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "chrome",
+   "task": "a82b78bb-7fde-4cb3-94a4-035baf10bcf0",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_official/a82b78bb-7fde-4cb3-94a4-035baf10bcf0/run_3"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "gimp",
+   "task": "dbbf4b99-2253-4b10-9274-45f246af2466",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_e1bounce_official/dbbf4b99-2253-4b10-9274-45f246af2466/run_1"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "libreoffice_calc",
+   "task": "035f41ba-6653-43ab-aa63-c86d449d62e5",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_official/035f41ba-6653-43ab-aa63-c86d449d62e5/run_1"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "libreoffice_calc",
+   "task": "347ef137-7eeb-4c80-a3bb-0951f26a8aff",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_e1b2_official/347ef137-7eeb-4c80-a3bb-0951f26a8aff/run_1"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "libreoffice_impress",
+   "task": "5c1a6c3d-c1b3-47cb-9b01-8d1b7544ffa1",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_official/5c1a6c3d-c1b3-47cb-9b01-8d1b7544ffa1/run_4"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "libreoffice_impress",
+   "task": "9cf05d24-6bd9-4dae-8967-f67d88f5d38a",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_official/9cf05d24-6bd9-4dae-8967-f67d88f5d38a/run_2"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "libreoffice_impress",
+   "task": "550ce7e7-747b-495f-b122-acdc4d0b8e54",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_code_official/550ce7e7-747b-495f-b122-acdc4d0b8e54/run_3"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "libreoffice_writer",
+   "task": "6f81754e-285d-4ce0-b59e-af7edb02d108",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_official/6f81754e-285d-4ce0-b59e-af7edb02d108/run_4"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "libreoffice_writer",
+   "task": "88fe4b2d-3040-4c70-9a70-546a47764b48",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_official/88fe4b2d-3040-4c70-9a70-546a47764b48/run_1"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "misc",
+   "task": "2c1ebcd7-9c6d-4c9a-afad-900e381ecd5e",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_official/2c1ebcd7-9c6d-4c9a-afad-900e381ecd5e/run_4"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "os",
+   "task": "f9be0997-4b7c-45c5-b05c-4612b44a6118",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_official/f9be0997-4b7c-45c5-b05c-4612b44a6118/run_2"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "os",
+   "task": "3ce045a0-877b-42aa-8d2c-b4a863336ab8",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_official/3ce045a0-877b-42aa-8d2c-b4a863336ab8/run_4"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "os",
+   "task": "ec4e3f68-9ea4-4c18-a5c9-69f89d1178b3",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_e1card_official/ec4e3f68-9ea4-4c18-a5c9-69f89d1178b3/run_5"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "os",
+   "task": "28cc3b7e-b194-4bc9-8353-d04c0f4d56d2",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_official/28cc3b7e-b194-4bc9-8353-d04c0f4d56d2/run_4"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "os",
+   "task": "d1acdb87-bb67-4f30-84aa-990e56a09c92",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_official/d1acdb87-bb67-4f30-84aa-990e56a09c92/run_1"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "os",
+   "task": "a4d98375-215b-4a4d-aee9-3d4370fccc41",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_official/a4d98375-215b-4a4d-aee9-3d4370fccc41/run_2"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "thunderbird",
+   "task": "e135df7c-7687-4ac0-a5f0-76b74438b53e",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_official/e135df7c-7687-4ac0-a5f0-76b74438b53e/run_4"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "vlc",
+   "task": "937087b6-f668-4ba6-9110-60682ee33441",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_official/937087b6-f668-4ba6-9110-60682ee33441/run_4"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "030eeff7-b492-4218-b312-701ec99ee0cc",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/030eeff7-b492-4218-b312-701ec99ee0cc/run_1"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "3299584d-8f11-4457-bf4c-ce98f7600250",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/3299584d-8f11-4457-bf4c-ce98f7600250/run_2"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "bb5e4c0d-f964-439c-97b6-bdb9747de3f4",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/bb5e4c0d-f964-439c-97b6-bdb9747de3f4/run_3"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "82bc8d6a-36eb-4d2d-8801-ef714fb1e55a",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/82bc8d6a-36eb-4d2d-8801-ef714fb1e55a/run_1"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "2ad9387a-65d8-4e33-ad5b-7580065a27ca",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/2ad9387a-65d8-4e33-ad5b-7580065a27ca/run_2"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "06fe7178-4491-4589-810f-2e2bc9502122",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/06fe7178-4491-4589-810f-2e2bc9502122/run_3"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "2ae9ba84-3a0d-4d4c-8338-3a1478dc5fe3",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/2ae9ba84-3a0d-4d4c-8338-3a1478dc5fe3/run_5"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "7f52cab9-535c-4835-ac8c-391ee64dc930",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/7f52cab9-535c-4835-ac8c-391ee64dc930/run_2"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "gimp",
+   "task": "f723c744-e62c-4ae6-98d1-750d3cd7d79d",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/f723c744-e62c-4ae6-98d1-750d3cd7d79d/run_1"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "gimp",
+   "task": "77b8ab4d-994f-43ac-8930-8ca087d7c4b4",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/77b8ab4d-994f-43ac-8930-8ca087d7c4b4/run_4"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "gimp",
+   "task": "554785e9-4523-4e7a-b8e1-8016f565f56a",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/554785e9-4523-4e7a-b8e1-8016f565f56a/run_1"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice calc",
+   "task": "01b269ae-2111-4a07-81fd-3fcd711993b0",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/01b269ae-2111-4a07-81fd-3fcd711993b0/run_2"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice calc",
+   "task": "d681960f-7bc3-4286-9913-a8812ba3261a",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/d681960f-7bc3-4286-9913-a8812ba3261a/run_4"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice calc",
+   "task": "f9584479-3d0d-4c79-affa-9ad7afdd8850",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/f9584479-3d0d-4c79-affa-9ad7afdd8850/run_4"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice calc",
+   "task": "eb03d19a-b88d-4de4-8a64-ca0ac66f426b",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/eb03d19a-b88d-4de4-8a64-ca0ac66f426b/run_2"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_calc",
+   "task": "7e287123-70ca-47b9-8521-47db09b69b14",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/7e287123-70ca-47b9-8521-47db09b69b14/run_3"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_calc",
+   "task": "51719eea-10bc-4246-a428-ac7c433dd4b3",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/51719eea-10bc-4246-a428-ac7c433dd4b3/run_5"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_calc",
+   "task": "3a7c8185-25c1-4941-bd7b-96e823c9f21f",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/3a7c8185-25c1-4941-bd7b-96e823c9f21f/run_2"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_calc",
+   "task": "26a8440e-c166-4c50-aef4-bfb77314b46b",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/26a8440e-c166-4c50-aef4-bfb77314b46b/run_5"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_calc",
+   "task": "a01fbce3-2793-461f-ab86-43680ccbae25",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/a01fbce3-2793-461f-ab86-43680ccbae25/run_4"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_calc",
+   "task": "535364ea-05bd-46ea-9937-9f55c68507e8",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/535364ea-05bd-46ea-9937-9f55c68507e8/run_3"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_calc",
+   "task": "ee9a3c83-f437-4879-8918-be5efbb9fac7",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/ee9a3c83-f437-4879-8918-be5efbb9fac7/run_2"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_impress",
+   "task": "70bca0cc-c117-427e-b0be-4df7299ebeb6",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/70bca0cc-c117-427e-b0be-4df7299ebeb6/run_3"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_impress",
+   "task": "15aece23-a215-4579-91b4-69eec72e18da",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/15aece23-a215-4579-91b4-69eec72e18da/run_5"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_impress",
+   "task": "778efd0a-153f-4842-9214-f05fc176b877",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/778efd0a-153f-4842-9214-f05fc176b877/run_3"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_impress",
+   "task": "a097acff-6266-4291-9fbd-137af7ecd439",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/a097acff-6266-4291-9fbd-137af7ecd439/run_2"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_impress",
+   "task": "04578141-1d42-4146-b9cf-6fab4ce5fd74",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/04578141-1d42-4146-b9cf-6fab4ce5fd74/run_1"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_impress",
+   "task": "ce88f674-ab7a-43da-9201-468d38539e4a",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/ce88f674-ab7a-43da-9201-468d38539e4a/run_1"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_impress",
+   "task": "4ed5abd0-8b5d-47bd-839f-cacfa15ca37a",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/4ed5abd0-8b5d-47bd-839f-cacfa15ca37a/run_4"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_impress",
+   "task": "ed43c15f-00cb-4054-9c95-62c880865d68",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/ed43c15f-00cb-4054-9c95-62c880865d68/run_3"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_writer",
+   "task": "adf5e2c3-64c7-4644-b7b6-d2f0167927e7",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/adf5e2c3-64c7-4644-b7b6-d2f0167927e7/run_1"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_writer",
+   "task": "66399b0d-8fda-4618-95c4-bfc6191617e9",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/66399b0d-8fda-4618-95c4-bfc6191617e9/run_4"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_writer",
+   "task": "81c425f5-78f3-4771-afd6-3d2973825947",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/81c425f5-78f3-4771-afd6-3d2973825947/run_5"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "libreoffice_writer",
+   "task": "0e763496-b6bb-4508-a427-fad0b6c3e195",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/0e763496-b6bb-4508-a427-fad0b6c3e195/run_5"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "os",
+   "task": "337d318b-aa07-4f4f-b763-89d9a2dd013f",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/337d318b-aa07-4f4f-b763-89d9a2dd013f/run_5"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "os",
+   "task": "b337d106-053f-4d37-8da0-7f9c4043a66b",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/b337d106-053f-4d37-8da0-7f9c4043a66b/run_4"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "os",
+   "task": "1f18aa87-af6f-41ef-9853-cdb8f32ebdea",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/1f18aa87-af6f-41ef-9853-cdb8f32ebdea/run_5"
+  },
+  {
+   "model": "sonnet",
+   "image": "original",
+   "bucket": "thunderbird",
+   "task": "f5c13cdd-205c-4719-a562-348ae5cd1d91",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_protocol361img3_official/f5c13cdd-205c-4719-a562-348ae5cd1d91/run_5"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "chrome",
+   "task": "99146c54-4f37-4ab8-9327-5f3291665e1e",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_official/99146c54-4f37-4ab8-9327-5f3291665e1e/run_1"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "chrome",
+   "task": "12086550-11c0-466b-b367-1d9e75b3910e",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_code_official/12086550-11c0-466b-b367-1d9e75b3910e/run_1"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "chrome",
+   "task": "06fe7178-4491-4589-810f-2e2bc9502122",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_code_official/06fe7178-4491-4589-810f-2e2bc9502122/run_1"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "gimp",
+   "task": "dbbf4b99-2253-4b10-9274-45f246af2466",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_e1card_official/dbbf4b99-2253-4b10-9274-45f246af2466/run_5"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "gimp",
+   "task": "734d6579-c07d-47a8-9ae2-13339795476b",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_e1card_official/734d6579-c07d-47a8-9ae2-13339795476b/run_2"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "gimp",
+   "task": "7767eef2-56a3-4cea-8c9f-48c070c7d65b",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_official/7767eef2-56a3-4cea-8c9f-48c070c7d65b/run_5"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "gimp",
+   "task": "06ca5602-62ca-47f6-ad4f-da151cde54cc",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_official/06ca5602-62ca-47f6-ad4f-da151cde54cc/run_1"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "libreoffice calc",
+   "task": "6054afcb-5bab-4702-90a0-b259b5d3217c",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_e1b2_official/6054afcb-5bab-4702-90a0-b259b5d3217c/run_1"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "libreoffice_calc",
+   "task": "04d9aeaf-7bed-4024-bedb-e10e6f00eb7f",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_code_official/04d9aeaf-7bed-4024-bedb-e10e6f00eb7f/run_2"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "libreoffice_calc",
+   "task": "347ef137-7eeb-4c80-a3bb-0951f26a8aff",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_official/347ef137-7eeb-4c80-a3bb-0951f26a8aff/run_1"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "libreoffice_calc",
+   "task": "035f41ba-6653-43ab-aa63-c86d449d62e5",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_code_official/035f41ba-6653-43ab-aa63-c86d449d62e5/run_1"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "libreoffice_impress",
+   "task": "05dd4c1d-c489-4c85-8389-a7836c4f0567",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_official/05dd4c1d-c489-4c85-8389-a7836c4f0567/run_3"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "libreoffice_impress",
+   "task": "39be0d19-634d-4475-8768-09c130f5425d",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_official/39be0d19-634d-4475-8768-09c130f5425d/run_3"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "libreoffice_impress",
+   "task": "af23762e-2bfd-4a1d-aada-20fa8de9ce07",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_official/af23762e-2bfd-4a1d-aada-20fa8de9ce07/run_1"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "libreoffice_impress",
+   "task": "5d901039-a89c-4bfb-967b-bf66f4df075e",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_code_official/5d901039-a89c-4bfb-967b-bf66f4df075e/run_3"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "libreoffice_writer",
+   "task": "0e763496-b6bb-4508-a427-fad0b6c3e195",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_official/0e763496-b6bb-4508-a427-fad0b6c3e195/run_1"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "libreoffice_writer",
+   "task": "6f81754e-285d-4ce0-b59e-af7edb02d108",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_official/6f81754e-285d-4ce0-b59e-af7edb02d108/run_3"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "os",
+   "task": "2373b66a-092d-44cb-bfd7-82e86e7a3b4d",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_code_official/2373b66a-092d-44cb-bfd7-82e86e7a3b4d/run_1"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "os",
+   "task": "94d95f96-9699-4208-98ba-3c3119edf9c2",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/94d95f96-9699-4208-98ba-3c3119edf9c2/run_3"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "os",
+   "task": "f9be0997-4b7c-45c5-b05c-4612b44a6118",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_official/f9be0997-4b7c-45c5-b05c-4612b44a6118/run_3"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "os",
+   "task": "3ce045a0-877b-42aa-8d2c-b4a863336ab8",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/3ce045a0-877b-42aa-8d2c-b4a863336ab8/run_1"
+  },
+  {
+   "model": "sonnet",
+   "image": "pkgfix3",
+   "bucket": "vlc",
+   "task": "8ba5ae7a-5ae5-4eab-9fcc-5dd4fe3abf89",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_sonnet5_effortmax_pkgfix3_e1card2_official/8ba5ae7a-5ae5-4eab-9fcc-5dd4fe3abf89/run_3"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "1704f00f-79e6-43a7-961b-cedd3724d5fd",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/1704f00f-79e6-43a7-961b-cedd3724d5fd/run_3"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "47543840-672a-467d-80df-8f7c3b9788c9",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/47543840-672a-467d-80df-8f7c3b9788c9/run_3"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "9f3f70fc-5afc-4958-a7b7-3bb4fcb01805",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/9f3f70fc-5afc-4958-a7b7-3bb4fcb01805/run_2"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "9f935cce-0a9f-435f-8007-817732bfc0a5",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/9f935cce-0a9f-435f-8007-817732bfc0a5/run_1"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "f5d96daf-83a8-4c86-9686-bada31fc66ab",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/f5d96daf-83a8-4c86-9686-bada31fc66ab/run_1"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "f79439ad-3ee8-4f99-a518-0eb60e5652b0",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/f79439ad-3ee8-4f99-a518-0eb60e5652b0/run_5"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "da46d875-6b82-4681-9284-653b0c7ae241",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/da46d875-6b82-4681-9284-653b0c7ae241/run_3"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "82bc8d6a-36eb-4d2d-8801-ef714fb1e55a",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/82bc8d6a-36eb-4d2d-8801-ef714fb1e55a/run_1"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "b070486d-e161-459b-aa2b-ef442d973b92",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/b070486d-e161-459b-aa2b-ef442d973b92/run_4"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "2888b4e6-5b47-4b57-8bf5-c73827890774",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/2888b4e6-5b47-4b57-8bf5-c73827890774/run_1"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "6c4c23a1-42a4-43cc-9db1-2f86ff3738cc",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/6c4c23a1-42a4-43cc-9db1-2f86ff3738cc/run_3"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "fc6d8143-9452-4171-9459-7f515143419a",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/fc6d8143-9452-4171-9459-7f515143419a/run_2"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "gimp",
+   "task": "a746add2-cab0-4740-ac36-c3769d9bfb46",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/a746add2-cab0-4740-ac36-c3769d9bfb46/run_3"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "gimp",
+   "task": "f723c744-e62c-4ae6-98d1-750d3cd7d79d",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/f723c744-e62c-4ae6-98d1-750d3cd7d79d/run_5"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "gimp",
+   "task": "72f83cdc-bf76-4531-9a1b-eb893a13f8aa",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/72f83cdc-bf76-4531-9a1b-eb893a13f8aa/run_1"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "gimp",
+   "task": "7767eef2-56a3-4cea-8c9f-48c070c7d65b",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/7767eef2-56a3-4cea-8c9f-48c070c7d65b/run_4"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "gimp",
+   "task": "dbbf4b99-2253-4b10-9274-45f246af2466",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/dbbf4b99-2253-4b10-9274-45f246af2466/run_4"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "libreoffice calc",
+   "task": "4e6fcf72-daf3-439f-a232-c434ce416af6",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/4e6fcf72-daf3-439f-a232-c434ce416af6/run_3"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "libreoffice calc",
+   "task": "6054afcb-5bab-4702-90a0-b259b5d3217c",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/6054afcb-5bab-4702-90a0-b259b5d3217c/run_1"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "libreoffice_calc",
+   "task": "30e3e107-1cfb-46ee-a755-2cd080d7ba6a",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/30e3e107-1cfb-46ee-a755-2cd080d7ba6a/run_4"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "libreoffice_calc",
+   "task": "347ef137-7eeb-4c80-a3bb-0951f26a8aff",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/347ef137-7eeb-4c80-a3bb-0951f26a8aff/run_4"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "libreoffice_impress",
+   "task": "0f84bef9-9790-432e-92b7-eece357603fb",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/0f84bef9-9790-432e-92b7-eece357603fb/run_5"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "libreoffice_impress",
+   "task": "af23762e-2bfd-4a1d-aada-20fa8de9ce07",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/af23762e-2bfd-4a1d-aada-20fa8de9ce07/run_2"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "libreoffice_impress",
+   "task": "9ec204e4-f0a3-42f8-8458-b772a6797cab",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/9ec204e4-f0a3-42f8-8458-b772a6797cab/run_2"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "os",
+   "task": "ec4e3f68-9ea4-4c18-a5c9-69f89d1178b3",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/ec4e3f68-9ea4-4c18-a5c9-69f89d1178b3/run_3"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "os",
+   "task": "a4d98375-215b-4a4d-aee9-3d4370fccc41",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/a4d98375-215b-4a4d-aee9-3d4370fccc41/run_5"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "os",
+   "task": "3ce045a0-877b-42aa-8d2c-b4a863336ab8",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/3ce045a0-877b-42aa-8d2c-b4a863336ab8/run_3"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "os",
+   "task": "f9be0997-4b7c-45c5-b05c-4612b44a6118",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/f9be0997-4b7c-45c5-b05c-4612b44a6118/run_2"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "os",
+   "task": "13584542-872b-42d8-b299-866967b5c3ef",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/13584542-872b-42d8-b299-866967b5c3ef/run_2"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "os",
+   "task": "28cc3b7e-b194-4bc9-8353-d04c0f4d56d2",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/28cc3b7e-b194-4bc9-8353-d04c0f4d56d2/run_4"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "os",
+   "task": "5812b315-e7bd-4265-b51f-863c02174c28",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/5812b315-e7bd-4265-b51f-863c02174c28/run_2"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "os",
+   "task": "bedcedc4-4d72-425e-ad62-21960b11fe0d",
+   "verdict": "FAILURE",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/bedcedc4-4d72-425e-ad62-21960b11fe0d/run_2"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "chrome",
+   "task": "42d25c08-fb87-4927-8b65-93631280a26f",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_official/42d25c08-fb87-4927-8b65-93631280a26f/run_1"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "chrome",
+   "task": "99146c54-4f37-4ab8-9327-5f3291665e1e",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/99146c54-4f37-4ab8-9327-5f3291665e1e/run_1"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "gimp",
+   "task": "dbbf4b99-2253-4b10-9274-45f246af2466",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_code_official/dbbf4b99-2253-4b10-9274-45f246af2466/run_4"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "gimp",
+   "task": "dbbf4b99-2253-4b10-9274-45f246af2466",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_official/dbbf4b99-2253-4b10-9274-45f246af2466/run_2"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "gimp",
+   "task": "dbbf4b99-2253-4b10-9274-45f246af2466",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_code_official/dbbf4b99-2253-4b10-9274-45f246af2466/run_2"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "libreoffice_calc",
+   "task": "347ef137-7eeb-4c80-a3bb-0951f26a8aff",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_official/347ef137-7eeb-4c80-a3bb-0951f26a8aff/run_3"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "libreoffice_calc",
+   "task": "8e116af7-7db7-4e35-a68b-b0939c066c78",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_e1b2_official/8e116af7-7db7-4e35-a68b-b0939c066c78/run_1"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "libreoffice_impress",
+   "task": "ac9bb6cb-1888-43ab-81e4-a98a547918cd",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_official/ac9bb6cb-1888-43ab-81e4-a98a547918cd/run_3"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "libreoffice_writer",
+   "task": "88fe4b2d-3040-4c70-9a70-546a47764b48",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_e1b2_official/88fe4b2d-3040-4c70-9a70-546a47764b48/run_3"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "libreoffice_writer",
+   "task": "88fe4b2d-3040-4c70-9a70-546a47764b48",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_official/88fe4b2d-3040-4c70-9a70-546a47764b48/run_5"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "os",
+   "task": "a4d98375-215b-4a4d-aee9-3d4370fccc41",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/a4d98375-215b-4a4d-aee9-3d4370fccc41/run_2"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "os",
+   "task": "94d95f96-9699-4208-98ba-3c3119edf9c2",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_official/94d95f96-9699-4208-98ba-3c3119edf9c2/run_3"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "os",
+   "task": "28cc3b7e-b194-4bc9-8353-d04c0f4d56d2",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_code_official/28cc3b7e-b194-4bc9-8353-d04c0f4d56d2/run_5"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "os",
+   "task": "b6781586-6346-41cd-935a-a6b1487918fc",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_official/b6781586-6346-41cd-935a-a6b1487918fc/run_1"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "os",
+   "task": "ec4e3f68-9ea4-4c18-a5c9-69f89d1178b3",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card_official/ec4e3f68-9ea4-4c18-a5c9-69f89d1178b3/run_2"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "os",
+   "task": "3ce045a0-877b-42aa-8d2c-b4a863336ab8",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_code_official/3ce045a0-877b-42aa-8d2c-b4a863336ab8/run_2"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "os",
+   "task": "bedcedc4-4d72-425e-ad62-21960b11fe0d",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_official/bedcedc4-4d72-425e-ad62-21960b11fe0d/run_2"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "os",
+   "task": "d1acdb87-bb67-4f30-84aa-990e56a09c92",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_official/d1acdb87-bb67-4f30-84aa-990e56a09c92/run_3"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "os",
+   "task": "f9be0997-4b7c-45c5-b05c-4612b44a6118",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_official/f9be0997-4b7c-45c5-b05c-4612b44a6118/run_4"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "os",
+   "task": "ec4e3f68-9ea4-4c18-a5c9-69f89d1178b3",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/ec4e3f68-9ea4-4c18-a5c9-69f89d1178b3/run_2"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "os",
+   "task": "ec4e3f68-9ea4-4c18-a5c9-69f89d1178b3",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/ec4e3f68-9ea4-4c18-a5c9-69f89d1178b3/run_3"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "os",
+   "task": "94d95f96-9699-4208-98ba-3c3119edf9c2",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/94d95f96-9699-4208-98ba-3c3119edf9c2/run_1"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "os",
+   "task": "a4d98375-215b-4a4d-aee9-3d4370fccc41",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_code_official/a4d98375-215b-4a4d-aee9-3d4370fccc41/run_5"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "os",
+   "task": "28cc3b7e-b194-4bc9-8353-d04c0f4d56d2",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_code_official/28cc3b7e-b194-4bc9-8353-d04c0f4d56d2/run_3"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "os",
+   "task": "a4d98375-215b-4a4d-aee9-3d4370fccc41",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_code_official/a4d98375-215b-4a4d-aee9-3d4370fccc41/run_1"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "os",
+   "task": "ec4e3f68-9ea4-4c18-a5c9-69f89d1178b3",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/ec4e3f68-9ea4-4c18-a5c9-69f89d1178b3/run_5"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "thunderbird",
+   "task": "e135df7c-7687-4ac0-a5f0-76b74438b53e",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_official/e135df7c-7687-4ac0-a5f0-76b74438b53e/run_5"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "thunderbird",
+   "task": "e135df7c-7687-4ac0-a5f0-76b74438b53e",
+   "verdict": "FAILURE",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_e1b2_official/e135df7c-7687-4ac0-a5f0-76b74438b53e/run_5"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "121ba48f-9e17-48ce-9bc6-a4fb17a7ebba",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/121ba48f-9e17-48ce-9bc6-a4fb17a7ebba/run_2"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "6766f2b8-8a72-417f-a9e5-56fcaa735837",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/6766f2b8-8a72-417f-a9e5-56fcaa735837/run_1"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "0d8b7de3-e8de-4d86-b9fd-dd2dce58a217",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/0d8b7de3-e8de-4d86-b9fd-dd2dce58a217/run_5"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "bb5e4c0d-f964-439c-97b6-bdb9747de3f4",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/bb5e4c0d-f964-439c-97b6-bdb9747de3f4/run_5"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "030eeff7-b492-4218-b312-701ec99ee0cc",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/030eeff7-b492-4218-b312-701ec99ee0cc/run_2"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "af630914-714e-4a24-a7bb-f9af687d3b91",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/af630914-714e-4a24-a7bb-f9af687d3b91/run_2"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "99146c54-4f37-4ab8-9327-5f3291665e1e",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/99146c54-4f37-4ab8-9327-5f3291665e1e/run_2"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "1704f00f-79e6-43a7-961b-cedd3724d5fd",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/1704f00f-79e6-43a7-961b-cedd3724d5fd/run_5"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "47543840-672a-467d-80df-8f7c3b9788c9",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/47543840-672a-467d-80df-8f7c3b9788c9/run_4"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "chrome",
+   "task": "7f52cab9-535c-4835-ac8c-391ee64dc930",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/7f52cab9-535c-4835-ac8c-391ee64dc930/run_3"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "gimp",
+   "task": "7a4deb26-d57d-4ea9-9a73-630f66a7b568",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/7a4deb26-d57d-4ea9-9a73-630f66a7b568/run_5"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "gimp",
+   "task": "f4aec372-4fb0-4df5-a52b-79e0e2a5d6ce",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/f4aec372-4fb0-4df5-a52b-79e0e2a5d6ce/run_2"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "gimp",
+   "task": "554785e9-4523-4e7a-b8e1-8016f565f56a",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/554785e9-4523-4e7a-b8e1-8016f565f56a/run_1"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "gimp",
+   "task": "2a729ded-3296-423d-aec4-7dd55ed5fbb3",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/2a729ded-3296-423d-aec4-7dd55ed5fbb3/run_4"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "libreoffice calc",
+   "task": "51b11269-2ca8-4b2a-9163-f21758420e78",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/51b11269-2ca8-4b2a-9163-f21758420e78/run_2"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "libreoffice calc",
+   "task": "d681960f-7bc3-4286-9913-a8812ba3261a",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/d681960f-7bc3-4286-9913-a8812ba3261a/run_1"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "libreoffice calc",
+   "task": "a9f325aa-8c05-4e4f-8341-9e4358565f4f",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/a9f325aa-8c05-4e4f-8341-9e4358565f4f/run_1"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "libreoffice calc",
+   "task": "7efeb4b1-3d19-4762-b163-63328d66303b",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/7efeb4b1-3d19-4762-b163-63328d66303b/run_3"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "libreoffice calc",
+   "task": "7e429b8d-a3f0-4ed0-9b58-08957d00b127",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/7e429b8d-a3f0-4ed0-9b58-08957d00b127/run_3"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "libreoffice calc",
+   "task": "7a4e4bc8-922c-4c84-865c-25ba34136be1",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/7a4e4bc8-922c-4c84-865c-25ba34136be1/run_2"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "libreoffice_calc",
+   "task": "1954cced-e748-45c4-9c26-9855b97fbc5e",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/1954cced-e748-45c4-9c26-9855b97fbc5e/run_3"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "libreoffice_calc",
+   "task": "0a2e43bf-b26c-4631-a966-af9dfa12c9e5",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/0a2e43bf-b26c-4631-a966-af9dfa12c9e5/run_1"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "libreoffice_calc",
+   "task": "1d17d234-e39d-4ed7-b46f-4417922a4e7c",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/1d17d234-e39d-4ed7-b46f-4417922a4e7c/run_4"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "libreoffice_calc",
+   "task": "21df9241-f8d7-4509-b7f1-37e501a823f7",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/21df9241-f8d7-4509-b7f1-37e501a823f7/run_3"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "libreoffice_calc",
+   "task": "0326d92d-d218-48a8-9ca1-981cd6d064c7",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/0326d92d-d218-48a8-9ca1-981cd6d064c7/run_3"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "libreoffice_calc",
+   "task": "347ef137-7eeb-4c80-a3bb-0951f26a8aff",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/347ef137-7eeb-4c80-a3bb-0951f26a8aff/run_1"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "libreoffice_calc",
+   "task": "1de60575-bb6e-4c3d-9e6a-2fa699f9f197",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/1de60575-bb6e-4c3d-9e6a-2fa699f9f197/run_3"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "libreoffice_calc",
+   "task": "1273e544-688f-496b-8d89-3e0f40aa0606",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/1273e544-688f-496b-8d89-3e0f40aa0606/run_4"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "libreoffice_calc",
+   "task": "1e8df695-bd1b-45b3-b557-e7d599cf7597",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/1e8df695-bd1b-45b3-b557-e7d599cf7597/run_3"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "libreoffice_impress",
+   "task": "a434992a-89df-4577-925c-0c58b747f0f4",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/a434992a-89df-4577-925c-0c58b747f0f4/run_1"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "libreoffice_impress",
+   "task": "9ec204e4-f0a3-42f8-8458-b772a6797cab",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/9ec204e4-f0a3-42f8-8458-b772a6797cab/run_3"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "libreoffice_impress",
+   "task": "9cf05d24-6bd9-4dae-8967-f67d88f5d38a",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/9cf05d24-6bd9-4dae-8967-f67d88f5d38a/run_5"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "libreoffice_impress",
+   "task": "08aced46-45a2-48d7-993b-ed3fb5b32302",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/08aced46-45a2-48d7-993b-ed3fb5b32302/run_1"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "libreoffice_impress",
+   "task": "c59742c0-4323-4b9d-8a02-723c251deaa0",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/c59742c0-4323-4b9d-8a02-723c251deaa0/run_3"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "os",
+   "task": "5ced85fc-fa1a-4217-95fd-0fb530545ce2",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/5ced85fc-fa1a-4217-95fd-0fb530545ce2/run_1"
+  },
+  {
+   "model": "astra",
+   "image": "original",
+   "bucket": "vlc",
+   "task": "937087b6-f668-4ba6-9110-60682ee33441",
+   "verdict": "SUCCESS",
+   "run": "/Volumes/TOSHIBA EXT/agentic-qa-archive-20261014/osworld-vm-base/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_protocol361img3_official/937087b6-f668-4ba6-9110-60682ee33441/run_1"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "chrome",
+   "task": "030eeff7-b492-4218-b312-701ec99ee0cc",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/030eeff7-b492-4218-b312-701ec99ee0cc/run_3"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "chrome",
+   "task": "7b6c7e24-c58a-49fc-a5bb-d57b80e5b4c3",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_official/7b6c7e24-c58a-49fc-a5bb-d57b80e5b4c3/run_1"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "chrome",
+   "task": "42d25c08-fb87-4927-8b65-93631280a26f",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_official/42d25c08-fb87-4927-8b65-93631280a26f/run_3"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "chrome",
+   "task": "12086550-11c0-466b-b367-1d9e75b3910e",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card_official/12086550-11c0-466b-b367-1d9e75b3910e/run_3"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "chrome",
+   "task": "2ad9387a-65d8-4e33-ad5b-7580065a27ca",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/2ad9387a-65d8-4e33-ad5b-7580065a27ca/run_1"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "gimp",
+   "task": "2a729ded-3296-423d-aec4-7dd55ed5fbb3",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/2a729ded-3296-423d-aec4-7dd55ed5fbb3/run_1"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "gimp",
+   "task": "554785e9-4523-4e7a-b8e1-8016f565f56a",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/554785e9-4523-4e7a-b8e1-8016f565f56a/run_3"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "gimp",
+   "task": "4c26e3f3-3a14-4d86-b44a-d3cedebbb487",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_official/4c26e3f3-3a14-4d86-b44a-d3cedebbb487/run_3"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "libreoffice calc",
+   "task": "01b269ae-2111-4a07-81fd-3fcd711993b0",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card_official/01b269ae-2111-4a07-81fd-3fcd711993b0/run_2"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "libreoffice_calc",
+   "task": "0326d92d-d218-48a8-9ca1-981cd6d064c7",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card_official/0326d92d-d218-48a8-9ca1-981cd6d064c7/run_1"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "libreoffice_calc",
+   "task": "1de60575-bb6e-4c3d-9e6a-2fa699f9f197",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_official/1de60575-bb6e-4c3d-9e6a-2fa699f9f197/run_3"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "libreoffice_calc",
+   "task": "035f41ba-6653-43ab-aa63-c86d449d62e5",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/035f41ba-6653-43ab-aa63-c86d449d62e5/run_1"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "libreoffice_impress",
+   "task": "5d901039-a89c-4bfb-967b-bf66f4df075e",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_official/5d901039-a89c-4bfb-967b-bf66f4df075e/run_1"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "libreoffice_impress",
+   "task": "3b27600c-3668-4abd-8f84-7bcdebbccbdb",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_official/3b27600c-3668-4abd-8f84-7bcdebbccbdb/run_1"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "libreoffice_impress",
+   "task": "f23acfd2-c485-4b7c-a1e7-d4303ddfe864",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_e1b2_official/f23acfd2-c485-4b7c-a1e7-d4303ddfe864/run_5"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "libreoffice_impress",
+   "task": "04578141-1d42-4146-b9cf-6fab4ce5fd74",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_official/04578141-1d42-4146-b9cf-6fab4ce5fd74/run_2"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "os",
+   "task": "f9be0997-4b7c-45c5-b05c-4612b44a6118",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/f9be0997-4b7c-45c5-b05c-4612b44a6118/run_5"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "os",
+   "task": "2373b66a-092d-44cb-bfd7-82e86e7a3b4d",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card_official/2373b66a-092d-44cb-bfd7-82e86e7a3b4d/run_1"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "os",
+   "task": "b6781586-6346-41cd-935a-a6b1487918fc",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_code_official/b6781586-6346-41cd-935a-a6b1487918fc/run_3"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "os",
+   "task": "bedcedc4-4d72-425e-ad62-21960b11fe0d",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_code_official/bedcedc4-4d72-425e-ad62-21960b11fe0d/run_3"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "os",
+   "task": "e0df059f-28a6-4169-924f-b9623e7184cc",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/e0df059f-28a6-4169-924f-b9623e7184cc/run_2"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "os",
+   "task": "a4d98375-215b-4a4d-aee9-3d4370fccc41",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_code_official/a4d98375-215b-4a4d-aee9-3d4370fccc41/run_4"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "vlc",
+   "task": "937087b6-f668-4ba6-9110-60682ee33441",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_official/937087b6-f668-4ba6-9110-60682ee33441/run_2"
+  },
+  {
+   "model": "astra",
+   "image": "pkgfix3",
+   "bucket": "vlc",
+   "task": "8ba5ae7a-5ae5-4eab-9fcc-5dd4fe3abf89",
+   "verdict": "SUCCESS",
+   "run": "/Users/lucavisconti/Thesis/agentic-qa/benchmarks/osworld/results/agent_computer_gpt6astra_max_codex01534_pkgfix3_e1card2_official/8ba5ae7a-5ae5-4eab-9fcc-5dd4fe3abf89/run_1"
+  }
+ ]
+}
