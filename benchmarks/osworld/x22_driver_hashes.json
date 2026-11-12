@@ -1,0 +1,26 @@
+{
+  "about": "sha256 of the orchestration scripts under docs/phase3. That directory is gitignored by project convention, so a change there is invisible to provenance.harness_dirty; Gate A verifies these digests so the driver cannot drift unreviewed while a campaign runs. Regenerate deliberately, with a commit that says what changed and why.",
+  "fixed_on": "2026-11-12",
+  "files": {
+    "driver.sh": {
+      "sha256": "b8f8cb5185db824978ddda3c4c8bc5b20bca2a60afab89cdbc132ad7c3cb300b",
+      "bytes": 7653
+    },
+    "guard.sh": {
+      "sha256": "d1808751f72512100f5ff9ddcd9f8179ed11350b3e06bfa24a07c6f49b834864",
+      "bytes": 4486
+    },
+    "launch_side.sh": {
+      "sha256": "2f01be60ed673c178cde08ae7dde26f435f259c8cacc99aaab5eb8e9ab39dda6",
+      "bytes": 4660
+    },
+    "phase3ctl.sh": {
+      "sha256": "ce9c56980059e5b9aa2a7eeeb04fed6906c6170fa9b7bd5c02ac67f3ca070172",
+      "bytes": 3382
+    },
+    "queue.txt": {
+      "sha256": "4d9c37efa3c10cf2b52c791de69f38d0f26c405fdbcefe1e973d7afa657bc523",
+      "bytes": 1391
+    }
+  }
+}

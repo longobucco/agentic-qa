@@ -7,6 +7,7 @@ means nothing is launched. This is the cheapest of the three gates and the only 
 misconfiguration before it costs a single run.
 """
 import argparse
+import hashlib
 import json
 import subprocess
 import sys
@@ -15,6 +16,7 @@ from pathlib import Path
 from benchmarks.osworld import arms, config, phase3
 
 LOCK = Path(__file__).resolve().parent.parent / "x22_campaign_lock.json"
+DRIVER_HASHES = Path(__file__).resolve().parent.parent / "x22_driver_hashes.json"
 
 
 def _git(*args):
@@ -97,7 +99,34 @@ def check(model, arm, set_name, lock=None):
     # --- the look design --------------------------------------------------------------------
     if (lock["stage3"].get("boundaries") or {}).get("nominal_alpha") is None:
         bad.append("stage-3 look boundaries are not frozen in the lock (run gates.calibrate)")
+
+    # --- the orchestration scripts ------------------------------------------------------------
+    # docs/phase3 is gitignored by project convention, so harness_dirty cannot see a change to the
+    # driver, the guard or the queue. Their digests are tracked separately and checked here, so the
+    # driver cannot drift unreviewed while a campaign runs.
+    bad += driver_drift()
     return bad
+
+
+def driver_drift():
+    out = []
+    try:
+        declared = json.loads(DRIVER_HASHES.read_text())["files"]
+    except (OSError, ValueError) as e:
+        return [f"{DRIVER_HASHES.name} unreadable ({type(e).__name__}): the driver scripts cannot "
+                "be verified"]
+    root = Path(__file__).resolve().parents[3] / "docs" / "phase3"
+    for name, want in declared.items():
+        path = root / name
+        if not path.exists():
+            out.append(f"docs/phase3/{name} is missing")
+            continue
+        got = hashlib.sha256(path.read_bytes()).hexdigest()
+        if got != want["sha256"]:
+            out.append(f"docs/phase3/{name} changed since it was recorded "
+                       f"({got[:12]}… vs {want['sha256'][:12]}…): review it, then regenerate "
+                       f"{DRIVER_HASHES.name} in a commit that says what changed")
+    return out
 
 
 def main(argv=None):

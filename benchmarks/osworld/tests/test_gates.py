@@ -248,3 +248,23 @@ def test_gate_c_reports_harm_when_the_arm_breaks_solved_tasks(tmp_path):
     out = sequential.evaluate(LOCK, tmp_path)
     assert out["verdict"].startswith("HARM"), out
     assert out["mean_paired_difference_points"] == pytest.approx(-100.0)
+
+
+# --- the orchestration scripts ----------------------------------------------------------------
+
+def test_gate_a_notices_a_changed_driver_script(tmp_path, monkeypatch):
+    """docs/phase3 is gitignored, so harness_dirty cannot see a change to the driver. Its digests
+    are tracked separately and Gate A refuses to launch after an unreviewed change."""
+    assert contract.driver_drift() == [], "the recorded digests must match the scripts on disk"
+    tampered = json.loads(contract.DRIVER_HASHES.read_text())
+    tampered["files"]["guard.sh"]["sha256"] = "0" * 64
+    fake = tmp_path / "hashes.json"
+    fake.write_text(json.dumps(tampered))
+    monkeypatch.setattr(contract, "DRIVER_HASHES", fake)
+    out = contract.driver_drift()
+    assert any("guard.sh changed" in r for r in out), out
+
+
+def test_gate_a_refuses_when_the_digests_cannot_be_read(tmp_path, monkeypatch):
+    monkeypatch.setattr(contract, "DRIVER_HASHES", tmp_path / "absent.json")
+    assert any("unreadable" in r for r in contract.driver_drift())
