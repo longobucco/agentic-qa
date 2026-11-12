@@ -15,10 +15,26 @@ def test_suffix_selects_its_image():
     assert config.resolve_image(PKGFIX3, ("pkgfix3",)) == PKGFIX3
 
 
-def test_other_suffixes_keep_the_default_or_override():
-    assert config.resolve_image("", ("protocol361img3", "")) == config._DEFAULT_IMAGE
+def test_declared_historical_suffixes_keep_the_default_image():
+    for suffix in config.DEFAULT_IMAGE_SUFFIXES:
+        assert config.resolve_image("", (suffix, "")) == config._DEFAULT_IMAGE
     assert config.resolve_image("", ("", "")) == config._DEFAULT_IMAGE
-    assert config.resolve_image("reg/img@sha256:abc", ("x",)) == "reg/img@sha256:abc"
+
+
+def test_an_undeclared_suffix_is_refused_instead_of_falling_back():
+    """The failure this prevents was observed live on 12/11: passing the DEV1 suffix through the
+    wrong environment variable left the image on the Phase-2 digest with no error, so a whole
+    tranche would have run on the wrong guest and only the provenance would have shown it."""
+    for bad in ("x", "pkgfix3d", "pkgfix3cdev2", "PKGFIX3C"):
+        with pytest.raises(SystemExit) as e:
+            config.resolve_image("", (bad,))
+        assert "not declared" in str(e.value)
+    # not even with an explicit image: the suffix decides the guest, not the environment
+    with pytest.raises(SystemExit):
+        config.resolve_image("reg/img@sha256:abc", ("x",))
+    # and a declared suffix mixed with an undeclared one is still refused
+    with pytest.raises(SystemExit):
+        config.resolve_image("", ("pkgfix3", "typo"))
 
 
 def test_mismatched_image_or_suffix_is_refused():
@@ -40,12 +56,11 @@ def test_the_confirmatory_suffix_resolves_to_the_same_guest_as_pkgfix3():
     assert config.resolve_image("", ("pkgfix3", "pkgfix3c")) == PKGFIX3
 
 
-def test_an_unmapped_confirmatory_suffix_would_fall_back_to_the_wrong_image():
-    """The trap this entry exists to close: a tree suffix absent from SUFFIX_IMAGES silently gets
-    the Phase-2 default digest instead of pkgfix3, with no error anywhere."""
-    assert config.resolve_image("", ("pkgfix3typo", "")) == config._DEFAULT_IMAGE
-    assert config._DEFAULT_IMAGE != PKGFIX3
-
+def test_an_unmapped_confirmatory_suffix_is_now_refused():
+    """This test used to assert the opposite -- that an unmapped suffix falls back to the Phase-2
+    image -- as a documented hazard. It is no longer a hazard: it is refused."""
+    with pytest.raises(SystemExit):
+        config.resolve_image("", ("pkgfix3cNOTMAPPED",))
 
 def test_config_import_uses_the_suffix_image():
     env = {"OSW_MODEL": "claude-sonnet-5", "OSW_IMAGE": "", "OSW_SYSTEM_SUFFIX": "pkgfix3",

@@ -394,9 +394,30 @@ SUFFIX_IMAGES = {
 }
 
 
+# Suffixes that legitimately run on _DEFAULT_IMAGE (the Phase-2 pkgfix2 digest). Only the
+# archived clock-exemption tree uses one; it is listed so an unknown suffix can be REFUSED
+# instead of silently resolving to this image, which is how a whole campaign could run on the
+# wrong guest from a single typo.
+DEFAULT_IMAGE_SUFFIXES = ("protocol361", "protocol361img2", "protocol361img3",
+                          "canary20260924")
+
+
 def resolve_image(env_image, suffixes):
-    """The guest image for a process whose results trees carry `suffixes`."""
+    """The guest image for a process whose results trees carry `suffixes`.
+
+    A non-empty suffix must be declared: either in SUFFIX_IMAGES, or in DEFAULT_IMAGE_SUFFIXES
+    for the archived trees that predate it. An undeclared one is refused rather than resolved to
+    the default -- verified live on 2026-11-12, when `OSW_PHASE3_SUFFIX=pkgfix3cdev1` (the wrong
+    variable) left the image on the Phase-2 digest with no error at all.
+    """
     keys = {re.sub(r"[^a-zA-Z0-9]+", "", s) for s in suffixes if s}
+    unknown = sorted(k for k in keys
+                     if k not in SUFFIX_IMAGES and k not in DEFAULT_IMAGE_SUFFIXES)
+    if unknown:
+        raise SystemExit(
+            f"tree suffix(es) {unknown} are not declared: add them to config.SUFFIX_IMAGES with "
+            f"the digest their runs must use (known: {', '.join(sorted(SUFFIX_IMAGES))}). An "
+            f"undeclared suffix would silently run on {_DEFAULT_IMAGE.split('@')[-1][:19]}…")
     pinned = {SUFFIX_IMAGES[k] for k in keys if k in SUFFIX_IMAGES}
     if len(pinned) > 1:
         raise SystemExit(f"tree suffixes {sorted(keys)} select different guest images")

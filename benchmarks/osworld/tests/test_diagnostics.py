@@ -139,3 +139,61 @@ def test_the_diagnosis_never_raises_on_a_malformed_task(tmp_path):
     cache.mkdir()
     rec = common._artefact_capture_diagnosis(cache, {"id": "t"}, [], None)
     assert rec["reason"]
+
+
+# --- the diagnosis must only RECORD: it may not change getters, exceptions or the score ---------
+
+def test_the_diagnosis_cannot_change_the_score_even_if_it_explodes(monkeypatch, tmp_path):
+    """`_artefact_capture_diagnosis` is the one diagnostic that runs during scoring, so it has to
+    be proven inert: the verdict, reward, reason and artefact manifest must be byte-identical
+    whether it succeeds, raises, or is removed entirely."""
+    task = {"id": "t", "instruction": "do", "evaluator": {"func": "compare_table",
+            "result": {"type": "vm_file", "path": "/home/user/x.xlsx", "dest": "x.xlsx"}}}
+    calls = []
+
+    def fake_eval(url, t, history, gold_dir):
+        calls.append(("evaluate", url, gold_dir))
+        return 1.0
+
+    monkeypatch.setattr(common, "_evaluate_with_retry", fake_eval)
+    monkeypatch.setattr(common.osworld_eval, "hash_gold_artifacts", lambda d, t: {"g": "h"})
+    monkeypatch.setattr(common, "_collect_eval_artifacts", lambda c, o, t: [{"name": "x.xlsx",
+                                                                            "kept": True}])
+
+    class Ctrl:
+        base_url = "http://guest:5000"
+
+    def score():
+        return common._score(Ctrl(), task, "DONE", tmp_path)
+
+    good = score()
+    n_calls = len(calls)
+
+    monkeypatch.setattr(common, "_artefact_capture_diagnosis",
+                        lambda *a, **k: (_ for _ in ()).throw(RuntimeError("boom")))
+    broken = score()
+
+    for field in ("verdict", "reward", "reason", "source", "gold_sha256", "eval_artifacts"):
+        assert good[field] == broken[field], field
+    # the getters ran exactly once per scoring, and the diagnosis added no call of its own
+    assert len(calls) == 2 * n_calls
+    # the failure is recorded, not propagated
+    assert "diagnosis failed" in broken["artefact_capture"]["reason"]
+
+
+def test_an_evaluator_exception_still_reaches_the_record_unchanged(monkeypatch, tmp_path):
+    task = {"id": "t", "instruction": "do", "evaluator": {"func": "check"}}
+
+    def boom(url, t, history, gold_dir):
+        raise TimeoutError("desktop unreachable")
+
+    monkeypatch.setattr(common, "_evaluate_with_retry", boom)
+    monkeypatch.setattr(common.osworld_eval, "hash_gold_artifacts", lambda d, t: {})
+    monkeypatch.setattr(common, "_collect_eval_artifacts", lambda c, o, t: [])
+
+    class Ctrl:
+        base_url = "http://guest:5000"
+
+    rec = common._score(Ctrl(), task, "DONE", tmp_path)
+    assert "TimeoutError" in rec["reason"]                       # the exception is still reported
+    assert rec["artefact_capture"]["eval_error"].startswith("TimeoutError")
