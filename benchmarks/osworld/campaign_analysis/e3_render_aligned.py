@@ -35,6 +35,10 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import e3_verifier as E  # noqa: E402
 
+# Captured at import: judge_aligned patches E.render_file with render_file_aligned, so calling
+# E.render_file from inside it would recurse into itself.
+_ORIG_RENDER_FILE = E.render_file
+
 TABLES = HERE / "tables"
 
 # What each checker family compares, stated for the auditor. Keyed by the evaluator's func name.
@@ -115,7 +119,7 @@ def _pptx_fill_view(path):
 def render_file_aligned(p):
     """The current rendering, plus the view the checker's predicate actually acts on."""
     p = Path(p)
-    base = E.render_file(p)
+    base = _ORIG_RENDER_FILE(p)
     extra = ""
     try:
         if p.suffix.lower() in (".xlsx", ".xlsm"):
