@@ -415,6 +415,10 @@ def run(task, *, env, out, refs=None, dry=False):
         (out / "codex_stderr.txt").write_text(stderr)
     events = meta.pop("events", None)
     audit = _write_tool_audit(out, events)
+    # The saved transcript is not the trajectory: only Codex's rollout holds the exec scripts the
+    # model wrote, and it lives under CODEX_HOME, outside this tree. Copy it in now, before
+    # anything can clean that directory -- see astra_common.archive_rollouts.
+    rollout_record = astra_common.archive_rollouts(out, meta.get("session_id"))
     text = meta.get("result", "")
     # Upstream has no ANSWER line: DONE unless [INFEASIBLE]/a fail action; the episode ends
     # cleanly when the CLI does (no error, no timeout).
@@ -440,7 +444,7 @@ def run(task, *, env, out, refs=None, dry=False):
     transcript_bytes = transcript.stat().st_size
     trace = {"transcript_saved": transcript_bytes > 0, "transcript_bytes": transcript_bytes,
              "contaminated": audit["contaminated"],
-             "contamination_evidence": audit["evidence"], **official_telemetry}
+             "contamination_evidence": audit["evidence"], **rollout_record, **official_telemetry}
 
     api_error = telemetry["agent_api_error_status"]
     if api_error:

@@ -7,6 +7,7 @@ docstring says so -- MCP config shape for the `claude` binary, `~/.claude/projec
 lookup, `modelUsage` parsing), none of which applies to Codex's JSONL stream or
 `~/.codex/sessions` rollout files.
 """
+import hashlib
 import json
 import re
 import subprocess
@@ -16,7 +17,7 @@ from pathlib import Path
 from benchmarks.osworld import config
 from benchmarks.osworld.runners.agent_computer import _provenance
 from benchmarks.osworld.runners.common import _host_path_markers, quota_exhausted
-from core.codex_loop import session_context
+from core.codex_loop import SESSIONS_ROOT, session_context
 
 _SUSPICIOUS = ("evaluator", "gold", "results", "task_spec")
 
@@ -280,6 +281,61 @@ def codex_rollout_tool_calls(path, allowed=()):
         elif name not in CODEX_EXEC_PLUMBING:
             names.append(name)
     return names
+
+
+# The run's own copy of Codex's rollout. Measured 2026-11-12: the saved `conversation.jsonl` is
+# NOT the trajectory -- the `codex exec --json` stream carries only mcp_tool_call items and the
+# final agent_message (252 characters of text on a 3 MB transcript), so the exec scripts the model
+# wrote, and with them every mechanism audit (tool adoption, capability probes, what the Code Mode
+# host actually called), exist only in the rollout Codex writes under CODEX_HOME. That directory is
+# outside the results tree, is not mirrored, and its files survive only until it is cleaned: 698 of
+# 698 pkgfix3 runs still had theirs on 12/11 by luck, not by design. Copied into the run so a run
+# stays re-analysable on its own.
+ROLLOUT_DIR = "rollout"
+
+
+def archive_rollouts(out, session_id, root=None):
+    """Copy every rollout Codex wrote for `session_id` into `<out>/rollout/`.
+
+    A resumed session (an arm's bounce) can produce more than one file, so all matches are copied,
+    not just the latest. Best-effort and *measured, never asserted*: returns what landed on disk
+    (and why a file did not) for the run's trace, and a failure degrades the record rather than
+    failing the run -- the same discipline as transcript_saved/transcript_bytes.
+    """
+    rec = {"rollout_archived": False, "rollout_files": [], "rollout_bytes": 0,
+           "rollout_error": None}
+    if not session_id:
+        rec["rollout_error"] = "no session id"
+        return rec
+    try:
+        search_root = Path(root) if root else SESSIONS_ROOT
+        matches = sorted(search_root.rglob(f"rollout-*-{session_id}.jsonl"))
+    except OSError as e:
+        rec["rollout_error"] = f"{type(e).__name__}: {e}"
+        return rec
+    if not matches:
+        rec["rollout_error"] = f"no rollout under {search_root}"
+        return rec
+    dest = Path(out) / ROLLOUT_DIR
+    try:
+        dest.mkdir(parents=True, exist_ok=True)
+    except OSError as e:
+        rec["rollout_error"] = f"{type(e).__name__}: {e}"
+        return rec
+    errors = []
+    for src in matches:
+        try:
+            data = src.read_bytes()
+            (dest / src.name).write_bytes(data)
+            rec["rollout_files"].append({"name": src.name, "size": len(data),
+                                         "sha256": hashlib.sha256(data).hexdigest()})
+            rec["rollout_bytes"] += len(data)
+        except OSError as e:
+            errors.append(f"{src.name}: {type(e).__name__}: {e}")
+    rec["rollout_archived"] = bool(rec["rollout_files"])
+    if errors:
+        rec["rollout_error"] = "; ".join(errors)
+    return rec
 
 
 def rate_limit_rec(task, status, text=""):
