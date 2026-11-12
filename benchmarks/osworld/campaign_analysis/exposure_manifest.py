@@ -264,6 +264,38 @@ def main(argv=None):
         print(f"  {app:22} {seen:>3}/{len(sel):<3} task con almeno una run giudicata "
               f"({runs:>4} run in tutto)")
 
+    # --- where diagnosis can go WITHOUT spending the remaining eligibility ---------------------
+    # A task already used in the design cannot be un-exposed, so a fresh diagnostic run on it
+    # costs nothing that is not already spent. What matters is whether a trajectory survives:
+    # the earlier campaigns' run directories are not on this disk any more, so a task whose only
+    # evidence is a row in task_matrix.csv has NO reconstructible trajectory and a new run on it
+    # buys full information at zero cost in eligibility.
+    print("\n\nWhere diagnosis can go without spending R3 (a task already in the design cannot "
+          "be un-exposed):\n")
+    groups = {
+        "already design input, trajectory on this disk": lambda r: (
+            r["design_input"] and r["judged_runs"]),
+        "already design input, NO trajectory here (free diagnostic run)": lambda r: (
+            r["design_input"] and not r["judged_runs"]),
+        "eligible (R3), never run by anyone": lambda r: (
+            r["in_set"] == "-" and not r["individually_read"] and not r["ever_run"]),
+        "eligible (R3), run before, no trajectory here": lambda r: (
+            r["in_set"] == "-" and not r["individually_read"] and r["ever_run"]
+            and not r["judged_runs"]),
+        "eligible (R3), trajectory on this disk": lambda r: (
+            r["in_set"] == "-" and not r["individually_read"] and r["judged_runs"]),
+    }
+    print(f"  {'group':62} {'task':>5}   per app")
+    for label, rule in groups.items():
+        sel = [r for r in rs if rule(r)]
+        c = Counter(r["app"] for r in sel)
+        per = "  ".join(f"{k.replace('libreoffice_', 'lo_')}={c[k]}" for k in APP_ORDER if c[k])
+        print(f"  {label:62} {len(sel):>5}   {per}")
+    free = [r for r in rs if groups["already design input, NO trajectory here (free diagnostic "
+                                    "run)"](r)]
+    print(f"\n  -> {len(free)} tasks can be run diagnostically at NO cost to the confirmatory "
+          f"reserve.\n     Spend R3 only where an application cannot be covered from that pool.")
+
     outdir = Path(a.out); outdir.mkdir(parents=True, exist_ok=True)
     with (outdir / "exposure_manifest.csv").open("w", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=list(rs[0]))
