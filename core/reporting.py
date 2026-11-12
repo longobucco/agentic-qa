@@ -88,11 +88,18 @@ def _env_error(run):
 
 
 def collect_infra_errors(results_dir, system):
-    """{"task_id/run_k": [attempt, ...]} for runs that died before producing a verdict.
+    """{"task_id/run_k": [attempt, ...]} for every run directory that recorded an aborted attempt.
 
-    Kept separate from `collect`: these never produced an eval.json (so resume retries
-    them), so they're invisible to every pass-rate -- exactly the infra-flakiness term a
-    reliability study needs to subtract out before calling instability a benchmark property."""
+    Kept separate from `collect`: an attempt that died before a verdict leaves no eval.json, so
+    resume retries it and it stays invisible to every pass rate -- exactly the infra-flakiness term
+    a reliability study needs to subtract out before calling instability a benchmark property.
+
+    The file is an APPEND-ONLY LOG of attempts (results.write_infra_error), so its presence does NOT
+    mean the run is unjudged: a run that flaked, was retried and then produced a verdict carries
+    both files, and it IS judged -- `is_done` looks at eval.json alone. Measured 2026-11-12: 339
+    judged runs of the Phase 3 Astra trees carry both (217 SUCCESS, 122 FAILURE). Any analysis that
+    excludes a run because this file exists silently drops them; two gate scripts did exactly that
+    before the rule was spelled out here."""
     base = results_dir / system
     out = {}
     if not base.exists():
