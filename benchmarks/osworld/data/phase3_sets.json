@@ -214,6 +214,13 @@
         "a01fbce3-2793-461f-ab86-43680ccbae25",
         "a9f325aa-8c05-4e4f-8341-9e4358565f4f"
       ]
+    },
+    "population361": {
+      "fixed_on": "2026-11-12",
+      "rule": "The frozen 361-task population in full, by reference to scripts/g_protocol361_ids.txt (the same file and sha256 the Astra campaign lock enforces). No selection of any kind: this set IS the population, which is why the stage-3 screen of X22 needs no held-out pool. The pre-registered primary analysis is restricted to the 180 tasks that are in no Phase 3 set and are cited in no document that wrote an arm; all 361 and the 111 never cited anywhere are pre-registered sensitivity analyses.",
+      "tasks_from": "scripts/g_protocol361_ids.txt",
+      "runs_per_task": 2,
+      "tasks": []
     }
   }
 }
