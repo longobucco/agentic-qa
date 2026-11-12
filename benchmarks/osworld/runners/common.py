@@ -850,6 +850,49 @@ def _collect_eval_artifacts(cache_dir, out, task):
     return manifest
 
 
+def _artefact_capture_diagnosis(cache_dir, task, manifest, eval_error):
+    """WHY the evaluator ended up with the artefacts it has -- or with none.
+
+    B7: a file the checker needs but cannot retrieve is scored 0.0, not EVAL_ERROR
+    (`env/osworld_eval.py:438-442` catches FileNotFoundError under conj="and"). An empty
+    manifest is therefore the same on disk whether the agent never made the file, the getter
+    failed, or there was never a file to fetch. 94 of 403 failures whose checker reads a
+    vm_file have no artefact, against 0 of 531 successes, and 51 of them are undiagnosable
+    today purely because nothing recorded the reason.
+
+    Diagnostics only: it reads, never writes to the guest, runs after scoring, and is wrapped
+    by the caller so it can never change a verdict.
+    """
+    cache = Path(cache_dir)
+    want = []
+    ev = task.get("evaluator") or {}
+    getters = ev.get("result")
+    for g in (getters if isinstance(getters, list) else [getters]):
+        if isinstance(g, dict):
+            want.append({"type": g.get("type"), "path": g.get("path") or g.get("dest")})
+    rec = {
+        "expected_getters": want,
+        "expected_gold_names": sorted(osworld_eval.gold_dest_filenames(task)),
+        "cache_dir_existed": cache.is_dir(),
+        "cache_dir_entries": (sorted(x.name for x in cache.iterdir())[:40]
+                              if cache.is_dir() else None),
+        "files_captured": sum(1 for a in manifest if a.get("name")),
+        "eval_error": eval_error,
+    }
+    if rec["files_captured"]:
+        rec["reason"] = "artefacts retrieved"
+    elif eval_error:
+        rec["reason"] = "the evaluator raised before any getter wrote a file"
+    elif not rec["cache_dir_existed"]:
+        rec["reason"] = "no cache directory: nothing was ever downloaded (no controller?)"
+    elif not want:
+        rec["reason"] = "this checker fetches no file: an empty manifest is expected"
+    else:
+        rec["reason"] = ("the getters ran and wrote nothing: either the file was absent in the "
+                         "guest, or retrieval failed silently -- NOT distinguishable here, see B7")
+    return rec
+
+
 def _score(ctrl, task, answer, out):
     url = ctrl.base_url if ctrl else config.CONTROLLER_URL
     reward, err = None, None
@@ -871,6 +914,10 @@ def _score(ctrl, task, answer, out):
         # scoring exception (some getters may already have written their file), or no
         # controller at all (a no-op then -- nothing was ever downloaded, manifest is []).
         eval_artifacts = _collect_eval_artifacts(gold_dir, out, task)
+        try:
+            artefact_capture = _artefact_capture_diagnosis(gold_dir, task, eval_artifacts, err)
+        except Exception as e:                      # never let a diagnostic break a verdict
+            artefact_capture = {"reason": f"diagnosis failed: {type(e).__name__}: {e}"}
         # hashed/copied, no longer needed -- an unattended multi-day campaign otherwise leaks one
         # of these per run (found live 2026-08-16: 5400 stray temp dirs/files, 3.6GB, after
         # ~1000 run attempts -- see _mcp_config's own tempfile, cleaned up by its caller)
@@ -879,11 +926,12 @@ def _score(ctrl, task, answer, out):
         return {"verdict": osworld_eval.reward_to_verdict(reward), "reward": reward,
                 "reason": f"official {task.get('evaluator', {}).get('func')} -> {reward:.2f}",
                 "source": "official", "gold_sha256": gold_sha256,
-                "eval_artifacts": eval_artifacts}
+                "eval_artifacts": eval_artifacts, "artefact_capture": artefact_capture}
     # fallback: no verified way to score without the official evaluator (see evaluate.py) --
     # always EVAL_ERROR, kept only as a diagnostic of whatever state we did capture.
     rec = {**evaluate.osworld_check(task, answer, None, out), "source": "offline_fallback",
-           "gold_sha256": gold_sha256, "eval_artifacts": eval_artifacts}
+           "gold_sha256": gold_sha256, "eval_artifacts": eval_artifacts,
+           "artefact_capture": artefact_capture}
     if err:
         rec["reason"] = f"{rec['reason']} (official eval errored: {err})"
     return rec

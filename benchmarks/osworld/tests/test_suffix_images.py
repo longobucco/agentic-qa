@@ -54,3 +54,24 @@ def test_config_import_uses_the_suffix_image():
         image = importlib.reload(config).IMAGE
     importlib.reload(config)
     assert image == PKGFIX3
+
+
+def test_the_dev1_tranche_has_its_own_suffix_on_the_same_guest():
+    """DEV1 must never write into an X22 tree: `pkgfix3c` is the confirmatory campaign's own
+    suffix, and Gate B scans those trees. A suffix missing from SUFFIX_IMAGES falls back to the
+    Phase-2 digest silently, so the tranche would also run on the wrong guest."""
+    dev = config.SUFFIX_IMAGES["pkgfix3cdev1"]
+    assert dev == PKGFIX3 == config.SUFFIX_IMAGES["pkgfix3c"]
+    assert config.resolve_image("", ("pkgfix3cdev1",)) == dev
+    assert "pkgfix3cdev1" != "pkgfix3c"
+
+
+def test_the_dev1_tree_name_is_distinct_from_every_x22_tree(monkeypatch):
+    import json
+    from pathlib import Path
+    lock = json.loads((Path(config.__file__).resolve().parent
+                       / "x22_campaign_lock.json").read_text())
+    monkeypatch.setattr(config, "ASTRA_SYSTEM_SUFFIX", "pkgfix3cdev1")
+    monkeypatch.setattr(config, "ASTRA_ARM", "")
+    name = config.astra_system_name()
+    assert name not in {g["tree"] for g in lock["groups"]}, name

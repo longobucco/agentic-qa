@@ -385,6 +385,12 @@ SUFFIX_IMAGES = {
     # test_suffix_images.py asserts the two suffixes resolve to the same digest.
     "pkgfix3c": "ghcr.io/longobucco/osworld-ab@sha256:"
                 "5d319f5fe0f6c8cfa9b5563a061fd373bac8280f35f11ccbbf39ac043b32533e",
+    # DEV1, the first diagnostic tranche (dev1_tranche_register.json). Its own suffix so its runs
+    # can never land in an X22 tree -- `pkgfix3c` IS the confirmatory campaign's suffix, and a
+    # diagnostic run written there would be scanned by Gate B and pooled into stage 3. Same digest
+    # as the other two: a diagnosis of the guest X22 runs on is only informative on that guest.
+    "pkgfix3cdev1": "ghcr.io/longobucco/osworld-ab@sha256:"
+                    "5d319f5fe0f6c8cfa9b5563a061fd373bac8280f35f11ccbbf39ac043b32533e",
 }
 
 
