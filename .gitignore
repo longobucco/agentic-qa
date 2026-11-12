@@ -208,3 +208,4 @@ docs/
 # Campaign-analysis documentation (thesis material) stays local; only the README is tracked.
 benchmarks/osworld/campaign_analysis/*.md
 !benchmarks/osworld/campaign_analysis/README.md
+benchmarks/osworld/env/setup_daytona_vm.md
