@@ -130,6 +130,10 @@ def strata():
 
 
 def build():
+    # phase3 reads the campaign from the environment at import time, and group() refuses a set
+    # that belongs to the other campaign -- so the lock must be generated inside its own campaign.
+    if phase3.SUFFIX != SUFFIX:
+        raise SystemExit(f"run with OSW_PHASE3_SUFFIX={SUFFIX} (phase3 is on {phase3.SUFFIX!r})")
     s = strata()
     sets = phase3.load_sets()
     groups = []
