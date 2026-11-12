@@ -92,6 +92,14 @@ def main(argv=None):
         print(f"  {label:26} {len(g):>3} {rt:>9} {len(g)-rt:>9} "
               f"{100*rt/len(g):>9.1f}%")
 
+    print("\nBy guest image — the archive stratum became reachable on 12/11:")
+    for img in ("pkgfix3", "original"):
+        g = [r for r in adjudicable if r.get("image") == img]
+        if not g:
+            continue
+        rt = sum(1 for r in g if r["outcome"] in E3_RIGHT)
+        print(f"  {img:12} n={len(g):>3}  E3 right {rt:>2}  precision {100*rt/len(g):>5.1f}%")
+
     print("\nBy direction of the disagreement:")
     for d in ("false_negative_candidate", "false_positive_candidate"):
         g = [r for r in adjudicable if r["triage"] == d]
@@ -100,7 +108,7 @@ def main(argv=None):
         rt = sum(1 for r in g if r["outcome"] in E3_RIGHT)
         print(f"  {d:28} n={len(g):>3}  E3 right {rt:>2}  precision {100*rt/len(g):>5.1f}%")
 
-    print("\nAttributed cause of the adjudicated runs (all 21):")
+    print("\nAttributed cause of every adjudicated run:")
     for k, v in sorted(Counter(r["attributed_cause"] for r in runs).items(), key=lambda kv: -kv[1]):
         print(f"  {k:26} {v:>3}")
 
@@ -152,8 +160,12 @@ Reading.
                                       if r["evidence_channel"] is w and r["outcome"] in E3_RIGHT])}
             for w in (True, False, None)},
         "v1_capture_present": sum(1 for r in runs if r["v1_capture"]),
-        "limits": ("21 labels, all from the reachable pkgfix3 part of the frozen F1 sample; 25 more "
-                   "disagreements live on the external archive. The agreement rows of the triage "
+        "by_image": {img: {"n": len([r for r in adjudicable if r.get("image") == img]),
+                           "e3_right": len([r for r in adjudicable if r.get("image") == img
+                                            and r["outcome"] in E3_RIGHT])}
+                     for img in ("pkgfix3", "original")},
+        "limits": ("30 labels: every disagreement of the frozen F1 sample, 21 on pkgfix3 and 9 on "
+                   "the original image. The agreement rows of the triage "
                    "are NOT hand-adjudicated, so this reports precision on disagreements only and "
                    "no overall accuracy -- assuming the checker right wherever E3 agrees with it "
                    "would be assuming the very thing F1 exists to test."),

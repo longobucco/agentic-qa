@@ -57,6 +57,15 @@ def gold_diff(run_dir):
     return "\n".join(lines) or "(no result/gold file pair saved)"
 
 
+def _where(rd):
+    """Run location for the dossier header. A run of the frozen F1 sample can live on the external
+    archive, outside the local results tree, so relative_to() cannot be assumed."""
+    try:
+        return rd.relative_to(E.RESULTS)
+    except ValueError:
+        return Path(*rd.parts[-3:])          # tree/task/run_k, wherever it is mounted
+
+
 def main(sel, out):
     tasks = E.tasks()
     out = Path(out); out.mkdir(parents=True, exist_ok=True)
@@ -66,7 +75,7 @@ def main(sel, out):
         t = tasks[s["task"]]
         acts, msgs = actions(rd / "conversation.jsonl") if (rd / "conversation.jsonl").exists() else ([], [])
         txt = "\n".join([
-            f"# {s['task'][:8]} {s['arm']} ({s['label']}) {t['snapshot']} — {rd.relative_to(E.RESULTS)}",
+            f"# {s['task'][:8]} {s['arm']} ({s['label']}) {t['snapshot']} — {_where(rd)}",
             f"INSTRUCTION: {t['instruction']}",
             f"CHECKER: {json.dumps(t['evaluator'].get('func'))} options {json.dumps(t['evaluator'].get('options', ''))[:200]}",
             f"VERDICT: {ev['verdict']} {ev.get('reason', '')[:150]} | answer {(r.get('answer') or '')[:10]} | steps {r.get('agent_steps_used')}",
