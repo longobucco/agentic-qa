@@ -81,6 +81,33 @@ AMENDMENTS = [
                  "room, against 37% of the stricter stratum. The stricter strata remain reported, "
                  "so a reader who rejects this argument can read the conservative number."),
     },
+    {
+        "n": 2, "on": "2026-11-12",
+        "made_before": "any X22 run existed; the frozen look boundaries are carried over unchanged",
+        "change": ("stage 3's PRIMARY deliverables become the bounded effect estimate and the "
+                   "no-harm claim; the exact-McNemar significance test is demoted to a declared "
+                   "secondary, stated as underpowered below f = 0.20. No set, test, stratum, look "
+                   "schedule or alpha changes."),
+        "why": ("gates/power_check.py, run before any X22 run: the design is at its ceiling (2, 3 "
+                "and 5 runs per task give power 0.19/0.20/0.19 at f=0.10, so more runs do not "
+                "help, and a 33-task mechanism subgroup is worse), it detects the effect only for "
+                "f >= 0.30, and if the card works only through the mechanism it names then f on "
+                "this stratum cannot exceed 0.17 -- 27 of the 159 tasks with room are "
+                "settings-like. The significance test is therefore more likely than not to be "
+                "inconclusive, structurally."),
+        "justification": ("declaring this before the runs is the difference between a bounded "
+                          "result and a failed one. Three deliverables are certain regardless of "
+                          "the test: the first complete population pass rate for Astra on the "
+                          "corrected guest; a no-harm claim on 219 tasks never used to design the "
+                          "card, well powered because it is a monotone count; and an interval that "
+                          "turns the in-sample '+20 points on class F' into 'at most +X on tasks "
+                          "never used to design it'. An inconclusive test then has a reading of "
+                          "its own: the card's effect does not extend materially beyond the task "
+                          "family it was written for."),
+        "cost": ("the campaign can no longer claim a confirmed population-level effect unless the "
+                 "card works well beyond its named mechanism, which is exactly what the screen "
+                 "measures."),
+    },
 ]
 
 # The four stages the user confirmed on 2026-11-12. Astra only: Sonnet runs on a separate quota and
@@ -105,11 +132,25 @@ STAGE3_DESIGN = {
     "runs_per_task": 2,
     "solved_for_gain": ">=1 of 2 runs pass",
     "solved_for_harm": "2 of 2 runs pass",
-    "primary_test": "one-sided exact McNemar on discordant tasks (b ~ Binomial(b+c, 0.5) under H0)",
+    # amendment 2: the primary deliverables are the bounded estimate and the no-harm
+    # claim; the significance test is a declared secondary, underpowered below f = 0.20
+    # (gates/power_check.py, run before any X22 run existed).
+    "primary_deliverables": [
+        "bounded effect estimate: mean paired per-task difference with a task-clustered "
+        "bootstrap 95% interval, reported as an upper bound on the card's population effect",
+        "no-harm at population scale: the count of tasks the baseline solves and the arm breaks "
+        "under the strict definition; a monotone count, well powered at this n",
+        "the first complete population pass rate for Astra on the corrected guest (A0 alone)",
+    ],
+    "secondary_test": ("one-sided exact McNemar on discordant tasks (b ~ Binomial(b+c, 0.5) "
+                       "under H0), DECLARED UNDERPOWERED below f = 0.20: power 0.19 at f=0.10, "
+                       "0.55 at 0.20, 0.88 at 0.30"),
+    "inconclusive_reading": ("an inconclusive test is reported as a finding, not a gap: the "
+                             "card's effect does not extend materially beyond the task family "
+                             "it was written for"),
     # amendment 1: see AMENDMENTS. `out_of_design` is the population minus the tasks of a Phase 3
     # set; the stricter strata below stay as pre-registered sensitivities.
     "primary_stratum": "out_of_design",
-    "secondary_test": "mean paired per-task difference, task-clustered bootstrap 95% interval",
     "sensitivity_strata": ["primary_out_of_sample", "never_cited", "all361"],
     "looks_at_task_fractions": [1 / 3, 2 / 3, 1.0],
     "look_rule": ("a task enters a look only when all its runs are complete on BOTH arms; between "
@@ -222,15 +263,19 @@ def main(argv=None):
         # A lock may be amended only while nothing depends on it yet: no frozen look boundary
         # (so no look can have been taken) and no results tree of this campaign on disk.
         current = json.loads(LOCK.read_text())
-        if (current.get("stage3") or {}).get("boundaries") is not None:
-            raise SystemExit(f"{LOCK.name} has frozen boundaries: it is never regenerated")
         existing = sorted((config.RESULTS_DIR).glob(f"*_{SUFFIX}*_official"))
         if existing:
             raise SystemExit(f"{LOCK.name}: results already exist for this campaign "
                              f"({len(existing)} trees); the lock is never regenerated")
         if not a.amend:
             raise SystemExit(f"{LOCK.name} exists; pass --amend to rewrite it (allowed only "
-                             "because no boundary is frozen and no run exists)")
+                             "while no run of the campaign exists)")
+        # Frozen boundaries are evidence, not a draft: carry them over instead of recomputing, so
+        # an amendment can never silently re-roll the look schedule or the alphas.
+        frozen = (current.get("stage3") or {}).get("boundaries")
+        if frozen is not None:
+            lock["stage3"]["boundaries"] = frozen
+            print("carried over the frozen look boundaries unchanged")
     LOCK.write_text(json.dumps(lock, indent=2) + "\n")
     print(f"\nwritten {LOCK}")
 
