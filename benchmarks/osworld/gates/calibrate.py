@@ -112,26 +112,48 @@ def calibrate(n_tasks, fractions, trials=TRIALS, seed=SEED):
             "trials": trials, "seed": seed, "overall_alpha": ALPHA}
 
 
-def baseline_rates(task_ids):
-    """Per-task baseline pass probability, from the Astra column of the task matrix.
+POPULATION_PASS_RATE = 0.719   # Astra, informative runs of the original-image campaign (FINDINGS)
 
-    Tasks with no Astra runs fall back to the mean of those that have them: they are a third of the
-    population and dropping them would bias the power estimate toward the tasks Astra happened to
-    reach before the quota ran out.
+
+def baseline_rates(task_ids):
+    """Per-task baseline pass probability, with a declared source hierarchy.
+
+    Astra's own column first; Sonnet's where Astra never ran (the two campaigns' pass rates are
+    71.3% and 72.8%, so Sonnet is a usable proxy for a power calculation and covers 261 tasks
+    against Astra's 155); then the population pass rate.
+
+    The fallback is deliberately NOT the mean of the tasks that do have data. In a stratum built by
+    excluding tasks named in a failure analysis, the tasks with data are the ones a campaign
+    reached and are enriched for passes -- using their mean put every unknown task at 1.0 and drove
+    the power estimate to zero, which is a property of the fallback, not of the design.
     """
     rows = {r["task_id"]: r for r in csv.DictReader(MATRIX.open())}
-    known = {}
+
+    def cell(tid, col):
+        raw = (rows.get(tid, {}).get(col) or "").strip()
+        if "/" not in raw:
+            return None
+        a, b = raw.split("/", 1)
+        try:
+            a, b = int(a), int(b)
+        except ValueError:
+            return None
+        return a / b if b else None
+
+    rates, sources = [], {"astra": 0, "sonnet": 0, "population": 0}
     for tid in task_ids:
-        cell = (rows.get(tid, {}).get("astra-new_pass/valid") or "").strip()
-        if "/" in cell:
-            a, b = cell.split("/", 1)
-            try:
-                if int(b):
-                    known[tid] = int(a) / int(b)
-            except ValueError:
-                pass
-    fallback = sum(known.values()) / len(known) if known else 0.7
-    return [known.get(tid, fallback) for tid in task_ids], len(known), round(fallback, 3)
+        p = cell(tid, "astra-new_pass/valid")
+        if p is not None:
+            sources["astra"] += 1
+        else:
+            p = cell(tid, "sonnet5-new_pass/valid")
+            if p is not None:
+                sources["sonnet"] += 1
+            else:
+                p, _ = POPULATION_PASS_RATE, sources.__setitem__(
+                    "population", sources["population"] + 1)
+        rates.append(p)
+    return rates, sources, POPULATION_PASS_RATE
 
 
 def power(rates, fractions, nominal, runs=2, effects=(0.10, 0.20, 0.30, 0.50),
@@ -188,15 +210,14 @@ def main(argv=None):
           f"{bounds['worst_case_type_I']} (target {ALPHA}); shrink factor applied "
           f"{bounds['scale_applied']}")
 
-    rates, known, fallback = baseline_rates(ids)
-    print(f"\nper-task baseline rates: {known} of {len(ids)} from the Astra campaign column, "
-          f"the rest at the mean {fallback}")
+    rates, sources, fallback = baseline_rates(ids)
+    print(f"\nper-task baseline rates by source: {sources} (fallback = population rate {fallback})")
     pw = power(rates, fractions, bounds["nominal_alpha"], runs=stage3["runs_per_task"])
     print("power of the sequential procedure:")
     for k, v in pw.items():
         print(f"  {k:34} {v:.3f}")
     bounds["power"] = pw
-    bounds["baseline_rates_known"] = known
+    bounds["baseline_rate_sources"] = sources
     bounds["baseline_rates_fallback"] = fallback
 
     if not a.write:
