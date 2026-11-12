@@ -372,6 +372,19 @@ _DEFAULT_IMAGE = (
 SUFFIX_IMAGES = {
     "pkgfix3": "ghcr.io/longobucco/osworld-ab@sha256:"
                "5d319f5fe0f6c8cfa9b5563a061fd373bac8280f35f11ccbbf39ac043b32533e",
+    # Confirmatory campaign (X22): deliberately the SAME guest image as pkgfix3, under its own tree
+    # suffix. The pkgfix3 trees are the exploratory phase -- their runs carry harness_dirty: true
+    # (code uncommitted on 4-6/11), their two arms ran in different time windows, and the tasks
+    # still missing are the most expensive ones, so the gap is not random. The confirmatory campaign
+    # re-runs baseline and arms fresh, interleaved, from a committed harness, and must never pool
+    # with them. Changing the image too would confound the comparison, hence the identical digest.
+    #
+    # resolve_image() selects the image FROM the tree suffix, so a suffix that is absent here falls
+    # back to _DEFAULT_IMAGE (the Phase-2 pkgfix2 digest) without any error: a whole campaign would
+    # run on the wrong guest. Passing OSW_IMAGE explicitly instead is refused by the loop below.
+    # test_suffix_images.py asserts the two suffixes resolve to the same digest.
+    "pkgfix3c": "ghcr.io/longobucco/osworld-ab@sha256:"
+                "5d319f5fe0f6c8cfa9b5563a061fd373bac8280f35f11ccbbf39ac043b32533e",
 }
 
 

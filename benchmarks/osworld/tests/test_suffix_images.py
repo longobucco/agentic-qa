@@ -30,6 +30,23 @@ def test_mismatched_image_or_suffix_is_refused():
         config.resolve_image(PKGFIX3, ("",))
 
 
+def test_the_confirmatory_suffix_resolves_to_the_same_guest_as_pkgfix3():
+    """X22 runs on the same image as the exploratory phase, in its own tree. If these two ever
+    diverge, the confirmatory campaign is comparing arms across two different guests."""
+    assert config.SUFFIX_IMAGES["pkgfix3c"] == PKGFIX3
+    assert config.resolve_image("", ("pkgfix3c", "")) == PKGFIX3
+    assert config.resolve_image("", ("", "pkgfix3c")) == PKGFIX3
+    # the two suffixes together must not look like a conflict (same digest, so one pinned image)
+    assert config.resolve_image("", ("pkgfix3", "pkgfix3c")) == PKGFIX3
+
+
+def test_an_unmapped_confirmatory_suffix_would_fall_back_to_the_wrong_image():
+    """The trap this entry exists to close: a tree suffix absent from SUFFIX_IMAGES silently gets
+    the Phase-2 default digest instead of pkgfix3, with no error anywhere."""
+    assert config.resolve_image("", ("pkgfix3typo", "")) == config._DEFAULT_IMAGE
+    assert config._DEFAULT_IMAGE != PKGFIX3
+
+
 def test_config_import_uses_the_suffix_image():
     env = {"OSW_MODEL": "claude-sonnet-5", "OSW_IMAGE": "", "OSW_SYSTEM_SUFFIX": "pkgfix3",
            "OSW_ASTRA_SYSTEM_SUFFIX": ""}
