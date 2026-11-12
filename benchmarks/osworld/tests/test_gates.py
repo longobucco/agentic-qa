@@ -268,3 +268,44 @@ def test_gate_a_notices_a_changed_driver_script(tmp_path, monkeypatch):
 def test_gate_a_refuses_when_the_digests_cannot_be_read(tmp_path, monkeypatch):
     monkeypatch.setattr(contract, "DRIVER_HASHES", tmp_path / "absent.json")
     assert any("unreadable" in r for r in contract.driver_drift())
+
+
+# --- the infra_error rule (regression, 12/11) --------------------------------------------------
+
+def test_a_retried_run_with_an_infra_log_still_counts(tmp_path):
+    """core.results: infra_error.json is an append-only log of attempts that died BEFORE a verdict,
+    and is_done() looks at eval.json alone. A run carrying both flaked, was retried and produced a
+    verdict. Excluding it would have dropped 339 judged runs of the exploratory Astra trees and,
+    in Gate C, made tasks look permanently incomplete."""
+    root, _ = _tree(tmp_path, "a0")
+    d = _run(root, LOCK["stage3"]["strata"]["out_of_design"][0], 1, arm="a0")
+    (d / "infra_error.json").write_text(json.dumps(
+        [{"outcome": "INFRA_FLAKE", "error_type": "DaytonaError"},
+         {"outcome": "RATE_LIMITED", "error_type": "APIError"}]))
+    report = monitor.scan(LOCK, tmp_path)
+    assert report["runs_checked"] == 1, "a retried run must still be checked"
+    assert report["trees"][root.name]["judged"] == 1
+    assert report["trees"][root.name]["infra"] == 0
+
+
+def test_an_attempt_without_a_verdict_is_infra_not_a_failure(tmp_path):
+    root, _ = _tree(tmp_path, "a0")
+    d = root / LOCK["stage3"]["strata"]["out_of_design"][0] / "run_1"
+    d.mkdir(parents=True)
+    (d / "infra_error.json").write_text(json.dumps([{"outcome": "RATE_LIMITED"}]))
+    report = monitor.scan(LOCK, tmp_path)
+    assert report["runs_checked"] == 0
+    assert report["trees"][root.name]["infra"] == 1
+    assert report["trees"][root.name]["no_verdict"] == 0
+
+
+def test_gate_c_counts_a_task_whose_runs_were_retried(tmp_path):
+    base, _ = _tree(tmp_path, "a0")
+    arm, _ = _tree(tmp_path, "e1card2")
+    t = LOCK["stage3"]["strata"]["out_of_design"][0]
+    for k in (1, 2):
+        for root, a in ((base, "a0"), (arm, "e1card2")):
+            d = _run(root, t, k, arm=a)
+            (d / "infra_error.json").write_text(json.dumps([{"outcome": "INFRA_FLAKE"}]))
+    rows, _ = sequential.paired(LOCK, tmp_path)
+    assert len(rows) == 1 and rows[0]["runs"] == 2

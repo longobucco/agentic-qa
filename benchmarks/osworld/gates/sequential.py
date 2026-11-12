@@ -38,8 +38,12 @@ def task_outcomes(tree, tasks, runs_per_task, results_dir):
             continue
         passes = judged = 0
         for p in sorted(d.glob("run_*")):
+            # A run is judged iff eval.json carries a verdict (core.results.is_done).
+            # infra_error.json is the log of attempts that died before one, so a run holding both
+            # is a retry that succeeded and counts. Treating the file as an exclusion would make
+            # tasks look permanently incomplete and would delay or distort every look.
             ev = p / "eval.json"
-            if (p / "infra_error.json").exists() or not ev.exists():
+            if not ev.exists():
                 continue
             try:
                 v = json.loads(ev.read_text()).get("verdict")

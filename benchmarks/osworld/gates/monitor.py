@@ -98,12 +98,17 @@ def scan(lock, results_dir=None):
                  "eval_error": 0, "no_verdict": 0, "infra": 0}
         window = runs[-WINDOW:]
         for p in window:
-            if (p / "infra_error.json").exists():
-                stats["infra"] += 1
-                continue
+            # core.results: infra_error.json is an APPEND-ONLY LOG of attempts that died before
+            # producing a verdict, and is_done() looks at eval.json alone. A run carrying both
+            # flaked, was retried, and then produced a verdict -- it must be counted. Excluding
+            # any run that has the file would have silently dropped 339 judged runs of the
+            # exploratory Astra trees (217 SUCCESS, 122 FAILURE) and under-checked the campaign.
             ev = p / "eval.json"
             if not ev.exists():
-                stats["no_verdict"] += 1
+                if (p / "infra_error.json").exists():
+                    stats["infra"] += 1      # not scored, resume retries it
+                else:
+                    stats["no_verdict"] += 1
                 continue
             try:
                 e = json.loads(ev.read_text())
