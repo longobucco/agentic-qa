@@ -56,6 +56,33 @@ LOG_DOCS = (
 )
 _ID8 = re.compile(r"\b([0-9a-f]{8})\b")
 
+AMENDMENTS = [
+    {
+        "n": 1, "on": "2026-11-12",
+        "made_before": "any X22 run existed and any look boundary was frozen",
+        "change": ("the primary stratum of stage 3 becomes `out_of_design` (the population minus "
+                   "the tasks of a Phase 3 set, 219 tasks) instead of `primary_out_of_sample` "
+                   "(134); the latter and `never_cited` stay as pre-registered sensitivities."),
+        "why": ("E7's power calculation came out at zero, and the reason is a selection the first "
+                "stratum definition had not accounted for: tasks get cited in a failure analysis "
+                "BECAUSE they failed, so excluding cited tasks excludes the failures. Of the 134 "
+                "tasks of `primary_out_of_sample` with reference data, 43 of 68 are saturated and "
+                "only 37% have any room; of `never_cited`, 24 of 25. Neither can show an effect."),
+        "justification": ("excluding a task because an analysis document names it is only "
+                          "necessary if the arm text carries task-specific content. It does not: "
+                          "checked mechanically on all five arms, none contains a task id or any "
+                          "task instruction (test_arm_text_is_generic). The cards were written "
+                          "from patterns -- settings are reachable from a terminal; results are "
+                          "read from files -- not from facts about individual tasks, so the "
+                          "out-of-sample unit is the task family, and a task merely described in "
+                          "an analysis is not a task the arm was tuned on. Being in a Phase 3 set "
+                          "is different: those tasks carry arm comparisons already."),
+        "cost": ("`out_of_design` has 219 tasks, 50% of those with reference data still having "
+                 "room, against 37% of the stricter stratum. The stricter strata remain reported, "
+                 "so a reader who rejects this argument can read the conservative number."),
+    },
+]
+
 # The four stages the user confirmed on 2026-11-12. Astra only: Sonnet runs on a separate quota and
 # is not part of X22's claims (it may mirror stage 3 later, in its own trees, declared separately).
 STAGES = (
@@ -79,9 +106,11 @@ STAGE3_DESIGN = {
     "solved_for_gain": ">=1 of 2 runs pass",
     "solved_for_harm": "2 of 2 runs pass",
     "primary_test": "one-sided exact McNemar on discordant tasks (b ~ Binomial(b+c, 0.5) under H0)",
-    "primary_stratum": "primary_out_of_sample",
+    # amendment 1: see AMENDMENTS. `out_of_design` is the population minus the tasks of a Phase 3
+    # set; the stricter strata below stay as pre-registered sensitivities.
+    "primary_stratum": "out_of_design",
     "secondary_test": "mean paired per-task difference, task-clustered bootstrap 95% interval",
-    "sensitivity_strata": ["all361", "never_cited"],
+    "sensitivity_strata": ["primary_out_of_sample", "never_cited", "all361"],
     "looks_at_task_fractions": [1 / 3, 2 / 3, 1.0],
     "look_rule": ("a task enters a look only when all its runs are complete on BOTH arms; between "
                   "two looks the data are not examined, and the look register is append-only"),
@@ -123,9 +152,10 @@ def strata():
     sets = json.loads((config.DATA_DIR / "phase3_sets.json").read_text())["sets"]
     in_set = {t for name, s in sets.items() if name != "population361" for t in s["tasks"]}
     arm_cited, log_cited = cited(ARM_DOCS), cited(LOG_DOCS)
-    primary = [t for t in ids if t not in in_set and t[:8] not in arm_cited]
+    out_of_design = [t for t in ids if t not in in_set]
+    primary = [t for t in out_of_design if t[:8] not in arm_cited]
     never = [t for t in primary if t[:8] not in log_cited]
-    return {"population_sha256": digest, "all361": ids,
+    return {"population_sha256": digest, "all361": ids, "out_of_design": out_of_design,
             "primary_out_of_sample": primary, "never_cited": never}
 
 
@@ -161,6 +191,7 @@ def build():
         "arm_addendum_sha256": {a: arms.provenance(a)["arm_addendum_sha256"]
                                 for a in ("e1card2", "e1b2", "code2")},
         "arm_tools": {a: list(arms.tools(a)) for a in ("e1card2", "e1b2", "code2")},
+        "amendments": AMENDMENTS,
         "stages": list(STAGES),
         "groups": groups,
         "total_runs": sum(g["runs"] for g in groups),
@@ -174,6 +205,8 @@ def build():
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--write", action="store_true")
+    ap.add_argument("--amend", action="store_true",
+                    help="rewrite an existing lock; refused once a boundary or a run exists")
     a = ap.parse_args(argv)
     lock = build()
     print(f"campaign {lock['campaign']}, tag {lock['harness_tag']}, suffix {lock['tree_suffix']}")
@@ -186,7 +219,18 @@ def main(argv=None):
         print("\n(dry run: pass --write)")
         return
     if LOCK.exists():
-        raise SystemExit(f"{LOCK.name} already exists: a frozen lock is never regenerated")
+        # A lock may be amended only while nothing depends on it yet: no frozen look boundary
+        # (so no look can have been taken) and no results tree of this campaign on disk.
+        current = json.loads(LOCK.read_text())
+        if (current.get("stage3") or {}).get("boundaries") is not None:
+            raise SystemExit(f"{LOCK.name} has frozen boundaries: it is never regenerated")
+        existing = sorted((config.RESULTS_DIR).glob(f"*_{SUFFIX}*_official"))
+        if existing:
+            raise SystemExit(f"{LOCK.name}: results already exist for this campaign "
+                             f"({len(existing)} trees); the lock is never regenerated")
+        if not a.amend:
+            raise SystemExit(f"{LOCK.name} exists; pass --amend to rewrite it (allowed only "
+                             "because no boundary is frozen and no run exists)")
     LOCK.write_text(json.dumps(lock, indent=2) + "\n")
     print(f"\nwritten {LOCK}")
 
