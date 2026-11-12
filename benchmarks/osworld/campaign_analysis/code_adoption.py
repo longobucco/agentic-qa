@@ -23,6 +23,9 @@ CLASSES = (
                       r"thunderbird|vlc)\b(?!.*--headless)"),
     ("settings", r"\b(gsettings|dconf|xfconf-query|pactl|xrandr|xdg-mime|update-alternatives|"
                  r"timedatectl)\b|\.config/|gimprc|registrymodifications\.xcu|sessionrc"),
+    # CAVEAT (12/11): this class matches `openpyxl`, so a read-only inspection through openpyxl is
+    # counted as a file edit. Measured effect: 14 of 167 file_edit commands are read-only. Small,
+    # but the X12 report cites these classes, so the caveat is reported with them.
     ("file_edit", r"\bsed\s+-i\b|\btee\b|[^2]>>?\s*\S|\b(cp|mv|rm|mkdir|touch|unzip|zip|chmod|chown)\b"
                   r"|--headless|\bopenpyxl\b|\bpptx\b|\bdocx\b|open\([^)]*['\"][wa]"),
     ("probe", r"\b(ls|cat|grep|find|which|ps|pgrep|stat|file|head|tail|wc|echo|pwd|id|whoami)\b"
