@@ -20,12 +20,16 @@ succeeded and counts -- getting this wrong dropped 339 judged runs on the first 
 """
 import argparse
 import base64
+import sys
 import csv
 import io
 import json
 import re
 from collections import Counter, defaultdict
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from transcripts import calls  # noqa: E402
 
 HERE = Path(__file__).resolve().parent
 RESULTS = HERE.parent / "results"
@@ -69,46 +73,27 @@ def _blockmeans(png):
 
 
 def noop_counts(run_dir):
-    """(comparisons, screen-unchanged, identical repeats, identical repeats with no change)."""
-    tr = run_dir / "conversation.jsonl"
-    if not tr.exists():
-        return None
-    calls = []
-    for line in tr.open(errors="replace"):
-        if '"mcp_tool_call"' not in line:
-            continue
-        try:
-            ev = json.loads(line)
-        except ValueError:
-            continue
-        it = ev.get("item") or {}
-        if ev.get("type") != "item.completed" or it.get("type") != "mcp_tool_call":
-            continue
-        if it.get("tool") != "computer":
-            continue
-        args = it.get("arguments")
-        if isinstance(args, str):
-            try:
-                args = json.loads(args)
-            except ValueError:
-                args = {}
-        if not isinstance(args, dict):
-            args = {}
+    """(comparisons, screen-unchanged, identical repeats, identical repeats with no change).
+
+    Reads both runtimes through `transcripts.calls`, which is why this now covers Sonnet: the
+    first version parsed Codex's `mcp_tool_call` items only, so every Claude Code run fell out
+    silently and the detector reported on Astra alone.
+    """
+    seq = []
+    for c in calls(run_dir, tool="computer"):
         img = None
-        for part in ((it.get("result") or {}).get("content") or []):
-            if isinstance(part, dict) and part.get("type") == "image" and part.get("data"):
-                try:
-                    img = _blockmeans(base64.b64decode(part["data"]))
-                except Exception:
-                    img = None
-                break
-        calls.append((json.dumps(args, sort_keys=True), img, args.get("action")))
-    if len(calls) < 2:
+        if c["image"]:
+            try:
+                img = _blockmeans(base64.b64decode(c["image"]))
+            except Exception:
+                img = None
+        seq.append((json.dumps(c["args"], sort_keys=True), img, c["args"].get("action")))
+    if len(seq) < 2:
         return None
     cmp_ = unchanged = repeats = repeat_noop = 0
-    for i in range(1, len(calls)):
-        a_prev, img_prev, _ = calls[i - 1]
-        a_cur, img_cur, action = calls[i]
+    for i in range(1, len(seq)):
+        a_prev, img_prev, _ = seq[i - 1]
+        a_cur, img_cur, action = seq[i]
         if img_prev is None or img_cur is None:
             continue
         cmp_ += 1
