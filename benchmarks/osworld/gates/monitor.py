@@ -15,6 +15,7 @@ import sys
 from pathlib import Path
 
 from benchmarks.osworld import config
+from benchmarks.osworld.runners.common import observation_surface
 
 ROOT = Path(__file__).resolve().parents[3]
 LOCK = Path(__file__).resolve().parent.parent / "x22_campaign_lock.json"
@@ -42,7 +43,11 @@ def _expected(lock, arm):
         "image": lock["image"], "evaluator_commit": lock["evaluator_commit"],
         "setup_controller_commit": lock["evaluator_commit"], "evaluator_source": "pinned",
         "max_steps": lock["max_steps"], "screen_size": lock["screen_size"],
-        "observation": "screenshot", "action_space": "computer_20251124",
+        # The observation surface is NOT the same in every arm: one that adds a command tool also
+        # returns that command's stdout and stderr to the model. Expecting "screenshot" everywhere
+        # would both miss a misconfigured arm and bless a false record.
+        "observation": observation_surface("" if arm == "a0" else arm),
+        "action_space": "computer_20251124",
         "protocol": "official", "release": "verified", "backend": "daytona",
         "clock_exempt": False, "harness_dirty": False,
         "arm": None if arm == "a0" else arm,
@@ -73,6 +78,13 @@ def check_run(path, lock, arm):
     for field in ("agent_context_leaks", "agent_non_computer_tool_calls"):
         if result.get(field) != []:
             bad.append(f"{field} = {result.get(field)!r} (expected [])")
+    # The MCP server is a subprocess of the CLI: when it dies the client restarts it. The step
+    # budget now survives that (mcp/server.py carries the count over), but the crash itself does
+    # not survive silently -- the guest may have been mid-action when the server went, and the
+    # run's screenshots then describe a desktop nobody drove.
+    if result.get("agent_step_counter_resets") != 0:
+        bad.append(f"agent_step_counter_resets = {result.get('agent_step_counter_resets')!r} "
+                   "(expected 0: the MCP server was restarted during the run)")
     if result.get("contaminated"):
         bad.append("tool audit flagged possible oracle access")
     if result.get("agent_steps_used") is None:

@@ -9,6 +9,7 @@ import hashlib
 import os
 import shutil
 import tempfile
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -17,7 +18,7 @@ from benchmarks.osworld.env import osworld_eval
 from benchmarks.osworld.runners import astra_common
 from benchmarks.osworld.runners.common import (
     arm_tool_env, mcp_child_env, mcp_unavailable_infra_rec, official_probe_already_passed, protocol_wait,
-    read_mcp_state, reset_mcp_state,
+    phase_seconds, read_mcp_state, reset_mcp_state, step_counter_resets,
 )
 from benchmarks.osworld.runners.agent_computer import (
     _a11y_health, _annotate_incidental, _bounded, _capture_eval_state, _environment_error_rec,
@@ -379,16 +380,21 @@ def run(task, *, env, out, refs=None, dry=False):
     reset_mcp_state(out)   # only this run's server may prove it started
     protocol_wait(config.POST_SETUP_WAIT_S)   # upstream: sleep 60 after reset, before step 1
     bounce = None   # (meta, events) of the resumed session, for an arm with a bounce
+    t_agent = time.monotonic()
+    agent_s = bounce_s = None
     try:
         meta = run_codex_meta(cmd, timeout=config.TASK_TIMEOUT)
+        agent_s = time.monotonic() - t_agent
         first_state = read_mcp_state(out) or {}
         if (meta.get("session_id") and not meta.get("is_error")
                 and _bounce_needed(meta.get("events"), first_state.get("steps_used"))):
             bcmd = _bounce_cmd(meta["session_id"], workdir, controller_url, out,
                                first_state.get("steps_used"))
+            t_bounce = time.monotonic()
             try:
                 bmeta = run_codex_meta(bcmd, timeout=config.TASK_TIMEOUT, cwd=str(workdir))
             finally:
+                bounce_s = time.monotonic() - t_bounce
                 _remove_instructions_file(bcmd)
             bounce = (bmeta, bmeta.get("events") or [])
     finally:
@@ -429,6 +435,8 @@ def run(task, *, env, out, refs=None, dry=False):
                                          meta.get("session_id"))
     mcp_state = read_mcp_state(out)
     official_telemetry["agent_steps_used"] = mcp_state.get("steps_used") if mcp_state else None
+    # Not an accounting detail: a nonzero count means a second server process served this run.
+    official_telemetry["agent_step_counter_resets"] = step_counter_resets(out)
     results_io.write_output(out, text)
     telemetry = _telemetry(meta, stderr)
     telemetry["agent_clean_finish"] = clean_finish
@@ -524,8 +532,10 @@ def run(task, *, env, out, refs=None, dry=False):
     # vm_file such as /home/user/log.txt). Capture only after scoring, otherwise the read sees
     # a legitimate 404 before the evaluator has created the artifact and leaves a diagnosability
     # gap on an otherwise valid verdict.
+    t_eval = time.monotonic()
     rec = _annotate_incidental(
         _bounded("scoring", _score, ctrl, task, answer, out), clean_finish)
+    eval_s = time.monotonic() - t_eval
     if answer.strip().upper() == "FAIL":
         # Official OSWorld scoring short-circuits on an agent-declared FAIL, before its
         # postconfig can create a vm_file result. A download here is guaranteed to 404 and
@@ -541,6 +551,9 @@ def run(task, *, env, out, refs=None, dry=False):
         "id": task["id"], "bucket": tasks.bucket_of(task),
         "instruction": task["instruction"], "answer": answer,
         "eval_state": eval_state, "provenance": provenance,
+        "phase_seconds": phase_seconds(env, agent=agent_s, bounce=bounce_s),
+        "agent_sessions": 2 if bounce else 1,
+        "task_timeout_per_session_s": config.TASK_TIMEOUT,
         **trace, **telemetry,
         # Mirrors agent_computer.run's use of the same probe (runners/common.py's
         # docstring): the Astra runner never recorded this, so every closed-book run with a
@@ -549,5 +562,8 @@ def run(task, *, env, out, refs=None, dry=False):
         # signal to tell the two apart -- confirmed live across 16 of 32 closed-book "0/3" tasks.
         **_a11y_health(ctrl),
     })
-    results_io.write_eval(out, {"id": task["id"], **rec})
+    # The scoring phase rides with the score, not with the result: the Claude runner writes
+    # result.json BEFORE it scores (so a crash during scoring still leaves a result), and the
+    # two runners must put this number in the same place to be comparable.
+    results_io.write_eval(out, {"id": task["id"], **rec, "eval_seconds": round(eval_s, 2)})
     return answer

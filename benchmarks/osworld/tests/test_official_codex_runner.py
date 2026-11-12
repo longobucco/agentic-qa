@@ -550,3 +550,25 @@ def test_runner_preflight_always_adds_the_session_probe(monkeypatch):
     monkeypatch.setattr(gpt_astra, "official_session_preflight", lambda: probes.append(1))
     gpt_astra.preflight()
     assert probes == [1]
+
+
+def test_official_run_records_the_phase_boundaries_and_the_surfaces(monkeypatch, tmp_path):
+    """proposta_harness_osworld.md sections 5 and 6, adopted 12/11. The run's wall clock is split
+    into the phases that can be read separately, the scoring time rides with the score (the Claude
+    runner writes its result before it scores), and the record says how many CLI sessions served
+    the run -- an arm that resumes gets config.TASK_TIMEOUT a second time."""
+    answer, order, scored, result, verdict, infra = _official_run(
+        monkeypatch, tmp_path, [_msg(0, "done")])
+    phases = result["phase_seconds"]
+    assert set(phases) == {"provision", "setup", "agent", "bounce"}
+    assert phases["agent"] is not None and phases["bounce"] is None
+    assert phases["provision"] is None            # _FakeEnv provisions nothing and says so
+    assert result["agent_sessions"] == 1
+    assert result["task_timeout_per_session_s"] == config.TASK_TIMEOUT
+    assert "eval_seconds" in verdict
+    # The observation surface is the arm's own, not a constant (lock amendment 3).
+    assert result["provenance"]["observation"] == "screenshot"
+    monkeypatch.setattr(config, "ASTRA_ARM", "code2")
+    _, _, _, result2, _, _ = _official_run(monkeypatch, tmp_path, [_msg(0, "done")])
+    assert result2["provenance"]["observation"] == "screenshot+command_output"
+    assert result2["provenance"]["observation_detail"].startswith("1920x1080 screenshots, plus")

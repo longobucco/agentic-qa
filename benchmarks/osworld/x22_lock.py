@@ -25,6 +25,7 @@ import re
 from pathlib import Path
 
 from benchmarks.osworld import arms, config, phase3
+from benchmarks.osworld.runners.common import OBSERVATION_SURFACES, observation_surface
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
@@ -107,6 +108,28 @@ AMENDMENTS = [
         "cost": ("the campaign can no longer claim a confirmed population-level effect unless the "
                  "card works well beyond its named mechanism, which is exactly what the screen "
                  "measures."),
+    },
+    {
+        "n": 3, "on": "2026-11-12",
+        "made_before": "any X22 run existed; no set, arm, test, stratum or alpha changes",
+        "change": ("the observation surface is declared PER ARM instead of once for the campaign. "
+                   "`a0`, `e1card2` and `e1b2` observe `screenshot`; `code2` observes "
+                   "`screenshot+command_output`. Every run records its own surface in provenance "
+                   "and Gate B expects the one its arm has."),
+        "why": ("the harness recorded `observation: screenshot` on every run, including the code "
+                "arms, and that is false: `run_command` returns the exit code, stdout and stderr "
+                "of the command to the model, capped at 8000 characters each. The statement is a "
+                "protocol claim about what the model can see, so an arm that hands it text read "
+                "from the guest was being described as if it saw only pixels."),
+        "justification": ("the alternative -- suppressing command output -- would make "
+                          "`run_command` useless and would change the arm X12 already measured. "
+                          "The honest fix is to declare the difference: GUI perception stays "
+                          "screenshot-only in every arm, command output is admitted in the code "
+                          "arms under the tool contract, and the record says so."),
+        "cost": ("`code2` is no longer comparable to the other three stage-1 arms on perception: "
+                 "a stage-1 table ranking the four arms must carry the caveat that one of them "
+                 "reads text the others cannot see, so a difference in its favour is not "
+                 "attributable to the prompt alone."),
     },
 ]
 
@@ -232,6 +255,33 @@ def build():
         "arm_addendum_sha256": {a: arms.provenance(a)["arm_addendum_sha256"]
                                 for a in ("e1card2", "e1b2", "code2")},
         "arm_tools": {a: list(arms.tools(a)) for a in ("e1card2", "e1b2", "code2")},
+        # Adopted from proposta_harness_osworld.md section 5 (12/11): "screenshot-only" is false for
+        # an arm that adds a command tool, because stdout and stderr reach the model. Declared per
+        # arm so no table compares arms as if their observation surface were the same; `code2` must
+        # carry this caveat in every row it appears in.
+        # ("a0" is this campaign's label for the official protocol, which `arms` names "".)
+        "observation_surface": {a: observation_surface("" if a == "a0" else a)
+                                for a in ("a0", "e1card2", "e1b2", "code2")},
+        "observation_surface_detail": dict(OBSERVATION_SURFACES),
+        # proposta_harness_osworld.md section 2.4, adopted 12/11. Stated here because a reader is
+        # entitled to know that "the agent acts only through `computer`" is a verified claim about
+        # what happened, not a property the harness can guarantee in advance.
+        "tool_surface_enforcement": {
+            "mode": "configured in advance, verified after execution, never prevented in flight",
+            "configured": ("the MCP server registers `computer` plus the arm's declared tools and "
+                           "nothing else; Codex runs with its own tools disabled and an explicit "
+                           "allowed-MCP-tools list, Claude Code with every non-MCP tool denied"),
+            "verified": ("every run's transcript and, for Codex, its rollout are audited for a "
+                         "call to anything else (agent_non_computer_tool_calls); an unverifiable "
+                         "run is never recorded as clean"),
+            "on_violation": ("the run is scored FAILURE with reward 0 and labelled "
+                             "`tool_surface_violation`, never retried and never excluded -- "
+                             "either would resample toward runs that happen not to violate"),
+            "limit": ("the audit runs when the agent has stopped. A call that slipped past the "
+                      "configuration has already executed in the guest by the time it is seen, so "
+                      "the guarantee is detection, not prevention. The `code` arm sat at 7.1%, "
+                      "which is why Gate B halts the campaign above 5% of a 40-run window."),
+        },
         "amendments": AMENDMENTS,
         "stages": list(STAGES),
         "groups": groups,

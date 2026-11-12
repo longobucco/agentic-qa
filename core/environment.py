@@ -30,6 +30,11 @@ class Env:
     port: int = None
     browser: object = None
     setup_error: str = None
+    # How long the two phases BEFORE the agent took, for the impls that provision a world. The
+    # runner records them next to its own phases: a run has one wall-clock budget, and without
+    # this split a slow guest and a slow agent are the same number.
+    provision_seconds: float = None
+    setup_seconds: float = None
 
 
 @contextmanager

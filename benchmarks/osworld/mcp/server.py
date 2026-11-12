@@ -4,6 +4,7 @@ set. Needs the `mcp` package.
 
     OSW_CONTROLLER_URL=http://host:5000 python -m benchmarks.osworld.mcp.server
 """
+import json
 import os
 
 from mcp.server.fastmcp import FastMCP, Image
@@ -18,9 +19,36 @@ _ctrl = Controller(os.environ.get("OSW_CONTROLLER_URL", "http://localhost:5000")
 _session = ComputerSession(_ctrl, max_steps=int(os.environ.get("OSW_MAX_STEPS", "100")))
 # The runner's proof that this server started, and its step count (OSW_MCP_STATE_FILE).
 _STATE_FILE = os.environ.get("OSW_MCP_STATE_FILE", "")
-# A resumed session (an arm's bounce) continues the same step budget: start from the steps the
-# first session already used, so the 100-step limit stays one budget across both.
-_session.steps_used = int(os.environ.get("OSW_STEPS_USED_START", "0") or 0)
+
+
+def _steps_already_used():
+    """The steps this run has already spent, which a new server process must not hand back.
+
+    Two ways a second process can serve the same budget. An arm's bounce resumes deliberately and
+    the runner passes OSW_STEPS_USED_START. The other is not deliberate: this server is a stdio
+    subprocess of the CLI, so if it dies the client restarts it, and a fresh ComputerSession
+    starts at 0 -- the agent silently gets another 100 steps. Measured once in 1,542 archived
+    runs (campaign_analysis/call_delivery.py), with 3 steps handed back and no run near the cap,
+    but the budget is a declared constant of the protocol and must not depend on a crash.
+
+    The state file is the carry-over: `common.reset_mcp_state` deletes it before the agent
+    starts, so a file holding steps for THIS run dir can only have been written by this attempt.
+    """
+    start = int(os.environ.get("OSW_STEPS_USED_START", "0") or 0)
+    try:
+        with open(_STATE_FILE) as f:
+            prior = json.load(f)
+        if prior.get("started"):
+            start = max(start, int(prior.get("steps_used") or 0))
+    except (OSError, ValueError, TypeError):
+        pass
+    return start
+
+
+_session.steps_used = _steps_already_used()
+# A restart that resumes mid-budget has already seen its free first screenshot: charge for the
+# next one, or the reset would still hand back a step.
+_session._screenshot_seen = _session.steps_used > 0
 write_state(_STATE_FILE, steps_used=_session.steps_used, max_steps=_session.max_steps)
 
 

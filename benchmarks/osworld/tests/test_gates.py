@@ -84,6 +84,7 @@ def _run(tree_root, task, k, *, arm, verdict="SUCCESS", **overrides):
     prov.update(overrides.pop("provenance", {}))
     result = {"transcript_saved": True, "transcript_bytes": 10, "rollout_archived": True,
               "agent_context_leaks": [], "agent_non_computer_tool_calls": [],
+              "agent_step_counter_resets": 0,
               "contaminated": False, "agent_steps_used": 4, "provenance": prov}
     result.update(overrides)
     (d / "result.json").write_text(json.dumps(result))
@@ -128,6 +129,10 @@ def test_gate_b_catches_tampered_provenance(tmp_path, field, value, needle):
     ("agent_context_leaks", None, "agent_context_leaks"),
     ("agent_non_computer_tool_calls", None, "agent_non_computer_tool_calls"),
     ("agent_steps_used", None, "agent_steps_used is null"),
+    # A restarted MCP server used to hand the agent a fresh 100-step budget; the budget now
+    # survives the restart, but a run that needed one is never silently clean.
+    ("agent_step_counter_resets", 1, "agent_step_counter_resets"),
+    ("agent_step_counter_resets", None, "agent_step_counter_resets"),
     ("contaminated", True, "oracle access"),
 ])
 def test_gate_b_catches_an_unverifiable_run(tmp_path, field, value, needle):
@@ -136,6 +141,25 @@ def test_gate_b_catches_an_unverifiable_run(tmp_path, field, value, needle):
     _run(root, LOCK["stage3"]["strata"]["out_of_design"][0], 1, arm="a0", **{field: value})
     report = monitor.scan(LOCK, tmp_path)
     assert any(needle in v["reason"] for v in report["invariant_violations"]), report
+
+
+def test_gate_b_expects_the_arm_s_own_observation_surface(tmp_path):
+    """proposta_harness_osworld.md section 5, adopted 12/11: `run_command` returns stdout and
+    stderr to the model, so a code arm's observation surface is not "screenshot". Gate B expects
+    the surface the arm actually has, which means a code2 run claiming "screenshot" is a false
+    record and has to be caught -- while the same value on an arm without a command tool is right.
+    """
+    g = next(x for x in LOCK["groups"] if x["arm"] == "code2")
+    root = tmp_path / g["tree"]; root.mkdir(parents=True)
+    task = LOCK["stage3"]["strata"]["out_of_design"][0]
+    assert LOCK["observation_surface"]["code2"] == "screenshot+command_output"
+
+    _run(root, task, 1, arm="code2")
+    assert monitor.scan(LOCK, tmp_path)["invariant_violations"] == []
+
+    _run(root, task, 2, arm="code2", provenance={"observation": "screenshot"})
+    bad = monitor.scan(LOCK, tmp_path)["invariant_violations"]
+    assert any("provenance.observation" in r["reason"] for r in bad), bad
 
 
 def test_gate_b_catches_a_missing_v1_capture(tmp_path):

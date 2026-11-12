@@ -28,6 +28,29 @@ from core import procgroups
 CHECKOUT_ROOT = Path(__file__).resolve().parents[3]
 
 
+# The observation surface an arm gives the model. The official protocol is screenshots only; an arm
+# that adds a command tool also hands the model that command's stdout and stderr, so the two are not
+# the same observation and must never be compared as if they were.
+OBSERVATION_SURFACES = {
+    "screenshot": "1920x1080 screenshots only, returned by the computer tool",
+    "screenshot+command_output": ("1920x1080 screenshots, plus the exit code, stdout and stderr of "
+                                 "each run_command call, capped at 8000 characters each"),
+}
+
+
+def active_arm():
+    """The declared arm of THIS process. A run executes one runner, so exactly one of the two arm
+    variables is set (config refuses an unknown name in either)."""
+    return (config.ASTRA_ARM or config.ARM or "").strip()
+
+
+def observation_surface(arm=None):
+    """`screenshot`, or `screenshot+command_output` when the arm adds a tool that returns text."""
+    from benchmarks.osworld import arms as _arms
+    arm = active_arm() if arm is None else arm
+    return "screenshot+command_output" if _arms.tools(arm) else "screenshot"
+
+
 def _harness_revision(root=CHECKOUT_ROOT):
     """The commit of the checkout and whether tracked files differ from it; never fails a run."""
     try:
@@ -89,6 +112,83 @@ def read_mcp_state(out_dir):
     except (OSError, ValueError):
         return None
     return state if isinstance(state, dict) and state.get("started") else None
+
+
+def phase_seconds(env, **measured):
+    """Where a run's wall clock went: the two phases the environment owns, plus the ones the
+    runner measured itself. None for a phase that did not happen or was not reached.
+
+    A run has one budget and four very different ways to spend it -- provisioning the guest,
+    running the task's config steps, the agent acting, and scoring. Without the split, a run
+    that timed out says only that it was slow, and the first question of any failure analysis
+    (was it the agent or the guest?) has no answer on disk. `agent_sessions` and
+    `task_timeout_per_session_s` are here for the same reason: an arm that resumes the CLI gets
+    config.TASK_TIMEOUT a second time, so its wall-clock ceiling is a multiple of the declared
+    task timeout, and a table of durations must not treat the two as the same protocol.
+    """
+    rec = {"provision": getattr(env, "provision_seconds", None),
+           "setup": getattr(env, "setup_seconds", None)}
+    rec.update({k: (None if v is None else round(v, 2)) for k, v in measured.items()})
+    return rec
+
+
+STEP_REMINDER = re.compile(r"Current step: (\d+)/(\d+)")
+
+
+def _tool_result_texts(path):
+    """The text of every tool result in a saved transcript, in call order, for both runtimes.
+
+    Codex writes `item.completed` events whose item is an `mcp_tool_call` with a `result.content`
+    list; Claude Code writes a `user` message holding `tool_result` blocks. Only tool results are
+    read: the same string can appear in the model's own text, and a false positive here halts a
+    campaign.
+    """
+    for line in path.open(errors="replace"):
+        if "Current step:" not in line:
+            continue
+        try:
+            ev = json.loads(line)
+        except ValueError:
+            continue
+        item = ev.get("item") or {}
+        if ev.get("type") == "item.completed" and item.get("type") == "mcp_tool_call":
+            for part in ((item.get("result") or {}).get("content") or []):
+                if isinstance(part, dict) and part.get("type") == "text":
+                    yield part.get("text", "")
+        elif ev.get("type") == "user":
+            content = (ev.get("message") or {}).get("content")
+            for b in (content if isinstance(content, list) else []):
+                if not isinstance(b, dict) or b.get("type") != "tool_result":
+                    continue
+                cc = b.get("content")
+                for x in (cc if isinstance(cc, list) else []):
+                    if isinstance(x, dict) and x.get("type") == "text":
+                        yield x.get("text", "")
+
+
+def step_counter_resets(out_dir):
+    """How many times the MCP server's step counter went backwards during this run (None when
+    there is no transcript to read).
+
+    The server is a stdio subprocess of the CLI: if it dies, the client restarts it, and before
+    `mcp/server.py` carried the count over, the new process restarted the 100-step budget at
+    zero. The carry-over makes that harmless; this makes it visible, because a server that
+    crashed mid-run is a validity event whether or not it changed the budget -- the guest may
+    have been mid-action when it went.
+    """
+    path = Path(out_dir) / "conversation.jsonl"
+    if not path.exists():
+        return None
+    resets, prev = 0, None
+    for text in _tool_result_texts(path):
+        m = STEP_REMINDER.search(text or "")
+        if not m:
+            continue
+        cur = int(m.group(1))
+        if prev is not None and cur < prev:
+            resets += 1
+        prev = cur
+    return resets
 
 
 def mcp_unavailable_infra_rec(task):
@@ -285,9 +385,15 @@ def _provenance(task, ctrl, started_at):
         **_evaluator_provenance(),
         "max_turns": official_max_turns(),
         "task_timeout": config.TASK_TIMEOUT,
-        # Under the official protocol the model sees screenshots only, through the
-        # computer_20251124 tool -- the only observation/action-space pair this runner offers.
-        "observation": "screenshot",
+        # What the model actually OBSERVES, which is not the same in every arm. Under the official
+        # protocol it is screenshots only, through the computer_20251124 tool. An arm that adds a
+        # command tool also returns that command's stdout and stderr to the model, capped at
+        # command_tool.MAX_CHARS each, and calling that "screenshot" would be false: the agent reads
+        # file contents and structured data it never sees on screen. Recorded per run so a table can
+        # never compare arms as if their observation surface were the same
+        # (proposta_harness_osworld.md section 5, adopted 2026-11-12).
+        "observation": observation_surface(),
+        "observation_detail": OBSERVATION_SURFACES[observation_surface()],
         "action_space": "computer_20251124",
         "effort": config.EFFORT or None,
         "max_output_tokens": config.MAX_OUTPUT_TOKENS,

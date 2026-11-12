@@ -420,6 +420,7 @@ def _provision_and_configure(task, holder):
     (see _PROVISION_TIMEOUT_S) -- the deprecated daytona_sdk gives no such guarantee itself.
     `holder["sb"]` is set as soon as a sandbox exists, so a timed-out caller can still tear it
     down instead of leaking a paid sandbox the worker thread is stuck holding."""
+    t0 = time.monotonic()
     if config.SANDBOX_ID:
         _warn_reuse_once("OSW_SANDBOX_ID set")
         d = _client()
@@ -431,7 +432,11 @@ def _provision_and_configure(task, holder):
         ctrl = _ensure_controller_up(sb)
     else:
         sb, ctrl = provision(on_created=lambda s: holder.update(sb=s))
-    return ctrl, _run_config(ctrl, task, enable_cdp_forwarder=True, sandbox=sb)
+    holder["provision_seconds"] = round(time.monotonic() - t0, 2)
+    t1 = time.monotonic()
+    err = _run_config(ctrl, task, enable_cdp_forwarder=True, sandbox=sb)
+    holder["setup_seconds"] = round(time.monotonic() - t1, 2)
+    return ctrl, err
 
 
 @contextmanager
@@ -440,8 +445,12 @@ def osworld_environment(task, *, port=None):
     if config.CONTROLLER_URL:
         _warn_reuse_once("OSW_CONTROLLER_URL set")
         ctrl = Controller(config.CONTROLLER_URL)
+        t0 = time.monotonic()
         err = _run_config(ctrl, task, enable_cdp_forwarder=True)
-        yield Env(port=None, browser=ctrl, setup_error=err)
+        # Nothing was provisioned: this is an already-running desktop, which is why this branch
+        # warns. 0.0, not None -- the phase happened and took no time, it is not unmeasured.
+        yield Env(port=None, browser=ctrl, setup_error=err, provision_seconds=0.0,
+                  setup_seconds=round(time.monotonic() - t0, 2))
         return
 
     holder = {}
@@ -456,7 +465,9 @@ def osworld_environment(task, *, port=None):
                 f"hang, not a legitimate wait (observed live: sandbox auto-stopped mid-"
                 f"provisioning, then the SDK's exec blocked against the stopped VM forever)"
             ) from None
-        yield Env(port=None, browser=ctrl, setup_error=err)
+        yield Env(port=None, browser=ctrl, setup_error=err,
+                  provision_seconds=holder.get("provision_seconds"),
+                  setup_seconds=holder.get("setup_seconds"))
     finally:
         ex.shutdown(wait=False)   # don't block the whole campaign on a still-stuck worker thread
         sb = holder.get("sb")

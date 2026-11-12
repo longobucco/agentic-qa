@@ -159,6 +159,76 @@ def test_the_mcp_server_starts_from_the_carried_step_count(monkeypatch, tmp_path
         sys.modules.pop("benchmarks.osworld.mcp.server", None)
 
 
+def test_a_restarted_mcp_server_does_not_hand_back_the_step_budget(monkeypatch, tmp_path):
+    """proposta_harness_osworld.md section 4, measured 12/11: the server is a stdio subprocess of
+    the CLI, so a crash gets it restarted and the fresh ComputerSession used to start at 0 -- a
+    second 100-step budget, invisible in `agent_steps_used`, which only ever reads the last
+    session. It happened once in 1,542 archived runs (campaign_analysis/call_delivery.py). The
+    state file is the carry-over: `common.reset_mcp_state` removes it before the agent starts,
+    so a file for this run dir can only have been written by this attempt.
+    """
+    import importlib, json as _json, sys
+    state = tmp_path / "state.json"
+    monkeypatch.setenv("OSW_MCP_STATE_FILE", str(state))
+    monkeypatch.delenv("OSW_STEPS_USED_START", raising=False)
+
+    state.write_text(_json.dumps({"started": True, "steps_used": 58, "max_steps": 100}))
+    sys.modules.pop("benchmarks.osworld.mcp.server", None)
+    server = importlib.import_module("benchmarks.osworld.mcp.server")
+    try:
+        assert server._session.steps_used == 58
+        # and the restart does not re-gift the free first screenshot either
+        assert server._session._screenshot_seen is True
+    finally:
+        sys.modules.pop("benchmarks.osworld.mcp.server", None)
+
+    # A run that has not started yet (no state file) still begins at zero, with its free shot.
+    state.unlink()
+    sys.modules.pop("benchmarks.osworld.mcp.server", None)
+    server = importlib.import_module("benchmarks.osworld.mcp.server")
+    try:
+        assert server._session.steps_used == 0 and server._session._screenshot_seen is False
+    finally:
+        sys.modules.pop("benchmarks.osworld.mcp.server", None)
+
+
+def test_a_server_restart_is_recorded_even_though_the_budget_survives(tmp_path):
+    """The carry-over makes a restart harmless to the budget, not invisible: the guest may have
+    been mid-action when the server died, so Gate B treats a reset as a run to diagnose."""
+    import json as _json
+    from benchmarks.osworld.runners import common
+
+    def codex(step):
+        return _json.dumps({"type": "item.completed", "item": {
+            "type": "mcp_tool_call", "tool": "computer",
+            "result": {"content": [{"type": "text", "text": f"Success[Current step: {step}/100]"}]}
+        }})
+
+    run = tmp_path / "run_1"; run.mkdir()
+    assert common.step_counter_resets(run) is None          # no transcript: unverifiable
+    (run / "conversation.jsonl").write_text("\n".join(codex(i) for i in (0, 1, 2, 3)) + "\n")
+    assert common.step_counter_resets(run) == 0
+    (run / "conversation.jsonl").write_text(
+        "\n".join(codex(i) for i in (0, 1, 2, 3, 0, 1)) + "\n")
+    assert common.step_counter_resets(run) == 1
+
+    # The model quoting the reminder in its own text is not a restart.
+    said = _json.dumps({"type": "item.completed", "item": {
+        "type": "agent_message", "text": "I am at Current step: 0/100, so I have room."}})
+    (run / "conversation.jsonl").write_text(
+        "\n".join([codex(0), codex(1), codex(2), said, codex(3)]) + "\n")
+    assert common.step_counter_resets(run) == 0
+
+    # Claude Code's shape: the reminder arrives in a tool_result block of a user message.
+    def claude(step):
+        return _json.dumps({"type": "user", "message": {"content": [
+            {"type": "tool_result", "tool_use_id": f"t{step}",
+             "content": [{"type": "text", "text": f"Success[Current step: {step}/100]"}]}]}})
+    (run / "conversation.jsonl").write_text(
+        "\n".join(claude(i) for i in (0, 1, 2, 0)) + "\n")
+    assert common.step_counter_resets(run) == 1
+
+
 # --- E1 bounce, Claude runner (OSW_ARM=e1bounce) ---
 
 def _claude_line(role, content):
@@ -259,3 +329,17 @@ def test_code2_keeps_the_code_arm_and_adds_only_the_contract_sentence():
         "\n\nUse only computer, run_command, and the permitted MCP resource functions. Run every "
         "command through run_command and perform desktop interactions through computer. Do not "
         "call any other shell, exec, or code-execution tool.")
+
+
+def test_the_observation_surface_is_recorded_per_arm():
+    """proposta_harness_osworld.md section 5: an arm that adds a command tool hands the model that
+    command's stdout and stderr, so calling it 'screenshot' is false. The surface must be recorded
+    per run, or a table can compare two arms as if they observed the same thing."""
+    from benchmarks.osworld.runners import common
+    assert common.observation_surface("") == "screenshot"
+    assert common.observation_surface("e1card2") == "screenshot"
+    assert common.observation_surface("e1b2") == "screenshot"
+    assert common.observation_surface("code") == "screenshot+command_output"
+    assert common.observation_surface("code2") == "screenshot+command_output"
+    assert set(common.OBSERVATION_SURFACES) == {"screenshot", "screenshot+command_output"}
+    assert "8000" in common.OBSERVATION_SURFACES["screenshot+command_output"]

@@ -571,3 +571,18 @@ def test_collect_eval_artifacts_without_a_run_dir_is_a_noop(tmp_path):
     """Diagnostics must never break scoring: a caller without a run dir (out=None) gets []."""
     (tmp_path / "f.bin").write_bytes(b"x")
     assert common._collect_eval_artifacts(tmp_path, None, {"id": "t", "evaluator": {}}) == []
+
+
+def test_phase_seconds_splits_the_run_s_wall_clock():
+    """proposta_harness_osworld.md section 6, adopted 12/11: a run has one wall-clock budget and
+    four ways to spend it. Recording only the total leaves the first question of any failure
+    analysis -- was it the agent or the guest? -- unanswerable from disk."""
+    from core.environment import Env
+
+    env = Env(provision_seconds=31.4, setup_seconds=7.2)
+    rec = common.phase_seconds(env, agent=123.456, bounce=None)
+    assert rec == {"provision": 31.4, "setup": 7.2, "agent": 123.46, "bounce": None}
+
+    # An environment that provisions nothing (null_environment, or a runner that brings its own
+    # world) leaves those phases unmeasured rather than claiming they took no time.
+    assert common.phase_seconds(Env(), agent=1.0)["provision"] is None

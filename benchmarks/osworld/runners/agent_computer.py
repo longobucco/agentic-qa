@@ -12,6 +12,7 @@ import json
 import os
 import shutil
 import tempfile
+import time
 
 from datetime import datetime, timezone
 from pathlib import Path
@@ -27,7 +28,7 @@ from benchmarks.osworld.runners.common import (
     claude_env, claude_session_file, claude_transcript_actions, claude_transcript_context_leaks,
     claude_transcript_offered_tools, claude_transcript_tool_names, claude_workdir_session_file,
     mcp_unavailable_infra_rec, official_max_turns, official_probe_already_passed, protocol_wait,
-    read_mcp_state, reset_mcp_state,
+    phase_seconds, read_mcp_state, reset_mcp_state, step_counter_resets,
 )
 from core.agent_loop import _run_raw, build_claude_cmd, preview, run_claude_meta
 from core import results as results_io
@@ -373,11 +374,17 @@ def run(task, *, env, out, refs=None, dry=False):
     protocol_wait(config.POST_SETUP_WAIT_S)   # upstream: sleep 60 after reset, before step 1
 
     workdir = None
+    agent_s = bounce_s = None
     try:
         # An empty temp cwd isolates the session from repo/project context.
         with _isolated_workdir() as workdir:
+            t_agent = time.monotonic()
             meta = run_claude_meta(cmd, timeout=config.TASK_TIMEOUT, cwd=workdir, **_env_kwargs())
+            agent_s = time.monotonic() - t_agent
+            t_bounce = time.monotonic()
             bounce_meta = _maybe_bounce(meta, workdir, controller_url, out, task)
+            if bounce_meta is not None:
+                bounce_s = time.monotonic() - t_bounce
     finally:
         # written fresh per run (NamedTemporaryFile(delete=False)); the claude subprocess has
         # exited by now (run_claude_meta blocks until it does) so it's safe to remove. Without
@@ -425,6 +432,8 @@ def run(task, *, env, out, refs=None, dry=False):
     official_telemetry = _official_audit(out, transcript)
     mcp_state = read_mcp_state(out)
     official_telemetry["agent_steps_used"] = mcp_state.get("steps_used") if mcp_state else None
+    # Not an accounting detail: a nonzero count means a second server process served this run.
+    official_telemetry["agent_step_counter_resets"] = step_counter_resets(out)
 
     telemetry = _agent_telemetry(first_meta)
     telemetry["agent_clean_finish"] = clean_finish
@@ -494,12 +503,17 @@ def run(task, *, env, out, refs=None, dry=False):
         "answer": answer,
         "eval_state": eval_state,
         "provenance": _run_provenance(task, ctrl, started_at),
+        "phase_seconds": phase_seconds(env, agent=agent_s, bounce=bounce_s),
+        "agent_sessions": 2 if bounce_meta is not None else 1,
+        "task_timeout_per_session_s": config.TASK_TIMEOUT,
         **transcript,
         **_model_mismatch(meta),
         **telemetry,
         **official_telemetry,
         **_a11y_health(ctrl),
     })
+    t_eval = time.monotonic()
     rec = _annotate_incidental(_bounded("scoring", _score, ctrl, task, answer, out), clean_finish)
-    results_io.write_eval(out, {"id": task["id"], **rec})
+    results_io.write_eval(out, {"id": task["id"], **rec,
+                                "eval_seconds": round(time.monotonic() - t_eval, 2)})
     return answer
