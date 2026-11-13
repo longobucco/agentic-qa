@@ -540,9 +540,23 @@ def run(task, *, env, out, refs=None, dry=False):
         # Official OSWorld scoring short-circuits on an agent-declared FAIL, before its
         # postconfig can create a vm_file result. A download here is guaranteed to 404 and
         # obscures a legitimate agent verdict with a harness-looking warning.
+        #
+        # That reason covers the RESULT SPEC READ, and nothing else. The final screenshot and the
+        # structured final state do not depend on postconfig, and skipping them along with it left
+        # 224 archived declared-FAIL runs -- 31 distinct tasks, 7 trees -- with no final.png and
+        # no final_state/ at all, against 98.8% coverage everywhere else (measured 13/11). That is
+        # the largest Astra failure class, and it is the one where "it gave up at step 2" cannot be
+        # checked without the screen it gave up on. It halted the DEV1 tranche at run 21.
+        #
+        # Non-interference: this runs after _score above has already returned, so the verdict
+        # exists before anything here touches the guest -- same position in the sequence the
+        # non-FAIL branch has always used -- and _capture_final_state issues read-only commands.
+        if ctrl:
+            _bounded("final-state capture", _capture_eval_state, ctrl, task, out, False)
         eval_state = {
             "capture_status": "not_applicable",
             "reason": "agent returned FAIL; official evaluator skipped postconfig",
+            "diagnostics_captured": True,
         }
     else:
         eval_state = _bounded(

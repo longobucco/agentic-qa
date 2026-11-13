@@ -248,13 +248,19 @@ def _bounded(label, fn, *args):
             ) from None
 
 
-def _capture_eval_state(ctrl, task, out):
+def _capture_eval_state(ctrl, task, out, read_result_spec=True):
+    """The post-run capture: the evaluator's own result, an audit screenshot, the structured state.
+
+    `read_result_spec=False` keeps the screenshot and the structured dump but does not read the
+    evaluator's result spec. Only that read depends on the official postconfig having run, so it
+    is the only part an agent-declared FAIL has to skip (see the caller in runners/gpt_astra.py).
+    """
     # for the offline fallback + an audit screenshot
     ev = task.get("evaluator", {}) or {}
     result_spec = ev.get("result")
     captured = None
     try:
-        if isinstance(result_spec, dict):
+        if read_result_spec and isinstance(result_spec, dict):
             rtype = result_spec.get("type")
             if rtype in ("vm_command_line", "command"):
                 captured = ctrl.execute(result_spec.get("command", ""))

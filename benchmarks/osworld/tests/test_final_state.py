@@ -15,6 +15,51 @@ class FakeCtrl:
         return "out:" + command[-40:]
 
 
+class _EvalStateCtrl(FakeCtrl):
+    """FakeCtrl plus the two calls the eval-state capture makes beyond commands."""
+
+    def __init__(self):
+        super().__init__()
+        self.reads = []
+
+    def read_file(self, path):
+        self.reads.append(path)
+        return b"postconfig artifact"
+
+    def screenshot(self):
+        return b"\x89PNG"
+
+
+_FAIL_TASK = {"evaluator": {"func": "exact_match",
+                            "result": {"type": "vm_file", "path": "/home/user/log.txt",
+                                       "dest": "eval_artifact"}}}
+
+
+def test_declared_fail_capture_skips_the_result_spec_and_keeps_the_rest(tmp_path):
+    """What an agent-declared FAIL has to skip is the postconfig read, and only that.
+
+    Official scoring short-circuits on a declared FAIL before its postconfig can create the
+    vm_file, so fetching it would 404. The audit screenshot and the structured dump do not depend
+    on postconfig: skipping them too left 224 archived FAIL runs with no final state (13/11).
+    """
+    ctrl = _EvalStateCtrl()
+    captured = common._capture_eval_state(ctrl, _FAIL_TASK, tmp_path, False)
+    assert captured is None, "the evaluator's result must not be read on a declared FAIL"
+    assert ctrl.reads == [] and not (tmp_path / "eval_artifact").exists()
+    assert (tmp_path / "final.png").read_bytes() == b"\x89PNG"
+    assert (tmp_path / "final_state" / "manifest.json").exists()
+
+
+def test_the_default_capture_still_reads_the_result_spec(tmp_path):
+    """Non-interference: every other caller passes no flag and must be unaffected."""
+    ctrl = _EvalStateCtrl()
+    captured = common._capture_eval_state(ctrl, _FAIL_TASK, tmp_path)
+    assert captured == "postconfig artifact"
+    assert ctrl.reads == ["/home/user/log.txt"]
+    assert (tmp_path / "eval_artifact").read_bytes() == b"postconfig artifact"
+    assert (tmp_path / "final.png").exists()
+
+
 def test_final_state_writes_every_item_and_a_manifest(tmp_path):
     ctrl = FakeCtrl()
     common._capture_final_state(ctrl, tmp_path)

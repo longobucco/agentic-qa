@@ -209,8 +209,15 @@ def test_agent_declared_fail_does_not_fetch_an_uncreated_postconfig_file():
         gpt_astra.run(task, env=type("E", (), {
             "browser": type("C", (), {"base_url": "http://controller"})(), "setup_error": None
         })(), out=out)
-    assert not capture.called
-    assert json.loads((out / "result.json").read_text())["eval_state"]["capture_status"] == "not_applicable"
+    # The invariant this test has always been about is the one in its name: the uncreated
+    # postconfig file is not fetched. That is now expressed by the flag rather than by skipping
+    # the capture wholesale -- the screenshot and the structured dump do not depend on postconfig,
+    # and dropping them left 224 archived FAIL runs with no final state (13/11).
+    # common._capture_eval_state's own tests check that the flag does what it says.
+    assert capture.call_count == 1 and capture.call_args.args[-1] is False
+    result = json.loads((out / "result.json").read_text())
+    assert result["eval_state"]["capture_status"] == "not_applicable"
+    assert result["eval_state"]["diagnostics_captured"] is True
 
 
 def main():

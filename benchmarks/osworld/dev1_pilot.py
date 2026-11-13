@@ -122,8 +122,17 @@ def scan(results_dir=None, register=None):
                                   for r in bad]
             ie = run / "infra_error.json"
             if ie.exists():
-                rep["attempts"][f"{t['task'][:8]}/{run.name}"] = sum(
-                    1 for line in ie.read_text().splitlines() if line.strip())
+                # An append-only log of attempts, so the report counts them rather than letting a
+                # quiet second attempt look like a clean first one -- but it is a pretty-printed
+                # JSON array, and counting its lines reported ~9 attempts per attempt. Parse it,
+                # and fall back to the line count only if it is not valid JSON.
+                raw = ie.read_text()
+                try:
+                    rows = json.loads(raw)
+                    n = len(rows if isinstance(rows, list) else [rows])
+                except Exception:
+                    n = sum(1 for line in raw.splitlines() if line.strip())
+                rep["attempts"][f"{t['task'][:8]}/{run.name}"] = n
     if root.exists():
         stray = sorted(p.name for p in root.iterdir() if p.is_dir() and p.name not in dev_ids)
         if stray:
