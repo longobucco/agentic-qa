@@ -503,6 +503,11 @@ def run(task, *, env, out, refs=None, dry=False):
         results_io.write_result(out, {
             "id": task["id"], "bucket": tasks.bucket_of(task),
             "instruction": task["instruction"], "answer": answer,
+            # The provisioning, setup and agent phases happened and were measured, so record
+            # them here too: without the split a terminal violation says only that it was slow
+            # (see common.phase_seconds). Scoring stays None because it is never reached, which
+            # is the honest value rather than a missing key.
+            "phase_seconds": phase_seconds(env, agent=agent_s, bounce=bounce_s),
             "provenance": provenance, **trace, **telemetry,
         })
         # Ruling (task 7b): a tool-surface violation is a TERMINAL failure, not an infra error --
@@ -524,7 +529,24 @@ def run(task, *, env, out, refs=None, dry=False):
             "id": task["id"], "verdict": "FAILURE", "reward": 0.0, "source": "harness",
             "reason": f"tool surface violation: {', '.join(names)}",
             "tool_surface_violation": names,
+            # B7: an empty artefact manifest must never be left unexplained. Here the reason is
+            # categorical rather than measured -- the official evaluator is not reached at all --
+            # and saying so is what distinguishes this from a retrieval that silently failed.
+            "artefact_capture": {"reason": "not applicable: terminal tool-surface violation, the "
+                                           "official evaluator did not run"},
         })
+        # Same ruling as the declared-FAIL branch: a short-circuit skips the official evaluator,
+        # not the diagnostics. The evaluator never ran here either, so its result spec would 404
+        # (hence read_result_spec=False) -- but the screen the agent was on when it left the tool
+        # surface IS the evidence of the escape, and dropping it left exactly those runs
+        # unexaminable. Written after write_eval and swallowed on failure on purpose: the verdict
+        # is terminal, and a diagnostic must never be able to turn it into an infra error (which
+        # would leave is_done() False and let a later --runs invocation re-roll it).
+        if ctrl:
+            try:
+                _bounded("final-state capture", _capture_eval_state, ctrl, task, out, False)
+            except Exception as e:
+                print(f"[osworld] final-state capture after a tool-surface violation failed: {e}")
         return ""
 
     protocol_wait(config.PRE_EVAL_WAIT_S)   # upstream: sleep 20 before evaluate

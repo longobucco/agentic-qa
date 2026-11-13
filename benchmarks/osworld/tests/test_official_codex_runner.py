@@ -266,11 +266,59 @@ def test_official_run_terminal_failure_on_tool_surface_violation(monkeypatch, tm
         "id": "t", "verdict": "FAILURE", "reward": 0.0, "source": "harness",
         "reason": "tool surface violation: web_search, exec.apply_patch",
         "tool_surface_violation": ["web_search", "exec.apply_patch"],
+        # The terminal verdict is unchanged; what was added is the reason there is no evaluator
+        # artefact. B7: an empty manifest must not be left unexplained, and here the cause is
+        # categorical -- the evaluator is never reached.
+        "artefact_capture": {"reason": "not applicable: terminal tool-surface violation, the "
+                                       "official evaluator did not run"},
     }
     assert infra is None   # never infra_error.json -- see the ruling above
     assert "score" not in order
+    # the phases that did happen are recorded; scoring is None because it was never reached
+    assert result["phase_seconds"]["agent"] is not None
+    assert "scoring" not in result["phase_seconds"]   # never reached, so never claimed
     from core import results as results_io
     assert results_io.is_done(tmp_path)   # terminal: resume must never retry this run
+
+
+def test_a_tool_surface_violation_still_captures_the_screen_it_escaped_from(monkeypatch, tmp_path):
+    """The short-circuit skips the official evaluator, not the diagnostics.
+
+    The evaluator is never reached on this path, so its result spec would 404 -- hence the capture
+    is asked for with read_result_spec=False -- but the screen the agent was on when it left the
+    tool surface is the evidence of the escape, and dropping it left exactly those runs
+    unexaminable (measured 13/11 on the DEV1 vscode run that halted the tranche).
+    """
+    asked = []
+    monkeypatch.setattr(_FakeEnv, "browser", type("C", (), {"base_url": "http://controller"})())
+    monkeypatch.setattr(gpt_astra, "_capture_eval_state",
+                        lambda ctrl, task, out, read_result_spec=True: asked.append(
+                            read_result_spec))
+    rollout = tmp_path / "rollout.jsonl"
+    rollout.write_text(_rollout_lines(leaky=False, extra=[
+        _exec("await tools.apply_patch('*** Begin Patch')")]))
+    _, order, _, _, verdict, infra = _official_run(
+        monkeypatch, tmp_path, [_computer(1, {"action": "screenshot"})], rollout=rollout)
+    assert verdict["tool_surface_violation"] == ["exec.apply_patch"]
+    assert asked == [False], "the diagnostics must be captured, without the result-spec read"
+    assert "score" not in order and infra is None   # still terminal, still never retried
+
+
+def test_a_failing_capture_cannot_turn_a_terminal_violation_into_an_infra_error(monkeypatch,
+                                                                                tmp_path):
+    """A diagnostic must never change a run's fate: an infra error here would leave is_done()
+    False and let a later --runs invocation re-roll a run that is terminal by ruling."""
+    monkeypatch.setattr(_FakeEnv, "browser", type("C", (), {"base_url": "http://controller"})())
+    monkeypatch.setattr(gpt_astra, "_capture_eval_state",
+                        lambda *a, **k: (_ for _ in ()).throw(RuntimeError("guest gone")))
+    rollout = tmp_path / "rollout.jsonl"
+    rollout.write_text(_rollout_lines(leaky=False, extra=[
+        _exec("await tools.apply_patch('*** Begin Patch')")]))
+    _, _, _, _, verdict, infra = _official_run(
+        monkeypatch, tmp_path, [_computer(1, {"action": "screenshot"})], rollout=rollout)
+    assert verdict["verdict"] == "FAILURE" and infra is None
+    from core import results as results_io
+    assert results_io.is_done(tmp_path)
 
 
 def test_official_run_records_the_audit(monkeypatch, tmp_path):
@@ -328,6 +376,8 @@ def test_official_run_exempt_plus_non_exempt_is_still_a_violation(monkeypatch, t
         "id": "t", "verdict": "FAILURE", "reward": 0.0, "source": "harness",
         "reason": "tool surface violation: exec.apply_patch",
         "tool_surface_violation": ["exec.apply_patch"],
+        "artefact_capture": {"reason": "not applicable: terminal tool-surface violation, the "
+                                       "official evaluator did not run"},
     }
     assert infra is None
     assert "score" not in order
